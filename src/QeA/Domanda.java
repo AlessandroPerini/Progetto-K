@@ -3,18 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università;
+package QeA;
 
 /**
  *
  * @author te4o
  */
-public class Facoltà {
+public class Domanda {
     
-    private String nome;
-
-    public Facoltà(String nome) {
-        this.nome = nome;
-    }
-
 }

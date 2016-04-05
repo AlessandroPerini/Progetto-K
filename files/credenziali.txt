@@ -1,0 +1,6 @@
+matteo.cotti01@universitadipavia.it	ciao	20	3345125696
+prova.prova01@universitadipavia.it	prova	0	3124596857
+alessandro.perini01@universitadipavia.it	banana	30	3654128745
+thomas.bricchi01@universitadipavia.it	rabona	10	32102365247
+admin.a@universitadipavia.it	password	100	3669898995
+a.a@universitadipavia.it	a	50	3333652547

@@ -9,12 +9,14 @@ package Università;
  *
  * @author te4o
  */
-public class Facoltà {
+public class Corso {
     
     private String nome;
+    private String anno;
 
-    public Facoltà(String nome) {
+    public Corso(String nome, String anno) {
         this.nome = nome;
+        this.anno = anno;
     }
-
+   
 }
