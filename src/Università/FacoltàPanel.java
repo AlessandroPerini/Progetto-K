@@ -26,7 +26,7 @@ public class FacoltàPanel extends JPanel{
 
     public FacoltàPanel(CardLayout card, JPanel container, JPanel accountPanel) {
     
-        TopPanel top = new TopPanel(card, container, accountPanel, "FACOLTA'");
+        TopPanel top = new TopPanel(card, container, "FACOLTA'");
         
         JPanel panel = new JPanel(new GridLayout(N, 1));
         

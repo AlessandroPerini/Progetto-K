@@ -22,6 +22,10 @@ import javax.swing.SwingConstants;
  * @author te4o
  */
 public class AccountPanel extends JPanel{
+    
+    private static JLabel email;
+    private static JLabel nick;
+    private static JLabel points;
 
     public AccountPanel(final CardLayout card, final JPanel container) {
     
@@ -62,19 +66,19 @@ public class AccountPanel extends JPanel{
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        JLabel email = new JLabel("...");
+        email = new JLabel("");
         email.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        JLabel nick = new JLabel("...");
+        nick = new JLabel("");
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel pointsLabel = new JLabel("Points: ");
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        JLabel points = new JLabel("...");
+        points = new JLabel("");
         points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
@@ -104,8 +108,11 @@ public class AccountPanel extends JPanel{
     }
     
     public static void setData(){
-    
-       
+
+        email.setText(CheckLogin.getGuest().getEmail());
+        nick.setText(CheckLogin.getGuest().getNickname());
+        points.setText(Integer.toString(CheckLogin.getGuest().getPunti()));
+        
     }
     
 }

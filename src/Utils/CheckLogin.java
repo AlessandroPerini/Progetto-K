@@ -20,7 +20,7 @@ import java.util.StringTokenizer;
 public class CheckLogin {
 
     private static ArrayList<Studente> studenti = new ArrayList<>();
-    private static boolean check;
+    private static boolean checkLogin;
     private static Studente guest = new Studente("", "", 0, "");
     
     public static void Check(String email, String psw) throws InternalError, IOException{
@@ -29,19 +29,19 @@ public class CheckLogin {
             ReadFile();
         }
        
-        check= false;
+        checkLogin= false;
         
         for (int i=0; i<studenti.size(); i++) {
             if((email+"@universitadipavia.it").equals(studenti.get(i).getEmail())){
                 if(psw.equals(studenti.get(i).getPassword())){
-                    check = true;
+                    checkLogin = true;
                     guest = studenti.get(i);
                     guest.setNickname();
                 }
             }
         }
         InternalError LoginEx = new InternalError("Wrong email/password");
-        if(check == false) {throw LoginEx;}
+        if(checkLogin == false) {throw LoginEx;}
     }
 
     private static void ReadFile () throws IOException{
@@ -75,4 +75,9 @@ public class CheckLogin {
     }
     
     public static void deleteGuest(){guest = new Studente("", "", 0, "");}
+
+    public static boolean isCheckLogin() {
+        return checkLogin;
+    }  
+    
 }

@@ -24,8 +24,8 @@ import javax.swing.SwingConstants;
  * @author Te4o
  */
 public class TopPanel extends JPanel{
-
-    public TopPanel(final CardLayout card, final JPanel container,JPanel accountPanel, String t) {
+    
+    public TopPanel(final CardLayout card, final JPanel container, String t) {
         
         setLayout(new GridLayout(1, 3, 120, 0));
         
