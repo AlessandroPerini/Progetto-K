@@ -130,13 +130,12 @@ public class LoginPanel extends JPanel implements KeyListener {
     
     public void login(){
         try {
-                CheckLogin.Check(email.getText(), password.getText());
-                JOptionPane.showMessageDialog(null, "Successful login.", "Login confirmed", JOptionPane.INFORMATION_MESSAGE);
-                card.show(container, "" + 2);
+                    CheckLogin.Check(email.getText()+"@universitadipavia.it", password.getText());
+                    JOptionPane.showMessageDialog(null, "Successful login.", "Login confirmed", JOptionPane.INFORMATION_MESSAGE);
+                    card.show(container, "" + 2);
+                
             } catch (InternalError LoginEx) {
                 JOptionPane.showMessageDialog(null, "You've typed incorrect email or password.", "Wrong email/password", JOptionPane.ERROR_MESSAGE);
-            } catch (IOException ex1) {
-                System.err.println("I/O error.");
             }
     }
     

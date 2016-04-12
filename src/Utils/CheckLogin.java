@@ -6,12 +6,12 @@
 package Utils;
 
 import Studente.Studente;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,57 +19,54 @@ import java.util.StringTokenizer;
  */
 public class CheckLogin {
 
+    private static Connection connection = new DbConnection().connect();
+    
     private static ArrayList<Studente> studenti = new ArrayList<>();
-    private static boolean checkLogin;
+    private static boolean checkLogin = false;
     private static Studente guest = new Studente("", "", 0, "");
-    
-    public static void Check(String email, String psw) throws InternalError, IOException{
-    
-        if (studenti.isEmpty()) {
-            ReadFile();
-        }
-       
-        checkLogin= false;
+    private static int punti;
+    private static String telefono;
+  
+    public static void Check(String email, String password){
         
-        for (int i=0; i<studenti.size(); i++) {
-            if((email+"@universitadipavia.it").equals(studenti.get(i).getEmail())){
-                if(psw.equals(studenti.get(i).getPassword())){
-                    checkLogin = true;
-                    guest = studenti.get(i);
-                    guest.setNickname();
-                }
-            }
-        }
+        checkLogin= false;
+    
+        String sql = "select * from credenziali where email=? and password=?";
+        
+        try{
+            PreparedStatement ps1 = connection.prepareStatement(sql);
+            ps1.setString(1, email);
+            ps1.setString(2, password);
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if(rs.next()){
+                checkLogin = true;
+                
+                String sql_punti = "select punti from credenziali where email=?";
+                PreparedStatement ps2 = connection.prepareStatement(sql_punti);
+                ps2.setString(1, email);
+                ResultSet rs2 = ps2.executeQuery();
+                if(rs2.next()){punti = rs2.getInt("punti");}
+
+                String sql_telefono = "select telefono from credenziali where email=?";
+                PreparedStatement ps3 = connection.prepareStatement(sql_telefono);
+                ps3.setString(1, email);
+                ResultSet rs3 = ps3.executeQuery();
+                if(rs3.next()){telefono = rs3.getString("telefono");}
+                        
+                guest = new Studente(email, password, punti, telefono);
+                guest.setNickname();
+                
+           }
+            
+            
         InternalError LoginEx = new InternalError("Wrong email/password");
         if(checkLogin == false) {throw LoginEx;}
+        }catch(Exception e){
+        }
     }
-
-    private static void ReadFile () throws IOException{
-        
-        studenti = new ArrayList<>();
-        try{
-            BufferedReader in = new BufferedReader(new FileReader("files/credenziali.txt"));
-            String line, email, password, telefono;
-            int points;
-
-            while((line = in.readLine()) != null){
-
-                StringTokenizer st = new StringTokenizer(line, "\t");
-                while(st.hasMoreTokens()){
-
-                    email = st.nextToken();
-                    password = st.nextToken();
-                    points = Integer.parseInt(st.nextToken());
-                    telefono = st.nextToken();
-
-                    Studente studente = new Studente(email, password, points, telefono);
-                    studenti.add(studente);
-                }
-            }
-            in.close();
-        }catch(FileNotFoundException ex0){System.err.println("File not found.");}
-    }
-
+    
     public static Studente getGuest() {
         return guest;
     }

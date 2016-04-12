@@ -26,6 +26,7 @@ public class AccountPanel extends JPanel{
     private static JLabel email;
     private static JLabel nick;
     private static JLabel points;
+    private static JLabel phone;
 
     public AccountPanel(final CardLayout card, final JPanel container) {
     
@@ -59,6 +60,7 @@ public class AccountPanel extends JPanel{
         JPanel emailRow = new JPanel();
         JPanel nickRow = new JPanel();
         JPanel pointsRow = new JPanel();
+        JPanel phoneRow = new JPanel();
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
@@ -82,10 +84,10 @@ public class AccountPanel extends JPanel{
         points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
-        pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
+        phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        JLabel phone = new JLabel("...");
-        points.setFont(new Font("Arial", Font.PLAIN, 18));
+        phone = new JLabel("...");
+        phone.setFont(new Font("Arial", Font.PLAIN, 18));
 
         emailRow.add(emailLabel);
         emailRow.add(email);
@@ -95,11 +97,15 @@ public class AccountPanel extends JPanel{
 
         pointsRow.add(pointsLabel);
         pointsRow.add(points);
-
+        
+        phoneRow.add(phoneLabel);
+        phoneRow.add(phone);
+        
         body.add(line);
         body.add(emailRow);
         body.add(nickRow);
         body.add(pointsRow);
+        body.add(phoneRow);
         //end body panel
         
         add(top);
@@ -112,6 +118,7 @@ public class AccountPanel extends JPanel{
         email.setText(CheckLogin.getGuest().getEmail());
         nick.setText(CheckLogin.getGuest().getNickname());
         points.setText(Integer.toString(CheckLogin.getGuest().getPunti()));
+        phone.setText(CheckLogin.getGuest().getTelefono());
         
     }
     
