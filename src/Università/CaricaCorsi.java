@@ -22,16 +22,15 @@ import javax.swing.JPanel;
  *
  * @author te4o
  */
-public class AscoltatoreFacoltà implements ActionListener{
+public class CaricaCorsi implements ActionListener{
 
     private CardLayout card;
     private JPanel container;
     
-    public AscoltatoreFacoltà(CardLayout card, JPanel container) {
+    public CaricaCorsi(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
-
     
     private Connection connection = new ConnessioneDB().connect();
     private static ArrayList<String> corsiList = new ArrayList<>();
@@ -57,7 +56,7 @@ public class AscoltatoreFacoltà implements ActionListener{
             card.show(container, "corsi");
 
     }   catch (SQLException ex) {   
-            Logger.getLogger(AscoltatoreFacoltà.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
 

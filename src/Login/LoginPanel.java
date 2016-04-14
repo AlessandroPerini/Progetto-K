@@ -6,8 +6,9 @@
 package Login;
 
 import Studente.AccountPanel;
+import Università.CaricaFacoltà;
 import Università.FacoltàPanel;
-import Utils.Login;
+import Utils.CheckLogin;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,7 +22,7 @@ import javax.swing.*;
  *
  * @author Te4o
  */
-public class LoginPanel extends JPanel implements KeyListener {
+public class LoginPanel extends JPanel{
     
     private static JTextField email = new JTextField();
     private static JPasswordField password = new JPasswordField();
@@ -33,6 +34,7 @@ public class LoginPanel extends JPanel implements KeyListener {
         
         this.card = card;
         this.container = container; 
+        
         JPanel main = new JPanel(new GridLayout(3, 1));
         
         JPanel up = new JPanel(new GridLayout(2, 1, 0, 30));
@@ -71,14 +73,12 @@ public class LoginPanel extends JPanel implements KeyListener {
         password.setFont(new Font("Arial", Font.PLAIN, 15));
         password.setHorizontalAlignment(SwingConstants.CENTER);
         
+        CaricaFacoltà caricaFacoltà = new CaricaFacoltà(card, container);
+        DoLogin doLogin = new DoLogin(card, container, email, password);
+        
         JButton login = new JButton("Login");
-        login.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {  
-                
-                login();
-            }
-        });
+        login.addActionListener(doLogin);
+        login.addActionListener(caricaFacoltà);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
@@ -104,9 +104,12 @@ public class LoginPanel extends JPanel implements KeyListener {
         main.add(down);
         main.add(submit);
         
-        email.addKeyListener(this);
-        password.addKeyListener(this);
-        login.addKeyListener(this);
+        email.addKeyListener(doLogin);
+        email.addKeyListener(caricaFacoltà);
+        password.addKeyListener(doLogin);
+        password.addKeyListener(caricaFacoltà);
+        login.addKeyListener(doLogin);
+        login.addKeyListener(caricaFacoltà);
         
         add(main);
     }
@@ -117,36 +120,4 @@ public class LoginPanel extends JPanel implements KeyListener {
         password.setText("");
     }
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-        }
-
-    public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            login();
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyEvent e) {
-    }
-    
-    public void login(){
-        try {
-
-                Login.Check(email.getText()+"@universitadipavia.it", password.getText());
-                JOptionPane.showMessageDialog(null, "Successful login.", "Login confirmed", JOptionPane.INFORMATION_MESSAGE);
-
-                AccountPanel account = new AccountPanel(card, container);
-                FacoltàPanel facoltà = new FacoltàPanel(card, container);
-                
-                container.add(facoltà,"facoltà");
-                container.add(account,"account");
-                card.show(container, "facoltà");
-                
-            } catch (InternalError LoginEx) {
-                JOptionPane.showMessageDialog(null, "You've typed incorrect email or password.", "Wrong email/password", JOptionPane.ERROR_MESSAGE);
-            }
-    }
-    
 }

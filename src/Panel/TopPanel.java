@@ -8,7 +8,7 @@ package Panel;
 import Login.LoginPanel;
 import Studente.AccountPanel;
 import Utils.DatiTemporanei;
-import Utils.Login;
+import Utils.CheckLogin;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.GridLayout;

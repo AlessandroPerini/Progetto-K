@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
  *
  * @author te4o
  */
-public class Login {
+public class CheckLogin {
 
     private static Connection connection = new ConnessioneDB().connect();
     
