@@ -13,7 +13,7 @@ import java.sql.SQLException;
  *
  * @author te4o
  */
-public class DbConnection {
+public class ConnessioneDB {
     
     private Connection DbConnection;
     public Connection connect(){

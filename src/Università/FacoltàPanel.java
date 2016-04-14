@@ -6,10 +6,14 @@
 package Università;
 
 import Panel.TopPanel;
+import Utils.ConnessioneDB;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -22,11 +26,11 @@ import javax.swing.SwingConstants;
  */
 public class FacoltàPanel extends JPanel{
 
-    private static final int N = 36; //36
+    private static final int N = 36;
 
-    public FacoltàPanel(CardLayout card, JPanel container, JPanel accountPanel) {
+    public FacoltàPanel(CardLayout card, JPanel container) {
     
-        TopPanel top = new TopPanel(card, container, "FACOLTA'");
+        TopPanel top = new TopPanel(card, container, "Facoltà","facoltà");
         
         JPanel panel = new JPanel(new GridLayout(N, 1));
         
@@ -39,6 +43,8 @@ public class FacoltàPanel extends JPanel{
             searchPanel.add(searchButton);
         
         JButton favourites = new JButton("*** Favourites ***");
+        
+        AscoltatoreFacoltà ascoltatoreFacoltà = new AscoltatoreFacoltà(card, container);
 
         LetterLabel a = new LetterLabel("A");
         LetterLabel b = new LetterLabel("B");
@@ -55,6 +61,7 @@ public class FacoltàPanel extends JPanel{
         LetterLabel h = new LetterLabel("H");
         LetterLabel i = new LetterLabel("I");
             JButton ingegneria = new JButton("Ingegneria");
+            ingegneria.addActionListener(ascoltatoreFacoltà);//qui giace un ascoltatore
         LetterLabel l = new LetterLabel("L");
             JButton lettere = new JButton("Lettere");
         LetterLabel m = new LetterLabel("M");

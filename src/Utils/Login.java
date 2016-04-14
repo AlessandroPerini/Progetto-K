@@ -17,9 +17,9 @@ import javax.swing.JOptionPane;
  *
  * @author te4o
  */
-public class CheckLogin {
+public class Login {
 
-    private static Connection connection = new DbConnection().connect();
+    private static Connection connection = new ConnessioneDB().connect();
     
     private static ArrayList<Studente> studenti = new ArrayList<>();
     private static boolean checkLogin = false;

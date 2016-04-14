@@ -5,7 +5,9 @@
  */
 package Studente;
 
-import Utils.CheckLogin;
+import Login.LoginPanel;
+import Utils.DatiTemporanei;
+import Utils.Login;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,6 +16,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
@@ -31,19 +34,20 @@ public class AccountPanel extends JPanel{
     public AccountPanel(final CardLayout card, final JPanel container) {
     
         setPreferredSize(new Dimension(700, 500));
+        
         //top panel
-        JPanel top = new JPanel((new GridLayout(1, 3, 120, 0)));
+        JPanel top = new JPanel((new GridLayout(1, 3, 140, 0)));
         
         JButton back = new JButton("Back");
                 back.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                            card.show(container, "" + 2);
+                            card.show(container, DatiTemporanei.back);
                     }
                 });
 
-        JButton favourites = new JButton("Favourites");
+        JButton favourites = new JButton("* Preferiti *");
 
         JLabel title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -55,12 +59,32 @@ public class AccountPanel extends JPanel{
         //end top panel
         
         //body panel
-        JPanel body = new JPanel((new GridLayout(6, 1, 0, 20)));
+        JPanel body = new JPanel((new GridLayout(5, 1, 0, 20)));
         
         JPanel emailRow = new JPanel();
         JPanel nickRow = new JPanel();
         JPanel pointsRow = new JPanel();
         JPanel phoneRow = new JPanel();
+        
+        JButton logout = new JButton("Logout");
+        logout.setPreferredSize(new Dimension(120, 75));
+        logout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Are you scure to logout?", "Logout confirmation", JOptionPane.YES_NO_OPTION);
+                
+                if(showConfirmDialog == 0 ){
+
+                    card.show(container, "login");
+                    LoginPanel.clearForm();
+                    Login.deleteGuest();
+                }
+            }
+        });
+        
+        JPanel logoutPanel = new JPanel();
+        logoutPanel.add(logout);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
@@ -68,25 +92,25 @@ public class AccountPanel extends JPanel{
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        email = new JLabel("");
+        email = new JLabel(Login.getGuest().getEmail());
         email.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        nick = new JLabel("");
+        nick = new JLabel(Login.getGuest().getNickname());
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel pointsLabel = new JLabel("Points: ");
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        points = new JLabel("");
+        points = new JLabel(Integer.toString(Login.getGuest().getPunti()));
         points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        phone = new JLabel("...");
+        phone = new JLabel(Login.getGuest().getTelefono());
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
 
         emailRow.add(emailLabel);
@@ -110,16 +134,9 @@ public class AccountPanel extends JPanel{
         
         add(top);
         add(body);
+        add(logoutPanel);
         
     }
-    
-    public static void setData(){
 
-        email.setText(CheckLogin.getGuest().getEmail());
-        nick.setText(CheckLogin.getGuest().getNickname());
-        points.setText(Integer.toString(CheckLogin.getGuest().getPunti()));
-        phone.setText(CheckLogin.getGuest().getTelefono());
-        
-    }
     
 }

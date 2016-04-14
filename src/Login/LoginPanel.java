@@ -5,7 +5,9 @@
 */
 package Login;
 
-import Utils.CheckLogin;
+import Studente.AccountPanel;
+import Università.FacoltàPanel;
+import Utils.Login;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,7 +29,7 @@ public class LoginPanel extends JPanel implements KeyListener {
     private CardLayout card;
     private JPanel container;
     
-    public LoginPanel(CardLayout card, JPanel container){   
+    public LoginPanel(final CardLayout card, final JPanel container){   
         
         this.card = card;
         this.container = container; 
@@ -42,7 +44,7 @@ public class LoginPanel extends JPanel implements KeyListener {
         
         JPanel submit = new JPanel();
         
-        JLabel title = new JLabel("UniTeam");
+        JLabel title = new JLabel("Progetto K");
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -72,7 +74,8 @@ public class LoginPanel extends JPanel implements KeyListener {
         JButton login = new JButton("Login");
         login.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e) {  
+                
                 login();
             }
         });
@@ -130,9 +133,16 @@ public class LoginPanel extends JPanel implements KeyListener {
     
     public void login(){
         try {
-                    CheckLogin.Check(email.getText()+"@universitadipavia.it", password.getText());
-                    JOptionPane.showMessageDialog(null, "Successful login.", "Login confirmed", JOptionPane.INFORMATION_MESSAGE);
-                    card.show(container, "" + 2);
+
+                Login.Check(email.getText()+"@universitadipavia.it", password.getText());
+                JOptionPane.showMessageDialog(null, "Successful login.", "Login confirmed", JOptionPane.INFORMATION_MESSAGE);
+
+                AccountPanel account = new AccountPanel(card, container);
+                FacoltàPanel facoltà = new FacoltàPanel(card, container);
+                
+                container.add(facoltà,"facoltà");
+                container.add(account,"account");
+                card.show(container, "facoltà");
                 
             } catch (InternalError LoginEx) {
                 JOptionPane.showMessageDialog(null, "You've typed incorrect email or password.", "Wrong email/password", JOptionPane.ERROR_MESSAGE);

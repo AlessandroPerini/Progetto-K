@@ -7,7 +7,8 @@ package Panel;
 
 import Login.LoginPanel;
 import Studente.AccountPanel;
-import Utils.CheckLogin;
+import Utils.DatiTemporanei;
+import Utils.Login;
 import java.awt.CardLayout;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -25,23 +26,19 @@ import javax.swing.SwingConstants;
  */
 public class TopPanel extends JPanel{
     
-    public TopPanel(final CardLayout card, final JPanel container, String t) {
+    private String back;
+    
+    public TopPanel(final CardLayout card, final JPanel container, String t, final String back) {
         
-        setLayout(new GridLayout(1, 3, 120, 0));
+        this.back = back;
         
-        JButton logout = new JButton("Logout");
-        logout.addActionListener(new ActionListener() {
+        setLayout(new GridLayout(1, 3, 150, 0));
+        
+        JButton preferiti = new JButton("*Preferiti*");
+        preferiti.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                
-                int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Are you scure to logout?", "Logout confirmation", JOptionPane.YES_NO_OPTION);
-                
-                if(showConfirmDialog == 0 ){
-
-                    card.show(container, "" + 1);
-                    LoginPanel.clearForm();
-                    CheckLogin.deleteGuest();
-                }
+            
             }
         });
         
@@ -54,12 +51,12 @@ public class TopPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
             
-                card.show(container, "" + 3);
-                AccountPanel.setData();
+                DatiTemporanei.back = back;
+                card.show(container, "account");
             }
         });
         
-        add(logout);
+        add(preferiti);
         add(title);
         add(account);
     }
