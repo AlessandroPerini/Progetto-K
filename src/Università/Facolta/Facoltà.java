@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università;
+package Università.Facolta;
 
 /**
  *
  * @author te4o
  */
-public class Corso {
+public class Facoltà {
     
     private String nome;
-    private String anno;
 
-    public Corso(String nome, String anno) {
+    public Facoltà(String nome) {
         this.nome = nome;
-        this.anno = anno;
     }
-   
+
 }

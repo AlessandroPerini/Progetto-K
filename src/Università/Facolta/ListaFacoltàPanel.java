@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università;
+package Università.Facolta;
 
 import Panel.TopPanel;
+import Università.Corsi.CaricaCorsi;
 import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -22,11 +23,11 @@ import javax.swing.SwingConstants;
  *
  * @author te4o
  */
-public class FacoltàPanel extends JPanel{
+public class ListaFacoltàPanel extends JPanel{
 
     private JButton[] facoltà = new JButton[CaricaFacoltà.getFacoltàList().size()];
 
-    public FacoltàPanel(CardLayout card, JPanel container, ArrayList<String> facoltàList) {
+    public ListaFacoltàPanel(CardLayout card, JPanel container, ArrayList<String> facoltàList) {
     
         TopPanel top = new TopPanel(card, container, "Facoltà", true, false);
         

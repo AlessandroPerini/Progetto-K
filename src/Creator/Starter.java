@@ -8,7 +8,7 @@ package Creator;
 import Frame.MainFrame;
 import Login.LoginPanel;
 import Studente.AccountPanel;
-import Università.FacoltàPanel;
+import Università.Facolta.ListaFacoltàPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 

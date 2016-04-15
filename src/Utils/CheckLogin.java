@@ -23,7 +23,7 @@ public class CheckLogin {
     
     private static ArrayList<Studente> studenti = new ArrayList<>();
     private static boolean checked = false;
-    private static Studente guest = new Studente("", "", 0, "");
+    private static Studente guest;
     private static int punti;
     private static String telefono;
   

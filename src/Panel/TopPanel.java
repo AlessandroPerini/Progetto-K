@@ -6,11 +6,12 @@
 package Panel;
 
 import Login.LoginPanel;
-import Università.CaricaCorsi;
-import Università.CaricaFacoltà;
+import Università.Corsi.CaricaCorsi;
+import Università.Facolta.CaricaFacoltà;
 import Utils.DatiTemporanei;
 import Utils.CheckLogin;
 import java.awt.CardLayout;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -36,10 +37,6 @@ public class TopPanel extends JPanel{
     
     public TopPanel(final CardLayout card, final JPanel container, String t, boolean isFacoltà, final boolean isCorsi) {
         
-        //this.back = back;
-        
-        setLayout(new GridLayout(1, 3, 150, 0));
-        
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             @Override
@@ -52,15 +49,19 @@ public class TopPanel extends JPanel{
                 }
             }
         });
+        backButton.setPreferredSize(new Dimension(110, 40));
         
         JPanel empty = new JPanel();
+        empty.setPreferredSize(new Dimension(110, 40));
         
         JLabel title = new JLabel(t);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 35));
+        title.setPreferredSize(new Dimension(420, 40));
         
         String[] opzioni = new String[]{"Account","Preferiti","Logout"};
         menu = new JComboBox(opzioni);
+        menu.setPreferredSize(new Dimension(110, 40));
         menu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

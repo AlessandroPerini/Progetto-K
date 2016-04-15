@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università;
+package Università.Facolta;
 
+import Università.Corsi.CaricaCorsi;
+import Università.Facolta.ListaFacoltàPanel;
 import Utils.CheckLogin;
 import Utils.ConnessioneDB;
 import Utils.DatiTemporanei;
@@ -54,7 +56,7 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                     facoltàList.add(facoltà);
 
                 }
-                FacoltàPanel facoltà = new FacoltàPanel(card, container, facoltàList);
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, facoltàList);
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
                 

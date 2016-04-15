@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università;
+package Università.Corsi;
 
 import Utils.ConnessioneDB;
 import Utils.DatiTemporanei;
@@ -39,6 +39,8 @@ public class CaricaCorsi implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        DatiTemporanei.facoltàCorrente = e.getActionCommand();
+        
         String sql = "select nome from corsi where facoltà=?";
     try{
             DatiTemporanei.back.add("facoltà");
@@ -54,8 +56,8 @@ public class CaricaCorsi implements ActionListener{
                 corsiList.add(corso);
                 
     }
-            CorsiPanel corsi = new CorsiPanel(card, container, corsiList);
-            container.add(corsi,"corsi");
+            ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, corsiList);
+            container.add(corsi, "corsi");
             card.show(container, "corsi");
             
             DatiTemporanei.back.add("corsi");

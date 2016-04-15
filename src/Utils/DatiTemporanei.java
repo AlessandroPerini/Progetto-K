@@ -14,4 +14,6 @@ import java.util.ArrayList;
 public class DatiTemporanei {
     
     public static ArrayList<String> back = new ArrayList<>();
+    public static String facoltàCorrente;
+    public static String corsoCorrente;
 }

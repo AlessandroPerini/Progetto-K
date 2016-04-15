@@ -6,8 +6,8 @@
 package Studente;
 
 import Login.LoginPanel;
-import Università.CaricaCorsi;
-import Università.CaricaFacoltà;
+import Università.Corsi.CaricaCorsi;
+import Università.Facolta.CaricaFacoltà;
 import Utils.DatiTemporanei;
 import Utils.CheckLogin;
 import java.awt.CardLayout;
@@ -38,7 +38,7 @@ public class AccountPanel extends JPanel{
         setPreferredSize(new Dimension(700, 500));
         
         //top panel
-        JPanel top = new JPanel((new GridLayout(1, 3, 140, 0)));
+        JPanel top = new JPanel();
         
         JButton back = new JButton("Back");
                 back.addActionListener(new ActionListener() {
@@ -49,16 +49,19 @@ public class AccountPanel extends JPanel{
                         card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
                     }
                 });
+        back.setPreferredSize(new Dimension(110, 40));
 
-        JButton favourites = new JButton("* Preferiti *");
+        JButton preferiti = new JButton("★Preferiti★");
+        preferiti.setPreferredSize(new Dimension(110, 40));
 
         JLabel title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 35));
+        title.setPreferredSize(new Dimension(420, 40));
 
         top.add(back);
         top.add(title);
-        top.add(favourites);
+        top.add(preferiti);
         //end top panel
         
         //body panel
