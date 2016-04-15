@@ -5,6 +5,7 @@
  */
 package Panel;
 
+import Libro.CaricaLibri;
 import Login.LoginPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.CaricaFacoltà;
@@ -13,18 +14,13 @@ import Utils.CheckLogin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 /**
@@ -35,18 +31,21 @@ public class TopPanel extends JPanel{
 
     private JComboBox menu;
     
-    public TopPanel(final CardLayout card, final JPanel container, String t, boolean isFacoltà, final boolean isCorsi) {
+    public TopPanel(final CardLayout card, final JPanel container, String t) {
         
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             
-                DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
-                card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
-                if (isCorsi) {
+                if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("corsi")) {
                     CaricaCorsi.svuotaCorsi();
                 }
+                if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("libri")) {
+                    CaricaLibri.svuotaLibri();
+                }
+                DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
+                card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
             }
         });
         backButton.setPreferredSize(new Dimension(110, 40));
@@ -93,7 +92,7 @@ public class TopPanel extends JPanel{
         });
         resetMenu();
         
-        if(isFacoltà){add(empty);}
+        if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("facoltà")) {add(empty);}
         else{add(backButton);}
         add(title);
         add(menu);

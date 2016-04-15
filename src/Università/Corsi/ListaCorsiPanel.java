@@ -35,7 +35,7 @@ public class ListaCorsiPanel extends JPanel{
 
     public ListaCorsiPanel(CardLayout card, JPanel container, ArrayList<String> corsiList) {
     
-        TopPanel top = new TopPanel(card, container, DatiTemporanei.facoltàCorrente, false, true);
+        TopPanel top = new TopPanel(card, container, DatiTemporanei.facoltàCorrente);
         
         JPanel panel = new JPanel(new GridLayout(CaricaCorsi.getCorsi().size()+1, 1));
         

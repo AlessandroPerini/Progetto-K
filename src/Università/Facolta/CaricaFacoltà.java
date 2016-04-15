@@ -56,11 +56,12 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                     facoltàList.add(facoltà);
 
                 }
+                DatiTemporanei.back.add("facoltà");
+                
                 ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, facoltàList);
+                
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
-                
-                DatiTemporanei.back.add("facoltà");
 
             }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

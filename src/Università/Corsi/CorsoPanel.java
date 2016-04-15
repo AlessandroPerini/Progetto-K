@@ -5,6 +5,7 @@
  */
 package Università.Corsi;
 
+import Libro.CaricaLibri;
 import Panel.TopPanel;
 import Utils.DatiTemporanei;
 import java.awt.CardLayout;
@@ -25,7 +26,7 @@ public class CorsoPanel extends JPanel{
 
     public CorsoPanel(CardLayout card, JPanel container) {
         
-        TopPanel top = new TopPanel(card, container, DatiTemporanei.corsoCorrente, false, false);
+        TopPanel top = new TopPanel(card, container, DatiTemporanei.corsoCorrente);
         
         JPanel panel = new JPanel(new GridLayout(CaricaCorsi.getCorsi().size()+1, 1));
         
@@ -39,9 +40,13 @@ public class CorsoPanel extends JPanel{
 
         panel.add(searchPanel);
         
+        CaricaLibri caricaLibri = new CaricaLibri(card, container);
+        
         JButton appunti = new JButton("Appunti");
         JButton libri = new JButton("Libri");
         JButton qea = new JButton("Q&A");
+        
+        libri.addActionListener(caricaLibri);
         
         panel.add(appunti);
         panel.add(libri);

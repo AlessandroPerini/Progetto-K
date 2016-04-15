@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Facolta;
+package Libro;
 
 import Panel.TopPanel;
 import Università.Corsi.CaricaCorsi;
+import Università.Corsi.GoToCorso;
 import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -21,17 +22,17 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author te4o
+ * @author Te4o
  */
-public class ListaFacoltàPanel extends JPanel{
-
-    private JButton[] facoltà = new JButton[CaricaFacoltà.getFacoltàList().size()];
-
-    public ListaFacoltàPanel(CardLayout card, JPanel container, ArrayList<String> facoltàList) {
+public class ListaLibriPanel extends JPanel{
     
-        TopPanel top = new TopPanel(card, container, "Facoltà");
+    private JButton[] libri = new JButton[CaricaLibri.getLibri().size()];
+
+    public ListaLibriPanel(CardLayout card, JPanel container, ArrayList<String> libriList) {
+    
+        TopPanel top = new TopPanel(card, container, "Libri "+DatiTemporanei.corsoCorrente);
         
-        JPanel panel = new JPanel(new GridLayout(CaricaFacoltà.getFacoltàList().size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(CaricaLibri.getLibri().size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -41,25 +42,22 @@ public class ListaFacoltàPanel extends JPanel{
             searchPanel.add(searchField);
             searchPanel.add(searchButton);
 
-        CaricaCorsi caricaCorsi = new CaricaCorsi(card, container);
-        
         panel.add(searchPanel);
-
-        for (int i = 0; i < CaricaFacoltà.getFacoltàList().size(); i++) {
-            facoltà[i] = new JButton();
-            facoltà[i].setText(facoltàList.get(i));
-            facoltà[i].addActionListener(caricaCorsi);
-            panel.add(facoltà[i]);
+        
+        GoToLibro goToLibro = new GoToLibro(card, container);
+        
+        for (int i = 0; i < CaricaLibri.getLibri().size(); i++) {
+            libri[i] = new JButton();
+            libri[i].setText(libriList.get(i));
+            libri[i].addActionListener(goToLibro);
+            panel.add(libri[i]);
         }
-
+        
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 410));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
         add(scrollPanel);
-    }
-    
+    } 
 }
-    
-
