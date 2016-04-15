@@ -57,6 +57,8 @@ public class CaricaCorsi implements ActionListener{
             CorsiPanel corsi = new CorsiPanel(card, container, corsiList);
             container.add(corsi,"corsi");
             card.show(container, "corsi");
+            
+            DatiTemporanei.back.add("corsi");
 
     }   catch (SQLException ex) {   
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

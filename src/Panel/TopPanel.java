@@ -31,8 +31,7 @@ import javax.swing.SwingConstants;
  * @author Te4o
  */
 public class TopPanel extends JPanel{
-    
-    private String back;
+
     private JComboBox menu;
     
     public TopPanel(final CardLayout card, final JPanel container, String t, boolean isFacoltà, final boolean isCorsi) {
@@ -46,6 +45,7 @@ public class TopPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
             
+                DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
                 card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
                 if (isCorsi) {
                     CaricaCorsi.svuotaCorsi();
@@ -67,6 +67,7 @@ public class TopPanel extends JPanel{
                 if(menu.getSelectedItem().equals("Account")){
 
                     card.show(container, "account");
+                    DatiTemporanei.back.add("account");
                     resetMenu();
                 }
                 if(menu.getSelectedItem().equals("Preferiti")){
@@ -83,14 +84,10 @@ public class TopPanel extends JPanel{
                         CheckLogin.deleteGuest();
                         CaricaCorsi.svuotaCorsi();
                         CaricaFacoltà.svuotaFacoltà();
+                        DatiTemporanei.back.clear();
                     }
                     resetMenu();
                 }
-                
-                /*DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
-                 if (isCorsi) {
-                     DatiTemporanei.back.add("corsi");
-                }*/
             }
         });
         resetMenu();

@@ -7,6 +7,7 @@ package Università;
 
 import Utils.CheckLogin;
 import Utils.ConnessioneDB;
+import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -56,6 +57,8 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 FacoltàPanel facoltà = new FacoltàPanel(card, container, facoltàList);
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
+                
+                DatiTemporanei.back.add("facoltà");
 
             }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

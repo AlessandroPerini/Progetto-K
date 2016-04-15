@@ -45,7 +45,8 @@ public class AccountPanel extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                            card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
+                        DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
+                        card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
                     }
                 });
 
