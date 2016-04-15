@@ -39,20 +39,9 @@ public class DoLogin implements ActionListener, KeyListener{
     
         try {
             CheckLogin.Check(email.getText()+"@universitadipavia.it", password.getText());
-            
-            //get nome e cognome per la visualizzazione del messaggio di benvenuto
-            String s = CheckLogin.getGuest().getEmail();
-            s = s.replace(".", ",");
-            String parts[] = s.split(",");
-            String nome = parts[0];
-            String parts2[] = parts[1].split("0");
-            String cognome = parts2[0];
-            nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
-            cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
-            String fullName = nome+" "+cognome;
-            //
         
-            JOptionPane.showMessageDialog(null, "Benvenuto "+fullName+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
+            String nomeCompleto = CheckLogin.getGuest().getNome()+" "+CheckLogin.getGuest().getCognome();
+            JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
 
             AccountPanel account = new AccountPanel(card, container);
             container.add(account,"account");

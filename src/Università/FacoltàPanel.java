@@ -6,6 +6,7 @@
 package Università;
 
 import Panel.TopPanel;
+import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -27,7 +28,7 @@ public class FacoltàPanel extends JPanel{
 
     public FacoltàPanel(CardLayout card, JPanel container, ArrayList<String> facoltàList) {
     
-        TopPanel top = new TopPanel(card, container, "Facoltà","facoltà");
+        TopPanel top = new TopPanel(card, container, "Facoltà", true, false);
         
         JPanel panel = new JPanel(new GridLayout(CaricaFacoltà.getFacoltàList().size()+1, 1));
         

@@ -5,6 +5,7 @@
  */
 package Università;
 
+import Utils.CheckLogin;
 import Utils.ConnessioneDB;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -40,30 +41,32 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     public void carica(){
     
         String sql = "select nome from facoltà";
-    try{
-        PreparedStatement ps1 = connection.prepareStatement(sql);
+        if(CheckLogin.isChecked()){
+            try{
+                PreparedStatement ps1 = connection.prepareStatement(sql);
 
-        ResultSet rs = ps1.executeQuery();
+                ResultSet rs = ps1.executeQuery();
 
-        while(rs.next()){
+                while(rs.next()){
 
-            String facoltà = rs.getString("nome");
-            facoltàList.add(facoltà);
+                    String facoltà = rs.getString("nome");
+                    facoltàList.add(facoltà);
 
+                }
+                FacoltàPanel facoltà = new FacoltàPanel(card, container, facoltàList);
+                container.add(facoltà,"facoltà");
+                card.show(container, "facoltà");
+
+            }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
         }
-        FacoltàPanel facoltà = new FacoltàPanel(card, container, facoltàList);
-        container.add(facoltà,"facoltà");
-        card.show(container, "facoltà");
-
-    }   catch (SQLException ex) {   
-        Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-        } 
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
 
-         carica();    
+        carica();    
     }
 
     public static ArrayList<String> getFacoltàList() {
@@ -85,4 +88,8 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     public void keyReleased(KeyEvent e) {
     }
  
+    public static void svuotaFacoltà(){
+    
+        facoltàList.clear();
+    }
 }

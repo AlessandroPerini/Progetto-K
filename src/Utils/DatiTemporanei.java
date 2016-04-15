@@ -5,11 +5,13 @@
  */
 package Utils;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author te4o
  */
 public class DatiTemporanei {
     
-    public static String back;
+    public static ArrayList<String> back = new ArrayList<>();
 }

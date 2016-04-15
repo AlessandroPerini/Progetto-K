@@ -6,6 +6,7 @@
 package Università;
 
 import Utils.ConnessioneDB;
+import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,6 +41,8 @@ public class CaricaCorsi implements ActionListener{
 
         String sql = "select nome from corsi where facoltà=?";
     try{
+            DatiTemporanei.back.add("facoltà");
+            
             PreparedStatement ps1 = connection.prepareStatement(sql);
             ps1.setString(1, e.getActionCommand());
 
@@ -64,5 +67,9 @@ public class CaricaCorsi implements ActionListener{
         return corsiList;
     }
 
+    public static void svuotaCorsi(){
+    
+        corsiList.clear();
+    }
     
 }

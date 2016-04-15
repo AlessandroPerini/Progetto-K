@@ -12,6 +12,8 @@ package Studente;
 public class Studente {
     
     private String email;
+    private String nome;
+    private String cognome;
     private String password;
     private String nickname;
     private int punti;
@@ -23,17 +25,39 @@ public class Studente {
         this.nickname = nickname;
         this.punti = punti;
         this.telefono = telefono;
+        this.nome = nome;
+        this.cognome = cognome;
     }
     
     public void setNickname() {
         String s = email;
         s = s.replace(".", ",");
         String parts[] = s.split(",");
-        String name = parts[0];
-        String surname = parts[1].charAt(0)+"";
-        name = name.substring(0, 1).toUpperCase() + name.substring(1);
-        surname = surname.substring(0, 1).toUpperCase() + surname.substring(1);
-        nickname = name+" "+surname+".";
+        String nome = parts[0];
+        String cognome = parts[1].charAt(0)+"";
+        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
+        nickname = nome+" "+cognome+".";
+    }
+    
+    public void setNome() {
+        String s = email;
+        s = s.replace(".", ",");
+        String parts[] = s.split(",");
+        String nome = parts[0];
+        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+        this.nome = nome;
+    }
+    
+    public void setCognome() {
+        String s = email;
+        s = s.replace(".", ",");
+        String parts[] = s.split(",");
+        String cognome = parts[1];
+        String parts2[] = cognome.split("0");
+        cognome = parts2[0];
+        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
+        this.cognome = cognome;
     }
 
     public String getEmail() {
@@ -55,7 +79,13 @@ public class Studente {
     public String getTelefono() {
         return telefono;
     }
-    
-    
-    
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getCognome() {
+        return cognome;
+    }
+
 }

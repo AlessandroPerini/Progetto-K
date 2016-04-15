@@ -6,7 +6,8 @@
 package Panel;
 
 import Login.LoginPanel;
-import Studente.AccountPanel;
+import Università.CaricaCorsi;
+import Università.CaricaFacoltà;
 import Utils.DatiTemporanei;
 import Utils.CheckLogin;
 import java.awt.CardLayout;
@@ -15,9 +16,14 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 import javax.swing.SwingConstants;
 
 /**
@@ -27,39 +33,79 @@ import javax.swing.SwingConstants;
 public class TopPanel extends JPanel{
     
     private String back;
+    private JComboBox menu;
     
-    public TopPanel(final CardLayout card, final JPanel container, String t, final String back) {
+    public TopPanel(final CardLayout card, final JPanel container, String t, boolean isFacoltà, final boolean isCorsi) {
         
-        this.back = back;
+        //this.back = back;
         
         setLayout(new GridLayout(1, 3, 150, 0));
         
-        JButton preferiti = new JButton("*Preferiti*");
-        preferiti.addActionListener(new ActionListener() {
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
             
+                card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
+                if (isCorsi) {
+                    CaricaCorsi.svuotaCorsi();
+                }
             }
         });
+        
+        JPanel empty = new JPanel();
         
         JLabel title = new JLabel(t);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 35));
         
-        JButton account = new JButton("Account");
-        account.addActionListener(new ActionListener() {
+        String[] opzioni = new String[]{"Account","Preferiti","Logout"};
+        menu = new JComboBox(opzioni);
+        menu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            
-                DatiTemporanei.back = back;
-                card.show(container, "account");
+                if(menu.getSelectedItem().equals("Account")){
+
+                    card.show(container, "account");
+                    resetMenu();
+                }
+                if(menu.getSelectedItem().equals("Preferiti")){
+                   
+                }
+                if(menu.getSelectedItem().equals("Logout")){
+                
+                    int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
+                
+                    if(showConfirmDialog == 0 ){
+
+                        card.show(container, "login");
+                        LoginPanel.clearForm();
+                        CheckLogin.deleteGuest();
+                        CaricaCorsi.svuotaCorsi();
+                        CaricaFacoltà.svuotaFacoltà();
+                    }
+                    resetMenu();
+                }
+                
+                /*DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
+                 if (isCorsi) {
+                     DatiTemporanei.back.add("corsi");
+                }*/
             }
         });
+        resetMenu();
         
-        add(preferiti);
+        if(isFacoltà){add(empty);}
+        else{add(backButton);}
         add(title);
-        add(account);
+        add(menu);
+      
     }
-    
-    
+
+    public void resetMenu() {
+        menu.setEditable(true);
+        menu.setSelectedItem("Menù");
+        menu.setEditable(false);
+    }
+ 
 }

@@ -6,6 +6,8 @@
 package Studente;
 
 import Login.LoginPanel;
+import Università.CaricaCorsi;
+import Università.CaricaFacoltà;
 import Utils.DatiTemporanei;
 import Utils.CheckLogin;
 import java.awt.CardLayout;
@@ -43,7 +45,7 @@ public class AccountPanel extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                            card.show(container, DatiTemporanei.back);
+                            card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
                     }
                 });
 
@@ -72,13 +74,15 @@ public class AccountPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 
-                int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Are you scure to logout?", "Logout confirmation", JOptionPane.YES_NO_OPTION);
+                int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
                 
                 if(showConfirmDialog == 0 ){
 
                     card.show(container, "login");
                     LoginPanel.clearForm();
                     CheckLogin.deleteGuest();
+                    CaricaCorsi.svuotaCorsi();
+                    CaricaFacoltà.svuotaFacoltà();
                 }
             }
         });

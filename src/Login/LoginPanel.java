@@ -50,7 +50,7 @@ public class LoginPanel extends JPanel{
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setHorizontalAlignment(SwingConstants.CENTER);
 
-        JLabel subTitle = new JLabel("Benvenuto! Effetua il login con le credenziale dell'ateneo.");
+        JLabel subTitle = new JLabel("Benvenuto! Effetua il login con le credenziali dell'ateneo.");
         subTitle.setFont(new Font("Arial", Font.PLAIN, 25));
         subTitle.setHorizontalAlignment(SwingConstants.CENTER);
 
@@ -77,8 +77,8 @@ public class LoginPanel extends JPanel{
         DoLogin doLogin = new DoLogin(card, container, email, password);
         
         JButton login = new JButton("Login");
-        login.addActionListener(doLogin);
         login.addActionListener(caricaFacoltà);
+        login.addActionListener(doLogin);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
