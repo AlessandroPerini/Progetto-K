@@ -27,8 +27,8 @@ public class LibroPanel extends JPanel{
     public LibroPanel(CardLayout card, JPanel container) {
         
         TopPanel top = new TopPanel(card, container, Applicazione.corsoCorrente);
-      //  Libro libro = new Libro("titol","descr", 0, "3386243174", "porcino",1000);
-        Libro libro;
+        Libro libro = new Libro("titol","descr", 0, "3386243174", "porcino",1000);
+      //  Libro libro;
        // libro= Applicazione.libroCorrente;
         
         JPanel panel = new JPanel(new GridLayout(5,2));
@@ -39,7 +39,7 @@ public class LibroPanel extends JPanel{
         JLabel telefono= new JLabel("Telefono");
         JLabel email= new JLabel("Email");
         
-      //  JLabel titolo2= new JLabel(libro.getTitolo());
+        JLabel titolo2= new JLabel(libro.getTitolo());
         JLabel descrizione2= new JLabel(libro.getDescrizione());
         JLabel prezzo2= new JLabel(""+libro.getPrezzo());
         JLabel telefono2= new JLabel(libro.getTelefono());
