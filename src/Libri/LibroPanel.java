@@ -25,43 +25,47 @@ public class LibroPanel extends JPanel{
         
         TopPanel top = new TopPanel(card, container, Applicazione.libroPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(5,2,10,10));
+        JPanel panel = new JPanel(new GridLayout(5,2,5,10));
         
-        JLabel titolo = new JLabel("Titolo :");
-        JLabel descrizione = new JLabel("Descrizione :");
-        JLabel prezzo = new JLabel("Prezzo :");
-        JLabel telefono = new JLabel("Telefono :");
-        JLabel email = new JLabel("Email :");
+        JLabel titolo= new JLabel("Titolo :");
+        JLabel descrizione= new JLabel("Descrizione :");
+        JLabel prezzo= new JLabel("Prezzo :");
+        JLabel telefono= new JLabel("Telefono :");
+        JLabel email= new JLabel("Email :");
         
-        JTextArea titolo2 = new JTextArea(Applicazione.libroAttuale.getTitolo());
-        JTextArea descrizione2 = new JTextArea(Applicazione.libroAttuale.getDescrizione());
-        JTextArea prezzo2 = new JTextArea(Integer.toString(Applicazione.libroAttuale.getPrezzo()));
-        JTextArea telefono2 = new JTextArea(Applicazione.libroAttuale.getTelefono());
-        JTextArea email2 = new JTextArea(Applicazione.libroAttuale.getEmail());
+        JTextArea titolo2= new JTextArea(Applicazione.libroAttuale.getTitolo(),2,10);
+        JTextArea descrizione2= new JTextArea(Applicazione.libroAttuale.getDescrizione(),6,10);
+        JLabel prezzo2= new JLabel(Integer.toString(Applicazione.libroAttuale.getPrezzo()));
+        JLabel telefono2= new JLabel(Applicazione.libroAttuale.getTelefono());
+        JLabel email2= new JLabel(Applicazione.libroAttuale.getEmail());
+ 
+        JScrollPane scrollPanel = new JScrollPane(descrizione2);
         
-        titolo2.setPreferredSize(new Dimension(150, 100));
-        descrizione2.setPreferredSize(new Dimension(150, 100));
-        prezzo2.setPreferredSize(new Dimension(150, 100));
-        telefono2.setPreferredSize(new Dimension(150, 100));
-        email2.setPreferredSize(new Dimension(150, 100));
+        descrizione2.setEditable(false);
+        descrizione2.setLineWrap(true);
+        descrizione2.setWrapStyleWord(true);
+        titolo2.setEditable(false);
+        titolo2.setLineWrap(true);
+        
         
         panel.add(titolo);
         panel.add(titolo2);
         panel.add(descrizione);
-        panel.add(descrizione2);
+        panel.add(scrollPanel);
         panel.add(prezzo);
         panel.add(prezzo2);
         panel.add(telefono);
         panel.add(telefono2);
         panel.add(email);
         panel.add(email2);
-  
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 410));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        
+        
+        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel1.setPreferredSize(new Dimension(650, 410));
+        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
-        add(scrollPanel);
+        add(scrollPanel1);
      
 }
 

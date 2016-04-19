@@ -48,7 +48,7 @@ public class infoQuery {
                     String telefonoLibro = rs.getString("telefono");
                     int prezzoLibro = rs.getInt("prezzo");
                 
-                    Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro);
+                    Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, telefonoLibro,emailLibro,  prezzoLibro);
 
                 }
                 }   catch (SQLException ex) {   

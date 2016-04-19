@@ -76,6 +76,10 @@ public class Applicazione {
         ListaDomandeAttuali.clear();
     }
     
+    public static void svuotaAppunti() {
+        ListaAppuntiAttuali.clear();
+    }
+    
     public static Studente getGuest() {
         return guest;
     }
