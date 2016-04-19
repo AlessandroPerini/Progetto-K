@@ -47,6 +47,7 @@ public class CorsoPanel extends JPanel{
         JButton qea = new JButton("Q&A");
         
         libri.addActionListener(caricaLibri);
+        qea.addActionListener(caricaLibri);
         
         panel.add(appunti);
         panel.add(libri);

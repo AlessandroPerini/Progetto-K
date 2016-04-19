@@ -18,13 +18,16 @@ public class Libro {
     private String telefono;
     private int prezzo;
 
-    public Libro(String titolo, String descrizione, String ID, String email, String telefono, int prezzo) {
+
+    public Libro(String titolo, String descrizione, String ID, String telefono, String email, int prezzo) {
+
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.ID = ID;
         this.email = email;
         this.telefono = telefono;
         this.prezzo = prezzo;
+  
     }
 
     public String getTitolo() {
@@ -49,6 +52,14 @@ public class Libro {
 
     public int getPrezzo() {
         return prezzo;
-    }  
+    }
+
+    
     
 }
+
+    
+    
+    
+    
+
