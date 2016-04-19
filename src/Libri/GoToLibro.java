@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Libro;
+package Libri;
 
 import Controller.Applicazione;
 import Database.Query.infoQuery;
@@ -31,8 +31,7 @@ public class GoToLibro implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("libro");
-        
-        Applicazione.libroCorrente = e.getActionCommand();
+        Applicazione.libroPremuto = e.getActionCommand();
 
         infoQuery iQuery = new infoQuery();
         iQuery.caricaInfoLibro();

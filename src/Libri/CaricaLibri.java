@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Libro;
+package Libri;
 
 import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
@@ -36,15 +36,10 @@ public class CaricaLibri implements ActionListener{
         this.container = container;
     }
     
-    private Connection connection = new ConnessioneDB().connect();
-    
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        String sql = "select * from libri where facoltà=? and corso=?";
   
         Applicazione.back.add("libri");
-        Applicazione.back.add("corso");
         
         listeQuery dQuery = new listeQuery();
         dQuery.caricaLibri();

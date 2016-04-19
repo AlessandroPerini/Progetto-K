@@ -3,17 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Libro;
+package Appunti;
 
 import Controller.Applicazione;
 import Panel.TopPanel;
-import Università.Corsi.CaricaCorsi;
-import Università.Corsi.GoToCorso;
+import QeA.GoToDomanda;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -24,15 +22,15 @@ import javax.swing.SwingConstants;
  *
  * @author Te4o
  */
-public class ListaLibriPanel extends JPanel{
+public class ListaAppuntiPanel extends JPanel{
     
-    private JButton[] libri = new JButton[Applicazione.libriAttuali.size()];
+    private JButton[] appunti = new JButton[Applicazione.ListaAppuntiAttuali.size()];
 
-    public ListaLibriPanel(CardLayout card, JPanel container) {
+    public ListaAppuntiPanel(CardLayout card, JPanel container) {
     
-        TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoCorrente);
+        TopPanel top = new TopPanel(card, container, "Appunti "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.libriAttuali.size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaAppuntiAttuali.size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -43,14 +41,14 @@ public class ListaLibriPanel extends JPanel{
             searchPanel.add(searchButton);
 
         panel.add(searchPanel);
+
+        GoToAppunto goToAppunto = new GoToAppunto(card, container);
         
-        GoToLibro goToLibro = new GoToLibro(card, container);
-        
-        for (int i = 0; i < Applicazione.libriAttuali.size(); i++) {
-            libri[i] = new JButton();
-            libri[i].setText(Applicazione.libriAttuali.get(i).getTitolo());
-            libri[i].addActionListener(goToLibro);
-            panel.add(libri[i]);
+        for (int i = 0; i < Applicazione.ListaAppuntiAttuali.size(); i++) {
+            appunti[i] = new JButton();
+            appunti[i].setText(Applicazione.ListaAppuntiAttuali.get(i).getNome());
+            appunti[i].addActionListener(goToAppunto);
+            panel.add(appunti[i]);
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -59,5 +57,6 @@ public class ListaLibriPanel extends JPanel{
         
         add(top);
         add(scrollPanel);
-    } 
+    }
+    
 }

@@ -49,7 +49,7 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 
                 Applicazione.back.add("facoltà");
                 
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, Applicazione.facoltàAttuali);
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, Applicazione.listaFacoltàAttuali);
                 
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");

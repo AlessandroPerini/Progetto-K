@@ -5,9 +5,11 @@
  */
 package Università.Corsi;
 
+import Appunti.CaricaAppunti;
 import Controller.Applicazione;
-import Libro.CaricaLibri;
+import Libri.CaricaLibri;
 import Panel.TopPanel;
+import QeA.CaricaDomande;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,7 +28,7 @@ public class CorsoPanel extends JPanel{
 
     public CorsoPanel(CardLayout card, JPanel container) {
         
-        TopPanel top = new TopPanel(card, container, Applicazione.corsoCorrente);
+        TopPanel top = new TopPanel(card, container, Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(4, 1));
         
@@ -41,13 +43,16 @@ public class CorsoPanel extends JPanel{
         panel.add(searchPanel);
         
         CaricaLibri caricaLibri = new CaricaLibri(card, container);
+        CaricaDomande caricaDomande = new CaricaDomande(card, container);
+        CaricaAppunti caricaAppunti = new CaricaAppunti(card, container);
         
         JButton appunti = new JButton("Appunti");
         JButton libri = new JButton("Libri");
         JButton qea = new JButton("Q&A");
         
         libri.addActionListener(caricaLibri);
-        qea.addActionListener(caricaLibri);
+        qea.addActionListener(caricaDomande);
+        appunti.addActionListener(caricaAppunti);
         
         panel.add(appunti);
         panel.add(libri);

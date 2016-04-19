@@ -5,9 +5,11 @@
  */
 package Database.Query;
 
+import Appunti.Appunto;
 import Controller.Applicazione;
 import Database.Connection.ConnessioneDB;
-import Libro.Libro;
+import Libri.Libro;
+import QeA.Domanda;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
@@ -41,7 +43,7 @@ public class listeQuery {
                     String nome = rs.getString("nome");
                     String ramo = rs.getString("ramo");
                     Facoltà facoltà = new Facoltà(nome, ramo);
-                    Applicazione.facoltàAttuali.add(facoltà);
+                    Applicazione.listaFacoltàAttuali.add(facoltà);
 
                 }
                 }   catch (SQLException ex) {   
@@ -55,7 +57,7 @@ public class listeQuery {
         
         try{
                 PreparedStatement ps1 = connection.prepareStatement(selectCorsi);
-                ps1.setString(1, Applicazione.facoltàCorrente);
+                ps1.setString(1, Applicazione.facoltàPremuta);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -64,7 +66,7 @@ public class listeQuery {
                     String nomeCorso = rs.getString("nome");
                     int annoCorso = rs.getInt("anno");
                     Corso corso = new Corso(nomeCorso, annoCorso);
-                    Applicazione.corsiAttuali.add(corso);
+                    Applicazione.listaCorsiAttuali.add(corso);
                 }
                 }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,8 +79,8 @@ public class listeQuery {
         
         try{
                 PreparedStatement ps1 = connection.prepareStatement(selectLibri);
-                ps1.setString(1, Applicazione.facoltàCorrente);
-                ps1.setString(2, Applicazione.corsoCorrente);
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.corsoPremuto);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -92,7 +94,7 @@ public class listeQuery {
                 int prezzoLibro = rs.getInt("prezzo");
                 
                 Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro);
-                Applicazione.libriAttuali.add(libro);
+                Applicazione.ListaLibriAttuali.add(libro);
                 
                 }
                 }   catch (SQLException ex) {   
@@ -100,5 +102,58 @@ public class listeQuery {
                 }
     }
     
+    public void caricaDomande(){
+
+        String selectDomande = "select * from domande where facoltà=? and corso=?";
+        
+        try{
+                PreparedStatement ps1 = connection.prepareStatement(selectDomande);
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.corsoPremuto);
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                String titoloDomanda = rs.getString("titolo");
+                String testoDomanda = rs.getString("domanda");
+                String studenteDomanda = rs.getString("studente");
+                int likeDomanda = rs.getInt("like");
+               
+                Domanda domanda = new Domanda(titoloDomanda, likeDomanda, testoDomanda, studenteDomanda);
+                Applicazione.ListaDomandeAttuali.add(domanda);
+                
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+    
+    public void caricaAppunti(){
+
+        String selectAppunti = "select * from appunti where facoltà=? and corso=?";
+        
+        try{
+                PreparedStatement ps1 = connection.prepareStatement(selectAppunti);
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.corsoPremuto);
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                String nomeAppunto = rs.getString("nome");
+                String descrizioneAppunto = rs.getString("descrizione");
+                int mediaAppunto = rs.getInt("media");
+                String emailAppunto = rs.getString("studente");
+                
+                Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, mediaAppunto, emailAppunto);
+                Applicazione.ListaAppuntiAttuali.add(appunto);
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
     
 }

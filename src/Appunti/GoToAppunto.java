@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Corsi;
+package Appunti;
 
 import Controller.Applicazione;
+import Database.Query.infoQuery;
+import Libri.LibroPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,12 +17,12 @@ import javax.swing.JPanel;
  *
  * @author Te4o
  */
-public class GoToCorso implements ActionListener{
+public class GoToAppunto implements ActionListener{
 
     private CardLayout card;
     private JPanel container;
     
-    public GoToCorso(CardLayout card, JPanel container) {
+    public GoToAppunto(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
@@ -28,13 +30,16 @@ public class GoToCorso implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.corsoPremuto = e.getActionCommand();
-  
-        CorsoPanel corso = new CorsoPanel(card, container);
-        container.add(corso, "corso");
-        card.show(container, "corso");
+        Applicazione.back.add("appunto");
+        Applicazione.appuntoPremuto = e.getActionCommand();
 
-        Applicazione.back.add("corso");
+        infoQuery iQuery = new infoQuery();
+        iQuery.caricaInfoAppunto();
+        
+        AppuntoPanel appunto = new AppuntoPanel(card, container);
+        container.add(appunto, "appunto");
+        card.show(container, "appunto");
+
     }
     
 }

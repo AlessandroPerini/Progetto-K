@@ -40,7 +40,7 @@ public class CaricaCorsi implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         Applicazione.back.add("corsi");
-        Applicazione.facoltàCorrente = e.getActionCommand();
+        Applicazione.facoltàPremuta = e.getActionCommand();
         
         listeQuery dQuery = new listeQuery();
         dQuery.caricaCorsi();

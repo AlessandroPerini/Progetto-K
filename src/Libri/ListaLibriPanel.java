@@ -3,22 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Corsi;
+package Libri;
 
 import Controller.Applicazione;
 import Panel.TopPanel;
+import Università.Corsi.CaricaCorsi;
+import Università.Corsi.GoToCorso;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,17 +22,17 @@ import javax.swing.SwingConstants;
 
 /**
  *
- * @author te4o
+ * @author Te4o
  */
-public class ListaCorsiPanel extends JPanel{
+public class ListaLibriPanel extends JPanel{
     
-    private JButton[] corsi = new JButton[Applicazione.listaCorsiAttuali.size()];
+    private JButton[] libri = new JButton[Applicazione.ListaLibriAttuali.size()];
 
-    public ListaCorsiPanel(CardLayout card, JPanel container) {
+    public ListaLibriPanel(CardLayout card, JPanel container) {
     
-        TopPanel top = new TopPanel(card, container, Applicazione.facoltàPremuta);
+        TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaCorsiAttuali.size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaLibriAttuali.size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -49,13 +44,13 @@ public class ListaCorsiPanel extends JPanel{
 
         panel.add(searchPanel);
         
-        GoToCorso goToCorso = new GoToCorso(card, container);
+        GoToLibro goToLibro = new GoToLibro(card, container);
         
-        for (int i = 0; i < Applicazione.listaCorsiAttuali.size(); i++) {
-            corsi[i] = new JButton();
-            corsi[i].setText(Applicazione.listaCorsiAttuali.get(i).getNome());
-            corsi[i].addActionListener(goToCorso);
-            panel.add(corsi[i]);
+        for (int i = 0; i < Applicazione.ListaLibriAttuali.size(); i++) {
+            libri[i] = new JButton();
+            libri[i].setText(Applicazione.ListaLibriAttuali.get(i).getTitolo());
+            libri[i].addActionListener(goToLibro);
+            panel.add(libri[i]);
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -64,6 +59,5 @@ public class ListaCorsiPanel extends JPanel{
         
         add(top);
         add(scrollPanel);
-    }  
-    
+    } 
 }

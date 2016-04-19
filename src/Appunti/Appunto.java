@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Appunto;
+package Appunti;
 
 /**
  *
@@ -14,13 +14,31 @@ public class Appunto {
     private String nome;
     private String descrizione;
     private float media;
+    private String studente;
 
-    public Appunto(String nome, String descrizione, float media) {
+    public Appunto(String nome, String descrizione, float media, String studente) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.media = media;
+        this.studente = studente;
     }
-    
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public float getMedia() {
+        return media;
+    }
+
+    public String getStudente() {
+        return studente;
+    }
+
    
     
 }

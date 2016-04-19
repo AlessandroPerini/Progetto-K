@@ -6,7 +6,7 @@
 package Panel;
 
 import Controller.Applicazione;
-import Libro.CaricaLibri;
+import Libri.CaricaLibri;
 import Login.LoginPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.CaricaFacoltà;
@@ -42,6 +42,9 @@ public class TopPanel extends JPanel{
                 }
                 if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
                    Applicazione.svuotaLibri();
+                }
+                if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
+                   Applicazione.svuotaDomande();
                 }
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 card.show(container, Applicazione.back.get(Applicazione.back.size()-1));

@@ -3,9 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Corsi;
+package Appunti;
 
 import Controller.Applicazione;
+import Database.Query.listeQuery;
+import Libri.ListaLibriPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,26 +17,27 @@ import javax.swing.JPanel;
  *
  * @author Te4o
  */
-public class GoToCorso implements ActionListener{
-
+public class CaricaAppunti implements ActionListener{
+    
     private CardLayout card;
     private JPanel container;
     
-    public GoToCorso(CardLayout card, JPanel container) {
+    public CaricaAppunti(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        Applicazione.corsoPremuto = e.getActionCommand();
   
-        CorsoPanel corso = new CorsoPanel(card, container);
-        container.add(corso, "corso");
-        card.show(container, "corso");
+        Applicazione.back.add("appunti");
+        
+        listeQuery dQuery = new listeQuery();
+        dQuery.caricaAppunti();
 
-        Applicazione.back.add("corso");
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);
+        container.add(appunti, "appunti");
+        card.show(container, "appunti");
+ 
     }
-    
 }

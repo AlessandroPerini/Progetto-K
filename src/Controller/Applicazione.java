@@ -5,7 +5,9 @@
  */
 package Controller;
 
-import Libro.Libro;
+import Appunti.Appunto;
+import Libri.Libro;
+import QeA.Domanda;
 import Studente.Studente;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
@@ -17,23 +19,30 @@ import java.util.ArrayList;
  */
 public class Applicazione {
 
-    public static String facoltàCorrente;
-    public static String corsoCorrente;
-    public static String libroCorrente;
+        
     public static ArrayList<String> back = new ArrayList<>();
     public static boolean utenteLoggato = false;
     
-    public static ArrayList<Corso> corsiAttuali = new ArrayList<>();
-    public static ArrayList<Facoltà> facoltàAttuali = new ArrayList<>();
-    public static ArrayList<Libro> libriAttuali = new ArrayList<>();
-    public static ArrayList<Libro> domandeAttuali = new ArrayList<>();
+    private static Studente guest;
+    
+    public static String facoltàPremuta;
+    public static String corsoPremuto;
+    public static String libroPremuto;
+    public static String domandaPremuta;
+    public static String appuntoPremuto;
+    
+    public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
+    public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
+    public static ArrayList<Libro> ListaLibriAttuali = new ArrayList<>();
+    public static ArrayList<Domanda> ListaDomandeAttuali = new ArrayList<>();
+    public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
     
     public static Libro libroAttuale;
+    public static Domanda domandaAttuale;
+    public static Appunto appuntoAttuale;
     
-    private static Studente guest;
-
     public Applicazione(ArrayList<Corso> corsiAttuali) {
-        this.corsiAttuali = corsiAttuali;
+        this.listaCorsiAttuali = corsiAttuali;
     }
 
     public static void inizializzaUtente(String email, String password, int punti, String telefono){
@@ -52,19 +61,19 @@ public class Applicazione {
     }
     
     public static void svuotaCorsi() {
-        corsiAttuali.clear();
+        listaCorsiAttuali.clear();
     }
     
     public static void svuotaFacoltà() {
-        facoltàAttuali.clear();
+        listaFacoltàAttuali.clear();
     }
     
     public static void svuotaLibri() {
-        libriAttuali.clear();
+        ListaLibriAttuali.clear();
     }
     
     public static void svuotaDomande() {
-        domandeAttuali.clear();
+        ListaDomandeAttuali.clear();
     }
     
     public static Studente getGuest() {
