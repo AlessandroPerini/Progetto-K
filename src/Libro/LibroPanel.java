@@ -9,14 +9,10 @@ import Controller.Applicazione;
 import Panel.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -27,38 +23,38 @@ public class LibroPanel extends JPanel{
     public LibroPanel(CardLayout card, JPanel container) {
         
         TopPanel top = new TopPanel(card, container, Applicazione.corsoCorrente);
-        Libro libro = new Libro("titol","descr", "0", "3386243174", "porcino",1000);
-      //  Libro libro;
-       // libro= Applicazione.libroCorrente;
         
-        JPanel panel = new JPanel(new GridLayout(5,2));
+        JPanel panel = new JPanel(new GridLayout(5,2,5,10));
         
-        JLabel titolo= new JLabel("Titolo libro");
-        JLabel descrizione= new JLabel("Descrizione");
-        JLabel prezzo= new JLabel("prezzo");
-        JLabel telefono= new JLabel("Telefono");
-        JLabel email= new JLabel("Email");
+        JLabel titolo= new JLabel("Titolo :");
+        JLabel descrizione= new JLabel("Descrizione :");
+        JLabel prezzo= new JLabel("Prezzo :");
+        JLabel telefono= new JLabel("Telefono :");
+        JLabel email= new JLabel("Email :");
         
-        JLabel titolo2= new JLabel(libro.getTitolo());
-        JLabel descrizione2= new JLabel(libro.getDescrizione());
-        JLabel prezzo2= new JLabel(""+libro.getPrezzo());
-        JLabel telefono2= new JLabel(libro.getTelefono());
-        JLabel email2= new JLabel(libro.getEmail());
+        JTextArea titolo2= new JTextArea(Applicazione.libroAttuale.getTitolo());
+        JTextArea descrizione2= new JTextArea(Applicazione.libroAttuale.getDescrizione());
+        JTextArea prezzo2= new JTextArea(Integer.toString(Applicazione.libroAttuale.getPrezzo()));
+        JTextArea telefono2= new JTextArea(Applicazione.libroAttuale.getTelefono());
+        JTextArea email2= new JTextArea(Applicazione.libroAttuale.getEmail());
         
-
+        titolo2.setPreferredSize(new Dimension(200, 150));
+        descrizione2.setPreferredSize(new Dimension(200, 150));
+        prezzo2.setPreferredSize(new Dimension(200, 150));
+        telefono2.setPreferredSize(new Dimension(200, 150));
+        email2.setPreferredSize(new Dimension(200, 150));
+        
         panel.add(titolo);
         panel.add(titolo2);
         panel.add(descrizione);
         panel.add(descrizione2);
         panel.add(prezzo);
         panel.add(prezzo2);
-        panel.add(telefono );
+        panel.add(telefono);
         panel.add(telefono2);
         panel.add(email);
         panel.add(email2);
-        
-        
-        
+  
         add(top);
         add(panel);
      

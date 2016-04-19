@@ -49,7 +49,7 @@ public class CaricaLibri implements ActionListener{
         listeQuery dQuery = new listeQuery();
         dQuery.caricaLibri();
 
-        ListaLibriPanel libri = new ListaLibriPanel(card, container, Applicazione.libriAttuali);
+        ListaLibriPanel libri = new ListaLibriPanel(card, container);
         container.add(libri, "libri");
         card.show(container, "libri");
  

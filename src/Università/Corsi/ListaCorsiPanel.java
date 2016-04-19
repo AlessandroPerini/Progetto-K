@@ -33,7 +33,7 @@ public class ListaCorsiPanel extends JPanel{
     
     private JButton[] corsi = new JButton[Applicazione.corsiAttuali.size()];
 
-    public ListaCorsiPanel(CardLayout card, JPanel container, ArrayList<Corso> corsiList) {
+    public ListaCorsiPanel(CardLayout card, JPanel container) {
     
         TopPanel top = new TopPanel(card, container, Applicazione.facoltàCorrente);
         
@@ -53,7 +53,7 @@ public class ListaCorsiPanel extends JPanel{
         
         for (int i = 0; i < Applicazione.corsiAttuali.size(); i++) {
             corsi[i] = new JButton();
-            corsi[i].setText(corsiList.get(i).getNome());
+            corsi[i].setText(Applicazione.corsiAttuali.get(i).getNome());
             corsi[i].addActionListener(goToCorso);
             panel.add(corsi[i]);
         }

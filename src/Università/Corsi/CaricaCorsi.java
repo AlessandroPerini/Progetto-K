@@ -45,7 +45,7 @@ public class CaricaCorsi implements ActionListener{
         listeQuery dQuery = new listeQuery();
         dQuery.caricaCorsi();
 
-        ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, Applicazione.corsiAttuali);
+        ListaCorsiPanel corsi = new ListaCorsiPanel(card, container);
         container.add(corsi, "corsi");
         card.show(container, "corsi");
  

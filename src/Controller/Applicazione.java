@@ -19,7 +19,7 @@ public class Applicazione {
 
     public static String facoltàCorrente;
     public static String corsoCorrente;
-    public static Libro libroCorrente;
+    public static String libroCorrente;
     public static ArrayList<String> back = new ArrayList<>();
     public static boolean utenteLoggato = false;
     
@@ -27,6 +27,9 @@ public class Applicazione {
     public static ArrayList<Facoltà> facoltàAttuali = new ArrayList<>();
     public static ArrayList<Libro> libriAttuali = new ArrayList<>();
     public static ArrayList<Libro> domandeAttuali = new ArrayList<>();
+    
+    public static Libro libroAttuale;
+    
     private static Studente guest;
 
     public Applicazione(ArrayList<Corso> corsiAttuali) {
