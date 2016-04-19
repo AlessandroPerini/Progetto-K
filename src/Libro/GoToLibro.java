@@ -5,6 +5,8 @@
  */
 package Libro;
 
+import Controller.Applicazione;
+import Università.Corsi.CorsoPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,6 +28,13 @@ public class GoToLibro implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+    
+        LibroPanel libro = new LibroPanel(card, container);
+        container.add(libro, "libro");
+        card.show(container, "libro");
+
+        Applicazione.back.add("libro");
 
     }
     

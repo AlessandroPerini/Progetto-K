@@ -37,7 +37,7 @@ public class ListaCorsiPanel extends JPanel{
     
         TopPanel top = new TopPanel(card, container, Applicazione.facoltàCorrente);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.getCorsiAttuali().size()-1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.getCorsiAttuali().size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
