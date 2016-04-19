@@ -41,7 +41,7 @@ public class TopPanel extends JPanel{
                     Applicazione.svuotaCorsi();
                 }
                 if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
-                    CaricaLibri.svuotaLibri();
+                   Applicazione.svuotaLibri();
                 }
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
@@ -82,7 +82,7 @@ public class TopPanel extends JPanel{
                         LoginPanel.clearForm();
                         Applicazione.eliminaUtente();
                         Applicazione.svuotaCorsi();
-                        CaricaFacoltà.svuotaFacoltà();
+                        Applicazione.svuotaFacoltà();
                         Applicazione.back.clear();
                     }
                     resetMenu();

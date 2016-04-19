@@ -5,6 +5,7 @@
  */
 package Università.Facolta;
 
+import Controller.Applicazione;
 import Panel.TopPanel;
 import Università.Corsi.CaricaCorsi;
 import java.awt.CardLayout;
@@ -24,13 +25,13 @@ import javax.swing.SwingConstants;
  */
 public class ListaFacoltàPanel extends JPanel{
 
-    private JButton[] facoltà = new JButton[CaricaFacoltà.getFacoltàList().size()];
+    private JButton[] facoltà = new JButton[Applicazione.facoltàAttuali.size()];
 
-    public ListaFacoltàPanel(CardLayout card, JPanel container, ArrayList<String> facoltàList) {
+    public ListaFacoltàPanel(CardLayout card, JPanel container, ArrayList<Facoltà> facoltàList) {
     
         TopPanel top = new TopPanel(card, container, "Facoltà");
         
-        JPanel panel = new JPanel(new GridLayout(CaricaFacoltà.getFacoltàList().size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.facoltàAttuali.size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -44,9 +45,9 @@ public class ListaFacoltàPanel extends JPanel{
         
         panel.add(searchPanel);
 
-        for (int i = 0; i < CaricaFacoltà.getFacoltàList().size(); i++) {
+        for (int i = 0; i < Applicazione.facoltàAttuali.size(); i++) {
             facoltà[i] = new JButton();
-            facoltà[i].setText(facoltàList.get(i));
+            facoltà[i].setText(facoltàList.get(i).getNome());
             facoltà[i].addActionListener(caricaCorsi);
             panel.add(facoltà[i]);
         }

@@ -26,13 +26,13 @@ import javax.swing.SwingConstants;
  */
 public class ListaLibriPanel extends JPanel{
     
-    private JButton[] libri = new JButton[CaricaLibri.getLibri().size()];
+    private JButton[] libri = new JButton[Applicazione.libriAttuali.size()];
 
-    public ListaLibriPanel(CardLayout card, JPanel container, ArrayList<String> libriList) {
+    public ListaLibriPanel(CardLayout card, JPanel container, ArrayList<Libro> libriList) {
     
         TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoCorrente);
         
-        JPanel panel = new JPanel(new GridLayout(CaricaLibri.getLibri().size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.libriAttuali.size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -46,9 +46,9 @@ public class ListaLibriPanel extends JPanel{
         
         GoToLibro goToLibro = new GoToLibro(card, container);
         
-        for (int i = 0; i < CaricaLibri.getLibri().size(); i++) {
+        for (int i = 0; i < Applicazione.libriAttuali.size(); i++) {
             libri[i] = new JButton();
-            libri[i].setText(libriList.get(i));
+            libri[i].setText(libriList.get(i).getTitolo());
             libri[i].addActionListener(goToLibro);
             panel.add(libri[i]);
         }

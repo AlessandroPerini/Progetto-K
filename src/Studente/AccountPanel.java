@@ -85,7 +85,7 @@ public class AccountPanel extends JPanel{
                     LoginPanel.clearForm();
                     Applicazione.eliminaUtente();
                     Applicazione.svuotaCorsi();
-                    CaricaFacoltà.svuotaFacoltà();
+                    Applicazione.svuotaFacoltà();
                 }
             }
         });

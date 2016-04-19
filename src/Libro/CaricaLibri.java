@@ -9,6 +9,7 @@ import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.ListaCorsiPanel;
 import Database.Connection.ConnessioneDB;
+import Database.Query.listeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,44 +37,22 @@ public class CaricaLibri implements ActionListener{
     }
     
     private Connection connection = new ConnessioneDB().connect();
-    private static ArrayList<String> libriList = new ArrayList<>();
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         String sql = "select * from libri where facoltà=? and corso=?";
-    try{
-            Applicazione.back.add("corso");
-            
-            PreparedStatement ps1 = connection.prepareStatement(sql);
-            ps1.setString(1, Applicazione.facoltàCorrente);
-            ps1.setString(2, Applicazione.corsoCorrente);
+  
+        Applicazione.back.add("libri");
+        Applicazione.back.add("corso");
+        
+        listeQuery dQuery = new listeQuery();
+        dQuery.caricaLibri();
 
-            ResultSet rs = ps1.executeQuery();
-
-            while(rs.next()){
-
-                String libro = rs.getString("titolo");
-                libriList.add(libro);
-                
-    }
-            ListaLibriPanel libri = new ListaLibriPanel(card, container, libriList);
-            container.add(libri, "libri");
-            card.show(container, "libri");
-            
-            Applicazione.back.add("libri");
-
-    }   catch (SQLException ex) {   
-            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        ListaLibriPanel libri = new ListaLibriPanel(card, container, Applicazione.libriAttuali);
+        container.add(libri, "libri");
+        card.show(container, "libri");
+ 
     }
 
-    public static ArrayList<String> getLibri() {
-        return libriList;
-    }
-
-    public static void svuotaLibri(){
-    
-        libriList.clear();
-    }
 }

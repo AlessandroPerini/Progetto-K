@@ -9,6 +9,7 @@ import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.ListaFacoltàPanel;
 import Database.Connection.ConnessioneDB;
+import Database.Query.listeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,33 +39,21 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     }
     
     private Connection connection = new ConnessioneDB().connect();
-    private static ArrayList<String> facoltàAttuali = new ArrayList<>();
 
     public void carica(){
     
-        String sql = "select nome from facoltà";
         if(Applicazione.utenteLoggato){
-            try{
-                PreparedStatement ps1 = connection.prepareStatement(sql);
-
-                ResultSet rs = ps1.executeQuery();
-
-                while(rs.next()){
-
-                    String facoltà = rs.getString("nome");
-                    facoltàAttuali.add(facoltà);
-
-                }
+            
+                listeQuery dQuery = new listeQuery();
+                dQuery.caricaFacoltà();
+                
                 Applicazione.back.add("facoltà");
                 
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, facoltàAttuali);
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, Applicazione.facoltàAttuali);
                 
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
 
-            }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
         }
     }
     
@@ -72,10 +61,6 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     public void actionPerformed(ActionEvent e) {
 
         carica();    
-    }
-
-    public static ArrayList<String> getFacoltàList() {
-        return facoltàAttuali;
     }
 
     @Override
@@ -93,8 +78,4 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     public void keyReleased(KeyEvent e) {
     }
  
-    public static void svuotaFacoltà(){
-    
-        facoltàAttuali.clear();
-    }
 }

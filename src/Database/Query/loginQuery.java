@@ -63,8 +63,7 @@ public class loginQuery {
                         
                 Applicazione.inizializzaUtente(email, password, punti, telefono);
            }
-            
-            
+                 
         InternalError LoginEx = new InternalError("Wrong email/password");
         if(check == false) {throw LoginEx;}
         } catch (SQLException ex) {

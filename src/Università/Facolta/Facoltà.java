@@ -12,9 +12,20 @@ package Università.Facolta;
 public class Facoltà {
     
     private String nome;
+    private String ramo;
 
-    public Facoltà(String nome) {
+    public Facoltà(String nome, String ramo) {
         this.nome = nome;
+        this.ramo = ramo;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getRamo() {
+        return ramo;
+    }
+
+    
 }

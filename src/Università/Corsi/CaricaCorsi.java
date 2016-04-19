@@ -7,6 +7,7 @@ package Università.Corsi;
 
 import Controller.Applicazione;
 import Database.Connection.ConnessioneDB;
+import Database.Query.listeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,35 +39,16 @@ public class CaricaCorsi implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        Applicazione.back.add("corsi");
         Applicazione.facoltàCorrente = e.getActionCommand();
         
-        String sql = "select * from corsi where facoltà=?";
-    try{
-            Applicazione.back.add("facoltà");
-            
-            PreparedStatement ps1 = connection.prepareStatement(sql);
-            ps1.setString(1, e.getActionCommand());
+        listeQuery dQuery = new listeQuery();
+        dQuery.caricaCorsi();
 
-            ResultSet rs = ps1.executeQuery();
-
-            while(rs.next()){
-
-                String nomeCorso = rs.getString("nome");
-                int annoCorso = rs.getInt("anno");
-                Corso corso = new Corso(nomeCorso, annoCorso);
-                Applicazione.corsiAttuali.add(corso);
-                
-    }
-            Applicazione.back.add("corsi");
-            
-            ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, Applicazione.corsiAttuali);
-            container.add(corsi, "corsi");
-            card.show(container, "corsi");
-
-
-    }   catch (SQLException ex) {   
-            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-        }   
+        ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, Applicazione.corsiAttuali);
+        container.add(corsi, "corsi");
+        card.show(container, "corsi");
+ 
     }
 
 }

@@ -5,8 +5,10 @@
  */
 package Controller;
 
+import Libro.Libro;
 import Studente.Studente;
 import Università.Corsi.Corso;
+import Università.Facolta.Facoltà;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +19,14 @@ public class Applicazione {
 
     public static String facoltàCorrente;
     public static String corsoCorrente;
+    public static Libro libroCorrente;
     public static ArrayList<String> back = new ArrayList<>();
     public static boolean utenteLoggato = false;
     
     public static ArrayList<Corso> corsiAttuali = new ArrayList<>();
+    public static ArrayList<Facoltà> facoltàAttuali = new ArrayList<>();
+    public static ArrayList<Libro> libriAttuali = new ArrayList<>();
+    public static ArrayList<Libro> domandeAttuali = new ArrayList<>();
     private static Studente guest;
 
     public Applicazione(ArrayList<Corso> corsiAttuali) {
@@ -46,12 +52,21 @@ public class Applicazione {
         corsiAttuali.clear();
     }
     
+    public static void svuotaFacoltà() {
+        facoltàAttuali.clear();
+    }
+    
+    public static void svuotaLibri() {
+        libriAttuali.clear();
+    }
+    
+    public static void svuotaDomande() {
+        domandeAttuali.clear();
+    }
+    
     public static Studente getGuest() {
         return guest;
     }
-
-    public static ArrayList<Corso> getCorsiAttuali() {
-        return corsiAttuali;
-    }
+ 
 
 }

@@ -31,13 +31,13 @@ import javax.swing.SwingConstants;
  */
 public class ListaCorsiPanel extends JPanel{
     
-    private JButton[] corsi = new JButton[Applicazione.getCorsiAttuali().size()];
+    private JButton[] corsi = new JButton[Applicazione.corsiAttuali.size()];
 
     public ListaCorsiPanel(CardLayout card, JPanel container, ArrayList<Corso> corsiList) {
     
         TopPanel top = new TopPanel(card, container, Applicazione.facoltàCorrente);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.getCorsiAttuali().size()-1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.corsiAttuali.size()+1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -51,7 +51,7 @@ public class ListaCorsiPanel extends JPanel{
         
         GoToCorso goToCorso = new GoToCorso(card, container);
         
-        for (int i = 0; i < Applicazione.getCorsiAttuali().size(); i++) {
+        for (int i = 0; i < Applicazione.corsiAttuali.size(); i++) {
             corsi[i] = new JButton();
             corsi[i].setText(corsiList.get(i).getNome());
             corsi[i].addActionListener(goToCorso);
