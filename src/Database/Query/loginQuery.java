@@ -3,35 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Utils;
+package Database.Query;
 
+import Controller.Applicazione;
+import Database.Connection.ConnessioneDB;
 import Studente.Studente;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.ArrayList;
-import javax.swing.JOptionPane;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author te4o
  */
-public class CheckLogin {
+public class loginQuery {
+    
+    private Connection connection = new ConnessioneDB().connect();
+    private static boolean check = false;
+    private int punti;
+    private String telefono;
+    
+    private String email;
+    private String password;
 
-    private static Connection connection = new ConnessioneDB().connect();
+    public loginQuery(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
     
-    private static ArrayList<Studente> studenti = new ArrayList<>();
-    private static boolean checked = false;
-    private static Studente guest;
-    private static int punti;
-    private static String telefono;
-  
-    public static void Check(String email, String password){
+    public void login(){
         
-        checked= false;
-    
-        String sql = "select * from studenti where email=? and password=?";
+    String sql = "select * from studenti where email=? and password=?";
         
         try{
             PreparedStatement ps1 = connection.prepareStatement(sql);
@@ -41,7 +46,8 @@ public class CheckLogin {
             ResultSet rs = ps1.executeQuery();
             
             if(rs.next()){
-                checked = true;
+                
+                check = true;
                 
                 String sql_punti = "select punti from studenti where email=?";
                 PreparedStatement ps2 = connection.prepareStatement(sql_punti);
@@ -55,27 +61,15 @@ public class CheckLogin {
                 ResultSet rs3 = ps3.executeQuery();
                 if(rs3.next()){telefono = rs3.getString("telefono");}
                         
-                guest = new Studente(email, password, punti, telefono);
-                guest.setNickname();
-                guest.setNome();
-                guest.setCognome();     
+                Applicazione.inizializzaUtente(email, password, punti, telefono);
            }
             
             
         InternalError LoginEx = new InternalError("Wrong email/password");
-        if(checked == false) {throw LoginEx;}
-        }catch(Exception e){
+        if(check == false) {throw LoginEx;}
+        } catch (SQLException ex) {
+            Logger.getLogger(loginQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public static Studente getGuest() {
-        return guest;
-    }
-    
-    public static void deleteGuest(){guest = new Studente("", "", 0, "");}
 
-    public static boolean isChecked() {
-        return checked;
-    }  
-    
 }

@@ -5,10 +5,10 @@
  */
 package Libro;
 
+import Controller.Applicazione;
 import Panel.TopPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.GoToCorso;
-import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -30,7 +30,7 @@ public class ListaLibriPanel extends JPanel{
 
     public ListaLibriPanel(CardLayout card, JPanel container, ArrayList<String> libriList) {
     
-        TopPanel top = new TopPanel(card, container, "Libri "+DatiTemporanei.corsoCorrente);
+        TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoCorrente);
         
         JPanel panel = new JPanel(new GridLayout(CaricaLibri.getLibri().size()+1, 1));
         

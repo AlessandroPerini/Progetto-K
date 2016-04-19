@@ -5,7 +5,7 @@
  */
 package Università.Corsi;
 
-import Utils.DatiTemporanei;
+import Controller.Applicazione;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,13 +28,13 @@ public class GoToCorso implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DatiTemporanei.corsoCorrente = e.getActionCommand();
+        Applicazione.corsoCorrente = e.getActionCommand();
   
         CorsoPanel corso = new CorsoPanel(card, container);
         container.add(corso, "corso");
         card.show(container, "corso");
 
-        DatiTemporanei.back.add("corso");
+        Applicazione.back.add("corso");
     }
     
 }

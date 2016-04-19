@@ -5,8 +5,9 @@
  */
 package Login;
 
+import Controller.Applicazione;
+import Database.Query.loginQuery;
 import Studente.AccountPanel;
-import Utils.CheckLogin;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,18 +38,23 @@ public class DoLogin implements ActionListener, KeyListener{
     
     public void doIt(){
     
-        try {
-            CheckLogin.Check(email.getText()+"@universitadipavia.it", password.getText());
         
-            String nomeCompleto = CheckLogin.getGuest().getNome()+" "+CheckLogin.getGuest().getCognome();
-            JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
-
+            loginQuery lQuery = new loginQuery(email.getText()+"@universitadipavia.it", password.getText());
+            lQuery.login();
+        
+            if(Applicazione.utenteLoggato){
+                String nomeCompleto = Applicazione.getGuest().getNome()+" "+Applicazione.getGuest().getCognome();
+                JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
+                AccountPanel account = new AccountPanel(card, container);
+            container.add(account,"account");
+            }
+            else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
+}
+            
             AccountPanel account = new AccountPanel(card, container);
             container.add(account,"account");
                 
-            } catch (InternalError LoginEx) {
-              JOptionPane.showMessageDialog(null, "You've typed incorrect email or password.", "Wrong email/password", JOptionPane.ERROR_MESSAGE);
-            }
+            
     }
     
     @Override

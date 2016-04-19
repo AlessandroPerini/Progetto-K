@@ -5,11 +5,10 @@
  */
 package Università.Facolta;
 
+import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.ListaFacoltàPanel;
-import Utils.CheckLogin;
-import Utils.ConnessioneDB;
-import Utils.DatiTemporanei;
+import Database.Connection.ConnessioneDB;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -39,12 +38,12 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     }
     
     private Connection connection = new ConnessioneDB().connect();
-    private static ArrayList<String> facoltàList = new ArrayList<>();
+    private static ArrayList<String> facoltàAttuali = new ArrayList<>();
 
     public void carica(){
     
         String sql = "select nome from facoltà";
-        if(CheckLogin.isChecked()){
+        if(Applicazione.utenteLoggato){
             try{
                 PreparedStatement ps1 = connection.prepareStatement(sql);
 
@@ -53,12 +52,12 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 while(rs.next()){
 
                     String facoltà = rs.getString("nome");
-                    facoltàList.add(facoltà);
+                    facoltàAttuali.add(facoltà);
 
                 }
-                DatiTemporanei.back.add("facoltà");
+                Applicazione.back.add("facoltà");
                 
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, facoltàList);
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, facoltàAttuali);
                 
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
@@ -76,7 +75,7 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     }
 
     public static ArrayList<String> getFacoltàList() {
-        return facoltàList;
+        return facoltàAttuali;
     }
 
     @Override
@@ -96,6 +95,6 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
  
     public static void svuotaFacoltà(){
     
-        facoltàList.clear();
+        facoltàAttuali.clear();
     }
 }

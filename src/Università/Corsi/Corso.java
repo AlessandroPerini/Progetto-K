@@ -12,11 +12,15 @@ package Università.Corsi;
 public class Corso {
     
     private String nome;
-    private String anno;
+    private int anno;
 
-    public Corso(String nome, String anno) {
+    public Corso(String nome, int anno) {
         this.nome = nome;
         this.anno = anno;
     }
-   
+
+    public String getNome() {
+        return nome;
+    }
+
 }

@@ -5,9 +5,9 @@
  */
 package Università.Corsi;
 
+import Controller.Applicazione;
 import Libro.CaricaLibri;
 import Panel.TopPanel;
-import Utils.DatiTemporanei;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -26,9 +26,9 @@ public class CorsoPanel extends JPanel{
 
     public CorsoPanel(CardLayout card, JPanel container) {
         
-        TopPanel top = new TopPanel(card, container, DatiTemporanei.corsoCorrente);
+        TopPanel top = new TopPanel(card, container, Applicazione.corsoCorrente);
         
-        JPanel panel = new JPanel(new GridLayout(CaricaCorsi.getCorsi().size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.getCorsiAttuali().size()-1, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);

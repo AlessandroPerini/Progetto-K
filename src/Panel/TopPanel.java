@@ -5,12 +5,11 @@
  */
 package Panel;
 
+import Controller.Applicazione;
 import Libro.CaricaLibri;
 import Login.LoginPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.CaricaFacoltà;
-import Utils.DatiTemporanei;
-import Utils.CheckLogin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -38,14 +37,14 @@ public class TopPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
             
-                if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("corsi")) {
-                    CaricaCorsi.svuotaCorsi();
+                if (Applicazione.back.get(Applicazione.back.size()-1).equals("corsi")) {
+                    Applicazione.svuotaCorsi();
                 }
-                if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("libri")) {
+                if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
                     CaricaLibri.svuotaLibri();
                 }
-                DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
-                card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
+                Applicazione.back.remove(Applicazione.back.size()-1);
+                card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
             }
         });
         backButton.setPreferredSize(new Dimension(110, 40));
@@ -67,7 +66,7 @@ public class TopPanel extends JPanel{
                 if(menu.getSelectedItem().equals("Account")){
 
                     card.show(container, "account");
-                    DatiTemporanei.back.add("account");
+                    Applicazione.back.add("account");
                     resetMenu();
                 }
                 if(menu.getSelectedItem().equals("Preferiti")){
@@ -81,10 +80,10 @@ public class TopPanel extends JPanel{
 
                         card.show(container, "login");
                         LoginPanel.clearForm();
-                        CheckLogin.deleteGuest();
-                        CaricaCorsi.svuotaCorsi();
+                        Applicazione.eliminaUtente();
+                        Applicazione.svuotaCorsi();
                         CaricaFacoltà.svuotaFacoltà();
-                        DatiTemporanei.back.clear();
+                        Applicazione.back.clear();
                     }
                     resetMenu();
                 }
@@ -92,7 +91,7 @@ public class TopPanel extends JPanel{
         });
         resetMenu();
         
-        if (DatiTemporanei.back.get(DatiTemporanei.back.size()-1).equals("facoltà")) {add(empty);}
+        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(empty);}
         else{add(backButton);}
         add(title);
         add(menu);

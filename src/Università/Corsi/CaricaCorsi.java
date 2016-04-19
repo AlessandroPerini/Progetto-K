@@ -5,8 +5,8 @@
  */
 package Università.Corsi;
 
-import Utils.ConnessioneDB;
-import Utils.DatiTemporanei;
+import Controller.Applicazione;
+import Database.Connection.ConnessioneDB;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,16 +34,15 @@ public class CaricaCorsi implements ActionListener{
     }
     
     private Connection connection = new ConnessioneDB().connect();
-    private static ArrayList<String> corsiList = new ArrayList<>();
     
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        DatiTemporanei.facoltàCorrente = e.getActionCommand();
+        Applicazione.facoltàCorrente = e.getActionCommand();
         
-        String sql = "select nome from corsi where facoltà=?";
+        String sql = "select * from corsi where facoltà=?";
     try{
-            DatiTemporanei.back.add("facoltà");
+            Applicazione.back.add("facoltà");
             
             PreparedStatement ps1 = connection.prepareStatement(sql);
             ps1.setString(1, e.getActionCommand());
@@ -52,28 +51,22 @@ public class CaricaCorsi implements ActionListener{
 
             while(rs.next()){
 
-                String corso = rs.getString("nome");
-                corsiList.add(corso);
+                String nomeCorso = rs.getString("nome");
+                int annoCorso = rs.getInt("anno");
+                Corso corso = new Corso(nomeCorso, annoCorso);
+                Applicazione.corsiAttuali.add(corso);
                 
     }
-            ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, corsiList);
+            Applicazione.back.add("corsi");
+            
+            ListaCorsiPanel corsi = new ListaCorsiPanel(card, container, Applicazione.corsiAttuali);
             container.add(corsi, "corsi");
             card.show(container, "corsi");
-            
-            DatiTemporanei.back.add("corsi");
+
 
     }   catch (SQLException ex) {   
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }   
     }
 
-    public static ArrayList<String> getCorsi() {
-        return corsiList;
-    }
-
-    public static void svuotaCorsi(){
-    
-        corsiList.clear();
-    }
-    
 }

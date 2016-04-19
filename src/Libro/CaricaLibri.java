@@ -5,10 +5,10 @@
  */
 package Libro;
 
+import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.ListaCorsiPanel;
-import Utils.ConnessioneDB;
-import Utils.DatiTemporanei;
+import Database.Connection.ConnessioneDB;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,11 +43,11 @@ public class CaricaLibri implements ActionListener{
         
         String sql = "select * from libri where facoltà=? and corso=?";
     try{
-            DatiTemporanei.back.add("corso");
+            Applicazione.back.add("corso");
             
             PreparedStatement ps1 = connection.prepareStatement(sql);
-            ps1.setString(1, DatiTemporanei.facoltàCorrente);
-            ps1.setString(2, DatiTemporanei.corsoCorrente);
+            ps1.setString(1, Applicazione.facoltàCorrente);
+            ps1.setString(2, Applicazione.corsoCorrente);
 
             ResultSet rs = ps1.executeQuery();
 
@@ -61,7 +61,7 @@ public class CaricaLibri implements ActionListener{
             container.add(libri, "libri");
             card.show(container, "libri");
             
-            DatiTemporanei.back.add("libri");
+            Applicazione.back.add("libri");
 
     }   catch (SQLException ex) {   
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

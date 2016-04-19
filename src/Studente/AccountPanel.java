@@ -5,11 +5,10 @@
  */
 package Studente;
 
+import Controller.Applicazione;
 import Login.LoginPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.CaricaFacoltà;
-import Utils.DatiTemporanei;
-import Utils.CheckLogin;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -45,8 +44,8 @@ public class AccountPanel extends JPanel{
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
-                        DatiTemporanei.back.remove(DatiTemporanei.back.size()-1);
-                        card.show(container, DatiTemporanei.back.get(DatiTemporanei.back.size()-1));
+                        Applicazione.back.remove(Applicazione.back.size()-1);
+                        card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
                     }
                 });
         back.setPreferredSize(new Dimension(110, 40));
@@ -84,8 +83,8 @@ public class AccountPanel extends JPanel{
 
                     card.show(container, "login");
                     LoginPanel.clearForm();
-                    CheckLogin.deleteGuest();
-                    CaricaCorsi.svuotaCorsi();
+                    Applicazione.eliminaUtente();
+                    Applicazione.svuotaCorsi();
                     CaricaFacoltà.svuotaFacoltà();
                 }
             }
@@ -100,25 +99,25 @@ public class AccountPanel extends JPanel{
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        email = new JLabel(CheckLogin.getGuest().getEmail());
+        email = new JLabel(Applicazione.getGuest().getEmail());
         email.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        nick = new JLabel(CheckLogin.getGuest().getNickname());
+        nick = new JLabel(Applicazione.getGuest().getNickname());
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel pointsLabel = new JLabel("Points: ");
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        points = new JLabel(Integer.toString(CheckLogin.getGuest().getPunti()));
+        points = new JLabel(Integer.toString(Applicazione.getGuest().getPunti()));
         points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        phone = new JLabel(CheckLogin.getGuest().getTelefono());
+        phone = new JLabel(Applicazione.getGuest().getTelefono());
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
 
         emailRow.add(emailLabel);

@@ -8,7 +8,6 @@ package Login;
 import Studente.AccountPanel;
 import Università.Facolta.CaricaFacoltà;
 import Università.Facolta.ListaFacoltàPanel;
-import Utils.CheckLogin;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
