@@ -6,7 +6,7 @@
 package Login;
 
 import Controller.Applicazione;
-import Database.Query.loginQuery;
+import Database.Query.LoginQuery;
 import Studente.AccountPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -39,11 +39,11 @@ public class DoLogin implements ActionListener, KeyListener{
     public void doIt(){
     
         
-            loginQuery lQuery = new loginQuery(email.getText()+"@universitadipavia.it", password.getText());
+            LoginQuery lQuery = new LoginQuery(email.getText()+"@universitadipavia.it", password.getText());
             lQuery.login();
         
             if(Applicazione.utenteLoggato){
-                String nomeCompleto = Applicazione.getGuest().getNome()+" "+Applicazione.getGuest().getCognome();
+                String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
                 JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
                 AccountPanel account = new AccountPanel(card, container);
             container.add(account,"account");

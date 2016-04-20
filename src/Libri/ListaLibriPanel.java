@@ -32,7 +32,7 @@ public class ListaLibriPanel extends JPanel{
     
         TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaLibriAttuali.size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaLibriAttuali.size()+2, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -43,6 +43,12 @@ public class ListaLibriPanel extends JPanel{
             searchPanel.add(searchButton);
 
         panel.add(searchPanel);
+        
+        JButton addLibro = new JButton("Aggiungi Libro");
+        GoToAggiungiLibro aggiungiLibro = new GoToAggiungiLibro(card, container);
+        addLibro.addActionListener(aggiungiLibro);
+        
+        panel.add(addLibro);
         
         GoToLibro goToLibro = new GoToLibro(card, container);
         

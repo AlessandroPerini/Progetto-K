@@ -9,7 +9,7 @@ import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.ListaCorsiPanel;
 import Database.Connection.ConnessioneDB;
-import Database.Query.listeQuery;
+import Database.Query.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -41,7 +41,7 @@ public class CaricaLibri implements ActionListener{
   
         Applicazione.back.add("libri");
         
-        listeQuery dQuery = new listeQuery();
+        ListeQuery dQuery = new ListeQuery();
         dQuery.caricaLibri();
 
         ListaLibriPanel libri = new ListaLibriPanel(card, container);

@@ -5,10 +5,9 @@
  */
 package Creator;
 
+import Controller.Applicazione;
 import Frame.MainFrame;
 import Login.LoginPanel;
-import Studente.AccountPanel;
-import Università.Facolta.ListaFacoltàPanel;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,7 +19,9 @@ import javax.swing.JPanel;
 public class Starter {
     
     public static void main(String[] args) {
-            
+        
+        Applicazione applicazione = new Applicazione();
+        
         CardLayout card = new CardLayout();
         
         JPanel container = new JPanel();

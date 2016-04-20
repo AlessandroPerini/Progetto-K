@@ -3,11 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Appunti;
+package Libri;
 
 import Controller.Applicazione;
-import Database.Query.InfoQuery;
-import Libri.LibroPanel;
+import Database.Query.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,14 +14,14 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Te4o
+ * @author te4o
  */
-public class GoToAppunto implements ActionListener{
+public class GoToAggiungiLibro implements ActionListener{
 
     private CardLayout card;
     private JPanel container;
     
-    public GoToAppunto(CardLayout card, JPanel container) {
+    public GoToAggiungiLibro(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
@@ -30,16 +29,11 @@ public class GoToAppunto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.back.add("appunto");
-        Applicazione.appuntoPremuto = e.getActionCommand();
+        Applicazione.back.add("aggiungiLibro");
 
-        InfoQuery iQuery = new InfoQuery();
-        iQuery.caricaInfoAppunto();
-        
-        AppuntoPanel appunto = new AppuntoPanel(card, container);
-        container.add(appunto, "appunto");
-        card.show(container, "appunto");
-
+        AggiungiLibroPanel aggiungiLibroPanel = new AggiungiLibroPanel(card, container);
+        container.add(aggiungiLibroPanel, "aggiungiLibro");
+        card.show(container, "aggiungiLibro");
     }
     
 }

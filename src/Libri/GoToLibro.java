@@ -6,7 +6,7 @@
 package Libri;
 
 import Controller.Applicazione;
-import Database.Query.infoQuery;
+import Database.Query.InfoQuery;
 import Università.Corsi.CorsoPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class GoToLibro implements ActionListener{
         Applicazione.back.add("libro");
         Applicazione.libroPremuto = e.getActionCommand();
 
-        infoQuery iQuery = new infoQuery();
+        InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoLibro();
         
         LibroPanel libro = new LibroPanel(card, container);

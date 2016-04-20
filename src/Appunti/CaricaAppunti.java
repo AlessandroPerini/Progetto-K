@@ -6,7 +6,7 @@
 package Appunti;
 
 import Controller.Applicazione;
-import Database.Query.listeQuery;
+import Database.Query.ListeQuery;
 import Libri.ListaLibriPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -32,7 +32,7 @@ public class CaricaAppunti implements ActionListener{
   
         Applicazione.back.add("appunti");
         
-        listeQuery dQuery = new listeQuery();
+        ListeQuery dQuery = new ListeQuery();
         dQuery.caricaAppunti();
 
         ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);

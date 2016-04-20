@@ -6,11 +6,13 @@
 package Controller;
 
 import Appunti.Appunto;
+import Database.Connection.ConnessioneDB;
 import Libri.Libro;
 import QeA.Domanda;
 import Studente.Studente;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
@@ -19,11 +21,12 @@ import java.util.ArrayList;
  */
 public class Applicazione {
 
+    public static Connection connection = new ConnessioneDB().connect();
         
     public static ArrayList<String> back = new ArrayList<>();
     public static boolean utenteLoggato = false;
     
-    private static Studente guest;
+    public static Studente guest;
     
     public static String facoltàPremuta;
     public static String corsoPremuto;
@@ -40,10 +43,6 @@ public class Applicazione {
     public static Libro libroAttuale;
     public static Domanda domandaAttuale;
     public static Appunto appuntoAttuale;
-    
-    public Applicazione(ArrayList<Corso> corsiAttuali) {
-        this.listaCorsiAttuali = corsiAttuali;
-    }
 
     public static void inizializzaUtente(String email, String password, int punti, String telefono){
     
@@ -78,10 +77,6 @@ public class Applicazione {
     
     public static void svuotaAppunti() {
         ListaAppuntiAttuali.clear();
-    }
-    
-    public static Studente getGuest() {
-        return guest;
     }
  
 

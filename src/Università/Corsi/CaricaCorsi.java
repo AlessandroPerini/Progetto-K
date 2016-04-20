@@ -7,7 +7,7 @@ package Università.Corsi;
 
 import Controller.Applicazione;
 import Database.Connection.ConnessioneDB;
-import Database.Query.listeQuery;
+import Database.Query.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -42,7 +42,7 @@ public class CaricaCorsi implements ActionListener{
         Applicazione.back.add("corsi");
         Applicazione.facoltàPremuta = e.getActionCommand();
         
-        listeQuery dQuery = new listeQuery();
+        ListeQuery dQuery = new ListeQuery();
         dQuery.caricaCorsi();
 
         ListaCorsiPanel corsi = new ListaCorsiPanel(card, container);

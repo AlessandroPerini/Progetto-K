@@ -99,25 +99,25 @@ public class AccountPanel extends JPanel{
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        email = new JLabel(Applicazione.getGuest().getEmail());
+        email = new JLabel(Applicazione.guest.getEmail());
         email.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        nick = new JLabel(Applicazione.getGuest().getNickname());
+        nick = new JLabel(Applicazione.guest.getNickname());
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
 
         JLabel pointsLabel = new JLabel("Points: ");
         pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        points = new JLabel(Integer.toString(Applicazione.getGuest().getPunti()));
+        points = new JLabel(Integer.toString(Applicazione.guest.getPunti()));
         points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        phone = new JLabel(Applicazione.getGuest().getTelefono());
+        phone = new JLabel(Applicazione.guest.getTelefono());
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
 
         emailRow.add(emailLabel);

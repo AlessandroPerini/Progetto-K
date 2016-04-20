@@ -6,7 +6,7 @@
 package QeA;
 
 import Controller.Applicazione;
-import Database.Query.listeQuery;
+import Database.Query.ListeQuery;
 import Libri.ListaLibriPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -32,7 +32,7 @@ public class CaricaDomande implements ActionListener{
   
         Applicazione.back.add("domande");
         
-        listeQuery dQuery = new listeQuery();
+        ListeQuery dQuery = new ListeQuery();
         dQuery.caricaDomande();
 
         ListaDomandePanel domande = new ListaDomandePanel(card, container);

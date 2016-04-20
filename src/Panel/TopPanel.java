@@ -60,7 +60,7 @@ public class TopPanel extends JPanel{
         
         JLabel title = new JLabel(t);
         title.setHorizontalAlignment(SwingConstants.CENTER);
-        title.setFont(new Font("Arial", Font.BOLD, 35));
+        title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setPreferredSize(new Dimension(420, 40));
         
         String[] opzioni = new String[]{"Account","Preferiti","Logout"};

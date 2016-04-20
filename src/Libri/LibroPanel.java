@@ -46,8 +46,7 @@ public class LibroPanel extends JPanel{
         descrizione2.setWrapStyleWord(true);
         titolo2.setEditable(false);
         titolo2.setLineWrap(true);
-        
-        
+
         panel.add(titolo);
         panel.add(titolo2);
         panel.add(descrizione);

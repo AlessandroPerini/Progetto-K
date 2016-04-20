@@ -9,7 +9,7 @@ import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.ListaFacoltàPanel;
 import Database.Connection.ConnessioneDB;
-import Database.Query.listeQuery;
+import Database.Query.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,14 +37,12 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
         this.card = card;
         this.container = container;
     }
-    
-    private Connection connection = new ConnessioneDB().connect();
 
     public void carica(){
     
         if(Applicazione.utenteLoggato){
             
-                listeQuery dQuery = new listeQuery();
+                ListeQuery dQuery = new ListeQuery();
                 dQuery.caricaFacoltà();
                 
                 Applicazione.back.add("facoltà");

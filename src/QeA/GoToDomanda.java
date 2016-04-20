@@ -6,7 +6,7 @@
 package QeA;
 
 import Controller.Applicazione;
-import Database.Query.infoQuery;
+import Database.Query.InfoQuery;
 import Università.Corsi.CorsoPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -33,7 +33,7 @@ public class GoToDomanda  implements ActionListener{
         Applicazione.back.add("domanda");
         Applicazione.domandaPremuta = e.getActionCommand();
         
-        infoQuery iQuery = new infoQuery();
+        InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoDomanda();
         
         DomandaPanel domanda = new DomandaPanel(card, container);
