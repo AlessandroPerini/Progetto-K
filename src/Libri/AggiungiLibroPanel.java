@@ -23,6 +23,10 @@ import javax.swing.JTextArea;
  */
 public class AggiungiLibroPanel extends JPanel{
     
+    private static JTextArea titolo2 = new JTextArea();
+    private static JTextArea descrizione2 = new JTextArea();
+    private static JTextArea prezzo2 = new JTextArea();
+    
     public AggiungiLibroPanel(CardLayout card, JPanel container) {
         
         TopPanel top = new TopPanel(card, container, "Aggiungi Libro in "+Applicazione.corsoPremuto);
@@ -35,9 +39,9 @@ public class AggiungiLibroPanel extends JPanel{
         JLabel telefono = new JLabel("Telefono :");
         JLabel email = new JLabel("Email :");
         
-        JTextArea titolo2 = new JTextArea("");
-        JTextArea descrizione2 = new JTextArea("");
-        JTextArea prezzo2 = new JTextArea("");
+        titolo2 = new JTextArea("");
+        descrizione2 = new JTextArea("");
+        prezzo2 = new JTextArea("");
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
         JLabel telefono2 = new JLabel(Applicazione.guest.getTelefono());
  
@@ -72,5 +76,12 @@ public class AggiungiLibroPanel extends JPanel{
         add(top);
         add(scrollPanel1);
      
-}
+    }
+    
+    public static void clearForm(){
+    
+        titolo2.setText("");
+        descrizione2.setText("");
+        prezzo2.setText("");
+    }
 }

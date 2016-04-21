@@ -35,18 +35,21 @@ public class AggiungiLibro implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-  
-        Applicazione.back.add("libri");
-        
+
         InsertQuery insertQuery = new InsertQuery();
         insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), Integer.parseInt(prezzo.getText()));
         
         Applicazione.svuotaLibri();
         
-        ListeQuery listeQuery = new ListeQuery();
-        listeQuery.caricaLibri();
+        ListeQuery dQuery = new ListeQuery();
+        dQuery.caricaLibri();
+        
+        Applicazione.back.remove(Applicazione.back.size()-1);
 
+        ListaLibriPanel libri = new ListaLibriPanel(card, container);
+        container.add(libri, "libri");
         card.show(container, "libri");
- 
+        
+        AggiungiLibroPanel.clearForm();
     }
 }

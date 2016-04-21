@@ -21,11 +21,14 @@ import java.util.logging.Logger;
 public class InsertQuery {
     
     public void inserisciLibro(String titolo, String descrizione, int prezzo){
-    
-        String max =  "11";
         
-        String insertLibro = "INSERT INTO libri VALUES ('"+max+"', '"+titolo+"', '"+descrizione+"', '"+Applicazione.facoltàPremuta+"', '"+Applicazione.corsoPremuto+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
+        String titoloQuery = titolo.replaceAll("'", "\\\\'");
+        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");;
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");;
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");;
         
+        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"', '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
+        System.out.println(insertLibro);
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
                 ps1.execute();
@@ -33,5 +36,31 @@ public class InsertQuery {
                 }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+    }
+    
+    public int prossimoID(){
+    
+        int prossimoID = 0;
+        
+        String selectId = "select id from libri";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectId);
+                ResultSet rs = ps1.executeQuery();
+                
+                while(rs.next()){
+
+                    if (rs.getInt("id") > prossimoID) {
+                        
+                        prossimoID = rs.getInt("id");
+                    }
+
+                }
+                
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+        return prossimoID+1;
     }
 }
