@@ -6,22 +6,12 @@
 package Università.Facolta;
 
 import Controller.Applicazione;
-import Università.Corsi.CaricaCorsi;
-import Università.Facolta.ListaFacoltàPanel;
-import Database.Connection.ConnessioneDB;
 import Database.MySql.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -39,7 +29,7 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
     }
 
     public void carica(){
-    
+        
         if(Applicazione.utenteLoggato){
             
                 ListeQuery dQuery = new ListeQuery();
@@ -51,7 +41,6 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 
                 container.add(facoltà,"facoltà");
                 card.show(container, "facoltà");
-
         }
     }
     

@@ -9,7 +9,10 @@ import Controller.Applicazione;
 import Panel.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,53 +23,128 @@ import javax.swing.JTextArea;
  * @author cl410688
  */
 public class LibroPanel extends JPanel{
-
+    
+    private TopPanel top;
+    private JPanel panel;
+    private JLabel titolo, titolo2, descrizione, prezzo, prezzo2, telefono, telefono2,
+                   email, email2;
+    private JTextArea descrizione2;
+    private JScrollPane scrollPanel, scrollPanel1;
+            
     public LibroPanel(CardLayout card, JPanel container) {
         
-        TopPanel top = new TopPanel(card, container, Applicazione.libroPremuto);
+        top = new TopPanel(card, container, Applicazione.libroPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(5,2,5,10));
+        panel = new JPanel();
         
-        JLabel titolo= new JLabel("Titolo :");
-        JLabel descrizione= new JLabel("Descrizione :");
-        JLabel prezzo= new JLabel("Prezzo :");
-        JLabel telefono= new JLabel("Telefono :");
-        JLabel email= new JLabel("Email :");
-        
-        JTextArea titolo2= new JTextArea(Applicazione.libroAttuale.getTitolo(),2,10);
-        JTextArea descrizione2= new JTextArea(Applicazione.libroAttuale.getDescrizione(),6,10);
-        JLabel prezzo2= new JLabel(Integer.toString(Applicazione.libroAttuale.getPrezzo()));
-        JLabel telefono2= new JLabel(Applicazione.libroAttuale.getTelefono());
-        JLabel email2= new JLabel(Applicazione.libroAttuale.getEmail());
- 
-        JScrollPane scrollPanel = new JScrollPane(descrizione2);
-        
-        descrizione2.setEditable(false);
-        descrizione2.setLineWrap(true);
-        descrizione2.setWrapStyleWord(true);
-        titolo2.setEditable(false);
-        titolo2.setLineWrap(true);
-
-        panel.add(titolo);
-        panel.add(titolo2);
-        panel.add(descrizione);
-        panel.add(scrollPanel);
-        panel.add(prezzo);
-        panel.add(prezzo2);
-        panel.add(telefono);
-        panel.add(telefono2);
-        panel.add(email);
-        panel.add(email2);
-        
-        
-        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        this.build();
+       
+        scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));
         scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
         add(scrollPanel1);
      
-}
+    }
+    public void build(){
+        
+        panel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        
+        //prima riga - colonna 0
+        
+        this.titolo = new JLabel("titolo");
+	gbc.gridx = 0;
+	gbc.gridy = 0;
+	gbc.insets = new Insets(5, 0, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_END;
+	panel.add(this.titolo, gbc);
+        
+        //colonna 1
+        this.titolo2 = new JLabel(Applicazione.libroAttuale.getTitolo());
+	gbc.gridx = 1;
+	gbc.gridy = 0;
+	gbc.insets = new Insets(10, 30, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_START;
+	panel.add(this.titolo2, gbc);
+        
+        //seconda riga - colonna 0
+        
+        this.descrizione = new JLabel("descrizione:");
+	gbc.gridx = 0;
+	gbc.gridy = 1;
+	gbc.insets = new Insets(5, 0, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_END;
+	panel.add(this.descrizione, gbc);
+        
+        //colonna 1
+        this.descrizione2 = new JTextArea(Applicazione.libroAttuale.getDescrizione(),7,30);
+        descrizione2.setEditable(false);
+        descrizione2.setLineWrap(true);
+        descrizione2.setWrapStyleWord(true);
+        
+        this.scrollPanel = new JScrollPane();
+        scrollPanel.setViewportView(descrizione2);
+        scrollPanel.setWheelScrollingEnabled(true);
+	gbc.gridx = 1;
+	gbc.gridy = 1;
+	gbc.insets = new Insets(20, 30, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_START;
+	panel.add(this.scrollPanel, gbc);
+        
+        // terza riga - colonna 0
+        
+        this.prezzo = new JLabel("prezzo:");
+	gbc.gridx = 0;
+	gbc.gridy = 2;
+	gbc.insets = new Insets(5, 0, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_END;
+	panel.add(this.prezzo, gbc);
+        
+        //colonna 1
+        this.prezzo2 = new JLabel(""+Applicazione.libroAttuale.getPrezzo());
+	gbc.gridx = 1;
+	gbc.gridy = 2;
+	gbc.insets = new Insets(5, 30, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_START;
+	panel.add(this.prezzo2, gbc);
+        
+        // quarta riga - colonna 0
+        
+        this.telefono = new JLabel("telefono:");
+	gbc.gridx = 0;
+	gbc.gridy = 3;
+	gbc.insets = new Insets(5, 0, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_END;
+	panel.add(this.telefono, gbc);
+        
+        //colonna 1
+        this.telefono2 = new JLabel(Applicazione.libroAttuale.getTelefono());
+	gbc.gridx = 1;
+	gbc.gridy = 3;
+	gbc.insets = new Insets(5, 30, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_START;
+	panel.add(this.telefono2, gbc);
+        
+        // quita riga colonna 0
+        
+        this.email = new JLabel("email:");
+	gbc.gridx = 0;
+	gbc.gridy = 4;
+	gbc.insets = new Insets(5, 0, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_END;
+	panel.add(this.email, gbc);
+        
+        //colonna 1
+        this.email2 = new JLabel(Applicazione.libroAttuale.getEmail());
+	gbc.gridx = 1;
+	gbc.gridy = 4;
+	gbc.insets = new Insets(5, 30, 0, 10);
+	gbc.anchor = GridBagConstraints.LINE_START;
+	panel.add(this.email2, gbc);
+        
+    }
 
     
 }

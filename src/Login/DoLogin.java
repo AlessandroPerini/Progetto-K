@@ -37,7 +37,6 @@ public class DoLogin implements ActionListener, KeyListener{
     }
     
     public void doIt(){
-    
         
             LoginQuery lQuery = new LoginQuery(email.getText()+"@universitadipavia.it", password.getText());
             lQuery.login();

@@ -9,6 +9,7 @@ import Controller.Applicazione;
 import Panel.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -25,13 +26,15 @@ public class AggiungiLibroPanel extends JPanel{
     
     private static JTextArea titolo2 = new JTextArea();
     private static JTextArea descrizione2 = new JTextArea();
-    private static JTextArea prezzo2 = new JTextArea();
+    private static JSpinner prezzo2 = new JSpinner();
     
     public AggiungiLibroPanel(CardLayout card, JPanel container) {
         
         TopPanel top = new TopPanel(card, container, "Aggiungi Libro in "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(6,2,5,10));
+        
+        JPanel prezzoPanel = new JPanel(new GridLayout(1, 2));
         
         JLabel titolo = new JLabel("Titolo :");
         JLabel descrizione = new JLabel("Descrizione :");
@@ -41,7 +44,7 @@ public class AggiungiLibroPanel extends JPanel{
         
         titolo2 = new JTextArea("");
         descrizione2 = new JTextArea("");
-        prezzo2 = new JTextArea("");
+        prezzo2 = new JSpinner();
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
         JLabel telefono2 = new JLabel(Applicazione.guest.getTelefono());
  
@@ -51,16 +54,22 @@ public class AggiungiLibroPanel extends JPanel{
         descrizione2.setWrapStyleWord(true);
         titolo2.setLineWrap(true);
         
+        JLabel euro = new JLabel("€");
+        euro.setFont(new Font("Arial", Font.PLAIN, 20));
+        prezzo2.setFont(new Font("Arial", Font.PLAIN, 20));
         JButton aggiungi = new JButton("Aggiungi");
         AggiungiLibro aggiungiLibro = new AggiungiLibro(card, container, titolo2, descrizione2, prezzo2);
         aggiungi.addActionListener(aggiungiLibro);
+        
+        prezzoPanel.add(euro);
+        prezzoPanel.add(prezzo2);
         
         panel.add(titolo);
         panel.add(titolo2);
         panel.add(descrizione);
         panel.add(scrollPanel);
         panel.add(prezzo);
-        panel.add(prezzo2);
+        panel.add(prezzoPanel);
         panel.add(telefono);
         panel.add(telefono2);
         panel.add(email);
@@ -82,6 +91,6 @@ public class AggiungiLibroPanel extends JPanel{
     
         titolo2.setText("");
         descrizione2.setText("");
-        prezzo2.setText("");
+        prezzo2.setValue(0);
     }
 }

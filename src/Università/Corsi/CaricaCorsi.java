@@ -34,8 +34,6 @@ public class CaricaCorsi implements ActionListener{
         this.container = container;
     }
     
-    private Connection connection = new ConnessioneDB().connect();
-    
     @Override
     public void actionPerformed(ActionEvent e) {
 

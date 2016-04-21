@@ -6,9 +6,6 @@
 package Database.MySql;
 
 import Controller.Applicazione;
-import Database.Connection.ConnessioneDB;
-import Studente.Studente;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

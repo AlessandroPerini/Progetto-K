@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
+import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
@@ -24,9 +25,9 @@ public class AggiungiLibro implements ActionListener{
     private JPanel container;
     private JTextArea titolo;
     private JTextArea descrizione;
-    private JTextArea prezzo;
+    private JSpinner prezzo;
 
-    public AggiungiLibro(CardLayout card, JPanel container, JTextArea titolo, JTextArea descrizione, JTextArea prezzo) {
+    public AggiungiLibro(CardLayout card, JPanel container, JTextArea titolo, JTextArea descrizione, JSpinner prezzo) {
         this.card = card;
         this.container = container;
         this.titolo = titolo;
@@ -38,7 +39,7 @@ public class AggiungiLibro implements ActionListener{
     public void actionPerformed(ActionEvent e) {
 
         InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), Integer.parseInt(prezzo.getText()));
+        insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
         
         Applicazione.svuotaLibri();
         

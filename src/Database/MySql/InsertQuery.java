@@ -42,21 +42,17 @@ public class InsertQuery {
     
         int prossimoID = 0;
         
-        String selectId = "select id from libri";
+        String selectId = "select max(id) as massimo from libri";
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectId);
                 ResultSet rs = ps1.executeQuery();
-                
-                while(rs.next()){
 
-                    if (rs.getInt("id") > prossimoID) {
+                    if(rs.next()) {
                         
-                        prossimoID = rs.getInt("id");
+                        prossimoID = rs.getInt("massimo");
                     }
-
-                }
-                
+          
                 }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }

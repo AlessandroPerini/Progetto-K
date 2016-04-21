@@ -7,31 +7,36 @@ package QeA;
 
 import Controller.Applicazione;
 import Database.MySql.InfoQuery;
-import Università.Corsi.CorsoPanel;
 import java.awt.CardLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
  *
- * @author cl410688
+ * @author adrian
  */
-public class GoToDomanda  implements ActionListener{
-
+public class GoToDomanda implements MouseListener{
     private CardLayout card;
-    private JPanel container;
+    private JPanel container;   
+    String text;
     
     public GoToDomanda(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
-    
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void mouseClicked(MouseEvent e) {
         
         Applicazione.back.add("domanda");
-        Applicazione.domandaPremuta = e.getActionCommand();
+        
+        if(e.getComponent() instanceof JLabel) {
+            JLabel label = (JLabel)e.getComponent();
+            text = label.getText();
+        }
+        Applicazione.domandaPremuta = text;
         
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoDomanda();
@@ -39,8 +44,26 @@ public class GoToDomanda  implements ActionListener{
         DomandaPanel domanda = new DomandaPanel(card, container);
         container.add(domanda, "domanda");
         card.show(container, "domanda");
+    }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
         
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+      e.getComponent().setForeground(Color.red);
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+      e.getComponent().setForeground(Color.black);
     }
     
 }

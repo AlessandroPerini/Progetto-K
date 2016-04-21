@@ -32,18 +32,18 @@ public class AppuntoPanel extends JPanel{
         JLabel descrizione = new JLabel("Descrizione :");
         JLabel media = new JLabel("Media :");
         
-        JTextArea email2 = new JTextArea(Applicazione.appuntoAttuale.getStudente());
-        JTextArea nome2 = new JTextArea(Applicazione.appuntoAttuale.getNome());
+        JLabel email2 = new JLabel(Applicazione.appuntoAttuale.getStudente());
+        JLabel nome2 = new JLabel(Applicazione.appuntoAttuale.getNome());
         JTextArea descrizione2 = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
-        JTextArea media2 = new JTextArea(Float.toString(Applicazione.appuntoAttuale.getMedia()));
-
-        nome2.setPreferredSize(new Dimension(150, 100));
-        descrizione2.setPreferredSize(new Dimension(150, 100));
-        media2.setPreferredSize(new Dimension(150, 100));
-        email2.setPreferredSize(new Dimension(150, 100));
+        JLabel media2 = new JLabel(Float.toString(Applicazione.appuntoAttuale.getMedia()));
         
-        panel.add(email);
-        panel.add(email2);
+        JScrollPane scrollPanel = new JScrollPane(descrizione2);
+        
+        descrizione2.setEditable(false);
+        descrizione2.setLineWrap(true);
+        descrizione2.setWrapStyleWord(true);
+
+        
         panel.add(nome);
         panel.add(nome2);
         panel.add(descrizione);
@@ -52,13 +52,13 @@ public class AppuntoPanel extends JPanel{
         panel.add(media2);
         panel.add(email);
         panel.add(email2);
-  
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 410));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+ 
+        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel1.setPreferredSize(new Dimension(650, 410));
+        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
-        add(scrollPanel);
+        add(scrollPanel1);
      
 }
 }
