@@ -28,7 +28,6 @@ public class InsertQuery {
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");;
         
         String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"', '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
-        System.out.println(insertLibro);
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
                 ps1.execute();
