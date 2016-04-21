@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database.Query;
+package Database.MySql;
 
 import Controller.Applicazione;
 import Libri.Libro;
@@ -28,7 +28,7 @@ public class InsertQuery {
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");;
         
         String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"', '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
-        System.out.println(insertLibro);
+        
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
                 ps1.execute();

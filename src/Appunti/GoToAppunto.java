@@ -6,7 +6,7 @@
 package Appunti;
 
 import Controller.Applicazione;
-import Database.Query.InfoQuery;
+import Database.MySql.InfoQuery;
 import Libri.LibroPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;

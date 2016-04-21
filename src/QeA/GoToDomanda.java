@@ -6,7 +6,7 @@
 package QeA;
 
 import Controller.Applicazione;
-import Database.Query.InfoQuery;
+import Database.MySql.InfoQuery;
 import Università.Corsi.CorsoPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;

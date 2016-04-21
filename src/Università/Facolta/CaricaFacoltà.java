@@ -9,7 +9,7 @@ import Controller.Applicazione;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.ListaFacoltàPanel;
 import Database.Connection.ConnessioneDB;
-import Database.Query.ListeQuery;
+import Database.MySql.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

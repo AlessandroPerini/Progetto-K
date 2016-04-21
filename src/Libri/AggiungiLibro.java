@@ -5,8 +5,9 @@
  */
 package Libri;
 
+import Database.MySql.InsertQuery;
 import Controller.Applicazione;
-import Database.Query.*;
+import Database.MySql.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -3,21 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database.Query;
+package Database.MySql;
 
 import Appunti.Appunto;
 import Controller.Applicazione;
-import Database.Connection.ConnessioneDB;
 import Libri.Libro;
 import QeA.Domanda;
 import Università.Corsi.CaricaCorsi;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,16 +22,14 @@ import java.util.logging.Logger;
  *
  * @author te4o
  */
-public class listeQuery {
-    
-    private Connection connection = new ConnessioneDB().connect();
+public class ListeQuery {
     
     public void caricaFacoltà(){
         
         String selectFacoltà = "select * from facoltà";
         
         try{
-                PreparedStatement ps1 = connection.prepareStatement(selectFacoltà);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectFacoltà);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -56,7 +51,7 @@ public class listeQuery {
         String selectCorsi = "select * from corsi where facoltà=?";
         
         try{
-                PreparedStatement ps1 = connection.prepareStatement(selectCorsi);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectCorsi);
                 ps1.setString(1, Applicazione.facoltàPremuta);
 
                 ResultSet rs = ps1.executeQuery();
@@ -78,7 +73,7 @@ public class listeQuery {
         String selectLibri = "select * from libri where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = connection.prepareStatement(selectLibri);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectLibri);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -107,7 +102,7 @@ public class listeQuery {
         String selectDomande = "select * from domande where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = connection.prepareStatement(selectDomande);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectDomande);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -134,7 +129,7 @@ public class listeQuery {
         String selectAppunti = "select * from appunti where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = connection.prepareStatement(selectAppunti);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectAppunti);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 

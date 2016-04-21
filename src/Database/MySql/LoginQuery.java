@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database.Query;
+package Database.MySql;
 
 import Controller.Applicazione;
 import Database.Connection.ConnessioneDB;
@@ -19,9 +19,8 @@ import java.util.logging.Logger;
  *
  * @author te4o
  */
-public class loginQuery {
+public class LoginQuery {
     
-    private Connection connection = new ConnessioneDB().connect();
     private static boolean check = false;
     private int punti;
     private String telefono;
@@ -29,7 +28,7 @@ public class loginQuery {
     private String email;
     private String password;
 
-    public loginQuery(String email, String password) {
+    public LoginQuery(String email, String password) {
         this.email = email;
         this.password = password;
     }
@@ -39,7 +38,7 @@ public class loginQuery {
     String sql = "select * from studenti where email=? and password=?";
         
         try{
-            PreparedStatement ps1 = connection.prepareStatement(sql);
+            PreparedStatement ps1 = Applicazione.connection.prepareStatement(sql);
             ps1.setString(1, email);
             ps1.setString(2, password);
             
@@ -50,13 +49,13 @@ public class loginQuery {
                 check = true;
                 
                 String sql_punti = "select punti from studenti where email=?";
-                PreparedStatement ps2 = connection.prepareStatement(sql_punti);
+                PreparedStatement ps2 = Applicazione.connection.prepareStatement(sql_punti);
                 ps2.setString(1, email);
                 ResultSet rs2 = ps2.executeQuery();
                 if(rs2.next()){punti = rs2.getInt("punti");}
 
                 String sql_telefono = "select telefono from studenti where email=?";
-                PreparedStatement ps3 = connection.prepareStatement(sql_telefono);
+                PreparedStatement ps3 = Applicazione.connection.prepareStatement(sql_telefono);
                 ps3.setString(1, email);
                 ResultSet rs3 = ps3.executeQuery();
                 if(rs3.next()){telefono = rs3.getString("telefono");}
@@ -67,7 +66,7 @@ public class loginQuery {
         InternalError LoginEx = new InternalError("Wrong email/password");
         if(check == false) {throw LoginEx;}
         } catch (SQLException ex) {
-            Logger.getLogger(loginQuery.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(LoginQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

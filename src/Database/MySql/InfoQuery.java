@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Database.Query;
+package Database.MySql;
 
 import Appunti.Appunto;
 import Controller.Applicazione;
@@ -23,16 +23,14 @@ import java.util.logging.Logger;
  *
  * @author te4o
  */
-public class infoQuery {
-    
-    private Connection connection = new ConnessioneDB().connect();
+public class InfoQuery {
     
     public void caricaInfoLibro(){
     
         String selectInfoLibro = "select * from libri where facoltà=? and corso=? and titolo=?";
         
          try{
-                PreparedStatement ps1 = connection.prepareStatement(selectInfoLibro);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoLibro);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.libroPremuto);
@@ -61,7 +59,7 @@ public class infoQuery {
         String selectInfoDomanda = "select * from domande where facoltà=? and corso=? and titolo=?";
         
          try{
-                PreparedStatement ps1 = connection.prepareStatement(selectInfoDomanda);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.domandaPremuta);
@@ -88,7 +86,7 @@ public class infoQuery {
         String selectInfoDomanda = "select * from appunti where facoltà=? and corso=? and nome=?";
         
          try{
-                PreparedStatement ps1 = connection.prepareStatement(selectInfoDomanda);
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.appuntoPremuto);
