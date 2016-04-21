@@ -159,7 +159,15 @@ public class LoginPanel extends JPanel{
 	down.add(password, gbc);
         
           //quinta riga 
-        login = new JButton("Login");
+          ImageIcon bottone = new ImageIcon("files\\immagini\\bottone.png");
+          bottone.setDescription("Login");
+         
+        login = new JButton(bottone);
+        login.setBorder(BorderFactory.createEmptyBorder());
+login.setContentAreaFilled(false);
+login.setText("Login");
+
+login.setIconTextGap(-65);
 	gbc.gridx = 0;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(10, 20, 0, 10);
