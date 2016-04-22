@@ -23,11 +23,11 @@ public class InsertQuery {
     public void inserisciLibro(String titolo, String descrizione, int prezzo){
         
         String titoloQuery = titolo.replaceAll("'", "\\\\'");
-        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");;
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");;
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");;
+        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
         
-        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"', '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
+        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"',  '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
@@ -58,5 +58,22 @@ public class InsertQuery {
                 }
         
         return prossimoID+1;
+    }
+    public void inserisciDomanda(String titolo, String domanda){
+        
+        String titoloQuery = titolo.replaceAll("'", "\\\\'");
+        String domandaQuery = domanda.replaceAll("'", "\\\\'");
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+        
+        String insertDomanda= "INSERT INTO domande VALUES ('"+corsoQuery+"','"+Applicazione.guest.getEmail()+"','"+titoloQuery+"', '"+domandaQuery+"', 0,'"+facoltàQuery+"');";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertDomanda);
+                ps1.execute();
+                
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }
 }

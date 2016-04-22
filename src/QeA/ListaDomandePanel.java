@@ -31,6 +31,8 @@ public class ListaDomandePanel extends JPanel{
     
     //private JButton[] domande = new JButton[Applicazione.ListaDomandeAttuali.size()];
     private JLabel[] domande = new JLabel[Applicazione.ListaDomandeAttuali.size()];
+    private JButton addDomanda, searchButton;
+    private JTextField searchField;
     public ListaDomandePanel(CardLayout card, JPanel container) {
     
         TopPanel top = new TopPanel(card, container, "Domande ");
@@ -41,16 +43,27 @@ public class ListaDomandePanel extends JPanel{
         GridBagConstraints gbcImg = new GridBagConstraints();
         
             JPanel searchPanel = new JPanel();
-            JTextField searchField = new JTextField(30);
+            searchField = new JTextField(30);
             searchField.setHorizontalAlignment(SwingConstants.CENTER);
             searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            JButton searchButton = new JButton("Search");
+            searchButton = new JButton("Search");
             searchPanel.add(searchField);
             searchPanel.add(searchButton);
+            addDomanda = new JButton("Aggiungi\n Domanda");
           
             centro.add(searchPanel, BorderLayout.NORTH);
+            
+            gbcImg.gridx = 0;
+            gbcImg.gridy = 0;
+            gbcImg.insets = new Insets(10, 0, 0, 10);
+            gbcImg.anchor = GridBagConstraints.LINE_START;
+            panel.add(addDomanda, gbcImg);
         
         GoToDomanda goToDomanda = new GoToDomanda(card, container);
+        GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda(card, container);
+        
+        addDomanda.addActionListener(goToAggiungiDomanda);
+                
         
         for (int i = 0; i < Applicazione.ListaDomandeAttuali.size(); i++) {
             domande[i] = new JLabel();
@@ -58,7 +71,7 @@ public class ListaDomandePanel extends JPanel{
             domande[i].setName("domande"+i);
             domande[i].addMouseListener(goToDomanda);
             gbcImg.gridx = 0;
-            gbcImg.gridy = 0;
+            gbcImg.gridy = i+1;
             gbcImg.insets = new Insets(10, 0, 0, 10);
             gbcImg.anchor = GridBagConstraints.LINE_START;
             panel.add(domande[i], gbcImg);

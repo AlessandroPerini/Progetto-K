@@ -37,7 +37,8 @@ public class DomandaPanel extends JPanel{
     private JPanel panel;
     private JLabel titolo, titolo2, descrizione, like,
                    email, email2, like2, risposte,rispondiLabel;
-    private JTextArea descrizione2,risposte2, rispondiArea;
+    private JTextArea descrizione2, rispondiArea;
+     JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
     
    
@@ -72,7 +73,7 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.email, gbc);
         
         //colonna 1
-        this.email2 = new JLabel(Applicazione.domandaAttuale.getEmail());
+        this.email2 = new JLabel(Applicazione.domandaAttuale.getStudente());
 	gbc.gridx = 1;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(15, 30, 0, 10);
