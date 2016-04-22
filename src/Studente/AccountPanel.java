@@ -64,11 +64,10 @@ public class AccountPanel extends JPanel{
         //end top panel
         
         //body panel
-        JPanel body = new JPanel((new GridLayout(5, 1, 0, 20)));
+        JPanel body = new JPanel((new GridLayout(4, 1, 0, 20)));
         
         JPanel emailRow = new JPanel();
         JPanel nickRow = new JPanel();
-        JPanel pointsRow = new JPanel();
         JPanel phoneRow = new JPanel();
         
         JButton logout = new JButton("Logout");
@@ -107,12 +106,6 @@ public class AccountPanel extends JPanel{
 
         nick = new JLabel(Applicazione.guest.getNickname());
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
-
-        JLabel pointsLabel = new JLabel("Points: ");
-        pointsLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
-        points = new JLabel(Integer.toString(Applicazione.guest.getPunti()));
-        points.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -125,9 +118,6 @@ public class AccountPanel extends JPanel{
 
         nickRow.add(nickLabel);
         nickRow.add(nick);
-
-        pointsRow.add(pointsLabel);
-        pointsRow.add(points);
         
         phoneRow.add(phoneLabel);
         phoneRow.add(phone);
@@ -135,7 +125,6 @@ public class AccountPanel extends JPanel{
         body.add(line);
         body.add(emailRow);
         body.add(nickRow);
-        body.add(pointsRow);
         body.add(phoneRow);
         //end body panel
         
