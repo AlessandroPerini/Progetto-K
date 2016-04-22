@@ -72,7 +72,7 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.email, gbc);
         
         //colonna 1
-        this.email2 = new JLabel(Applicazione.domandaAttuale.getEmail());
+        this.email2 = new JLabel(Applicazione.domandaAttuale.getStudente());
 	gbc.gridx = 1;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(15, 30, 0, 10);

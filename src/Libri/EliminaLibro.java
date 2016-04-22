@@ -5,45 +5,38 @@
  */
 package Libri;
 
-import Database.MySql.InsertQuery;
 import Controller.Applicazione;
+import Database.MySql.DeleteQuery;
 import Database.MySql.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.JTextArea;
 
 /**
  *
  * @author te4o
  */
-public class AggiungiLibro implements ActionListener{
-    
+public class EliminaLibro implements ActionListener{
+
     private CardLayout card;
     private JPanel container;
-    private JTextArea titolo;
-    private JTextArea descrizione;
-    private JSpinner prezzo;
 
-    public AggiungiLibro(CardLayout card, JPanel container, JTextArea titolo, JTextArea descrizione, JSpinner prezzo) {
+    public EliminaLibro(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
     }
-
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
         
-        JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
-
+        DeleteQuery deleteQuery = new DeleteQuery();
+        deleteQuery.eliminaLibro();
+        
+        JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+        
         Applicazione.svuotaLibri();
         
         ListeQuery dQuery = new ListeQuery();
@@ -55,6 +48,6 @@ public class AggiungiLibro implements ActionListener{
         container.add(libri, "libri");
         card.show(container, "libri");
         
-        AggiungiLibroPanel.clearForm();
     }
+    
 }

@@ -14,17 +14,17 @@ public class Domanda {
     private String titolo;
     private int like;
     private String domanda;
-    private String email;
+    private String studente;
 
-    public Domanda(String titolo, int like, String domanda, String email) {
+    public Domanda(String titolo, int like, String domanda, String studente) {
         this.titolo = titolo;
         this.like = like;
         this.domanda = domanda;
-        this.email = email;
+        this.studente = studente;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudente() {
+        return studente;
     }
 
 

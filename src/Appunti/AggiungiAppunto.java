@@ -3,15 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Libri;
+package Appunti;
 
-import Database.MySql.InsertQuery;
 import Controller.Applicazione;
+import Database.MySql.InsertQuery;
 import Database.MySql.ListeQuery;
+import Libri.AggiungiLibroPanel;
+import Libri.ListaLibriPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -20,41 +21,37 @@ import javax.swing.JTextArea;
  *
  * @author te4o
  */
-public class AggiungiLibro implements ActionListener{
+public class AggiungiAppunto implements ActionListener{
     
     private CardLayout card;
     private JPanel container;
-    private JTextArea titolo;
+    private JTextArea nome;
     private JTextArea descrizione;
-    private JSpinner prezzo;
 
-    public AggiungiLibro(CardLayout card, JPanel container, JTextArea titolo, JTextArea descrizione, JSpinner prezzo) {
+    public AggiungiAppunto(CardLayout card, JPanel container, JTextArea nome, JTextArea descrizione) {
         this.card = card;
         this.container = container;
-        this.titolo = titolo;
+        this.nome = nome;
         this.descrizione = descrizione;
-        this.prezzo = prezzo;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
         InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
+        insertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
         
-        JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
-
-        Applicazione.svuotaLibri();
+        Applicazione.svuotaAppunti();
         
         ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaLibri();
+        dQuery.caricaAppunti();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaLibriPanel libri = new ListaLibriPanel(card, container);
-        container.add(libri, "libri");
-        card.show(container, "libri");
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);
+        container.add(appunti, "appunti");
+        card.show(container, "appunti");
         
-        AggiungiLibroPanel.clearForm();
+        AggiungiAppuntoPanel.clearForm();
     }
 }

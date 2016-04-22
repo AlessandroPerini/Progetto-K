@@ -14,17 +14,17 @@ public class Libro {
     private String titolo;
     private String descrizione;
     private String ID;
-    private String email;
+    private String studente;
     private String telefono;
     private int prezzo;
 
 
-    public Libro(String titolo, String descrizione, String ID, String telefono, String email, int prezzo) {
+    public Libro(String titolo, String descrizione, String ID, String telefono, String studente, int prezzo) {
 
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.ID = ID;
-        this.email = email;
+        this.studente = studente;
         this.telefono = telefono;
         this.prezzo = prezzo;
   
@@ -42,8 +42,8 @@ public class Libro {
         return ID;
     }
 
-    public String getEmail() {
-        return email;
+    public String getStudente() {
+        return studente;
     }
 
     public String getTelefono() {

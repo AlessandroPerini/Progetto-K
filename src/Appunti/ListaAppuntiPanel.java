@@ -7,7 +7,6 @@ package Appunti;
 
 import Controller.Applicazione;
 import Panel.TopPanel;
-import QeA.GoToDomanda;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -30,7 +29,7 @@ public class ListaAppuntiPanel extends JPanel{
     
         TopPanel top = new TopPanel(card, container, "Appunti "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaAppuntiAttuali.size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaAppuntiAttuali.size()+2, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -41,6 +40,12 @@ public class ListaAppuntiPanel extends JPanel{
             searchPanel.add(searchButton);
 
         panel.add(searchPanel);
+        
+        JButton addAppunto = new JButton("Aggiungi Appunto");
+        GoToAggiungiAppunto aggiungiAppunto = new GoToAggiungiAppunto(card, container);
+        addAppunto.addActionListener(aggiungiAppunto);
+        
+        panel.add(addAppunto);
 
         GoToAppunto goToAppunto = new GoToAppunto(card, container);
         

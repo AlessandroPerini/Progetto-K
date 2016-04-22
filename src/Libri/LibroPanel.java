@@ -8,11 +8,12 @@ package Libri;
 import Controller.Applicazione;
 import Panel.TopPanel;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,10 +27,10 @@ public class LibroPanel extends JPanel{
     
     private TopPanel top;
     private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, prezzo, prezzo2, telefono, telefono2,
-                   email, email2;
+    private JLabel titolo, titolo2, descrizione, prezzo, prezzo2, telefono, telefono2, email, email2;
     private JTextArea descrizione2;
     private JScrollPane scrollPanel, scrollPanel1;
+    private JButton elimina;
             
     public LibroPanel(CardLayout card, JPanel container) {
         
@@ -37,7 +38,7 @@ public class LibroPanel extends JPanel{
         
         panel = new JPanel();
         
-        this.build();
+        this.build(card, container);
        
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));
@@ -47,7 +48,7 @@ public class LibroPanel extends JPanel{
         add(scrollPanel1);
      
     }
-    public void build(){
+    public void build(CardLayout card, JPanel container){
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -137,13 +138,25 @@ public class LibroPanel extends JPanel{
 	panel.add(this.email, gbc);
         
         //colonna 1
-        this.email2 = new JLabel(Applicazione.libroAttuale.getEmail());
+        this.email2 = new JLabel(Applicazione.libroAttuale.getStudente());
 	gbc.gridx = 1;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(5, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_START;
 	panel.add(this.email2, gbc);
         
+        if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+            
+            EliminaLibro eliminaLibro = new EliminaLibro(card, container);
+            this.elimina = new JButton("Elimina");
+            elimina.setBackground(new Color(249,123,123));
+            gbc.gridx = 1;
+            gbc.gridy = 5;
+            gbc.insets = new Insets(5, 30, 0, 10);
+            gbc.anchor = GridBagConstraints.LINE_START;
+            elimina.addActionListener(eliminaLibro);
+            panel.add(this.elimina, gbc);
+        }
     }
 
     

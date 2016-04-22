@@ -16,7 +16,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
+import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
+import javax.swing.SpinnerNumberModel;
 
 /**
  *
@@ -42,9 +44,11 @@ public class AggiungiLibroPanel extends JPanel{
         JLabel telefono = new JLabel("Telefono :");
         JLabel email = new JLabel("Email :");
         
+        SpinnerNumberModel prezzoModel = new SpinnerNumberModel(0, 0, 999, 1);  
+        
         titolo2 = new JTextArea("");
         descrizione2 = new JTextArea("");
-        prezzo2 = new JSpinner();
+        prezzo2 = new JSpinner(prezzoModel);
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
         JLabel telefono2 = new JLabel(Applicazione.guest.getTelefono());
  
@@ -57,6 +61,7 @@ public class AggiungiLibroPanel extends JPanel{
         JLabel euro = new JLabel("€");
         euro.setFont(new Font("Arial", Font.PLAIN, 20));
         prezzo2.setFont(new Font("Arial", Font.PLAIN, 20));
+        ((DefaultEditor)prezzo2.getEditor()).getTextField().setEditable(false);
         JButton aggiungi = new JButton("Aggiungi");
         AggiungiLibro aggiungiLibro = new AggiungiLibro(card, container, titolo2, descrizione2, prezzo2);
         aggiungi.addActionListener(aggiungiLibro);

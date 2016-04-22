@@ -20,17 +20,34 @@ import java.util.logging.Logger;
  */
 public class InsertQuery {
     
+    private String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+    private String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+    
     public void inserisciLibro(String titolo, String descrizione, int prezzo){
         
         String titoloQuery = titolo.replaceAll("'", "\\\\'");
-        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");;
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");;
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");;
+        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
         
         String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"', '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
+                ps1.execute();
+                
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+
+    public void inserisciAppunto(String nome, String descrizione){
+        
+        String nomeQuery = nome.replaceAll("'", "\\\\'");
+        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
+        
+        String insertAppunto = "INSERT INTO appunti VALUES ('"+nomeQuery+"', '"+descrizioneQuery+"', '"+0+"', '"+Applicazione.guest.getEmail()+"', '"+corsoQuery+"', '"+facoltàQuery+"');";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertAppunto);
                 ps1.execute();
                 
                 }   catch (SQLException ex) {   
