@@ -40,6 +40,8 @@ public class Applicazione {
     public static ArrayList<Domanda> ListaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
     
+    public static String risposteAttuali;
+    
     public static Libro libroAttuale;
     public static Domanda domandaAttuale;
     public static Appunto appuntoAttuale;
@@ -78,6 +80,9 @@ public class Applicazione {
     public static void svuotaAppunti() {
         ListaAppuntiAttuali.clear();
     }
- 
+    
+    public static void svuotaRisposte() {
+        risposteAttuali = "";
+    }
 
 }

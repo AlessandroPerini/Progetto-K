@@ -6,10 +6,12 @@
 package QeA;
 
 import Controller.Applicazione;
+import Libri.EliminaLibro;
 import Panel.TopPanel;
 import Università.Corsi.CaricaCorsi;
 import Università.Facolta.CaricaFacoltà;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -37,8 +39,10 @@ public class DomandaPanel extends JPanel{
     private JPanel panel;
     private JLabel titolo, titolo2, descrizione, like,
                    email, email2, like2, risposte,rispondiLabel;
-    private JTextArea descrizione2,risposte2, rispondiArea;
+    private JTextArea descrizione2, rispondiArea;
+    public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
+    private JButton elimina;
     
    
     public DomandaPanel(CardLayout card, JPanel container) {
@@ -47,7 +51,7 @@ public class DomandaPanel extends JPanel{
         
         panel = new JPanel();
         
-        this.build();
+        this.build(card, container);
 
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));
@@ -57,7 +61,7 @@ public class DomandaPanel extends JPanel{
         add(scrollPanel1);
     }
     
-    public void build(){
+    public void build(CardLayout card, JPanel container){
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -186,7 +190,18 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.LINE_START;
 	panel.add(this.rispondi, gbc);
         
-        
+        if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+            
+            EliminaDomanda eliminaDomanda = new EliminaDomanda(card, container);
+            this.elimina = new JButton("Elimina");
+            elimina.setBackground(new Color(249,123,123));
+            gbc.gridx = 1;
+            gbc.gridy = 7;
+            gbc.insets = new Insets(5, 30, 0, 10);
+            gbc.anchor = GridBagConstraints.LINE_START;
+            elimina.addActionListener(eliminaDomanda);
+            panel.add(this.elimina, gbc);
+        }
     }
     
 }

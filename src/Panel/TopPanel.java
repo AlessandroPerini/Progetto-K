@@ -49,6 +49,9 @@ public class TopPanel extends JPanel{
                 if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
                    Applicazione.svuotaAppunti();
                 }
+                if (Applicazione.back.get(Applicazione.back.size()-1).equals("domanda")) {
+                   Applicazione.svuotaRisposte();
+                }
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
             }

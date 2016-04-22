@@ -150,5 +150,22 @@ public class ListeQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
+
+    public void caricaRisposteDomanda() {
+        String selectRisposteDomanda = "select * from risposte where domanda=?";
+        String info = "";
+        try {
+            PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectRisposteDomanda);
+            ps1.setString(1, Applicazione.domandaPremuta);
+            ResultSet rs = ps1.executeQuery();
+            while (rs.next()) {
+                String studente = rs.getString("studente");
+                String risposta = rs.getString("risposta");
+                Applicazione.risposteAttuali += studente + "\n" + risposta + "\n \n";
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
 }

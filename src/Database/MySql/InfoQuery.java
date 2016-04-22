@@ -107,4 +107,5 @@ public class InfoQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
+    
 }

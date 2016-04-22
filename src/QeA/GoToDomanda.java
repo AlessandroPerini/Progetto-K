@@ -7,6 +7,7 @@ package QeA;
 
 import Controller.Applicazione;
 import Database.MySql.InfoQuery;
+import Database.MySql.ListeQuery;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -41,7 +42,11 @@ public class GoToDomanda implements MouseListener{
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoDomanda();
         
+        ListeQuery lQuery = new ListeQuery();
+        lQuery.caricaRisposteDomanda();
+        
         DomandaPanel domanda = new DomandaPanel(card, container);
+        domanda.risposte2.setText(Applicazione.risposteAttuali);
         container.add(domanda, "domanda");
         card.show(container, "domanda");
     }
