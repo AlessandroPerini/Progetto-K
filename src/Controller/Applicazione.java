@@ -39,8 +39,8 @@ public class Applicazione {
     public static ArrayList<Libro> ListaLibriAttuali = new ArrayList<>();
     public static ArrayList<Domanda> ListaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
+    public static ArrayList<String> risposteAttuali = new ArrayList<>();
     
-    public static String risposteAttuali;
     
     public static Libro libroAttuale;
     public static Domanda domandaAttuale;
@@ -82,7 +82,7 @@ public class Applicazione {
     }
     
     public static void svuotaRisposte() {
-        risposteAttuali = "";
+        risposteAttuali.clear();
     }
 
 }

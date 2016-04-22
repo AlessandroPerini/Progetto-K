@@ -46,7 +46,10 @@ public class GoToDomanda implements MouseListener{
         lQuery.caricaRisposteDomanda();
         
         DomandaPanel domanda = new DomandaPanel(card, container);
-        domanda.risposte2.setText(Applicazione.risposteAttuali);
+        for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
+            domanda.risposte2.append(Applicazione.risposteAttuali.get(i));
+        }
+        
         container.add(domanda, "domanda");
         card.show(container, "domanda");
     }

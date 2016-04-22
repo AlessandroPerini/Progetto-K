@@ -34,7 +34,7 @@ import javax.swing.SwingConstants;
 public class DomandaPanel extends JPanel{
 
  
-    private JButton rispondi;
+    private JButton rispondi, elimina;
     private TopPanel top;
     private JPanel panel;
     private JLabel titolo, titolo2, descrizione, like,
@@ -42,8 +42,8 @@ public class DomandaPanel extends JPanel{
     private JTextArea descrizione2, rispondiArea;
     public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
-    private JButton elimina;
     
+     AggiungiRisposta risposta;
    
     public DomandaPanel(CardLayout card, JPanel container) {
         
@@ -188,6 +188,8 @@ public class DomandaPanel extends JPanel{
 	gbc.gridy = 6;
 	gbc.insets = new Insets(15, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_START;
+        risposta = new AggiungiRisposta(card, container, rispondiArea);
+        rispondi.addActionListener(risposta);
 	panel.add(this.rispondi, gbc);
         
         if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {

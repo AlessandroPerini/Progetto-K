@@ -28,7 +28,7 @@ public class InsertQuery {
         String titoloQuery = titolo.replaceAll("'", "\\\\'");
         String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
         
-        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID()+"', '"+titoloQuery+"', '"+descrizioneQuery+"',  '"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
+        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID("libri")+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"' ,'"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
@@ -55,11 +55,11 @@ public class InsertQuery {
                 }
     }
     
-    public int prossimoID(){
+    public int prossimoID(String tabella){
     
         int prossimoID = 0;
         
-        String selectId = "select max(id) as massimo from libri";
+        String selectId = "select max(id) as massimo from "+tabella;
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectId);
@@ -68,6 +68,7 @@ public class InsertQuery {
                     if(rs.next()) {
                         
                         prossimoID = rs.getInt("massimo");
+                        System.out.println(prossimoID);
                     }
           
                 }   catch (SQLException ex) {   
@@ -87,6 +88,23 @@ public class InsertQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertDomanda);
+                ps1.execute();
+                
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+    }
+    public void inserisciRisposta(String risposta){
+        
+        String rispostaQuery = risposta.replaceAll("'", "\\\\'");
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+        System.out.println(Applicazione.domandaPremuta);
+        String insertRisposta= "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertRisposta);
+                ps1.setString(1, Applicazione.domandaPremuta);
                 ps1.execute();
                 
                 }   catch (SQLException ex) {   

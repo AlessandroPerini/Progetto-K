@@ -161,7 +161,10 @@ public class ListeQuery {
             while (rs.next()) {
                 String studente = rs.getString("studente");
                 String risposta = rs.getString("risposta");
-                Applicazione.risposteAttuali += studente + "\n" + risposta + "\n \n";
+                studente = studente.replace(".", ",");
+                String parts[] = studente.split(",");
+                String nome = parts[0];
+                Applicazione.risposteAttuali.add(nome+":" + "\n" + risposta + "\n \n");
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

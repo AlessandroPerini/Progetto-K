@@ -60,7 +60,6 @@ public class AggiungiDomandaPanel extends JPanel{
         AggiungiDomanda aggiungiDomanda = new AggiungiDomanda(card, container, titolo2, descrizione2);
         aggiungi.addActionListener(aggiungiDomanda);
         
-      //  prezzoPanel.add(euro);
         
         panel.add(titolo);
         panel.add(titolo2);
@@ -86,6 +85,5 @@ public class AggiungiDomandaPanel extends JPanel{
     
         titolo2.setText("");
         descrizione2.setText("");
-       // prezzo2.setValue(0);
     }
 }
