@@ -8,6 +8,7 @@ package Creator;
 import Controller.Applicazione;
 import Frame.MainFrame;
 import Login.LoginPanel;
+import View.Grafica;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 
@@ -20,25 +21,10 @@ public class Starter {
     
     public static void main(String[] args) {
         
-        Applicazione applicazione = new Applicazione();
-        
-        CardLayout card = new CardLayout();
-        
-        JPanel container = new JPanel();
-        container.setLayout(card);
-        
-        MainFrame f = new MainFrame("Progetto K");
-        
-        LoginPanel login = new LoginPanel(card,container);
-        
-        container.add(login,"login");
-        card.show(container, "login");
-
-        f.add(container);
-        f.setVisible(true);
+        new Applicazione();
+        new Grafica();
 
     }
-    
 }
 
 

@@ -44,9 +44,9 @@ public class Applicazione {
     public static Domanda domandaAttuale;
     public static Appunto appuntoAttuale;
 
-    public static void inizializzaUtente(String email, String password, int punti, String telefono){
+    public static void inizializzaUtente(String email, String password, String telefono){
     
-        guest = new Studente(email, password, punti, telefono);
+        guest = new Studente(email, password, telefono);
         guest.setNickname();
         guest.setNome();
         guest.setCognome();
@@ -55,7 +55,7 @@ public class Applicazione {
     }
     
     public static void eliminaUtente(){
-        guest = new Studente("", "", 0, "");
+        guest = new Studente("", "","");
         utenteLoggato = false;
     }
     

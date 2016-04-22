@@ -16,14 +16,12 @@ public class Studente {
     private String cognome;
     private String password;
     private String nickname;
-    private int punti;
     private String telefono; 
 
-    public Studente(String email, String password, int punti, String telefono) {
+    public Studente(String email, String password, String telefono) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
-        this.punti = punti;
         this.telefono = telefono;
         this.nome = nome;
         this.cognome = cognome;
@@ -70,10 +68,6 @@ public class Studente {
 
     public String getPassword() {
         return password;
-    }
-
-    public int getPunti() {
-        return punti;
     }
 
     public String getTelefono() {
