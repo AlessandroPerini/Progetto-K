@@ -44,18 +44,26 @@ public class AggiungiRisposta implements ActionListener{
         insertQuery.inserisciRisposta(titolo.getText());
         
         JOptionPane.showMessageDialog(null, "Risposta aggiunta correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
-
-        Applicazione.svuotaRisposte();
         
+        Applicazione.svuotaRisposte();
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaRisposteDomanda();
         
+
+        
         Applicazione.back.remove(Applicazione.back.size()-1);
-        ListaDomandePanel ldp = new ListaDomandePanel(card, container);
-        DomandaPanel domanda = new DomandaPanel(card, container);
+        String s="";
+         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
+          s= (s+Applicazione.risposteAttuali.get(i));
+        }
+         GoToDomanda.getDomanda().risposte2.setText(s);
+      
    
-        container.add(ldp, "domande");
+        container.add(GoToDomanda.getDomanda(), "domande");
         card.show(container, "domande");
+        
+        titolo.setText("");
+        
       
     }
 }

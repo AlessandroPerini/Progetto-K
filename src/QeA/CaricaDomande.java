@@ -36,6 +36,7 @@ public class CaricaDomande implements ActionListener{
         dQuery.caricaDomande();
 
         ListaDomandePanel domande = new ListaDomandePanel(card, container);
+        
         container.add(domande, "domande");
         card.show(container, "domande");
  

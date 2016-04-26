@@ -61,6 +61,7 @@ public class DomandaPanel extends JPanel{
         add(scrollPanel1);
     }
     
+    
     public void build(CardLayout card, JPanel container){
         
         panel.setLayout(new GridBagLayout());

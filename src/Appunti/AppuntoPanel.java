@@ -7,14 +7,18 @@ package Appunti;
 
 import Controller.Applicazione;
 import Panel.TopPanel;
+import com.sun.corba.se.impl.interceptors.SlotTable;
+import com.sun.corba.se.impl.interceptors.SlotTableStack;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.BoundedRangeModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JSlider;
 import javax.swing.JTextArea;
 
 /**
@@ -23,16 +27,22 @@ import javax.swing.JTextArea;
  */
 public class AppuntoPanel extends JPanel{
     
+    private JSlider valutazione;
+    private JButton valuta;
+    
     public AppuntoPanel(CardLayout card, JPanel container) {
         
         TopPanel top = new TopPanel(card, container, Applicazione.appuntoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(6,2,10,10));
+        JPanel panel = new JPanel(new GridLayout(7,2,10,10));
         
         JLabel email = new JLabel("Email :");
         JLabel nome = new JLabel("Nome :");
         JLabel descrizione = new JLabel("Descrizione :");
         JLabel media = new JLabel("Media :");
+        
+        valutazione = new JSlider(1, 5);
+        valuta = new JButton("Vota");
         
         JLabel email2 = new JLabel(Applicazione.appuntoAttuale.getStudente());
         JLabel nome2 = new JLabel(Applicazione.appuntoAttuale.getNome());
@@ -45,6 +55,10 @@ public class AppuntoPanel extends JPanel{
         descrizione2.setLineWrap(true);
         descrizione2.setWrapStyleWord(true);
         
+        valutazione.setLabelTable(valutazione.createStandardLabels(1));
+        valutazione.setMajorTickSpacing(1);
+        valutazione.setPaintLabels(true);
+        
         panel.add(nome);
         panel.add(nome2);
         panel.add(descrizione);
@@ -53,6 +67,8 @@ public class AppuntoPanel extends JPanel{
         panel.add(media2);
         panel.add(email);
         panel.add(email2);
+        panel.add(valutazione);
+        panel.add(valuta);
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             

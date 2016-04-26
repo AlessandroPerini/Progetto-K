@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 public class GoToDomanda implements MouseListener{
     private CardLayout card;
     private JPanel container;   
+    private static DomandaPanel domanda;
     String text;
     
     public GoToDomanda(CardLayout card, JPanel container) {
@@ -45,7 +46,7 @@ public class GoToDomanda implements MouseListener{
         ListeQuery lQuery = new ListeQuery();
         lQuery.caricaRisposteDomanda();
         
-        DomandaPanel domanda = new DomandaPanel(card, container);
+        domanda = new DomandaPanel(card, container);
         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
             domanda.risposte2.append(Applicazione.risposteAttuali.get(i));
         }
@@ -73,5 +74,10 @@ public class GoToDomanda implements MouseListener{
     public void mouseExited(MouseEvent e) {
       e.getComponent().setForeground(Color.black);
     }
+
+    public static DomandaPanel getDomanda() {
+        return domanda;
+    }
+    
     
 }

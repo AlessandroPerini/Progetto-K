@@ -68,7 +68,7 @@ public class InsertQuery {
                     if(rs.next()) {
                         
                         prossimoID = rs.getInt("massimo");
-                        System.out.println(prossimoID);
+                       
                     }
           
                 }   catch (SQLException ex) {   
@@ -100,7 +100,7 @@ public class InsertQuery {
         String rispostaQuery = risposta.replaceAll("'", "\\\\'");
         String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        System.out.println(Applicazione.domandaPremuta);
+   
         String insertRisposta= "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertRisposta);
