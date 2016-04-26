@@ -39,12 +39,15 @@ public class Applicazione {
     public static ArrayList<Libro> ListaLibriAttuali = new ArrayList<>();
     public static ArrayList<Domanda> ListaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
-    public static ArrayList<String> risposteAttuali = new ArrayList<>();
-    
+    public static ArrayList<String> risposteAttuali = new ArrayList<>();  
     
     public static Libro libroAttuale;
     public static Domanda domandaAttuale;
     public static Appunto appuntoAttuale;
+    
+    public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
+    public static ArrayList<Libro> libriGuest = new ArrayList<>();
+    public static ArrayList<Domanda> domandeGuest = new ArrayList<>();
 
     public static void inizializzaUtente(String email, String password, String telefono){
     
@@ -83,6 +86,12 @@ public class Applicazione {
     
     public static void svuotaRisposte() {
         risposteAttuali.clear();
+    }
+    
+    public static void svuotaMieiDati() {
+        appuntiGuest.clear();
+        libriGuest.clear();
+        domandeGuest.clear();
     }
 
 }

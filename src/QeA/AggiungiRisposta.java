@@ -56,7 +56,6 @@ public class AggiungiRisposta implements ActionListener{
    
         container.add(ldp, "domande");
         card.show(container, "domande");
-        //domanda.repaint();
       
     }
 }

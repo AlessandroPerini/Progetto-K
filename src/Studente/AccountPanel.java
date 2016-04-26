@@ -64,7 +64,7 @@ public class AccountPanel extends JPanel{
         //end top panel
         
         //body panel
-        JPanel body = new JPanel((new GridLayout(4, 1, 0, 20)));
+        JPanel body = new JPanel((new GridLayout(5, 1, 0, 20)));
         
         JPanel emailRow = new JPanel();
         JPanel nickRow = new JPanel();
@@ -91,6 +91,14 @@ public class AccountPanel extends JPanel{
         
         JPanel logoutPanel = new JPanel();
         logoutPanel.add(logout);
+        
+        JButton iMieiDati = new JButton("I miei dati");
+        iMieiDati.setPreferredSize(new Dimension(120, 75));
+        CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati(card, container);
+        iMieiDati.addActionListener(caricaIMieiDati);
+        
+        JPanel iMieiDatiPanel = new JPanel();
+        iMieiDatiPanel.add(iMieiDati);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
@@ -131,6 +139,7 @@ public class AccountPanel extends JPanel{
         add(top);
         add(body);
         add(logoutPanel);
+        add(iMieiDatiPanel);
         
     }
 

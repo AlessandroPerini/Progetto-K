@@ -34,9 +34,9 @@ public class InsertQuery {
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertLibro);
                 ps1.execute();
                 
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
 
     public void inserisciAppunto(String nome, String descrizione){
