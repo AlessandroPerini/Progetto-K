@@ -5,9 +5,9 @@
  */
 package Login;
 
-import Controller.Applicazione;
-import Database.MySql.LoginQuery;
-import Studente.AccountPanel;
+import Application.Controller.Applicazione;
+import Database.Query.LoginQuery;
+import Studente.Vista.AccountPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

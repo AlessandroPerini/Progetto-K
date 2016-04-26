@@ -5,11 +5,11 @@
  */
 package Panel;
 
-import Controller.Applicazione;
-import Libri.CaricaLibri;
+import Application.Controller.Applicazione;
+import Libri.Ascoltatori.CaricaLibri;
 import Login.LoginPanel;
-import Università.Corsi.CaricaCorsi;
-import Università.Facolta.CaricaFacoltà;
+import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Facolta.Ascoltatori.CaricaFacoltà;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;

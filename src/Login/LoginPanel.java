@@ -5,10 +5,10 @@
 */
 package Login;
 
-import Controller.Applicazione;
-import Studente.AccountPanel;
-import Università.Facolta.CaricaFacoltà;
-import Università.Facolta.ListaFacoltàPanel;
+import Application.Controller.Applicazione;
+import Studente.Vista.AccountPanel;
+import Università.Facolta.Ascoltatori.CaricaFacoltà;
+import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
