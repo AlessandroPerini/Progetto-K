@@ -47,7 +47,7 @@ public class DomandaPanel extends JPanel{
    
     public DomandaPanel(CardLayout card, JPanel container) {
         
-        top = new TopPanel(card, container, Applicazione.domandaPremuta);
+        top = new TopPanel(card, container, Applicazione.domandaAttuale.getTitolo());
         
         panel = new JPanel();
         

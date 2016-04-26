@@ -31,7 +31,8 @@ public class GoToAppunto implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("appunto");
-        Applicazione.appuntoPremuto = e.getActionCommand();
+        
+        Applicazione.appuntoAttuale.setNome(e.getActionCommand());
 
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoAppunto();

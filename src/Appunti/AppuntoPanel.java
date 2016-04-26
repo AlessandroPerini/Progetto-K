@@ -25,7 +25,7 @@ public class AppuntoPanel extends JPanel{
     
     public AppuntoPanel(CardLayout card, JPanel container) {
         
-        TopPanel top = new TopPanel(card, container, Applicazione.appuntoPremuto);
+        TopPanel top = new TopPanel(card, container, Applicazione.appuntoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(6,2,10,10));
         

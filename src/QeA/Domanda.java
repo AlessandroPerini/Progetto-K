@@ -27,9 +27,12 @@ public class Domanda {
         return studente;
     }
 
-
     public String getTitolo() {
         return titolo;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
     }
 
     public int getLike() {

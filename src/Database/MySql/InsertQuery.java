@@ -100,11 +100,11 @@ public class InsertQuery {
         String rispostaQuery = risposta.replaceAll("'", "\\\\'");
         String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        System.out.println(Applicazione.domandaPremuta);
+        System.out.println(Applicazione.domandaAttuale.getTitolo());
         String insertRisposta= "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
         try{
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(insertRisposta);
-                ps1.setString(1, Applicazione.domandaPremuta);
+                ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
                 ps1.execute();
                 
                 }   catch (SQLException ex) {   

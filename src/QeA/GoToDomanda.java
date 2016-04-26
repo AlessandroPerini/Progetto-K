@@ -37,7 +37,7 @@ public class GoToDomanda implements MouseListener{
             JLabel label = (JLabel)e.getComponent();
             text = label.getText();
         }
-        Applicazione.domandaPremuta = text;
+        Applicazione.domandaAttuale.setTitolo(text);
         
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoDomanda();

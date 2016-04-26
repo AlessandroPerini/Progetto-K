@@ -5,11 +5,8 @@
  */
 package Studente;
 
-import Appunti.GoToAppunto;
 import Controller.Applicazione;
-import Libri.GoToLibro;
 import Panel.TopPanel;
-import QeA.GoToDomanda;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -40,30 +37,30 @@ public class iMieiDatiPanel extends JPanel{
         JLabel libriLabel = new JLabel("Libri");
         JLabel domandeLabel = new JLabel("Domande");
         
-        GoToAppunto goToAppunto = new GoToAppunto(card, container);
+        GoToAppuntoGuest goToAppuntoGuest = new GoToAppuntoGuest(card, container);
         panel.add(appuntiLabel);
         for (int i = 0; i < Applicazione.appuntiGuest.size(); i++) {
             appunti[i] = new JButton();
             appunti[i].setText(Applicazione.appuntiGuest.get(i).getNome());
-            appunti[i].addActionListener(goToAppunto);
+            appunti[i].addActionListener(goToAppuntoGuest);
             panel.add(appunti[i]);
         }
 
-        GoToLibro goToLibro = new GoToLibro(card, container);
+        GoToLibroGuest goToLibroGuest = new GoToLibroGuest(card, container);
         panel.add(libriLabel);
         for (int i = 0; i < Applicazione.libriGuest.size(); i++) {
             libri[i] = new JButton();
             libri[i].setText(Applicazione.libriGuest.get(i).getTitolo());
-            libri[i].addActionListener(goToLibro);
+            libri[i].addActionListener(goToLibroGuest);
             panel.add(libri[i]);
         }
         
-        GoToDomanda goToDomanda = new GoToDomanda(card, container);
+        GoToDomandaGuest goToDomandaGuest = new GoToDomandaGuest(card, container);
         panel.add(domandeLabel);
         for (int i = 0; i < Applicazione.domandeGuest.size(); i++) {
             domande[i] = new JButton();
             domande[i].setText(Applicazione.domandeGuest.get(i).getTitolo());
-            domande[i].addMouseListener(goToDomanda);
+            domande[i].addActionListener(goToDomandaGuest);
             panel.add(domande[i]);
         }
         

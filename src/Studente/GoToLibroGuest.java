@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Libri;
+package Studente;
 
 import Controller.Applicazione;
 import Database.MySql.InfoQuery;
-import Università.Corsi.CorsoPanel;
+import Libri.LibroPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,14 +15,14 @@ import javax.swing.JPanel;
 
 /**
  *
- * @author Te4o
+ * @author te4o
  */
-public class GoToLibro implements ActionListener{
-
+public class GoToLibroGuest implements ActionListener{
+   
     private CardLayout card;
     private JPanel container;
     
-    public GoToLibro(CardLayout card, JPanel container) {
+    public GoToLibroGuest(CardLayout card, JPanel container) {
         this.card = card;
         this.container = container;
     }
@@ -30,17 +30,18 @@ public class GoToLibro implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.back.add("libro");
-        Applicazione.libroAttuale.setTitolo(e.getActionCommand());
-
-        InfoQuery iQuery = new InfoQuery();
-        iQuery.caricaInfoLibro();
+        Applicazione.back.add("libro guest");
         
-        LibroPanel libro = new LibroPanel(card, container);
-        container.add(libro, "libro");
-        card.show(container, "libro");
-
+        for (int i = 0; i < Applicazione.libriGuest.size(); i++) {
+            if (Applicazione.libriGuest.get(i).getTitolo().equals(e.getActionCommand())) {
+                Applicazione.libroAttuale = Applicazione.libriGuest.get(i);
+            }
+ 
+        }
         
+        LibroPanel libroGuest = new LibroPanel(card, container);
+        container.add(libroGuest, "libro guest");
+        card.show(container, "libro guest"); 
 
     }
     

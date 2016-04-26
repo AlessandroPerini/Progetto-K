@@ -156,7 +156,7 @@ public class ListeQuery {
         String info = "";
         try {
             PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectRisposteDomanda);
-            ps1.setString(1, Applicazione.domandaPremuta);
+            ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
             ResultSet rs = ps1.executeQuery();
             while (rs.next()) {
                 String studente = rs.getString("studente");

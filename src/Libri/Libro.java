@@ -34,6 +34,10 @@ public class Libro {
         return titolo;
     }
 
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
+
     public String getDescrizione() {
         return descrizione;
     }

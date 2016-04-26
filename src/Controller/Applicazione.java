@@ -30,9 +30,6 @@ public class Applicazione {
     
     public static String facoltàPremuta;
     public static String corsoPremuto;
-    public static String libroPremuto;
-    public static String domandaPremuta;
-    public static String appuntoPremuto;
     
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
@@ -41,9 +38,9 @@ public class Applicazione {
     public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
     public static ArrayList<String> risposteAttuali = new ArrayList<>();  
     
-    public static Libro libroAttuale;
-    public static Domanda domandaAttuale;
-    public static Appunto appuntoAttuale;
+    public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
+    public static Domanda domandaAttuale = new  Domanda("", 0, "", "");
+    public static Appunto appuntoAttuale = new Appunto("", "", 0, "");
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();

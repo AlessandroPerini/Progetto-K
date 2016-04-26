@@ -34,7 +34,7 @@ public class LibroPanel extends JPanel{
             
     public LibroPanel(CardLayout card, JPanel container) {
         
-        top = new TopPanel(card, container, Applicazione.libroPremuto);
+        top = new TopPanel(card, container, Applicazione.libroAttuale.getTitolo());
         
         panel = new JPanel();
         
@@ -48,6 +48,7 @@ public class LibroPanel extends JPanel{
         add(scrollPanel1);
      
     }
+    
     public void build(CardLayout card, JPanel container){
         
         panel.setLayout(new GridBagLayout());

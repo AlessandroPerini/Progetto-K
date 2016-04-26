@@ -33,7 +33,7 @@ public class InfoQuery {
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoLibro);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
-                ps1.setString(3,Applicazione.libroPremuto);
+                ps1.setString(3,Applicazione.libroAttuale.getTitolo());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -62,7 +62,7 @@ public class InfoQuery {
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
-                ps1.setString(3,Applicazione.domandaPremuta);
+                ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -89,7 +89,7 @@ public class InfoQuery {
                 PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
-                ps1.setString(3,Applicazione.appuntoPremuto);
+                ps1.setString(3,Applicazione.appuntoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -107,5 +107,7 @@ public class InfoQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
+    
+    
     
 }
