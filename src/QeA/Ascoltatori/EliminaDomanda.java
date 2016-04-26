@@ -6,15 +6,13 @@
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
-import Libri.Vista.ListaLibriPanel;
 import QeA.Vista.ListaDomandePanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -22,15 +20,6 @@ import javax.swing.JPanel;
  */
 public class EliminaDomanda implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-
-    public EliminaDomanda(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -46,9 +35,9 @@ public class EliminaDomanda implements ActionListener{
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaDomandePanel domande = new ListaDomandePanel(card, container);
-        container.add(domande, "domande");
-        card.show(container, "domande");
+        ListaDomandePanel domande = new ListaDomandePanel();
+        Grafica.container.add(domande, "domande");
+        Grafica.card.show(Grafica.container, "domande");
         
     }
     

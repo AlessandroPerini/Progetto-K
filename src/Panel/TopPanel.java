@@ -6,6 +6,7 @@
 package Panel;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Libri.Ascoltatori.CaricaLibri;
 import Login.LoginPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
@@ -30,7 +31,7 @@ public class TopPanel extends JPanel{
 
     private JComboBox menu;
     
-    public TopPanel(final CardLayout card, final JPanel container, String t) {
+    public TopPanel(String t) {
         
         JButton backButton = new JButton("Back");
         backButton.addActionListener(new ActionListener() {
@@ -56,7 +57,7 @@ public class TopPanel extends JPanel{
                    Applicazione.svuotaMieiDati();
                 }
                 Applicazione.back.remove(Applicazione.back.size()-1);
-                card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
+                Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
             }
         });
         backButton.setPreferredSize(new Dimension(110, 40));
@@ -77,7 +78,7 @@ public class TopPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 if(menu.getSelectedItem().equals("Account")){
 
-                    card.show(container, "account");
+                    Grafica.card.show(Grafica.container, "account");
                     Applicazione.back.add("account");
                     resetMenu();
                 }
@@ -90,7 +91,7 @@ public class TopPanel extends JPanel{
                 
                     if(showConfirmDialog == 0 ){
 
-                        card.show(container, "login");
+                        Grafica.card.show(Grafica.container, "login");
                         LoginPanel.clearForm();
                         Applicazione.eliminaUtente();
                         Applicazione.svuotaCorsi();

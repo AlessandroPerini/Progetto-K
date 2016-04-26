@@ -7,6 +7,7 @@ package Appunti.Ascoltatori;
 
 import Appunti.Vista.AggiungiAppuntoPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Libri.Vista.AggiungiLibroPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -19,21 +20,14 @@ import javax.swing.JPanel;
  */
 public class GoToAggiungiAppunto implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToAggiungiAppunto(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("aggiungiAppunto");
 
-        AggiungiAppuntoPanel aggiungiAppuntoPanel = new AggiungiAppuntoPanel(card, container);
-        container.add(aggiungiAppuntoPanel, "aggiungiAppunto");
-        card.show(container, "aggiungiAppunto");
+        AggiungiAppuntoPanel aggiungiAppuntoPanel = new AggiungiAppuntoPanel();
+        Grafica.container.add(aggiungiAppuntoPanel, "aggiungiAppunto");
+        Grafica.card.show(Grafica.container, "aggiungiAppunto");
     }
     
 }

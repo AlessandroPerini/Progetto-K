@@ -6,6 +6,7 @@
 package Università.Facolta.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.CardLayout;
@@ -21,14 +22,6 @@ import javax.swing.JPanel;
  */
 public class CaricaFacoltà implements ActionListener, KeyListener{
     
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaFacoltà(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-
     public void carica(){
         
         if(Applicazione.utenteLoggato){
@@ -38,10 +31,10 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 
                 Applicazione.back.add("facoltà");
                 
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(card, container, Applicazione.listaFacoltàAttuali);
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel(Applicazione.listaFacoltàAttuali);
                 
-                container.add(facoltà,"facoltà");
-                card.show(container, "facoltà");
+                Grafica.container.add(facoltà,"facoltà");
+                Grafica.card.show(Grafica.container, "facoltà");
         }
     }
     

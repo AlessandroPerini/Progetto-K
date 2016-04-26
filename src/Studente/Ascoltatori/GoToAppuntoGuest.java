@@ -7,6 +7,7 @@ package Studente.Ascoltatori;
 
 import Appunti.Vista.AppuntoPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,14 +18,6 @@ import javax.swing.JPanel;
  * @author te4o
  */
 public class GoToAppuntoGuest implements ActionListener{
-    
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToAppuntoGuest(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -38,9 +31,9 @@ public class GoToAppuntoGuest implements ActionListener{
  
         }
         
-        AppuntoPanel appuntoGuest = new AppuntoPanel(card, container);
-        container.add(appuntoGuest, "appunto guest");
-        card.show(container, "appunto guest"); 
+        AppuntoPanel appuntoGuest = new AppuntoPanel();
+        Grafica.container.add(appuntoGuest, "appunto guest");
+        Grafica.card.show(Grafica.container, "appunto guest"); 
 
     }
 }

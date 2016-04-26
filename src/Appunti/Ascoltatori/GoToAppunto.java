@@ -7,6 +7,7 @@ package Appunti.Ascoltatori;
 
 import Appunti.Vista.AppuntoPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Libri.Vista.LibroPanel;
 import java.awt.CardLayout;
@@ -20,14 +21,6 @@ import javax.swing.JPanel;
  */
 public class GoToAppunto implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToAppunto(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -38,9 +31,9 @@ public class GoToAppunto implements ActionListener{
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoAppunto();
         
-        AppuntoPanel appunto = new AppuntoPanel(card, container);
-        container.add(appunto, "appunto");
-        card.show(container, "appunto");
+        AppuntoPanel appunto = new AppuntoPanel();
+        Grafica.container.add(appunto, "appunto");
+        Grafica.card.show(Grafica.container, "appunto");
 
     }
     

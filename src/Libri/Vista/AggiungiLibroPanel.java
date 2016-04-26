@@ -31,9 +31,9 @@ public class AggiungiLibroPanel extends JPanel{
     private static JTextArea descrizione2 = new JTextArea();
     private static JSpinner prezzo2 = new JSpinner();
     
-    public AggiungiLibroPanel(CardLayout card, JPanel container) {
+    public AggiungiLibroPanel() {
         
-        TopPanel top = new TopPanel(card, container, "Aggiungi Libro in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(6,2,5,10));
         
@@ -64,7 +64,7 @@ public class AggiungiLibroPanel extends JPanel{
         prezzo2.setFont(new Font("Arial", Font.PLAIN, 20));
         ((DefaultEditor)prezzo2.getEditor()).getTextField().setEditable(false);
         JButton aggiungi = new JButton("Aggiungi");
-        AggiungiLibro aggiungiLibro = new AggiungiLibro(card, container, titolo2, descrizione2, prezzo2);
+        AggiungiLibro aggiungiLibro = new AggiungiLibro(titolo2, descrizione2, prezzo2);
         aggiungi.addActionListener(aggiungiLibro);
         
         prezzoPanel.add(euro);
@@ -82,7 +82,6 @@ public class AggiungiLibroPanel extends JPanel{
         panel.add(email2);
         
         panel.add(aggiungi);
-        
         
         JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));

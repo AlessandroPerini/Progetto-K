@@ -35,38 +35,37 @@ public class ListaDomandePanel extends JPanel{
     private JLabel[] domande = new JLabel[Applicazione.ListaDomandeAttuali.size()];
     private JButton addDomanda, searchButton;
     private JTextField searchField;
-    public ListaDomandePanel(CardLayout card, JPanel container) {
+    public ListaDomandePanel() {
     
-        TopPanel top = new TopPanel(card, container, "Domande ");
+        TopPanel top = new TopPanel("Domande ");
         
         JPanel panel = new JPanel(new GridBagLayout());
         JPanel centro = new JPanel(new BorderLayout());
         
         GridBagConstraints gbcImg = new GridBagConstraints();
         
-            JPanel searchPanel = new JPanel();
-            searchField = new JTextField(30);
-            searchField.setHorizontalAlignment(SwingConstants.CENTER);
-            searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            searchButton = new JButton("Search");
-            searchPanel.add(searchField);
-            searchPanel.add(searchButton);
-            addDomanda = new JButton("Aggiungi\n Domanda");
-          
-            centro.add(searchPanel, BorderLayout.NORTH);
-            
-            gbcImg.gridx = 0;
-            gbcImg.gridy = 0;
-            gbcImg.insets = new Insets(10, 0, 0, 10);
-            gbcImg.anchor = GridBagConstraints.LINE_START;
-            panel.add(addDomanda, gbcImg);
+        JPanel searchPanel = new JPanel();
+        searchField = new JTextField(30);
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        searchButton = new JButton("Search");
+        searchPanel.add(searchField);
+        searchPanel.add(searchButton);
+        addDomanda = new JButton("Aggiungi\n Domanda");
+
+        centro.add(searchPanel, BorderLayout.NORTH);
+
+        gbcImg.gridx = 0;
+        gbcImg.gridy = 0;
+        gbcImg.insets = new Insets(10, 0, 0, 10);
+        gbcImg.anchor = GridBagConstraints.LINE_START;
+        panel.add(addDomanda, gbcImg);
         
-        GoToDomanda goToDomanda = new GoToDomanda(card, container);
-        GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda(card, container);
+        GoToDomanda goToDomanda = new GoToDomanda();
+        GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
         
         addDomanda.addActionListener(goToAggiungiDomanda);
                 
-        
         for (int i = 0; i < Applicazione.ListaDomandeAttuali.size(); i++) {
             domande[i] = new JLabel();
             domande[i].setText(Applicazione.ListaDomandeAttuali.get(i).getTitolo());

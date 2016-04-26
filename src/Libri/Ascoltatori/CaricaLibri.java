@@ -6,6 +6,7 @@
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Vista.ListaCorsiPanel;
 import Database.Connection.ConnessioneDB;
@@ -29,14 +30,6 @@ import javax.swing.JPanel;
  */
 public class CaricaLibri implements ActionListener{
     
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaLibri(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
   
@@ -45,9 +38,9 @@ public class CaricaLibri implements ActionListener{
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaLibri();
 
-        ListaLibriPanel libri = new ListaLibriPanel(card, container);
-        container.add(libri, "libri");
-        card.show(container, "libri");
+        ListaLibriPanel libri = new ListaLibriPanel();
+        Grafica.container.add(libri, "libri");
+        Grafica.card.show(Grafica.container, "libri");
  
     }
 

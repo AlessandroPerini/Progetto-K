@@ -6,15 +6,16 @@
 package Login;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
+import static Application.Vista.Grafica.card;
+import static Application.Vista.Grafica.container;
 import Database.Query.LoginQuery;
 import Studente.Vista.AccountPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -24,14 +25,10 @@ import javax.swing.JTextField;
  */
 public class DoLogin implements ActionListener, KeyListener{
 
-    private CardLayout card;
-    private JPanel container;
     private JTextField email;
     private JPasswordField password;
     
-    public DoLogin(CardLayout card, JPanel container, JTextField email, JPasswordField password) {
-        this.card = card;
-        this.container = container;
+    public DoLogin(JTextField email, JPasswordField password) {
         this.email = email;
         this.password = password;
     }
@@ -44,14 +41,14 @@ public class DoLogin implements ActionListener, KeyListener{
             if(Applicazione.utenteLoggato){
                 String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
                 JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
-                AccountPanel account = new AccountPanel(card, container);
-            container.add(account,"account");
+                AccountPanel account = new AccountPanel();
+                Grafica.container.add(account,"account");
             }
             else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
 }
             
-            AccountPanel account = new AccountPanel(card, container);
-            container.add(account,"account");
+            AccountPanel account = new AccountPanel();
+            Grafica.container.add(account,"account");
                 
             
     }

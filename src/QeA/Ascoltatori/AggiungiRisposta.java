@@ -6,16 +6,12 @@
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
-import Libri.Vista.AggiungiLibroPanel;
-import Libri.Vista.ListaLibriPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
@@ -23,17 +19,11 @@ import javax.swing.JTextArea;
  * @author adrian
  */
 public class AggiungiRisposta implements ActionListener{
-    
-    private CardLayout card;
-    private JPanel container;
-    private JTextArea titolo;
-    
 
-    public AggiungiRisposta(CardLayout card, JPanel container, JTextArea titolo) {
-        this.card = card;
-        this.container = container;
-        this.titolo = titolo;
-        
+    private JTextArea titolo;
+
+    public AggiungiRisposta(JTextArea titolo) {
+        this.titolo = titolo; 
     }
 
     @Override
@@ -48,19 +38,16 @@ public class AggiungiRisposta implements ActionListener{
         Applicazione.svuotaRisposte();
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaRisposteDomanda();
-        
 
-        
         Applicazione.back.remove(Applicazione.back.size()-1);
         String s="";
          for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
           s= (s+Applicazione.risposteAttuali.get(i));
         }
          GoToDomanda.getDomanda().risposte2.setText(s);
-      
    
-        container.add(GoToDomanda.getDomanda(), "domande");
-        card.show(container, "domande");
+        Grafica.container.add(GoToDomanda.getDomanda(), "domande");
+        Grafica.card.show(Grafica.container, "domande");
         
         titolo.setText("");
         

@@ -6,6 +6,7 @@
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
 import QeA.Vista.ListaDomandePanel;
@@ -20,14 +21,6 @@ import javax.swing.JPanel;
  */
 public class CaricaDomande implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaDomande(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
   
@@ -36,10 +29,10 @@ public class CaricaDomande implements ActionListener{
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaDomande();
 
-        ListaDomandePanel domande = new ListaDomandePanel(card, container);
+        ListaDomandePanel domande = new ListaDomandePanel();
         
-        container.add(domande, "domande");
-        card.show(container, "domande");
+        Grafica.container.add(domande, "domande");
+        Grafica.card.show(Grafica.container, "domande");
  
     }
     

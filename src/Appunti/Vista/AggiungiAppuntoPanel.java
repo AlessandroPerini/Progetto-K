@@ -29,9 +29,9 @@ public class AggiungiAppuntoPanel extends JPanel{
     private static JTextArea nome2 = new JTextArea();
     private static JTextArea descrizione2 = new JTextArea();
     
-    public AggiungiAppuntoPanel(CardLayout card, JPanel container) {
+    public AggiungiAppuntoPanel() {
         
-        TopPanel top = new TopPanel(card, container, "Aggiungi Appunto in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(6,2,5,10));
         
@@ -52,7 +52,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         nome2.setLineWrap(true);
         
         JButton aggiungi = new JButton("Aggiungi");
-        AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(card, container, nome2, descrizione2);
+        AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2);
         aggiungi.addActionListener(aggiungiAppunto);
         
         panel.add(nome);

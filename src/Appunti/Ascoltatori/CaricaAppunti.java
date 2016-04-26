@@ -7,6 +7,7 @@ package Appunti.Ascoltatori;
 
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
 import java.awt.CardLayout;
@@ -20,14 +21,6 @@ import javax.swing.JPanel;
  */
 public class CaricaAppunti implements ActionListener{
     
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaAppunti(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
   
@@ -36,9 +29,9 @@ public class CaricaAppunti implements ActionListener{
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaAppunti();
 
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);
-        container.add(appunti, "appunti");
-        card.show(container, "appunti");
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+        Grafica.container.add(appunti, "appunti");
+        Grafica.card.show(Grafica.container, "appunti");
  
     }
 }

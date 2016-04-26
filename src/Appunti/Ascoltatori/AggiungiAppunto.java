@@ -8,6 +8,7 @@ package Appunti.Ascoltatori;
 import Appunti.Vista.AggiungiAppuntoPanel;
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
@@ -25,14 +26,10 @@ import javax.swing.JTextArea;
  */
 public class AggiungiAppunto implements ActionListener{
     
-    private CardLayout card;
-    private JPanel container;
     private JTextArea nome;
     private JTextArea descrizione;
 
-    public AggiungiAppunto(CardLayout card, JPanel container, JTextArea nome, JTextArea descrizione) {
-        this.card = card;
-        this.container = container;
+    public AggiungiAppunto(JTextArea nome, JTextArea descrizione) {
         this.nome = nome;
         this.descrizione = descrizione;
     }
@@ -50,9 +47,9 @@ public class AggiungiAppunto implements ActionListener{
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);
-        container.add(appunti, "appunti");
-        card.show(container, "appunti");
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+        Grafica.container.add(appunti, "appunti");
+        Grafica.card.show(Grafica.container, "appunti");
         
         AggiungiAppuntoPanel.clearForm();
     }

@@ -6,12 +6,10 @@
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
-import Libri.Vista.AggiungiLibroPanel;
+import Application.Vista.Grafica;
 import QeA.Vista.AggiungiDomandaPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -19,22 +17,14 @@ import javax.swing.JPanel;
  */
 public class GoToAggiungiDomanda implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToAggiungiDomanda(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("aggiungiDomanda");
 
-        AggiungiDomandaPanel aggiungiDomandaPanel = new AggiungiDomandaPanel(card, container);
-        container.add(aggiungiDomandaPanel, "aggiungiDomanda");
-        card.show(container, "aggiungiDomanda");
+        AggiungiDomandaPanel aggiungiDomandaPanel = new AggiungiDomandaPanel();
+        Grafica.container.add(aggiungiDomandaPanel, "aggiungiDomanda");
+        Grafica.card.show(Grafica.container, "aggiungiDomanda");
     }
     
 }

@@ -8,13 +8,9 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
 import Panel.TopPanel;
-import com.sun.corba.se.impl.interceptors.SlotTable;
-import com.sun.corba.se.impl.interceptors.SlotTableStack;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import javax.swing.BoundedRangeModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -31,9 +27,9 @@ public class AppuntoPanel extends JPanel{
     private JSlider valutazione;
     private JButton valuta;
     
-    public AppuntoPanel(CardLayout card, JPanel container) {
+    public AppuntoPanel() {
         
-        TopPanel top = new TopPanel(card, container, Applicazione.appuntoAttuale.getNome());
+        TopPanel top = new TopPanel(Applicazione.appuntoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(7,2,10,10));
         
@@ -73,7 +69,7 @@ public class AppuntoPanel extends JPanel{
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            EliminaAppunto eliminaAppunto = new EliminaAppunto(card, container);
+            EliminaAppunto eliminaAppunto = new EliminaAppunto();
             JButton elimina = new JButton("Elimina");
             elimina.setBackground(new Color(249,123,123));
             elimina.addActionListener(eliminaAppunto);

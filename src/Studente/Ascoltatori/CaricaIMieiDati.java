@@ -7,13 +7,10 @@ package Studente.Ascoltatori;
 
 import Studente.Vista.iMieiDatiPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.GuestQuery;
-import Database.Query.ListeQuery;
-import Libri.Vista.ListaLibriPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -21,14 +18,6 @@ import javax.swing.JPanel;
  */
 public class CaricaIMieiDati implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaIMieiDati(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -39,9 +28,9 @@ public class CaricaIMieiDati implements ActionListener{
         gQuery.caricaMieiLibri();
         gQuery.caricaMieDomande();
 
-        iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel(card, container);
-        container.add(mieiDatiPanel, "i miei dati");
-        card.show(container, "i miei dati");
+        iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+        Grafica.container.add(mieiDatiPanel, "i miei dati");
+        Grafica.card.show(Grafica.container, "i miei dati");
     }
     
 }

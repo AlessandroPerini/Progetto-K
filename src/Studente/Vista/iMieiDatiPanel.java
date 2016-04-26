@@ -30,9 +30,9 @@ public class iMieiDatiPanel extends JPanel{
     
     private int n = Applicazione.appuntiGuest.size()+Applicazione.libriGuest.size()+Applicazione.domandeGuest.size();
     
-    public iMieiDatiPanel(CardLayout card, JPanel container) {
+    public iMieiDatiPanel() {
         
-        TopPanel top = new TopPanel(card, container, "I Miei Dati");
+        TopPanel top = new TopPanel("I Miei Dati");
         
         JPanel panel = new JPanel(new GridLayout(n+3, 1));
         
@@ -40,7 +40,7 @@ public class iMieiDatiPanel extends JPanel{
         JLabel libriLabel = new JLabel("Libri");
         JLabel domandeLabel = new JLabel("Domande");
         
-        GoToAppuntoGuest goToAppuntoGuest = new GoToAppuntoGuest(card, container);
+        GoToAppuntoGuest goToAppuntoGuest = new GoToAppuntoGuest();
         panel.add(appuntiLabel);
         for (int i = 0; i < Applicazione.appuntiGuest.size(); i++) {
             appunti[i] = new JButton();
@@ -49,7 +49,7 @@ public class iMieiDatiPanel extends JPanel{
             panel.add(appunti[i]);
         }
 
-        GoToLibroGuest goToLibroGuest = new GoToLibroGuest(card, container);
+        GoToLibroGuest goToLibroGuest = new GoToLibroGuest();
         panel.add(libriLabel);
         for (int i = 0; i < Applicazione.libriGuest.size(); i++) {
             libri[i] = new JButton();
@@ -58,7 +58,7 @@ public class iMieiDatiPanel extends JPanel{
             panel.add(libri[i]);
         }
         
-        GoToDomandaGuest goToDomandaGuest = new GoToDomandaGuest(card, container);
+        GoToDomandaGuest goToDomandaGuest = new GoToDomandaGuest();
         panel.add(domandeLabel);
         for (int i = 0; i < Applicazione.domandeGuest.size(); i++) {
             domande[i] = new JButton();

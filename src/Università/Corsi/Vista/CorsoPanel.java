@@ -26,9 +26,9 @@ import javax.swing.SwingConstants;
  */
 public class CorsoPanel extends JPanel{
 
-    public CorsoPanel(CardLayout card, JPanel container) {
+    public CorsoPanel() {
         
-        TopPanel top = new TopPanel(card, container, Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel(Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(4, 1));
         
@@ -42,9 +42,9 @@ public class CorsoPanel extends JPanel{
 
         panel.add(searchPanel);
         
-        CaricaLibri caricaLibri = new CaricaLibri(card, container);
-        CaricaDomande caricaDomande = new CaricaDomande(card, container);
-        CaricaAppunti caricaAppunti = new CaricaAppunti(card, container);
+        CaricaLibri caricaLibri = new CaricaLibri();
+        CaricaDomande caricaDomande = new CaricaDomande();
+        CaricaAppunti caricaAppunti = new CaricaAppunti();
         
         JButton appunti = new JButton("Appunti");
         JButton libri = new JButton("Libri");

@@ -33,13 +33,13 @@ public class LibroPanel extends JPanel{
     private JScrollPane scrollPanel, scrollPanel1;
     private JButton elimina;
             
-    public LibroPanel(CardLayout card, JPanel container) {
+    public LibroPanel() {
         
-        top = new TopPanel(card, container, Applicazione.libroAttuale.getTitolo());
+        top = new TopPanel(Applicazione.libroAttuale.getTitolo());
         
         panel = new JPanel();
         
-        this.build(card, container);
+        this.build();
        
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));
@@ -50,7 +50,7 @@ public class LibroPanel extends JPanel{
      
     }
     
-    public void build(CardLayout card, JPanel container){
+    public void build(){
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -149,7 +149,7 @@ public class LibroPanel extends JPanel{
         
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            EliminaLibro eliminaLibro = new EliminaLibro(card, container);
+            EliminaLibro eliminaLibro = new EliminaLibro();
             this.elimina = new JButton("Elimina");
             elimina.setBackground(new Color(249,123,123));
             gbc.gridx = 1;

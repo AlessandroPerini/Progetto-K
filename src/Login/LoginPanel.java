@@ -6,6 +6,7 @@
 package Login;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Studente.Vista.AccountPanel;
 import Università.Facolta.Ascoltatori.CaricaFacoltà;
 import Università.Facolta.Vista.ListaFacoltàPanel;
@@ -30,15 +31,11 @@ public class LoginPanel extends JPanel{
     private static JTextField email = new JTextField();
     private static JPasswordField password = new JPasswordField();
     private JLabel emailLabel, passwordLabel, at, line,img;
-    
-    private CardLayout card;
-    private JPanel container, down, centro, main, up;
+
+    private JPanel down, centro, main, up;
     private JButton login;
     
-    public LoginPanel(final CardLayout card, final JPanel container){   
-        
-        this.card = card;
-        this.container = container; 
+    public LoginPanel(){   
         
         main = new JPanel(new GridLayout(3, 1));
         up = new JPanel(new GridLayout(2, 1, 0, 30));
@@ -47,7 +44,6 @@ public class LoginPanel extends JPanel{
         GridBagConstraints gbcImg = new GridBagConstraints();
         down = new JPanel();
      
-        
         JLabel title = new JLabel("Progetto K");
         title.setFont(new Font("Arial", Font.BOLD, 50));
         title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -70,20 +66,16 @@ public class LoginPanel extends JPanel{
 	gbcImg.insets = new Insets(30, 0, 0, 10);
 	gbcImg.anchor = GridBagConstraints.LINE_START;
 	centro.add(down, gbcImg);
-	
         
-        CaricaFacoltà caricaFacoltà = new CaricaFacoltà(card, container);
-        DoLogin doLogin = new DoLogin(card, container, email, password);
-        
+        CaricaFacoltà caricaFacoltà = new CaricaFacoltà();
+        DoLogin doLogin = new DoLogin(email, password); 
        
         login.addActionListener(caricaFacoltà);
-        login.addActionListener(doLogin);
-        
+        login.addActionListener(doLogin);  
         
         up.add(title);
         up.add(subTitle);
-     
-        
+ 
         main.add(up);
         main.add(centro);
    
@@ -108,7 +100,7 @@ public class LoginPanel extends JPanel{
         down.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
         
-         //prima riga - colonna 0
+        //prima riga - colonna 0
         
         emailLabel = new JLabel("Email");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 18));
@@ -158,16 +150,16 @@ public class LoginPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.LINE_END;
 	down.add(password, gbc);
         
-          //quinta riga 
-          ImageIcon bottone = new ImageIcon("files\\immagini\\bottone.png");
-          bottone.setDescription("Login");
+        //quinta riga 
+        ImageIcon bottone = new ImageIcon("files\\immagini\\bottone.png");
+        bottone.setDescription("Login");
          
         login = new JButton(bottone);
         login.setBorder(BorderFactory.createEmptyBorder());
-login.setContentAreaFilled(false);
-login.setText("Login");
+        login.setContentAreaFilled(false);
+        login.setText("Login");
 
-login.setIconTextGap(-65);
+        login.setIconTextGap(-65);
 	gbc.gridx = 0;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(10, 20, 0, 10);
@@ -176,8 +168,5 @@ login.setIconTextGap(-65);
         
         
     }
-      
-
-
 
 }

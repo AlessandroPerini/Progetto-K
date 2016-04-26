@@ -28,9 +28,9 @@ public class ListaFacoltàPanel extends JPanel{
 
     private JButton[] facoltà = new JButton[Applicazione.listaFacoltàAttuali.size()];
 
-    public ListaFacoltàPanel(CardLayout card, JPanel container, ArrayList<Facoltà> facoltàList) {
+    public ListaFacoltàPanel(ArrayList<Facoltà> facoltàList) {
     
-        TopPanel top = new TopPanel(card, container, "Facoltà");
+        TopPanel top = new TopPanel("Facoltà");
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaFacoltàAttuali.size()+1, 1));
         
@@ -42,7 +42,7 @@ public class ListaFacoltàPanel extends JPanel{
             searchPanel.add(searchField);
             searchPanel.add(searchButton);
 
-        CaricaCorsi caricaCorsi = new CaricaCorsi(card, container);
+        CaricaCorsi caricaCorsi = new CaricaCorsi();
         
         panel.add(searchPanel);
 

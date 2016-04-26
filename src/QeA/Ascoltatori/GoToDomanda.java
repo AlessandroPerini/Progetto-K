@@ -6,30 +6,24 @@
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import QeA.Vista.DomandaPanel;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 /**
  *
  * @author adrian
  */
-public class GoToDomanda implements MouseListener{
-    private CardLayout card;
-    private JPanel container;   
-    private static DomandaPanel domanda;
-    String text;
+public class GoToDomanda implements MouseListener{ 
     
-    public GoToDomanda(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
+    private static DomandaPanel domanda;
+    private String text;
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         
@@ -47,13 +41,13 @@ public class GoToDomanda implements MouseListener{
         ListeQuery lQuery = new ListeQuery();
         lQuery.caricaRisposteDomanda();
         
-        domanda = new DomandaPanel(card, container);
+        domanda = new DomandaPanel();
         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
             domanda.risposte2.append(Applicazione.risposteAttuali.get(i));
         }
         
-        container.add(domanda, "domanda");
-        card.show(container, "domanda");
+        Grafica.container.add(domanda, "domanda");
+        Grafica.card.show(Grafica.container, "domanda");
     }
 
     @Override

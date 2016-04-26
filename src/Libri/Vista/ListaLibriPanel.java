@@ -30,9 +30,9 @@ public class ListaLibriPanel extends JPanel{
     
     private JButton[] libri = new JButton[Applicazione.ListaLibriAttuali.size()];
 
-    public ListaLibriPanel(CardLayout card, JPanel container) {
+    public ListaLibriPanel() {
     
-        TopPanel top = new TopPanel(card, container, "Libri "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Libri "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.ListaLibriAttuali.size()+2, 1));
         
@@ -47,12 +47,12 @@ public class ListaLibriPanel extends JPanel{
         panel.add(searchPanel);
         
         JButton addLibro = new JButton("Aggiungi Libro");
-        GoToAggiungiLibro aggiungiLibro = new GoToAggiungiLibro(card, container);
+        GoToAggiungiLibro aggiungiLibro = new GoToAggiungiLibro();
         addLibro.addActionListener(aggiungiLibro);
         
         panel.add(addLibro);
         
-        GoToLibro goToLibro = new GoToLibro(card, container);
+        GoToLibro goToLibro = new GoToLibro();
         
         for (int i = 0; i < Applicazione.ListaLibriAttuali.size(); i++) {
             libri[i] = new JButton();

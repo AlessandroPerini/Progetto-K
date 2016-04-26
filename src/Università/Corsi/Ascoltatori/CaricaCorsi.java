@@ -6,20 +6,11 @@
 package Università.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
-import Database.Connection.ConnessioneDB;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Università.Corsi.Vista.ListaCorsiPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JPanel;
 
 /**
  *
@@ -27,14 +18,6 @@ import javax.swing.JPanel;
  */
 public class CaricaCorsi implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public CaricaCorsi(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -44,9 +27,9 @@ public class CaricaCorsi implements ActionListener{
         ListeQuery dQuery = new ListeQuery();
         dQuery.caricaCorsi();
 
-        ListaCorsiPanel corsi = new ListaCorsiPanel(card, container);
-        container.add(corsi, "corsi");
-        card.show(container, "corsi");
+        ListaCorsiPanel corsi = new ListaCorsiPanel();
+        Grafica.container.add(corsi, "corsi");
+        Grafica.card.show(Grafica.container, "corsi");
  
     }
 

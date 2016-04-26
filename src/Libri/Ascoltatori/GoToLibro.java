@@ -6,6 +6,7 @@
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Libri.Vista.LibroPanel;
 import Università.Corsi.Vista.CorsoPanel;
@@ -20,14 +21,6 @@ import javax.swing.JPanel;
  */
 public class GoToLibro implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToLibro(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -37,11 +30,9 @@ public class GoToLibro implements ActionListener{
         InfoQuery iQuery = new InfoQuery();
         iQuery.caricaInfoLibro();
         
-        LibroPanel libro = new LibroPanel(card, container);
-        container.add(libro, "libro");
-        card.show(container, "libro");
-
-        
+        LibroPanel libro = new LibroPanel();
+        Grafica.container.add(libro, "libro");
+        Grafica.card.show(Grafica.container, "libro"); 
 
     }
     

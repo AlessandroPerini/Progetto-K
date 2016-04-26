@@ -7,6 +7,7 @@ package QeA.Ascoltatori;
 
 import Database.Query.InsertQuery;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import QeA.Vista.AggiungiDomandaPanel;
 import QeA.Vista.ListaDomandePanel;
@@ -14,7 +15,6 @@ import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
@@ -22,15 +22,11 @@ import javax.swing.JTextArea;
  * @author te4o
  */
 public class AggiungiDomanda implements ActionListener{
-    
-    private CardLayout card;
-    private JPanel container;
+
     private JTextArea titolo;
     private JTextArea descrizione;
 
-    public AggiungiDomanda(CardLayout card, JPanel container, JTextArea titolo, JTextArea descrizione) {
-        this.card = card;
-        this.container = container;
+    public AggiungiDomanda(JTextArea titolo, JTextArea descrizione) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         
@@ -49,9 +45,9 @@ public class AggiungiDomanda implements ActionListener{
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaDomandePanel domande = new ListaDomandePanel(card, container);
-        container.add(domande, "domande");
-        card.show(container, "domande");
+        ListaDomandePanel domande = new ListaDomandePanel();
+        Grafica.container.add(domande, "domande");
+        Grafica.card.show(Grafica.container, "domande");
         
         AggiungiDomandaPanel.clearForm();
     }

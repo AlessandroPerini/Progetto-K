@@ -12,14 +12,6 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -34,9 +26,9 @@ public class ListaCorsiPanel extends JPanel{
     
     private JButton[] corsi = new JButton[Applicazione.listaCorsiAttuali.size()];
 
-    public ListaCorsiPanel(CardLayout card, JPanel container) {
+    public ListaCorsiPanel() {
     
-        TopPanel top = new TopPanel(card, container, Applicazione.facoltàPremuta);
+        TopPanel top = new TopPanel(Applicazione.facoltàPremuta);
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaCorsiAttuali.size()+1, 1));
         
@@ -50,7 +42,7 @@ public class ListaCorsiPanel extends JPanel{
 
         panel.add(searchPanel);
         
-        GoToCorso goToCorso = new GoToCorso(card, container);
+        GoToCorso goToCorso = new GoToCorso();
         
         for (int i = 0; i < Applicazione.listaCorsiAttuali.size(); i++) {
             corsi[i] = new JButton();

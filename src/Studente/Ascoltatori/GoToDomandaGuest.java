@@ -6,6 +6,7 @@
 package Studente.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import QeA.Vista.DomandaPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
@@ -18,14 +19,6 @@ import javax.swing.JPanel;
  */
 public class GoToDomandaGuest implements ActionListener{
  
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToDomandaGuest(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -38,9 +31,9 @@ public class GoToDomandaGuest implements ActionListener{
  
         }
         
-        DomandaPanel domandaGuest = new DomandaPanel(card, container);
-        container.add(domandaGuest, "domanda guest");
-        card.show(container, "domanda guest"); 
+        DomandaPanel domandaGuest = new DomandaPanel();
+        Grafica.container.add(domandaGuest, "domanda guest");
+        Grafica.card.show(Grafica.container, "domanda guest"); 
 
     }
 }

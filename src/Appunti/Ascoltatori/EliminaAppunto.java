@@ -7,6 +7,7 @@ package Appunti.Ascoltatori;
 
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
@@ -21,15 +22,6 @@ import javax.swing.JPanel;
  * @author te4o
  */
 public class EliminaAppunto implements ActionListener{
-    
-    private CardLayout card;
-    private JPanel container;
-
-    public EliminaAppunto(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -46,9 +38,9 @@ public class EliminaAppunto implements ActionListener{
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel(card, container);
-        container.add(appunti, "appunti");
-        card.show(container, "appunti");
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+        Grafica.container.add(appunti, "appunti");
+        Grafica.card.show(Grafica.container, "appunti");
         
     }
     

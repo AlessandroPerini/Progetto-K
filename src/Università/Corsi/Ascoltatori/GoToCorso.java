@@ -6,11 +6,10 @@
 package Università.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Università.Corsi.Vista.CorsoPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -18,22 +17,14 @@ import javax.swing.JPanel;
  */
 public class GoToCorso implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToCorso(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.corsoPremuto = e.getActionCommand();
   
-        CorsoPanel corso = new CorsoPanel(card, container);
-        container.add(corso, "corso");
-        card.show(container, "corso");
+        CorsoPanel corso = new CorsoPanel();
+        Grafica.container.add(corso, "corso");
+        Grafica.card.show(Grafica.container, "corso");
 
         Applicazione.back.add("corso");
     }

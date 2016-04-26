@@ -6,6 +6,7 @@
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Login.LoginPanel;
 import Studente.Ascoltatori.CaricaIMieiDati;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
@@ -30,10 +31,9 @@ public class AccountPanel extends JPanel{
     
     private static JLabel email;
     private static JLabel nick;
-    private static JLabel points;
     private static JLabel phone;
 
-    public AccountPanel(final CardLayout card, final JPanel container) {
+    public AccountPanel() {
     
         setPreferredSize(new Dimension(700, 500));
         
@@ -46,7 +46,7 @@ public class AccountPanel extends JPanel{
                     public void actionPerformed(ActionEvent e) {
 
                         Applicazione.back.remove(Applicazione.back.size()-1);
-                        card.show(container, Applicazione.back.get(Applicazione.back.size()-1));
+                        Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
                     }
                 });
         back.setPreferredSize(new Dimension(110, 40));
@@ -81,7 +81,7 @@ public class AccountPanel extends JPanel{
                 
                 if(showConfirmDialog == 0 ){
 
-                    card.show(container, "login");
+                    Grafica.card.show(Grafica.container, "login");
                     LoginPanel.clearForm();
                     Applicazione.eliminaUtente();
                     Applicazione.svuotaCorsi();
@@ -95,7 +95,7 @@ public class AccountPanel extends JPanel{
         
         JButton iMieiDati = new JButton("I miei dati");
         iMieiDati.setPreferredSize(new Dimension(120, 75));
-        CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati(card, container);
+        CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati();
         iMieiDati.addActionListener(caricaIMieiDati);
         
         JPanel iMieiDatiPanel = new JPanel();

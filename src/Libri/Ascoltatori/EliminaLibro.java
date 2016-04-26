@@ -6,6 +6,7 @@
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
@@ -21,15 +22,6 @@ import javax.swing.JPanel;
  */
 public class EliminaLibro implements ActionListener{
 
-    private CardLayout card;
-    private JPanel container;
-
-    public EliminaLibro(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
-    
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -45,9 +37,9 @@ public class EliminaLibro implements ActionListener{
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaLibriPanel libri = new ListaLibriPanel(card, container);
-        container.add(libri, "libri");
-        card.show(container, "libri");
+        ListaLibriPanel libri = new ListaLibriPanel();
+        Grafica.container.add(libri, "libri");
+        Grafica.card.show(Grafica.container, "libri");
         
     }
     

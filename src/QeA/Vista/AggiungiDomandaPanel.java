@@ -30,13 +30,12 @@ public class AggiungiDomandaPanel extends JPanel{
    
     JPanel pp = new JPanel();
     
-    public AggiungiDomandaPanel(CardLayout card, JPanel container) {
+    public AggiungiDomandaPanel() {
         
-        TopPanel top = new TopPanel(card, container, "Aggiungi Domanda in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Domanda in "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(4,2,5,10));
        
-        
         JLabel titolo = new JLabel("Titolo :");
         JLabel descrizione = new JLabel("Descrizione :");
          
@@ -57,9 +56,8 @@ public class AggiungiDomandaPanel extends JPanel{
         
        
         JButton aggiungi = new JButton("Aggiungi");
-        AggiungiDomanda aggiungiDomanda = new AggiungiDomanda(card, container, titolo2, descrizione2);
-        aggiungi.addActionListener(aggiungiDomanda);
-        
+        AggiungiDomanda aggiungiDomanda = new AggiungiDomanda(titolo2, descrizione2);
+        aggiungi.addActionListener(aggiungiDomanda); 
         
         panel.add(titolo);
         panel.add(titolo2);

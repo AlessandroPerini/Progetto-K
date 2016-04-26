@@ -39,21 +39,20 @@ public class DomandaPanel extends JPanel{
     private JButton rispondi, elimina;
     private TopPanel top;
     private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, like,
-                   email, email2, like2, risposte,rispondiLabel;
+    private JLabel titolo, titolo2, descrizione, like, email, email2, like2, risposte,rispondiLabel;
     private JTextArea descrizione2, rispondiArea;
     public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
     
-     AggiungiRisposta risposta;
+    AggiungiRisposta risposta;
    
-    public DomandaPanel(CardLayout card, JPanel container) {
+    public DomandaPanel() {
         
-        top = new TopPanel(card, container, Applicazione.domandaAttuale.getTitolo());
+        top = new TopPanel(Applicazione.domandaAttuale.getTitolo());
         
         panel = new JPanel();
         
-        this.build(card, container);
+        this.build();
 
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 410));
@@ -64,7 +63,7 @@ public class DomandaPanel extends JPanel{
     }
     
     
-    public void build(CardLayout card, JPanel container){
+    public void build(){
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -191,13 +190,13 @@ public class DomandaPanel extends JPanel{
 	gbc.gridy = 6;
 	gbc.insets = new Insets(15, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_START;
-        risposta = new AggiungiRisposta(card, container, rispondiArea);
+        risposta = new AggiungiRisposta(rispondiArea);
         rispondi.addActionListener(risposta);
 	panel.add(this.rispondi, gbc);
         
         if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            EliminaDomanda eliminaDomanda = new EliminaDomanda(card, container);
+            EliminaDomanda eliminaDomanda = new EliminaDomanda();
             this.elimina = new JButton("Elimina");
             elimina.setBackground(new Color(249,123,123));
             gbc.gridx = 1;

@@ -27,9 +27,9 @@ public class ListaAppuntiPanel extends JPanel{
     
     private JButton[] appunti = new JButton[Applicazione.ListaAppuntiAttuali.size()];
 
-    public ListaAppuntiPanel(CardLayout card, JPanel container) {
+    public ListaAppuntiPanel() {
     
-        TopPanel top = new TopPanel(card, container, "Appunti "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Appunti "+Applicazione.corsoPremuto);
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.ListaAppuntiAttuali.size()+2, 1));
         
@@ -44,12 +44,12 @@ public class ListaAppuntiPanel extends JPanel{
         panel.add(searchPanel);
         
         JButton addAppunto = new JButton("Aggiungi Appunto");
-        GoToAggiungiAppunto aggiungiAppunto = new GoToAggiungiAppunto(card, container);
+        GoToAggiungiAppunto aggiungiAppunto = new GoToAggiungiAppunto();
         addAppunto.addActionListener(aggiungiAppunto);
         
         panel.add(addAppunto);
 
-        GoToAppunto goToAppunto = new GoToAppunto(card, container);
+        GoToAppunto goToAppunto = new GoToAppunto();
         
         for (int i = 0; i < Applicazione.ListaAppuntiAttuali.size(); i++) {
             appunti[i] = new JButton();

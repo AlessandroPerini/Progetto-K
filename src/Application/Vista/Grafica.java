@@ -16,16 +16,19 @@ import javax.swing.JPanel;
  */
 public class Grafica {
     
+    public static CardLayout card;
+    public static JPanel container;
+    
     public Grafica(){
         
-        CardLayout card = new CardLayout();
+        card = new CardLayout();
         
-        JPanel container = new JPanel();
+        container = new JPanel();
         container.setLayout(card);
         
         MainFrame f = new MainFrame("Progetto K");
         
-        LoginPanel login = new LoginPanel(card,container);
+        LoginPanel login = new LoginPanel();
         
         container.add(login,"login");
         card.show(container, "login");

@@ -6,6 +6,7 @@
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
 import java.awt.CardLayout;
@@ -18,23 +19,15 @@ import javax.swing.JPanel;
  * @author te4o
  */
 public class GoToAggiungiLibro implements ActionListener{
-
-    private CardLayout card;
-    private JPanel container;
-    
-    public GoToAggiungiLibro(CardLayout card, JPanel container) {
-        this.card = card;
-        this.container = container;
-    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("aggiungiLibro");
 
-        AggiungiLibroPanel aggiungiLibroPanel = new AggiungiLibroPanel(card, container);
-        container.add(aggiungiLibroPanel, "aggiungiLibro");
-        card.show(container, "aggiungiLibro");
+        AggiungiLibroPanel aggiungiLibroPanel = new AggiungiLibroPanel();
+        Grafica.container.add(aggiungiLibroPanel, "aggiungiLibro");
+        Grafica.card.show(Grafica.container, "aggiungiLibro");
     }
     
 }
