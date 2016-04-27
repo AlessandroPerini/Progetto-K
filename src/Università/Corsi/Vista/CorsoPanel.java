@@ -12,6 +12,7 @@ import Panel.TopPanel;
 import QeA.Ascoltatori.CaricaDomande;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -33,33 +34,22 @@ import javax.swing.SwingConstants;
  */
 public class CorsoPanel extends JPanel{
     private TopPanel top;
-    private JPanel panel, searchPanel, centro;
-    private JTextField searchField;
-    private JButton searchButton, appunti, libri, qea;
+    private JPanel panel, centro;
+    private JButton appunti, libri, qea;
     private CaricaLibri caricaLibri;
     private CaricaDomande caricaDomande;
     private CaricaAppunti caricaAppunti;
-    private  JScrollPane scrollPanel;
+    private JScrollPane scrollPanel;
     private GridBagConstraints gbcImg;
         
     public CorsoPanel() {
         
          top = new TopPanel(Applicazione.corsoPremuto);
         
-         panel = new JPanel(new GridBagLayout());
-         centro = new JPanel(new BorderLayout());
-        
-         searchPanel = new JPanel();
-         searchField = new JTextField(30);
-         searchField.setHorizontalAlignment(SwingConstants.CENTER);
-         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-         searchButton = new JButton("Search");
-         gbcImg = new GridBagConstraints();
-         
-         searchPanel.add(searchField);
-         searchPanel.add(searchButton);
+        panel = new JPanel(new GridBagLayout());
+        centro = new JPanel(new BorderLayout());
 
-        centro.add(searchPanel, BorderLayout.NORTH);
+        gbcImg = new GridBagConstraints();
         
         caricaLibri = new CaricaLibri();
         caricaDomande = new CaricaDomande();
@@ -68,6 +58,10 @@ public class CorsoPanel extends JPanel{
         libri.addActionListener(caricaLibri);
         qea.addActionListener(caricaDomande);
         appunti.addActionListener(caricaAppunti);
+        libri.setBackground(new Color(238,238,238));
+        appunti.setBackground(new Color(238,238,238));
+        qea.setBackground(new Color(238,238,238));
+        
         
         centro.add(panel, BorderLayout.CENTER);
         
