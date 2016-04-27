@@ -7,10 +7,12 @@ package Panel;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ListeQuery;
 import Libri.Ascoltatori.CaricaLibri;
 import Login.LoginPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Facolta.Ascoltatori.CaricaFacoltà;
+import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -38,24 +40,29 @@ public class TopPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
             
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("corsi")) {
-                    Applicazione.svuotaCorsi();
+                switch(Applicazione.back.get(Applicazione.back.size()-1)){
+                    case "corsi": Applicazione.svuotaCorsi();
+                        break;
+                    case "libri": Applicazione.svuotaLibri();
+                        break;
+                    case "domande": Applicazione.svuotaDomande();
+                        break;
+                    case "appunti": Applicazione.svuotaAppunti();
+                        break;
+                    case "domanda": Applicazione.svuotaRisposte();
+                        break;
+                    case "i miei dati": Applicazione.svuotaMieiDati();
+                        break;
+                    case "facoltà cercate": Applicazione.svuotaFacoltà();
+                                            ListeQuery lQuery1 = new ListeQuery();
+                                            lQuery1.caricaFacoltà();
+                        break;
+                    case "corsi cercati": Applicazione.svuotaCorsi();
+                                          ListeQuery lQuery2 = new ListeQuery();
+                                          lQuery2.caricaCorsi();
+                        break;
                 }
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
-                   Applicazione.svuotaLibri();
-                }
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
-                   Applicazione.svuotaDomande();
-                }
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
-                   Applicazione.svuotaAppunti();
-                }
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("domanda")) {
-                   Applicazione.svuotaRisposte();
-                }
-                if (Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")) {
-                   Applicazione.svuotaMieiDati();
-                }
+                
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
             }

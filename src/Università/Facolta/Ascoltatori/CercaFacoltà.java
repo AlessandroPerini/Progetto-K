@@ -7,56 +7,60 @@ package Università.Facolta.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Database.Query.ListeQuery;
 import Università.Facolta.Vista.ListaFacoltàPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 /**
  *
- * @author Te4o
+ * @author te4o
  */
-public class CaricaFacoltà implements ActionListener, KeyListener{
+public class CercaFacoltà implements ActionListener, KeyListener{
+
+    private JTextField searchField;
     
-    public void carica(){
-        
-        if(Applicazione.utenteLoggato){
-            
-                ListeQuery dQuery = new ListeQuery();
-                dQuery.caricaFacoltà();
-                
-                Applicazione.back.add("facoltà");
-                
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel();
-                
-                Grafica.container.add(facoltà,"facoltà");
-                Grafica.card.show(Grafica.container, "facoltà");
+    public CercaFacoltà(JTextField searchField){
+        this.searchField = searchField;
+    }
+    
+    public void cerca(){
+    
+        if(!searchField.getText().equals("")){
+            Utils.Cerca.Facoltà(searchField);
+
+            Applicazione.back.add("facoltà cercate");
+
+            ListaFacoltàPanel facoltàCercate = new ListaFacoltàPanel();
+
+            Grafica.container.add(facoltàCercate,"facoltà cercate");
+            Grafica.card.show(Grafica.container, "facoltà cercate");
         }
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        carica();    
+        
+        cerca();
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {  
+    public void keyTyped(KeyEvent e) {
+
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            carica();
-        }   
+            cerca();
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+
     }
- 
+    
 }

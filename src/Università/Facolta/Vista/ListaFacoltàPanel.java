@@ -6,13 +6,17 @@
 package Università.Facolta.Vista;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Panel.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Facolta.Ascoltatori.CercaFacoltà;
 import Università.Facolta.Facoltà;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -27,28 +31,46 @@ import javax.swing.SwingConstants;
 public class ListaFacoltàPanel extends JPanel{
 
     private JButton[] facoltà = new JButton[Applicazione.listaFacoltàAttuali.size()];
+    private JTextField searchField;
 
-    public ListaFacoltàPanel(ArrayList<Facoltà> facoltàList) {
+    public ListaFacoltàPanel() {
     
         TopPanel top = new TopPanel("Facoltà");
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaFacoltàAttuali.size()+1, 1));
         
+        //pannello ricerca
         JPanel searchPanel = new JPanel();
-            JTextField searchField = new JTextField(30);
-            searchField.setHorizontalAlignment(SwingConstants.CENTER);
-            searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            JButton searchButton = new JButton("Search");
-            searchPanel.add(searchField);
-            searchPanel.add(searchButton);
+        searchField = new JTextField(30);;
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        JButton searchButton = new JButton("Search");
+        
+        CercaFacoltà cercaFacoltà = new CercaFacoltà(searchField);
+        searchField.addKeyListener(cercaFacoltà);
+        searchButton.addActionListener(cercaFacoltà);
 
-        CaricaCorsi caricaCorsi = new CaricaCorsi();
+        JButton clearSearch = new JButton("x");
+        clearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchField.setText("");
+            }
+        });
+
+        searchPanel.add(searchField);
+        searchPanel.add(clearSearch);
+        searchPanel.add(searchButton);
+        // fine pannello ricerca
         
         panel.add(searchPanel);
-
+        
+        CaricaCorsi caricaCorsi = new CaricaCorsi();
+        
         for (int i = 0; i < Applicazione.listaFacoltàAttuali.size(); i++) {
             facoltà[i] = new JButton();
-            facoltà[i].setText(facoltàList.get(i).getNome());
+            facoltà[i].setText(Applicazione.listaFacoltàAttuali.get(i).getNome());
             facoltà[i].addActionListener(caricaCorsi);
             panel.add(facoltà[i]);
         }

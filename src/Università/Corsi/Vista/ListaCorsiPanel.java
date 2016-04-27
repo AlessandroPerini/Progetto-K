@@ -8,10 +8,14 @@ package Università.Corsi.Vista;
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
 import Panel.TopPanel;
+import Università.Corsi.Ascoltatori.CercaCorsi;
+import Università.Facolta.Ascoltatori.CercaFacoltà;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -25,21 +29,39 @@ import javax.swing.SwingConstants;
 public class ListaCorsiPanel extends JPanel{
     
     private JButton[] corsi = new JButton[Applicazione.listaCorsiAttuali.size()];
-
+    private JTextField searchField;
+    
     public ListaCorsiPanel() {
     
         TopPanel top = new TopPanel(Applicazione.facoltàPremuta);
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaCorsiAttuali.size()+1, 1));
         
+        //pannello ricerca
         JPanel searchPanel = new JPanel();
-            JTextField searchField = new JTextField(30);
-            searchField.setHorizontalAlignment(SwingConstants.CENTER);
-            searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            JButton searchButton = new JButton("Search");
-            searchPanel.add(searchField);
-            searchPanel.add(searchButton);
+        searchField = new JTextField(30);;
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        JButton searchButton = new JButton("Search");
+        
+        CercaCorsi cercaCorsi = new CercaCorsi(searchField);
+        searchField.addKeyListener(cercaCorsi);
+        searchButton.addActionListener(cercaCorsi);
 
+        JButton clearSearch = new JButton("x");
+        clearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchField.setText("");
+            }
+        });
+
+        searchPanel.add(searchField);
+        searchPanel.add(clearSearch);
+        searchPanel.add(searchButton);
+        // fine pannello ricerca
+        
         panel.add(searchPanel);
         
         GoToCorso goToCorso = new GoToCorso();
