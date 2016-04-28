@@ -17,7 +17,7 @@ public class MainFrame extends JFrame{
     public MainFrame(String t) throws HeadlessException {
     
         super(t);
-        setBounds(500, 200, 700, 500);
+        setBounds(400, 100, 700, 580);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     

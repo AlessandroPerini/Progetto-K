@@ -7,6 +7,7 @@ package Università.Facolta.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.CardLayout;
@@ -28,6 +29,8 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
             
                 ListeQuery dQuery = new ListeQuery();
                 dQuery.caricaFacoltà();
+                dQuery.caricaRamiFacoltà();
+                
                 
                 Applicazione.back.add("facoltà");
                 

@@ -11,7 +11,9 @@ import Panel.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Facolta.Ascoltatori.CercaFacoltà;
 import Università.Facolta.Facoltà;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -19,10 +21,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.border.TitledBorder;
 
 /**
  *
@@ -30,28 +34,35 @@ import javax.swing.SwingConstants;
  */
 public class ListaFacoltàPanel extends JPanel{
 
-    private JButton[] facoltà = new JButton[Applicazione.listaFacoltàAttuali.size()];
+    private JLabel[] facoltà = new JLabel[Applicazione.listaFacoltàAttuali.size()];
+    private JPanel[] pannelli = new JPanel[Applicazione.ramiFacoltà.size()];
+    private JScrollPane[] scrollP = new JScrollPane[Applicazione.ramiFacoltà.size()];
+   
+   private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.ramiFacoltà.size()];
     private JTextField searchField;
-
+    private JPanel panel,searchPanel;
+    private TopPanel top;
+    private JButton searchButton, clearSearch;
+    private CercaFacoltà cercaFacoltà;
     public ListaFacoltàPanel() {
     
-        TopPanel top = new TopPanel("Facoltà");
+        top = new TopPanel("Facoltà");
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaFacoltàAttuali.size()+1, 1));
+        panel = new JPanel(new GridLayout(5,2));
         
         //pannello ricerca
-        JPanel searchPanel = new JPanel();
+        searchPanel = new JPanel();
         searchField = new JTextField(30);;
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
-        JButton searchButton = new JButton("Search");
+        searchButton = new JButton("Search");
         
-        CercaFacoltà cercaFacoltà = new CercaFacoltà(searchField);
+        cercaFacoltà = new CercaFacoltà(searchField);
         searchField.addKeyListener(cercaFacoltà);
         searchButton.addActionListener(cercaFacoltà);
 
-        JButton clearSearch = new JButton("x");
+        clearSearch = new JButton("x");
         clearSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -64,22 +75,38 @@ public class ListaFacoltàPanel extends JPanel{
         searchPanel.add(searchButton);
         // fine pannello ricerca
         
-        panel.add(searchPanel);
+     
         
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
-        for (int i = 0; i < Applicazione.listaFacoltàAttuali.size(); i++) {
-            facoltà[i] = new JButton();
-            facoltà[i].setText(Applicazione.listaFacoltàAttuali.get(i).getNome());
-            facoltà[i].addActionListener(caricaCorsi);
-            panel.add(facoltà[i]);
+         for (int i = 0; i < Applicazione.ramiFacoltà.size(); i++) {
+            pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàAttuali.size()+1, 1));
+            scrollP[i] = new JScrollPane();
+            titoloBordo[i] = new TitledBorder(Applicazione.ramiFacoltà.get(i));
+            titoloBordo[i].setTitleFont(new Font("Arial", Font.BOLD, 15));
+            titoloBordo[i].setTitleColor(Color.RED);
+            pannelli[i].setBorder(titoloBordo[i]);
+            
+            for (int j = 0; j < Applicazione.listaFacoltàAttuali.size(); j++) {
+            facoltà[j] = new JLabel();
+            facoltà[j].setText(Applicazione.listaFacoltàAttuali.get(j).getNome());
+            
+            facoltà[j].setName("facoltà"+j);
+            facoltà[j].addMouseListener(caricaCorsi);
+            pannelli[i].add(facoltà[j]);
         }
+            scrollP[i]= new JScrollPane(pannelli[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollP[i].setPreferredSize(new Dimension(30, 210));
+            scrollP[i].getVerticalScrollBar().setUnitIncrement(5);
+            panel.add(scrollP[i]);
+         }
 
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 410));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
+        add(searchPanel);
         add(scrollPanel);
     }
     

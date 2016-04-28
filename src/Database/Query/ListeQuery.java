@@ -171,4 +171,25 @@ public class ListeQuery {
         }
     }
     
+    public void caricaRamiFacoltà(){
+        
+        String sql = "select  distinct ramo from facoltà";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(sql);
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                    String ramo = rs.getString("ramo");
+                    
+                    Applicazione.ramiFacoltà.add(ramo);
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+    
 }

@@ -28,9 +28,12 @@ public class Applicazione {
     
     public static Studente guest;
     
+    
+    
     public static String facoltàPremuta;
     public static String corsoPremuto;
     
+    public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
     public static ArrayList<Libro> ListaLibriAttuali = new ArrayList<>();
