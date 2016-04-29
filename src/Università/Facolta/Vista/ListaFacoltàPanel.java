@@ -6,7 +6,9 @@
 package Università.Facolta.Vista;
 
 import Application.Controller.Applicazione;
+import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import Application.Vista.Grafica;
+import Database.Query.ListeQuery;
 import Panel.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Facolta.Ascoltatori.CercaFacoltà;
@@ -76,29 +78,32 @@ public class ListaFacoltàPanel extends JPanel{
         // fine pannello ricerca
         
      
-        
+        ListeQuery lq = new ListeQuery();
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
          for (int i = 0; i < Applicazione.ramiFacoltà.size(); i++) {
-            pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàAttuali.size()+1, 1));
+             
+            lq.caricaFacoltà(Applicazione.ramiFacoltà.get(i));
+            pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1));
             scrollP[i] = new JScrollPane();
             titoloBordo[i] = new TitledBorder(Applicazione.ramiFacoltà.get(i));
             titoloBordo[i].setTitleFont(new Font("Arial", Font.BOLD, 15));
             titoloBordo[i].setTitleColor(Color.RED);
             pannelli[i].setBorder(titoloBordo[i]);
             
-            for (int j = 0; j < Applicazione.listaFacoltàAttuali.size(); j++) {
-            facoltà[j] = new JLabel();
-            facoltà[j].setText(Applicazione.listaFacoltàAttuali.get(j).getNome());
-            
-            facoltà[j].setName("facoltà"+j);
-            facoltà[j].addMouseListener(caricaCorsi);
-            pannelli[i].add(facoltà[j]);
+            for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
+                facoltà[j] = new JLabel();
+                facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j));
+
+                facoltà[j].setName("facoltà"+j);
+                facoltà[j].addMouseListener(caricaCorsi);
+                pannelli[i].add(facoltà[j]);
         }
             scrollP[i]= new JScrollPane(pannelli[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollP[i].setPreferredSize(new Dimension(30, 210));
             scrollP[i].getVerticalScrollBar().setUnitIncrement(5);
             panel.add(scrollP[i]);
+            svuotaListaFacoltàXRamo();
          }
 
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

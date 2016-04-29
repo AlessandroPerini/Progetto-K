@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author te4o
  */
 public class ListeQuery {
-    
+ 
     public void caricaFacoltà(){
         
         String selectFacoltà = "select * from facoltà";
@@ -185,6 +185,25 @@ public class ListeQuery {
                     String ramo = rs.getString("ramo");
                     
                     Applicazione.ramiFacoltà.add(ramo);
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
+     public void caricaFacoltà(String ramo){
+        
+        String selectFacoltà = "select * from facoltà where ramo = '"+ramo+"'";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectFacoltà);
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                    String nome = rs.getString("nome");                  
+                    Applicazione.listaFacoltàXRamo.add(nome);
 
                 }
                 }   catch (SQLException ex) {   

@@ -33,6 +33,7 @@ public class Applicazione {
     public static String facoltàPremuta;
     public static String corsoPremuto;
     
+    public static ArrayList<String> listaFacoltàXRamo = new ArrayList<>();
     public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
@@ -92,6 +93,9 @@ public class Applicazione {
         appuntiGuest.clear();
         libriGuest.clear();
         domandeGuest.clear();
+    }
+    public static void svuotaListaFacoltàXRamo(){
+        listaFacoltàXRamo.clear();
     }
 
 }
