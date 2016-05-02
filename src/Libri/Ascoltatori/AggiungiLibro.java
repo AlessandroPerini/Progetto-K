@@ -11,11 +11,9 @@ import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
 import Libri.Vista.ListaLibriPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
@@ -38,15 +36,13 @@ public class AggiungiLibro implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
+        InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
         
         JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
 
         Applicazione.svuotaLibri();
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaLibri();
+        ListeQuery.caricaLibri();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 

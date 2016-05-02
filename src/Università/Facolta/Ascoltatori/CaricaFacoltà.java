@@ -27,10 +27,8 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
         
         if(Applicazione.utenteLoggato){
             
-                ListeQuery dQuery = new ListeQuery();
-                dQuery.caricaFacoltà();
-                dQuery.caricaRamiFacoltà();
-                
+                ListeQuery.caricaFacoltà();
+                ListeQuery.caricaRamiFacoltà();
                 
                 Applicazione.back.add("facoltà");
                 

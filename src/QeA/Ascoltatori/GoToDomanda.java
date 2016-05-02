@@ -35,11 +35,9 @@ public class GoToDomanda implements MouseListener{
         }
         Applicazione.domandaAttuale.setTitolo(text);
         
-        InfoQuery iQuery = new InfoQuery();
-        iQuery.caricaInfoDomanda();
+        InfoQuery.caricaInfoDomanda();
         
-        ListeQuery lQuery = new ListeQuery();
-        lQuery.caricaRisposteDomanda();
+        ListeQuery.caricaRisposteDomanda();
         
         domanda = new DomandaPanel();
         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){

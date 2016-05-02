@@ -9,11 +9,8 @@ import Appunti.Vista.AppuntoPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
-import Libri.Vista.LibroPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -28,8 +25,7 @@ public class GoToAppunto implements ActionListener{
         
         Applicazione.appuntoAttuale.setNome(e.getActionCommand());
 
-        InfoQuery iQuery = new InfoQuery();
-        iQuery.caricaInfoAppunto();
+        InfoQuery.caricaInfoAppunto();
         
         AppuntoPanel appunto = new AppuntoPanel();
         Grafica.container.add(appunto, "appunto");

@@ -42,7 +42,7 @@ public class LibroPanel extends JPanel{
         this.build();
        
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 410));
+        scrollPanel1.setPreferredSize(new Dimension(650, 450));
         scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

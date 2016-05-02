@@ -25,18 +25,17 @@ import javax.swing.JTextField;
  */
 public class DoLogin implements ActionListener, KeyListener{
 
-    private JTextField email;
-    private JPasswordField password;
+    private static JTextField email;
+    private static JPasswordField password;
     
     public DoLogin(JTextField email, JPasswordField password) {
         this.email = email;
         this.password = password;
     }
     
-    public void doIt(){
+    public static void doIt(){
         
-            LoginQuery lQuery = new LoginQuery(email.getText()+"@universitadipavia.it", password.getText());
-            lQuery.login();
+            LoginQuery.login(email.getText()+"@universitadipavia.it", password.getText());
         
             if(Applicazione.utenteLoggato){
                 String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();

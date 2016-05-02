@@ -25,12 +25,12 @@ import java.util.logging.Logger;
  */
 public class InfoQuery {
     
-    public void caricaInfoLibro(){
+    public static void caricaInfoLibro(){
     
         String selectInfoLibro = "select * from libri where facoltà=? and corso=? and titolo=?";
         
          try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoLibro);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoLibro);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.libroAttuale.getTitolo());
@@ -54,12 +54,12 @@ public class InfoQuery {
                 }
     }
     
-    public void caricaInfoDomanda(){
+    public static void caricaInfoDomanda(){
     
         String selectInfoDomanda = "select * from domande where facoltà=? and corso=? and titolo=?";
         
          try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
@@ -81,12 +81,12 @@ public class InfoQuery {
                 }
     }
     
-    public void caricaInfoAppunto(){
+    public static void caricaInfoAppunto(){
     
         String selectInfoDomanda = "select * from appunti where facoltà=? and corso=? and nome=?";
         
          try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectInfoDomanda);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.appuntoAttuale.getNome());

@@ -35,13 +35,11 @@ public class AggiungiDomanda implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciDomanda(titolo.getText(), descrizione.getText());
+        InsertQuery.inserisciDomanda(titolo.getText(), descrizione.getText());
         
         Applicazione.svuotaDomande();
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaDomande();
+        ListeQuery.caricaDomande();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 

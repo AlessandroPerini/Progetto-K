@@ -23,10 +23,9 @@ public class CaricaIMieiDati implements ActionListener{
         
         Applicazione.back.add("i miei dati");
         
-        GuestQuery gQuery = new GuestQuery();
-        gQuery.caricaMieiAppunti();
-        gQuery.caricaMieiLibri();
-        gQuery.caricaMieDomande();
+        GuestQuery.caricaMieiAppunti();
+        GuestQuery.caricaMieiLibri();
+        GuestQuery.caricaMieDomande();
 
         iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
         Grafica.container.add(mieiDatiPanel, "i miei dati");

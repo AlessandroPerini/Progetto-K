@@ -59,7 +59,7 @@ public class ListaAppuntiPanel extends JPanel{
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 410));
+        scrollPanel.setPreferredSize(new Dimension(650, 450));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

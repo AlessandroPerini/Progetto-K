@@ -27,8 +27,7 @@ public class GoToLibro implements ActionListener{
         Applicazione.back.add("libro");
         Applicazione.libroAttuale.setTitolo(e.getActionCommand());
 
-        InfoQuery iQuery = new InfoQuery();
-        iQuery.caricaInfoLibro();
+        InfoQuery.caricaInfoLibro();
         
         LibroPanel libro = new LibroPanel();
         Grafica.container.add(libro, "libro");

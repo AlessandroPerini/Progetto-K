@@ -25,15 +25,13 @@ public class EliminaLibro implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DeleteQuery deleteQuery = new DeleteQuery();
-        deleteQuery.eliminaLibro();
+        DeleteQuery.eliminaLibro();
         
         JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
         
         Applicazione.svuotaLibri();
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaLibri();
+        ListeQuery.caricaLibri();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 

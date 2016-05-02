@@ -23,12 +23,12 @@ import java.util.logging.Logger;
  */
 public class GuestQuery {
     
-    public void caricaMieiAppunti(){
+    public static void caricaMieiAppunti(){
     
         String selectMieiAppunti = "select * from appunti where studente=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectMieiAppunti);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiAppunti);
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 
@@ -48,12 +48,12 @@ public class GuestQuery {
             }
     }
     
-    public void caricaMieiLibri(){
+    public static void caricaMieiLibri(){
     
         String selectMieiLibri = "select * from libri where studente=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectMieiLibri);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiLibri);
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 
@@ -75,12 +75,12 @@ public class GuestQuery {
                 }
     }
  
-    public void caricaMieDomande(){
+    public static void caricaMieDomande(){
     
         String selectDomande = "select * from domande where studente=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectDomande);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 

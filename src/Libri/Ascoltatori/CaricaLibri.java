@@ -7,22 +7,10 @@ package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Corsi.Vista.ListaCorsiPanel;
-import Database.Connection.ConnessioneDB;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JPanel;
 
 /**
  *
@@ -35,8 +23,7 @@ public class CaricaLibri implements ActionListener{
   
         Applicazione.back.add("libri");
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaLibri();
+        ListeQuery.caricaLibri();
 
         ListaLibriPanel libri = new ListaLibriPanel();
         Grafica.container.add(libri, "libri");

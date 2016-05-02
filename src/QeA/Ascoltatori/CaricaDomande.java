@@ -8,12 +8,9 @@ package QeA.Ascoltatori;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
-import Libri.Vista.ListaLibriPanel;
 import QeA.Vista.ListaDomandePanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -26,8 +23,7 @@ public class CaricaDomande implements ActionListener{
   
         Applicazione.back.add("domande");
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaDomande();
+        ListeQuery.caricaDomande();
 
         ListaDomandePanel domande = new ListaDomandePanel();
         

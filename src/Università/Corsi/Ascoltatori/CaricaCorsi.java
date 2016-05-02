@@ -7,13 +7,9 @@ package Università.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
-import QeA.Vista.DomandaPanel;
 import Università.Corsi.Vista.ListaCorsiPanel;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.JLabel;
@@ -36,8 +32,7 @@ public class CaricaCorsi implements MouseListener{
         }
         Applicazione.facoltàPremuta = text;
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaCorsi();
+        ListeQuery.caricaCorsi();
 
         ListaCorsiPanel corsi = new ListaCorsiPanel();
         Grafica.container.add(corsi, "corsi");

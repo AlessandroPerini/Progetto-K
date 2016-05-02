@@ -23,15 +23,13 @@ public class EliminaDomanda implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DeleteQuery deleteQuery = new DeleteQuery();
-        deleteQuery.eliminaDomanda();
+        DeleteQuery.eliminaDomanda();
         
         JOptionPane.showMessageDialog(null, "Domanda eliminata correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
         
         Applicazione.svuotaDomande();
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaDomande();
+        ListeQuery.caricaDomande();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 

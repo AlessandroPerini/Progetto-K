@@ -71,7 +71,7 @@ public class AggiungiDomandaPanel extends JPanel{
         panel.add(pp);
         
         JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 410));
+        scrollPanel1.setPreferredSize(new Dimension(650, 450));
         scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

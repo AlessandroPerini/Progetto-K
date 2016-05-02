@@ -24,12 +24,12 @@ import java.util.logging.Logger;
  */
 public class ListeQuery {
  
-    public void caricaFacoltà(){
+    public static void caricaFacoltà(){
         
         String selectFacoltà = "select * from facoltà";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectFacoltà);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -46,12 +46,12 @@ public class ListeQuery {
                 }
     }
     
-    public void caricaCorsi(){
+    public static void caricaCorsi(){
 
         String selectCorsi = "select * from corsi where facoltà=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectCorsi);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
                 ps1.setString(1, Applicazione.facoltàPremuta);
 
                 ResultSet rs = ps1.executeQuery();
@@ -68,12 +68,12 @@ public class ListeQuery {
                 }
     }
     
-    public void caricaLibri(){
+    public static void caricaLibri(){
 
         String selectLibri = "select * from libri where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectLibri);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibri);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -97,12 +97,12 @@ public class ListeQuery {
                 }
     }
     
-    public void caricaDomande(){
+    public static void caricaDomande(){
 
         String selectDomande = "select * from domande where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectDomande);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -124,12 +124,12 @@ public class ListeQuery {
                 }
     }
     
-    public void caricaAppunti(){
+    public static void caricaAppunti(){
 
         String selectAppunti = "select * from appunti where facoltà=? and corso=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectAppunti);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppunti);
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -151,11 +151,11 @@ public class ListeQuery {
                 }
     }
 
-    public void caricaRisposteDomanda() {
+    public static void caricaRisposteDomanda() {
         String selectRisposteDomanda = "select * from risposte where domanda=?";
         String info = "";
         try {
-            PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectRisposteDomanda);
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
             ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
             ResultSet rs = ps1.executeQuery();
             while (rs.next()) {
@@ -171,12 +171,12 @@ public class ListeQuery {
         }
     }
     
-    public void caricaRamiFacoltà(){
+    public static void caricaRamiFacoltà(){
         
         String sql = "select  distinct ramo from facoltà";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(sql);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -191,12 +191,13 @@ public class ListeQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
-     public void caricaFacoltà(String ramo){
+    
+    public static void caricaFacoltà(String ramo){
         
         String selectFacoltà = "select * from facoltà where ramo = '"+ramo+"'";
         
         try{
-                PreparedStatement ps1 = Applicazione.connection.prepareStatement(selectFacoltà);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
 
                 ResultSet rs = ps1.executeQuery();
 

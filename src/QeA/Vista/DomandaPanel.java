@@ -8,26 +8,17 @@ package QeA.Vista;
 import QeA.Ascoltatori.EliminaDomanda;
 import QeA.Ascoltatori.AggiungiRisposta;
 import Application.Controller.Applicazione;
-import Libri.Ascoltatori.EliminaLibro;
 import Panel.TopPanel;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Ascoltatori.CaricaFacoltà;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -55,7 +46,7 @@ public class DomandaPanel extends JPanel{
         this.build();
 
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 410));
+        scrollPanel1.setPreferredSize(new Dimension(650, 450));
         scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

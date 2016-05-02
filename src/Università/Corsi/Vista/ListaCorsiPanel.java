@@ -9,7 +9,6 @@ import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
 import Panel.TopPanel;
 import Università.Corsi.Ascoltatori.CercaCorsi;
-import Università.Facolta.Ascoltatori.CercaFacoltà;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -74,7 +73,7 @@ public class ListaCorsiPanel extends JPanel{
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 410));
+        scrollPanel.setPreferredSize(new Dimension(650, 450));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

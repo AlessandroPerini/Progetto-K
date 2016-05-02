@@ -26,8 +26,7 @@ public class CaricaAppunti implements ActionListener{
   
         Applicazione.back.add("appunti");
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaAppunti();
+        ListeQuery.caricaAppunti();
 
         ListaAppuntiPanel appunti = new ListaAppuntiPanel();
         Grafica.container.add(appunti, "appunti");

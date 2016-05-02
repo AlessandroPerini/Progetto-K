@@ -16,26 +16,6 @@ import javax.swing.JTextField;
  */
 public class Cerca {
     
-    public static void Facoltà(JTextField testoRicerca){
-    
-        Facoltà[] facoltàCercate = new Facoltà[Applicazione.listaFacoltàAttuali.size()];
-        
-        for (int i = 0; i < facoltàCercate.length; i++) {
-            facoltàCercate[i] = null;
-        }
-        for (int i = 0; i < Applicazione.listaFacoltàAttuali.size(); i++) {
-            if (Applicazione.listaFacoltàAttuali.get(i).getNome().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
-                facoltàCercate[i] = Applicazione.listaFacoltàAttuali.get(i);
-            }
-        }
-        Applicazione.listaFacoltàAttuali.clear();
-        for (int i = 0; i < facoltàCercate.length; i++) {
-            if (facoltàCercate[i] != null) {
-                Applicazione.listaFacoltàAttuali.add(facoltàCercate[i]);
-            }
-        }
-    }
-    
     public static void Corsi(JTextField testoRicerca){
     
         Corso[] corsiCercati = new Corso[Applicazione.listaCorsiAttuali.size()];

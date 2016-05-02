@@ -21,15 +21,13 @@ import java.util.ArrayList;
  */
 public class Applicazione {
 
-    public static Connection connection = new ConnessioneDB().connect();
+    public static Connection DBconnection = new ConnessioneDB().connect();
         
-    public static ArrayList<String> back = new ArrayList<>();
+    public static Studente guest;
     public static boolean utenteLoggato = false;
     
-    public static Studente guest;
-    
-    
-    
+    public static ArrayList<String> back = new ArrayList<>();
+
     public static String facoltàPremuta;
     public static String corsoPremuto;
     
@@ -94,6 +92,7 @@ public class Applicazione {
         libriGuest.clear();
         domandeGuest.clear();
     }
+    
     public static void svuotaListaFacoltàXRamo(){
         listaFacoltàXRamo.clear();
     }

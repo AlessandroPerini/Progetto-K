@@ -35,7 +35,7 @@ public class AccountPanel extends JPanel{
 
     public AccountPanel() {
     
-        setPreferredSize(new Dimension(700, 500));
+        setPreferredSize(new Dimension(700, 450));
         
         //top panel
         JPanel top = new JPanel();

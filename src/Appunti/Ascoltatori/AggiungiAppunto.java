@@ -37,13 +37,11 @@ public class AggiungiAppunto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        InsertQuery insertQuery = new InsertQuery();
-        insertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
+        InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
         
         Applicazione.svuotaAppunti();
         
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaAppunti();
+        ListeQuery.caricaAppunti();
         
         Applicazione.back.remove(Applicazione.back.size()-1);
 

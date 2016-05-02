@@ -28,23 +28,21 @@ public class AggiungiRisposta implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        InsertQuery insertQuery = new InsertQuery();
-        
-        insertQuery.inserisciRisposta(titolo.getText());
+
+        InsertQuery.inserisciRisposta(titolo.getText());
         
         JOptionPane.showMessageDialog(null, "Risposta aggiunta correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
         
         Applicazione.svuotaRisposte();
-        ListeQuery dQuery = new ListeQuery();
-        dQuery.caricaRisposteDomanda();
+
+        ListeQuery.caricaRisposteDomanda();
 
         Applicazione.back.remove(Applicazione.back.size()-1);
         String s="";
          for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
           s= (s+Applicazione.risposteAttuali.get(i));
         }
-         GoToDomanda.getDomanda().risposte2.setText(s);
+        GoToDomanda.getDomanda().risposte2.setText(s);
    
         Grafica.container.add(GoToDomanda.getDomanda(), "domande");
         Grafica.card.show(Grafica.container, "domande");
