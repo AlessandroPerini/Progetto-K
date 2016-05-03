@@ -113,4 +113,21 @@ public class InsertQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }
+    
+       public static void inserisciLikeDomanda(){
+        
+          String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
+          String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
+          String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+        
+        String insertLikeDomanda = "INSERT INTO likeDomanda VALUES ('"+corsoQuery+"', '"+domandaQuery+"', '"+studenteQuery+"')";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }

@@ -18,20 +18,16 @@ import javax.swing.JTextArea;
  *
  * @author adrian
  */
-public class AggiungiRisposta implements ActionListener{
+public class AggiungiLike implements ActionListener{
 
-    private JTextArea titolo;
-
-    public AggiungiRisposta(JTextArea titolo) {
-        this.titolo = titolo; 
-    }
+    
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        InsertQuery.inserisciRisposta(titolo.getText());
+        InsertQuery.inserisciLikeDomanda();
         
-        JOptionPane.showMessageDialog(null, "Risposta aggiunta correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, "Aggiunto.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
         
         Applicazione.svuotaRisposte();
 
@@ -47,7 +43,6 @@ public class AggiungiRisposta implements ActionListener{
         Grafica.container.add(GoToDomanda.getDomanda(), "domande");
         Grafica.card.show(Grafica.container, "domande");
         
-        titolo.setText("");
         
       
     }

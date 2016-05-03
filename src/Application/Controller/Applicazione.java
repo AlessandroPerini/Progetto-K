@@ -9,6 +9,7 @@ import Appunti.Appunto;
 import Database.Connection.ConnessioneDB;
 import Libri.Libro;
 import QeA.Domanda;
+import QeA.Risposta;
 import Studente.Studente;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
@@ -38,12 +39,12 @@ public class Applicazione {
     public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
     public static ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
-    public static ArrayList<String> risposteAttuali = new ArrayList<>();
+    public static ArrayList<Risposta> risposteAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
     public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     
     public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
-    public static Domanda domandaAttuale = new  Domanda("", 0, "", "");
+    public static Domanda domandaAttuale = new  Domanda("", "", "");
     public static Appunto appuntoAttuale = new Appunto("", "", 0, "");
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();

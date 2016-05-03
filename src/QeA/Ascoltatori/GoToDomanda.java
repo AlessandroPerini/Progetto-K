@@ -33,6 +33,7 @@ public class GoToDomanda implements MouseListener{
             JLabel label = (JLabel)e.getComponent();
             text = label.getText();
         }
+      
         Applicazione.domandaAttuale.setTitolo(text);
         
         InfoQuery.caricaInfoDomanda();
@@ -41,7 +42,7 @@ public class GoToDomanda implements MouseListener{
         
         domanda = new DomandaPanel();
         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
-            domanda.risposte2.append(Applicazione.risposteAttuali.get(i));
+            domanda.risposte2.append(Applicazione.risposteAttuali.get(i).toString());
         }
         
         Grafica.container.add(domanda, "domanda");

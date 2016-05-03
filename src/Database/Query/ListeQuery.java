@@ -9,6 +9,7 @@ import Appunti.Appunto;
 import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
+import QeA.Risposta;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
@@ -113,9 +114,8 @@ public class ListeQuery {
                 String titoloDomanda = rs.getString("titolo");
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
-                int likeDomanda = rs.getInt("like");
                
-                Domanda domanda = new Domanda(titoloDomanda, likeDomanda, testoDomanda, studenteDomanda);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
                 Applicazione.listaDomandeAttuali.add(domanda);
                 
                 }
@@ -154,22 +154,27 @@ public class ListeQuery {
     public static void caricaRisposteDomanda() {
         String selectRisposteDomanda = "select * from risposte where domanda=?";
         String info = "";
+        String nickname = "";
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
             ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
             ResultSet rs = ps1.executeQuery();
             while (rs.next()) {
+                String domanda = rs.getString("domanda");
                 String studente = rs.getString("studente");
+                int like = rs.getInt("like");
+                int dislike = rs.getInt("dislike");
                 String risposta = rs.getString("risposta");
-                studente = studente.replace(".", ",");
-                String parts[] = studente.split(",");
-                String nome = parts[0];
-                Applicazione.risposteAttuali.add(nome+":" + "\n" + risposta + "\n \n");
+     
+                Risposta rispsta = new Risposta(risposta, domanda, like, dislike, studente);
+                Applicazione.risposteAttuali.add(rispsta);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
     
     public static void caricaRamiFacoltà(){
         
