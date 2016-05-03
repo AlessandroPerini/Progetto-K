@@ -33,14 +33,14 @@ public class Applicazione {
     
     //per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout()
     
-    public static ArrayList<String> listaFacoltàXRamo = new ArrayList<>();
-    public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
     public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
     public static ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
-    public static ArrayList<String> risposteAttuali = new ArrayList<>();  
+    public static ArrayList<String> risposteAttuali = new ArrayList<>();
+    public static ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
+    public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     
     public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
     public static Domanda domandaAttuale = new  Domanda("", 0, "", "");

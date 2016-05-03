@@ -13,14 +13,17 @@ public class Risposta {
     
     private String titolo;
     private String domanda;
+    private String email;
     private int id;
     private int like;
 
-    public Risposta(String titolo, String domanda, int id, int like) {
+    public Risposta(String titolo, String domanda, int id, int like, String email) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.id = id;
         this.like = like;
+        this.email = email;
     }
+    
  
 }

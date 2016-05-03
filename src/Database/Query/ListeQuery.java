@@ -202,9 +202,11 @@ public class ListeQuery {
                 ResultSet rs = ps1.executeQuery();
 
                 while(rs.next()){
-
-                    String nome = rs.getString("nome");                  
-                    Applicazione.listaFacoltàXRamo.add(nome);
+                    
+                    String nome = rs.getString("nome");
+                    String ram = rs.getString("ramo");
+                    Facoltà facoltà = new Facoltà(nome, ram);
+                    Applicazione.listaFacoltàXRamo.add(facoltà);
 
                 }
                 }   catch (SQLException ex) {   
