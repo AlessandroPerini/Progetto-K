@@ -7,12 +7,9 @@ package Database.Query;
 
 import Appunti.Appunto;
 import Application.Controller.Applicazione;
-import Database.Connection.ConnessioneDB;
 import Libri.Libro;
 import QeA.Domanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Facoltà;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -106,6 +103,31 @@ public class InfoQuery {
                 }   catch (SQLException ex) {   
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
+    }
+    
+    public static float mediaAppunto(){
+    
+        float media = 0;
+        
+        String selectMedia = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
+        
+         try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(3,Applicazione.appuntoAttuale.getNome());
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                    media = rs.getFloat("media");
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+         return media;
     }
 
 }

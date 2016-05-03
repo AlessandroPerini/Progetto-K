@@ -38,7 +38,7 @@ public class ListaCorsiPanel extends JPanel{
         
         //pannello ricerca
         JPanel searchPanel = new JPanel();
-        searchField = new JTextField(30);;
+        searchField = new JTextField(30);
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         

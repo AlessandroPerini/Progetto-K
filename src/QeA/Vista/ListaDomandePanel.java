@@ -9,15 +9,15 @@ import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
 import Application.Controller.Applicazione;
 import Header.TopPanel;
+import QeA.Ascoltatori.CercaDomande;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import javax.swing.ImageIcon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -44,16 +44,34 @@ public class ListaDomandePanel extends JPanel{
         
         GridBagConstraints gbcImg = new GridBagConstraints();
         
+         //pannello ricerca
         JPanel searchPanel = new JPanel();
         searchField = new JTextField(30);
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        
         searchButton = new JButton("Search");
+        
+        CercaDomande cercaDomande = new CercaDomande(searchField);
+        searchField.addKeyListener(cercaDomande);
+        searchButton.addActionListener(cercaDomande);
+
+        JButton clearSearch = new JButton("x");
+        clearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchField.setText("");
+            }
+        });
+
         searchPanel.add(searchField);
+        searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
-        addDomanda = new JButton("Aggiungi\n Domanda");
+        // fine pannello ricerca
 
         centro.add(searchPanel, BorderLayout.NORTH);
+        
+        addDomanda = new JButton("Aggiungi\n Domanda");
 
         gbcImg.gridx = 0;
         gbcImg.gridy = 0;

@@ -42,6 +42,7 @@ public class AggiungiRisposta implements ActionListener{
          for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
           s= (s+Applicazione.risposteAttuali.get(i));
         }
+         
         GoToDomanda.getDomanda().risposte2.setText(s);
    
         Grafica.container.add(GoToDomanda.getDomanda(), "domande");

@@ -8,13 +8,17 @@ package Libri.Vista;
 import Libri.Ascoltatori.GoToLibro;
 import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.CercaAppunti;
 import Header.TopPanel;
+import Libri.Ascoltatori.CercaLibri;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Ascoltatori.GoToCorso;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -29,6 +33,7 @@ import javax.swing.SwingConstants;
 public class ListaLibriPanel extends JPanel{
     
     private JButton[] libri = new JButton[Applicazione.listaLibriAttuali.size()];
+    private JTextField searchField;
 
     public ListaLibriPanel() {
     
@@ -36,13 +41,30 @@ public class ListaLibriPanel extends JPanel{
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaLibriAttuali.size()+2, 1));
         
+        //pannello ricerca
         JPanel searchPanel = new JPanel();
-            JTextField searchField = new JTextField(30);
-            searchField.setHorizontalAlignment(SwingConstants.CENTER);
-            searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            JButton searchButton = new JButton("Search");
-            searchPanel.add(searchField);
-            searchPanel.add(searchButton);
+        searchField = new JTextField(30);
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        JButton searchButton = new JButton("Search");
+        
+        CercaLibri cercaLibri = new CercaLibri(searchField);
+        searchField.addKeyListener(cercaLibri);
+        searchButton.addActionListener(cercaLibri);
+
+        JButton clearSearch = new JButton("x");
+        clearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchField.setText("");
+            }
+        });
+
+        searchPanel.add(searchField);
+        searchPanel.add(clearSearch);
+        searchPanel.add(searchButton);
+        // fine pannello ricerca
 
         panel.add(searchPanel);
         

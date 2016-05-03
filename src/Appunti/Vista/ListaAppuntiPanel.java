@@ -8,11 +8,14 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.CercaAppunti;
 import Header.TopPanel;
-import java.awt.CardLayout;
+import Università.Corsi.Ascoltatori.CercaCorsi;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -26,6 +29,7 @@ import javax.swing.SwingConstants;
 public class ListaAppuntiPanel extends JPanel{
     
     private JButton[] appunti = new JButton[Applicazione.listaAppuntiAttuali.size()];
+    private JTextField searchField;
 
     public ListaAppuntiPanel() {
     
@@ -33,13 +37,30 @@ public class ListaAppuntiPanel extends JPanel{
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaAppuntiAttuali.size()+2, 1));
         
+        //pannello ricerca
         JPanel searchPanel = new JPanel();
-            JTextField searchField = new JTextField(30);
-            searchField.setHorizontalAlignment(SwingConstants.CENTER);
-            searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-            JButton searchButton = new JButton("Search");
-            searchPanel.add(searchField);
-            searchPanel.add(searchButton);
+        searchField = new JTextField(30);
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        
+        JButton searchButton = new JButton("Search");
+        
+        CercaAppunti cercaAppunti = new CercaAppunti(searchField);
+        searchField.addKeyListener(cercaAppunti);
+        searchButton.addActionListener(cercaAppunti);
+
+        JButton clearSearch = new JButton("x");
+        clearSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchField.setText("");
+            }
+        });
+
+        searchPanel.add(searchField);
+        searchPanel.add(clearSearch);
+        searchPanel.add(searchButton);
+        // fine pannello ricerca
 
         panel.add(searchPanel);
         

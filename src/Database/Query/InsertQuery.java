@@ -6,13 +6,14 @@
 package Database.Query;
 
 import Application.Controller.Applicazione;
-import Libri.Libro;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JSlider;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -65,15 +66,15 @@ public class InsertQuery {
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectId);
                 ResultSet rs = ps1.executeQuery();
 
-                    if(rs.next()) {
-                        
-                        prossimoID = rs.getInt("massimo");
-                       
-                    }
-          
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                if(rs.next()) {
+
+                    prossimoID = rs.getInt("massimo");
+
                 }
+          
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         return prossimoID+1;
     }
@@ -91,9 +92,9 @@ public class InsertQuery {
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomanda);
                 ps1.execute();
                 
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
     }
     
@@ -103,14 +104,31 @@ public class InsertQuery {
         String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
    
-        String insertRisposta= "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
+        String insertRisposta = "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
                 ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
                 ps1.execute();
                 
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void inserisciValutazione(JTextArea commento, JSlider punteggio){
+        
+        String commentoQuery = commento.getText().replaceAll("'", "\\\\'");
+        
+        String inserisciValutazione = "INSERT INTO valutazioni VALUES ('"+Applicazione.appuntoAttuale.getNome()+"','"+Applicazione.guest.getEmail()+"'"
+                + ",'"+commentoQuery+"','"+punteggio.getValue()+"', '"+facoltàQuery+"', '"+corsoQuery+"')";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(inserisciValutazione);
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    
     }
 }

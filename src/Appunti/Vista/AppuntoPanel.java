@@ -7,6 +7,8 @@ package Appunti.Vista;
 
 import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.Vota;
+import Database.Query.InfoQuery;
 import Header.TopPanel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -24,7 +26,7 @@ import javax.swing.JTextArea;
  */
 public class AppuntoPanel extends JPanel{
     
-    private JSlider valutazione;
+    private JSlider punteggio;
     private JButton valuta;
     
     public AppuntoPanel() {
@@ -38,13 +40,17 @@ public class AppuntoPanel extends JPanel{
         JLabel descrizione = new JLabel("Descrizione :");
         JLabel media = new JLabel("Media :");
         
-        valutazione = new JSlider(1, 5);
+        punteggio = new JSlider(1, 5);
         valuta = new JButton("Vota");
+        
+        JTextArea commento = new JTextArea();
+        commento.setLineWrap(true);
+        commento.setWrapStyleWord(true);
         
         JLabel email2 = new JLabel(Applicazione.appuntoAttuale.getStudente());
         JLabel nome2 = new JLabel(Applicazione.appuntoAttuale.getNome());
         JTextArea descrizione2 = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
-        JLabel media2 = new JLabel(Float.toString(Applicazione.appuntoAttuale.getMedia()));
+        JLabel media2 = new JLabel(Float.toString(InfoQuery.mediaAppunto()));
         
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         
@@ -52,9 +58,12 @@ public class AppuntoPanel extends JPanel{
         descrizione2.setLineWrap(true);
         descrizione2.setWrapStyleWord(true);
         
-        valutazione.setLabelTable(valutazione.createStandardLabels(1));
-        valutazione.setMajorTickSpacing(1);
-        valutazione.setPaintLabels(true);
+        punteggio.setLabelTable(punteggio.createStandardLabels(1));
+        punteggio.setMajorTickSpacing(1);
+        punteggio.setPaintLabels(true);
+        
+        Vota vota = new Vota(commento, punteggio);
+        valuta.addActionListener(vota);
         
         panel.add(nome);
         panel.add(nome2);
@@ -64,7 +73,8 @@ public class AppuntoPanel extends JPanel{
         panel.add(media2);
         panel.add(email);
         panel.add(email2);
-        panel.add(valutazione);
+        panel.add(punteggio);
+        panel.add(commento);
         panel.add(valuta);
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
