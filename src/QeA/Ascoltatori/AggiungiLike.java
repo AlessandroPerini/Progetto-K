@@ -11,6 +11,7 @@ import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -20,28 +21,31 @@ import javax.swing.JTextArea;
  */
 public class AggiungiLike implements ActionListener{
 
-    
+    private JButton like;
+
+    public AggiungiLike(JButton like) {
+        this.like = like; 
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         InsertQuery.inserisciLikeDomanda();
         
         JOptionPane.showMessageDialog(null, "Aggiunto.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
-        
+        like.setEnabled(false);
         Applicazione.svuotaRisposte();
 
         ListeQuery.caricaRisposteDomanda();
 
-        Applicazione.back.remove(Applicazione.back.size()-1);
         String s="";
          for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
           s= (s+Applicazione.risposteAttuali.get(i).toString());
         }
         GoToDomanda.getDomanda().risposte2.setText(s);
    
-        Grafica.container.add(GoToDomanda.getDomanda(), "domande");
-        Grafica.card.show(Grafica.container, "domande");
+        Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
+        Grafica.card.show(Grafica.container, "domanda");
         
         
       

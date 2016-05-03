@@ -145,10 +145,9 @@ public class InfoQuery {
 
                 if(rs.next()){
                     bool= false;
-                    System.err.println("entrato true");
                 }
-                else{ bool= true;
-                System.err.println("entrato false");
+                else{ 
+                    bool= true;
                 
                 }
                 

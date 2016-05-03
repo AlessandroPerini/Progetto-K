@@ -135,9 +135,9 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.LINE_END;
 	panel.add(this.like, gbc);
         
-        //colonna 1
-        AggiungiLike aggiungiLike = new AggiungiLike();
+        //colonna 1     
         this.like2 = new JButton("Like");
+        AggiungiLike aggiungiLike = new AggiungiLike(like2);
         like2.addActionListener(aggiungiLike);
             gbc.gridx = 1;
             gbc.gridy = 3;
