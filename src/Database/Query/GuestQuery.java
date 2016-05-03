@@ -36,10 +36,9 @@ public class GuestQuery {
 
                     String nomeAppunto = rs.getString("nome");
                     String descrizioneAppunto = rs.getString("descrizione");
-                    int mediaAppunto = rs.getInt("media");
                     String emailAppunto = rs.getString("studente");
 
-                    Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, mediaAppunto, emailAppunto);
+                    Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto);
                     Applicazione.appuntiGuest.add(appunto);
                 }
 

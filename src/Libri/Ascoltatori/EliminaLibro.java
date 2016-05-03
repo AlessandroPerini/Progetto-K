@@ -25,20 +25,23 @@ public class EliminaLibro implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DeleteQuery.eliminaLibro();
+        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Conferma", JOptionPane.YES_NO_OPTION);
         
-        JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
-        
-        Applicazione.svuotaLibri();
-        
-        ListeQuery.caricaLibri();
-        
-        Applicazione.back.remove(Applicazione.back.size()-1);
+        if(showConfirmDialog == 0 ){
+            DeleteQuery.eliminaLibro();
 
-        ListaLibriPanel libri = new ListaLibriPanel();
-        Grafica.container.add(libri, "libri");
-        Grafica.card.show(Grafica.container, "libri");
-        
+            JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+
+            Applicazione.svuotaLibri();
+
+            ListeQuery.caricaLibri();
+
+            Applicazione.back.remove(Applicazione.back.size()-1);
+
+            ListaLibriPanel libri = new ListaLibriPanel();
+            Grafica.container.add(libri, "libri");
+            Grafica.card.show(Grafica.container, "libri");
+        }
     }
     
 }

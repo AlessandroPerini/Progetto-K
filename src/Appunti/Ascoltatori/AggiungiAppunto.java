@@ -9,15 +9,12 @@ import Appunti.Vista.AggiungiAppuntoPanel;
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ControlloQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
-import Libri.Vista.AggiungiLibroPanel;
-import Libri.Vista.ListaLibriPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
@@ -36,19 +33,27 @@ public class AggiungiAppunto implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
+        if(ControlloQuery.controlloNomeAppunto(nome.getText())){
+            InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
+            
+            Applicazione.svuotaAppunti();
+        
+            ListeQuery.caricaAppunti();
 
-        InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
-        
-        Applicazione.svuotaAppunti();
-        
-        ListeQuery.caricaAppunti();
-        
-        Applicazione.back.remove(Applicazione.back.size()-1);
+            Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-        Grafica.container.add(appunti, "appunti");
-        Grafica.card.show(Grafica.container, "appunti");
+            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+            Grafica.container.add(appunti, "appunti");
+            Grafica.card.show(Grafica.container, "appunti");
+
+            AggiungiAppuntoPanel.clearForm();
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno di '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
+                    + "che non sia lo stesso e riprova cambiando nome.","Impossibile caricare appunto" , JOptionPane.INFORMATION_MESSAGE);
+        }
         
-        AggiungiAppuntoPanel.clearForm();
+        
     }
 }

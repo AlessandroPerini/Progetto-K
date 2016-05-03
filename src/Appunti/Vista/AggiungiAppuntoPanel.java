@@ -33,16 +33,14 @@ public class AggiungiAppuntoPanel extends JPanel{
         
         TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(6,2,5,10));
+        JPanel panel = new JPanel(new GridLayout(5,2,5,10));
         
         JLabel nome = new JLabel("Nome :");
         JLabel descrizione = new JLabel("Descrizione :");
-        JLabel media = new JLabel("Media :");
         JLabel email = new JLabel("Email :");
         
         nome2 = new JTextArea("");
         descrizione2 = new JTextArea("");
-        JLabel media2 = new JLabel(""+0);
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
  
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
@@ -59,8 +57,6 @@ public class AggiungiAppuntoPanel extends JPanel{
         panel.add(nome2);
         panel.add(descrizione);
         panel.add(scrollPanel);
-        panel.add(media);
-        panel.add(media2);
         panel.add(email);
         panel.add(email2);
         

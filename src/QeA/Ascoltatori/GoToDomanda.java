@@ -41,8 +41,8 @@ public class GoToDomanda implements MouseListener{
         ListeQuery.caricaRisposteDomanda();
         
         domanda = new DomandaPanel();
-        for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
-            domanda.risposte2.append(Applicazione.risposteAttuali.get(i).toString());
+        for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
+            domanda.risposte2.append(Applicazione.listaRisposteAttuali.get(i).toString());
         }
         
         Grafica.container.add(domanda, "domanda");

@@ -20,12 +20,11 @@ import javax.swing.JTextArea;
  * @author te4o
  */
 public class InsertQuery {
-    
-    private static String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-    private static String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-    
+
     public static void inserisciLibro(String titolo, String descrizione, int prezzo){
         
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
         String titoloQuery = titolo.replaceAll("'", "\\\\'");
         String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
         
@@ -42,11 +41,13 @@ public class InsertQuery {
 
     public static void inserisciAppunto(String nome, String descrizione){
         
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
         String nomeQuery = nome.replaceAll("'", "\\\\'");
         String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
         
-        String insertAppunto = "INSERT INTO appunti VALUES ('"+nomeQuery+"', '"+descrizioneQuery+"', '"+0+"', '"+Applicazione.guest.getEmail()+"', '"+corsoQuery+"', '"+facoltàQuery+"');";
-        
+        String insertAppunto = "INSERT INTO appunti VALUES ('"+nomeQuery+"', '"+descrizioneQuery+"', '"+Applicazione.guest.getEmail()+"', '"+corsoQuery+"', '"+facoltàQuery+"');";
+        System.out.println(insertAppunto);
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppunto);
                 ps1.execute();
@@ -86,7 +87,7 @@ public class InsertQuery {
         String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
         String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
         
-        String insertDomanda= "INSERT INTO domande VALUES ('"+corsoQuery+"','"+Applicazione.guest.getEmail()+"','"+titoloQuery+"', '"+domandaQuery+"', 0,'"+facoltàQuery+"');";
+        String insertDomanda= "INSERT INTO domande VALUES ('"+titoloQuery+"', '"+domandaQuery+"', '"+Applicazione.guest.getEmail()+"',0, '"+corsoQuery+"', '"+facoltàQuery+"');";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomanda);
@@ -118,6 +119,8 @@ public class InsertQuery {
     public static void inserisciValutazione(JTextArea commento, JSlider punteggio){
         
         String commentoQuery = commento.getText().replaceAll("'", "\\\\'");
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
         
         String inserisciValutazione = "INSERT INTO valutazioni VALUES ('"+Applicazione.appuntoAttuale.getNome()+"','"+Applicazione.guest.getEmail()+"'"
                 + ",'"+commentoQuery+"','"+punteggio.getValue()+"', '"+facoltàQuery+"', '"+corsoQuery+"')";
@@ -132,13 +135,14 @@ public class InsertQuery {
     
     }
     
-       public static void inserisciLikeDomanda(){
+    public static void inserisciLikeDomanda(){
         
           String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
           String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
           String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+          String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
         
-        String insertLikeDomanda = "INSERT INTO likeDomanda VALUES ('"+corsoQuery+"', '"+domandaQuery+"', '"+studenteQuery+"')";
+        String insertLikeDomanda = "INSERT INTO likeDomanda VALUES ('"+corsoQuery+"', '"+domandaQuery+"', '"+studenteQuery+"', '"+facoltàQuery+"')";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);

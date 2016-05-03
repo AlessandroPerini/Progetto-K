@@ -38,8 +38,8 @@ public class AggiungiRisposta implements ActionListener{
         ListeQuery.caricaRisposteDomanda();
 
         String s="";
-         for(int i = 0;i < Applicazione.risposteAttuali.size();i++){
-          s= (s+Applicazione.risposteAttuali.get(i).toString());
+         for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
+          s= (s+Applicazione.listaRisposteAttuali.get(i).toString());
         }
          
         GoToDomanda.getDomanda().risposte2.setText(s);

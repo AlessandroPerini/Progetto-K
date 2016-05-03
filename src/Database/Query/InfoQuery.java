@@ -93,10 +93,9 @@ public class InfoQuery {
 
                     String nomeAppunto = rs.getString("nome");
                     String descrizioneAppunto = rs.getString("descrizione");
-                    int mediaAppunto = rs.getInt("media");
                     String emailAppunto = rs.getString("studente");
 
-                    Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, mediaAppunto, emailAppunto);
+                    Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto);
 
                 }
                 }   catch (SQLException ex) {   
@@ -128,36 +127,6 @@ public class InfoQuery {
                 }
          return media;
         
-    }
-
-    public static boolean controlloLike(){
-          String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
-          String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
-          String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-
-          String sql = "Select * from likeDomanda where studente= '"+studenteQuery+"' and domanda= '"+domandaQuery+"'and corso= '"+corsoQuery+"'";
-          boolean bool=true;
-          try{
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
-
-                ResultSet rs = ps1.executeQuery();
-                
-
-                if(rs.next()){
-                    bool= false;
-                }
-                else{ 
-                    bool= true;
-                
-                }
-                
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
-        
-         return bool;
-        
-     
     }
 
 }

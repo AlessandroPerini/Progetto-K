@@ -54,7 +54,6 @@ public class AggiungiDomandaPanel extends JPanel{
         descrizione2.setWrapStyleWord(true);
         titolo2.setLineWrap(true);
         
-       
         JButton aggiungi = new JButton("Aggiungi");
         AggiungiDomanda aggiungiDomanda = new AggiungiDomanda(titolo2, descrizione2);
         aggiungi.addActionListener(aggiungiDomanda); 

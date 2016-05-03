@@ -7,7 +7,9 @@ package Appunti.Vista;
 
 import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
 import Appunti.Ascoltatori.Vota;
+import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
 import Header.TopPanel;
 import java.awt.Color;
@@ -65,6 +67,10 @@ public class AppuntoPanel extends JPanel{
         Vota vota = new Vota(commento, punteggio);
         valuta.addActionListener(vota);
         
+        JButton recensioni = new JButton("Recensioni");
+        GoToRecensioniAppuntoPanel goToRecensioniAppuntoPanel = new GoToRecensioniAppuntoPanel();
+        recensioni.addActionListener(goToRecensioniAppuntoPanel);
+        
         panel.add(nome);
         panel.add(nome2);
         panel.add(descrizione);
@@ -73,9 +79,12 @@ public class AppuntoPanel extends JPanel{
         panel.add(media2);
         panel.add(email);
         panel.add(email2);
-        panel.add(punteggio);
-        panel.add(commento);
-        panel.add(valuta);
+        if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
+            panel.add(punteggio);
+            panel.add(commento);
+            panel.add(valuta);
+        }
+        panel.add(recensioni);
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             

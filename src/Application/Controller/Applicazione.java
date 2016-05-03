@@ -13,6 +13,7 @@ import QeA.Risposta;
 import Studente.Studente;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
+import Valutazione.Valutazione;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -33,19 +34,19 @@ public class Applicazione {
     public static String corsoPremuto;
     
     //per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout()
-    
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
     public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
     public static ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
     public static ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
-    public static ArrayList<Risposta> risposteAttuali = new ArrayList<>();
+    public static ArrayList<Risposta> listaRisposteAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
-    public static ArrayList<String> ramiFacoltà = new ArrayList<>();
+    public static ArrayList<String> listaRamiFacoltà = new ArrayList<>();
+    public static ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
     public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
     public static Domanda domandaAttuale = new  Domanda("", "", "");
-    public static Appunto appuntoAttuale = new Appunto("", "", 0, "");
+    public static Appunto appuntoAttuale = new Appunto("", "", "");
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();
@@ -87,7 +88,7 @@ public class Applicazione {
     }
     
     public static void svuotaRisposte() {
-        risposteAttuali.clear();
+        listaRisposteAttuali.clear();
     }
     
     public static void svuotaMieiDati() {
@@ -101,7 +102,11 @@ public class Applicazione {
     }
     
     public static void svuotaRami(){
-        ramiFacoltà.clear();
+        listaRamiFacoltà.clear();
+    }
+    
+    public static void svuotaRecensioni(){
+        listaValutazioniAttuali.clear();
     }
     
     public static void logout(){
@@ -116,6 +121,7 @@ public class Applicazione {
         svuotaRisposte();
         svuotaMieiDati();
         svuotaListaFacoltàXRamo();
+        svuotaRecensioni();
         svuotaRami();
     }
 

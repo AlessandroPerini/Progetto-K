@@ -8,22 +8,15 @@ package QeA.Vista;
 import QeA.Ascoltatori.EliminaDomanda;
 import QeA.Ascoltatori.AggiungiRisposta;
 import Application.Controller.Applicazione;
-import static Database.Query.InfoQuery.controlloLike;
+import Database.Query.InfoQuery;
+import Database.Query.ControlloQuery;
 import Header.TopPanel;
 import QeA.Ascoltatori.AggiungiLike;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Facoltà;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.security.auth.login.AppConfigurationEntry;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,7 +29,6 @@ import javax.swing.JTextArea;
  */
 public class DomandaPanel extends JPanel{
 
- 
     private JButton rispondi, elimina, like2;
     private TopPanel top;
     private JPanel panel;
@@ -44,8 +36,7 @@ public class DomandaPanel extends JPanel{
     private JTextArea descrizione2, rispondiArea;
     public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
-    
-    AggiungiRisposta risposta;
+    private AggiungiRisposta risposta;
    
     public DomandaPanel() {
         
@@ -144,7 +135,7 @@ public class DomandaPanel extends JPanel{
             gbc.insets = new Insets(15, 30, 0, 10);
             gbc.anchor = GridBagConstraints.LINE_START;
             panel.add(this.like2, gbc);
-        if(!controlloLike()){
+        if(!ControlloQuery.controlloLikeDomanda()){
             like2.setEnabled(false);
         }else{
             like2.setEnabled(true);

@@ -35,21 +35,22 @@ public class DoLogin implements ActionListener, KeyListener{
     
     public static void doIt(){
         
-            LoginQuery.login(email.getText()+"@universitadipavia.it", password.getText());
-        
-            if(Applicazione.utenteLoggato){
-                String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
-                JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
-                AccountPanel account = new AccountPanel();
-                Grafica.container.add(account,"account");
-            }
-            else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
-}
-            
+        if ((!email.getText().equals(""))&&(!password.getText().equals(""))) {
+           LoginQuery.login(email.getText()+"@universitadipavia.it", password.getText()); 
+           
+           if(Applicazione.utenteLoggato){
+            String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
+            JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
             AccountPanel account = new AccountPanel();
             Grafica.container.add(account,"account");
-                
-            
+            }
+            else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Inserisci prima email e password.","Parametro/i mancante/i" , JOptionPane.ERROR_MESSAGE);
+        }
+     
     }
     
     @Override

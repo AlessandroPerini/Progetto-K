@@ -33,10 +33,10 @@ import javax.swing.border.TitledBorder;
 public class ListaFacoltàPanel extends JPanel{
 
     private JLabel[] facoltà = new JLabel[Applicazione.listaFacoltàAttuali.size()];
-    private JPanel[] pannelli = new JPanel[Applicazione.ramiFacoltà.size()];
-    private JScrollPane[] scrollP = new JScrollPane[Applicazione.ramiFacoltà.size()];
+    private JPanel[] pannelli = new JPanel[Applicazione.listaRamiFacoltà.size()];
+    private JScrollPane[] scrollP = new JScrollPane[Applicazione.listaRamiFacoltà.size()];
    
-    private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.ramiFacoltà.size()];
+    private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
     private JPanel panel;
     private TopPanel top;
         
@@ -50,12 +50,12 @@ public class ListaFacoltàPanel extends JPanel{
 
             CaricaCorsi caricaCorsi = new CaricaCorsi();
 
-             for (int i = 0; i < Applicazione.ramiFacoltà.size(); i++) {
+             for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
 
-                ListeQuery.caricaFacoltà(Applicazione.ramiFacoltà.get(i));
+                ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
                 pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1));
                 scrollP[i] = new JScrollPane();
-                titoloBordo[i] = new TitledBorder(Applicazione.ramiFacoltà.get(i));
+                titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
                 titoloBordo[i].setTitleFont(new Font("Arial", Font.BOLD, 15));
                 titoloBordo[i].setTitleColor(Color.RED);
                 pannelli[i].setBorder(titoloBordo[i]);

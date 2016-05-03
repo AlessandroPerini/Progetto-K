@@ -32,14 +32,19 @@ public class Vota implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        InsertQuery.inserisciValutazione(commento, punteggio);
+        if (!commento.getText().equals("")) {
+            InsertQuery.inserisciValutazione(commento, punteggio);
         
-        JOptionPane.showMessageDialog(null, "Valutazione aggiunta correttamente.", "Valutazione Confermata", JOptionPane.INFORMATION_MESSAGE);
-        
-        AppuntoPanel appunto = new AppuntoPanel();
-        
-        Grafica.container.add(appunto, "appunto");
-        Grafica.card.show(Grafica.container, "appunto");
+            JOptionPane.showMessageDialog(null, "Valutazione aggiunta correttamente.", "Valutazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+
+            AppuntoPanel appunto = new AppuntoPanel();
+
+            Grafica.container.add(appunto, "appunto");
+            Grafica.card.show(Grafica.container, "appunto"); 
+        }
+        else{
+            JOptionPane.showMessageDialog(null, "Inserisci prima un commento alla tua valutazione.", "Commento Mancante", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     

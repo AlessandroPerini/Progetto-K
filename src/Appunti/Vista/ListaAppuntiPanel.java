@@ -10,7 +10,6 @@ import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Header.TopPanel;
-import Università.Corsi.Ascoltatori.CercaCorsi;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;

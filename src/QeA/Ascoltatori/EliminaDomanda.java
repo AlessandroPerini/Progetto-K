@@ -23,20 +23,23 @@ public class EliminaDomanda implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DeleteQuery.eliminaDomanda();
+        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
         
-        JOptionPane.showMessageDialog(null, "Domanda eliminata correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
-        
-        Applicazione.svuotaDomande();
-        
-        ListeQuery.caricaDomande();
-        
-        Applicazione.back.remove(Applicazione.back.size()-1);
+        if(showConfirmDialog == 0 ){
+            DeleteQuery.eliminaDomanda();
 
-        ListaDomandePanel domande = new ListaDomandePanel();
-        Grafica.container.add(domande, "domande");
-        Grafica.card.show(Grafica.container, "domande");
-        
+            JOptionPane.showMessageDialog(null, "Domanda eliminata correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+
+            Applicazione.svuotaDomande();
+
+            ListeQuery.caricaDomande();
+
+            Applicazione.back.remove(Applicazione.back.size()-1);
+
+            ListaDomandePanel domande = new ListaDomandePanel();
+            Grafica.container.add(domande, "domande");
+            Grafica.card.show(Grafica.container, "domande");
+        }
     }
     
 }

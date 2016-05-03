@@ -23,19 +23,24 @@ public class EliminaAppunto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        DeleteQuery.eliminaAppunto();
+        int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Conferma", JOptionPane.YES_NO_OPTION);
         
-        JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+        if(showConfirmDialog == 0 ){
+            DeleteQuery.eliminaAppunto();
         
-        Applicazione.svuotaAppunti();
-        
-        ListeQuery.caricaAppunti();
-        
-        Applicazione.back.remove(Applicazione.back.size()-1);
+            JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
 
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-        Grafica.container.add(appunti, "appunti");
-        Grafica.card.show(Grafica.container, "appunti");
+            Applicazione.svuotaAppunti();
+
+            ListeQuery.caricaAppunti();
+
+            Applicazione.back.remove(Applicazione.back.size()-1);
+
+            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+            Grafica.container.add(appunti, "appunti");
+            Grafica.card.show(Grafica.container, "appunti");
+        }
+        
         
     }
     

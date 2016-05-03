@@ -48,6 +48,8 @@ public class TopPanel extends JPanel{
                         break;
                     case "i miei dati": Applicazione.svuotaMieiDati();
                         break;
+                    case "recensioni": Applicazione.svuotaRecensioni();
+                        break;
                     case "facoltà cercate": Applicazione.svuotaFacoltà();
                                             ListeQuery lQuery1 = new ListeQuery();
                                             lQuery1.caricaFacoltà();

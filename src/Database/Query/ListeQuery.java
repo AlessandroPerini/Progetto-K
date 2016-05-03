@@ -13,6 +13,7 @@ import QeA.Risposta;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
+import Valutazione.Valutazione;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -139,10 +140,9 @@ public class ListeQuery {
 
                 String nomeAppunto = rs.getString("nome");
                 String descrizioneAppunto = rs.getString("descrizione");
-                int mediaAppunto = rs.getInt("media");
                 String emailAppunto = rs.getString("studente");
                 
-                Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, mediaAppunto, emailAppunto);
+                Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto);
                 Applicazione.listaAppuntiAttuali.add(appunto);
 
                 }
@@ -167,15 +167,13 @@ public class ListeQuery {
                 String risposta = rs.getString("risposta");
      
                 Risposta rispsta = new Risposta(risposta, domanda, like, dislike, studente);
-                Applicazione.risposteAttuali.add(rispsta);
+                Applicazione.listaRisposteAttuali.add(rispsta);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
+
     public static void caricaRamiFacoltà(){
         
         String sql = "select distinct ramo from facoltà";
@@ -189,7 +187,7 @@ public class ListeQuery {
 
                     String ramo = rs.getString("ramo");
                     
-                    Applicazione.ramiFacoltà.add(ramo);
+                    Applicazione.listaRamiFacoltà.add(ramo);
 
                 }
                 }   catch (SQLException ex) {   
@@ -202,21 +200,48 @@ public class ListeQuery {
         String selectFacoltà = "select * from facoltà where ramo = '"+ramo+"'";
         
         try{
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
 
-                ResultSet rs = ps1.executeQuery();
+            ResultSet rs = ps1.executeQuery();
 
-                while(rs.next()){
-                    
-                    String nome = rs.getString("nome");
-                    String ram = rs.getString("ramo");
-                    Facoltà facoltà = new Facoltà(nome, ram);
-                    Applicazione.listaFacoltàXRamo.add(facoltà);
+            while(rs.next()){
 
-                }
-                }   catch (SQLException ex) {   
-                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                String nome = rs.getString("nome");
+                String ramo1 = rs.getString("ramo");
+                Facoltà facoltà = new Facoltà(nome, ramo1);
+                Applicazione.listaFacoltàXRamo.add(facoltà);
+
+            }
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void caricaRecensioniAppunto(){
+    
+        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+        String appuntoQuery = Applicazione.appuntoAttuale.getNome().replaceAll("'", "\\\\'");
+        
+        String selectRecensioni = "select * from valutazioni where facoltà = '"+facoltàQuery+"' and corso = '"+corsoQuery+"' and appunto='"+appuntoQuery+"'";
+        
+        try{
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRecensioni);
+
+            ResultSet rs = ps1.executeQuery();
+
+            while(rs.next()){
+
+                String studente = rs.getString("studente");
+                int punteggio = rs.getInt("punteggio");
+                String commento = rs.getString("commento");
+                Valutazione valutazione = new Valutazione(commento, punteggio, studente);
+                Applicazione.listaValutazioniAttuali.add(valutazione);
+
+            }
+            }   catch (SQLException ex) {   
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
     }
     
 }
