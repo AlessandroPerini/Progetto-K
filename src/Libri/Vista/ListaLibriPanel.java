@@ -8,7 +8,7 @@ package Libri.Vista;
 import Libri.Ascoltatori.GoToLibro;
 import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Ascoltatori.GoToCorso;
 import java.awt.CardLayout;
@@ -28,13 +28,13 @@ import javax.swing.SwingConstants;
  */
 public class ListaLibriPanel extends JPanel{
     
-    private JButton[] libri = new JButton[Applicazione.ListaLibriAttuali.size()];
+    private JButton[] libri = new JButton[Applicazione.listaLibriAttuali.size()];
 
     public ListaLibriPanel() {
     
         TopPanel top = new TopPanel("Libri "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaLibriAttuali.size()+2, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaLibriAttuali.size()+2, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -54,9 +54,9 @@ public class ListaLibriPanel extends JPanel{
         
         GoToLibro goToLibro = new GoToLibro();
         
-        for (int i = 0; i < Applicazione.ListaLibriAttuali.size(); i++) {
+        for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
             libri[i] = new JButton();
-            libri[i].setText(Applicazione.ListaLibriAttuali.get(i).getTitolo());
+            libri[i].setText(Applicazione.listaLibriAttuali.get(i).getTitolo());
             libri[i].addActionListener(goToLibro);
             panel.add(libri[i]);
         }

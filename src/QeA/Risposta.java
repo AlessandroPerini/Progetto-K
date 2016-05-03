@@ -13,10 +13,10 @@ public class Risposta {
     
     private String titolo;
     private String domanda;
-    private String id;
+    private int id;
     private int like;
 
-    public Risposta(String titolo, String domanda, String id, int like) {
+    public Risposta(String titolo, String domanda, int id, int like) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.id = id;

@@ -6,7 +6,7 @@
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import Studente.Ascoltatori.GoToAppuntoGuest;
 import Studente.Ascoltatori.GoToDomandaGuest;
 import Studente.Ascoltatori.GoToLibroGuest;
@@ -32,7 +32,7 @@ public class iMieiDatiPanel extends JPanel{
     
     public iMieiDatiPanel() {
         
-        TopPanel top = new TopPanel("I Miei Dati");
+        TopPanel top = new TopPanel("Mie Attività");
         
         JPanel panel = new JPanel(new GridLayout(n+3, 1));
         

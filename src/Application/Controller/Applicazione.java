@@ -31,13 +31,15 @@ public class Applicazione {
     public static String facoltàPremuta;
     public static String corsoPremuto;
     
+    //per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout()
+    
     public static ArrayList<String> listaFacoltàXRamo = new ArrayList<>();
     public static ArrayList<String> ramiFacoltà = new ArrayList<>();
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
-    public static ArrayList<Libro> ListaLibriAttuali = new ArrayList<>();
-    public static ArrayList<Domanda> ListaDomandeAttuali = new ArrayList<>();
-    public static ArrayList<Appunto> ListaAppuntiAttuali = new ArrayList<>();
+    public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
+    public static ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
+    public static ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
     public static ArrayList<String> risposteAttuali = new ArrayList<>();  
     
     public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
@@ -72,15 +74,15 @@ public class Applicazione {
     }
     
     public static void svuotaLibri() {
-        ListaLibriAttuali.clear();
+        listaLibriAttuali.clear();
     }
     
     public static void svuotaDomande() {
-        ListaDomandeAttuali.clear();
+        listaDomandeAttuali.clear();
     }
     
     public static void svuotaAppunti() {
-        ListaAppuntiAttuali.clear();
+        listaAppuntiAttuali.clear();
     }
     
     public static void svuotaRisposte() {
@@ -95,6 +97,25 @@ public class Applicazione {
     
     public static void svuotaListaFacoltàXRamo(){
         listaFacoltàXRamo.clear();
+    }
+    
+    public static void svuotaRami(){
+        ramiFacoltà.clear();
+    }
+    
+    public static void logout(){
+       
+        eliminaUtente();
+        
+        svuotaCorsi();;
+        svuotaFacoltà();
+        svuotaLibri();
+        svuotaDomande();
+        svuotaAppunti();
+        svuotaRisposte();
+        svuotaMieiDati();
+        svuotaListaFacoltàXRamo();
+        svuotaRami();
     }
 
 }

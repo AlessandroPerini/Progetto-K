@@ -6,7 +6,7 @@
 package QeA.Vista;
 
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import QeA.Ascoltatori.AggiungiDomanda;
 import java.awt.CardLayout;
 import java.awt.Dimension;

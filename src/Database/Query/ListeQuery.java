@@ -89,7 +89,7 @@ public class ListeQuery {
                 int prezzoLibro = rs.getInt("prezzo");
                 
                 Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro);
-                Applicazione.ListaLibriAttuali.add(libro);
+                Applicazione.listaLibriAttuali.add(libro);
                 
                 }
                 }   catch (SQLException ex) {   
@@ -116,7 +116,7 @@ public class ListeQuery {
                 int likeDomanda = rs.getInt("like");
                
                 Domanda domanda = new Domanda(titoloDomanda, likeDomanda, testoDomanda, studenteDomanda);
-                Applicazione.ListaDomandeAttuali.add(domanda);
+                Applicazione.listaDomandeAttuali.add(domanda);
                 
                 }
                 }   catch (SQLException ex) {   
@@ -143,7 +143,7 @@ public class ListeQuery {
                 String emailAppunto = rs.getString("studente");
                 
                 Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, mediaAppunto, emailAppunto);
-                Applicazione.ListaAppuntiAttuali.add(appunto);
+                Applicazione.listaAppuntiAttuali.add(appunto);
 
                 }
                 }   catch (SQLException ex) {   
@@ -173,7 +173,7 @@ public class ListeQuery {
     
     public static void caricaRamiFacoltà(){
         
-        String sql = "select  distinct ramo from facoltà";
+        String sql = "select distinct ramo from facoltà";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);

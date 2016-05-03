@@ -7,7 +7,7 @@ package Università.Corsi.Vista;
 
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import Università.Corsi.Ascoltatori.CercaCorsi;
 import java.awt.CardLayout;
 import java.awt.Dimension;

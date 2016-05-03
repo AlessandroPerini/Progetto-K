@@ -8,7 +8,7 @@ package Università.Facolta.Vista;
 import Application.Controller.Applicazione;
 import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import Database.Query.ListeQuery;
-import Panel.TopPanel;
+import Header.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.awt.Color;
 import java.awt.Dimension;

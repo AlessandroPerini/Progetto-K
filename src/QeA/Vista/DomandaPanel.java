@@ -8,7 +8,7 @@ package QeA.Vista;
 import QeA.Ascoltatori.EliminaDomanda;
 import QeA.Ascoltatori.AggiungiRisposta;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -52,7 +52,6 @@ public class DomandaPanel extends JPanel{
         add(top);
         add(scrollPanel1);
     }
-    
     
     public void build(){
         

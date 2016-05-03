@@ -8,7 +8,7 @@ package Università.Corsi.Vista;
 import Appunti.Ascoltatori.CaricaAppunti;
 import Application.Controller.Applicazione;
 import Libri.Ascoltatori.CaricaLibri;
-import Panel.TopPanel;
+import Header.TopPanel;
 import QeA.Ascoltatori.CaricaDomande;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;

@@ -7,7 +7,7 @@ package Libri.Vista;
 
 import Libri.Ascoltatori.AggiungiLibro;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -63,6 +63,7 @@ public class AggiungiLibroPanel extends JPanel{
         euro.setFont(new Font("Arial", Font.PLAIN, 20));
         prezzo2.setFont(new Font("Arial", Font.PLAIN, 20));
         ((DefaultEditor)prezzo2.getEditor()).getTextField().setEditable(false);
+        
         JButton aggiungi = new JButton("Aggiungi");
         AggiungiLibro aggiungiLibro = new AggiungiLibro(titolo2, descrizione2, prezzo2);
         aggiungi.addActionListener(aggiungiLibro);

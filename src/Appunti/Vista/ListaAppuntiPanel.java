@@ -8,7 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -25,13 +25,13 @@ import javax.swing.SwingConstants;
  */
 public class ListaAppuntiPanel extends JPanel{
     
-    private JButton[] appunti = new JButton[Applicazione.ListaAppuntiAttuali.size()];
+    private JButton[] appunti = new JButton[Applicazione.listaAppuntiAttuali.size()];
 
     public ListaAppuntiPanel() {
     
         TopPanel top = new TopPanel("Appunti "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.ListaAppuntiAttuali.size()+2, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaAppuntiAttuali.size()+2, 1));
         
         JPanel searchPanel = new JPanel();
             JTextField searchField = new JTextField(30);
@@ -51,9 +51,9 @@ public class ListaAppuntiPanel extends JPanel{
 
         GoToAppunto goToAppunto = new GoToAppunto();
         
-        for (int i = 0; i < Applicazione.ListaAppuntiAttuali.size(); i++) {
+        for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
             appunti[i] = new JButton();
-            appunti[i].setText(Applicazione.ListaAppuntiAttuali.get(i).getNome());
+            appunti[i].setText(Applicazione.listaAppuntiAttuali.get(i).getNome());
             appunti[i].addActionListener(goToAppunto);
             panel.add(appunti[i]);
         }

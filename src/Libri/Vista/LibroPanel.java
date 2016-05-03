@@ -7,7 +7,7 @@ package Libri.Vista;
 
 import Libri.Ascoltatori.EliminaLibro;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;

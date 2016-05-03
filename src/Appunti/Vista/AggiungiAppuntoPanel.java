@@ -8,7 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
 import Libri.Ascoltatori.AggiungiLibro;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -37,7 +37,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         
         JLabel nome = new JLabel("Nome :");
         JLabel descrizione = new JLabel("Descrizione :");
-        JLabel media = new JLabel("Prezzo :");
+        JLabel media = new JLabel("Media :");
         JLabel email = new JLabel("Email :");
         
         nome2 = new JTextArea("");

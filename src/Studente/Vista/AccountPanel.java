@@ -83,9 +83,7 @@ public class AccountPanel extends JPanel{
 
                     Grafica.card.show(Grafica.container, "login");
                     LoginPanel.clearForm();
-                    Applicazione.eliminaUtente();
-                    Applicazione.svuotaCorsi();
-                    Applicazione.svuotaFacoltà();
+                    Applicazione.logout();
                 }
             }
         });
@@ -93,7 +91,7 @@ public class AccountPanel extends JPanel{
         JPanel logoutPanel = new JPanel();
         logoutPanel.add(logout);
         
-        JButton iMieiDati = new JButton("I miei dati");
+        JButton iMieiDati = new JButton("Mie Attività");
         iMieiDati.setPreferredSize(new Dimension(120, 75));
         CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati();
         iMieiDati.addActionListener(caricaIMieiDati);

@@ -8,7 +8,7 @@ package QeA.Vista;
 import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
 import Application.Controller.Applicazione;
-import Panel.TopPanel;
+import Header.TopPanel;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -31,8 +31,8 @@ import javax.swing.SwingConstants;
  */
 public class ListaDomandePanel extends JPanel{
     
-    //private JButton[] domande = new JButton[Applicazione.ListaDomandeAttuali.size()];
-    private JLabel[] domande = new JLabel[Applicazione.ListaDomandeAttuali.size()];
+    //private JButton[] domande = new JButton[Applicazione.listaDomandeAttuali.size()];
+    private JLabel[] domande = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JButton addDomanda, searchButton;
     private JTextField searchField;
     public ListaDomandePanel() {
@@ -66,9 +66,9 @@ public class ListaDomandePanel extends JPanel{
         
         addDomanda.addActionListener(goToAggiungiDomanda);
                 
-        for (int i = 0; i < Applicazione.ListaDomandeAttuali.size(); i++) {
+        for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
             domande[i] = new JLabel();
-            domande[i].setText(Applicazione.ListaDomandeAttuali.get(i).getTitolo());
+            domande[i].setText(Applicazione.listaDomandeAttuali.get(i).getTitolo());
             domande[i].setName("domande"+i);
             domande[i].addMouseListener(goToDomanda);
             gbcImg.gridx = 0;

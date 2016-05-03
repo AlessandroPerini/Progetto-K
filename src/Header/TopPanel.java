@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Panel;
+package Header;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
-import Libri.Ascoltatori.CaricaLibri;
 import Login.LoginPanel;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Ascoltatori.CaricaFacoltà;
-import Università.Facolta.Vista.ListaFacoltàPanel;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -100,9 +95,7 @@ public class TopPanel extends JPanel{
 
                         Grafica.card.show(Grafica.container, "login");
                         LoginPanel.clearForm();
-                        Applicazione.eliminaUtente();
-                        Applicazione.svuotaCorsi();
-                        Applicazione.svuotaFacoltà();
+                        Applicazione.logout();
                         Applicazione.back.clear();
                     }
                     resetMenu();
