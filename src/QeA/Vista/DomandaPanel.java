@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -8,12 +8,22 @@ package QeA.Vista;
 import QeA.Ascoltatori.EliminaDomanda;
 import QeA.Ascoltatori.AggiungiRisposta;
 import Application.Controller.Applicazione;
+import static Database.Query.InfoQuery.controlloLike;
 import Header.TopPanel;
+import QeA.Ascoltatori.AggiungiLike;
+import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Facolta.Facoltà;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.security.auth.login.AppConfigurationEntry;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,10 +37,10 @@ import javax.swing.JTextArea;
 public class DomandaPanel extends JPanel{
 
  
-    private JButton rispondi, elimina;
+    private JButton rispondi, elimina, like2;
     private TopPanel top;
     private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, like, email, email2, like2, risposte,rispondiLabel;
+    private JLabel titolo, titolo2, descrizione, like, email, email2, risposte,rispondiLabel;
     private JTextArea descrizione2, rispondiArea;
     public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
@@ -126,12 +136,19 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.like, gbc);
         
         //colonna 1
-        this.like2 = new JLabel(Integer.toString(Applicazione.domandaAttuale.getLike()));
-	gbc.gridx = 1;
-	gbc.gridy = 3;
-	gbc.insets = new Insets(15, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.like2, gbc);
+        AggiungiLike aggiungiLike = new AggiungiLike();
+        this.like2 = new JButton("Like");
+        like2.addActionListener(aggiungiLike);
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(15, 30, 0, 10);
+            gbc.anchor = GridBagConstraints.LINE_START;
+            panel.add(this.like2, gbc);
+        if(!controlloLike()){
+            like2.setEnabled(false);
+        }else{
+            like2.setEnabled(true);
+        }
         
         
         this.risposte = new JLabel("Risposte Date:");
@@ -197,6 +214,8 @@ public class DomandaPanel extends JPanel{
             panel.add(this.elimina, gbc);
         }
     }
+    
+ 
     
 }
     

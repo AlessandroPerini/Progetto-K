@@ -12,13 +12,11 @@ package QeA;
 public class Domanda { 
     
     private String titolo;
-    private int like;
     private String domanda;
     private String studente;
 
-    public Domanda(String titolo, int like, String domanda, String studente) {
+    public Domanda(String titolo, String domanda, String studente) {
         this.titolo = titolo;
-        this.like = like;
         this.domanda = domanda;
         this.studente = studente;
     }
@@ -33,10 +31,6 @@ public class Domanda {
 
     public void setTitolo(String titolo) {
         this.titolo = titolo;
-    }
-
-    public int getLike() {
-        return like;
     }
 
     public String getDomanda() {

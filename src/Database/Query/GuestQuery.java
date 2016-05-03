@@ -89,9 +89,8 @@ public class GuestQuery {
                 String titoloDomanda = rs.getString("titolo");
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
-                int likeDomanda = rs.getInt("like");
                
-                Domanda domanda = new Domanda(titoloDomanda, likeDomanda, testoDomanda, studenteDomanda);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
                 Applicazione.domandeGuest.add(domanda);
                 
                 }

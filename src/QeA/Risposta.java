@@ -24,6 +24,32 @@ public class Risposta {
         this.like = like;
         this.email = email;
     }
+
+     public String setNickname() {
+        String s = email;
+        s = s.replace(".", ",");
+        String parts[] = s.split(",");
+        String nome = parts[0];
+        String cognome = parts[1].charAt(0)+"";
+        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
+        return  nome+" "+cognome+".";
+    }
+    @Override
+    public String toString() {
+        return setNickname()+": \n"  + titolo+"\n"+"--------------------------------------------------------------------";
+    }
+
+    public String getTitolo() {
+        return titolo;
+    }
+    
+    
+    
+     
+    
+    
+    
     
  
 }

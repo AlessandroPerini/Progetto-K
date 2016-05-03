@@ -68,9 +68,8 @@ public class InfoQuery {
                     String titoloDomanda = rs.getString("titolo");
                     String testoDomanda = rs.getString("domanda");
                     String studenteDomanda = rs.getString("studente");
-                    int likeDomanda = rs.getInt("like");
 
-                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, likeDomanda, testoDomanda, studenteDomanda);
+                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
 
                 }
                 }   catch (SQLException ex) {   
@@ -128,6 +127,38 @@ public class InfoQuery {
                 Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
                 }
          return media;
+        
+    }
+
+    public static boolean controlloLike(){
+          String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
+          String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
+          String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+
+          String sql = "Select * from likeDomanda where studente= '"+studenteQuery+"' and domanda= '"+domandaQuery+"'and corso= '"+corsoQuery+"'";
+          boolean bool=true;
+          try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+
+                ResultSet rs = ps1.executeQuery();
+                
+
+                if(rs.next()){
+                    bool= false;
+                    System.err.println("entrato true");
+                }
+                else{ bool= true;
+                System.err.println("entrato false");
+                
+                }
+                
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+         return bool;
+        
+     
     }
 
 }
