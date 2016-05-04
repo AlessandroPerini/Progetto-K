@@ -30,7 +30,7 @@ public class LoginPanel extends JPanel{
     
     private static JTextField email = new JTextField();
     private static JPasswordField password = new JPasswordField();
-    private JLabel emailLabel, passwordLabel, at, line,img;
+    private JLabel emailLabel, passwordLabel, at, line, img;
 
     private JPanel down, centro, main, up;
     private JButton login;

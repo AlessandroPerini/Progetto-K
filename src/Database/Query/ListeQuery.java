@@ -54,6 +54,7 @@ public class ListeQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
 
                 ResultSet rs = ps1.executeQuery();
@@ -76,6 +77,7 @@ public class ListeQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibri);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -105,6 +107,7 @@ public class ListeQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -131,6 +134,7 @@ public class ListeQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppunti);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
 
@@ -157,8 +161,11 @@ public class ListeQuery {
         String nickname = "";
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
+            ps1.clearParameters();
             ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+            
             ResultSet rs = ps1.executeQuery();
+            
             while (rs.next()) {
                 String domanda = rs.getString("domanda");
                 String studente = rs.getString("studente");
@@ -197,10 +204,12 @@ public class ListeQuery {
     
     public static void caricaFacoltà(String ramo){
         
-        String selectFacoltà = "select * from facoltà where ramo = '"+ramo+"'";
+        String selectFacoltà = "select * from facoltà where ramo =?";
         
         try{
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+            ps1.clearParameters();
+            ps1.setString(1, ramo);
 
             ResultSet rs = ps1.executeQuery();
 

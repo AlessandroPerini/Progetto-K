@@ -7,13 +7,14 @@ package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.InfoQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTextArea;
 
 /**
  *
@@ -22,11 +23,13 @@ import javax.swing.JTextArea;
 public class AggiungiLike implements ActionListener{
 
     private JButton like;
+    private JLabel Nlike;
 
-    public AggiungiLike(JButton like) {
-        this.like = like; 
+    public AggiungiLike(JButton like, JLabel Nlike) {
+        this.like = like;
+        this.Nlike = Nlike;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -34,6 +37,8 @@ public class AggiungiLike implements ActionListener{
         
         JOptionPane.showMessageDialog(null, "Aggiunto.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
         like.setEnabled(false);
+        Nlike.setText(InfoQuery.likeDomanda()+" likes");
+        
         Applicazione.svuotaRisposte();
 
         ListeQuery.caricaRisposteDomanda();

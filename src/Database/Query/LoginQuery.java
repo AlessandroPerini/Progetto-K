@@ -28,6 +28,7 @@ public class LoginQuery {
         
         try{
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+            ps1.clearParameters();
             ps1.setString(1, email);
             ps1.setString(2, password);
             

@@ -22,16 +22,21 @@ import javax.swing.JTextArea;
 public class InsertQuery {
 
     public static void inserisciLibro(String titolo, String descrizione, int prezzo){
-        
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String titoloQuery = titolo.replaceAll("'", "\\\\'");
-        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
-        
-        String insertLibro = "INSERT INTO libri VALUES ('"+prossimoID("libri")+"', '"+titoloQuery+"', '"+descrizioneQuery+"', '"+facoltàQuery+"' ,'"+corsoQuery+"', '"+Applicazione.guest.getEmail()+"', '"+Applicazione.guest.getTelefono()+"', '"+prezzo+"');";
+
+        String insertLibro = "INSERT INTO libri VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLibro);
+                ps1.clearParameters();
+                ps1.setInt(1, prossimoID("libri"));
+                ps1.setString(2, titolo);
+                ps1.setString(3, descrizione);
+                ps1.setString(4, Applicazione.facoltàPremuta);
+                ps1.setString(5, Applicazione.corsoPremuto);
+                ps1.setString(6, Applicazione.guest.getEmail());
+                ps1.setString(7, Applicazione.guest.getTelefono());
+                ps1.setInt(8, prezzo);
+                
                 ps1.execute();
                 
             }   catch (SQLException ex) {   
@@ -41,15 +46,16 @@ public class InsertQuery {
 
     public static void inserisciAppunto(String nome, String descrizione){
         
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String nomeQuery = nome.replaceAll("'", "\\\\'");
-        String descrizioneQuery = descrizione.replaceAll("'", "\\\\'");
+        String insertAppunto = "INSERT INTO appunti VALUES (?, ?, ?, ?, ?);";
         
-        String insertAppunto = "INSERT INTO appunti VALUES ('"+nomeQuery+"', '"+descrizioneQuery+"', '"+Applicazione.guest.getEmail()+"', '"+corsoQuery+"', '"+facoltàQuery+"');";
-        System.out.println(insertAppunto);
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppunto);
+                ps1.clearParameters();
+                ps1.setString(1, nome);
+                ps1.setString(2, descrizione);
+                ps1.setString(3, Applicazione.guest.getEmail());              
+                ps1.setString(4, Applicazione.corsoPremuto);
+                ps1.setString(5, Applicazione.facoltàPremuta);
                 ps1.execute();
                 
                 }   catch (SQLException ex) {   
@@ -59,12 +65,15 @@ public class InsertQuery {
     
     public static int prossimoID(String tabella){
     
+        String tabellaQuery = tabella.replaceAll("'", "\\\\'");
+        
         int prossimoID = 0;
         
-        String selectId = "select max(id) as massimo from "+tabella;
+        String selectId = "select max(id) as massimo from "+tabellaQuery+"";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectId);
+                
                 ResultSet rs = ps1.executeQuery();
 
                 if(rs.next()) {
@@ -82,15 +91,17 @@ public class InsertQuery {
     
     public static void inserisciDomanda(String titolo, String domanda){
         
-        String titoloQuery = titolo.replaceAll("'", "\\\\'");
-        String domandaQuery = domanda.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        
-        String insertDomanda= "INSERT INTO domande VALUES ('"+titoloQuery+"', '"+domandaQuery+"', '"+Applicazione.guest.getEmail()+"',0, '"+corsoQuery+"', '"+facoltàQuery+"');";
+        String insertDomanda= "INSERT INTO domande VALUES (?, ?, ?, 0, ?, ?);";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomanda);
+                ps1.clearParameters();
+                ps1.setString(1, titolo);
+                ps1.setString(2, domanda);
+                ps1.setString(3, Applicazione.guest.getEmail());              
+                ps1.setString(4, Applicazione.corsoPremuto);
+                ps1.setString(5, Applicazione.facoltàPremuta);
+                
                 ps1.execute();
                 
             }   catch (SQLException ex) {   
@@ -100,15 +111,18 @@ public class InsertQuery {
     }
     
     public static void inserisciRisposta(String risposta){
-        
-        String rispostaQuery = risposta.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+
    
-        String insertRisposta = "INSERT INTO risposte VALUES (?,'"+Applicazione.guest.getEmail()+"','"+prossimoID("risposte")+"','"+rispostaQuery+"',0,0);";
+        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0);";
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(2, Applicazione.guest.getEmail());
+                ps1.setInt(3, prossimoID("risposte"));
+                ps1.setString(4, risposta);              
+
+                
                 ps1.execute();
                 
             }   catch (SQLException ex) {   
@@ -118,15 +132,18 @@ public class InsertQuery {
     
     public static void inserisciValutazione(JTextArea commento, JSlider punteggio){
         
-        String commentoQuery = commento.getText().replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        
-        String inserisciValutazione = "INSERT INTO valutazioni VALUES ('"+Applicazione.appuntoAttuale.getNome()+"','"+Applicazione.guest.getEmail()+"'"
-                + ",'"+commentoQuery+"','"+punteggio.getValue()+"', '"+facoltàQuery+"', '"+corsoQuery+"')";
+        String inserisciValutazione = "INSERT INTO valutazioni VALUES (?, ?, ?, ?, ?, ?)";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(inserisciValutazione);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+                ps1.setString(2, Applicazione.guest.getEmail());              
+                ps1.setString(3, commento.getText());
+                ps1.setInt(4, punteggio.getValue());
+                ps1.setString(5, Applicazione.facoltàPremuta);
+                ps1.setString(6, Applicazione.corsoPremuto);
+                
                 ps1.execute();
                 
             }   catch (SQLException ex) {   
@@ -137,15 +154,16 @@ public class InsertQuery {
     
     public static void inserisciLikeDomanda(){
         
-          String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
-          String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
-          String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-          String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        
-        String insertLikeDomanda = "INSERT INTO likeDomanda VALUES ('"+corsoQuery+"', '"+domandaQuery+"', '"+studenteQuery+"', '"+facoltàQuery+"')";
+        String insertLikeDomanda = "INSERT INTO likeDomanda VALUES (?, ?, ?, ?)";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.corsoPremuto);
+                ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(3, Applicazione.guest.getEmail());
+                ps1.setString(4, Applicazione.facoltàPremuta);
+                
                 ps1.execute();
                 
             }   catch (SQLException ex) {   

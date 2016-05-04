@@ -22,10 +22,13 @@ public class DeleteQuery {
         
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            String eliminaLibro = "delete from libri where titolo='"+Applicazione.libroAttuale.getTitolo()+"'";
+            String eliminaLibro = "delete from libri where titolo=?";
 
             try{
                     PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibro);
+                    ps1.clearParameters();
+                    ps1.setString(1, Applicazione.libroAttuale.getTitolo());
+                    
                     ps1.execute();
 
                     }   catch (SQLException ex) {   
@@ -38,10 +41,13 @@ public class DeleteQuery {
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))  {
             
-            String eliminaAppunto = "delete from appunti where nome='"+Applicazione.appuntoAttuale.getNome()+"'";
+            String eliminaAppunto = "delete from appunti where nome=?";
 
             try{
                     PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaAppunto);
+                    ps1.clearParameters();
+                    ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+                    
                     ps1.execute();
 
                     }   catch (SQLException ex) {   
@@ -54,10 +60,13 @@ public class DeleteQuery {
         
         if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            String eliminaDomanda = "delete from domande where titolo='"+Applicazione.domandaAttuale.getTitolo()+"'";
+            String eliminaDomanda = "delete from domande where titolo=?";
 
             try{
                     PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomanda);
+                    ps1.clearParameters();
+                    ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+                    
                     ps1.execute();
 
                     }   catch (SQLException ex) {   

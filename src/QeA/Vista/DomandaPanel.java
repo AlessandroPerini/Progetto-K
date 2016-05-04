@@ -32,7 +32,7 @@ public class DomandaPanel extends JPanel{
     private JButton rispondi, elimina, like2;
     private TopPanel top;
     private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, like, email, email2, risposte,rispondiLabel;
+    private JLabel titolo, titolo2, descrizione, like, email, email2, risposte,rispondiLabel, Nlike;
     private JTextArea descrizione2, rispondiArea;
     public JTextArea risposte2;
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
@@ -126,10 +126,8 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.LINE_END;
 	panel.add(this.like, gbc);
         
-        //colonna 1     
+        // quarta riga - colonna 1   
         this.like2 = new JButton("Like");
-        AggiungiLike aggiungiLike = new AggiungiLike(like2);
-        like2.addActionListener(aggiungiLike);
             gbc.gridx = 1;
             gbc.gridy = 3;
             gbc.insets = new Insets(15, 30, 0, 10);
@@ -141,6 +139,18 @@ public class DomandaPanel extends JPanel{
             like2.setEnabled(true);
         }
         
+        // quarta riga - colonna 1
+        this.Nlike = new JLabel();
+        Nlike.setText(InfoQuery.likeDomanda()+" likes");
+            gbc.gridx = 1;
+            gbc.gridy = 3;
+            gbc.insets = new Insets(15, 100, 0, 10);
+            gbc.anchor = GridBagConstraints.LINE_START;
+            panel.add(this.Nlike, gbc);
+            
+        AggiungiLike aggiungiLike = new AggiungiLike(like2, Nlike);
+        like2.addActionListener(aggiungiLike);
+        //fine zona like
         
         this.risposte = new JLabel("Risposte Date:");
         gbc.gridx = 0;

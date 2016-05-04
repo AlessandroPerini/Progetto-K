@@ -29,6 +29,7 @@ public class GuestQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiAppunti);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 
@@ -53,6 +54,7 @@ public class GuestQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiLibri);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 
@@ -80,6 +82,7 @@ public class GuestQuery {
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ResultSet rs = ps1.executeQuery();
 

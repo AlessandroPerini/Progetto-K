@@ -28,6 +28,7 @@ public class InfoQuery {
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoLibro);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.libroAttuale.getTitolo());
@@ -57,6 +58,7 @@ public class InfoQuery {
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
@@ -83,6 +85,7 @@ public class InfoQuery {
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.appuntoAttuale.getNome());
@@ -111,6 +114,7 @@ public class InfoQuery {
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+                ps1.clearParameters();
                 ps1.setString(1, Applicazione.facoltàPremuta);
                 ps1.setString(2, Applicazione.corsoPremuto);
                 ps1.setString(3,Applicazione.appuntoAttuale.getNome());
@@ -127,6 +131,32 @@ public class InfoQuery {
                 }
          return media;
         
+    }
+    
+    public static int likeDomanda(){
+    
+        int like = 0;
+        
+        String selectMedia = "SELECT * FROM likeDomanda where facoltà=? and corso=? and domanda=?";
+        
+         try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                    like++;
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+         return like;
     }
 
 }

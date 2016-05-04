@@ -21,16 +21,18 @@ public class ControlloQuery {
 
     public static boolean controlloLikeDomanda() {
         
-        String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
-        String domandaQuery = Applicazione.domandaAttuale.getTitolo().replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        
-        String selectLikeStudente = "Select * from likeDomanda where studente= '" + studenteQuery + "' and domanda= '" + domandaQuery + "'and corso= '" + corsoQuery + "' and facoltà= '" + facoltàQuery + "'";
+        String selectLikeStudente = "Select * from likeDomanda where studente=? and domanda=? and corso=? and facoltà=?";
         boolean bool = true;
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeStudente);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(3, Applicazione.corsoPremuto);
+            ps1.setString(4, Applicazione.facoltàPremuta);
+            
             ResultSet rs = ps1.executeQuery();
+            
             if (rs.next()) {
                 bool = false;
             } else {
@@ -44,16 +46,18 @@ public class ControlloQuery {
     
     public static boolean controlloValutazioneAppunto() {
         
-        String studenteQuery = Applicazione.guest.getEmail().replaceAll("'", "\\\\'");
-        String appuntoQuery = Applicazione.appuntoAttuale.getNome().replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        
-        String selectValutazioneStudente = "Select * from valutazioni where studente= '" + studenteQuery + "' and appunto= '" + appuntoQuery + "'and corso= '" + corsoQuery + "' and facoltà= '" + facoltàQuery + "'";
+        String selectValutazioneStudente = "Select * from valutazioni where studente=? and appunto=? and corso=? and facoltà=?";
         boolean bool = true;
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            ps1.setString(2, Applicazione.appuntoAttuale.getNome());
+            ps1.setString(3, Applicazione.corsoPremuto);
+            ps1.setString(4, Applicazione.facoltàPremuta);
+            
             ResultSet rs = ps1.executeQuery();
+            
             if (rs.next()) {
                 bool = false;
             } else {
@@ -67,15 +71,18 @@ public class ControlloQuery {
     
     public static boolean controlloNomeAppunto(String nome) {
         
-        String nomeQuery = nome.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        
-        String selectValutazioneStudente = "Select * from appunti where nome= '" + nomeQuery + "'and corso= '" + corsoQuery + "' and facoltà= '" + facoltàQuery + "'";
+        String selectValutazioneStudente = "Select * from appunti where nome=? and corso=? and facoltà=?";
         boolean bool = true;
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+            ps1.clearParameters();
+            ps1.setString(1, nome);
+            ps1.setString(2, Applicazione.corsoPremuto);
+            ps1.setString(3, Applicazione.facoltàPremuta);
+            System.out.println("Select * from appunti where nome="+nome+" and "
+                    + "corso="+Applicazione.corsoPremuto+" and facoltà="+Applicazione.facoltàPremuta+"");
             ResultSet rs = ps1.executeQuery();
+            
             if (rs.next()) {
                 bool = false;
             } else {
@@ -88,16 +95,18 @@ public class ControlloQuery {
     }
     
     public static boolean controlloTitoloDomanda(String titolo) {
-        
-        String titoloQuery = titolo.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        
-        String selectValutazioneStudente = "Select * from domande where titolo= '" + titoloQuery + "'and corso= '" + corsoQuery + "' and facoltà= '" + facoltàQuery + "'";
+             
+        String selectValutazioneStudente = "Select * from domande where titolo=? and corso=? and facoltà=?";
         boolean bool = true;
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(2, Applicazione.corsoPremuto);
+            ps1.setString(3, Applicazione.facoltàPremuta);
+            
             ResultSet rs = ps1.executeQuery();
+            
             if (rs.next()) {
                 bool = false;
             } else {
