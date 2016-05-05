@@ -13,6 +13,7 @@ import Libri.Vista.AggiungiLibroPanel;
 import Libri.Vista.ListaLibriPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextArea;
@@ -26,17 +27,27 @@ public class AggiungiLibro implements ActionListener{
     private JTextArea titolo;
     private JTextArea descrizione;
     private JSpinner prezzo;
+    private JCheckBox telefono;
+    private String tel;
 
-    public AggiungiLibro(JTextArea titolo, JTextArea descrizione, JSpinner prezzo) {
+    public AggiungiLibro(JTextArea titolo, JTextArea descrizione, JSpinner prezzo, JCheckBox telefono) {
         this.titolo = titolo;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
+        this.telefono = telefono;
+        
+        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue());
+        if(telefono.isSelected()){
+            tel = Applicazione.guest.getTelefono();
+        }else{
+            tel ="Numero non disponibile!";
+        }
+        
+        InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(),tel);
         
         JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
 

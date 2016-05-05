@@ -53,6 +53,7 @@ public class AggiungiLibroPanel extends JPanel{
         prezzo2 = new JSpinner(prezzoModel);
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
         JCheckBox telefono2 = new JCheckBox("Vuoi far vedere il tuo numero?");
+        
  
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         
@@ -66,7 +67,7 @@ public class AggiungiLibroPanel extends JPanel{
         ((DefaultEditor)prezzo2.getEditor()).getTextField().setEditable(false);
         
         JButton aggiungi = new JButton("Aggiungi");
-        AggiungiLibro aggiungiLibro = new AggiungiLibro(titolo2, descrizione2, prezzo2);
+        AggiungiLibro aggiungiLibro = new AggiungiLibro(titolo2, descrizione2, prezzo2,telefono2);
         aggiungi.addActionListener(aggiungiLibro);
         
         prezzoPanel.add(euro);

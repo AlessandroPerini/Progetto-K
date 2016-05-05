@@ -21,7 +21,7 @@ import javax.swing.JTextArea;
  */
 public class InsertQuery {
 
-    public static void inserisciLibro(String titolo, String descrizione, int prezzo){
+    public static void inserisciLibro(String titolo, String descrizione, int prezzo, String telefono){
 
         String insertLibro = "INSERT INTO libri VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         
@@ -34,7 +34,7 @@ public class InsertQuery {
                 ps1.setString(4, Applicazione.facoltàPremuta);
                 ps1.setString(5, Applicazione.corsoPremuto);
                 ps1.setString(6, Applicazione.guest.getEmail());
-                ps1.setString(7, Applicazione.guest.getTelefono());
+                ps1.setString(7, telefono);
                 ps1.setInt(8, prezzo);
                 
                 ps1.execute();
