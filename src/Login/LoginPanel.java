@@ -44,16 +44,14 @@ public class LoginPanel extends JPanel{
         GridBagConstraints gbcImg = new GridBagConstraints();
         GridBagConstraints gbcImgUp = new GridBagConstraints();
         down = new JPanel();
-    
-
-        
 
         downBuild();
-          //prima riga colonna 0
-        img= new JLabel(new ImageIcon("files\\immagini\\login.png"),JLabel.RIGHT);
+        
+        //prima riga colonna 0
+        img = new JLabel(new ImageIcon("files\\immagini\\loginIcon.png"),JLabel.RIGHT);
         gbcImg.gridx = 0;
 	gbcImg.gridy = 0;
-	gbcImg.insets = new Insets(30, 0, 0, 10);
+	gbcImg.insets = new Insets(30, 50, 30, 10);
 	gbcImg.anchor = GridBagConstraints.LINE_END;
 	centro.add(img, gbcImg);
         // prima riga colonna 1
@@ -69,18 +67,18 @@ public class LoginPanel extends JPanel{
         login.addActionListener(caricaFacoltà);
         login.addActionListener(doLogin);  
         
-        ImageIcon img1 = new ImageIcon("files\\immagini\\logo33.png");
+        ImageIcon img1 = new ImageIcon("files\\immagini\\titolo.png");
         JLabel title = new JLabel(img1);
         title.setPreferredSize(new Dimension(600, 150));
         title.setHorizontalAlignment(SwingConstants.CENTER);
         gbcImgUp.gridx = 0;
 	gbcImgUp.gridy = 0;
-	gbcImgUp.insets = new Insets(30, 0, 0, 10);
+	gbcImgUp.insets = new Insets(30, 0, 0, 25);
 	gbcImgUp.anchor = GridBagConstraints.CENTER;
 	up.add(title, gbcImgUp);
         
         JLabel subTitle = new JLabel("Benvenuto! Effettua il login con le credenziali dell'ateneo.");
-        subTitle.setFont(new Font("Arial", Font.PLAIN, 25));
+        subTitle.setFont(new Font("Century Gothic", Font.PLAIN, 22));
         subTitle.setHorizontalAlignment(SwingConstants.CENTER);
         gbcImgUp.gridx = 0;
 	gbcImgUp.gridy = 1;
@@ -113,12 +111,11 @@ public class LoginPanel extends JPanel{
         GridBagConstraints gbc = new GridBagConstraints();
         
         //prima riga - colonna 0
-        
         emailLabel = new JLabel("Email");
-        emailLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        emailLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
 	gbc.gridx = 0;
 	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 20, 0, 10);
+	gbc.insets = new Insets(5, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.CENTER;
 	down.add(emailLabel, gbc);
         
@@ -126,16 +123,16 @@ public class LoginPanel extends JPanel{
         email = new JTextField();
         email.setColumns(15);
         email.setHorizontalAlignment(SwingConstants.CENTER);
-        email.setFont(new Font("Arial", Font.PLAIN, 15));
+        email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 	gbc.gridx = 0;
 	gbc.gridy = 1;
-	gbc.insets = new Insets(10, 30, 0, 10);
+	gbc.insets = new Insets(10, 25, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_END;
 	down.add(email, gbc);
-        //seconda riga - colonna 1
         
+        //seconda riga - colonna 1
         at = new JLabel("@universitadipavia.it");
-        at.setFont(new Font("Arial", Font.PLAIN, 15));
+        at.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 	gbc.gridx = 1;
 	gbc.gridy = 1;
 	gbc.insets = new Insets(5, 0, 0, 10);
@@ -144,36 +141,42 @@ public class LoginPanel extends JPanel{
         
         //terza riga colonna 0
         passwordLabel = new JLabel("Password");
-        passwordLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        passwordLabel.setFont(new Font("Century Gothic", Font.BOLD, 18));
 	gbc.gridx = 0;
 	gbc.gridy = 2;
-	gbc.insets = new Insets(10, 20, 0, 10);
+	gbc.insets = new Insets(10, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.CENTER;
 	down.add(passwordLabel, gbc);
         
-         //quarta riga 
+        //quarta riga 
         password = new JPasswordField();
         password.setColumns(15);
-        password.setFont(new Font("Arial", Font.PLAIN, 15));
+        password.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         password.setHorizontalAlignment(SwingConstants.CENTER);
 	gbc.gridx = 0;
 	gbc.gridy = 3;
-	gbc.insets = new Insets(10, 30, 0, 10);
+	gbc.insets = new Insets(10, 25, 20, 10);
 	gbc.anchor = GridBagConstraints.LINE_END;
 	down.add(password, gbc);
         
         //quinta riga 
-        
-        ImageIcon bottone = new ImageIcon("files\\immagini\\bottone.png"); 
+        ImageIcon bottone = new ImageIcon("files\\immagini\\buttonNormal.png"); 
         login = new JButton(bottone);
         login.setBorder(BorderFactory.createEmptyBorder());
         login.setContentAreaFilled(false);
-        login.setText("Login");
+        Icon loginHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        login.setRolloverIcon(loginHover);
+        Icon loginPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        login.setPressedIcon(loginPressed);
+        login.setText("LOGIN   >");
+        login.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        login.setForeground(Color.white);
 
-        login.setIconTextGap(-65);
+
+        login.setIconTextGap(-85);
 	gbc.gridx = 0;
 	gbc.gridy = 4;
-	gbc.insets = new Insets(10, 20, 0, 10);
+	gbc.insets = new Insets(10, 25, 0, 10);
 	gbc.anchor = GridBagConstraints.CENTER;
 	down.add(login, gbc);
         

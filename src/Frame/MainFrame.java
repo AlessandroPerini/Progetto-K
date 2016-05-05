@@ -22,7 +22,7 @@ public class MainFrame extends JFrame{
         setBounds(400, 100, 700, 560);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(new ImageIcon("files\\immagini\\logo.jpg").getImage());
+        setIconImage(new ImageIcon("files\\immagini\\logo.png").getImage());
     }
     
 }
