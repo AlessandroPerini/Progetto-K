@@ -45,6 +45,12 @@ public class LoginPanel extends JPanel{
         GridBagConstraints gbcImgUp = new GridBagConstraints();
         down = new JPanel();
 
+        setBackground(Color.white);
+        centro.setBackground(Color.white);
+        down.setBackground(Color.white);
+        main.setBackground(Color.white);
+        up.setBackground(Color.white);
+        
         downBuild();
         
         //prima riga colonna 0
@@ -60,7 +66,7 @@ public class LoginPanel extends JPanel{
 	gbcImg.insets = new Insets(30, 0, 0, 10);
 	gbcImg.anchor = GridBagConstraints.LINE_START;
 	centro.add(down, gbcImg);
-        
+
         CaricaFacoltà caricaFacoltà = new CaricaFacoltà();
         DoLogin doLogin = new DoLogin(email, password); 
        
