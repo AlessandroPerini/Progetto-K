@@ -38,19 +38,15 @@ public class LoginPanel extends JPanel{
     public LoginPanel(){   
         
         main = new JPanel(new GridLayout(3, 1));
-        up = new JPanel(new GridLayout(2, 1, 0, 30));
+        up = new JPanel(new GridBagLayout());
         centro = new JPanel(new GridBagLayout());
         
         GridBagConstraints gbcImg = new GridBagConstraints();
+        GridBagConstraints gbcImgUp = new GridBagConstraints();
         down = new JPanel();
-     
-        JLabel title = new JLabel("Progetto K");
-        title.setFont(new Font("Arial", Font.BOLD, 50));
-        title.setHorizontalAlignment(SwingConstants.CENTER);
+    
 
-        JLabel subTitle = new JLabel("Benvenuto! Effettua il login con le credenziali dell'ateneo.");
-        subTitle.setFont(new Font("Arial", Font.PLAIN, 25));
-        subTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        
 
         downBuild();
           //prima riga colonna 0
@@ -73,8 +69,24 @@ public class LoginPanel extends JPanel{
         login.addActionListener(caricaFacoltà);
         login.addActionListener(doLogin);  
         
-        up.add(title);
-        up.add(subTitle);
+        ImageIcon img1 = new ImageIcon("files\\immagini\\logo33.png");
+        JLabel title = new JLabel(img1);
+        title.setPreferredSize(new Dimension(600, 150));
+        title.setHorizontalAlignment(SwingConstants.CENTER);
+        gbcImgUp.gridx = 0;
+	gbcImgUp.gridy = 0;
+	gbcImgUp.insets = new Insets(30, 0, 0, 10);
+	gbcImgUp.anchor = GridBagConstraints.CENTER;
+	up.add(title, gbcImgUp);
+        
+        JLabel subTitle = new JLabel("Benvenuto! Effettua il login con le credenziali dell'ateneo.");
+        subTitle.setFont(new Font("Arial", Font.PLAIN, 25));
+        subTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        gbcImgUp.gridx = 0;
+	gbcImgUp.gridy = 1;
+	gbcImgUp.insets = new Insets(30, 0, 0, 10);
+	gbcImgUp.anchor = GridBagConstraints.CENTER;
+	up.add(subTitle, gbcImgUp);
  
         main.add(up);
         main.add(centro);

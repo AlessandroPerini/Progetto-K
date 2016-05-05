@@ -26,7 +26,7 @@ public class Grafica {
         container = new JPanel();
         container.setLayout(card);
         
-        MainFrame f = new MainFrame("Progetto K");
+        MainFrame f = new MainFrame("UNI Per Voi");
         
         LoginPanel login = new LoginPanel();
         

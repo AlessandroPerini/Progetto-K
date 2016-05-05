@@ -16,6 +16,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -29,12 +30,13 @@ public class ListaAppuntiPanel extends JPanel{
     
     private JButton[] appunti = new JButton[Applicazione.listaAppuntiAttuali.size()];
     private JTextField searchField;
+    private JLabel noAppunti;
 
     public ListaAppuntiPanel() {
     
         TopPanel top = new TopPanel("Appunti "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaAppuntiAttuali.size()+2, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaAppuntiAttuali.size()+3, 1));
         
         //pannello ricerca
         JPanel searchPanel = new JPanel();
@@ -70,13 +72,21 @@ public class ListaAppuntiPanel extends JPanel{
         panel.add(addAppunto);
 
         GoToAppunto goToAppunto = new GoToAppunto();
+        int size = Applicazione.listaAppuntiAttuali.size();
+        if(size == 0){
+            noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");
+            noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
+            panel.add(noAppunti);
         
-        for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
+        }else{
+            for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
             appunti[i] = new JButton();
             appunti[i].setText(Applicazione.listaAppuntiAttuali.get(i).getNome());
             appunti[i].addActionListener(goToAppunto);
             panel.add(appunti[i]);
         }
+        }
+       
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));

@@ -57,7 +57,7 @@ public class ListaFacoltàPanel extends JPanel{
                 scrollP[i] = new JScrollPane();
                 titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
                 titoloBordo[i].setTitleFont(new Font("Arial", Font.BOLD, 15));
-                titoloBordo[i].setTitleColor(Color.RED);
+                titoloBordo[i].setTitleColor(Color.BLUE);
                 pannelli[i].setBorder(titoloBordo[i]);
 
                 for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {

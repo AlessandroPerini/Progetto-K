@@ -35,6 +35,7 @@ public class ListaDomandePanel extends JPanel{
     private JLabel[] domande = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JButton addDomanda, searchButton;
     private JTextField searchField;
+    private JLabel noDomande;
     public ListaDomandePanel() {
     
         TopPanel top = new TopPanel("Domande ");
@@ -83,8 +84,20 @@ public class ListaDomandePanel extends JPanel{
         GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
         
         addDomanda.addActionListener(goToAggiungiDomanda);
-                
-        for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
+        int size = Applicazione.listaDomandeAttuali.size();
+        if(size == 0){
+            
+            noDomande = new JLabel();
+            noDomande.setText("Non ci sono domande relative a questo corso.");
+            noDomande.setFont(new Font("Arial", Font.BOLD, 20));
+            gbcImg.gridx = 0;
+            gbcImg.gridy = 1;
+            gbcImg.insets = new Insets(10, 0, 0, 10);
+            gbcImg.anchor = GridBagConstraints.LINE_START;
+            panel.add(noDomande, gbcImg);
+        }else{
+            
+            for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
             domande[i] = new JLabel();
             domande[i].setText(Applicazione.listaDomandeAttuali.get(i).getTitolo());
             domande[i].setName("domande"+i);
@@ -95,6 +108,9 @@ public class ListaDomandePanel extends JPanel{
             gbcImg.anchor = GridBagConstraints.LINE_START;
             panel.add(domande[i], gbcImg);
         }
+        }
+                
+      
         centro.add(panel, BorderLayout.CENTER);
         JScrollPane scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));

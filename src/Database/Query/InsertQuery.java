@@ -170,4 +170,17 @@ public class InsertQuery {
                     Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    public static void updateTelefono(String telefono){
+        
+        String sql = "update studenti set telefono='"+telefono+"' where email='"+Applicazione.guest.getEmail()+"'";
+        
+         try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }

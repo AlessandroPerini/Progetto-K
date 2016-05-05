@@ -6,6 +6,8 @@
 package Frame;
 
 import java.awt.HeadlessException;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -20,7 +22,7 @@ public class MainFrame extends JFrame{
         setBounds(400, 100, 700, 560);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    
+        setIconImage(new ImageIcon("files\\immagini\\logo.jpg").getImage());
     }
     
 }

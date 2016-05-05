@@ -25,16 +25,20 @@ public class RecensioniAppuntoPanel extends JPanel{
     private JLabel[] emailRecensioni = new JLabel[Applicazione.listaValutazioniAttuali.size()];
     private JLabel[] punteggioRecensioni = new JLabel[Applicazione.listaValutazioniAttuali.size()];
     private JTextArea[] commentoRecensioni = new JTextArea[Applicazione.listaValutazioniAttuali.size()];
-    
+    private JLabel noRecensioni;
     public RecensioniAppuntoPanel() {
     
         TopPanel top = new TopPanel("Recensioni "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaValutazioniAttuali.size(), 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaValutazioniAttuali.size()+1, 1));
 
         GoToAppunto goToAppunto = new GoToAppunto();
-        
-        for (int i = 0; i < Applicazione.listaValutazioniAttuali.size(); i++) {
+        int size = Applicazione.listaValutazioniAttuali.size();
+        if( size == 0){
+            noRecensioni = new JLabel("Non ci sono recensioni relative a questi appunti");
+            panel.add(noRecensioni);
+        }else{
+            for (int i = 0; i < Applicazione.listaValutazioniAttuali.size(); i++) {
             recensioni[i] = new JPanel(new GridLayout(1, 3, 5, 0));
             emailRecensioni[i] = new JLabel();
             punteggioRecensioni[i] = new JLabel();
@@ -54,6 +58,9 @@ public class RecensioniAppuntoPanel extends JPanel{
             
             panel.add(recensioni[i]);
         }
+        }
+        
+        
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));

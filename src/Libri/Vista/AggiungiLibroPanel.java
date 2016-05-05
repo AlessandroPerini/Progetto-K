@@ -13,6 +13,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -51,7 +52,7 @@ public class AggiungiLibroPanel extends JPanel{
         descrizione2 = new JTextArea("");
         prezzo2 = new JSpinner(prezzoModel);
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
-        JLabel telefono2 = new JLabel(Applicazione.guest.getTelefono());
+        JCheckBox telefono2 = new JCheckBox("Vuoi far vedere il tuo numero?");
  
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         

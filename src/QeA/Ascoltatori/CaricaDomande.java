@@ -29,6 +29,8 @@ public class CaricaDomande implements ActionListener{
         
         Grafica.container.add(domande, "domande");
         Grafica.card.show(Grafica.container, "domande");
+        
+        
  
     }
     

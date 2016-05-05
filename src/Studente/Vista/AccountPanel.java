@@ -21,7 +21,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import Database.Query.InsertQuery;
+import java.sql.NClob;
 
 /**
  *
@@ -31,8 +34,10 @@ public class AccountPanel extends JPanel{
     
     private static JLabel email;
     private static JLabel nick;
-    private static JLabel phone;
-
+    private static JTextField phone;
+    private JButton cambiaNumero, back, preferiti;
+    private JLabel title;
+    int nClick = 0; 
     public AccountPanel() {
     
         setPreferredSize(new Dimension(700, 450));
@@ -40,8 +45,9 @@ public class AccountPanel extends JPanel{
         //top panel
         JPanel top = new JPanel();
         
-        JButton back = new JButton("Back");
-                back.addActionListener(new ActionListener() {
+        
+        back = new JButton("Back");
+        back.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
 
@@ -51,10 +57,10 @@ public class AccountPanel extends JPanel{
                 });
         back.setPreferredSize(new Dimension(110, 40));
 
-        JButton preferiti = new JButton("★Preferiti★");
+        preferiti = new JButton("★Preferiti★");
         preferiti.setPreferredSize(new Dimension(110, 40));
 
-        JLabel title = new JLabel("Account");
+        title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 35));
         title.setPreferredSize(new Dimension(420, 40));
@@ -117,8 +123,27 @@ public class AccountPanel extends JPanel{
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
 
-        phone = new JLabel(Applicazione.guest.getTelefono());
+        phone = new JTextField(Applicazione.guest.getTelefono());
+        phone.setEditable(false);
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
+        InsertQuery iQuery = new InsertQuery();
+        
+        cambiaNumero = new JButton("Modifica");
+        cambiaNumero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                nClick += 1;
+                phone.setEditable(true);
+                cambiaNumero.setText("Conferma");
+              if ( nClick == 2){
+                  phone.setEditable(false);
+                  cambiaNumero.setText("Modifica");
+                  iQuery.updateTelefono(phone.getText());
+                  JOptionPane.showMessageDialog(null, "Numero di telefono cambiato!", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
+                  nClick = 0;
+              }
+            }
+        });
 
         emailRow.add(emailLabel);
         emailRow.add(email);
@@ -128,6 +153,7 @@ public class AccountPanel extends JPanel{
         
         phoneRow.add(phoneLabel);
         phoneRow.add(phone);
+        phoneRow.add(cambiaNumero);
         
         body.add(line);
         body.add(emailRow);

@@ -21,6 +21,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -34,12 +35,13 @@ public class ListaLibriPanel extends JPanel{
     
     private JButton[] libri = new JButton[Applicazione.listaLibriAttuali.size()];
     private JTextField searchField;
+    private JLabel noLibri;
 
     public ListaLibriPanel() {
     
         TopPanel top = new TopPanel("Libri "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaLibriAttuali.size()+2, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaLibriAttuali.size()+3, 1));
         
         //pannello ricerca
         JPanel searchPanel = new JPanel();
@@ -76,13 +78,20 @@ public class ListaLibriPanel extends JPanel{
         
         GoToLibro goToLibro = new GoToLibro();
         
-        for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
-            libri[i] = new JButton();
-            libri[i].setText(Applicazione.listaLibriAttuali.get(i).getTitolo());
-            libri[i].addActionListener(goToLibro);
-            panel.add(libri[i]);
-        }
+        int size = Applicazione.listaLibriAttuali.size();
+        if(size == 0){
+            noLibri = new JLabel("Non ci sono libri relativi a questo corso.");
+            noLibri.setFont(new Font("Arial", Font.BOLD, 20));
+            panel.add(noLibri);
         
+        }else{
+            for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
+                libri[i] = new JButton();
+                libri[i].setText(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libri[i].addActionListener(goToLibro);
+                panel.add(libri[i]);
+            }
+        }
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
