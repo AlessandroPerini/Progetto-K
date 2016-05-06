@@ -29,18 +29,20 @@ import javax.swing.JTextArea;
  */
 public class DomandaPanel extends JPanel{
 
-    private JButton rispondi, elimina, like2;
+    private JButton rispondi, elimina, like2, likeRisposta, dislikeRisposta;
     private TopPanel top;
-    private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, like, email, email2, risposte,rispondiLabel, Nlike;
+    private JPanel panel,pannelloRisposta,pannelloLike, pannelloDislike;
+    private JLabel titolo, titolo2, descrizione, like, email, email2, risposte,rispondiLabel, Nlike, nomeRisposta, numeroLikeRisposta,numeroDislikeRisposta;
     private JTextArea descrizione2, rispondiArea;
-    public JTextArea risposte2;
-    private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4;
+    private JTextArea risposte2 ;
+    private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4, scrollPanel5;
     private AggiungiRisposta risposta;
+    private GridBagConstraints gbcRisposte;
+    private int i;
    
     public DomandaPanel() {
         
-        top = new TopPanel(Applicazione.domandaAttuale.getTitolo());
+        top = new TopPanel(Applicazione.domandaAttuale.getTitolo());      
         
         panel = new JPanel();
         
@@ -58,6 +60,8 @@ public class DomandaPanel extends JPanel{
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+                
+        gbcRisposte = new GridBagConstraints(); 
         
         //prima riga - colonna 0
         
@@ -158,14 +162,23 @@ public class DomandaPanel extends JPanel{
 	gbc.insets = new Insets(15, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_END;
 	panel.add(this.risposte, gbc);
+    
         
-        this.risposte2 = new JTextArea(10,25);
-        risposte2.setEditable(false);
-        risposte2.setLineWrap(true);
-        risposte2.setWrapStyleWord(true);
+        pannelloRisposta = new JPanel(new GridBagLayout());
         
-        this.scrollPanel3 = new JScrollPane();
-        scrollPanel3.setViewportView(risposte2);
+        
+        //###########################################
+        for(i = 0; i < Applicazione.listaRisposteAttuali.size(); i++){
+           
+
+            setRisposte2(Applicazione.listaRisposteAttuali.get(i).getTitolo(), i, Applicazione.listaRisposteAttuali.get(i).setNickname());
+            
+
+        }
+        //#########################################
+        scrollPanel3 = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel3.setPreferredSize(new Dimension(480 , 250));
+        scrollPanel3.getVerticalScrollBar().setUnitIncrement(10);
         scrollPanel3.setWheelScrollingEnabled(true);
 	gbc.gridx = 1;
 	gbc.gridy = 4;
@@ -198,7 +211,8 @@ public class DomandaPanel extends JPanel{
 	gbc.gridy = 6;
 	gbc.insets = new Insets(15, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_START;
-        risposta = new AggiungiRisposta(rispondiArea);
+        
+        risposta = new AggiungiRisposta(rispondiArea,i);
         rispondi.addActionListener(risposta);
 	panel.add(this.rispondi, gbc);
         
@@ -215,7 +229,62 @@ public class DomandaPanel extends JPanel{
             panel.add(this.elimina, gbc);
         }
     }
-    
+
+    public void setNomeRisposta(JLabel nomeRisposta) {
+        this.nomeRisposta = nomeRisposta;
+    }
+
+    public void setRisposte2(String risposta, int i, String nome) {
+            nomeRisposta = new JLabel();
+            this.nomeRisposta.setText(nome);
+            gbcRisposte.gridx = 0;
+            gbcRisposte.gridy = i;
+            gbcRisposte.insets = new Insets(15, 1, 0, 10);
+            gbcRisposte.anchor = GridBagConstraints.LINE_START;
+            pannelloRisposta.add(this.nomeRisposta, gbcRisposte);
+
+            this.risposte2 = new JTextArea(4,15);
+            risposte2.setText(risposta);
+            risposte2.setEditable(false);
+            risposte2.setLineWrap(true);
+            risposte2.setWrapStyleWord(true);
+            this.scrollPanel5 = new JScrollPane();
+            scrollPanel5.setViewportView(risposte2);
+            scrollPanel5.setWheelScrollingEnabled(true);
+            gbcRisposte.gridx = 1;
+            gbcRisposte.gridy = i;
+            gbcRisposte.insets = new Insets(15, -7, 0, 10);
+            gbcRisposte.anchor = GridBagConstraints.LINE_START;
+            pannelloRisposta.add(this.scrollPanel5, gbcRisposte);
+            //all interno dell pannello like
+            this.pannelloDislike = new JPanel();
+            this.pannelloLike = new JPanel();
+            
+            this.numeroLikeRisposta = new JLabel("5");
+            pannelloLike.add(numeroLikeRisposta);
+            this.likeRisposta = new JButton("Like");
+            pannelloLike.add(likeRisposta);
+                     
+            gbcRisposte.gridx = 3;
+            gbcRisposte.gridy = i;
+            gbcRisposte.insets = new Insets(15, -17, 0, 0);
+            gbcRisposte.anchor = GridBagConstraints.LINE_START;
+            pannelloRisposta.add(this.pannelloLike, gbcRisposte);
+            //all interno dell pannello dislike
+            
+            this.numeroDislikeRisposta = new JLabel("2");
+            pannelloDislike.add(numeroDislikeRisposta);
+            this.dislikeRisposta = new JButton("Dislike");
+            pannelloDislike.add(dislikeRisposta);
+            
+            gbcRisposte.gridx = 4;
+            gbcRisposte.gridy = i;
+            gbcRisposte.insets = new Insets(15, -5, 0, 0);
+            gbcRisposte.anchor = GridBagConstraints.LINE_START;
+            pannelloRisposta.add(this.pannelloDislike, gbcRisposte);
+  
+    }
+   
  
     
 }

@@ -43,11 +43,7 @@ public class AggiungiLike implements ActionListener{
 
         ListeQuery.caricaRisposteDomanda();
 
-        String s="";
-         for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
-          s= (s+Applicazione.listaRisposteAttuali.get(i).toString());
-        }
-        GoToDomanda.getDomanda().risposte2.setText(s);
+        
    
         Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
         Grafica.card.show(Grafica.container, "domanda");

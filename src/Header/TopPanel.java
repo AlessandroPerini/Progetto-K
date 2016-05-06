@@ -88,6 +88,8 @@ public class TopPanel extends JPanel{
 
                     Grafica.card.show(Grafica.container, "account");
                     Applicazione.back.add("account");
+                    Applicazione.svuotaMieiDati();
+                    
                     resetMenu();
                 }
                 if(menu.getSelectedItem().equals("Preferiti")){

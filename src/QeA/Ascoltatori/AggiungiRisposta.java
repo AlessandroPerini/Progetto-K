@@ -21,9 +21,12 @@ import javax.swing.JTextArea;
 public class AggiungiRisposta implements ActionListener{
 
     private JTextArea titolo;
+    private int indice;
+    private String x="";
 
-    public AggiungiRisposta(JTextArea titolo) {
+    public AggiungiRisposta(JTextArea titolo, int indice) {
         this.titolo = titolo; 
+        this.indice = indice;
     }
 
     @Override
@@ -39,14 +42,15 @@ public class AggiungiRisposta implements ActionListener{
 
         String s="";
          for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
-          s= (s+Applicazione.listaRisposteAttuali.get(i).toString());
+          s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
+          x = Applicazione.listaRisposteAttuali.get(i).setNickname();
         }
          
-        GoToDomanda.getDomanda().risposte2.setText(s);
+        GoToDomanda.getDomanda().setRisposte2(s,indice,x);
    
         Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
         Grafica.card.show(Grafica.container, "domanda");
-        
+        x = "";
         titolo.setText("");
         
       

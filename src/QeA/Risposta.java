@@ -35,10 +35,6 @@ public class Risposta {
         cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
         return  nome+" "+cognome+".";
     }
-    @Override
-    public String toString() {
-        return setNickname()+": \n"  + titolo+"\n"+"--------------------------------------------------------------------";
-    }
 
     public String getTitolo() {
         return titolo;
