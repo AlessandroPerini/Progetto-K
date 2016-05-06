@@ -24,7 +24,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import Database.Query.InsertQuery;
-import java.sql.NClob;
 
 /**
  *
@@ -135,13 +134,15 @@ public class AccountPanel extends JPanel{
                 nClick += 1;
                 phone.setEditable(true);
                 cambiaNumero.setText("Conferma");
-              if ( nClick == 2){
+                
+                if ( nClick == 2){
                   phone.setEditable(false);
                   cambiaNumero.setText("Modifica");
                   iQuery.updateTelefono(phone.getText());
+                  Applicazione.guest.setTelefono(phone.getText());
                   JOptionPane.showMessageDialog(null, "Numero di telefono cambiato!", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
                   nClick = 0;
-              }
+                }
             }
         });
 

@@ -27,5 +27,8 @@ public class Facoltà {
         return ramo;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
 }

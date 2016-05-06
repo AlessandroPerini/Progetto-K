@@ -82,4 +82,8 @@ public class Studente {
         return cognome;
     }
 
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
 }

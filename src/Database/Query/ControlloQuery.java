@@ -72,7 +72,9 @@ public class ControlloQuery {
     public static boolean controlloNomeAppunto(String nome) {
         
         String selectValutazioneStudente = "Select * from appunti where nome=? and corso=? and facoltà=?";
+        
         boolean bool = true;
+        
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
             ps1.clearParameters();
@@ -97,7 +99,9 @@ public class ControlloQuery {
     public static boolean controlloTitoloDomanda(String titolo) {
              
         String selectValutazioneStudente = "Select * from domande where titolo=? and corso=? and facoltà=?";
+        
         boolean bool = true;
+        
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
             ps1.clearParameters();
@@ -115,6 +119,32 @@ public class ControlloQuery {
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return bool;
+    }
+    
+    public static boolean controlloFacoltàPreferita(){
+    
+        String selectFacoltàPreferita = "Select * from facoltàPreferite where facoltà=? and studente=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferita);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.facoltàPremuta);
+            ps1.setString(2, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         return bool;
     }
     

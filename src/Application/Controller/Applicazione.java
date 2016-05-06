@@ -8,6 +8,7 @@ package Application.Controller;
 import Appunti.Appunto;
 import Database.Connection.ConnessioneDB;
 import Libri.Libro;
+import Preferiti.Facoltà.Preferiti;
 import QeA.Domanda;
 import QeA.Risposta;
 import Studente.Studente;
@@ -44,6 +45,10 @@ public class Applicazione {
     public static ArrayList<String> listaRamiFacoltà = new ArrayList<>();
     public static ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
+    public static Preferiti preferiti = new Preferiti();
+    
+    public static Facoltà facoltàAttuale = new Facoltà("", "");
+    public static Corso corsoAttuale = new Corso("", 0, "");
     public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
     public static Domanda domandaAttuale = new  Domanda("", "", "");
     public static Appunto appuntoAttuale = new Appunto("", "", "");
@@ -109,6 +114,14 @@ public class Applicazione {
         listaValutazioniAttuali.clear();
     }
     
+    public static void svuotaPreferiti(){
+        preferiti.getAppuntiPreferiti().clear();
+        preferiti.getCorsiPreferiti().clear();
+        preferiti.getLibriPreferiti().clear();
+        preferiti.getFacoltàPreferite().clear();
+        preferiti.getCorsiPreferiti().clear();
+    }
+    
     public static void logout(){
        
         eliminaUtente();
@@ -123,6 +136,7 @@ public class Applicazione {
         svuotaListaFacoltàXRamo();
         svuotaRecensioni();
         svuotaRami();
+        svuotaPreferiti();
     }
 
 }

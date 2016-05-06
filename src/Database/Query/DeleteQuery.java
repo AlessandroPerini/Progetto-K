@@ -74,4 +74,21 @@ public class DeleteQuery {
                     }
         }
     }
+    
+    public static void eliminaFacoltàPreferita(){
+        
+        String insertFacoltàPreferita = "delete from facoltàPreferite where facoltà=? and studente=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertFacoltàPreferita);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(2, Applicazione.guest.getEmail());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }

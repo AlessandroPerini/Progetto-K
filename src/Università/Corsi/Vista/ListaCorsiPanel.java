@@ -7,7 +7,10 @@ package Università.Corsi.Vista;
 
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
+import Database.Query.ControlloQuery;
 import Header.TopPanel;
+import Preferiti.Facoltà.Ascoltatori.AggiungiFacoltàPreferita;
+import Preferiti.Facoltà.Ascoltatori.RimuoviFacoltàPreferita;
 import Università.Corsi.Ascoltatori.CercaCorsi;
 import java.awt.CardLayout;
 import java.awt.Dimension;
@@ -15,6 +18,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -32,9 +36,9 @@ public class ListaCorsiPanel extends JPanel{
     
     public ListaCorsiPanel() {
     
-        TopPanel top = new TopPanel(Applicazione.facoltàPremuta);
+        TopPanel top = new TopPanel(Applicazione.facoltàAttuale.getNome());
         
-        JPanel panel = new JPanel(new GridLayout(Applicazione.listaCorsiAttuali.size()+1, 1));
+        JPanel panel = new JPanel(new GridLayout(Applicazione.listaCorsiAttuali.size()+2, 1));
         
         //pannello ricerca
         JPanel searchPanel = new JPanel();
@@ -62,6 +66,22 @@ public class ListaCorsiPanel extends JPanel{
         // fine pannello ricerca
         
         panel.add(searchPanel);
+        
+        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        
+        AggiungiFacoltàPreferita aggiungiFacoltàPreferita = new AggiungiFacoltàPreferita();
+        preferitiOff.addActionListener(aggiungiFacoltàPreferita);
+        
+        RimuoviFacoltàPreferita rimuoviFacoltàPreferita = new RimuoviFacoltàPreferita();
+        preferitiOn.addActionListener(rimuoviFacoltàPreferita);
+        
+        if (ControlloQuery.controlloFacoltàPreferita()) {
+            panel.add(preferitiOff);
+        }
+        else {
+            panel.add(preferitiOn);
+        }
         
         GoToCorso goToCorso = new GoToCorso();
         

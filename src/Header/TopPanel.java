@@ -7,8 +7,10 @@ package Header;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Login.LoginPanel;
+import Preferiti.Facoltà.Vista.PreferitiPanel;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -58,6 +60,8 @@ public class TopPanel extends JPanel{
                                           ListeQuery lQuery2 = new ListeQuery();
                                           lQuery2.caricaCorsi();
                         break;
+                    case "preferiti": Applicazione.svuotaPreferiti();
+                        break;
                 }
                 
                 Applicazione.back.remove(Applicazione.back.size()-1);
@@ -88,6 +92,12 @@ public class TopPanel extends JPanel{
                 }
                 if(menu.getSelectedItem().equals("Preferiti")){
                    
+                    Applicazione.back.add("preferiti");
+                    ListeQuery.caricaFacoltàPreferite();
+                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    Grafica.container.add(preferitiPanel, "preferiti");
+                    Grafica.card.show(Grafica.container, "preferiti");
+                    
                 }
                 if(menu.getSelectedItem().equals("Logout")){
                 

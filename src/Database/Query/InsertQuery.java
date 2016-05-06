@@ -170,12 +170,31 @@ public class InsertQuery {
                     Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    
     public static void updateTelefono(String telefono){
         
         String sql = "update studenti set telefono='"+telefono+"' where email='"+Applicazione.guest.getEmail()+"'";
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void inserisciFacoltàPreferita(){
+        
+        String insertFacoltàPreferita = "INSERT INTO facoltàPreferite VALUES (?, ?, ?)";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertFacoltàPreferita);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.facoltàAttuale.getRamo());
+                ps1.setString(3, Applicazione.guest.getEmail());
                 
                 ps1.execute();
                 

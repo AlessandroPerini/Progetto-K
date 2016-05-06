@@ -10,6 +10,8 @@ import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Corsi.Corso;
+import Università.Facolta.Facoltà;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,6 +23,55 @@ import java.util.logging.Logger;
  * @author te4o
  */
 public class InfoQuery {
+    
+    public static void caricaInfoFacoltà(){
+    
+        String selectInfoDomanda = "select * from facoltà where nome=?";
+        
+        try{
+           PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+           ps1.clearParameters();
+           ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+
+           ResultSet rs = ps1.executeQuery();
+
+           while(rs.next()){
+
+               String nome = rs.getString("nome");
+               String ramo = rs.getString("ramo");
+
+               Applicazione.facoltàAttuale = new Facoltà(nome, ramo);
+
+           }
+           }   catch (SQLException ex) {   
+           Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+           }
+    }
+    
+    public static void caricaInfoCorso(){
+    
+        String selectInfoDomanda = "select * from facoltà where corso=?";
+        
+         try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.corsoPremuto);
+
+                ResultSet rs = ps1.executeQuery();
+
+                while(rs.next()){
+
+                    String nome= rs.getString("nome");
+                    String facoltà = rs.getString("facoltà");
+                    int anno = rs.getInt("anno");
+
+                    Applicazione.corsoAttuale = new Corso(nome, anno, facoltà);
+
+                }
+                }   catch (SQLException ex) {   
+                Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }
     
     public static void caricaInfoLibro(){
     
@@ -158,5 +209,6 @@ public class InfoQuery {
                 }
          return like;
     }
+    
 
 }

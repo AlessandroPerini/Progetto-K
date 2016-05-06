@@ -63,7 +63,8 @@ public class ListeQuery {
 
                     String nomeCorso = rs.getString("nome");
                     int annoCorso = rs.getInt("anno");
-                    Corso corso = new Corso(nomeCorso, annoCorso);
+                    String facoltàCorso = rs.getString("facoltà");
+                    Corso corso = new Corso(nomeCorso, annoCorso, facoltàCorso);
                     Applicazione.listaCorsiAttuali.add(corso);
                 }
                 }   catch (SQLException ex) {   
@@ -251,6 +252,27 @@ public class ListeQuery {
             }   catch (SQLException ex) {   
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
+    }
+
+    public static void caricaFacoltàPreferite() {
+        String selectInfoDomanda = "select * from facolt\u00e0Preferite where studente=?";
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            Applicazione.preferiti.getFacoltàPreferite().clear();
+            while (rs.next()) {
+                String nome = rs.getString("facolt\u00e0");
+                String ramo = rs.getString("ramo");
+                
+                Applicazione.preferiti.getFacoltàPreferite().add(new Facoltà(nome, ramo));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
