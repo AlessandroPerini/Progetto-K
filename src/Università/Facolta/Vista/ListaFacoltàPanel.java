@@ -45,7 +45,7 @@ public class ListaFacoltàPanel extends JPanel{
 
             CaricaCorsi caricaCorsi = new CaricaCorsi();
 
-             for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
+            for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
 
                 ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
                 pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1));
@@ -61,7 +61,8 @@ public class ListaFacoltàPanel extends JPanel{
                     facoltà[j].setName("facoltà"+j);
                     facoltà[j].addMouseListener(caricaCorsi);
                     pannelli[i].add(facoltà[j]);
-            }
+                }
+                
                 JScrollBar scrollBar = new JScrollBar();
                 scrollBar.setPreferredSize(new Dimension(0, 20));
                 scrollP[i]= new JScrollPane(pannelli[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -71,7 +72,7 @@ public class ListaFacoltàPanel extends JPanel{
 
                 panel.add(scrollP[i]);
                 svuotaListaFacoltàXRamo();
-             }
+            }
 
             JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPanel.setPreferredSize(new Dimension(650, 450));

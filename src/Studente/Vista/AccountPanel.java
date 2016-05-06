@@ -9,9 +9,6 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Login.LoginPanel;
 import Studente.Ascoltatori.CaricaIMieiDati;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Ascoltatori.CaricaFacoltà;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -24,6 +21,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import Database.Query.InsertQuery;
+import Database.Query.ListeQuery;
+import Preferiti.Facoltà.Vista.PreferitiPanel;
 
 /**
  *
@@ -58,6 +57,22 @@ public class AccountPanel extends JPanel{
 
         preferiti = new JButton("★Preferiti★");
         preferiti.setPreferredSize(new Dimension(110, 40));
+        preferiti.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                   
+                    ListeQuery.caricaFacoltàPreferite();
+                    ListeQuery.caricaCorsiPreferiti();
+                    ListeQuery.caricaAppuntiPreferiti();
+                    ListeQuery.caricaLibriPreferiti();
+                    ListeQuery.caricaDomandePreferite();
+                    
+                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    Grafica.container.add(preferitiPanel, "preferiti");
+                    Grafica.card.show(Grafica.container, "preferiti");
+                   
+            }
+        });
 
         title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);

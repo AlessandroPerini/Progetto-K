@@ -8,6 +8,8 @@ package Preferiti.Facoltà.Vista;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
 import Header.TopPanel;
+import Libri.Ascoltatori.GoToLibro;
+import QeA.Ascoltatori.GoToDomanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Ascoltatori.GoToCorso;
 import java.awt.Dimension;
@@ -41,6 +43,8 @@ public class PreferitiPanel extends JPanel{
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         GoToCorso goToCorso = new GoToCorso();
         GoToAppunto goToAppunto = new GoToAppunto();
+        GoToLibro goToLibro = new GoToLibro();
+        GoToDomanda goToDomanda = new GoToDomanda();
         
         JLabel facoltàPreferiteLabel = new JLabel("Facoltà Preferite");
         panel.add(facoltàPreferiteLabel);
@@ -67,6 +71,24 @@ public class PreferitiPanel extends JPanel{
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
             appuntiPreferiti[i].addActionListener(goToAppunto);
             panel.add(appuntiPreferiti[i]);
+        }
+        
+        JLabel libriPreferitiLabel = new JLabel("Libri Preferiti");
+        panel.add(libriPreferitiLabel);
+        for (int i = 0; i < Applicazione.preferiti.getLibriPreferiti().size(); i++) {
+            libriPreferiti[i] = new JButton();
+            libriPreferiti[i].setText(Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
+            libriPreferiti[i].addActionListener(goToLibro);
+            panel.add(libriPreferiti[i]);
+        }
+        
+        JLabel domandePreferiteLabel = new JLabel("Domande Preferiti");
+        panel.add(domandePreferiteLabel);
+        for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
+            domandePreferite[i] = new JButton();
+            domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
+            domandePreferite[i].addMouseListener(goToDomanda);
+            panel.add(domandePreferite[i]);
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

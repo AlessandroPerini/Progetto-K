@@ -6,8 +6,18 @@
 package Header;
 
 import Application.Controller.Applicazione;
+import static Application.Controller.Applicazione.svuotaAppunti;
+import static Application.Controller.Applicazione.svuotaCorsi;
+import static Application.Controller.Applicazione.svuotaDomande;
+import static Application.Controller.Applicazione.svuotaFacoltà;
+import static Application.Controller.Applicazione.svuotaLibri;
+import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
+import static Application.Controller.Applicazione.svuotaMieiDati;
+import static Application.Controller.Applicazione.svuotaPreferiti;
+import static Application.Controller.Applicazione.svuotaRami;
+import static Application.Controller.Applicazione.svuotaRecensioni;
+import static Application.Controller.Applicazione.svuotaRisposte;
 import Application.Vista.Grafica;
-import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Login.LoginPanel;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
@@ -78,12 +88,30 @@ public class TopPanel extends JPanel{
         title.setFont(new Font("Arial", Font.BOLD, 20));
         title.setPreferredSize(new Dimension(420, 40));
         
-        String[] opzioni = new String[]{"Account","Preferiti","Logout"};
+        String[] opzioni = new String[]{"Home","Account","Preferiti","Logout"};
         menu = new JComboBox(opzioni);
         menu.setPreferredSize(new Dimension(110, 40));
         menu.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                if(menu.getSelectedItem().equals("Home")){
+
+                    Grafica.card.show(Grafica.container, "facoltà");
+                    Applicazione.back.add("facoltà");
+                    
+                    svuotaCorsi();;
+                    svuotaLibri();
+                    svuotaDomande();
+                    svuotaAppunti();
+                    svuotaRisposte();
+                    svuotaMieiDati();
+                    svuotaListaFacoltàXRamo();
+                    svuotaRecensioni();
+                    svuotaRami();
+                    svuotaPreferiti();
+                    
+                    resetMenu();
+                }
                 if(menu.getSelectedItem().equals("Account")){
 
                     Grafica.card.show(Grafica.container, "account");

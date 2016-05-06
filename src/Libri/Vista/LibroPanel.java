@@ -7,13 +7,16 @@ package Libri.Vista;
 
 import Libri.Ascoltatori.EliminaLibro;
 import Application.Controller.Applicazione;
+import Database.Query.ControlloQuery;
 import Header.TopPanel;
-import java.awt.CardLayout;
+import Preferiti.Facoltà.Ascoltatori.AggiungiLibroPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviLibroPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,9 +57,26 @@ public class LibroPanel extends JPanel{
         
         panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
+
+        //preferito
+        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        
+        AggiungiLibroPreferito aggiungiLibroPreferito = new AggiungiLibroPreferito();
+        preferitiOff.addActionListener(aggiungiLibroPreferito);
+        
+        RimuoviLibroPreferito rimuoviLibroPreferito = new RimuoviLibroPreferito();
+        preferitiOn.addActionListener(rimuoviLibroPreferito);
+        
+        if (ControlloQuery.controlloLibroPreferito()) {
+            panel.add(preferitiOff);
+        }
+        else {
+            panel.add(preferitiOn);
+        }
+        //fine zona preferito
         
         //prima riga - colonna 0
-        
         this.titolo = new JLabel("titolo");
 	gbc.gridx = 0;
 	gbc.gridy = 0;

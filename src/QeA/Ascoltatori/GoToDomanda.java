@@ -13,6 +13,7 @@ import QeA.Vista.DomandaPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -32,6 +33,11 @@ public class GoToDomanda implements MouseListener{
         if(e.getComponent() instanceof JLabel) {
             JLabel label = (JLabel)e.getComponent();
             text = label.getText();
+        }
+        
+        if(e.getComponent() instanceof JButton) {
+           JButton button = (JButton)e.getComponent();
+           text = button.getText();
         }
       
         Applicazione.domandaAttuale.setTitolo(text);

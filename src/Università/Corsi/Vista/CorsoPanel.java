@@ -83,17 +83,9 @@ public class CorsoPanel extends JPanel{
         preferitiOn.addActionListener(rimuoviCorsoPreferito);
         
         if (ControlloQuery.controlloCorsoPreferito()) {
-            gbcImg.gridx = 0;
-            gbcImg.gridy = 0;
-            gbcImg.insets = new Insets(200, 0, 0, 10);
-            gbcImg.anchor = GridBagConstraints.CENTER; 
             panel.add(preferitiOff);
         }
         else {
-            gbcImg.gridx = 0;
-            gbcImg.gridy = 0;
-            gbcImg.insets = new Insets(200, 0, 0, 10);
-            gbcImg.anchor = GridBagConstraints.CENTER; 
             panel.add(preferitiOn);
         }
         //fine zona preferito
@@ -101,7 +93,7 @@ public class CorsoPanel extends JPanel{
         JLabel appuntiLab = new JLabel("Appunti");
         appuntiLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 0;
-        gbcImg.gridy = 0;
+        gbcImg.gridy = 1;
         gbcImg.insets = new Insets(10, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(appuntiLab,gbcImg);
@@ -109,7 +101,7 @@ public class CorsoPanel extends JPanel{
         JLabel libriLab = new JLabel("Libri");
         libriLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 1;
-        gbcImg.gridy = 0;
+        gbcImg.gridy = 1;
         gbcImg.insets = new Insets(10, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(libriLab,gbcImg);
@@ -117,7 +109,7 @@ public class CorsoPanel extends JPanel{
         JLabel qeaLab = new JLabel("Q&A");
         qeaLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 2;
-        gbcImg.gridy = 0;
+        gbcImg.gridy = 1;
         gbcImg.insets = new Insets(10, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(qeaLab,gbcImg);
@@ -129,7 +121,7 @@ public class CorsoPanel extends JPanel{
         
         appunti.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 0;
-        gbcImg.gridy = 1;
+        gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(appunti,gbcImg);
@@ -139,7 +131,7 @@ public class CorsoPanel extends JPanel{
         libri = new JButton(libriIco);
         libri.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 1;
-        gbcImg.gridy = 1;
+        gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(libri, gbcImg);
@@ -149,7 +141,7 @@ public class CorsoPanel extends JPanel{
         qea = new JButton(qeaIco);
         qea.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 2;
-        gbcImg.gridy = 1;
+        gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(qea,gbcImg);

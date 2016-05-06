@@ -243,8 +243,8 @@ public class ControlloQuery {
             ps1.clearParameters();
             ps1.setString(1, Applicazione.guest.getEmail());
             ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
-            ps1.setString(4, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             

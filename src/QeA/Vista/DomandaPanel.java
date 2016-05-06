@@ -11,12 +11,15 @@ import Application.Controller.Applicazione;
 import Database.Query.InfoQuery;
 import Database.Query.ControlloQuery;
 import Header.TopPanel;
+import Preferiti.Facoltà.Ascoltatori.AggiungiDomandaPreferita;
+import Preferiti.Facoltà.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -63,8 +66,25 @@ public class DomandaPanel extends JPanel{
                 
         gbcRisposte = new GridBagConstraints(); 
         
-        //prima riga - colonna 0
+        //preferito
+        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
         
+        AggiungiDomandaPreferita aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
+        preferitiOff.addActionListener(aggiungiDomandaPreferita);
+        
+        RimuoviDomandaPreferita rimuoviDomandaPreferita = new RimuoviDomandaPreferita();
+        preferitiOn.addActionListener(rimuoviDomandaPreferita);
+        
+        if (ControlloQuery.controlloDomandaPreferita()) {
+            panel.add(preferitiOff, gbc);
+        }
+        else {
+            panel.add(preferitiOn, gbc);
+        }
+        //fine zona preferito
+        
+        //prima riga - colonna 0
         this.email = new JLabel("Email:");
 	gbc.gridx = 0;
 	gbc.gridy = 0;
