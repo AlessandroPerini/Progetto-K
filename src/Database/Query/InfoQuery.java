@@ -26,10 +26,10 @@ public class InfoQuery {
     
     public static void caricaInfoFacoltà(){
     
-        String selectInfoDomanda = "select * from facoltà where nome=?";
+        String selectInfoFacoltà = "select * from facoltà where nome=?";
         
         try{
-           PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+           PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoFacoltà);
            ps1.clearParameters();
            ps1.setString(1, Applicazione.facoltàAttuale.getNome());
 
@@ -50,12 +50,13 @@ public class InfoQuery {
     
     public static void caricaInfoCorso(){
     
-        String selectInfoDomanda = "select * from facoltà where corso=?";
+        String selectInfoCorso = "select * from corsi where nome=? and facoltà=?";
         
          try{
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoCorso);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.corsoAttuale.getNome());
+                ps1.setString(2, Applicazione.facoltàAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -90,7 +91,7 @@ public class InfoQuery {
 
                     String nomeLibro = rs.getString("titolo");
                     String descrizioneLibro = rs.getString("descrizione");
-                    String idLibro = rs.getString("id");
+                    int idLibro = rs.getInt("id");
                     String emailLibro = rs.getString("studente");
                     String telefonoLibro = rs.getString("telefono");
                     int prezzoLibro = rs.getInt("prezzo");
@@ -121,8 +122,9 @@ public class InfoQuery {
                     String titoloDomanda = rs.getString("titolo");
                     String testoDomanda = rs.getString("domanda");
                     String studenteDomanda = rs.getString("studente");
+                    int likeDomanda = rs.getInt("like");
 
-                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
+                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, likeDomanda);
 
                 }
                 }   catch (SQLException ex) {   

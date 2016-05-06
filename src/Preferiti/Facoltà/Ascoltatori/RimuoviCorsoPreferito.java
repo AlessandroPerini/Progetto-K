@@ -3,35 +3,31 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Corsi.Ascoltatori;
+package Preferiti.Facoltà.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Database.Query.InfoQuery;
+import Database.Query.DeleteQuery;
 import Università.Corsi.Vista.CorsoPanel;
+import Università.Corsi.Vista.ListaCorsiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  *
- * @author Te4o
+ * @author te4o
  */
-public class GoToCorso implements ActionListener{
+public class RimuoviCorsoPreferito implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.corsoPremuto = e.getActionCommand();
+        DeleteQuery.eliminaCorsoPreferito();
         
-        Applicazione.corsoAttuale.setNome(e.getActionCommand());
+        Applicazione.preferiti.getCorsiPreferiti().remove(Applicazione.corsoAttuale);
         
-        InfoQuery.caricaInfoCorso();
-  
         CorsoPanel corso = new CorsoPanel();
         Grafica.container.add(corso, "corso");
         Grafica.card.show(Grafica.container, "corso");
-
-        Applicazione.back.add("corso");
     }
-    
 }

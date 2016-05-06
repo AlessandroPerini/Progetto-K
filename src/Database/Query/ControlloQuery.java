@@ -148,4 +148,116 @@ public class ControlloQuery {
         return bool;
     }
     
+    public static boolean controlloCorsoPreferito(){
+    
+        String selectCorsoPreferito = "Select * from corsiPreferiti where corso=? and facoltà=? and studente=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.corsoAttuale.getNome());
+            ps1.setString(2, Applicazione.facoltàAttuale.getNome());
+            ps1.setString(3, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
+    public static boolean controlloAppuntoPreferito(){
+    
+        String selectCorsoPreferito = "Select * from appuntiPreferiti where studentePref=? and appunto=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            ps1.setString(2, Applicazione.appuntoAttuale.getNome());
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
+    public static boolean controlloLibroPreferito(){
+    
+        String selectLibroPreferito = "Select * from libriPreferiti where studentePref=? and id=? and libro=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            ps1.setInt(2, Applicazione.libroAttuale.getID());
+            ps1.setString(3, Applicazione.libroAttuale.getTitolo());
+            ps1.setString(4, Applicazione.corsoAttuale.getNome());
+            ps1.setString(5, Applicazione.facoltàAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
+    public static boolean controlloDomandaPreferita(){
+    
+        String selectDomandaPreferita = "Select * from domandePreferite where studentePref=? and domanda=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+            ps1.setString(4, Applicazione.corsoAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
 }

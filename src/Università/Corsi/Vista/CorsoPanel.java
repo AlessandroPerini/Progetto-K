@@ -7,26 +7,24 @@ package Università.Corsi.Vista;
 
 import Appunti.Ascoltatori.CaricaAppunti;
 import Application.Controller.Applicazione;
+import Database.Query.ControlloQuery;
 import Libri.Ascoltatori.CaricaLibri;
 import Header.TopPanel;
+import Preferiti.Facoltà.Ascoltatori.AggiungiCorsoPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviCorsoPreferito;
 import QeA.Ascoltatori.CaricaDomande;
 import java.awt.BorderLayout;
-import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.SwingConstants;
 
 /**
  *
@@ -44,7 +42,7 @@ public class CorsoPanel extends JPanel{
         
     public CorsoPanel() {
         
-         top = new TopPanel(Applicazione.corsoPremuto);
+        top = new TopPanel(Applicazione.corsoPremuto);
         
         panel = new JPanel(new GridBagLayout());
         centro = new JPanel(new BorderLayout());
@@ -62,7 +60,6 @@ public class CorsoPanel extends JPanel{
         appunti.setBackground(new Color(238,238,238));
         qea.setBackground(new Color(238,238,238));
         
-        
         centro.add(panel, BorderLayout.CENTER);
         
         scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -74,6 +71,32 @@ public class CorsoPanel extends JPanel{
     }
     
     public void build(){
+
+        //preferito
+        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        
+        AggiungiCorsoPreferito aggiungiCorsoPreferito = new AggiungiCorsoPreferito();
+        preferitiOff.addActionListener(aggiungiCorsoPreferito);
+        
+        RimuoviCorsoPreferito rimuoviCorsoPreferito = new RimuoviCorsoPreferito();
+        preferitiOn.addActionListener(rimuoviCorsoPreferito);
+        
+        if (ControlloQuery.controlloCorsoPreferito()) {
+            gbcImg.gridx = 0;
+            gbcImg.gridy = 0;
+            gbcImg.insets = new Insets(200, 0, 0, 10);
+            gbcImg.anchor = GridBagConstraints.CENTER; 
+            panel.add(preferitiOff);
+        }
+        else {
+            gbcImg.gridx = 0;
+            gbcImg.gridy = 0;
+            gbcImg.insets = new Insets(200, 0, 0, 10);
+            gbcImg.anchor = GridBagConstraints.CENTER; 
+            panel.add(preferitiOn);
+        }
+        //fine zona preferito
         
         JLabel appuntiLab = new JLabel("Appunti");
         appuntiLab.setFont(new Font("Arial", Font.BOLD, 20));

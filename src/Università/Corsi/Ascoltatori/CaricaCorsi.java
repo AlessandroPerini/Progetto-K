@@ -13,6 +13,7 @@ import Università.Corsi.Vista.ListaCorsiPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -27,15 +28,21 @@ public class CaricaCorsi implements MouseListener{
         
         Applicazione.back.add("corsi");
         
-         if(e.getComponent() instanceof JLabel) {
-            JLabel label = (JLabel)e.getComponent();
-            text = label.getText();
+        if(e.getComponent() instanceof JLabel) {
+           JLabel label = (JLabel)e.getComponent();
+           text = label.getText();
         }
+        
+        if(e.getComponent() instanceof JButton) {
+           JButton button = (JButton)e.getComponent();
+           text = button.getText();
+        }
+        
         Applicazione.facoltàPremuta = text;
         
         Applicazione.facoltàAttuale.setNome(text);
         InfoQuery.caricaInfoFacoltà();
-        
+
         ListeQuery.caricaCorsi();
 
         ListaCorsiPanel corsi = new ListaCorsiPanel();

@@ -12,7 +12,6 @@ import Header.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiFacoltàPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviFacoltàPreferita;
 import Università.Corsi.Ascoltatori.CercaCorsi;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -67,6 +66,7 @@ public class ListaCorsiPanel extends JPanel{
         
         panel.add(searchPanel);
         
+        //preferito
         JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
         JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
         
@@ -82,6 +82,7 @@ public class ListaCorsiPanel extends JPanel{
         else {
             panel.add(preferitiOn);
         }
+        //fine zona preferito
         
         GoToCorso goToCorso = new GoToCorso();
         

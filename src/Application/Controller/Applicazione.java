@@ -8,7 +8,7 @@ package Application.Controller;
 import Appunti.Appunto;
 import Database.Connection.ConnessioneDB;
 import Libri.Libro;
-import Preferiti.Facoltà.Preferiti;
+import Preferiti.Preferiti;
 import QeA.Domanda;
 import QeA.Risposta;
 import Studente.Studente;
@@ -49,8 +49,8 @@ public class Applicazione {
     
     public static Facoltà facoltàAttuale = new Facoltà("", "");
     public static Corso corsoAttuale = new Corso("", 0, "");
-    public static Libro libroAttuale = new Libro("", "", "", "", "", 0);
-    public static Domanda domandaAttuale = new  Domanda("", "", "");
+    public static Libro libroAttuale = new Libro("", "", 0, "", "", 0);
+    public static Domanda domandaAttuale = new  Domanda("", "", "", 0);
     public static Appunto appuntoAttuale = new Appunto("", "", "");
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();

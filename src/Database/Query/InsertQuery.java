@@ -202,4 +202,90 @@ public class InsertQuery {
                     Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    
+    public static void inserisciCorsoPreferito(){
+        
+        String insertCorsoPreferito = "INSERT INTO corsiPreferiti VALUES (?, ?, ?, ?)";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertCorsoPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
+                ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+                ps1.setInt(4, Applicazione.corsoAttuale.getAnno());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void inserisciAppuntoPreferito(){
+        
+        String insertAppuntoPreferito = "INSERT INTO appuntiPreferiti VALUES (?, ?, ?, ?, ?, ?)";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppuntoPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setString(2, Applicazione.appuntoAttuale.getNome());
+                ps1.setString(3, Applicazione.appuntoAttuale.getDescrizione());
+                ps1.setString(4, Applicazione.appuntoAttuale.getStudente());
+                ps1.setString(5, Applicazione.corsoAttuale.getNome());
+                ps1.setString(6, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void inserisciLibroPreferito(){
+        
+        String insertLibroPreferito = "INSERT INTO libriPreferiti VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLibroPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setInt(2, Applicazione.libroAttuale.getID());
+                ps1.setString(3, Applicazione.libroAttuale.getTitolo());
+                ps1.setString(4, Applicazione.libroAttuale.getDescrizione());
+                ps1.setString(5, Applicazione.libroAttuale.getTelefono());
+                ps1.setInt(6, Applicazione.libroAttuale.getPrezzo());
+                ps1.setString(7, Applicazione.libroAttuale.getStudente());
+                ps1.setString(8, Applicazione.corsoAttuale.getNome());
+                ps1.setString(9, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void inserisciDomandaPreferita(){
+        
+        String insertDomandaPreferita = "INSERT INTO domandePreferite VALUES (?, ?, ?, ?, ?, ?, ?)";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomandaPreferita);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(3, Applicazione.domandaAttuale.getDomanda());
+                ps1.setInt(4, Applicazione.domandaAttuale.getLike());
+                ps1.setString(5, Applicazione.domandaAttuale.getStudente());
+                ps1.setString(6, Applicazione.corsoAttuale.getNome());
+                ps1.setString(7, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 }

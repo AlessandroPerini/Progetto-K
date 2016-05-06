@@ -14,11 +14,13 @@ public class Domanda {
     private String titolo;
     private String domanda;
     private String studente;
+    private int like;
 
-    public Domanda(String titolo, String domanda, String studente) {
+    public Domanda(String titolo, String domanda, String studente, int like) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.studente = studente;
+        this.like = like;
     }
 
     public String getStudente() {
@@ -36,7 +38,9 @@ public class Domanda {
     public String getDomanda() {
         return domanda;
     }
-    
-    
-    
+
+    public int getLike() {
+        return like;
+    }
+
 }

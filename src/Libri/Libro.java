@@ -13,13 +13,13 @@ public class Libro {
     
     private String titolo;
     private String descrizione;
-    private String ID;
+    private int ID;
     private String studente;
     private String telefono;
     private int prezzo;
 
 
-    public Libro(String titolo, String descrizione, String ID, String telefono, String studente, int prezzo) {
+    public Libro(String titolo, String descrizione, int ID, String telefono, String studente, int prezzo) {
 
         this.titolo = titolo;
         this.descrizione = descrizione;
@@ -42,7 +42,7 @@ public class Libro {
         return descrizione;
     }
 
-    public String getID() {
+    public int getID() {
         return ID;
     }
 

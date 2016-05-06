@@ -88,7 +88,7 @@ public class ListeQuery {
 
                 String nomeLibro = rs.getString("titolo");
                 String descrizioneLibro = rs.getString("descrizione");
-                String idLibro = rs.getString("id");
+                int idLibro = rs.getInt("id");
                 String emailLibro = rs.getString("studente");
                 String telefonoLibro = rs.getString("telefono");
                 int prezzoLibro = rs.getInt("prezzo");
@@ -119,8 +119,9 @@ public class ListeQuery {
                 String titoloDomanda = rs.getString("titolo");
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
+                int like = rs.getInt("like");
                
-                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, like);
                 Applicazione.listaDomandeAttuali.add(domanda);
                 
                 }
@@ -255,9 +256,11 @@ public class ListeQuery {
     }
 
     public static void caricaFacoltàPreferite() {
-        String selectInfoDomanda = "select * from facolt\u00e0Preferite where studente=?";
+        
+        String selectFacoltàPreferite = "select * from facoltàPreferite where studente=?";
+        
         try {
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferite);
             ps1.clearParameters();
             ps1.setString(1, Applicazione.guest.getEmail());
             
@@ -265,10 +268,111 @@ public class ListeQuery {
             
             Applicazione.preferiti.getFacoltàPreferite().clear();
             while (rs.next()) {
-                String nome = rs.getString("facolt\u00e0");
+                String nome = rs.getString("facoltà");
                 String ramo = rs.getString("ramo");
                 
                 Applicazione.preferiti.getFacoltàPreferite().add(new Facoltà(nome, ramo));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void caricaCorsiPreferiti() {
+        
+        String selectCorsiPreferiti = "select * from corsiPreferiti where studente=?";
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsiPreferiti);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            Applicazione.preferiti.getCorsiPreferiti().clear();
+            while (rs.next()) {
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
+                int anno = rs.getInt("anno");
+                
+                Applicazione.preferiti.getCorsiPreferiti().add(new Corso(corso, anno, facoltà));
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void caricaAppuntiPreferiti() {
+        
+        String selectAppuntiPreferiti = "select * from appuntiPreferiti where studentePref=?";
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            Applicazione.preferiti.getAppuntiPreferiti().clear();
+            while (rs.next()) {
+                String appunto = rs.getString("appunto");
+                String descrizione = rs.getString("descrizione");
+                String studente = rs.getString("studenteApp");
+                
+                Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void caricaLibriPreferiti() {
+        
+        String selectLibriPreferiti = "select * from libriPreferiti where studentePref=?";
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibriPreferiti);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            Applicazione.preferiti.getLibriPreferiti().clear();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String libro = rs.getString("libro");
+                String descrizione = rs.getString("descrizione");
+                String telefono = rs.getString("telefono");
+                int prezzo = rs.getInt("prezzo");
+                String studente = rs.getString("studenteLib");
+                
+                Applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public static void caricaDomandePreferite() {
+        
+        String selectDomandePreferite = "select * from domandePreferite where studentePref=?";
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandePreferite);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.guest.getEmail());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            Applicazione.preferiti.getDomandePreferite().clear();
+            while (rs.next()) {
+                String domanda = rs.getString("domanda");
+                String descrizione = rs.getString("descrizione");
+                int like = rs.getInt("like");
+                String studente = rs.getString("studenteDom");
+                
+                Applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

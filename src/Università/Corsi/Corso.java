@@ -25,6 +25,10 @@ public class Corso {
         return nome;
     }
 
+    public int getAnno() {
+        return anno;
+    }
+   
     public void setNome(String nome) {
         this.nome = nome;
     }

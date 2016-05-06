@@ -77,12 +77,12 @@ public class DeleteQuery {
     
     public static void eliminaFacoltàPreferita(){
         
-        String insertFacoltàPreferita = "delete from facoltàPreferite where facoltà=? and studente=?";
+        String eliminaFacoltàPreferita = "delete from facoltàPreferite where facoltà=? and studente=?";
         
         try{
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertFacoltàPreferita);
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaFacoltàPreferita);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
                 ps1.setString(2, Applicazione.guest.getEmail());
                 
                 ps1.execute();
@@ -91,4 +91,81 @@ public class DeleteQuery {
                     Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    
+    public static void eliminaCorsoPreferito(){
+        
+        String deleteCorsoPreferito = "delete from corsiPreferiti where corso=? and facoltà=? and studente=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(deleteCorsoPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.corsoAttuale.getNome());
+                ps1.setString(2, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(3, Applicazione.guest.getEmail());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaAppuntoPreferito(){
+        
+        String deleteAppuntoPreferito = "delete from appuntiPreferiti where studentePref=? and appunto=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(deleteAppuntoPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setString(2, Applicazione.appuntoAttuale.getNome());
+                ps1.setString(3, Applicazione.corsoAttuale.getNome());
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaLibroPreferito(){
+        
+        String eliminaLibroPreferito = "delete from libriPreferiti where studentePref=? and id=? and libro=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setInt(2, Applicazione.libroAttuale.getID());
+                ps1.setString(3, Applicazione.libroAttuale.getTitolo());
+                ps1.setString(4, Applicazione.corsoAttuale.getNome());
+                ps1.setString(5, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaDomandaPreferita(){
+        
+        String eliminaDomandaPreferita = "delete from domandePreferite where studentePref=? and domanda=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
+                ps1.clearParameters();
+                ps1.setString(3, Applicazione.guest.getEmail());
+                ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(3, Applicazione.corsoAttuale.getNome());
+                ps1.setString(2, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+
 }

@@ -58,7 +58,6 @@ public class ListaFacoltàPanel extends JPanel{
                 for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
                     facoltà[j] = new JLabel();
                     facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());
-
                     facoltà[j].setName("facoltà"+j);
                     facoltà[j].addMouseListener(caricaCorsi);
                     pannelli[i].add(facoltà[j]);

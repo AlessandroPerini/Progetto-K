@@ -6,11 +6,10 @@
 package Preferiti.Facoltà.Vista;
 
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.GoToAppunto;
 import Header.TopPanel;
-import Studente.Ascoltatori.GoToAppuntoGuest;
-import Studente.Ascoltatori.GoToDomandaGuest;
-import Studente.Ascoltatori.GoToLibroGuest;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Corsi.Ascoltatori.GoToCorso;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JButton;
@@ -25,26 +24,49 @@ import javax.swing.JScrollPane;
 public class PreferitiPanel extends JPanel{
     
     private JButton[] facoltàPreferite = new JButton[Applicazione.preferiti.getFacoltàPreferite().size()];
+    private JButton[] corsiPreferiti = new JButton[Applicazione.preferiti.getCorsiPreferiti().size()];
+    private JButton[] appuntiPreferiti = new JButton[Applicazione.preferiti.getAppuntiPreferiti().size()];
+    private JButton[] libriPreferiti = new JButton[Applicazione.preferiti.getLibriPreferiti().size()];
+    private JButton[] domandePreferite = new JButton[Applicazione.preferiti.getDomandePreferite().size()];
     
-    private int n = Applicazione.preferiti.getFacoltàPreferite().size(); //totale righe
+    private int n = Applicazione.preferiti.getFacoltàPreferite().size()+Applicazione.preferiti.getCorsiPreferiti().size()+
+                    Applicazione.preferiti.getAppuntiPreferiti().size()+Applicazione.preferiti.getLibriPreferiti().size()+
+                    Applicazione.preferiti.getDomandePreferite().size(); //totale righe preferiti (escluse le label)
 
     public PreferitiPanel() {
-        
         TopPanel top = new TopPanel("Preferiti");
         
-        JPanel panel = new JPanel(new GridLayout(n+1, 1));
+        JPanel panel = new JPanel(new GridLayout(n+5, 1));
+
+        CaricaCorsi caricaCorsi = new CaricaCorsi();
+        GoToCorso goToCorso = new GoToCorso();
+        GoToAppunto goToAppunto = new GoToAppunto();
         
         JLabel facoltàPreferiteLabel = new JLabel("Facoltà Preferite");
-        
-        CaricaCorsi caricaCorsi = new CaricaCorsi();
-        
         panel.add(facoltàPreferiteLabel);
-        
         for (int i = 0; i < Applicazione.preferiti.getFacoltàPreferite().size(); i++) {
             facoltàPreferite[i] = new JButton();
             facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
             facoltàPreferite[i].addMouseListener(caricaCorsi);
             panel.add(facoltàPreferite[i]);
+        }
+        
+        JLabel corsiPreferitiLabel = new JLabel("Corsi Preferiti");
+        panel.add(corsiPreferitiLabel);
+        for (int i = 0; i < Applicazione.preferiti.getCorsiPreferiti().size(); i++) {
+            corsiPreferiti[i] = new JButton();
+            corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
+            corsiPreferiti[i].addActionListener(goToCorso);
+            panel.add(corsiPreferiti[i]);
+        }
+        
+        JLabel appuntiPreferitiLabel = new JLabel("Appunti Preferiti");
+        panel.add(appuntiPreferitiLabel);
+        for (int i = 0; i < Applicazione.preferiti.getAppuntiPreferiti().size(); i++) {
+            appuntiPreferiti[i] = new JButton();
+            appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
+            appuntiPreferiti[i].addActionListener(goToAppunto);
+            panel.add(appuntiPreferiti[i]);
         }
         
         JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

@@ -62,7 +62,7 @@ public class GuestQuery {
 
                 String nomeLibro = rs.getString("titolo");
                 String descrizioneLibro = rs.getString("descrizione");
-                String idLibro = rs.getString("id");
+                int idLibro = rs.getInt("id");
                 String emailLibro = rs.getString("studente");
                 String telefonoLibro = rs.getString("telefono");
                 int prezzoLibro = rs.getInt("prezzo");
@@ -91,8 +91,9 @@ public class GuestQuery {
                 String titoloDomanda = rs.getString("titolo");
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
+                int studenteLike = rs.getInt("like");
                
-                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, studenteLike);
                 Applicazione.domandeGuest.add(domanda);
                 
                 }

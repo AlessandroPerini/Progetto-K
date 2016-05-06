@@ -12,9 +12,14 @@ import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
 import Header.TopPanel;
+import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.AggiungiFacoltàPreferita;
+import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviFacoltàPreferita;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -35,7 +40,25 @@ public class AppuntoPanel extends JPanel{
         
         TopPanel top = new TopPanel(Applicazione.appuntoAttuale.getNome());
         
-        JPanel panel = new JPanel(new GridLayout(7,2,10,10));
+        JPanel panel = new JPanel(new GridLayout(8,2,10,10));
+        
+        //preferito
+        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        
+        AggiungiAppuntoPreferito aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
+        preferitiOff.addActionListener(aggiungiAppuntoPreferito);
+        
+        RimuoviAppuntoPreferito rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
+        preferitiOn.addActionListener(rimuoviAppuntoPreferito);
+        
+        if (ControlloQuery.controlloAppuntoPreferito()) {
+            panel.add(preferitiOff);
+        }
+        else {
+            panel.add(preferitiOn);
+        }
+        //fine zona preferito
         
         JLabel email = new JLabel("Email :");
         JLabel nome = new JLabel("Nome :");
@@ -71,6 +94,7 @@ public class AppuntoPanel extends JPanel{
         GoToRecensioniAppuntoPanel goToRecensioniAppuntoPanel = new GoToRecensioniAppuntoPanel();
         recensioni.addActionListener(goToRecensioniAppuntoPanel);
         
+        panel.add(recensioni);
         panel.add(nome);
         panel.add(nome2);
         panel.add(descrizione);
@@ -84,7 +108,6 @@ public class AppuntoPanel extends JPanel{
             panel.add(commento);
             panel.add(valuta);
         }
-        panel.add(recensioni);
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             

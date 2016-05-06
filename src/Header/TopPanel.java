@@ -95,11 +95,17 @@ public class TopPanel extends JPanel{
                 if(menu.getSelectedItem().equals("Preferiti")){
                    
                     Applicazione.back.add("preferiti");
+                    
                     ListeQuery.caricaFacoltàPreferite();
+                    ListeQuery.caricaCorsiPreferiti();
+                    ListeQuery.caricaAppuntiPreferiti();
+                    ListeQuery.caricaLibriPreferiti();
+                    ListeQuery.caricaDomandePreferite();
+                    
                     PreferitiPanel preferitiPanel = new PreferitiPanel();
                     Grafica.container.add(preferitiPanel, "preferiti");
                     Grafica.card.show(Grafica.container, "preferiti");
-                    
+                   
                 }
                 if(menu.getSelectedItem().equals("Logout")){
                 
