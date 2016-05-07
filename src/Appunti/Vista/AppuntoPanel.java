@@ -8,9 +8,11 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
+import Appunti.Ascoltatori.ScaricaFileAppunto;
 import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
+import Dropbox.Download;
 import Header.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
@@ -115,6 +117,11 @@ public class AppuntoPanel extends JPanel{
             elimina.addActionListener(eliminaAppunto);
             panel.add(elimina);
         }
+        
+        JButton scarica = new JButton("Download Appunto");
+        ScaricaFileAppunto download = new ScaricaFileAppunto();
+        scarica.addActionListener(download);
+        panel.add(scarica);
  
         JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 450));

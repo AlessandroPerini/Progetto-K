@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,10 +40,11 @@ public class Upload {
 
         File inputFile = new File(percorsoFile);
         FileInputStream inputStream = new FileInputStream(inputFile);
+        
         try {
             DbxEntry.File uploadedFile = client.uploadFile("/"+nomeFile+"",
                 DbxWriteMode.add(), inputFile.length(), inputStream);
-            System.out.println("Uploaded: " + uploadedFile.toString());
+            JOptionPane.showMessageDialog(null, "Il tuo file è stato caricato correttamente", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
         } finally {
             inputStream.close();
         }

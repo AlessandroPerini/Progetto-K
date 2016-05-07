@@ -34,26 +34,29 @@ public class AggiungiAppunto implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if(ControlloQuery.controlloNomeAppunto(nome.getText())){
-            InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
-            
-            Applicazione.svuotaAppunti();
-        
-            ListeQuery.caricaAppunti();
+        if((!nome.getText().equals(""))&&(!descrizione.getText().equals(""))){
+            if(ControlloQuery.controlloNomeAppunto(nome.getText())){
+                InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
 
-            Applicazione.back.remove(Applicazione.back.size()-1);
+                Applicazione.svuotaAppunti();
 
-            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-            Grafica.container.add(appunti, "appunti");
-            Grafica.card.show(Grafica.container, "appunti");
+                ListeQuery.caricaAppunti();
 
-            AggiungiAppuntoPanel.clearForm();
+                Applicazione.back.remove(Applicazione.back.size()-1);
+
+                ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                Grafica.container.add(appunti, "appunti");
+                Grafica.card.show(Grafica.container, "appunti");
+
+                AggiungiAppuntoPanel.clearForm();
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno \ndi '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
+                        + "che non sia \nlo stesso e riprova cambiando nome.","Impossibile caricare appunto" , JOptionPane.ERROR_MESSAGE);
+            }     
         }
         else{
-            JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno di '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
-                    + "che non sia lo stesso e riprova cambiando nome.","Impossibile caricare appunto" , JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(null, "Inserisci prima un nome e una descrizione del tuo appunto", "Nome o descrizione mancante", JOptionPane.ERROR_MESSAGE);
         }
-        
-        
     }
 }

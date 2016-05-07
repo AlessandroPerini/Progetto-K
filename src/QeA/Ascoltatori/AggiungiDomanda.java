@@ -54,8 +54,8 @@ public class AggiungiDomanda implements ActionListener{
             AggiungiDomandaPanel.clearForm();
         }
         else{
-            JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno di '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
-                    + "che non sia la stessa e riprova cambiando titolo.","Impossibile caricare domanda" , JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno \ndi '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
+                    + "che non sia \nla stessa e riprova cambiando titolo.","Impossibile caricare domanda" , JOptionPane.INFORMATION_MESSAGE);
         }
     }
 }
