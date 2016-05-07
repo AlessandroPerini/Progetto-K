@@ -7,18 +7,21 @@ package Appunti.Vista;
 
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
-import Libri.Ascoltatori.AggiungiLibro;
+import Appunti.Ascoltatori.SalvaFile;
 import Header.TopPanel;
-import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -28,16 +31,20 @@ public class AggiungiAppuntoPanel extends JPanel{
     
     private static JTextArea nome2 = new JTextArea();
     private static JTextArea descrizione2 = new JTextArea();
+    private static JTextField persorsoFile;
+    private JFileChooser fileChooser;
+    private File fileAppunto;
     
     public AggiungiAppuntoPanel() {
         
         TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(5,2,5,10));
+        JPanel panel = new JPanel(new GridLayout(6,2,5,10));
         
         JLabel nome = new JLabel("Nome :");
         JLabel descrizione = new JLabel("Descrizione :");
         JLabel email = new JLabel("Email :");
+        JLabel file = new JLabel("File :");
         
         nome2 = new JTextArea("");
         descrizione2 = new JTextArea("");
@@ -53,12 +60,41 @@ public class AggiungiAppuntoPanel extends JPanel{
         AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2);
         aggiungi.addActionListener(aggiungiAppunto);
         
+        //file
+        JPanel filePanel = new JPanel();
+        persorsoFile = new JTextField(18);
+        persorsoFile.setEditable(false);
+        persorsoFile.setBackground(Color.white );
+        
+        fileChooser = new JFileChooser();
+        
+        fileAppunto = new File("");
+        
+        JButton scegliFile = new JButton("Scegli File");
+        scegliFile.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                fileChooser.showOpenDialog(null);
+                fileAppunto = fileChooser.getSelectedFile();
+                persorsoFile.setText(fileAppunto.getAbsolutePath());
+                
+                SalvaFile salvaFile = new SalvaFile(fileAppunto, nome2);
+                aggiungi.addActionListener(salvaFile);
+            }
+        });
+        
+        filePanel.add(persorsoFile);
+        filePanel.add(scegliFile);
+        //fine file
+        
         panel.add(nome);
         panel.add(nome2);
         panel.add(descrizione);
         panel.add(scrollPanel);
         panel.add(email);
         panel.add(email2);
+        panel.add(file);
+        panel.add(filePanel);
         
         panel.add(aggiungi);
 

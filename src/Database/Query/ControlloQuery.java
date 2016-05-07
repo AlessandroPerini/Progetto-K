@@ -81,8 +81,6 @@ public class ControlloQuery {
             ps1.setString(1, nome);
             ps1.setString(2, Applicazione.corsoPremuto);
             ps1.setString(3, Applicazione.facoltàPremuta);
-            System.out.println("Select * from appunti where nome="+nome+" and "
-                    + "corso="+Applicazione.corsoPremuto+" and facoltà="+Applicazione.facoltàPremuta+"");
             ResultSet rs = ps1.executeQuery();
             
             if (rs.next()) {

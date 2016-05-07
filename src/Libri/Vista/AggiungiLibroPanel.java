@@ -8,19 +8,21 @@ package Libri.Vista;
 import Libri.Ascoltatori.AggiungiLibro;
 import Application.Controller.Applicazione;
 import Header.TopPanel;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
  *
@@ -36,7 +38,7 @@ public class AggiungiLibroPanel extends JPanel{
         
         TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoPremuto);
         
-        JPanel panel = new JPanel(new GridLayout(6,2,5,10));
+        JPanel panel = new JPanel(new GridLayout(7,2,5,10));
         
         JPanel prezzoPanel = new JPanel(new GridLayout(1, 2));
         
@@ -53,8 +55,7 @@ public class AggiungiLibroPanel extends JPanel{
         prezzo2 = new JSpinner(prezzoModel);
         JLabel email2 = new JLabel(Applicazione.guest.getEmail());
         JCheckBox telefono2 = new JCheckBox("Vuoi far vedere il tuo numero?");
-        
- 
+         
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         
         descrizione2.setLineWrap(true);
