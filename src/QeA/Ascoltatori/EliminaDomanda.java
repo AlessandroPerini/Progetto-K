@@ -7,6 +7,7 @@ package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import QeA.Vista.ListaDomandePanel;
@@ -27,6 +28,10 @@ public class EliminaDomanda implements ActionListener{
         
         if(showConfirmDialog == 0 ){
             DeleteQuery.eliminaDomanda();
+            
+            if(ControlloQuery.controlloDomandePreferite()==false){
+                DeleteQuery.eliminaDomandePreferite();
+            }
 
             JOptionPane.showMessageDialog(null, "Domanda eliminata correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
 

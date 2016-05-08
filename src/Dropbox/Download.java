@@ -36,7 +36,7 @@ public class Download {
         DbxRequestConfig config = new DbxRequestConfig("UNI Per Voi",
             Locale.getDefault().toString());
 
-        DbxClient client = new DbxClient(config, "_lcMc5LLpBQAAAAAAAAB-ba2Ol_Yuqtazkl638VF8P-DLPlNMzdrFKT9smRIw1WQ");
+        DbxClient client = new DbxClient(config, "WXpJMW2LU9AAAAAAAAAAB_Dq0cw6AU_7Hq8V_Y7_DZ3-SbhtCs-9_v8RhktUAPnX");
         
         //ricerca file per formato
         DbxEntry.WithChildren listing = client.getMetadataWithChildren("/");

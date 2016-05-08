@@ -7,6 +7,7 @@ package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
@@ -29,6 +30,10 @@ public class EliminaLibro implements ActionListener{
         
         if(showConfirmDialog == 0 ){
             DeleteQuery.eliminaLibro();
+            
+            if(ControlloQuery.controlloLibriPreferiti()==false){
+                DeleteQuery.eliminaLibriPreferiti();
+            }
 
             JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
 

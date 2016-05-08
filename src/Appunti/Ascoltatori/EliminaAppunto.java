@@ -8,6 +8,7 @@ package Appunti.Ascoltatori;
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,10 @@ public class EliminaAppunto implements ActionListener{
         
         if(showConfirmDialog == 0 ){
             DeleteQuery.eliminaAppunto();
+            
+            if(ControlloQuery.controlloAppuntiPreferiti()==false){
+                DeleteQuery.eliminaAppuntiPreferiti();
+            }
         
             JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
 

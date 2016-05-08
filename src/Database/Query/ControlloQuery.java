@@ -258,4 +258,85 @@ public class ControlloQuery {
         return bool;
     }
     
+    public static boolean controlloAppuntiPreferiti(){
+    
+        String selectCorsoPreferito = "Select * from appuntiPreferiti where appunto=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
+    public static boolean controlloLibriPreferiti(){
+    
+        String selectLibroPreferito = "Select * from libriPreferiti where id=? and libro=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
+            ps1.clearParameters();
+            ps1.setInt(1, Applicazione.libroAttuale.getID());
+            ps1.setString(2, Applicazione.libroAttuale.getTitolo());
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
+    
+    public static boolean controlloDomandePreferite(){
+    
+        String selectDomandaPreferita = "Select * from domandePreferite where domanda=? and corso=? and facoltà=?";
+        
+        boolean bool = true;
+        
+        try {
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+            
+            ResultSet rs = ps1.executeQuery();
+            
+            if (rs.next()) {
+                bool = false;
+            } else {
+                bool = true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return bool;
+    }
 }

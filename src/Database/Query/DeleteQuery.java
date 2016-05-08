@@ -156,10 +156,65 @@ public class DeleteQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
                 ps1.clearParameters();
-                ps1.setString(3, Applicazione.guest.getEmail());
-                ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
                 ps1.setString(3, Applicazione.corsoAttuale.getNome());
-                ps1.setString(2, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaAppuntiPreferiti(){
+        
+        String deleteAppuntoPreferito = "delete from appuntiPreferiti appunto=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(deleteAppuntoPreferito);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
+                ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaLibriPreferiti(){
+        
+        String eliminaLibroPreferito = "delete from libriPreferiti where id=? and libro=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
+                ps1.clearParameters();
+                ps1.setInt(1, Applicazione.libroAttuale.getID());
+                ps1.setString(2, Applicazione.libroAttuale.getTitolo());
+                ps1.setString(3, Applicazione.corsoAttuale.getNome());
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
+    
+    public static void eliminaDomandePreferite(){
+        
+        String eliminaDomandaPreferita = "delete from domandePreferite where domanda=? and corso=? and facoltà=?";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
+                ps1.setString(3, Applicazione.facoltàAttuale.getNome());
                 
                 ps1.execute();
                 
