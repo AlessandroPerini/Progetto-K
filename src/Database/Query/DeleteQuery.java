@@ -170,7 +170,7 @@ public class DeleteQuery {
     
     public static void eliminaAppuntiPreferiti(){
         
-        String deleteAppuntoPreferito = "delete from appuntiPreferiti appunto=? and corso=? and facoltà=?";
+        String deleteAppuntoPreferito = "delete from appuntiPreferiti where appunto=? and corso=? and facoltà=?";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(deleteAppuntoPreferito);

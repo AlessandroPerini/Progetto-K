@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Te4o
  */
-public class ScaricaFileAppunto implements ActionListener{
+public class DownloadFileAppunto implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -27,9 +27,9 @@ public class ScaricaFileAppunto implements ActionListener{
             download.down();
             
         } catch (IOException ex) {
-            Logger.getLogger(ScaricaFileAppunto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DownloadFileAppunto.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DbxException ex) {
-            Logger.getLogger(ScaricaFileAppunto.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DownloadFileAppunto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

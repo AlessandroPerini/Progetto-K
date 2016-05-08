@@ -7,7 +7,6 @@ package Appunti.Vista;
 
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.CaricaFileAppunto;
 import Header.TopPanel;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -56,9 +55,8 @@ public class AggiungiAppuntoPanel extends JPanel{
         descrizione2.setWrapStyleWord(true);
         nome2.setLineWrap(true);
         
-        JButton aggiungi = new JButton("Aggiungi");
-        AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2);
-        aggiungi.addActionListener(aggiungiAppunto);
+        JButton aggiungi = new JButton("Inserisci prima un file");
+        aggiungi.setEnabled(false);
         
         //file
         JPanel filePanel = new JPanel();
@@ -78,11 +76,15 @@ public class AggiungiAppuntoPanel extends JPanel{
                 fileAppunto = fileChooser.getSelectedFile();
                 if(fileAppunto != null){
                     persorsoFile.setText(fileAppunto.getAbsolutePath());
+                    aggiungi.setEnabled(true);
+                    aggiungi.setText("Aggiungi");
+                    AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2, fileAppunto);
+                    aggiungi.addActionListener(aggiungiAppunto);
                 }
-                CaricaFileAppunto salvaFile = new CaricaFileAppunto(fileAppunto, nome2);
-                aggiungi.addActionListener(salvaFile);
+                
             }
         });
+        
         
         filePanel.add(persorsoFile);
         filePanel.add(scegliFile);

@@ -8,7 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
-import Appunti.Ascoltatori.ScaricaFileAppunto;
+import Appunti.Ascoltatori.DownloadFileAppunto;
 import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
@@ -119,7 +119,7 @@ public class AppuntoPanel extends JPanel{
         }
         
         JButton scarica = new JButton("Download Appunto");
-        ScaricaFileAppunto download = new ScaricaFileAppunto();
+        DownloadFileAppunto download = new DownloadFileAppunto();
         scarica.addActionListener(download);
         panel.add(scarica);
  
