@@ -38,6 +38,7 @@ public class Download {
 
         DbxClient client = new DbxClient(config, "_lcMc5LLpBQAAAAAAAAB-ba2Ol_Yuqtazkl638VF8P-DLPlNMzdrFKT9smRIw1WQ");
         
+        //ricerca file per formato
         DbxEntry.WithChildren listing = client.getMetadataWithChildren("/");
         for (DbxEntry child : listing.children) {
             
@@ -52,7 +53,7 @@ public class Download {
                 int i = nomeFile.lastIndexOf('.');
                 formato = nomeFile.substring(i);
             }
-        }
+        }//fine ricerca
 
         FileOutputStream outputStream = new FileOutputStream(computerUserName+"\\Downloads\\"+nome+""+formato+"");
         
