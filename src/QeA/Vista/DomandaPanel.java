@@ -293,11 +293,16 @@ public class DomandaPanel extends JPanel{
             //all interno dell pannello like
             this.pannelloDislike = new JPanel();
             this.pannelloLike = new JPanel();
-            int likelike=InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), 1);
-            this.numeroLikeRisposta = new JLabel(""+likelike);
-            pannelloLike.add(numeroLikeRisposta);
-            this.likeRisposta = new JButton("Like");
+            int likelike;
             
+            try {
+                likelike = InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), 1);
+                this.numeroLikeRisposta = new JLabel(""+likelike);
+                pannelloLike.add(numeroLikeRisposta);
+                this.likeRisposta = new JButton("Like");
+            } catch (SQLException ex) {
+                System.out.println("Errore durante il caricamento dei like della risposta");
+            }
             
             pannelloLike.add(likeRisposta);
                      
@@ -307,11 +312,18 @@ public class DomandaPanel extends JPanel{
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.pannelloLike, gbcRisposte);
             //all interno dell pannello dislike
-            int dislikelike=InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), -1);
-            this.numeroDislikeRisposta = new JLabel(""+dislikelike);
-            pannelloDislike.add(numeroDislikeRisposta);
-            this.dislikeRisposta = new JButton("Dislike");
-        
+            int dislikelike;
+            
+            try {
+                dislikelike = InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), -1);
+            
+                this.numeroDislikeRisposta = new JLabel(""+dislikelike);
+                pannelloDislike.add(numeroDislikeRisposta);
+                this.dislikeRisposta = new JButton("Dislike");
+            } catch (SQLException ex) {
+                System.out.println("Errore durante il caricamento dei like della risposta");
+            }
+            
             pannelloDislike.add(dislikeRisposta);
             AggiungiLikeRisposta alr = new AggiungiLikeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(),numeroLikeRisposta,numeroDislikeRisposta);
             likeRisposta.addActionListener(alr);
@@ -321,6 +333,7 @@ public class DomandaPanel extends JPanel{
             gbcRisposte.insets = new Insets(15, -5, 0, 0);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.pannelloDislike, gbcRisposte);
+             
   
     }
    

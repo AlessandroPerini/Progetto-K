@@ -251,22 +251,19 @@ public class InsertQuery {
         
     }
     
-    public static void inserisciLikeRisposta(int id, int like){
+    public static void inserisciLikeRisposta(int id, int like) throws SQLException{
         
         String sql = "INSERT INTO likeRisposte VALUES (?, ?, ?)";
         
-        try{
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
-            ps1.clearParameters();
-            ps1.setString(1, Applicazione.guest.getEmail());
-            ps1.setInt(2, id);
-            ps1.setInt(3, like);
-            
-            ps1.execute();
-            
-        }   catch (SQLException ex) {
-            Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setInt(2, id);
+        ps1.setInt(3, like);
+        
+        ps1.execute();
+        
     }
-
+    
 }

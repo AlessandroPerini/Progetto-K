@@ -197,41 +197,36 @@ public class InfoQuery {
         }
         return like;
     }
-
-  
-    public static int likeRisposta(int id, int valore) {
-          int like = 0;
-          int dislike = 0;
-
-          String selectMedia = "SELECT * FROM likeRisposte where id=? ";
-
-           try{
-                  PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
-                  ps1.clearParameters();
-                  ps1.setInt(1, id);
-
-
-                  ResultSet rs = ps1.executeQuery();
-
-                  while(rs.next()){
-                      if(rs.getInt("like") == 1){
-                          like++;
-                      }else{
-                          dislike++;
-                      }
-
-
-                  }
-                  }   catch (SQLException ex) {   
-                  Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
-                  }
-           if(valore == 1){
-               return like;
-           }else{
-               return dislike;
-           }
-
-      }
-
-  
+    
+    public static int likeRisposta(int id, int valore) throws SQLException {
+        int like = 0;
+        int dislike = 0;
+        
+        String selectMedia = "SELECT * FROM likeRisposte where id=? ";
+        
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+        ps1.clearParameters();
+        ps1.setInt(1, id);
+        
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        while(rs.next()){
+            if(rs.getInt("like") == 1){
+                like++;
+            }else{
+                dislike++;
+            }
+        }
+        
+        if(valore == 1){
+            return like;
+        }else{
+            return dislike;
+        }
+        
+    }
+    
+    
 }
