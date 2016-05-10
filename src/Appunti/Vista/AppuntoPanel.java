@@ -12,7 +12,6 @@ import Appunti.Ascoltatori.DownloadFileAppunto;
 import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
-import Dropbox.Download;
 import Header.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
@@ -114,7 +113,7 @@ public class AppuntoPanel extends JPanel{
             EliminaAppunto eliminaAppunto = new EliminaAppunto();
             JButton elimina = new JButton("Elimina");
             elimina.setBackground(new Color(249,123,123));
-            elimina.addActionListener(eliminaAppunto);
+            elimina.addActionListener(eliminaAppunto);;
             panel.add(elimina);
         }
         

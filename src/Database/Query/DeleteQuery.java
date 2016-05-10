@@ -22,12 +22,12 @@ public class DeleteQuery {
         
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            String eliminaLibro = "delete from libri where titolo=?";
+            String eliminaLibro = "delete from libri where id=?";
 
             try{
                     PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibro);
                     ps1.clearParameters();
-                    ps1.setString(1, Applicazione.libroAttuale.getTitolo());
+                    ps1.setInt(1, Applicazione.libroAttuale.getID());
                     
                     ps1.execute();
 
@@ -131,16 +131,15 @@ public class DeleteQuery {
     
     public static void eliminaLibroPreferito(){
         
-        String eliminaLibroPreferito = "delete from libriPreferiti where studentePref=? and id=? and libro=? and corso=? and facoltà=?";
+        String eliminaLibroPreferito = "delete from libriPreferiti where studentePref=? and id=? and corso=? and facoltà=?";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
                 ps1.clearParameters();
                 ps1.setString(1, Applicazione.guest.getEmail());
                 ps1.setInt(2, Applicazione.libroAttuale.getID());
-                ps1.setString(3, Applicazione.libroAttuale.getTitolo());
-                ps1.setString(4, Applicazione.corsoAttuale.getNome());
-                ps1.setString(5, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(3, Applicazione.corsoAttuale.getNome());
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
 
                 ps1.execute();
                 
@@ -188,15 +187,14 @@ public class DeleteQuery {
     
     public static void eliminaLibriPreferiti(){
         
-        String eliminaLibroPreferito = "delete from libriPreferiti where id=? and libro=? and corso=? and facoltà=?";
+        String eliminaLibroPreferito = "delete from libriPreferiti where id=? and corso=? and facoltà=?";
         
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
                 ps1.clearParameters();
                 ps1.setInt(1, Applicazione.libroAttuale.getID());
-                ps1.setString(2, Applicazione.libroAttuale.getTitolo());
-                ps1.setString(3, Applicazione.corsoAttuale.getNome());
-                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
+                ps1.setString(3, Applicazione.facoltàAttuale.getNome());
                 
                 ps1.execute();
                 

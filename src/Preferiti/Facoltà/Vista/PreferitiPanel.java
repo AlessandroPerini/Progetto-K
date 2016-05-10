@@ -94,8 +94,8 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
             domandePreferite[i] = new JButton();
             domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
-            goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
-                                             Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà());
+            goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getDomandePreferite().get(i).getCorso(),
+                                             Applicazione.preferiti.getDomandePreferite().get(i).getFacoltà());
             domandePreferite[i].addMouseListener(goToDomanda[i]);
             panel.add(domandePreferite[i]);
         }

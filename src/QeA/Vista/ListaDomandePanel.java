@@ -80,7 +80,7 @@ public class ListaDomandePanel extends JPanel{
         gbcImg.anchor = GridBagConstraints.LINE_START;
         panel.add(addDomanda, gbcImg);
         
-        GoToDomanda goToDomanda = new GoToDomanda(Applicazione.facoltàAttuale.getNome(), Applicazione.corsoAttuale.getNome());
+        GoToDomanda goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
         
         addDomanda.addActionListener(goToAggiungiDomanda);

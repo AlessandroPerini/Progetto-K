@@ -203,7 +203,7 @@ public class ControlloQuery {
     
     public static boolean controlloLibroPreferito(){
     
-        String selectLibroPreferito = "Select * from libriPreferiti where studentePref=? and id=? and libro=? and corso=? and facoltà=?";
+        String selectLibroPreferito = "Select * from libriPreferiti where studentePref=? and id=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
@@ -212,9 +212,8 @@ public class ControlloQuery {
             ps1.clearParameters();
             ps1.setString(1, Applicazione.guest.getEmail());
             ps1.setInt(2, Applicazione.libroAttuale.getID());
-            ps1.setString(3, Applicazione.libroAttuale.getTitolo());
-            ps1.setString(4, Applicazione.corsoAttuale.getNome());
-            ps1.setString(5, Applicazione.facoltàAttuale.getNome());
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             
@@ -243,7 +242,7 @@ public class ControlloQuery {
             ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
             ps1.setString(3, Applicazione.corsoAttuale.getNome());
             ps1.setString(4, Applicazione.facoltàAttuale.getNome());
-            
+
             ResultSet rs = ps1.executeQuery();
             
             if (rs.next()) {
@@ -287,7 +286,7 @@ public class ControlloQuery {
     
     public static boolean controlloLibriPreferiti(){
     
-        String selectLibroPreferito = "Select * from libriPreferiti where id=? and libro=? and corso=? and facoltà=?";
+        String selectLibroPreferito = "Select * from libriPreferiti where id=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
@@ -295,9 +294,8 @@ public class ControlloQuery {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
             ps1.clearParameters();
             ps1.setInt(1, Applicazione.libroAttuale.getID());
-            ps1.setString(2, Applicazione.libroAttuale.getTitolo());
-            ps1.setString(3, Applicazione.corsoAttuale.getNome());
-            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             

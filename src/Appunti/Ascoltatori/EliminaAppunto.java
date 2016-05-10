@@ -11,8 +11,12 @@ import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
+import Dropbox.Elimina;
+import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -33,6 +37,13 @@ public class EliminaAppunto implements ActionListener{
                 DeleteQuery.eliminaAppuntiPreferiti();
             }
         
+            try {
+                Elimina elimina = new Elimina();
+                elimina.del();
+            } catch (DbxException ex) {
+                Logger.getLogger(EliminaAppunto.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
 
             Applicazione.svuotaAppunti();
