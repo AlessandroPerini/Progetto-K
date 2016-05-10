@@ -163,15 +163,15 @@ public class ListeQuery {
             int like = rs.getInt("like");
             int dislike = rs.getInt("dislike");
             int id = rs.getInt("id");
-            String risp = rs.getString("risposta");
+            String risposta = rs.getString("risposta");
+
+            Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente);
+            Applicazione.listaRisposteAttuali.add(rispsta);
             
-            Risposta risposta = new Risposta(risp, domanda, like, dislike, id, studente);
-            Applicazione.listaRisposteAttuali.add(risposta);
         }
     }
     
     public static void caricaRamiFacoltà() throws SQLException{
-        
         String sql = "select distinct ramo from facoltà";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);

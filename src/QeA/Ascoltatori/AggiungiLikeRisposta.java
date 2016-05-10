@@ -1,17 +1,18 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package QeA.Ascoltatori;
 
-import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
-import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 
 /**
@@ -31,22 +32,25 @@ public class AggiungiLikeRisposta implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         String nome = e.getActionCommand();
         int valore = 0;
-      
+        
         if(nome.equals("Like")){
             valore = 1;
             
         }else{
             valore = -1;
         }
-        ControlloQuery.controlloLike(id, valore);
-        j1.setText(""+InfoQuery.likeRisposta(id, 1));
-        j2.setText(""+InfoQuery.likeRisposta(id,-1));
-        Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
-        Grafica.card.show(Grafica.container, "domanda");
-        
-        
-        
+        try {
+            ControlloQuery.controlloLike(id, valore);
+            
+            j1.setText(""+InfoQuery.likeRisposta(id, 1));
+            j2.setText(""+InfoQuery.likeRisposta(id,-1));
+            Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
+            Grafica.card.show(Grafica.container, "domanda");
+            
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo del like della risposta");
 
+        }
         
     }
     
