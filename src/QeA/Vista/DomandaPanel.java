@@ -45,7 +45,7 @@ public class DomandaPanel extends JPanel{
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4, scrollPanel5;
     private AggiungiRisposta risposta;
     private GridBagConstraints gbcRisposte;
-    private int i;
+    private static int i;
    
     public DomandaPanel() {
         
@@ -246,7 +246,7 @@ public class DomandaPanel extends JPanel{
 	gbc.insets = new Insets(15, 30, 0, 10);
 	gbc.anchor = GridBagConstraints.LINE_START;
         
-        risposta = new AggiungiRisposta(rispondiArea,i);
+        risposta = new AggiungiRisposta(rispondiArea);
         rispondi.addActionListener(risposta);
 	panel.add(this.rispondi, gbc);
         
@@ -336,6 +336,16 @@ public class DomandaPanel extends JPanel{
              
   
     }
+
+    public static void setI(int i) {
+        DomandaPanel.i = i;
+    }
+
+    public static int getI() {
+        return i;
+    }
+    
+    
    
  
     
