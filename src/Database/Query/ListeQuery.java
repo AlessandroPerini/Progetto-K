@@ -170,11 +170,15 @@ public class ListeQuery {
             
             Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente);
             Applicazione.listaRisposteAttuali.add(rispsta);
+            
+            
         }
-        
     }
     
+    
+    
     public static void caricaRamiFacoltà() throws SQLException{
+        
         
         String sql = "select distinct ramo from facoltà";
         

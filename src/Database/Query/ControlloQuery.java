@@ -6,12 +6,9 @@
 package Database.Query;
 
 import Application.Controller.Applicazione;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -323,7 +320,6 @@ public class ControlloQuery {
                     
                     InsertQuery.inserisciLikeRisposta(id, valore);
                 }
-           
-            
-        }
+    }
+    
 }

@@ -198,6 +198,7 @@ public class InfoQuery {
         return like;
     }
 
+  
     public static int likeRisposta(int id, int valore) {
           int like = 0;
           int dislike = 0;
@@ -232,4 +233,5 @@ public class InfoQuery {
 
       }
 
-  }
+  
+}
