@@ -16,11 +16,13 @@ public class Risposta {
     private String email;
     private int id;
     private int like;
+    private int dislike;
 
-    public Risposta(String titolo, String domanda, int id, int like, String email) {
+    public Risposta(String titolo, String domanda, int like, int dislike,int id, String email) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.id = id;
+        this.dislike = dislike;
         this.like = like;
         this.email = email;
     }
@@ -38,6 +40,10 @@ public class Risposta {
 
     public String getTitolo() {
         return titolo;
+    }
+
+    public int getId() {
+        return id;
     }
     
     
