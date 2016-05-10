@@ -18,14 +18,20 @@ import java.awt.event.ActionListener;
  */
 public class GoToCorso implements ActionListener{
 
+    private String facoltà;
+
+    public GoToCorso(String facoltà) {
+        this.facoltà = facoltà;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.corsoPremuto = e.getActionCommand();
-        
         Applicazione.corsoAttuale.setNome(e.getActionCommand());
         
-        InfoQuery.caricaInfoCorso();
+        InfoQuery.caricaInfoCorso(facoltà);
+        
+        Applicazione.facoltàAttuale.setNome(facoltà);
   
         CorsoPanel corso = new CorsoPanel();
         Grafica.container.add(corso, "corso");

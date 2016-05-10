@@ -38,8 +38,6 @@ public class CaricaCorsi implements MouseListener{
            text = button.getText();
         }
         
-        Applicazione.facoltàPremuta = text;
-        
         Applicazione.facoltàAttuale.setNome(text);
         InfoQuery.caricaInfoFacoltà();
 

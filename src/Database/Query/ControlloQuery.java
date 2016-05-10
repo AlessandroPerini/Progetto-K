@@ -28,8 +28,8 @@ public class ControlloQuery {
             ps1.clearParameters();
             ps1.setString(1, Applicazione.guest.getEmail());
             ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-            ps1.setString(3, Applicazione.corsoPremuto);
-            ps1.setString(4, Applicazione.facoltàPremuta);
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             
@@ -53,8 +53,8 @@ public class ControlloQuery {
             ps1.clearParameters();
             ps1.setString(1, Applicazione.guest.getEmail());
             ps1.setString(2, Applicazione.appuntoAttuale.getNome());
-            ps1.setString(3, Applicazione.corsoPremuto);
-            ps1.setString(4, Applicazione.facoltàPremuta);
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             
@@ -79,8 +79,8 @@ public class ControlloQuery {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
             ps1.clearParameters();
             ps1.setString(1, nome);
-            ps1.setString(2, Applicazione.corsoPremuto);
-            ps1.setString(3, Applicazione.facoltàPremuta);
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
             ResultSet rs = ps1.executeQuery();
             
             if (rs.next()) {
@@ -103,9 +103,9 @@ public class ControlloQuery {
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
             ps1.clearParameters();
-            ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
-            ps1.setString(2, Applicazione.corsoPremuto);
-            ps1.setString(3, Applicazione.facoltàPremuta);
+            ps1.setString(1, titolo);
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.facoltàAttuale.getNome());
             
             ResultSet rs = ps1.executeQuery();
             
@@ -129,7 +129,7 @@ public class ControlloQuery {
         try {
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferita);
             ps1.clearParameters();
-            ps1.setString(1, Applicazione.facoltàPremuta);
+            ps1.setString(1, Applicazione.facoltàAttuale.getNome());
             ps1.setString(2, Applicazione.guest.getEmail());
             
             ResultSet rs = ps1.executeQuery();

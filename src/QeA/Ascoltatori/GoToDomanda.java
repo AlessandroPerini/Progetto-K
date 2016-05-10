@@ -25,6 +25,14 @@ public class GoToDomanda implements MouseListener{
     private static DomandaPanel domanda;
     private String text;
     
+    private String corso;
+    private String facoltà;
+
+    public GoToDomanda(String corso, String facoltà) {
+        this.corso = corso;
+        this.facoltà = facoltà;
+    }
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         
@@ -42,7 +50,10 @@ public class GoToDomanda implements MouseListener{
       
         Applicazione.domandaAttuale.setTitolo(text);
         
-        InfoQuery.caricaInfoDomanda();
+        InfoQuery.caricaInfoDomanda(corso, facoltà);
+        
+        Applicazione.facoltàAttuale.setNome(facoltà);
+        Applicazione.corsoAttuale.setNome(corso);
         
         ListeQuery.caricaRisposteDomanda();
         

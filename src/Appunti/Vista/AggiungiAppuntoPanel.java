@@ -36,7 +36,7 @@ public class AggiungiAppuntoPanel extends JPanel{
     
     public AggiungiAppuntoPanel() {
         
-        TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(6,2,5,10));
         

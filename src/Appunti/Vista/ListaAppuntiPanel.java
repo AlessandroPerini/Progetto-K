@@ -34,7 +34,7 @@ public class ListaAppuntiPanel extends JPanel{
 
     public ListaAppuntiPanel() {
     
-        TopPanel top = new TopPanel("Appunti "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Appunti "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaAppuntiAttuali.size()+3, 1));
         
@@ -71,7 +71,7 @@ public class ListaAppuntiPanel extends JPanel{
         
         panel.add(addAppunto);
 
-        GoToAppunto goToAppunto = new GoToAppunto();
+        GoToAppunto goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         int size = Applicazione.listaAppuntiAttuali.size();
         if(size == 0){
             noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");

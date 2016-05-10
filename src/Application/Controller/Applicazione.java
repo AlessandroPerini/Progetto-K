@@ -31,9 +31,6 @@ public class Applicazione {
     
     public static ArrayList<String> back = new ArrayList<>();
 
-    public static String facoltàPremuta;
-    public static String corsoPremuto;
-    
     //per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout()
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
@@ -49,9 +46,9 @@ public class Applicazione {
     
     public static Facoltà facoltàAttuale = new Facoltà("", "");
     public static Corso corsoAttuale = new Corso("", 0, "");
-    public static Libro libroAttuale = new Libro("", "", 0, "", "", 0);
-    public static Domanda domandaAttuale = new  Domanda("", "", "", 0);
-    public static Appunto appuntoAttuale = new Appunto("", "", "");
+    public static Libro libroAttuale = new Libro("", "", 0, "", "", 0, "", "");
+    public static Domanda domandaAttuale = new  Domanda("", "", "", 0, "", "");
+    public static Appunto appuntoAttuale = new Appunto("", "", "", "", "");
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();

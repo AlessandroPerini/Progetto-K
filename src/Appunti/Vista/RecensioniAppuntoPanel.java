@@ -28,11 +28,11 @@ public class RecensioniAppuntoPanel extends JPanel{
     private JLabel noRecensioni;
     public RecensioniAppuntoPanel() {
     
-        TopPanel top = new TopPanel("Recensioni "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Recensioni "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaValutazioniAttuali.size()+1, 1));
 
-        GoToAppunto goToAppunto = new GoToAppunto();
+        GoToAppunto goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         int size = Applicazione.listaValutazioniAttuali.size();
         if( size == 0){
             noRecensioni = new JLabel("Non ci sono recensioni relative a questi appunti");

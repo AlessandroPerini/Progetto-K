@@ -141,7 +141,7 @@ public class DeleteQuery {
                 ps1.setString(3, Applicazione.libroAttuale.getTitolo());
                 ps1.setString(4, Applicazione.corsoAttuale.getNome());
                 ps1.setString(5, Applicazione.facoltàAttuale.getNome());
-                
+
                 ps1.execute();
                 
             }   catch (SQLException ex) {   

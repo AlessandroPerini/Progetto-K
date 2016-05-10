@@ -9,7 +9,6 @@ import Application.Controller.Applicazione;
 import static Application.Controller.Applicazione.svuotaAppunti;
 import static Application.Controller.Applicazione.svuotaCorsi;
 import static Application.Controller.Applicazione.svuotaDomande;
-import static Application.Controller.Applicazione.svuotaFacoltà;
 import static Application.Controller.Applicazione.svuotaLibri;
 import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import static Application.Controller.Applicazione.svuotaMieiDati;
@@ -72,6 +71,20 @@ public class TopPanel extends JPanel{
                         break;
                     case "preferiti": Applicazione.svuotaPreferiti();
                         break;
+                }
+                if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){
+                    Applicazione.svuotaPreferiti();
+                    
+                    ListeQuery.caricaFacoltàPreferite();
+                    ListeQuery.caricaCorsiPreferiti();
+                    ListeQuery.caricaAppuntiPreferiti();
+                    ListeQuery.caricaLibriPreferiti();
+                    ListeQuery.caricaDomandePreferite();
+                    
+                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    Grafica.container.add(preferitiPanel, "preferiti");
+                    Grafica.card.show(Grafica.container, "preferiti");
+                    
                 }
                 
                 Applicazione.back.remove(Applicazione.back.size()-1);

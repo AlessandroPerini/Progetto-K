@@ -31,8 +31,8 @@ public class InsertQuery {
                 ps1.setInt(1, prossimoID("libri"));
                 ps1.setString(2, titolo);
                 ps1.setString(3, descrizione);
-                ps1.setString(4, Applicazione.facoltàPremuta);
-                ps1.setString(5, Applicazione.corsoPremuto);
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(5, Applicazione.corsoAttuale.getNome());
                 ps1.setString(6, Applicazione.guest.getEmail());
                 ps1.setString(7, telefono);
                 ps1.setInt(8, prezzo);
@@ -54,8 +54,8 @@ public class InsertQuery {
                 ps1.setString(1, nome);
                 ps1.setString(2, descrizione);
                 ps1.setString(3, Applicazione.guest.getEmail());              
-                ps1.setString(4, Applicazione.corsoPremuto);
-                ps1.setString(5, Applicazione.facoltàPremuta);
+                ps1.setString(4, Applicazione.corsoAttuale.getNome());
+                ps1.setString(5, Applicazione.facoltàAttuale.getNome());
                 ps1.execute();
                 
                 }   catch (SQLException ex) {   
@@ -99,8 +99,8 @@ public class InsertQuery {
                 ps1.setString(1, titolo);
                 ps1.setString(2, domanda);
                 ps1.setString(3, Applicazione.guest.getEmail());              
-                ps1.setString(4, Applicazione.corsoPremuto);
-                ps1.setString(5, Applicazione.facoltàPremuta);
+                ps1.setString(4, Applicazione.corsoAttuale.getNome());
+                ps1.setString(5, Applicazione.facoltàAttuale.getNome());
                 
                 ps1.execute();
                 
@@ -141,8 +141,8 @@ public class InsertQuery {
                 ps1.setString(2, Applicazione.guest.getEmail());              
                 ps1.setString(3, commento.getText());
                 ps1.setInt(4, punteggio.getValue());
-                ps1.setString(5, Applicazione.facoltàPremuta);
-                ps1.setString(6, Applicazione.corsoPremuto);
+                ps1.setString(5, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(6, Applicazione.corsoAttuale.getNome());
                 
                 ps1.execute();
                 
@@ -159,10 +159,10 @@ public class InsertQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.corsoAttuale.getNome());
                 ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
                 ps1.setString(3, Applicazione.guest.getEmail());
-                ps1.setString(4, Applicazione.facoltàPremuta);
+                ps1.setString(4, Applicazione.facoltàAttuale.getNome());
                 
                 ps1.execute();
                 

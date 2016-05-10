@@ -13,16 +13,13 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
-import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
-import javax.swing.colorchooser.AbstractColorChooserPanel;
 
 /**
  *
@@ -36,7 +33,7 @@ public class AggiungiLibroPanel extends JPanel{
     
     public AggiungiLibroPanel() {
         
-        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(7,2,5,10));
         

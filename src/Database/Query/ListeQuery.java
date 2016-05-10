@@ -55,7 +55,7 @@ public class ListeQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -79,8 +79,8 @@ public class ListeQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibri);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -92,8 +92,10 @@ public class ListeQuery {
                 String emailLibro = rs.getString("studente");
                 String telefonoLibro = rs.getString("telefono");
                 int prezzoLibro = rs.getInt("prezzo");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro);
+                Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro, corso, facoltà);
                 Applicazione.listaLibriAttuali.add(libro);
                 
                 }
@@ -109,8 +111,8 @@ public class ListeQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -120,8 +122,10 @@ public class ListeQuery {
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
                 int like = rs.getInt("like");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                
-                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, like);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, like, corso, facoltà);
                 Applicazione.listaDomandeAttuali.add(domanda);
                 
                 }
@@ -137,8 +141,8 @@ public class ListeQuery {
         try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppunti);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -147,8 +151,10 @@ public class ListeQuery {
                 String nomeAppunto = rs.getString("nome");
                 String descrizioneAppunto = rs.getString("descrizione");
                 String emailAppunto = rs.getString("studente");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto);
+                Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, corso, facoltà);
                 Applicazione.listaAppuntiAttuali.add(appunto);
 
                 }
@@ -230,14 +236,18 @@ public class ListeQuery {
     
     public static void caricaRecensioniAppunto(){
     
-        String facoltàQuery = Applicazione.facoltàPremuta.replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoPremuto.replaceAll("'", "\\\\'");
+        String facoltàQuery = Applicazione.facoltàAttuale.getNome().replaceAll("'", "\\\\'");
+        String corsoQuery = Applicazione.corsoAttuale.getNome().replaceAll("'", "\\\\'");
         String appuntoQuery = Applicazione.appuntoAttuale.getNome().replaceAll("'", "\\\\'");
         
-        String selectRecensioni = "select * from valutazioni where facoltà = '"+facoltàQuery+"' and corso = '"+corsoQuery+"' and appunto='"+appuntoQuery+"'";
+        String selectRecensioni = "select * from valutazioni where facoltà = ? and corso = ? and appunto = ?";
         
         try{
             PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRecensioni);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+            ps1.setString(2, Applicazione.corsoAttuale.getNome());
+            ps1.setString(3, Applicazione.appuntoAttuale.getNome());
 
             ResultSet rs = ps1.executeQuery();
 
@@ -319,8 +329,10 @@ public class ListeQuery {
                 String appunto = rs.getString("appunto");
                 String descrizione = rs.getString("descrizione");
                 String studente = rs.getString("studenteApp");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente));
+                Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
@@ -346,8 +358,10 @@ public class ListeQuery {
                 String telefono = rs.getString("telefono");
                 int prezzo = rs.getInt("prezzo");
                 String studente = rs.getString("studenteLib");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo));
+                Applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo, corso, facoltà));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
@@ -371,8 +385,10 @@ public class ListeQuery {
                 String descrizione = rs.getString("descrizione");
                 int like = rs.getInt("like");
                 String studente = rs.getString("studenteDom");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like));
+                Applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like, corso, facoltà));
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);

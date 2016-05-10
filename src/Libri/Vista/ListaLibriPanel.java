@@ -8,18 +8,13 @@ package Libri.Vista;
 import Libri.Ascoltatori.GoToLibro;
 import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.CercaAppunti;
 import Header.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Corsi.Ascoltatori.GoToCorso;
-import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -36,10 +31,12 @@ public class ListaLibriPanel extends JPanel{
     private JButton[] libri = new JButton[Applicazione.listaLibriAttuali.size()];
     private JTextField searchField;
     private JLabel noLibri;
+    
+    private GoToLibro[] goToLibro = new GoToLibro[Applicazione.listaLibriAttuali.size()];
 
     public ListaLibriPanel() {
     
-        TopPanel top = new TopPanel("Libri "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Libri "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(Applicazione.listaLibriAttuali.size()+3, 1));
         
@@ -76,8 +73,6 @@ public class ListaLibriPanel extends JPanel{
         
         panel.add(addLibro);
         
-        GoToLibro goToLibro = new GoToLibro();
-        
         int size = Applicazione.listaLibriAttuali.size();
         if(size == 0){
             noLibri = new JLabel("Non ci sono libri relativi a questo corso.");
@@ -88,7 +83,10 @@ public class ListaLibriPanel extends JPanel{
             for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
                 libri[i] = new JButton();
                 libri[i].setText(Applicazione.listaLibriAttuali.get(i).getTitolo());
-                libri[i].addActionListener(goToLibro);
+                goToLibro[i] = new GoToLibro(Applicazione.corsoAttuale.getNome(),
+                                             Applicazione.facoltàAttuale.getNome(),
+                                             Applicazione.listaLibriAttuali.get(i).getID());
+                libri[i].addActionListener(goToLibro[i]);
                 panel.add(libri[i]);
             }
         }

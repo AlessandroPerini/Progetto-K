@@ -24,6 +24,7 @@ import java.util.logging.Logger;
  */
 public class InfoQuery {
     
+    
     public static void caricaInfoFacoltà(){
     
         String selectInfoFacoltà = "select * from facoltà where nome=?";
@@ -48,7 +49,7 @@ public class InfoQuery {
            }
     }
     
-    public static void caricaInfoCorso(){
+    public static void caricaInfoCorso(String facoltà){
     
         String selectInfoCorso = "select * from corsi where nome=? and facoltà=?";
         
@@ -56,17 +57,17 @@ public class InfoQuery {
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoCorso);
                 ps1.clearParameters();
                 ps1.setString(1, Applicazione.corsoAttuale.getNome());
-                ps1.setString(2, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, facoltà);
 
                 ResultSet rs = ps1.executeQuery();
 
                 while(rs.next()){
 
                     String nome= rs.getString("nome");
-                    String facoltà = rs.getString("facoltà");
+                    String fac = rs.getString("facoltà");
                     int anno = rs.getInt("anno");
 
-                    Applicazione.corsoAttuale = new Corso(nome, anno, facoltà);
+                    Applicazione.corsoAttuale = new Corso(nome, anno, fac);
 
                 }
                 }   catch (SQLException ex) {   
@@ -74,16 +75,16 @@ public class InfoQuery {
                 }
     }
     
-    public static void caricaInfoLibro(){
+    public static void caricaInfoLibro(String corso, String facoltà, int id){
     
-        String selectInfoLibro = "select * from libri where facoltà=? and corso=? and titolo=?";
+        String selectInfoLibro = "select * from libri where facoltà=? and corso=? and id=?";
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoLibro);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
-                ps1.setString(3,Applicazione.libroAttuale.getTitolo());
+                ps1.setString(1, facoltà);
+                ps1.setString(2, corso);
+                ps1.setInt(3, id);
 
                 ResultSet rs = ps1.executeQuery();
 
@@ -95,8 +96,10 @@ public class InfoQuery {
                     String emailLibro = rs.getString("studente");
                     String telefonoLibro = rs.getString("telefono");
                     int prezzoLibro = rs.getInt("prezzo");
+                    String cor = rs.getString("corso");
+                    String fac = rs.getString("facoltà");
                 
-                    Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, telefonoLibro,emailLibro,  prezzoLibro);
+                    Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, telefonoLibro,emailLibro,  prezzoLibro, cor, fac);
 
                 }
                 }   catch (SQLException ex) {   
@@ -104,15 +107,15 @@ public class InfoQuery {
                 }
     }
     
-    public static void caricaInfoDomanda(){
+    public static void caricaInfoDomanda(String corso, String facoltà){
     
         String selectInfoDomanda = "select * from domande where facoltà=? and corso=? and titolo=?";
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, facoltà);
+                ps1.setString(2, corso);
                 ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
 
                 ResultSet rs = ps1.executeQuery();
@@ -123,8 +126,10 @@ public class InfoQuery {
                     String testoDomanda = rs.getString("domanda");
                     String studenteDomanda = rs.getString("studente");
                     int likeDomanda = rs.getInt("like");
+                    String cor = rs.getString("corso");
+                    String fac = rs.getString("facoltà");
 
-                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, likeDomanda);
+                    Applicazione.domandaAttuale = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, likeDomanda, cor, fac);
 
                 }
                 }   catch (SQLException ex) {   
@@ -132,15 +137,15 @@ public class InfoQuery {
                 }
     }
     
-    public static void caricaInfoAppunto(){
+    public static void caricaInfoAppunto(String corso, String facoltà){
     
         String selectInfoDomanda = "select * from appunti where facoltà=? and corso=? and nome=?";
         
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, facoltà);
+                ps1.setString(2, corso);
                 ps1.setString(3,Applicazione.appuntoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
@@ -150,8 +155,10 @@ public class InfoQuery {
                     String nomeAppunto = rs.getString("nome");
                     String descrizioneAppunto = rs.getString("descrizione");
                     String emailAppunto = rs.getString("studente");
+                    String cor = rs.getString("corso");
+                    String fac = rs.getString("facoltà");
 
-                    Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto);
+                    Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, cor, fac);
 
                 }
                 }   catch (SQLException ex) {   
@@ -168,8 +175,8 @@ public class InfoQuery {
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
                 ps1.setString(3,Applicazione.appuntoAttuale.getNome());
 
                 ResultSet rs = ps1.executeQuery();
@@ -195,8 +202,8 @@ public class InfoQuery {
          try{
                 PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
                 ps1.clearParameters();
-                ps1.setString(1, Applicazione.facoltàPremuta);
-                ps1.setString(2, Applicazione.corsoPremuto);
+                ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+                ps1.setString(2, Applicazione.corsoAttuale.getNome());
                 ps1.setString(3,Applicazione.domandaAttuale.getTitolo());
 
                 ResultSet rs = ps1.executeQuery();

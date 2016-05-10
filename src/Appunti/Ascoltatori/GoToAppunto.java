@@ -18,6 +18,14 @@ import java.awt.event.ActionListener;
  */
 public class GoToAppunto implements ActionListener{
 
+    private String corso;
+    private String facoltà;
+
+    public GoToAppunto(String corso, String facoltà) {
+        this.corso = corso;
+        this.facoltà = facoltà;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -25,7 +33,11 @@ public class GoToAppunto implements ActionListener{
         
         Applicazione.appuntoAttuale.setNome(e.getActionCommand());
 
-        InfoQuery.caricaInfoAppunto();
+        InfoQuery.caricaInfoAppunto(corso, facoltà);
+        
+        Applicazione.corsoAttuale.setNome(corso);
+        
+        Applicazione.facoltàAttuale.setNome(facoltà);
         
         AppuntoPanel appunto = new AppuntoPanel();
         Grafica.container.add(appunto, "appunto");

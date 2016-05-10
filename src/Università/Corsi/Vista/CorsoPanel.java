@@ -42,7 +42,7 @@ public class CorsoPanel extends JPanel{
         
     public CorsoPanel() {
         
-        top = new TopPanel(Applicazione.corsoPremuto);
+        top = new TopPanel(Applicazione.corsoAttuale.getNome());
         
         panel = new JPanel(new GridBagLayout());
         centro = new JPanel(new BorderLayout());

@@ -13,29 +13,26 @@ public class Libro {
     
     private String titolo;
     private String descrizione;
-    private int ID;
+    private int id;
     private String studente;
     private String telefono;
     private int prezzo;
+    private String corso;
+    private String facoltà;
 
-
-    public Libro(String titolo, String descrizione, int ID, String telefono, String studente, int prezzo) {
-
+    public Libro(String titolo, String descrizione, int id, String studente, String telefono, int prezzo, String corso, String facoltà) {
         this.titolo = titolo;
         this.descrizione = descrizione;
-        this.ID = ID;
+        this.id = id;
         this.studente = studente;
         this.telefono = telefono;
         this.prezzo = prezzo;
-  
+        this.corso = corso;
+        this.facoltà = facoltà;
     }
 
     public String getTitolo() {
         return titolo;
-    }
-
-    public void setTitolo(String titolo) {
-        this.titolo = titolo;
     }
 
     public String getDescrizione() {
@@ -43,7 +40,7 @@ public class Libro {
     }
 
     public int getID() {
-        return ID;
+        return id;
     }
 
     public String getStudente() {
@@ -58,7 +55,17 @@ public class Libro {
         return prezzo;
     }
 
-    
+    public String getCorso() {
+        return corso;
+    }
+
+    public String getFacoltà() {
+        return facoltà;
+    }
+
+    public void setTitolo(String titolo) {
+        this.titolo = titolo;
+    }
     
 }
 

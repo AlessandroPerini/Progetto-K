@@ -79,7 +79,7 @@ public class AggiungiAppunto implements ActionListener{
                 AggiungiAppuntoPanel.clearForm();
             }
             else{
-                JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno \ndi '"+Applicazione.facoltàPremuta+">"+Applicazione.corsoPremuto+"', verifica "
+                JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno \ndi '"+Applicazione.facoltàAttuale.getNome()+">"+Applicazione.corsoAttuale.getNome()+"', verifica "
                         + "che non sia \nlo stesso e riprova cambiando nome.","Impossibile caricare appunto" , JOptionPane.ERROR_MESSAGE);
             }
         }

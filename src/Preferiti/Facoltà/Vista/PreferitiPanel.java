@@ -31,6 +31,11 @@ public class PreferitiPanel extends JPanel{
     private JButton[] libriPreferiti = new JButton[Applicazione.preferiti.getLibriPreferiti().size()];
     private JButton[] domandePreferite = new JButton[Applicazione.preferiti.getDomandePreferite().size()];
     
+    private GoToCorso[] goToCorso = new GoToCorso[Applicazione.preferiti.getCorsiPreferiti().size()];
+    private GoToAppunto[] goToAppunto = new GoToAppunto[Applicazione.preferiti.getAppuntiPreferiti().size()];
+    private GoToLibro[] goToLibro = new GoToLibro[Applicazione.preferiti.getLibriPreferiti().size()];
+    private GoToDomanda[] goToDomanda = new GoToDomanda[Applicazione.preferiti.getDomandePreferite().size()];
+    
     private int n = Applicazione.preferiti.getFacoltàPreferite().size()+Applicazione.preferiti.getCorsiPreferiti().size()+
                     Applicazione.preferiti.getAppuntiPreferiti().size()+Applicazione.preferiti.getLibriPreferiti().size()+
                     Applicazione.preferiti.getDomandePreferite().size(); //totale righe preferiti (escluse le label)
@@ -41,10 +46,6 @@ public class PreferitiPanel extends JPanel{
         JPanel panel = new JPanel(new GridLayout(n+5, 1));
 
         CaricaCorsi caricaCorsi = new CaricaCorsi();
-        GoToCorso goToCorso = new GoToCorso();
-        GoToAppunto goToAppunto = new GoToAppunto();
-        GoToLibro goToLibro = new GoToLibro();
-        GoToDomanda goToDomanda = new GoToDomanda();
         
         JLabel facoltàPreferiteLabel = new JLabel("Facoltà Preferite");
         panel.add(facoltàPreferiteLabel);
@@ -60,7 +61,8 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getCorsiPreferiti().size(); i++) {
             corsiPreferiti[i] = new JButton();
             corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
-            corsiPreferiti[i].addActionListener(goToCorso);
+            goToCorso[i] = new GoToCorso(Applicazione.preferiti.getCorsiPreferiti().get(i).getFacoltà());
+            corsiPreferiti[i].addActionListener(goToCorso[i]);
             panel.add(corsiPreferiti[i]);
         }
         
@@ -69,7 +71,9 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getAppuntiPreferiti().size(); i++) {
             appuntiPreferiti[i] = new JButton();
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
-            appuntiPreferiti[i].addActionListener(goToAppunto);
+            goToAppunto[i] = new GoToAppunto(Applicazione.preferiti.getAppuntiPreferiti().get(i).getCorso(),
+                                             Applicazione.preferiti.getAppuntiPreferiti().get(i).getFacoltà());
+            appuntiPreferiti[i].addActionListener(goToAppunto[i]);
             panel.add(appuntiPreferiti[i]);
         }
         
@@ -78,7 +82,10 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getLibriPreferiti().size(); i++) {
             libriPreferiti[i] = new JButton();
             libriPreferiti[i].setText(Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
-            libriPreferiti[i].addActionListener(goToLibro);
+            goToLibro[i] = new GoToLibro(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
+                                         Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà(),
+                                         Applicazione.preferiti.getLibriPreferiti().get(i).getID());
+            libriPreferiti[i].addActionListener(goToLibro[i]);
             panel.add(libriPreferiti[i]);
         }
         
@@ -87,7 +94,9 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
             domandePreferite[i] = new JButton();
             domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
-            domandePreferite[i].addMouseListener(goToDomanda);
+            goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
+                                             Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà());
+            domandePreferite[i].addMouseListener(goToDomanda[i]);
             panel.add(domandePreferite[i]);
         }
         

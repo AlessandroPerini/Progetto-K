@@ -8,15 +8,12 @@ package QeA.Vista;
 import Application.Controller.Applicazione;
 import Header.TopPanel;
 import QeA.Ascoltatori.AggiungiDomanda;
-import java.awt.CardLayout;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
@@ -32,7 +29,7 @@ public class AggiungiDomandaPanel extends JPanel{
     
     public AggiungiDomandaPanel() {
         
-        TopPanel top = new TopPanel("Aggiungi Domanda in "+Applicazione.corsoPremuto);
+        TopPanel top = new TopPanel("Aggiungi Domanda in "+Applicazione.corsoAttuale.getNome());
         
         JPanel panel = new JPanel(new GridLayout(4,2,5,10));
        

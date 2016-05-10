@@ -10,7 +10,6 @@ import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Università.Facolta.Facoltà;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -38,8 +37,10 @@ public class GuestQuery {
                     String nomeAppunto = rs.getString("nome");
                     String descrizioneAppunto = rs.getString("descrizione");
                     String emailAppunto = rs.getString("studente");
+                    String corso = rs.getString("corso");
+                    String facoltà = rs.getString("facoltà");
 
-                    Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto);
+                    Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto, corso, facoltà);
                     Applicazione.appuntiGuest.add(appunto);
                 }
 
@@ -66,8 +67,10 @@ public class GuestQuery {
                 String emailLibro = rs.getString("studente");
                 String telefonoLibro = rs.getString("telefono");
                 int prezzoLibro = rs.getInt("prezzo");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                 
-                Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro);
+                Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro, corso, facoltà);
                 Applicazione.libriGuest.add(libro);
                 
                 }
@@ -92,8 +95,10 @@ public class GuestQuery {
                 String testoDomanda = rs.getString("domanda");
                 String studenteDomanda = rs.getString("studente");
                 int studenteLike = rs.getInt("like");
+                String corso = rs.getString("corso");
+                String facoltà = rs.getString("facoltà");
                
-                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, studenteLike);
+                Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, studenteLike, corso, facoltà);
                 Applicazione.domandeGuest.add(domanda);
                 
                 }

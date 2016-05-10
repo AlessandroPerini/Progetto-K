@@ -84,7 +84,7 @@ public class ListaCorsiPanel extends JPanel{
         }
         //fine zona preferito
         
-        GoToCorso goToCorso = new GoToCorso();
+        GoToCorso goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome());
         
         for (int i = 0; i < Applicazione.listaCorsiAttuali.size(); i++) {
             corsi[i] = new JButton();

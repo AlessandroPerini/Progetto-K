@@ -9,11 +9,8 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Libri.Vista.LibroPanel;
-import Università.Corsi.Vista.CorsoPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *
@@ -21,13 +18,26 @@ import javax.swing.JPanel;
  */
 public class GoToLibro implements ActionListener{
 
+    private String corso;
+    private String facoltà;
+    private int id;
+
+    public GoToLibro(String corso, String facoltà, int id) {
+        this.corso = corso;
+        this.facoltà = facoltà;
+        this.id = id;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("libro");
         Applicazione.libroAttuale.setTitolo(e.getActionCommand());
 
-        InfoQuery.caricaInfoLibro();
+        InfoQuery.caricaInfoLibro(corso, facoltà, id);
+        
+        Applicazione.facoltàAttuale.setNome(facoltà);
+        Applicazione.corsoAttuale.setNome(corso);
         
         LibroPanel libro = new LibroPanel();
         Grafica.container.add(libro, "libro");

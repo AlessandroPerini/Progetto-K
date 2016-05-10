@@ -14,19 +14,19 @@ public class Appunto {
     private String nome;
     private String descrizione;
     private String studente;
+    private String corso;
+    private String facoltà;
 
-    public Appunto(String nome, String descrizione, String studente) {
+    public Appunto(String nome, String descrizione, String studente, String corso, String facoltà) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.studente = studente;
+        this.corso = corso;
+        this.facoltà = facoltà;
     }
 
     public String getNome() {
         return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
     }
 
     public String getDescrizione() {
@@ -37,6 +37,16 @@ public class Appunto {
         return studente;
     }
 
-   
+    public String getCorso() {
+        return corso;
+    }
+
+    public String getFacoltà() {
+        return facoltà;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     
 }
