@@ -9,6 +9,7 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
+import QeA.Vista.DomandaPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -22,19 +23,17 @@ import javax.swing.JTextArea;
 public class AggiungiRisposta implements ActionListener{
     
     private JTextArea titolo;
-    private int indice;
-    private String x="";
+    private String nome="";
     
-    public AggiungiRisposta(JTextArea titolo, int indice) {
+    public AggiungiRisposta(JTextArea titolo) {
         this.titolo = titolo;
-        this.indice = indice;
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         if(!titolo.getText().equals("")){
-            if(titolo.getText().length()>100){
+            if(titolo.getText().length()<500){
                 try {
                     InsertQuery.inserisciRisposta(titolo.getText());
                     
@@ -45,19 +44,22 @@ public class AggiungiRisposta implements ActionListener{
                     String s="";
                     for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
                         s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
-                        x = Applicazione.listaRisposteAttuali.get(i).setNickname();
+                        nome = Applicazione.listaRisposteAttuali.get(i).setNickname();
                     }
                     
-                    GoToDomanda.getDomanda().setRisposte2(s,indice,x);
+                    
+                    GoToDomanda.getDomanda().setRisposte2(s,DomandaPanel.getI(),nome);
+                    DomandaPanel.setI(DomandaPanel.getI()+1);
                     
                     Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
                     Grafica.card.show(Grafica.container, "domanda");
-                    x = "";
+                    nome = "";
                     titolo.setText("");
                     
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta della risposta", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
+                
             }
             else{
                 JOptionPane.showMessageDialog(null, "Risposta(max 500 caratteri) troppo lunga", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
@@ -65,6 +67,5 @@ public class AggiungiRisposta implements ActionListener{
         }else{
             JOptionPane.showMessageDialog(null, "Risposta non valida", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
-        
     }
 }
