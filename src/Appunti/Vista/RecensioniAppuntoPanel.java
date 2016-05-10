@@ -7,7 +7,7 @@ package Appunti.Vista;
 
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.JLabel;

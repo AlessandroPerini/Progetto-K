@@ -6,7 +6,7 @@
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Studente.Ascoltatori.GoToAppuntoGuest;
 import Studente.Ascoltatori.GoToDomandaGuest;
 import Studente.Ascoltatori.GoToLibroGuest;

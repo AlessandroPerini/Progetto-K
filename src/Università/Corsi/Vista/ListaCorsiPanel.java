@@ -8,7 +8,7 @@ package Università.Corsi.Vista;
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
 import Database.Query.ControlloQuery;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiFacoltàPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviFacoltàPreferita;
 import Università.Corsi.Ascoltatori.CercaCorsi;

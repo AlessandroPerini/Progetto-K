@@ -8,7 +8,7 @@ package Libri.Vista;
 import Libri.Ascoltatori.EliminaLibro;
 import Application.Controller.Applicazione;
 import Database.Query.ControlloQuery;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiLibroPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviLibroPreferito;
 import java.awt.Color;

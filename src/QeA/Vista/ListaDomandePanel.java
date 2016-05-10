@@ -8,7 +8,7 @@ package QeA.Vista;
 import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
 import Application.Controller.Applicazione;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import java.awt.BorderLayout;
 import java.awt.Dimension;

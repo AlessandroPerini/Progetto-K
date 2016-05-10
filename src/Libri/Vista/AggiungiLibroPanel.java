@@ -7,7 +7,7 @@ package Libri.Vista;
 
 import Libri.Ascoltatori.AggiungiLibro;
 import Application.Controller.Applicazione;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;

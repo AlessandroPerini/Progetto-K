@@ -10,7 +10,7 @@ import QeA.Ascoltatori.AggiungiRisposta;
 import Application.Controller.Applicazione;
 import Database.Query.InfoQuery;
 import Database.Query.ControlloQuery;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;

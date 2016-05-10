@@ -9,7 +9,7 @@ import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;

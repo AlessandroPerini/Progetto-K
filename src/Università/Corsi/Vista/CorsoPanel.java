@@ -9,7 +9,7 @@ import Appunti.Ascoltatori.CaricaAppunti;
 import Application.Controller.Applicazione;
 import Database.Query.ControlloQuery;
 import Libri.Ascoltatori.CaricaLibri;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiCorsoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviCorsoPreferito;
 import QeA.Ascoltatori.CaricaDomande;

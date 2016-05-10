@@ -7,7 +7,7 @@ package Preferiti.Facoltà.Vista;
 
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
-import Header.TopPanel;
+import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
