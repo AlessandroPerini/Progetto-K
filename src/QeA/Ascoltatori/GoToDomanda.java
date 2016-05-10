@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,21 +13,23 @@ import QeA.Vista.DomandaPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author adrian
  */
-public class GoToDomanda implements MouseListener{ 
+public class GoToDomanda implements MouseListener{
     
     private static DomandaPanel domanda;
     private String text;
     
     private String corso;
     private String facoltà;
-
+    
     public GoToDomanda(String corso, String facoltà) {
         this.corso = corso;
         this.facoltà = facoltà;
@@ -44,45 +46,50 @@ public class GoToDomanda implements MouseListener{
         }
         
         if(e.getComponent() instanceof JButton) {
-           JButton button = (JButton)e.getComponent();
-           text = button.getText();
+            JButton button = (JButton)e.getComponent();
+            text = button.getText();
         }
-      
+        
         Applicazione.domandaAttuale.setTitolo(text);
         
-        InfoQuery.caricaInfoDomanda(corso, facoltà);
-        
-        Applicazione.facoltàAttuale.setNome(facoltà);
-        Applicazione.corsoAttuale.setNome(corso);
-        
-        ListeQuery.caricaRisposteDomanda();
-        
-        domanda = new DomandaPanel();
-        
-        Grafica.container.add(domanda, "domanda");
-        Grafica.card.show(Grafica.container, "domanda");
+        try {
+            InfoQuery.caricaInfoDomanda(corso, facoltà);
+            
+            Applicazione.facoltàAttuale.setNome(facoltà);
+            Applicazione.corsoAttuale.setNome(corso);
+            
+            ListeQuery.caricaRisposteDomanda();
+            
+            domanda = new DomandaPanel();
+            
+            Grafica.container.add(domanda, "domanda");
+            Grafica.card.show(Grafica.container, "domanda");
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Errore durante il caricamento dei dati", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+        }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
         
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
-      e.getComponent().setForeground(Color.red);
+        e.getComponent().setForeground(Color.red);
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
-      e.getComponent().setForeground(Color.black);
+        e.getComponent().setForeground(Color.black);
     }
-
+    
     public static DomandaPanel getDomanda() {
         return domanda;
     }

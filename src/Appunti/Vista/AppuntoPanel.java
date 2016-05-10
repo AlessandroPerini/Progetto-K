@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Appunti.Vista;
 
 import Appunti.Ascoltatori.EliminaAppunto;
@@ -18,6 +18,9 @@ import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -51,13 +54,16 @@ public class AppuntoPanel extends JPanel{
         RimuoviAppuntoPreferito rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
         preferitiOn.addActionListener(rimuoviAppuntoPreferito);
         
-        if (ControlloQuery.controlloAppuntoPreferito()) {
-            panel.add(preferitiOff);
-        }
-        else {
-            panel.add(preferitiOn);
-        }
-        //fine zona preferito
+        try {
+            if (ControlloQuery.controlloAppuntoPreferito()) {
+                panel.add(preferitiOff);
+            }
+            else {
+                panel.add(preferitiOn);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo dell'appunto preferito");
+        }//fine zona preferito
         
         JLabel email = new JLabel("Email :");
         JLabel nome = new JLabel("Nome :");
@@ -74,7 +80,12 @@ public class AppuntoPanel extends JPanel{
         JLabel email2 = new JLabel(Applicazione.appuntoAttuale.getStudente());
         JLabel nome2 = new JLabel(Applicazione.appuntoAttuale.getNome());
         JTextArea descrizione2 = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
-        JLabel media2 = new JLabel(Float.toString(InfoQuery.mediaAppunto()));
+        JLabel media2 = new JLabel();
+        try {
+            media2 = new JLabel(Float.toString(InfoQuery.mediaAppunto()));
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento della media");
+        }
         
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         
@@ -102,10 +113,14 @@ public class AppuntoPanel extends JPanel{
         panel.add(media2);
         panel.add(email);
         panel.add(email2);
-        if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
-            panel.add(punteggio);
-            panel.add(commento);
-            panel.add(valuta);
+        try {
+            if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
+                panel.add(punteggio);
+                panel.add(commento);
+                panel.add(valuta);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo della valutazione dell'appunto");
         }
         
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
@@ -121,13 +136,13 @@ public class AppuntoPanel extends JPanel{
         DownloadFileAppunto download = new DownloadFileAppunto();
         scarica.addActionListener(download);
         panel.add(scarica);
- 
+        
         JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 450));
         scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
         add(scrollPanel1);
-     
-}
+        
+    }
 }

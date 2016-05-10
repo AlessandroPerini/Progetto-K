@@ -17,6 +17,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -76,13 +77,17 @@ public class ListaCorsiPanel extends JPanel{
         RimuoviFacoltàPreferita rimuoviFacoltàPreferita = new RimuoviFacoltàPreferita();
         preferitiOn.addActionListener(rimuoviFacoltàPreferita);
         
-        if (ControlloQuery.controlloFacoltàPreferita()) {
-            panel.add(preferitiOff);
-        }
-        else {
-            panel.add(preferitiOn);
-        }
-        //fine zona preferito
+        try {
+            if (ControlloQuery.controlloFacoltàPreferita()) {
+                panel.add(preferitiOff);
+            }
+            else {
+                panel.add(preferitiOn);
+            }
+      
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo della facoltà preferita");
+        }//fine zona preferito
         
         GoToCorso goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome());
         

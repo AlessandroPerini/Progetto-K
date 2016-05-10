@@ -21,7 +21,7 @@ public class ConnessioneDB {
        try{
          
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connection Succes");
+            System.out.println("Connection Success");
         }
         catch(ClassNotFoundException cnfe){
             System.out.println("Connection Fail"+ cnfe);

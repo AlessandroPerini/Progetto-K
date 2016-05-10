@@ -14,6 +14,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -47,7 +50,12 @@ public class ListaFacoltàPanel extends JPanel{
 
             for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
 
-                ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
+                try {
+                    ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
+                     } catch (SQLException ex) {
+                    Logger.getLogger(ListaFacoltàPanel.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                 pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1));
                 scrollP[i] = new JScrollPane();
                 titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
@@ -72,6 +80,7 @@ public class ListaFacoltàPanel extends JPanel{
 
                 panel.add(scrollP[i]);
                 svuotaListaFacoltàXRamo();
+                
             }
 
             JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -80,6 +89,7 @@ public class ListaFacoltàPanel extends JPanel{
 
             add(top);
             add(scrollPanel);
+           
         }
     
 }
