@@ -33,28 +33,37 @@ public class AggiungiRisposta implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        try {
-            InsertQuery.inserisciRisposta(titolo.getText());
-            
-            Applicazione.svuotaRisposte();
-            
-            ListeQuery.caricaRisposteDomanda();
-            
-            String s="";
-            for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
-                s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
-                x = Applicazione.listaRisposteAttuali.get(i).setNickname();
+        if(!titolo.getText().equals("")){
+            if(titolo.getText().length()>100){
+                try {
+                    InsertQuery.inserisciRisposta(titolo.getText());
+                    
+                    Applicazione.svuotaRisposte();
+                    
+                    ListeQuery.caricaRisposteDomanda();
+                    
+                    String s="";
+                    for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
+                        s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
+                        x = Applicazione.listaRisposteAttuali.get(i).setNickname();
+                    }
+                    
+                    GoToDomanda.getDomanda().setRisposte2(s,indice,x);
+                    
+                    Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
+                    Grafica.card.show(Grafica.container, "domanda");
+                    x = "";
+                    titolo.setText("");
+                    
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta della risposta", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                }
             }
-            
-            GoToDomanda.getDomanda().setRisposte2(s,indice,x);
-            
-            Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
-            Grafica.card.show(Grafica.container, "domanda");
-            x = "";
-            titolo.setText("");
-            
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta della risposta", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+            else{
+                JOptionPane.showMessageDialog(null, "Risposta(max 500 caratteri) troppo lunga", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+            }
+        }else{
+            JOptionPane.showMessageDialog(null, "Risposta non valida", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
         
     }

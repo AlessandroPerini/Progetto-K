@@ -15,8 +15,6 @@ import QeA.Vista.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -38,37 +36,46 @@ public class AggiungiDomanda implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        try {
-            if(ControlloQuery.controlloTitoloDomanda(titolo.getText())){
-                
+        if((!titolo.getText().equals(""))&&(!descrizione.getText().equals(""))){
+            if((titolo.getText().length()<100)&&(descrizione.getText().length()<500)){
                 try {
-                    InsertQuery.inserisciDomanda(titolo.getText(), descrizione.getText());
-                    
-                    JOptionPane.showMessageDialog(null, "Domanda aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    
-                    Applicazione.svuotaDomande();
-                    
-                    ListeQuery.caricaDomande();
-                    
-                    Applicazione.back.remove(Applicazione.back.size()-1);
-                    
-                    ListaDomandePanel domande = new ListaDomandePanel();
-                    Grafica.container.add(domande, "domande");
-                    Grafica.card.show(Grafica.container, "domande");
-                    
-                    AggiungiDomandaPanel.clearForm();
-                    
+                    if(ControlloQuery.controlloTitoloDomanda(titolo.getText())){
+                        
+                        try {
+                            InsertQuery.inserisciDomanda(titolo.getText(), descrizione.getText());
+                            
+                            JOptionPane.showMessageDialog(null, "Domanda aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                            
+                            
+                            Applicazione.svuotaDomande();
+                            
+                            ListeQuery.caricaDomande();
+                            
+                            Applicazione.back.remove(Applicazione.back.size()-1);
+                            
+                            ListaDomandePanel domande = new ListaDomandePanel();
+                            Grafica.container.add(domande, "domande");
+                            Grafica.card.show(Grafica.container, "domande");
+                            
+                            AggiungiDomandaPanel.clearForm();
+                            
+                        } catch (SQLException ex) {
+                            JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta della domanda", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno \ndi '"+Applicazione.facoltàAttuale.getNome()+">"+Applicazione.corsoAttuale.getNome()+"', verifica "
+                                + "che non sia \nla stessa e riprova cambiando titolo.","Impossibile caricare domanda" , JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (SQLException ex) {
-                    JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta della domanda", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                    System.out.println("Errore durante il controllo del titolo della domanda");
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno \ndi '"+Applicazione.facoltàAttuale.getNome()+">"+Applicazione.corsoAttuale.getNome()+"', verifica "
-                        + "che non sia \nla stessa e riprova cambiando titolo.","Impossibile caricare domanda" , JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Titolo(max 100 caratteri) e/o descrizione(max 500 caratteri) troppo lunghi", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
             }
-        } catch (SQLException ex) {
-            System.out.println("Errore durante il controllo del titolo della domanda");
+        }else{
+            JOptionPane.showMessageDialog(null, "Titolo e/o descrizione non validi", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
     }
 }
