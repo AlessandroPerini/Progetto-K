@@ -5,6 +5,7 @@
  */
 package Application.Controller;
 
+import Application.Creator.Starter;
 import Appunti.Appunto;
 import Database.Connection.ConnessioneDB;
 import Libri.Libro;
@@ -120,7 +121,7 @@ public class Applicazione {
     }
     
     public static void logout(){
-       
+        
         eliminaUtente();
         
         svuotaCorsi();;
@@ -134,6 +135,7 @@ public class Applicazione {
         svuotaRecensioni();
         svuotaRami();
         svuotaPreferiti();
+
     }
 
 }

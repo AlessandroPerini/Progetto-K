@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
@@ -23,6 +23,9 @@ import javax.swing.SwingConstants;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -35,9 +38,9 @@ public class AccountPanel extends JPanel{
     private static JTextField phone;
     private JButton cambiaNumero, back, preferiti;
     private JLabel title;
-    int nClick = 0; 
+    int nClick = 0;
     public AccountPanel() {
-    
+        
         setPreferredSize(new Dimension(700, 450));
         
         //top panel
@@ -46,21 +49,22 @@ public class AccountPanel extends JPanel{
         
         back = new JButton("Back");
         back.addActionListener(new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-
-                        Applicazione.back.remove(Applicazione.back.size()-1);
-                        Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
-                    }
-                });
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Applicazione.back.remove(Applicazione.back.size()-1);
+                Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
+            }
+        });
         back.setPreferredSize(new Dimension(110, 40));
-
+        
         preferiti = new JButton("★Preferiti★");
         preferiti.setPreferredSize(new Dimension(110, 40));
         preferiti.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                   
+                
+                try {
                     ListeQuery.caricaFacoltàPreferite();
                     ListeQuery.caricaCorsiPreferiti();
                     ListeQuery.caricaAppuntiPreferiti();
@@ -70,15 +74,19 @@ public class AccountPanel extends JPanel{
                     PreferitiPanel preferitiPanel = new PreferitiPanel();
                     Grafica.container.add(preferitiPanel, "preferiti");
                     Grafica.card.show(Grafica.container, "preferiti");
-                   
+                    
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Errore durante il caricamento dei dati", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                }
+                
             }
         });
-
+        
         title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Arial", Font.BOLD, 35));
         title.setPreferredSize(new Dimension(420, 40));
-
+        
         top.add(back);
         top.add(title);
         top.add(preferiti);
@@ -100,7 +108,7 @@ public class AccountPanel extends JPanel{
                 int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
                 
                 if(showConfirmDialog == 0 ){
-
+                    
                     Grafica.card.show(Grafica.container, "login");
                     LoginPanel.clearForm();
                     Applicazione.logout();
@@ -121,22 +129,22 @@ public class AccountPanel extends JPanel{
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
-
+        
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
+        
         email = new JLabel(Applicazione.guest.getEmail());
         email.setFont(new Font("Arial", Font.PLAIN, 18));
-
+        
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
+        
         nick = new JLabel(Applicazione.guest.getNickname());
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
-
+        
         phone = new JTextField(Applicazione.guest.getTelefono());
         phone.setEditable(false);
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
@@ -151,19 +159,24 @@ public class AccountPanel extends JPanel{
                 cambiaNumero.setText("Conferma");
                 
                 if ( nClick == 2){
-                  phone.setEditable(false);
-                  cambiaNumero.setText("Modifica");
-                  iQuery.updateTelefono(phone.getText());
-                  Applicazione.guest.setTelefono(phone.getText());
-                  JOptionPane.showMessageDialog(null, "Numero di telefono cambiato!", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
-                  nClick = 0;
+                    phone.setEditable(false);
+                    cambiaNumero.setText("Modifica");
+                    try {
+                        iQuery.updateTelefono(phone.getText());
+                        
+                        Applicazione.guest.setTelefono(phone.getText());
+                        JOptionPane.showMessageDialog(null, "Numero di telefono cambiato!", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                        nClick = 0;
+                    } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(null, "Errore durante la modifica del numero di telefono", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
-
+        
         emailRow.add(emailLabel);
         emailRow.add(email);
-
+        
         nickRow.add(nickLabel);
         nickRow.add(nick);
         
@@ -183,6 +196,6 @@ public class AccountPanel extends JPanel{
         add(iMieiDatiPanel);
         
     }
-
+    
     
 }

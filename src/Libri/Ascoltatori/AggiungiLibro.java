@@ -13,6 +13,7 @@ import Libri.Vista.AggiungiLibroPanel;
 import Libri.Vista.ListaLibriPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
@@ -36,31 +37,35 @@ public class AggiungiLibro implements ActionListener{
         this.prezzo = prezzo;
         this.telefono = telefono;
         
-        
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         if(telefono.isSelected()){
             tel = Applicazione.guest.getTelefono();
         }else{
             tel ="Numero non disponibile!";
         }
         
-        InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(),tel);
+        try{
+            InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(),tel);
+            JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+            Applicazione.svuotaLibri();
         
-        JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Aggiunta Confermata", JOptionPane.INFORMATION_MESSAGE);
+            ListeQuery.caricaLibri();
 
-        Applicazione.svuotaLibri();
-        
-        ListeQuery.caricaLibri();
-        
-        Applicazione.back.remove(Applicazione.back.size()-1);
+            Applicazione.back.remove(Applicazione.back.size()-1);
 
-        ListaLibriPanel libri = new ListaLibriPanel();
-        Grafica.container.add(libri, "libri");
-        Grafica.card.show(Grafica.container, "libri");
-        
-        AggiungiLibroPanel.clearForm();
+            ListaLibriPanel libri = new ListaLibriPanel();
+            Grafica.container.add(libri, "libri");
+            Grafica.card.show(Grafica.container, "libri");
+
+            AggiungiLibroPanel.clearForm();
+
+        }catch(SQLException sqlEx){
+            JOptionPane.showMessageDialog(null, "Errore durante il caricamento del libro", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 }

@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Header;
 
 import Application.Controller.Applicazione;
@@ -24,6 +24,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -36,7 +39,7 @@ import javax.swing.SwingConstants;
  * @author Te4o
  */
 public class TopPanel extends JPanel{
-
+    
     private JComboBox menu;
     
     public TopPanel(String t) {
@@ -45,45 +48,63 @@ public class TopPanel extends JPanel{
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-            
+                
                 switch(Applicazione.back.get(Applicazione.back.size()-1)){
                     case "corsi": Applicazione.svuotaCorsi();
-                        break;
+                    break;
                     case "libri": Applicazione.svuotaLibri();
-                        break;
+                    break;
                     case "domande": Applicazione.svuotaDomande();
-                        break;
+                    break;
                     case "appunti": Applicazione.svuotaAppunti();
-                        break;
+                    break;
                     case "domanda": Applicazione.svuotaRisposte();
-                        break;
+                    break;
                     case "i miei dati": Applicazione.svuotaMieiDati();
-                        break;
+                    break;
                     case "recensioni": Applicazione.svuotaRecensioni();
-                        break;
+                    break;
                     case "facoltà cercate": Applicazione.svuotaFacoltà();
-                                            ListeQuery lQuery1 = new ListeQuery();
-                                            lQuery1.caricaFacoltà();
-                        break;
+                    ListeQuery lQuery1 = new ListeQuery();
+                    {
+                        try {
+                            lQuery1.caricaFacoltà();
+                        } catch (SQLException ex) {
+                            System.out.println("Errore durante il caricamento delle facoltà");
+                        }
+                    }
+                    break;
                     case "corsi cercati": Applicazione.svuotaCorsi();
-                                          ListeQuery lQuery2 = new ListeQuery();
-                                          lQuery2.caricaCorsi();
-                        break;
+                    ListeQuery lQuery2 = new ListeQuery();
+                    {
+                        try {
+                            lQuery2.caricaCorsi();
+                        } catch (SQLException ex) {
+                            System.out.println("Errore durante il caricamento dei corsi");
+                        }
+                    }
+                    break;
                     case "preferiti": Applicazione.svuotaPreferiti();
-                        break;
+                    break;
                 }
                 if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){
                     Applicazione.svuotaPreferiti();
                     
-                    ListeQuery.caricaFacoltàPreferite();
-                    ListeQuery.caricaCorsiPreferiti();
-                    ListeQuery.caricaAppuntiPreferiti();
-                    ListeQuery.caricaLibriPreferiti();
-                    ListeQuery.caricaDomandePreferite();
-                    
-                    PreferitiPanel preferitiPanel = new PreferitiPanel();
-                    Grafica.container.add(preferitiPanel, "preferiti");
-                    Grafica.card.show(Grafica.container, "preferiti");
+                    try {
+                        ListeQuery.caricaFacoltàPreferite();
+                        
+                        ListeQuery.caricaCorsiPreferiti();
+                        ListeQuery.caricaAppuntiPreferiti();
+                        ListeQuery.caricaLibriPreferiti();
+                        ListeQuery.caricaDomandePreferite();
+                        
+                        PreferitiPanel preferitiPanel = new PreferitiPanel();
+                        Grafica.container.add(preferitiPanel, "preferiti");
+                        Grafica.card.show(Grafica.container, "preferiti");
+                        
+                    } catch (SQLException ex) {
+                        System.out.println("Errore durante il caricamento dei preferiti");
+                    }
                     
                 }
                 
@@ -108,7 +129,7 @@ public class TopPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(menu.getSelectedItem().equals("Home")){
-
+                    
                     Grafica.card.show(Grafica.container, "facoltà");
                     Applicazione.back.add("facoltà");
                     
@@ -126,7 +147,7 @@ public class TopPanel extends JPanel{
                     resetMenu();
                 }
                 if(menu.getSelectedItem().equals("Account")){
-
+                    
                     Grafica.card.show(Grafica.container, "account");
                     Applicazione.back.add("account");
                     Applicazione.svuotaMieiDati();
@@ -134,26 +155,30 @@ public class TopPanel extends JPanel{
                     resetMenu();
                 }
                 if(menu.getSelectedItem().equals("Preferiti")){
-                   
+                    
                     Applicazione.back.add("preferiti");
                     
-                    ListeQuery.caricaFacoltàPreferite();
-                    ListeQuery.caricaCorsiPreferiti();
-                    ListeQuery.caricaAppuntiPreferiti();
-                    ListeQuery.caricaLibriPreferiti();
-                    ListeQuery.caricaDomandePreferite();
+                    try {
+                        ListeQuery.caricaFacoltàPreferite();
+                        ListeQuery.caricaCorsiPreferiti();
+                        ListeQuery.caricaAppuntiPreferiti();
+                        ListeQuery.caricaLibriPreferiti();
+                        ListeQuery.caricaDomandePreferite();
+                        
+                        PreferitiPanel preferitiPanel = new PreferitiPanel();
+                        Grafica.container.add(preferitiPanel, "preferiti");
+                        Grafica.card.show(Grafica.container, "preferiti");
+                    } catch (SQLException ex) {
+                        System.out.println("Errore durante il caricamento dei preferiti");
+                    }
                     
-                    PreferitiPanel preferitiPanel = new PreferitiPanel();
-                    Grafica.container.add(preferitiPanel, "preferiti");
-                    Grafica.card.show(Grafica.container, "preferiti");
-                   
                 }
                 if(menu.getSelectedItem().equals("Logout")){
-                
+                    
                     int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
-                
+                    
                     if(showConfirmDialog == 0 ){
-
+                        
                         Grafica.card.show(Grafica.container, "login");
                         LoginPanel.clearForm();
                         Applicazione.logout();
@@ -169,13 +194,13 @@ public class TopPanel extends JPanel{
         else{add(backButton);}
         add(title);
         add(menu);
-      
+        
     }
-
+    
     public void resetMenu() {
         menu.setEditable(true);
         menu.setSelectedItem("Menù");
         menu.setEditable(false);
     }
- 
+    
 }

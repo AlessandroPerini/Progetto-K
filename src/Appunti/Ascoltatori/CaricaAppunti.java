@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Appunti.Ascoltatori;
 
 import Appunti.Vista.ListaAppuntiPanel;
@@ -13,6 +13,9 @@ import Libri.Vista.ListaLibriPanel;
 import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -23,14 +26,19 @@ public class CaricaAppunti implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-  
-        Applicazione.back.add("appunti");
         
-        ListeQuery.caricaAppunti();
-
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-        Grafica.container.add(appunti, "appunti");
-        Grafica.card.show(Grafica.container, "appunti");
- 
+        try {
+            ListeQuery.caricaAppunti();
+            
+            Applicazione.back.add("appunti");
+            
+            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+            Grafica.container.add(appunti, "appunti");
+            Grafica.card.show(Grafica.container, "appunti");
+            
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento degli appunti");
+        }
+        
     }
 }

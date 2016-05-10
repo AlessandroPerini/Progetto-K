@@ -20,6 +20,9 @@ import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -82,13 +85,17 @@ public class CorsoPanel extends JPanel{
         RimuoviCorsoPreferito rimuoviCorsoPreferito = new RimuoviCorsoPreferito();
         preferitiOn.addActionListener(rimuoviCorsoPreferito);
         
-        if (ControlloQuery.controlloCorsoPreferito()) {
-            panel.add(preferitiOff);
-        }
-        else {
-            panel.add(preferitiOn);
-        }
-        //fine zona preferito
+        try {
+            if (ControlloQuery.controlloCorsoPreferito()) {
+                panel.add(preferitiOff);
+            }
+            else {
+                panel.add(preferitiOn);
+            }
+      
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo del corso preferito");
+        }//fine zona preferito
         
         JLabel appuntiLab = new JLabel("Appunti");
         appuntiLab.setFont(new Font("Arial", Font.BOLD, 20));

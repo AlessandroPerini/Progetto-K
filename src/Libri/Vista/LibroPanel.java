@@ -16,9 +16,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -69,13 +69,16 @@ public class LibroPanel extends JPanel{
         RimuoviLibroPreferito rimuoviLibroPreferito = new RimuoviLibroPreferito();
         preferitiOn.addActionListener(rimuoviLibroPreferito);
         
-        if (ControlloQuery.controlloLibroPreferito()) {
-            panel.add(preferitiOff);
-        }
-        else {
-            panel.add(preferitiOn);
-        }
-        //fine zona preferito
+        try {
+            if (ControlloQuery.controlloLibroPreferito()) {
+                panel.add(preferitiOff);
+            }
+            else {
+                panel.add(preferitiOn);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo del libro preferito");
+        }//fine zona preferito
         
         //prima riga - colonna 0
         this.titolo = new JLabel("titolo");

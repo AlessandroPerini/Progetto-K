@@ -20,6 +20,9 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -77,13 +80,17 @@ public class DomandaPanel extends JPanel{
         RimuoviDomandaPreferita rimuoviDomandaPreferita = new RimuoviDomandaPreferita();
         preferitiOn.addActionListener(rimuoviDomandaPreferita);
         
-        if (ControlloQuery.controlloDomandaPreferita()) {
-            panel.add(preferitiOff, gbc);
-        }
-        else {
-            panel.add(preferitiOn, gbc);
-        }
-        //fine zona preferito
+        try {
+            if (ControlloQuery.controlloDomandaPreferita()) {
+                panel.add(preferitiOff);
+            }
+            else {
+                panel.add(preferitiOn);
+            }
+      
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo della domanda preferita");
+        }//fine zona preferito
         
         //prima riga - colonna 0
         this.email = new JLabel("Email:");
@@ -160,20 +167,29 @@ public class DomandaPanel extends JPanel{
             gbc.insets = new Insets(15, 30, 0, 10);
             gbc.anchor = GridBagConstraints.LINE_START;
             panel.add(this.like2, gbc);
-        if(!ControlloQuery.controlloLikeDomanda()){
-            like2.setEnabled(false);
-        }else{
-            like2.setEnabled(true);
+        try {
+            if(!ControlloQuery.controlloLikeDomanda()){
+                like2.setEnabled(false);
+            }else{
+                like2.setEnabled(true);
+            }
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo del like della domanda");
         }
         
         // quarta riga - colonna 1
         this.Nlike = new JLabel();
-        Nlike.setText(InfoQuery.likeDomanda()+" likes");
+        try {
+            Nlike.setText(InfoQuery.likeDomanda()+" likes");
+         
             gbc.gridx = 1;
             gbc.gridy = 3;
             gbc.insets = new Insets(15, 100, 0, 10);
             gbc.anchor = GridBagConstraints.LINE_START;
             panel.add(this.Nlike, gbc);
+            }catch (SQLException ex) {
+                System.out.println("Errore durante il caricamento dei like della domanda");
+        }
             
         AggiungiLike aggiungiLike = new AggiungiLike(like2, Nlike);
         like2.addActionListener(aggiungiLike);
