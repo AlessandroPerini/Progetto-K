@@ -101,7 +101,6 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.email, gbc);
         
         //colonna 1
-        System.out.println(Applicazione.domandaAttuale.getStudente());
         this.email2 = new JLabel(Applicazione.domandaAttuale.getStudente());
 	gbc.gridx = 1;
 	gbc.gridy = 0;
@@ -136,7 +135,6 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.descrizione, gbc);
         
         //colonna 1
-        System.out.println(Applicazione.domandaAttuale.getDomanda());
         this.descrizione2 = new JTextArea(Applicazione.domandaAttuale.getDomanda(),5,25);
         descrizione2.setEditable(false);
         descrizione2.setLineWrap(true);
