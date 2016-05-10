@@ -220,5 +220,21 @@ public class DeleteQuery {
                     Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
             }
     }
+    public static void eliminaLikeRisposta(int id){
+        
+         String eliminaLikeRisposta = "delete from likeRisposte where studente=? and id=? ";
+        
+        try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setInt(2, id);
+                
+                ps1.execute();
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+    }
 
 }

@@ -14,6 +14,7 @@ import Header.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
+import QeA.Ascoltatori.AggiungiLikeRisposta;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
@@ -93,6 +94,7 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.email, gbc);
         
         //colonna 1
+        System.out.println(Applicazione.domandaAttuale.getStudente());
         this.email2 = new JLabel(Applicazione.domandaAttuale.getStudente());
 	gbc.gridx = 1;
 	gbc.gridy = 0;
@@ -127,6 +129,7 @@ public class DomandaPanel extends JPanel{
 	panel.add(this.descrizione, gbc);
         
         //colonna 1
+        System.out.println(Applicazione.domandaAttuale.getDomanda());
         this.descrizione2 = new JTextArea(Applicazione.domandaAttuale.getDomanda(),5,25);
         descrizione2.setEditable(false);
         descrizione2.setLineWrap(true);
@@ -186,16 +189,13 @@ public class DomandaPanel extends JPanel{
         
         pannelloRisposta = new JPanel(new GridBagLayout());
         
-        
-        //###########################################
-        for(i = 0; i < Applicazione.listaRisposteAttuali.size(); i++){
-           
+
+        for(i = 0; i < Applicazione.listaRisposteAttuali.size(); i++){    
 
             setRisposte2(Applicazione.listaRisposteAttuali.get(i).getTitolo(), i, Applicazione.listaRisposteAttuali.get(i).setNickname());
-            
-
+        
         }
-        //#########################################
+
         scrollPanel3 = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel3.setPreferredSize(new Dimension(480 , 250));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(10);
@@ -279,10 +279,12 @@ public class DomandaPanel extends JPanel{
             //all interno dell pannello like
             this.pannelloDislike = new JPanel();
             this.pannelloLike = new JPanel();
-            
-            this.numeroLikeRisposta = new JLabel("5");
+            int likelike=InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), 1);
+            this.numeroLikeRisposta = new JLabel(""+likelike);
             pannelloLike.add(numeroLikeRisposta);
             this.likeRisposta = new JButton("Like");
+            
+            
             pannelloLike.add(likeRisposta);
                      
             gbcRisposte.gridx = 3;
@@ -291,12 +293,15 @@ public class DomandaPanel extends JPanel{
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.pannelloLike, gbcRisposte);
             //all interno dell pannello dislike
-            
-            this.numeroDislikeRisposta = new JLabel("2");
+            int dislikelike=InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), -1);
+            this.numeroDislikeRisposta = new JLabel(""+dislikelike);
             pannelloDislike.add(numeroDislikeRisposta);
             this.dislikeRisposta = new JButton("Dislike");
+        
             pannelloDislike.add(dislikeRisposta);
-            
+            AggiungiLikeRisposta alr = new AggiungiLikeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(),numeroLikeRisposta,numeroDislikeRisposta);
+            likeRisposta.addActionListener(alr);
+            dislikeRisposta.addActionListener(alr);
             gbcRisposte.gridx = 4;
             gbcRisposte.gridy = i;
             gbcRisposte.insets = new Insets(15, -5, 0, 0);

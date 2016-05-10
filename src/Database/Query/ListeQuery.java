@@ -163,7 +163,7 @@ public class ListeQuery {
                 }
     }
 
-    public static void caricaRisposteDomanda() {
+   public static void caricaRisposteDomanda() {
         String selectRisposteDomanda = "select * from risposte where domanda=?";
         String info = "";
         String nickname = "";
@@ -179,16 +179,16 @@ public class ListeQuery {
                 String studente = rs.getString("studente");
                 int like = rs.getInt("like");
                 int dislike = rs.getInt("dislike");
+                int id = rs.getInt("id");
                 String risposta = rs.getString("risposta");
      
-                Risposta rispsta = new Risposta(risposta, domanda, like, dislike, studente);
+                Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente);
                 Applicazione.listaRisposteAttuali.add(rispsta);
             }
         } catch (SQLException ex) {
             Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
     public static void caricaRamiFacoltà(){
         
         String sql = "select distinct ramo from facoltà";

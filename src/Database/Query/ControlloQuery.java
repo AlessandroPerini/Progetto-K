@@ -337,4 +337,35 @@ public class ControlloQuery {
         
         return bool;
     }
+    public static void controlloLike( int id, int valore){
+            String sql ="select * from likeRisposte where studente=? and id=? ";
+            int valoreLike = 0;
+            
+            try{
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setInt(2, id);
+               
+                ResultSet rs = ps1.executeQuery();
+            
+                if (rs.next()) 
+                {
+                    valoreLike = rs.getInt("like");
+                    if(valoreLike == valore){
+                        DeleteQuery.eliminaLikeRisposta(id);
+                    }else{
+                        DeleteQuery.eliminaLikeRisposta(id);
+                        InsertQuery.inserisciLikeRisposta(id, valore);
+                    }
+                }else{
+                    
+                    InsertQuery.inserisciLikeRisposta(id, valore);
+                }
+                
+            }   catch (SQLException ex) {   
+                    Logger.getLogger(CaricaCorsi.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
 }
