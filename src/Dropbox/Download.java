@@ -27,8 +27,9 @@ public class Download {
     private String corso = Applicazione.corsoAttuale.getNome();
     private String facoltà = Applicazione.facoltàAttuale.getNome();
     private String formato = "";
+    public static boolean downloadOK = false;
 
-    public void down() throws IOException, DbxException {
+    public String down() throws IOException, DbxException {
     
         String computerUserName = System.getProperty("user.home");
         String nomeCompleto = nome+"."+corso+"."+facoltà;
@@ -60,20 +61,13 @@ public class Download {
         try {
             DbxEntry.File downloadedFile = client.getFile("/"+nomeCompleto+""+formato+"", null,
                 outputStream);
+
+            downloadOK = true;
             
-            String[] opzioni = new String[] {"Ok", "Apri File"};
-            
-            int risposta = JOptionPane.showOptionDialog(null, "Download correttamente eseguito.\nIl file è stato salvato nella tua cartella \ndei Download  "
-                    + "("+computerUserName+"\\Downloads)", "Operazione avvenuta con successo", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-                    null, opzioni, opzioni[0]);
-            
-            if(risposta==1){
-                Desktop desktop = Desktop.getDesktop();
-            File file = new File(computerUserName+"\\Downloads\\"+nome+""+formato+"");
-            desktop.open(file);
-            }
         } finally {
             outputStream.close();
         }
+        return formato;
     }
+    
 }

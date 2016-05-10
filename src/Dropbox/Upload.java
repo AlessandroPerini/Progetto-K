@@ -24,6 +24,7 @@ public class Upload {
     
     private String percorsoFile;
     private String nomeFile;
+    public static boolean uploadOK = false;
 
     public Upload(String percorso, String nome) {
         this.percorsoFile = percorso;
@@ -43,7 +44,7 @@ public class Upload {
         try {
             DbxEntry.File uploadedFile = client.uploadFile("/"+nomeFile+"",
                 DbxWriteMode.add(), inputFile.length(), inputStream);
-            JOptionPane.showMessageDialog(null, "Il tuo file è stato caricato correttamente", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+            uploadOK = true;
         } finally {
             inputStream.close();
         }

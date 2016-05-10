@@ -12,17 +12,19 @@ import Appunti.Ascoltatori.DownloadFileAppunto;
 import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
+import Dropbox.Download;
 import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -133,7 +135,7 @@ public class AppuntoPanel extends JPanel{
         }
         
         JButton scarica = new JButton("Download Appunto");
-        DownloadFileAppunto download = new DownloadFileAppunto();
+        DownloadFileAppunto download = new DownloadFileAppunto(scarica);
         scarica.addActionListener(download);
         panel.add(scarica);
         

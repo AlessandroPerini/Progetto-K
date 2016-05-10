@@ -33,6 +33,7 @@ public class AggiungiAppuntoPanel extends JPanel{
     private static JTextField persorsoFile;
     private JFileChooser fileChooser;
     private File fileAppunto;
+    private JButton scegliFile;
     
     public AggiungiAppuntoPanel() {
         
@@ -65,10 +66,9 @@ public class AggiungiAppuntoPanel extends JPanel{
         persorsoFile.setBackground(Color.white );
         
         fileChooser = new JFileChooser();
-        
         fileAppunto = new File("");
         
-        JButton scegliFile = new JButton("Scegli File");
+        scegliFile = new JButton("Scegli File");
         scegliFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -78,7 +78,7 @@ public class AggiungiAppuntoPanel extends JPanel{
                     persorsoFile.setText(fileAppunto.getAbsolutePath());
                     aggiungi.setEnabled(true);
                     aggiungi.setText("Aggiungi");
-                    AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2, fileAppunto);
+                    AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome2, descrizione2, fileAppunto, aggiungi, scegliFile);
                     aggiungi.addActionListener(aggiungiAppunto);
                 }
                 
