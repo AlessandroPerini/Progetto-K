@@ -172,6 +172,30 @@ public class InfoQuery {
         
     }
     
+    public static float mediaAppunto(String appunto) throws SQLException{
+        
+        float media = 0;
+        
+        String selectMedia = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
+        
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(3, appunto);
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        while(rs.next()){
+            
+            media = rs.getFloat("media");
+            
+        }
+        return media;
+        
+    }
+    
     public static int likeDomanda() throws SQLException{
         
         int like = 0;

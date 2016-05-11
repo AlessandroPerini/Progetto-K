@@ -7,6 +7,9 @@ package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Appunti.Vista.AppuntoPanel;
+import Appunti.Vista.ListaAppuntiPanel;
+import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
 import java.awt.event.ActionEvent;
@@ -49,16 +52,25 @@ public class Back implements ActionListener{
             }
             break;
             case "corsi cercati": Applicazione.svuotaCorsi();
-            ListeQuery lQuery2 = new ListeQuery();
-            {
-                try {
-                    lQuery2.caricaCorsi();
-                } catch (SQLException ex) {
-                    System.out.println("Errore durante il caricamento dei corsi");
-                }
-            }
+                                ListeQuery lQuery2 = new ListeQuery();
+                                try {
+                                    lQuery2.caricaCorsi();
+                                } catch (SQLException ex) {
+                                    System.out.println("Errore durante il caricamento dei corsi");
+                                }
+                                
             break;
             case "preferiti": Applicazione.svuotaPreferiti();
+            break;
+            case "appunto": try{
+                                Applicazione.svuotaAppunti();
+                                ListeQuery.caricaAppunti();
+                            } catch (SQLException ex) {
+                                    System.out.println("Errore durante il caricamento delle info dell'appunto");
+                                }
+            
+                            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                            Grafica.container.add(appunti, "appunti");
             break;
         }
         if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){

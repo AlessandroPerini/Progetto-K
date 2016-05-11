@@ -5,21 +5,8 @@
 */
 package Login;
 
-import Application.Controller.Applicazione;
-import Application.Vista.Grafica;
-import Studente.Vista.AccountPanel;
 import Università.Facolta.Ascoltatori.CaricaFacoltà;
-import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import javax.swing.*;
 
 /**
