@@ -100,7 +100,7 @@ public class InsertQuery {
     public static void inserisciRisposta(String risposta) throws SQLException{
         
         
-        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0, ?);";
+        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0, ?, ?, ?);";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
         ps1.clearParameters();
@@ -109,7 +109,9 @@ public class InsertQuery {
         ps1.setInt(3, prossimoID("risposte"));
         ps1.setString(4, risposta);
         ps1.setString(5, Applicazione.guest.getNickname());
-          
+        ps1.setString(6, Applicazione.corsoAttuale.getNome());
+        ps1.setString(7, Applicazione.facoltàAttuale.getNome());
+        
         ps1.execute();
         
     }

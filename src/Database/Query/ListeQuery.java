@@ -146,11 +146,13 @@ public class ListeQuery {
     
     public static void caricaRisposteDomanda() throws SQLException {
         
-        String selectRisposteDomanda = "select * from risposte where domanda=?";
+        String selectRisposteDomanda = "select * from risposte where domanda=? and corso=? and facoltà=?";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
