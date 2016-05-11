@@ -5,6 +5,8 @@
 */
 package Frame;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,15 +20,21 @@ public class GifFrame {
     public static JFrame loadingFrame = new JFrame();
     
     public static void apri(){
-        
+ 
         loadingFrame = new JFrame("Loading ...");
-        loadingFrame.setLocationRelativeTo(null);
         
         ImageIcon loading = new ImageIcon("files\\immagini\\loading.gif");
         loadingFrame.add(new JLabel("", loading, JLabel.CENTER));
         
         loadingFrame.setUndecorated(true);
         loadingFrame.setSize(300, 300);
+        
+        //centrare frame al centro dello schermo
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int x = (screenSize.width-loadingFrame.getSize().width)/2;
+        int y = (screenSize.height-loadingFrame.getSize().height)/2;
+        loadingFrame.setLocation(x, y);
+        //
         
         loadingFrame.setVisible(true);
     }

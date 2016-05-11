@@ -12,12 +12,14 @@ import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import Dropbox.Elimina;
+import Frame.GifFrame;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,41 +28,71 @@ import javax.swing.JOptionPane;
  */
 public class EliminaAppunto implements ActionListener{
     
+    private JButton bottone;
+    private JButton bottone2;
+    
+    public EliminaAppunto(JButton bottone, JButton bottone2) {
+        this.bottone = bottone;
+        this.bottone2 = bottone2;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
-        
+     
         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Conferma", JOptionPane.YES_NO_OPTION);
         
         if(showConfirmDialog == 0 ){
-            try {
-                DeleteQuery.eliminaAppunto();
-                if(ControlloQuery.controlloAppuntiPreferiti()==false){
-                    DeleteQuery.eliminaAppuntiPreferiti();
-                }
-                
-                Elimina elimina = new Elimina();
-                elimina.del();
-                JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
-                
-                Applicazione.svuotaAppunti();
-                
-                ListeQuery.caricaAppunti();
-                
-                Applicazione.back.remove(Applicazione.back.size()-1);
-                
-                ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-                Grafica.container.add(appunti, "appunti");
-                Grafica.card.show(Grafica.container, "appunti");
-                
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
-            }
-            catch (DbxException ex) {
-                JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        
-        
+            
+            bottone.setEnabled(false);
+            bottone2.setEnabled(false);
+            
+            GifFrame.apri();
+            
+            new java.util.Timer().schedule(
+                    new java.util.TimerTask() {
+                        @Override
+                        public void run() {
+                            try {
+                                DeleteQuery.eliminaAppunto();
+                                if(ControlloQuery.controlloAppuntiPreferiti()==false){
+                                    DeleteQuery.eliminaAppuntiPreferiti();
+                                }
+                                
+                                Elimina elimina = new Elimina();
+                                elimina.del();
+                                
+                                if(Elimina.eliminaOk){
+                                    
+                                    GifFrame.chiudi();
+                                    
+                                    JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
+                                    
+                                    Applicazione.svuotaAppunti();
+                                    
+                                    ListeQuery.caricaAppunti();
+                                    
+                                    Applicazione.back.remove(Applicazione.back.size()-1);
+                                    
+                                    ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                                    Grafica.container.add(appunti, "appunti");
+                                    Grafica.card.show(Grafica.container, "appunti");
+                                    
+                                    bottone.setEnabled(true);
+                                    bottone2.setEnabled(true);
+                                }
+                            } catch (SQLException ex) {
+                                JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                            }
+                            catch (DbxException ex) {
+                                JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                            }
+                        }
+                        
+                    
+                    },
+                            10
+                            );
+        }   
     }
     
 }

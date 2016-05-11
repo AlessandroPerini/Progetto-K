@@ -22,6 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class Elimina {
     
+    public static boolean eliminaOk = false;
+    
     public void del() throws DbxException{
         
         DbxRequestConfig config = new DbxRequestConfig("UNI Per Voi",
@@ -49,6 +51,7 @@ public class Elimina {
                 int i = nomeFile.lastIndexOf('.');
                 formato = nomeFile.substring(i);
             }
+            eliminaOk = true;
         }//fine ricerca
 
 

@@ -121,20 +121,21 @@ public class AppuntoPanel extends JPanel{
             System.out.println("Errore durante il controllo della valutazione dell'appunto");
         }
         
-        JButton elimina = new JButton();
-        
-        if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
-            
-            EliminaAppunto eliminaAppunto = new EliminaAppunto();
-            elimina = new JButton("Elimina");
-            elimina.setBackground(new Color(249,123,123));
-            elimina.addActionListener(eliminaAppunto);
-            panel.add(elimina);
-        }
-        
         JButton scarica = new JButton("Download Appunto");
+        JButton elimina = new JButton("Elimina");
+        
         DownloadFileAppunto download = new DownloadFileAppunto(scarica, elimina);
         scarica.addActionListener(download);
+        
+        elimina.setBackground(new Color(249,123,123));
+        EliminaAppunto eliminaAppunto = new EliminaAppunto(elimina, scarica);
+        elimina.addActionListener(eliminaAppunto);
+        
+        if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+           
+            panel.add(elimina);
+        }
+
         panel.add(scarica);
         
         JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);

@@ -26,14 +26,14 @@ public class Grafica {
         container = new JPanel();
         container.setLayout(card);
         
-        MainFrame f = new MainFrame("UNI Per Voi");
+        MainFrame mainFrame = new MainFrame("UNI Per Voi");
         
         LoginPanel login = new LoginPanel();
         
         container.add(login,"login");
         card.show(container, "login");
 
-        f.add(container);
-        f.setVisible(true);
+        mainFrame.add(container);
+        mainFrame.setVisible(true);
     }
 }
