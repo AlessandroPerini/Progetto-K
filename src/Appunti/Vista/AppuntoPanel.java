@@ -12,19 +12,15 @@ import Appunti.Ascoltatori.DownloadFileAppunto;
 import Appunti.Ascoltatori.Vota;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
-import Dropbox.Download;
 import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -125,17 +121,19 @@ public class AppuntoPanel extends JPanel{
             System.out.println("Errore durante il controllo della valutazione dell'appunto");
         }
         
+        JButton elimina = new JButton();
+        
         if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
             EliminaAppunto eliminaAppunto = new EliminaAppunto();
-            JButton elimina = new JButton("Elimina");
+            elimina = new JButton("Elimina");
             elimina.setBackground(new Color(249,123,123));
-            elimina.addActionListener(eliminaAppunto);;
+            elimina.addActionListener(eliminaAppunto);
             panel.add(elimina);
         }
         
         JButton scarica = new JButton("Download Appunto");
-        DownloadFileAppunto download = new DownloadFileAppunto(scarica);
+        DownloadFileAppunto download = new DownloadFileAppunto(scarica, elimina);
         scarica.addActionListener(download);
         panel.add(scarica);
         

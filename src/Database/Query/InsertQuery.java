@@ -6,12 +6,9 @@
 package Database.Query;
 
 import Application.Controller.Applicazione;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
 
@@ -155,8 +152,7 @@ public class InsertQuery {
     public static void updateTelefono(String telefono) throws SQLException{
         
         String sql = "update studenti set telefono='"+telefono+"' where email='"+Applicazione.guest.getEmail()+"'";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
         
         ps1.execute();

@@ -47,11 +47,11 @@ public class AggiungiLibro implements ActionListener{
                 if(telefono.isSelected()){
                     tel = Applicazione.guest.getTelefono();
                 }else{
-                    tel ="Numero non disponibile!";
+                    tel ="Numero non disponibile";
                 }
                 
                 try{
-                    InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(),tel);
+                    InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(), tel);
                     JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     Applicazione.svuotaLibri();
                     

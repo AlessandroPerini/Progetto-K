@@ -19,7 +19,8 @@ public class MainFrame extends JFrame{
     public MainFrame(String t) throws HeadlessException {
     
         super(t);
-        setBounds(400, 100, 700, 560);
+        setSize(700, 560);
+        setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setIconImage(new ImageIcon("files\\immagini\\logo.png").getImage());

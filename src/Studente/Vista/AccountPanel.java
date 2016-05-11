@@ -6,29 +6,19 @@
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
-import Application.Vista.Grafica;
-import Login.LoginPanel;
 import Studente.Ascoltatori.CaricaIMieiDati;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import Database.Query.InsertQuery;
-import Database.Query.ListeQuery;
 import Header.Ascoltatori.Back;
-import Preferiti.Facoltà.Vista.PreferitiPanel;
 import Studente.Ascoltatori.GoToPreferiti;
 import Studente.Ascoltatori.Logout;
 import Studente.Ascoltatori.ModificaNumero;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
-import java.sql.SQLException;
 
 /**
  *
@@ -48,8 +38,7 @@ public class AccountPanel extends JPanel{
         
         //top panel
         JPanel top = new JPanel();
-        
-        
+
         back = new JButton("Back");
         Back back2 = new Back();
         back.addActionListener(back2);

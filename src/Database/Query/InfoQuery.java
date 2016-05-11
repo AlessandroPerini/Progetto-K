@@ -9,14 +9,11 @@ import Appunti.Appunto;
 import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -93,7 +90,7 @@ public class InfoQuery {
             String cor = rs.getString("corso");
             String fac = rs.getString("facoltà");
             
-            Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, telefonoLibro,emailLibro,  prezzoLibro, cor, fac);
+            Applicazione.libroAttuale = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro,  prezzoLibro, cor, fac);
             
         }
     }

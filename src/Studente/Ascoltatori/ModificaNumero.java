@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Studente.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -24,7 +24,7 @@ public class ModificaNumero implements ActionListener{
     private int nClick;
     private JTextField phone;
     private JButton cambiaNumero;
-
+    
     public ModificaNumero(int nClick, JTextField phone, JButton cambiaNumero) {
         this.nClick = nClick;
         this.phone = phone;
@@ -36,14 +36,21 @@ public class ModificaNumero implements ActionListener{
         nClick += 1;
         phone.setEditable(true);
         cambiaNumero.setText("Conferma");
-
+        
         if ( nClick == 2){
             phone.setEditable(false);
             cambiaNumero.setText("Modifica");
             try {
-                InsertQuery.updateTelefono(phone.getText());
-
-                Applicazione.guest.setTelefono(phone.getText());
+                if(!phone.getText().equals("")){
+                    InsertQuery.updateTelefono(phone.getText());
+                    Applicazione.guest.setTelefono(phone.getText());
+                    phone.setText(Applicazione.guest.getTelefono());
+                }
+                else{
+                    InsertQuery.updateTelefono("Numero non disponibile");
+                    Applicazione.guest.setTelefono("Numero non disponibile");
+                    phone.setText(Applicazione.guest.getTelefono());
+                }
                 JOptionPane.showMessageDialog(null, "Numero di telefono correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                 nClick = 0;
             } catch (SQLException ex) {

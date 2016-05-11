@@ -61,7 +61,7 @@ public class Download {
         try {
             DbxEntry.File downloadedFile = client.getFile("/"+nomeCompleto+""+formato+"", null,
                 outputStream);
-
+            
             downloadOK = true;
             
         } finally {
