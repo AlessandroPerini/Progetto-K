@@ -17,25 +17,16 @@ public class Risposta {
     private int id;
     private int like;
     private int dislike;
+    private String nickname;
 
-    public Risposta(String titolo, String domanda, int like, int dislike,int id, String email) {
+    public Risposta(String titolo, String domanda, int like, int dislike,int id, String email, String nickname) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.id = id;
         this.dislike = dislike;
         this.like = like;
         this.email = email;
-    }
-
-     public String setNickname() {
-        String s = email;
-        s = s.replace(".", ",");
-        String parts[] = s.split(",");
-        String nome = parts[0];
-        String cognome = parts[1].charAt(0)+"";
-        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
-        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
-        return  nome+" "+cognome+".";
+        this.nickname = nickname;
     }
 
     public String getTitolo() {
@@ -45,13 +36,9 @@ public class Risposta {
     public int getId() {
         return id;
     }
+
+    public String getNickname() {
+        return nickname;
+    }
     
-    
-    
-     
-    
-    
-    
-    
- 
 }

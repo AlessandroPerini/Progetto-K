@@ -20,7 +20,7 @@ public class LoginQuery {
     
     private static boolean check = false;
     private static int punti;
-    private static String telefono;
+    private static String telefono, nickname;
     
     public static void login(String email, String password) throws SQLException{
         
@@ -38,17 +38,11 @@ public class LoginQuery {
             
             check = true;
             
-            String sql_telefono = "select telefono from studenti where email=?";
-            PreparedStatement ps3 = Applicazione.DBconnection.prepareStatement(sql_telefono);
-            ps3.setString(1, email);
-            ResultSet rs3 = ps3.executeQuery();
-            if(rs3.next()){telefono = rs3.getString("telefono");}
+            telefono = rs.getString("telefono");
+            nickname = rs.getString("nickname");
             
-            Applicazione.inizializzaUtente(email, password, telefono);
+            Applicazione.inizializzaUtente(email, password, telefono, nickname);
         }
-        
-        
-        
     }
     
 }

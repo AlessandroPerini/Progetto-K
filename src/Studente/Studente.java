@@ -18,7 +18,7 @@ public class Studente {
     private String nickname;
     private String telefono; 
 
-    public Studente(String email, String password, String telefono) {
+    public Studente(String email, String password, String telefono, String nickname) {
         this.email = email;
         this.password = password;
         this.nickname = nickname;
@@ -26,7 +26,12 @@ public class Studente {
         this.nome = nome;
         this.cognome = cognome;
     }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
     
+    /* NON TOGLIERLO!!!
     public void setNickname() {
         String s = email;
         s = s.replace(".", ",");
@@ -37,6 +42,7 @@ public class Studente {
         cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
         nickname = nome+" "+cognome+".";
     }
+    */
     
     public void setNome() {
         String s = email;

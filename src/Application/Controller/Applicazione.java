@@ -55,10 +55,9 @@ public class Applicazione {
     public static ArrayList<Libro> libriGuest = new ArrayList<>();
     public static ArrayList<Domanda> domandeGuest = new ArrayList<>();
 
-    public static void inizializzaUtente(String email, String password, String telefono){
+    public static void inizializzaUtente(String email, String password, String telefono, String nickname){
     
-        guest = new Studente(email, password, telefono);
-        guest.setNickname();
+        guest = new Studente(email, password, telefono, nickname);
         guest.setNome();
         guest.setCognome();
         
@@ -66,7 +65,7 @@ public class Applicazione {
     }
     
     public static void eliminaUtente(){
-        guest = new Studente("", "","");
+        guest = new Studente("", "","", "");
         utenteLoggato = false;
     }
     

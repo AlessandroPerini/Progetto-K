@@ -7,8 +7,6 @@ package Login;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import static Application.Vista.Grafica.card;
-import static Application.Vista.Grafica.container;
 import Database.Query.LoginQuery;
 import Studente.Vista.AccountPanel;
 import java.awt.event.ActionEvent;
@@ -16,8 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;

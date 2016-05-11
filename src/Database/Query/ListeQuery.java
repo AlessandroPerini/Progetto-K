@@ -26,8 +26,7 @@ public class ListeQuery {
     public static void caricaFacoltà() throws SQLException{
         
         String selectFacoltà = "select * from facoltà";
-        
-        
+                
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
         
         ResultSet rs = ps1.executeQuery();
@@ -148,8 +147,6 @@ public class ListeQuery {
     public static void caricaRisposteDomanda() throws SQLException {
         
         String selectRisposteDomanda = "select * from risposte where domanda=?";
-        String info = "";
-        String nickname = "";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
         ps1.clearParameters();
@@ -164,8 +161,9 @@ public class ListeQuery {
             int dislike = rs.getInt("dislike");
             int id = rs.getInt("id");
             String risposta = rs.getString("risposta");
+            String nickname = rs.getString("nickname");
 
-            Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente);
+            Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente, nickname);
             Applicazione.listaRisposteAttuali.add(rispsta);
             
         }

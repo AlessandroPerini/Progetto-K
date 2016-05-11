@@ -44,10 +44,9 @@ public class AggiungiRisposta implements ActionListener{
                     String s="";
                     for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
                         s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
-                        nome = Applicazione.listaRisposteAttuali.get(i).setNickname();
+                        nome = Applicazione.listaRisposteAttuali.get(i).getNickname();
                     }
-                    
-                    
+                                      
                     GoToDomanda.getDomanda().setRisposte2(s,DomandaPanel.getI(),nome);
                     DomandaPanel.setI(DomandaPanel.getI()+1);
                     

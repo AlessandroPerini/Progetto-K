@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import Header.Ascoltatori.Back;
 import Studente.Ascoltatori.GoToPreferiti;
 import Studente.Ascoltatori.Logout;
+import Studente.Ascoltatori.ModificaNickname;
 import Studente.Ascoltatori.ModificaNumero;
 
 /**
@@ -27,11 +28,11 @@ import Studente.Ascoltatori.ModificaNumero;
 public class AccountPanel extends JPanel{
     
     private static JLabel email;
-    private static JLabel nick;
-    private static JTextField phone;
-    private JButton cambiaNumero, back, preferiti;
+    private static JTextField phone, nick;
+    private JButton back, preferiti, cambiaNumero, cambiaNickname;
     private JLabel title;
-    int nClick = 0;
+    int nClickTel = 0;
+    int nClickNick = 0;
     public AccountPanel() {
         
         setPreferredSize(new Dimension(700, 450));
@@ -94,8 +95,10 @@ public class AccountPanel extends JPanel{
         JLabel nickLabel = new JLabel("Nickname: ");
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
         
-        nick = new JLabel(Applicazione.guest.getNickname());
+        nick = new JTextField(Applicazione.guest.getNickname());
+        nick.setEditable(false);
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
+        nick.setMinimumSize(new Dimension(20, 0));
         
         JLabel phoneLabel = new JLabel("Telefono: ");
         phoneLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -103,15 +106,22 @@ public class AccountPanel extends JPanel{
         phone = new JTextField(Applicazione.guest.getTelefono());
         phone.setEditable(false);
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
+        phone.setMinimumSize(new Dimension(20, 0));
         
         cambiaNumero = new JButton("Modifica");
-        ModificaNumero modificaNumero = new ModificaNumero(nClick, phone, cambiaNumero);
+        ModificaNumero modificaNumero = new ModificaNumero(nClickTel, phone, cambiaNumero);
         cambiaNumero.addActionListener(modificaNumero);
+        
+        cambiaNickname = new JButton("Modifica");
+        ModificaNickname modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
+        cambiaNickname.addActionListener(modificaNickname);
+        
         emailRow.add(emailLabel);
         emailRow.add(email);
         
         nickRow.add(nickLabel);
         nickRow.add(nick);
+        nickRow.add(cambiaNickname);
         
         phoneRow.add(phoneLabel);
         phoneRow.add(phone);

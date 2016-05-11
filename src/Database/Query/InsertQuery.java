@@ -100,7 +100,7 @@ public class InsertQuery {
     public static void inserisciRisposta(String risposta) throws SQLException{
         
         
-        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0);";
+        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0, ?);";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
         ps1.clearParameters();
@@ -108,8 +108,8 @@ public class InsertQuery {
         ps1.setString(2, Applicazione.guest.getEmail());
         ps1.setInt(3, prossimoID("risposte"));
         ps1.setString(4, risposta);
-        
-        
+        ps1.setString(5, Applicazione.guest.getNickname());
+          
         ps1.execute();
         
     }
@@ -152,6 +152,16 @@ public class InsertQuery {
     public static void updateTelefono(String telefono) throws SQLException{
         
         String sql = "update studenti set telefono='"+telefono+"' where email='"+Applicazione.guest.getEmail()+"'";
+
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        
+        ps1.execute();
+        
+    }
+    
+    public static void updateNickname(String nickname) throws SQLException{
+        
+        String sql = "update studenti set nickname='"+nickname+"' where email='"+Applicazione.guest.getEmail()+"'";
 
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
         
