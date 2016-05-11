@@ -22,7 +22,7 @@ public class LoginQuery {
     
     public static void login(String email, char[] psw) throws SQLException{
         
-        String sql = "select * from studenti where email=? and password=?";
+        String sql = "select * from studenti where CAST(email AS BINARY)=? and CAST(password AS BINARY)=?";
         
         String password = String.valueOf(psw);
         
