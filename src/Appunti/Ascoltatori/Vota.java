@@ -5,8 +5,10 @@
 */
 package Appunti.Ascoltatori;
 
+import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Appunti.Vista.AppuntoPanel;
+import Database.Query.InfoQuery;
 import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,12 +35,17 @@ public class Vota implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        if (!commento.getText().equals("")) {System.out.println(commento.getText().length());
+        if (!commento.getText().equals("")) {
             if(((commento.getText().length())<500)){
                 try {
                     InsertQuery.inserisciValutazione(commento, punteggio);
+
+                    float newMedia = InfoQuery.mediaAppunto();
+
+                    Applicazione.appuntoAttuale.setMedia(newMedia);
                     
-                    
+                    InsertQuery.updateMedia(newMedia);
+  
                     JOptionPane.showMessageDialog(null, "Valutazione aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     
                     AppuntoPanel appunto = new AppuntoPanel();

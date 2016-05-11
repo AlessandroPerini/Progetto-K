@@ -39,8 +39,9 @@ public class GuestQuery {
             String emailAppunto = rs.getString("studente");
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
+            float media = rs.getFloat("media");
             
-            Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto, corso, facoltà);
+            Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto, corso, facoltà, media);
             Applicazione.appuntiGuest.add(appunto);
         }
         

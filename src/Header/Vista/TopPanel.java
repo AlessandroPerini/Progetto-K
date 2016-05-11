@@ -6,31 +6,13 @@
 package Header.Vista;
 
 import Application.Controller.Applicazione;
-import static Application.Controller.Applicazione.svuotaAppunti;
-import static Application.Controller.Applicazione.svuotaCorsi;
-import static Application.Controller.Applicazione.svuotaDomande;
-import static Application.Controller.Applicazione.svuotaLibri;
-import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
-import static Application.Controller.Applicazione.svuotaMieiDati;
-import static Application.Controller.Applicazione.svuotaPreferiti;
-import static Application.Controller.Applicazione.svuotaRami;
-import static Application.Controller.Applicazione.svuotaRecensioni;
-import static Application.Controller.Applicazione.svuotaRisposte;
-import Application.Vista.Grafica;
-import Database.Query.ListeQuery;
 import Header.Ascoltatori.Back;
 import Header.Ascoltatori.Menù;
-import Login.LoginPanel;
-import Preferiti.Facoltà.Vista.PreferitiPanel;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 

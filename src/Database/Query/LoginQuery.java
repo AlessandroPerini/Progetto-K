@@ -9,8 +9,6 @@ import Application.Controller.Applicazione;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,10 +20,11 @@ public class LoginQuery {
     private static int punti;
     private static String telefono, nickname;
     
-    public static void login(String email, String password) throws SQLException{
+    public static void login(String email, char[] psw) throws SQLException{
         
         String sql = "select * from studenti where email=? and password=?";
         
+        String password = String.valueOf(psw);
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
         ps1.clearParameters();

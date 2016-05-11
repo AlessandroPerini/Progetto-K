@@ -5,7 +5,6 @@
  */
 package Application.Controller;
 
-import Application.Creator.Starter;
 import Appunti.Appunto;
 import Database.Connection.ConnessioneDB;
 import Libri.Libro;
@@ -49,7 +48,7 @@ public class Applicazione {
     public static Corso corsoAttuale = new Corso("", 0, "");
     public static Libro libroAttuale = new Libro("", "", 0, "", "", 0, "", "");
     public static Domanda domandaAttuale = new  Domanda("", "", "", 0, "", "");
-    public static Appunto appuntoAttuale = new Appunto("", "", "", "", "");
+    public static Appunto appuntoAttuale = new Appunto("", "", "", "", "", 0);
     
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();

@@ -7,11 +7,10 @@ package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Vista.AppuntoPanel;
 import Appunti.Vista.ListaAppuntiPanel;
-import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
+import QeA.Vista.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -34,8 +33,6 @@ public class Back implements ActionListener{
             case "domande": Applicazione.svuotaDomande();
             break;
             case "appunti": Applicazione.svuotaAppunti();
-            break;
-            case "domanda": Applicazione.svuotaRisposte();
             break;
             case "i miei dati": Applicazione.svuotaMieiDati();
             break;
@@ -62,16 +59,28 @@ public class Back implements ActionListener{
             break;
             case "preferiti": Applicazione.svuotaPreferiti();
             break;
-            case "appunto": try{
-                                Applicazione.svuotaAppunti();
+            case "appunto": Applicazione.svuotaAppunti();
+                            try{
                                 ListeQuery.caricaAppunti();
                             } catch (SQLException ex) {
-                                    System.out.println("Errore durante il caricamento delle info dell'appunto");
+                                    System.out.println("Errore durante il caricamento degli appunti");
                                 }
             
                             ListaAppuntiPanel appunti = new ListaAppuntiPanel();
                             Grafica.container.add(appunti, "appunti");
             break;
+            case "domanda": Applicazione.svuotaRisposte();
+                            Applicazione.svuotaDomande();
+                            try{
+                                ListeQuery.caricaDomande();
+                            } catch (SQLException ex) {
+                                    System.out.println("Errore durante il caricamento delle domande");
+                                }
+            
+                            ListaDomandePanel domande = new ListaDomandePanel();
+                            Grafica.container.add(domande, "domande");
+            break;
+            
         }
         if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){
             Applicazione.svuotaPreferiti();

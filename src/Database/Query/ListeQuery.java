@@ -137,8 +137,9 @@ public class ListeQuery {
             String emailAppunto = rs.getString("studente");
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
+            float media = rs.getFloat("media");
             
-            Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, corso, facoltà);
+            Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, corso, facoltà, media);
             Applicazione.listaAppuntiAttuali.add(appunto);
             
         }
@@ -295,8 +296,9 @@ public class ListeQuery {
             String studente = rs.getString("studenteApp");
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
+            float media = rs.getFloat("media");
             
-            Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà));
+            Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà, media));
         }
     }
     

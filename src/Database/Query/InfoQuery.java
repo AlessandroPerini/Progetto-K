@@ -25,8 +25,7 @@ public class InfoQuery {
     public static void caricaInfoFacoltà() throws SQLException{
         
         String selectInfoFacoltà = "select * from facoltà where nome=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoFacoltà);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
@@ -142,8 +141,9 @@ public class InfoQuery {
             String emailAppunto = rs.getString("studente");
             String cor = rs.getString("corso");
             String fac = rs.getString("facoltà");
+            float media = rs.getFloat("media");
             
-            Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, cor, fac);
+            Applicazione.appuntoAttuale = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, cor, fac, media);
             
         }
     }
@@ -153,8 +153,7 @@ public class InfoQuery {
         float media = 0;
         
         String selectMedia = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
@@ -163,31 +162,7 @@ public class InfoQuery {
         
         ResultSet rs = ps1.executeQuery();
         
-        while(rs.next()){
-            
-            media = rs.getFloat("media");
-            
-        }
-        return media;
-        
-    }
-    
-    public static float mediaAppunto(String appunto) throws SQLException{
-        
-        float media = 0;
-        
-        String selectMedia = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
-        
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
-        ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, appunto);
-        
-        ResultSet rs = ps1.executeQuery();
-        
-        while(rs.next()){
+        if(rs.next()){
             
             media = rs.getFloat("media");
             

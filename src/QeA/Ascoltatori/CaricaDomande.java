@@ -8,12 +8,13 @@ package QeA.Ascoltatori;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
+import QeA.Domanda;
 import QeA.Vista.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Collections;
+import java.util.Comparator;
 
 /**
  *
@@ -23,14 +24,23 @@ public class CaricaDomande implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-        
-        Applicazione.back.add("domande");
-        
+
         try {
             ListeQuery.caricaDomande();
 
-            ListaDomandePanel domande = new ListaDomandePanel();
+            Applicazione.back.add("domande");
             
+            //ordinamento domande per like
+            Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
+                
+                @Override
+                public int compare(Domanda d1, Domanda d2) {
+                    return Integer.compare(d2.getLike(), d1.getLike());
+                }
+            });
+            //fine ordinamento
+            
+            ListaDomandePanel domande = new ListaDomandePanel();
             Grafica.container.add(domande, "domande");
             Grafica.card.show(Grafica.container, "domande");
             

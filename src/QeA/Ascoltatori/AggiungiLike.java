@@ -39,6 +39,8 @@ public class AggiungiLike implements ActionListener{
         try {
             InsertQuery.inserisciLikeDomanda();
             
+            InsertQuery.updateLikeDomanda();
+            
             like.setEnabled(false);
             Nlike.setText(InfoQuery.likeDomanda()+" likes");
             

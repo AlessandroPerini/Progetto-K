@@ -54,7 +54,7 @@ public class AggiungiAppunto implements ActionListener{
             if((nome.getText().length()<21000000)&&(descrizione.getText().length()<500)){
                 try {
                     if(ControlloQuery.controlloNomeAppunto(nome.getText())){
-                        if(file.length()<2100000){
+                        if(file.length()<21000000){
                             
                             bottone.setEnabled(false);
                             botton2.setEnabled(false);

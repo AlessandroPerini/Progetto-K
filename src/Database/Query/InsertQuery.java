@@ -40,7 +40,7 @@ public class InsertQuery {
     
     public static void inserisciAppunto(String nome, String descrizione) throws SQLException{
         
-        String insertAppunto = " INSERT INTO appunti VALUES (?, ?, ?, ?, ?);";
+        String insertAppunto = " INSERT INTO appunti VALUES (?, ?, ?, ?, ?, 0);";
         
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppunto);
@@ -153,9 +153,12 @@ public class InsertQuery {
     
     public static void updateTelefono(String telefono) throws SQLException{
         
-        String sql = "update studenti set telefono='"+telefono+"' where email='"+Applicazione.guest.getEmail()+"'";
-
+        String sql = "update studenti set telefono=? where email=?";
+        
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setString(1, telefono);
+        ps1.setString(2, Applicazione.guest.getEmail());
         
         ps1.execute();
         
@@ -163,10 +166,43 @@ public class InsertQuery {
     
     public static void updateNickname(String nickname) throws SQLException{
         
-        String sql = "update studenti set nickname='"+nickname+"' where email='"+Applicazione.guest.getEmail()+"'";
-
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        String sql = "update studenti set nickname=? where email=?";
         
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setString(1, nickname);
+        ps1.setString(2, Applicazione.guest.getEmail());
+        
+        ps1.execute();
+        
+    }
+    
+    public static void updateMedia(float media) throws SQLException{
+        
+        String sql = "update appunti set media=? where nome=? and corso=? and facoltà=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setFloat(1, media);
+        ps1.setString(2, Applicazione.appuntoAttuale.getNome());
+        ps1.setString(3, Applicazione.corsoAttuale.getNome());
+        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        
+        ps1.execute();
+        
+    }
+    
+    public static void updateLikeDomanda() throws SQLException{
+        
+        String sql = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setInt(1, (Applicazione.domandaAttuale.getLike()+1));
+        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, Applicazione.corsoAttuale.getNome());
+        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+
         ps1.execute();
         
     }
@@ -205,7 +241,7 @@ public class InsertQuery {
     
     public static void inserisciAppuntoPreferito() throws SQLException{
         
-        String insertAppuntoPreferito = "INSERT INTO appuntiPreferiti VALUES (?, ?, ?, ?, ?, ?)";
+        String insertAppuntoPreferito = "INSERT INTO appuntiPreferiti VALUES (?, ?, ?, ?, ?, ?, ?)";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppuntoPreferito);
         ps1.clearParameters();
@@ -215,6 +251,7 @@ public class InsertQuery {
         ps1.setString(4, Applicazione.appuntoAttuale.getStudente());
         ps1.setString(5, Applicazione.corsoAttuale.getNome());
         ps1.setString(6, Applicazione.facoltàAttuale.getNome());
+        ps1.setFloat(7, Applicazione.appuntoAttuale.getMedia());
         
         ps1.execute();
         

@@ -8,8 +8,10 @@ package QeA.Vista;
 import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
+import QeA.Ascoltatori.OrdinaListaDomande;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,6 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -36,6 +39,8 @@ public class ListaDomandePanel extends JPanel{
     private JButton addDomanda, searchButton;
     private JTextField searchField;
     private JLabel noDomande;
+    private JComboBox ordina;
+    
     public ListaDomandePanel() {
     
         TopPanel top = new TopPanel("Domande ");
@@ -72,6 +77,25 @@ public class ListaDomandePanel extends JPanel{
 
         centro.add(searchPanel, BorderLayout.NORTH);
         
+        //pannello ordina
+        JPanel ordinaPanel = new JPanel();
+        
+        String[] opzioni = new String[]{"Like", "Nome"};
+        ordina = new JComboBox(opzioni);
+        if(!OrdinaListaDomande.ordineCorrente.equals("")){
+            ordina.setSelectedItem(OrdinaListaDomande.ordineCorrente);
+        }
+        
+        JButton ordinaButton = new JButton("Ordina");
+        OrdinaListaDomande ordinaListaDomande = new OrdinaListaDomande(ordina);
+        ordinaButton.addActionListener(ordinaListaDomande);
+        
+        ordinaPanel.add(ordina);
+        ordinaPanel.add(ordinaButton);
+        // fine pannello ordina
+        
+        centro.add(ordinaPanel, BorderLayout.NORTH);
+        
         addDomanda = new JButton("Aggiungi\n Domanda");
 
         gbcImg.gridx = 0;
@@ -84,6 +108,7 @@ public class ListaDomandePanel extends JPanel{
         GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
         
         addDomanda.addActionListener(goToAggiungiDomanda);
+        
         int size = Applicazione.listaDomandeAttuali.size();
         if(size == 0){
             
@@ -99,7 +124,7 @@ public class ListaDomandePanel extends JPanel{
             
             for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
             domande[i] = new JLabel();
-            domande[i].setText(Applicazione.listaDomandeAttuali.get(i).getTitolo());
+            domande[i].setText(Applicazione.listaDomandeAttuali.get(i).getTitolo()+"-"+Applicazione.listaDomandeAttuali.get(i).getLike()+" likes");
             domande[i].setName("domande"+i);
             domande[i].addMouseListener(goToDomanda);
             gbcImg.gridx = 0;

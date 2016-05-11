@@ -78,12 +78,7 @@ public class AppuntoPanel extends JPanel{
         JLabel email2 = new JLabel(Applicazione.appuntoAttuale.getStudente());
         JLabel nome2 = new JLabel(Applicazione.appuntoAttuale.getNome());
         JTextArea descrizione2 = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
-        JLabel media2 = new JLabel();
-        try {
-            media2 = new JLabel(Float.toString(InfoQuery.mediaAppunto()));
-        } catch (SQLException ex) {
-            System.out.println("Errore durante il caricamento della media");
-        }
+        JLabel media2 = new JLabel(Float.toString(Applicazione.appuntoAttuale.getMedia()));
         
         JScrollPane scrollPanel = new JScrollPane(descrizione2);
         

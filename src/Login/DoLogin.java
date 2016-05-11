@@ -34,9 +34,9 @@ public class DoLogin implements ActionListener, KeyListener{
     
     public static void doIt(){
         
-        if ((!email.getText().equals(""))&&(!password.getText().equals(""))) {
+        if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {
             try {
-                LoginQuery.login(email.getText()+"@universitadipavia.it", password.getText());
+                LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore connessione col database", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
             }

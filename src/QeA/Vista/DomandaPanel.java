@@ -175,17 +175,15 @@ public class DomandaPanel extends JPanel{
         
         // quarta riga - colonna 1
         this.Nlike = new JLabel();
-        try {
-            Nlike.setText(InfoQuery.likeDomanda()+" likes");
-         
-            gbc.gridx = 1;
-            gbc.gridy = 3;
-            gbc.insets = new Insets(15, 100, 0, 10);
-            gbc.anchor = GridBagConstraints.LINE_START;
-            panel.add(this.Nlike, gbc);
-            }catch (SQLException ex) {
-                System.out.println("Errore durante il caricamento dei like della domanda");
-        }
+        
+        Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
+
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(15, 100, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_START;
+        panel.add(this.Nlike, gbc);
+            
             
         AggiungiLike aggiungiLike = new AggiungiLike(like2, Nlike);
         like2.addActionListener(aggiungiLike);
