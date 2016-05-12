@@ -108,8 +108,8 @@ public class AggiungiAppunto implements ActionListener{
                                 }
                                 
                             }catch (SQLException ex) {
-                                System.out.println("Errore durante il controllo del nome dell'appunto");
                                 gif.chiudi();
+                                System.out.println("Errore durante il controllo del nome dell'appunto");
                             } catch (IOException ex) {
                                 gif.chiudi();
                                 JOptionPane.showMessageDialog(null, "Errore durante il caricamento del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
@@ -140,6 +140,7 @@ public class AggiungiAppunto implements ActionListener{
                     break;
                 case 4:
                     JOptionPane.showMessageDialog(null, "Il file supera la dimensione massima consentita (max 20Mb)", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                    file.delete();
                     break;
             }
         }

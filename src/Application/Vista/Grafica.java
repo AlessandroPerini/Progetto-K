@@ -19,6 +19,7 @@ public class Grafica {
     
     public static CardLayout card;
     public static JPanel container;
+    public static MainFrame mainFrame = new MainFrame("UNI Per Voi");
     
     public Grafica(){
         
@@ -26,8 +27,6 @@ public class Grafica {
         
         container = new JPanel();
         container.setLayout(card);
-        
-        MainFrame mainFrame = new MainFrame("UNI Per Voi");
         
         LoginPanel login = new LoginPanel();
         
@@ -38,4 +37,8 @@ public class Grafica {
         mainFrame.setVisible(true);
         
     }
+    
+    public static Point posizione(){
+        
+        return mainFrame.getLocation();}
 }

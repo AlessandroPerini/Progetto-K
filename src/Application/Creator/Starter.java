@@ -9,8 +9,6 @@ import Application.Controller.Applicazione;
 import Frame.MainFrame;
 import Login.LoginPanel;
 import Application.Vista.Grafica;
-import java.awt.CardLayout;
-import javax.swing.JPanel;
 
 
 /**
