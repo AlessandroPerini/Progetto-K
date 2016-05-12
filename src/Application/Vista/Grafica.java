@@ -8,6 +8,7 @@ package Application.Vista;
 import Frame.MainFrame;
 import Login.LoginPanel;
 import java.awt.CardLayout;
+import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
@@ -35,5 +36,6 @@ public class Grafica {
 
         mainFrame.add(container);
         mainFrame.setVisible(true);
+        
     }
 }

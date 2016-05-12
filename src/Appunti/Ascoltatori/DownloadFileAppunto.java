@@ -32,10 +32,12 @@ public class DownloadFileAppunto implements ActionListener{
     private String formato = "";
     private JButton bottone;
     private JButton bottone2;
+    private GifFrame gif;
     
     public DownloadFileAppunto(JButton bottone, JButton bottone2) {
         this.bottone = bottone;
         this.bottone2 = bottone2;
+        this.gif = new GifFrame();
     }
     
     @Override
@@ -44,7 +46,7 @@ public class DownloadFileAppunto implements ActionListener{
         bottone.setEnabled(false);
         bottone2.setEnabled(false);
         
-        GifFrame.apri();
+        gif.apri();
         
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -56,7 +58,7 @@ public class DownloadFileAppunto implements ActionListener{
                             formato = download.down();
                             if(Download.downloadOK){
                                 
-                                GifFrame.chiudi();
+                                gif.chiudi();
                                 
                                 String computerUserName = System.getProperty("user.home");
                                 String nomeCompleto = nome+"."+corso+"."+facoltà;
@@ -77,8 +79,10 @@ public class DownloadFileAppunto implements ActionListener{
                                 bottone2.setEnabled(true);
                             }
                         } catch (IOException ex) {
+                            gif.chiudi();
                             JOptionPane.showMessageDialog(null, "Errore durante il download del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         } catch (DbxException ex) {
+                            gif.chiudi();
                             JOptionPane.showMessageDialog(null, "Errore durante il download del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         }
                         

@@ -17,9 +17,13 @@ import javax.swing.JLabel;
  */
 public class GifFrame {
     
-    public static JFrame loadingFrame = new JFrame();
-    
-    public static void apri(){
+    public JFrame loadingFrame;
+
+    public GifFrame() {
+        this.loadingFrame = new JFrame();
+    }
+
+    public void apri(){
  
         loadingFrame = new JFrame("Loading ...");
         
@@ -39,7 +43,7 @@ public class GifFrame {
         loadingFrame.setVisible(true);
     }
     
-    public static void chiudi(){
+    public void chiudi(){
         
         loadingFrame.setVisible(false);
         loadingFrame.dispose();

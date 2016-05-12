@@ -17,8 +17,6 @@ import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -30,15 +28,17 @@ public class EliminaAppunto implements ActionListener{
     
     private JButton bottone;
     private JButton bottone2;
+    private GifFrame gif;
     
     public EliminaAppunto(JButton bottone, JButton bottone2) {
         this.bottone = bottone;
         this.bottone2 = bottone2;
+        this.gif = new GifFrame();
     }
     
     @Override
     public void actionPerformed(ActionEvent e) {
-     
+        
         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Conferma", JOptionPane.YES_NO_OPTION);
         
         if(showConfirmDialog == 0 ){
@@ -46,7 +46,7 @@ public class EliminaAppunto implements ActionListener{
             bottone.setEnabled(false);
             bottone2.setEnabled(false);
             
-            GifFrame.apri();
+            gif.apri();
             
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
@@ -63,12 +63,11 @@ public class EliminaAppunto implements ActionListener{
                                 
                                 if(Elimina.eliminaOk){
                                     
-                                    GifFrame.chiudi();
+                                    gif.chiudi();
                                     
                                     JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
                                     
                                     Applicazione.svuotaAppunti();
-                                    
                                     ListeQuery.caricaAppunti();
                                     
                                     Applicazione.back.remove(Applicazione.back.size()-1);
@@ -81,18 +80,17 @@ public class EliminaAppunto implements ActionListener{
                                     bottone2.setEnabled(true);
                                 }
                             } catch (SQLException ex) {
+                                gif.chiudi();
                                 JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                             }
                             catch (DbxException ex) {
+                                gif.chiudi();
                                 JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                             }
                         }
                         
-                    
-                    },
-                            10
-                            );
-        }   
+                    },10);
+        }
     }
     
 }
