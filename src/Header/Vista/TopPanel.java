@@ -8,6 +8,7 @@ package Header.Vista;
 import Application.Controller.Applicazione;
 import Header.Ascoltatori.Back;
 import Header.Ascoltatori.Menù;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -41,12 +42,14 @@ public class TopPanel extends JPanel{
         
         String[] opzioni = new String[]{"Home","Account","Preferiti","Logout"};
         menu = new JComboBox(opzioni);
+        
+        menu.setBackground(Color.white);
         menu.setPreferredSize(new Dimension(110, 40));
         Menù menù = new Menù(menu);
         menu.addActionListener(menù);
         resetMenu();
         
-        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(empty);}
+        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(empty); empty.setBackground(Color.white);}
         else{add(backButton);}
         add(title);
         add(menu);

@@ -206,6 +206,34 @@ public class DeleteQuery {
         ps1.execute();
         
     }
+        public static void deleteLikeDomanda() throws SQLException{
+        
+            String sql = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
+
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+            ps1.clearParameters();
+            ps1.setInt(1, (Applicazione.domandaAttuale.getLike()-1));
+            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(3, Applicazione.corsoAttuale.getNome());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+
+            ps1.execute();
+        
+    }
+        public static void rimuoviLikeDomanda() throws SQLException{
+        
+            String insertLikeDomanda = "delete from likeDomanda where corso=? and domanda=?and studente=? and facoltà=?  ";
+
+            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
+            ps1.clearParameters();
+            ps1.setString(1, Applicazione.corsoAttuale.getNome());
+            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(3, Applicazione.guest.getEmail());
+            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+
+            ps1.execute();
+        
+    }
     
     
     
