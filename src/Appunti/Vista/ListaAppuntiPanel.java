@@ -178,7 +178,7 @@ public class ListaAppuntiPanel extends JPanel{
                 panel.add(appunti[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, -9, 0, 10);
+                gbcd.insets = new Insets(15, 10, 0, 10);
                 gbcd.anchor = GridBagConstraints.LINE_START;
                 panel.add(appuntiIco[i], gbcd);
                 

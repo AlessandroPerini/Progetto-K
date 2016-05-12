@@ -209,6 +209,29 @@ public class ListeQuery {
         }
     }
     
+    public static void caricaCorsi(int anno) throws SQLException{
+        
+        String selectFacoltà = "select * from corsi where facoltà=? and anno =?";
+        
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+        ps1.setInt(2, anno);
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        while(rs.next()){
+            
+            String nome = rs.getString("nome");
+            String facoltà = rs.getString("facoltà");
+            int anno1 = rs.getInt("anno");
+            Corso corso = new Corso(nome, anno1, facoltà);
+            Applicazione.listaCorsiXAnno.add(corso);
+            
+        }
+    }
+    
     public static void caricaRecensioniAppunto() throws SQLException{
         
         String facoltàQuery = Applicazione.facoltàAttuale.getNome().replaceAll("'", "\\\\'");

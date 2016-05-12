@@ -62,7 +62,7 @@ public class PreferitiPanel extends JPanel{
             corsiPreferiti[i] = new JButton();
             corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
             goToCorso[i] = new GoToCorso(Applicazione.preferiti.getCorsiPreferiti().get(i).getFacoltà());
-            corsiPreferiti[i].addActionListener(goToCorso[i]);
+            corsiPreferiti[i].addMouseListener(goToCorso[i]);
             panel.add(corsiPreferiti[i]);
         }
         
