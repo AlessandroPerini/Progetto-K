@@ -22,7 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
-import javax.swing.UIManager;
+import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 /**
@@ -45,7 +45,7 @@ public class ListaFacoltàPanel extends JPanel{
             this.setBackground(Color.white);
             top = new TopPanel("Facoltà");
 
-            panel = new JPanel(new GridLayout(5,2));
+            panel = new JPanel(new GridLayout(5, 2, 5, 5));
             panel.setBackground(Color.white);
             top.setBackground(Color.white);
 
@@ -59,17 +59,20 @@ public class ListaFacoltàPanel extends JPanel{
                     Logger.getLogger(ListaFacoltàPanel.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 
-                pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1));
+                pannelli[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 5));
                 pannelli[i].setBackground(Color.white);
+                
                 scrollP[i] = new JScrollPane();
                 titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
+                
                 titoloBordo[i].setTitleFont(new Font("Arial", Font.BOLD, 17));
-                titoloBordo[i].setTitleColor(Color.BLUE);
+                titoloBordo[i].setTitleColor(new Color(0,85,118));
                 pannelli[i].setBorder(titoloBordo[i]);
 
                 for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
                     facoltà[j] = new JLabel();
-                    facoltà[j].setFont(new Font("Century Ghotic", Font.PLAIN, 13));
+                    facoltà[j].setPreferredSize(new Dimension(150, 20));
+                    facoltà[j].setFont(new Font("Century Ghotic", Font.PLAIN, 14));
                     facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());
                     facoltà[j].setName("facoltà"+j);
                     facoltà[j].addMouseListener(caricaCorsi);
@@ -81,7 +84,8 @@ public class ListaFacoltàPanel extends JPanel{
                 scrollBar.setPreferredSize(new Dimension(0, 20));
                 scrollP[i]= new JScrollPane(pannelli[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollP[i].setPreferredSize(new Dimension(30, 210));
-                scrollP[i].getVerticalScrollBar().setUnitIncrement(5);
+                scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
+                scrollP[i].getVerticalScrollBar().setUnitIncrement(16);
                 scrollP[i].setVerticalScrollBar(scrollBar);
                 scrollP[i].setBackground(Color.white);
                 panel.add(scrollP[i]);
@@ -92,6 +96,7 @@ public class ListaFacoltàPanel extends JPanel{
             JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPanel.setPreferredSize(new Dimension(650, 450));
             scrollPanel.setBackground(Color.white);
+            scrollPanel.setBorder(new LineBorder(Color.white, 1, true));
             scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
 
             add(top);

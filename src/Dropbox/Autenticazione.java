@@ -16,7 +16,7 @@ import java.util.Locale;
  * @author Te4o
  */
 public class Autenticazione {
-    
+  
     public static void main(String[] args) throws IOException, DbxException {
 
         final String APP_KEY = "v725fq2n09ko0kn";
@@ -45,4 +45,6 @@ public class Autenticazione {
         System.out.println("Access Token : "+accessToken);
 
     }
+
 }
+

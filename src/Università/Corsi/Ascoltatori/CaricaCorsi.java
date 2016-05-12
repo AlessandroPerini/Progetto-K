@@ -66,7 +66,7 @@ public class CaricaCorsi implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(Color.blue);
+        e.getComponent().setForeground(new Color(3,201,169));
     }
     
     @Override
