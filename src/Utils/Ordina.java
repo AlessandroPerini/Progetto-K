@@ -7,6 +7,7 @@ package Utils;
 
 import Application.Controller.Applicazione;
 import Appunti.Appunto;
+import Libri.Libro;
 import QeA.Domanda;
 import java.util.Collections;
 import java.util.Comparator;
@@ -36,4 +37,15 @@ public class Ordina {
             }
         });
     }
+    
+    public static void Libri(){
+        Collections.sort(Applicazione.listaLibriAttuali, new Comparator<Libro>() {
+            
+            @Override
+            public int compare(Libro l1, Libro l2) {
+                return l1.getTitolo().compareTo(l2.getTitolo());
+            }
+        });
+    }
+    
 }

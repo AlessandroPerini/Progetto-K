@@ -78,12 +78,12 @@ public class ListaAppuntiPanel extends JPanel{
             ordina.setSelectedItem(OrdinaListaAppunti.ordineCorrente);
         }
         
-        JButton ordinaButton = new JButton("Ordina");
+        JLabel ordinamento = new JLabel("Ordina per: ");
         OrdinaListaAppunti ordinaListaAppunti = new OrdinaListaAppunti(ordina);
-        ordinaButton.addActionListener(ordinaListaAppunti);
+        ordina.addActionListener(ordinaListaAppunti);
         
+        ordinaPanel.add(ordinamento);
         ordinaPanel.add(ordina);
-        ordinaPanel.add(ordinaButton);
         // fine pannello ordina
         
         panel.add(ordinaPanel);

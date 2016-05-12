@@ -11,11 +11,10 @@ import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import QeA.Vista.ListaDomandePanel;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -44,6 +43,8 @@ public class EliminaDomanda implements ActionListener{
                 ListeQuery.caricaDomande();
                 
                 Applicazione.back.remove(Applicazione.back.size()-1);
+                
+                Ordina.Domande();
                 
                 ListaDomandePanel domande = new ListaDomandePanel();
                 Grafica.container.add(domande, "domande");

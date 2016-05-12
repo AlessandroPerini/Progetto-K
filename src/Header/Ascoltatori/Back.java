@@ -28,17 +28,17 @@ public class Back implements ActionListener{
 
         switch(Applicazione.back.get(Applicazione.back.size()-1)){
             case "corsi": Applicazione.svuotaCorsi();
-            break;
+                break;
             case "libri": Applicazione.svuotaLibri();
-            break;
+                break;
             case "domande": Applicazione.svuotaDomande();
-            break;
+                break;
             case "appunti": Applicazione.svuotaAppunti();
-            break;
+                break;
             case "i miei dati": Applicazione.svuotaMieiDati();
-            break;
+                break;
             case "recensioni": Applicazione.svuotaRecensioni();
-            break;
+                break;
             case "facoltà cercate": Applicazione.svuotaFacoltà();
             ListeQuery lQuery1 = new ListeQuery();
             {
@@ -48,7 +48,7 @@ public class Back implements ActionListener{
                     System.out.println("Errore durante il caricamento delle facoltà");
                 }
             }
-            break;
+                break;
             case "corsi cercati": Applicazione.svuotaCorsi();
                                 ListeQuery lQuery2 = new ListeQuery();
                                 try {
@@ -57,9 +57,9 @@ public class Back implements ActionListener{
                                     System.out.println("Errore durante il caricamento dei corsi");
                                 }
                                 
-            break;
+                break;
             case "preferiti": Applicazione.svuotaPreferiti();
-            break;
+                break;
             case "appunto": Applicazione.svuotaAppunti();
                             try{
                                 ListeQuery.caricaAppunti();
@@ -69,7 +69,7 @@ public class Back implements ActionListener{
                             Ordina.Appunti();
                             ListaAppuntiPanel appunti = new ListaAppuntiPanel();
                             Grafica.container.add(appunti, "appunti");
-            break;
+                break;
             case "domanda": Applicazione.svuotaRisposte();
                             Applicazione.svuotaDomande();
                             try{
@@ -80,7 +80,9 @@ public class Back implements ActionListener{
                             Ordina.Domande();
                             ListaDomandePanel domande = new ListaDomandePanel();
                             Grafica.container.add(domande, "domande");
-            break;
+                break;
+            case "libro": Ordina.Domande();            
+                break;
             
         }
         if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){

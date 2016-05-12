@@ -13,6 +13,7 @@ import Database.Query.DeleteQuery;
 import Database.Query.ListeQuery;
 import Dropbox.Elimina;
 import Frame.GifFrame;
+import Utils.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -71,6 +72,8 @@ public class EliminaAppunto implements ActionListener{
                                     ListeQuery.caricaAppunti();
                                     
                                     Applicazione.back.remove(Applicazione.back.size()-1);
+                                    
+                                    Ordina.Appunti();
                                     
                                     ListaAppuntiPanel appunti = new ListaAppuntiPanel();
                                     Grafica.container.add(appunti, "appunti");
