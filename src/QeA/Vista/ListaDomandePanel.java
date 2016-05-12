@@ -8,11 +8,11 @@ package QeA.Vista;
 import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
@@ -20,6 +20,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -114,7 +116,7 @@ public class ListaDomandePanel extends JPanel{
             
             noDomande = new JLabel();
             noDomande.setText("Non ci sono domande relative a questo corso.");
-            noDomande.setFont(new Font("Arial", Font.BOLD, 20));
+            noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
             gbcImg.gridx = 0;
             gbcImg.gridy = 1;
             gbcImg.insets = new Insets(10, 0, 0, 10);
@@ -123,8 +125,11 @@ public class ListaDomandePanel extends JPanel{
         }else{
             
             for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
-            domande[i] = new JLabel();
-            domande[i].setText(Applicazione.listaDomandeAttuali.get(i).getTitolo()+"-"+Applicazione.listaDomandeAttuali.get(i).getLike()+" likes");
+            domande[i] = new JLabel(Applicazione.listaDomandeAttuali.get(i).getTitolo()+"          "+
+                    Applicazione.listaDomandeAttuali.get(i).getLike()+" ",  new ImageIcon("files\\immagini\\thumbup.png"), HEIGHT);
+            domande[i].setIconTextGap(-200);
+            domande[i].setBorder(BorderFactory.createLineBorder(Color.black));
+            domande[i].setFont(new Font("Century Gothic", Font.PLAIN, 16));
             domande[i].setName("domande"+i);
             domande[i].addMouseListener(goToDomanda);
             gbcImg.gridx = 0;

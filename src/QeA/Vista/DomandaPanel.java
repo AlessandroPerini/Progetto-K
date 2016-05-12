@@ -283,7 +283,7 @@ public class DomandaPanel extends JPanel{
             scrollPanel5.setWheelScrollingEnabled(true);
             gbcRisposte.gridx = 1;
             gbcRisposte.gridy = i;
-            gbcRisposte.insets = new Insets(15, -7, 0, 10);
+            gbcRisposte.insets = new Insets(15, -4, 0, 10);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.scrollPanel5, gbcRisposte);
             //all interno dell pannello like
@@ -304,7 +304,7 @@ public class DomandaPanel extends JPanel{
                      
             gbcRisposte.gridx = 3;
             gbcRisposte.gridy = i;
-            gbcRisposte.insets = new Insets(15, -17, 0, 0);
+            gbcRisposte.insets = new Insets(15, -12, 0, 0);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.pannelloLike, gbcRisposte);
             //all interno dell pannello dislike

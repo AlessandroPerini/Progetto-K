@@ -11,6 +11,7 @@ import Appunti.Vista.ListaAppuntiPanel;
 import Database.Query.ListeQuery;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
 import QeA.Vista.ListaDomandePanel;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -65,7 +66,7 @@ public class Back implements ActionListener{
                             } catch (SQLException ex) {
                                     System.out.println("Errore durante il caricamento degli appunti");
                                 }
-            
+                            Ordina.Appunti();
                             ListaAppuntiPanel appunti = new ListaAppuntiPanel();
                             Grafica.container.add(appunti, "appunti");
             break;
@@ -76,7 +77,7 @@ public class Back implements ActionListener{
                             } catch (SQLException ex) {
                                     System.out.println("Errore durante il caricamento delle domande");
                                 }
-            
+                            Ordina.Domande();
                             ListaDomandePanel domande = new ListaDomandePanel();
                             Grafica.container.add(domande, "domande");
             break;

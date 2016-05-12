@@ -10,6 +10,7 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Appunti.Appunto;
 import Database.Query.ListeQuery;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -29,16 +30,8 @@ public class CaricaAppunti implements ActionListener{
             ListeQuery.caricaAppunti();
             
             Applicazione.back.add("appunti");
-            
-            //ordinamento appunti per valutazioni
-            Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
-                
-                @Override
-                public int compare(Appunto a1, Appunto a2) {
-                    return Float.compare(a2.getMedia(), a1.getMedia());
-                }
-            });
-            //fine ordinamento
+
+            Ordina.Appunti();
             
             ListaAppuntiPanel appunti = new ListaAppuntiPanel();
             Grafica.container.add(appunti, "appunti");

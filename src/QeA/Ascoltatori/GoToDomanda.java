@@ -50,7 +50,7 @@ public class GoToDomanda implements MouseListener{
             text = button.getText();
         }
         
-        String parts[] = text.split("-");
+        String parts[] = text.split("          ");
         text = parts[0];
         
         Applicazione.domandaAttuale.setTitolo(text);
