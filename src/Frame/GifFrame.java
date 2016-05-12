@@ -5,8 +5,7 @@
 */
 package Frame;
 
-import java.awt.Dimension;
-import java.awt.Toolkit;
+import Application.Vista.Grafica;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -34,12 +33,9 @@ public class GifFrame {
         loadingFrame.setSize(300, 300);
         
         //centrare frame al centro dello schermo
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int x = (screenSize.width-loadingFrame.getSize().width)/2;
-        int y = (screenSize.height-loadingFrame.getSize().height)/2;
+        int x = (int) (Grafica.posizione().getX() + 350 - loadingFrame.getWidth()/2);
+        int y = (int) (Grafica.posizione().getY() + 280 - loadingFrame.getHeight()/2);
         loadingFrame.setLocation(x, y);
-        //
-        
         loadingFrame.setVisible(true);
     }
     
