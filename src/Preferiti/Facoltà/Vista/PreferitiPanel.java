@@ -73,7 +73,7 @@ public class PreferitiPanel extends JPanel{
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
             goToAppunto[i] = new GoToAppunto(Applicazione.preferiti.getAppuntiPreferiti().get(i).getCorso(),
                                              Applicazione.preferiti.getAppuntiPreferiti().get(i).getFacoltà());
-            appuntiPreferiti[i].addActionListener(goToAppunto[i]);
+            appuntiPreferiti[i].addMouseListener(goToAppunto[i]);
             panel.add(appuntiPreferiti[i]);
         }
         

@@ -11,6 +11,7 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -36,14 +37,14 @@ import javax.swing.border.LineBorder;
  */
 public class ListaAppuntiPanel extends JPanel{
     
-    private JButton[] appunti = new JButton[Applicazione.listaAppuntiAttuali.size()];
+    private JLabel[] appunti = new JLabel[Applicazione.listaAppuntiAttuali.size()];
     private JTextField searchField;
     private JLabel noAppunti, ordinamento;
     private JLabel[] appuntiIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
     private JComboBox ordina;
     private JButton addAppunto, searchButton, clearSearch;
     private TopPanel top;
-    private JPanel panel, searchPanel, ordinaPanel;
+    private JPanel panel, searchPanel, ordinaPanel,borderPanel;
     
     public ListaAppuntiPanel() {
         
@@ -51,7 +52,7 @@ public class ListaAppuntiPanel extends JPanel{
         
         top = new TopPanel("Appunti "+Applicazione.corsoAttuale.getNome());
         top.setBackground(Color.white);
-        
+        borderPanel = new JPanel(new BorderLayout());
         panel = new JPanel(new GridBagLayout());
         panel.setBackground(Color.white);
         ordinaPanel = new JPanel(new GridBagLayout());
@@ -105,19 +106,19 @@ public class ListaAppuntiPanel extends JPanel{
         gbc.gridx = 0;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(5, 240, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
+	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
 	ordinaPanel.add(ordinamento, gbc);
         
         gbc.gridx = 1;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
+	gbc.anchor = GridBagConstraints.FIRST_LINE_START;
         ordinaPanel.add(ordina,gbc);
         
         gbc.gridx = 2;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(5, 150, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
+	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
         ordinaPanel.add(addAppunto, gbc);
         // fine pannello ordina
         
@@ -135,8 +136,9 @@ public class ListaAppuntiPanel extends JPanel{
             
         }else{
             for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
-                appunti[i] = new JButton();
-                appunti[i].setPreferredSize(new Dimension(200, 30));
+                appunti[i] = new JLabel();
+                appunti[i].setPreferredSize(new Dimension(100, 30));
+                appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 appunti[i].setText(Applicazione.listaAppuntiAttuali.get(i).getNome());
                 appunti[i].setHorizontalTextPosition(SwingConstants.LEADING);
                 appunti[i].setIconTextGap(50);
@@ -168,23 +170,25 @@ public class ListaAppuntiPanel extends JPanel{
                     
                 }
                 
-                appunti[i].addActionListener(goToAppunto);
+                appunti[i].addMouseListener(goToAppunto);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, -9, 0, 10);
-                gbcd.anchor = GridBagConstraints.LINE_START;
+                gbcd.insets = new Insets(5, -7, 0, 10);
+                gbcd.anchor = GridBagConstraints.NORTHEAST;
                 panel.add(appunti[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, -9, 0, 10);
-                gbcd.anchor = GridBagConstraints.LINE_START;
+                gbcd.insets = new Insets(5, -7, 0, 10);
+                gbcd.anchor = GridBagConstraints.NORTHWEST;
                 panel.add(appuntiIco[i], gbcd);
                 
             }
         }
-        
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        borderPanel.setBackground(Color.white);
+        borderPanel.add(panel,BorderLayout.NORTH);
+        JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));
+         scrollPanel.setBorder(new LineBorder(Color.white, 1, true));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
