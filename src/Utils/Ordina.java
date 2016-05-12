@@ -9,6 +9,7 @@ import Application.Controller.Applicazione;
 import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
+import Università.Corsi.Corso;
 import java.util.Collections;
 import java.util.Comparator;
 
@@ -44,6 +45,16 @@ public class Ordina {
             @Override
             public int compare(Libro l1, Libro l2) {
                 return l1.getTitolo().compareTo(l2.getTitolo());
+            }
+        });
+    }
+    
+    public static void CorsiXAnno(){
+        Collections.sort(Applicazione.listaCorsiXAnno, new Comparator<Corso>() {
+            
+            @Override
+            public int compare(Corso c1, Corso c2) {
+                return c1.getNome().compareTo(c2.getNome());
             }
         });
     }

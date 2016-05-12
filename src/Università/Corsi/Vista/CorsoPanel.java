@@ -19,15 +19,14 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -35,49 +34,69 @@ import javax.swing.JScrollPane;
  */
 public class CorsoPanel extends JPanel{
     private TopPanel top;
-    private JPanel panel, centro;
+    private JPanel panel, centro, topPref, doubleTop;
     private JButton appunti, libri, qea;
     private CaricaLibri caricaLibri;
     private CaricaDomande caricaDomande;
     private CaricaAppunti caricaAppunti;
-    private JScrollPane scrollPanel;
     private GridBagConstraints gbcImg;
         
     public CorsoPanel() {
         
+        setBackground(Color.white);
+        
         top = new TopPanel(Applicazione.corsoAttuale.getNome());
+        top.setBackground(Color.white);
+        
+        topPref = new JPanel();
+        topPref.setBackground(Color.white);
+        
+        doubleTop = new JPanel(new GridLayout(2, 1, 0, 5));
+        doubleTop.setBackground(Color.white);
         
         panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.white);
+        
         centro = new JPanel(new BorderLayout());
+        centro.setBackground(Color.white);
 
         gbcImg = new GridBagConstraints();
         
         caricaLibri = new CaricaLibri();
         caricaDomande = new CaricaDomande();
         caricaAppunti = new CaricaAppunti();
+        
         this.build();
+        
         libri.addActionListener(caricaLibri);
         qea.addActionListener(caricaDomande);
         appunti.addActionListener(caricaAppunti);
-        libri.setBackground(new Color(238,238,238));
-        appunti.setBackground(new Color(238,238,238));
-        qea.setBackground(new Color(238,238,238));
+        libri.setBackground(Color.white);
+        libri.setBorder(new LineBorder(Color.white, 1, true));
+        appunti.setBackground(Color.white);
+        appunti.setBorder(new LineBorder(Color.white, 1, true));
+        qea.setBackground(Color.white);
+        qea.setBorder(new LineBorder(Color.white, 1, true));
         
         centro.add(panel, BorderLayout.CENTER);
         
-        scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 450));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        doubleTop.add(top);
+        doubleTop.add(topPref);
         
-        add(top);
-        add(scrollPanel);
+        add(doubleTop);
+        add(panel);
     }
     
     public void build(){
 
         //preferito
         JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        preferitiOn.setBackground(Color.white);
+        preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
+        
         JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        preferitiOff.setBackground(Color.white);
+        preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
         AggiungiCorsoPreferito aggiungiCorsoPreferito = new AggiungiCorsoPreferito();
         preferitiOff.addActionListener(aggiungiCorsoPreferito);
@@ -87,10 +106,10 @@ public class CorsoPanel extends JPanel{
         
         try {
             if (ControlloQuery.controlloCorsoPreferito()) {
-                panel.add(preferitiOff);
+                topPref.add(preferitiOff);
             }
             else {
-                panel.add(preferitiOn);
+                topPref.add(preferitiOn);
             }
       
         } catch (SQLException ex) {
@@ -101,7 +120,7 @@ public class CorsoPanel extends JPanel{
         appuntiLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 0;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(10, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(appuntiLab,gbcImg);
         
@@ -109,7 +128,7 @@ public class CorsoPanel extends JPanel{
         libriLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 1;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(10, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(libriLab,gbcImg);
         
@@ -117,7 +136,7 @@ public class CorsoPanel extends JPanel{
         qeaLab.setFont(new Font("Arial", Font.BOLD, 20));
         gbcImg.gridx = 2;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(10, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(qeaLab,gbcImg);
         

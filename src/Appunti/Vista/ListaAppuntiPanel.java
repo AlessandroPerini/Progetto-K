@@ -65,7 +65,9 @@ public class ListaAppuntiPanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         addAppunto = new JButton("", new ImageIcon("files\\immagini\\add.png"));
-       addAppunto.setBackground(Color.white);
+        addAppunto.setRolloverIcon(new ImageIcon("files\\immagini\\addHover.png"));
+        addAppunto.setPressedIcon(new ImageIcon("files\\immagini\\addPressed.png"));
+        addAppunto.setBackground(Color.white);
         addAppunto.setPreferredSize(new Dimension(50, 50));
         addAppunto.setBorder(new LineBorder(Color.white, 1, true));
         searchButton = new JButton("Search");
@@ -89,7 +91,7 @@ public class ListaAppuntiPanel extends JPanel{
         searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
         // fine pannello ricerca
- 
+        
         //pannello ordina
         String[] opzioni = new String[]{"Valutazione", "Nome"};
         ordina = new JComboBox(opzioni);
@@ -104,21 +106,22 @@ public class ListaAppuntiPanel extends JPanel{
         ordina.addActionListener(ordinaListaAppunti);
         ordina.setBackground(Color.white);
         gbc.gridx = 0;
-	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 240, 0, 10);
-	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
-	ordinaPanel.add(ordinamento, gbc);
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 240, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_END;
+        ordinaPanel.add(ordinamento, gbc);
         
         gbc.gridx = 1;
+
 	gbc.gridy = 0;
 	gbc.insets = new Insets(5, 0, 0, 10);
 	gbc.anchor = GridBagConstraints.FIRST_LINE_START;
+
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 100, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_START;
         ordinaPanel.add(ordina,gbc);
-        
         gbc.gridx = 2;
-	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 150, 0, 10);
-	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
         ordinaPanel.add(addAppunto, gbc);
         // fine pannello ordina
         
@@ -142,7 +145,7 @@ public class ListaAppuntiPanel extends JPanel{
                 appunti[i].setText(Applicazione.listaAppuntiAttuali.get(i).getNome());
                 appunti[i].setHorizontalTextPosition(SwingConstants.LEADING);
                 appunti[i].setIconTextGap(50);
-
+                
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
@@ -178,8 +181,15 @@ public class ListaAppuntiPanel extends JPanel{
                 panel.add(appunti[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, -7, 0, 10);
-                gbcd.anchor = GridBagConstraints.NORTHWEST;
+
+	gbc.gridy = 0;
+	gbc.insets = new Insets(5, 150, 0, 10);
+	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 150, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_END;
+
                 panel.add(appuntiIco[i], gbcd);
                 
             }
@@ -200,3 +210,4 @@ public class ListaAppuntiPanel extends JPanel{
     
     
 }
+

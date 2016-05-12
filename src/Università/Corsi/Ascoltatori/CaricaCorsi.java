@@ -25,6 +25,7 @@ import javax.swing.JOptionPane;
 public class CaricaCorsi implements MouseListener{
     
     private String text;
+    
     @Override
     public void mouseClicked(MouseEvent e) {
         

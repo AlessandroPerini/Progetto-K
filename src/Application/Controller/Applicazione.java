@@ -40,6 +40,7 @@ public class Applicazione {
     public static ArrayList<Risposta> listaRisposteAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
     public static ArrayList<String> listaRamiFacoltà = new ArrayList<>();
+    public static ArrayList<Corso> listaCorsiXAnno= new ArrayList<>();
     public static ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
     public static Preferiti preferiti = new Preferiti();
@@ -106,6 +107,10 @@ public class Applicazione {
         listaRamiFacoltà.clear();
     }
     
+    public static void svuotaCorsiXAnno(){
+        listaCorsiXAnno.clear();
+    }
+    
     public static void svuotaRecensioni(){
         listaValutazioniAttuali.clear();
     }
@@ -132,6 +137,7 @@ public class Applicazione {
         svuotaListaFacoltàXRamo();
         svuotaRecensioni();
         svuotaRami();
+        svuotaCorsiXAnno();
         svuotaPreferiti();
 
     }
