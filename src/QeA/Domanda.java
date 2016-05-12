@@ -54,5 +54,10 @@ public class Domanda {
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
+
+    public void setLike(int like) {
+        this.like = like;
+    }
+    
     
 }

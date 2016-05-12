@@ -7,9 +7,12 @@ package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.ControlloQuery;
+import Database.Query.DeleteQuery;
 import Database.Query.InfoQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -37,12 +40,28 @@ public class AggiungiLike implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         try {
-            InsertQuery.inserisciLikeDomanda();
             
-            InsertQuery.updateLikeDomanda();
+            if(!ControlloQuery.controlloLikeDomanda()){
+                    
+                DeleteQuery.deleteLikeDomanda();
+                DeleteQuery.rimuoviLikeDomanda();
+                Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()-1);
+                Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
+                
+                like.setBackground(null);
+                System.out.println(Applicazione.domandaAttuale.getLike());
+                
+            }else{
+                
+                InsertQuery.inserisciLikeDomanda();
+                InsertQuery.updateLikeDomanda();
+                Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()+1);
+                Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
+                like.setBackground(Color.blue);
+                System.out.println(Applicazione.domandaAttuale.getLike());
+            }
             
-            like.setEnabled(false);
-            Nlike.setText(InfoQuery.likeDomanda()+" likes");
+            
             
             Applicazione.svuotaRisposte();
             

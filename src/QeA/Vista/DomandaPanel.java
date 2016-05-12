@@ -165,9 +165,7 @@ public class DomandaPanel extends JPanel{
             panel.add(this.like2, gbc);
         try {
             if(!ControlloQuery.controlloLikeDomanda()){
-                like2.setEnabled(false);
-            }else{
-                like2.setEnabled(true);
+                like2.setBackground(Color.BLUE);
             }
         } catch (SQLException ex) {
             System.out.println("Errore durante il controllo del like della domanda");
