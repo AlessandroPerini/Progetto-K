@@ -64,7 +64,7 @@ public class ListaAppuntiPanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         addAppunto = new JButton("", new ImageIcon("files\\immagini\\add.png"));
-        addAppunto.setBackground(Color.white);
+       addAppunto.setBackground(Color.white);
         addAppunto.setPreferredSize(new Dimension(50, 50));
         addAppunto.setBorder(new LineBorder(Color.white, 1, true));
         searchButton = new JButton("Search");
@@ -171,12 +171,12 @@ public class ListaAppuntiPanel extends JPanel{
                 appunti[i].addActionListener(goToAppunto);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, 30, 0, 10);
+                gbcd.insets = new Insets(5, -9, 0, 10);
                 gbcd.anchor = GridBagConstraints.LINE_START;
                 panel.add(appunti[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
-                gbcd.insets = new Insets(5, 30, 0, 10);
+                gbcd.insets = new Insets(5, -9, 0, 10);
                 gbcd.anchor = GridBagConstraints.LINE_START;
                 panel.add(appuntiIco[i], gbcd);
                 
