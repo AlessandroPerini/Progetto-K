@@ -322,4 +322,24 @@ public class ControlloQuery {
                 }
     }
     
+    public static boolean controlloNickname(String nickname) throws SQLException {
+        
+        String selectValutazioneStudente = "Select * from studenti where nickname=?";
+        
+        boolean bool = true;
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+        ps1.clearParameters();
+        ps1.setString(1, nickname);
+
+        ResultSet rs = ps1.executeQuery();
+        
+        if (rs.next()) {
+            bool = false;
+        } else {
+            bool = true;
+        }
+        return bool;
+    }
+    
 }

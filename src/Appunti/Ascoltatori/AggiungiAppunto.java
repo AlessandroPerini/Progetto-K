@@ -20,10 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -51,7 +48,7 @@ public class AggiungiAppunto implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if((!nome.getText().equals(""))&&(!descrizione.getText().equals(""))){
-            if((nome.getText().length()<21000000)&&(descrizione.getText().length()<500)){
+            if((nome.getText().length()<100)&&(descrizione.getText().length()<500)){
                 try {
                     if(ControlloQuery.controlloNomeAppunto(nome.getText())){
                         if(file.length()<21000000){

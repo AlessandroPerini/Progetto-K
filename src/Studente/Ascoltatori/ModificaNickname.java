@@ -6,6 +6,7 @@
 package Studente.Ascoltatori;
 
 import Application.Controller.Applicazione;
+import Database.Query.ControlloQuery;
 import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -35,6 +36,7 @@ public class ModificaNickname implements ActionListener{
         nClick += 1;
         nick.setEditable(true);
         cambiaNickname.setText("Conferma");
+        boolean ok = false;
         
         if ( nClick == 2){
             nick.setEditable(false);
@@ -44,14 +46,26 @@ public class ModificaNickname implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Nickname non valido", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    InsertQuery.updateNickname(nick.getText());
-                    Applicazione.guest.setNickname(nick.getText());
-                    nick.setText(Applicazione.guest.getNickname());
+                    if(!nick.getText().equals(Applicazione.guest.getNickname())){
+                        if(ControlloQuery.controlloNickname(nick.getText())){
+                            InsertQuery.updateNickname(nick.getText());
+                            Applicazione.guest.setNickname(nick.getText());
+                            nick.setText(Applicazione.guest.getNickname());
+                            ok = true;
+                        }
+                        else{
+                            nick.setText(Applicazione.guest.getNickname());
+                            JOptionPane.showMessageDialog(null, "Nickname già presente", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 }
-                JOptionPane.showMessageDialog(null, "Nickname correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                 nClick = 0;
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore durante la modifica del nickname", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+            }
+            if (ok) {
+                JOptionPane.showMessageDialog(null, "Nickname correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                
             }
         }
     }
