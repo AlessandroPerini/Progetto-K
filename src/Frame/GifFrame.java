@@ -26,7 +26,7 @@ public class GifFrame {
  
         loadingFrame = new JFrame("Loading ...");
         
-        ImageIcon loading = new ImageIcon("files\\immagini\\loading.gif");
+        ImageIcon loading = new ImageIcon(this.getClass().getResource("/immagini/loading.gif"));
         loadingFrame.add(new JLabel("", loading, JLabel.CENTER));
         
         loadingFrame.setUndecorated(true);

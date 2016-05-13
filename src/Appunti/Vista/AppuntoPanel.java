@@ -43,8 +43,8 @@ public class AppuntoPanel extends JPanel{
         JPanel panel = new JPanel(new GridLayout(8,2,10,10));
         
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
-        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         
         AggiungiAppuntoPreferito aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
         preferitiOff.addActionListener(aggiungiAppuntoPreferito);

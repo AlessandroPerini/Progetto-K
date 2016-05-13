@@ -69,8 +69,8 @@ public class DomandaPanel extends JPanel{
         gbcRisposte = new GridBagConstraints(); 
         
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
-        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         
         AggiungiDomandaPreferita aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
         preferitiOff.addActionListener(aggiungiDomandaPreferita);

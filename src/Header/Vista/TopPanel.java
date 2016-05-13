@@ -30,13 +30,13 @@ public class TopPanel extends JPanel{
     
     public TopPanel(String t) {
         
-        Icon button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        Icon button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
         JButton backButton = new JButton(button);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setContentAreaFilled(false);
-        Icon backHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        Icon backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         backButton.setRolloverIcon(backHover);
-        Icon backPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        Icon backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         backButton.setPressedIcon(backPressed);
         backButton.setText("<   BACK");
         backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));

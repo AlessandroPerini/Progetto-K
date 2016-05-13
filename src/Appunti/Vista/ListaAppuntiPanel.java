@@ -70,13 +70,13 @@ public class ListaAppuntiPanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
-        button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
         searchButton = new JButton(button);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
-        searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         searchButton.setRolloverIcon(searchHover);
-        searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         searchButton.setPressedIcon(searchPressed);
         searchButton.setText("CERCA");
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -90,7 +90,7 @@ public class ListaAppuntiPanel extends JPanel{
         searchField.addKeyListener(cercaAppunti);
         searchButton.addActionListener(cercaAppunti);
         
-        clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
+        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
         clearSearch.addActionListener(new ActionListener() {
@@ -130,9 +130,9 @@ public class ListaAppuntiPanel extends JPanel{
         gbc.anchor = GridBagConstraints.LINE_START;
         ordinaPanel.add(ordina,gbc);
         
-        addAppunto = new JButton("", new ImageIcon("files\\immagini\\add.png"));
-        addAppunto.setRolloverIcon(new ImageIcon("files\\immagini\\addHover.png"));
-        addAppunto.setPressedIcon(new ImageIcon("files\\immagini\\addPressed.png"));
+        addAppunto = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
+        addAppunto.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
+        addAppunto.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
         addAppunto.setBackground(Color.white);
         addAppunto.setPreferredSize(new Dimension(50, 50));
         addAppunto.setBorder(new LineBorder(Color.white, 1, true));
@@ -167,27 +167,27 @@ public class ListaAppuntiPanel extends JPanel{
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\0-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/0-star-rating.png")));
                     
                 }
                 if((media>0)&&(media<=1)){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\1-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/1-star-rating.png")));
                     
                 }
                 if((media>1)&&(media<=2)){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\2-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/2-star-rating.png")));
                     
                 }
                 if((media>2)&&(media<=3)){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\3-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/3-star-rating.png")));
                     
                 }
                 if((media>3)&&(media<=4)){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\4-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/4-star-rating.png")));
                     
                 }
                 if(media>4){
-                    appuntiIco[i] = new JLabel(new ImageIcon("files\\immagini\\5-star-rating.png"));
+                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/5-star-rating.png")));
                     
                 }
                 

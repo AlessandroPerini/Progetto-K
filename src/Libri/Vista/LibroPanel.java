@@ -60,8 +60,8 @@ public class LibroPanel extends JPanel{
         GridBagConstraints gbc = new GridBagConstraints();
 
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
-        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         
         AggiungiLibroPreferito aggiungiLibroPreferito = new AggiungiLibroPreferito();
         preferitiOff.addActionListener(aggiungiLibroPreferito);

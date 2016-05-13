@@ -41,7 +41,7 @@ public class LoginPanel extends JPanel{
         downBuild();
         
         //prima riga colonna 0
-        img = new JLabel(new ImageIcon("files\\immagini\\loginIcon.png"),JLabel.RIGHT);
+        img = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/loginIcon.png")),JLabel.RIGHT);
         gbcImg.gridx = 0;
 	gbcImg.gridy = 0;
 	gbcImg.insets = new Insets(30, 50, 30, 10);
@@ -60,7 +60,7 @@ public class LoginPanel extends JPanel{
         login.addActionListener(caricaFacoltà);
         login.addActionListener(doLogin);  
         
-        ImageIcon img1 = new ImageIcon("files\\immagini\\titolo.png");
+        ImageIcon img1 = new ImageIcon(this.getClass().getResource("/immagini/titolo.png"));
         JLabel title = new JLabel(img1);
         title.setPreferredSize(new Dimension(600, 150));
         title.setHorizontalAlignment(SwingConstants.CENTER);
@@ -153,13 +153,13 @@ public class LoginPanel extends JPanel{
 	down.add(password, gbc);
         
         //quinta riga 
-        ImageIcon bottone = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        ImageIcon bottone = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
         login = new JButton(bottone);
         login.setBorder(BorderFactory.createEmptyBorder());
         login.setContentAreaFilled(false);
-        Icon loginHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        Icon loginHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         login.setRolloverIcon(loginHover);
-        Icon loginPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        Icon loginPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         login.setPressedIcon(loginPressed);
         login.setText("LOGIN   >");
         login.setFont(new Font("Century Gothic", Font.PLAIN, 15));

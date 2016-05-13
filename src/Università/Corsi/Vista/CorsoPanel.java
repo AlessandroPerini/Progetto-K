@@ -90,11 +90,11 @@ public class CorsoPanel extends JPanel{
     public void build(){
 
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOn.setBackground(Color.white);
         preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
         
-        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
@@ -142,7 +142,7 @@ public class CorsoPanel extends JPanel{
         
         // riga 0 colonna 0
 
-        ImageIcon appuntiIco = new ImageIcon("files\\immagini\\appunti.png");
+        ImageIcon appuntiIco = new ImageIcon(this.getClass().getResource("/immagini/appunti.png"));
         appunti = new JButton(appuntiIco);
         
         appunti.setPreferredSize(new Dimension(166, 200));
@@ -153,7 +153,7 @@ public class CorsoPanel extends JPanel{
         panel.add(appunti,gbcImg);
         
          // riga 0 colonna 1
-        ImageIcon libriIco = new ImageIcon("files\\immagini\\libri.png");
+        ImageIcon libriIco = new ImageIcon(this.getClass().getResource("/immagini/libri.png"));
         libri = new JButton(libriIco);
         libri.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 1;
@@ -163,7 +163,7 @@ public class CorsoPanel extends JPanel{
         panel.add(libri, gbcImg);
         
         // riga 0 colonna 2
-        ImageIcon qeaIco = new ImageIcon("files\\immagini\\qea.png");
+        ImageIcon qeaIco = new ImageIcon(this.getClass().getResource("/immagini/qea.png"));
         qea = new JButton(qeaIco);
         qea.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 2;

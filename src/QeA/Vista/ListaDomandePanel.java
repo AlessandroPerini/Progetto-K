@@ -69,13 +69,13 @@ public class ListaDomandePanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
-        button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
         searchButton = new JButton(button);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
-        searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         searchButton.setRolloverIcon(searchHover);
-        searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         searchButton.setPressedIcon(searchPressed);
         searchButton.setText("CERCA");
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -86,7 +86,7 @@ public class ListaDomandePanel extends JPanel{
         searchField.addKeyListener(cercaDomande);
         searchButton.addActionListener(cercaDomande);
         
-        clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
+        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
         clearSearch.addActionListener(new ActionListener() {
@@ -131,9 +131,9 @@ public class ListaDomandePanel extends JPanel{
         ordinaPanel.add(ordina,gbc);
         
         addDomanda = new JButton("Aggiungi\n Domanda");
-        addDomanda = new JButton("", new ImageIcon("files\\immagini\\add.png"));
-        addDomanda.setRolloverIcon(new ImageIcon("files\\immagini\\addHover.png"));
-        addDomanda.setPressedIcon(new ImageIcon("files\\immagini\\addPressed.png"));
+        addDomanda = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
+        addDomanda.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
+        addDomanda.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
         addDomanda.setPreferredSize(new Dimension(50, 50));
         addDomanda.setBorder(new LineBorder(Color.white, 1, true));
         gbc.gridx = 2;
@@ -189,7 +189,7 @@ public class ListaDomandePanel extends JPanel{
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 panel.add(domandeNLike[i], gbcImg);
                 
-                domandeIco[i] = new JLabel(new ImageIcon("files\\immagini\\thumbup.png"), HEIGHT);
+                domandeIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")), HEIGHT);
                 gbcImg.gridx = 2;
                 gbcImg.gridy = i+1;
                 gbcImg.insets = new Insets(10, 0, 0, 10);

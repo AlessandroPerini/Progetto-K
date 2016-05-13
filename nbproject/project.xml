@@ -6,7 +6,6 @@
             <name>Progetto-K</name>
             <source-roots>
                 <root id="src.dir"/>
-                <root id="src.immagini.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>

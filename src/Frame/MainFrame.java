@@ -23,7 +23,7 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(new ImageIcon("files\\immagini\\logo.png").getImage());
+        setIconImage(new ImageIcon(this.getClass().getResource("/immagini/logo.png")).getImage());
     }
     
 }

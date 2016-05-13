@@ -69,19 +69,19 @@ public class ListaCorsiPanel extends JPanel{
         //pannello ricerca
         searchPanel = new JPanel();
         searchPanel.setBackground(Color.white);
-
+        
         searchField = new JTextField(31);
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
         
-        button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         searchButton = new JButton(button);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
-        searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         searchButton.setRolloverIcon(searchHover);
-        searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         searchButton.setPressedIcon(searchPressed);
         searchButton.setText("CERCA");
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -91,7 +91,7 @@ public class ListaCorsiPanel extends JPanel{
         CercaCorsi cercaCorsi = new CercaCorsi(searchField);
         searchButton.addActionListener(cercaCorsi);
         
-        clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
+        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
         clearSearch.addActionListener(new ActionListener() {
@@ -109,11 +109,11 @@ public class ListaCorsiPanel extends JPanel{
         topSearch.add(searchPanel);
         
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon("files\\immagini\\preferitiOn.png"));
+        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOn.setBackground(Color.white);
         preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
         
-        JButton preferitiOff = new JButton(new ImageIcon("files\\immagini\\preferitiOff.png"));
+        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
