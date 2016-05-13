@@ -21,6 +21,8 @@ import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -44,11 +46,14 @@ public class ListaAppuntiPanel extends JPanel{
     private JComboBox ordina;
     private JButton addAppunto, searchButton, clearSearch;
     private TopPanel top;
+    private Icon button, searchHover, searchPressed;
     private JPanel panel, searchPanel, ordinaPanel,borderPanel;
     
     public ListaAppuntiPanel() {
         
         setBackground(Color.white);
+        GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints gbcd = new GridBagConstraints();
         
         top = new TopPanel("Appunti "+Applicazione.corsoAttuale.getNome());
         top.setBackground(Color.white);
@@ -64,22 +69,30 @@ public class ListaAppuntiPanel extends JPanel{
         searchField = new JTextField(30);
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-        addAppunto = new JButton("", new ImageIcon("files\\immagini\\add.png"));
-        addAppunto.setRolloverIcon(new ImageIcon("files\\immagini\\addHover.png"));
-        addAppunto.setPressedIcon(new ImageIcon("files\\immagini\\addPressed.png"));
-        addAppunto.setBackground(Color.white);
-        addAppunto.setPreferredSize(new Dimension(50, 50));
-        addAppunto.setBorder(new LineBorder(Color.white, 1, true));
-        searchButton = new JButton("Search");
         
-        GridBagConstraints gbc = new GridBagConstraints();
-        GridBagConstraints gbcd = new GridBagConstraints();
+        button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        searchButton = new JButton(button);
+        searchButton.setBorder(BorderFactory.createEmptyBorder());
+        searchButton.setContentAreaFilled(false);
+        searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        searchButton.setRolloverIcon(searchHover);
+        searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        searchButton.setPressedIcon(searchPressed);
+        searchButton.setText("CERCA");
+        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        searchButton.setForeground(Color.white);
+        searchButton.setIconTextGap(-77);
+        
+        
+        
         CercaAppunti cercaAppunti = new CercaAppunti(searchField);
+        
         searchField.addKeyListener(cercaAppunti);
         searchButton.addActionListener(cercaAppunti);
         
-        clearSearch = new JButton("x");
-        
+        clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
+        clearSearch.setBackground(Color.white);
+        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
         clearSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -105,23 +118,28 @@ public class ListaAppuntiPanel extends JPanel{
         OrdinaListaAppunti ordinaListaAppunti = new OrdinaListaAppunti(ordina);
         ordina.addActionListener(ordinaListaAppunti);
         ordina.setBackground(Color.white);
-        gbc.gridx = 0;
+       gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 240, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(ordinamento, gbc);
         
         gbc.gridx = 1;
-
-	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.FIRST_LINE_START;
-
         gbc.gridy = 0;
-        gbc.insets = new Insets(5, 100, 0, 10);
+        gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         ordinaPanel.add(ordina,gbc);
+        
+        addAppunto = new JButton("", new ImageIcon("files\\immagini\\add.png"));
+        addAppunto.setRolloverIcon(new ImageIcon("files\\immagini\\addHover.png"));
+        addAppunto.setPressedIcon(new ImageIcon("files\\immagini\\addPressed.png"));
+        addAppunto.setBackground(Color.white);
+        addAppunto.setPreferredSize(new Dimension(50, 50));
+        addAppunto.setBorder(new LineBorder(Color.white, 1, true));
         gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(5, 150, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(addAppunto, gbc);
         // fine pannello ordina
         
@@ -198,7 +216,7 @@ public class ListaAppuntiPanel extends JPanel{
         borderPanel.add(panel,BorderLayout.NORTH);
         JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));
-         scrollPanel.setBorder(new LineBorder(Color.white, 1, true));
+         
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

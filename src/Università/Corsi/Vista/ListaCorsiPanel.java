@@ -46,9 +46,10 @@ public class ListaCorsiPanel extends JPanel{
     
     private JTextField searchField;
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
-    private JPanel panel, topSearch, topPref;
+    private JPanel panel, topSearch, topPref, searchPanel;
     private TopPanel top;
-    
+    private Icon button, searchHover, searchPressed;
+    private JButton searchButton, clearSearch;
     public ListaCorsiPanel() {
         
         setBackground(Color.white);
@@ -66,7 +67,7 @@ public class ListaCorsiPanel extends JPanel{
         topPref.setBackground(Color.white);
         
         //pannello ricerca
-        JPanel searchPanel = new JPanel();
+        searchPanel = new JPanel();
         searchPanel.setBackground(Color.white);
 
         searchField = new JTextField(31);
@@ -74,13 +75,13 @@ public class ListaCorsiPanel extends JPanel{
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
         
-        Icon button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
-        JButton searchButton = new JButton(button);
+        button = new ImageIcon("files\\immagini\\buttonNormal.png"); 
+        searchButton = new JButton(button);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
-        Icon searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
+        searchHover = new ImageIcon("files\\immagini\\buttonHover.png");
         searchButton.setRolloverIcon(searchHover);
-        Icon searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
+        searchPressed = new ImageIcon("files\\immagini\\buttonPressed.png");
         searchButton.setPressedIcon(searchPressed);
         searchButton.setText("CERCA");
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -90,7 +91,7 @@ public class ListaCorsiPanel extends JPanel{
         CercaCorsi cercaCorsi = new CercaCorsi(searchField);
         searchButton.addActionListener(cercaCorsi);
         
-        JButton clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
+        clearSearch = new JButton("", new ImageIcon("files\\immagini\\clear.png"));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
         clearSearch.addActionListener(new ActionListener() {
