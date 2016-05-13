@@ -8,6 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
+import static Application.Vista.Grafica.container;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
@@ -22,6 +23,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,6 +42,8 @@ import javax.swing.border.LineBorder;
 public class ListaAppuntiPanel extends JPanel{
     
     private JLabel[] appunti = new JLabel[Applicazione.listaAppuntiAttuali.size()];
+    private JLabel[] appuntiSIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
+    private JLabel[] appuntiLabel = new JLabel[Applicazione.listaAppuntiAttuali.size()];
     private JTextField searchField;
     private JLabel noAppunti, ordinamento;
     private JLabel[] appuntiIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
@@ -157,12 +161,16 @@ public class ListaAppuntiPanel extends JPanel{
             
         }else{
             for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
-                appunti[i] = new JLabel();
-                appunti[i].setPreferredSize(new Dimension(100, 30));
+                appuntiLabel[i]= new JLabel();
+                appuntiSIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+                appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
+                appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
+                appuntiLabel[i].setPreferredSize(new Dimension(150, 30));
                 appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
-                appunti[i].setText(Applicazione.listaAppuntiAttuali.get(i).getNome());
-                appunti[i].setHorizontalTextPosition(SwingConstants.LEADING);
-                appunti[i].setIconTextGap(50);
+                appuntiLabel[i].add(appuntiSIco[i]);
+                appuntiLabel[i].add(appunti[i]);
+                
+                
                 
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
@@ -196,7 +204,7 @@ public class ListaAppuntiPanel extends JPanel{
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, -7, 0, 10);
                 gbcd.anchor = GridBagConstraints.NORTHEAST;
-                panel.add(appunti[i], gbcd);
+                panel.add(appuntiLabel[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
 
