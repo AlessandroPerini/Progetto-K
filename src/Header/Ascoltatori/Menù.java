@@ -1,14 +1,16 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import static Application.Controller.Applicazione.svuotaAppunti;
 import static Application.Controller.Applicazione.svuotaCorsi;
+import static Application.Controller.Applicazione.svuotaCorsiXAnno;
 import static Application.Controller.Applicazione.svuotaDomande;
+import static Application.Controller.Applicazione.svuotaFacoltà;
 import static Application.Controller.Applicazione.svuotaLibri;
 import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import static Application.Controller.Applicazione.svuotaMieiDati;
@@ -20,9 +22,12 @@ import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Login.LoginPanel;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -33,7 +38,7 @@ import javax.swing.JOptionPane;
 public class Menù implements ActionListener{
     
     private JComboBox menu;
-
+    
     public Menù(JComboBox menu) {
         this.menu = menu;
     }
@@ -41,56 +46,69 @@ public class Menù implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if(menu.getSelectedItem().equals("Home")){
-
-            Grafica.card.show(Grafica.container, "facoltà");
-            Applicazione.back.add("facoltà");
-
-            svuotaCorsi();;
-            svuotaLibri();
-            svuotaDomande();
-            svuotaAppunti();
-            svuotaRisposte();
-            svuotaMieiDati();
-            svuotaListaFacoltàXRamo();
-            svuotaRecensioni();
-            svuotaRami();
-            svuotaPreferiti();
-
-            resetMenu();
+            
+            try {
+                svuotaCorsi();;
+                svuotaFacoltà();
+                svuotaLibri();
+                svuotaDomande();
+                svuotaAppunti();
+                svuotaRisposte();
+                svuotaMieiDati();
+                svuotaListaFacoltàXRamo();
+                svuotaRecensioni();
+                svuotaRami();
+                svuotaCorsiXAnno();
+                svuotaPreferiti();
+                
+                ListeQuery.caricaFacoltà();
+                
+                ListeQuery.caricaRamiFacoltà();
+                
+                resetMenu();
+                
+                ListaFacoltàPanel facoltà = new ListaFacoltàPanel();
+                
+                Grafica.card.show(Grafica.container, "facoltà");
+                Applicazione.back.add("facoltà");
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Errore durante il caricamento delle facoltà", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+            }
         }
         if(menu.getSelectedItem().equals("Account")){
-
+            
             Grafica.card.show(Grafica.container, "account");
             Applicazione.back.add("account");
             Applicazione.svuotaMieiDati();
-
+            
             resetMenu();
         }
         if(menu.getSelectedItem().equals("Preferiti")){
-
+            
             Applicazione.back.add("preferiti");
-
+            
             try {
                 ListeQuery.caricaFacoltàPreferite();
                 ListeQuery.caricaCorsiPreferiti();
                 ListeQuery.caricaAppuntiPreferiti();
                 ListeQuery.caricaLibriPreferiti();
                 ListeQuery.caricaDomandePreferite();
-
+                
                 PreferitiPanel preferitiPanel = new PreferitiPanel();
                 Grafica.container.add(preferitiPanel, "preferiti");
                 Grafica.card.show(Grafica.container, "preferiti");
             } catch (SQLException ex) {
                 System.out.println("Errore durante il caricamento dei preferiti");
             }
-
+            
         }
         if(menu.getSelectedItem().equals("Logout")){
-
+            
             int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
-
+            
             if(showConfirmDialog == 0 ){
-
+                
                 Grafica.card.show(Grafica.container, "login");
                 LoginPanel.clearForm();
                 Applicazione.logout();
