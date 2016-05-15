@@ -17,12 +17,10 @@ import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -170,7 +168,7 @@ public class PreferitiPanel extends JPanel{
             goToLibro[i] = new GoToLibro(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
                                          Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà(),
                                          Applicazione.preferiti.getLibriPreferiti().get(i).getID());
-            libriPreferiti[i].addActionListener(goToLibro[i]);
+            libriPreferiti[i].addMouseListener(goToLibro[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 10);

@@ -85,7 +85,7 @@ public class GoToDomanda implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(Color.red);
+        e.getComponent().setForeground(new Color(3,201,169));
     }
     
     @Override

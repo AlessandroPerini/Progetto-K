@@ -8,7 +8,6 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
 import Application.Controller.Applicazione;
-import static Application.Vista.Grafica.container;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
@@ -18,7 +17,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,7 +48,7 @@ public class ListaAppuntiPanel extends JPanel{
     private JComboBox ordina;
     private JButton addAppunto, searchButton, clearSearch;
     private TopPanel top;
-    private Icon button, searchHover, searchPressed;
+    private Icon search, searchHover, searchPressed;
     private JPanel panel, searchPanel, ordinaPanel,borderPanel;
     
     public ListaAppuntiPanel() {
@@ -74,8 +72,8 @@ public class ListaAppuntiPanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
-        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
-        searchButton = new JButton(button);
+        search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        searchButton = new JButton(search);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
@@ -86,8 +84,6 @@ public class ListaAppuntiPanel extends JPanel{
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         searchButton.setForeground(Color.white);
         searchButton.setIconTextGap(-77);
-        
-        
         
         CercaAppunti cercaAppunti = new CercaAppunti(searchField);
         
@@ -122,9 +118,9 @@ public class ListaAppuntiPanel extends JPanel{
         OrdinaListaAppunti ordinaListaAppunti = new OrdinaListaAppunti(ordina);
         ordina.addActionListener(ordinaListaAppunti);
         ordina.setBackground(Color.white);
-       gbc.gridx = 0;
+        gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(5, 240, 0, 10);
+        gbc.insets = new Insets(5, 220, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(ordinamento, gbc);
         
@@ -138,7 +134,7 @@ public class ListaAppuntiPanel extends JPanel{
         addAppunto.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
         addAppunto.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
         addAppunto.setBackground(Color.white);
-        addAppunto.setPreferredSize(new Dimension(50, 50));
+        addAppunto.setPreferredSize(new Dimension(40, 40));
         addAppunto.setBorder(new LineBorder(Color.white, 1, true));
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -158,6 +154,11 @@ public class ListaAppuntiPanel extends JPanel{
             noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
             panel.add(noAppunti);
+            gbcd.gridx = 0;
+            gbcd.gridy = 1;
+            gbcd.insets = new Insets(10, 0, 0, 10);
+            gbcd.anchor = GridBagConstraints.LINE_START;
+            panel.add(noAppunti, gbcd);
             
         }else{
             for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
@@ -165,13 +166,11 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiSIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
                 appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
                 appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
-                appuntiLabel[i].setPreferredSize(new Dimension(150, 30));
+                appuntiLabel[i].setPreferredSize(new Dimension(220, 30));
                 appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 appuntiLabel[i].add(appuntiSIco[i]);
                 appuntiLabel[i].add(appunti[i]);
-                
-                
-                
+
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
@@ -207,15 +206,15 @@ public class ListaAppuntiPanel extends JPanel{
                 panel.add(appuntiLabel[i], gbcd);
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
-
-	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 150, 0, 10);
-	gbc.anchor = GridBagConstraints.FIRST_LINE_END;
-
-        gbc.gridy = 0;
-        gbc.insets = new Insets(5, 150, 0, 10);
-        gbc.anchor = GridBagConstraints.LINE_END;
-
+                
+                gbc.gridy = 0;
+                gbc.insets = new Insets(5, 150, 0, 10);
+                gbc.anchor = GridBagConstraints.FIRST_LINE_END;
+                
+                gbc.gridy = 0;
+                gbc.insets = new Insets(5, 150, 0, 10);
+                gbc.anchor = GridBagConstraints.LINE_END;
+                
                 panel.add(appuntiIco[i], gbcd);
                 
             }
@@ -223,8 +222,8 @@ public class ListaAppuntiPanel extends JPanel{
         borderPanel.setBackground(Color.white);
         borderPanel.add(panel,BorderLayout.NORTH);
         JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 450));
-         
+        scrollPanel.setPreferredSize(new Dimension(650, 350));
+        
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);

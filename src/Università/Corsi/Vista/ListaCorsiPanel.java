@@ -14,6 +14,7 @@ import Preferiti.Facoltà.Ascoltatori.AggiungiFacoltàPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviFacoltàPreferita;
 import Università.Corsi.Ascoltatori.CercaCorsi;
 import Utils.Ordina;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -44,12 +45,9 @@ public class ListaCorsiPanel extends JPanel{
     private JPanel[] panels = new JPanel[3];
     private JScrollPane[] scrollP = new JScrollPane[3];
     
-    private JTextField searchField;
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
-    private JPanel panel, topSearch, topPref, searchPanel;
+    private JPanel panel, topPref;
     private TopPanel top;
-    private Icon button, searchHover, searchPressed;
-    private JButton searchButton, clearSearch;
     public ListaCorsiPanel() {
         
         setBackground(Color.white);
@@ -60,53 +58,8 @@ public class ListaCorsiPanel extends JPanel{
         panel = new JPanel(new GridLayout(1, 3, 10, 0));
         panel.setBackground(Color.white);
         
-        topSearch = new JPanel();
-        topSearch.setBackground(Color.white);
-        
         topPref = new JPanel();
         topPref.setBackground(Color.white);
-        
-        //pannello ricerca
-        searchPanel = new JPanel();
-        searchPanel.setBackground(Color.white);
-        
-        searchField = new JTextField(31);
-        searchField.setHorizontalAlignment(SwingConstants.CENTER);
-        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-        
-        
-        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        searchButton = new JButton(button);
-        searchButton.setBorder(BorderFactory.createEmptyBorder());
-        searchButton.setContentAreaFilled(false);
-        searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        searchButton.setRolloverIcon(searchHover);
-        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        searchButton.setPressedIcon(searchPressed);
-        searchButton.setText("CERCA");
-        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        searchButton.setForeground(Color.white);
-        searchButton.setIconTextGap(-77);
-        
-        CercaCorsi cercaCorsi = new CercaCorsi(searchField);
-        searchButton.addActionListener(cercaCorsi);
-        
-        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
-        clearSearch.setBackground(Color.white);
-        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
-        clearSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchField.setText("");
-            }
-        });
-        
-        searchPanel.add(searchField);
-        searchPanel.add(clearSearch);
-        searchPanel.add(searchButton);
-        // fine pannello ricerca
-        
-        topSearch.add(searchPanel);
         
         //preferito
         JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
@@ -171,7 +124,7 @@ public class ListaCorsiPanel extends JPanel{
             scrollBar.setBackground(Color.white);
             scrollBar.setPreferredSize(new Dimension(0, 20));
             scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scrollP[i].setPreferredSize(new Dimension(215, 295));
+            scrollP[i].setPreferredSize(new Dimension(220, 320));
             scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
             scrollP[i].getVerticalScrollBar().setUnitIncrement(16);
             scrollP[i].setVerticalScrollBar(scrollBar);
@@ -182,7 +135,6 @@ public class ListaCorsiPanel extends JPanel{
         }
         
         add(top);
-        add(topSearch);
         add(topPref);
         add(panel);
     }

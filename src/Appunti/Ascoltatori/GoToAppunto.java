@@ -10,13 +10,9 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -35,23 +31,24 @@ public class GoToAppunto implements MouseListener{
         this.facoltà = facoltà;
     }
     
-
     @Override
     public void mouseClicked(MouseEvent e) {
-           try {
-               
-            Applicazione.back.add("appunto");
-            if(e.getComponent() instanceof JLabel) {
-            JLabel label = (JLabel)e.getComponent();
-            text = label.getText();
-        }
-             if(e.getComponent() instanceof JButton) {
-            JButton button = (JButton)e.getComponent();
-            text = button.getText();
-        }
         
-        String parts[] = text.split("          ");
-        text = parts[0];
+        try {
+            
+            Applicazione.back.add("appunto");
+            
+            if(e.getComponent() instanceof JLabel) {
+                JLabel label = (JLabel)e.getComponent();
+                text = label.getText();
+            }
+            if(e.getComponent() instanceof JButton) {
+                JButton button = (JButton)e.getComponent();
+                text = button.getText();
+            }
+            
+            String parts[] = text.split("          ");
+            text = parts[0];
             
             Applicazione.appuntoAttuale.setNome(text);
             
@@ -64,26 +61,27 @@ public class GoToAppunto implements MouseListener{
             AppuntoPanel appunto = new AppuntoPanel();
             Grafica.container.add(appunto, "appunto");
             Grafica.card.show(Grafica.container, "appunto");
+            
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento dei dati dell'appunto");
         }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
         
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
         
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(Color.red);
+        e.getComponent().setForeground(new Color(3,201,169));
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
         e.getComponent().setForeground(Color.black);

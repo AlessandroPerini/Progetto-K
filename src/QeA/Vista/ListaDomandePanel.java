@@ -11,7 +11,6 @@ import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
-import Università.Corsi.Ascoltatori.CercaCorsi;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -39,7 +38,6 @@ import javax.swing.border.LineBorder;
  */
 public class ListaDomandePanel extends JPanel{
     
-    //private JButton[] domande = new JButton[Applicazione.listaDomandeAttuali.size()];
     private JLabel[] domande = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JLabel[] domandeNLike = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JLabel[] domandeIco = new JLabel[Applicazione.listaDomandeAttuali.size()];
@@ -48,9 +46,10 @@ public class ListaDomandePanel extends JPanel{
     private JLabel noDomande, ordinamento;
     private JComboBox ordina;
     private JPanel searchPanel, ordinaPanel, panel, centro;
-    private Icon button,searchHover, searchPressed;
+    private Icon search, searchHover, searchPressed;
     
     public ListaDomandePanel() {
+        
         this.setBackground(Color.white);
         TopPanel top = new TopPanel("Domande ");
         top.setBackground(Color.white);
@@ -62,6 +61,7 @@ public class ListaDomandePanel extends JPanel{
         
         GridBagConstraints gbcImg = new GridBagConstraints();
         GridBagConstraints gbc = new GridBagConstraints();
+        
         //pannello ricerca
         searchPanel = new JPanel();
         searchPanel.setBackground(Color.white);
@@ -69,8 +69,8 @@ public class ListaDomandePanel extends JPanel{
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Arial", Font.PLAIN, 20));
         
-        button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
-        searchButton = new JButton(button);
+        search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        searchButton = new JButton(search);
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
@@ -82,7 +82,7 @@ public class ListaDomandePanel extends JPanel{
         searchButton.setForeground(Color.white);
         searchButton.setIconTextGap(-77);
         
-         CercaDomande cercaDomande = new CercaDomande(searchField);
+        CercaDomande cercaDomande = new CercaDomande(searchField);
         searchField.addKeyListener(cercaDomande);
         searchButton.addActionListener(cercaDomande);
         
@@ -95,17 +95,13 @@ public class ListaDomandePanel extends JPanel{
                 searchField.setText("");
             }
         });
-
         
         searchPanel.add(searchField);
         searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
         // fine pannello ricerca
         
-        
-        
         //pannello ordina
-        
         ordinaPanel.setBackground(Color.white);
         String[] opzioni = new String[]{"Like", "Nome"};
         ordina = new JComboBox(opzioni);
@@ -120,7 +116,7 @@ public class ListaDomandePanel extends JPanel{
         ordina.setBackground(Color.white);
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(5, 240, 0, 10);
+        gbc.insets = new Insets(5, 220, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(ordinamento, gbc);
         
@@ -134,20 +130,15 @@ public class ListaDomandePanel extends JPanel{
         addDomanda = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
         addDomanda.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
         addDomanda.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
-        addDomanda.setPreferredSize(new Dimension(50, 50));
+        addDomanda.setBackground(Color.white);
+        addDomanda.setPreferredSize(new Dimension(40, 40));
         addDomanda.setBorder(new LineBorder(Color.white, 1, true));
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 150, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(addDomanda, gbc);
-        
         // fine pannello ordina
-        
-       centro.add(ordinaPanel, BorderLayout.NORTH);
-        
-        
-        
         
         GoToDomanda goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
@@ -156,7 +147,6 @@ public class ListaDomandePanel extends JPanel{
         
         int size = Applicazione.listaDomandeAttuali.size();
         if(size == 0){
-            
             noDomande = new JLabel();
             noDomande.setText("Non ci sono domande relative a questo corso.");
             noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
@@ -165,12 +155,14 @@ public class ListaDomandePanel extends JPanel{
             gbcImg.insets = new Insets(10, 0, 0, 10);
             gbcImg.anchor = GridBagConstraints.LINE_START;
             panel.add(noDomande, gbcImg);
+            
         }else{
             
             for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
                 domande[i] = new JLabel(Applicazione.listaDomandeAttuali.get(i).getTitolo(), HEIGHT);
-                domande[i].setFont(new Font("Century Gothic", Font.PLAIN, 16));
+                domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
+                domande[i].setPreferredSize(new Dimension(220, 30));
                 domande[i].addMouseListener(goToDomanda);
                 gbcImg.gridx = 0;
                 gbcImg.gridy = i+1;
@@ -178,9 +170,9 @@ public class ListaDomandePanel extends JPanel{
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 panel.add(domande[i], gbcImg);
                 
-                domandeNLike[i] = new JLabel(""+Applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);             
+                domandeNLike[i] = new JLabel(""+Applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);
                 domandeNLike[i].setIconTextGap(-200);
-
+                
                 domandeNLike[i].setFont(new Font("Century Gothic", Font.BOLD, 13));
                 domandeNLike[i].setForeground(Color.blue);
                 gbcImg.gridx = 1;
@@ -201,12 +193,13 @@ public class ListaDomandePanel extends JPanel{
         
         centro.add(panel, BorderLayout.CENTER);
         JScrollPane scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 450));
+        scrollPanel.setPreferredSize(new Dimension(650, 350));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         scrollPanel.setBackground(Color.white);
         
         add(top);
         add(searchPanel);
+        add(ordinaPanel);
         add(scrollPanel);
     }
     
