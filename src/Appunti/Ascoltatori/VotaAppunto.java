@@ -13,6 +13,7 @@ import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
@@ -21,17 +22,18 @@ import javax.swing.JTextArea;
  *
  * @author te4o
  */
-public class Vota implements ActionListener{
+public class VotaAppunto implements ActionListener{
     
     private JTextArea commento;
     private JSlider punteggio;
-    
-    public Vota(JTextArea commento, JSlider punteggio) {
+    private JFrame valutaFrame;
+
+    public VotaAppunto(JTextArea commento, JSlider punteggio, JFrame valutaFrame) {
         this.commento = commento;
         this.punteggio = punteggio;
+        this.valutaFrame = valutaFrame;
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -47,6 +49,9 @@ public class Vota implements ActionListener{
                     InsertQuery.updateMedia(newMedia);
   
                     JOptionPane.showMessageDialog(null, "Valutazione aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                    
+                    valutaFrame.dispose();
+                    valutaFrame.setVisible(false);
                     
                     AppuntoPanel appunto = new AppuntoPanel();
                     

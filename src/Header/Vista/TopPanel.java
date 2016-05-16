@@ -35,8 +35,8 @@ public class TopPanel extends JPanel{
     
     public TopPanel(String t) {
         
-        Icon button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        JButton backButton = new JButton(button);
+        Icon backNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        JButton backButton = new JButton(backNormal);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setContentAreaFilled(false);
         Icon backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));

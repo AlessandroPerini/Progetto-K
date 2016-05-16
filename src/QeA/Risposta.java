@@ -15,16 +15,12 @@ public class Risposta {
     private String domanda;
     private String email;
     private int id;
-    private int like;
-    private int dislike;
     private String nickname;
 
-    public Risposta(String titolo, String domanda, int like, int dislike,int id, String email, String nickname) {
+    public Risposta(String titolo, String domanda, int id, String email, String nickname) {
         this.titolo = titolo;
         this.domanda = domanda;
         this.id = id;
-        this.dislike = dislike;
-        this.like = like;
         this.email = email;
         this.nickname = nickname;
     }

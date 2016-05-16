@@ -23,9 +23,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-import javax.swing.JTextPane;
-import javax.swing.text.SimpleAttributeSet;
-import javax.swing.text.StyleConstants;
 
 /**
  *
@@ -55,10 +52,10 @@ public class SegnalazionePanel extends JPanel{
         JButton submit = new JButton(button);
         submit.setBorder(BorderFactory.createEmptyBorder());
         submit.setContentAreaFilled(false);
-        Icon backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        submit.setRolloverIcon(backHover);
-        Icon backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        submit.setPressedIcon(backPressed);
+        Icon buttonHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        submit.setRolloverIcon(buttonHover);
+        Icon buttonPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        submit.setPressedIcon(buttonPressed);
         submit.setText("INVIA");
         submit.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         submit.setForeground(Color.white);

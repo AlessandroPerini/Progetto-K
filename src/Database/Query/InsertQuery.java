@@ -100,7 +100,7 @@ public class InsertQuery {
     public static void inserisciRisposta(String risposta) throws SQLException{
         
         
-        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, 0, 0, ?, ?, ?);";
+        String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, ?, ?, ?);";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
         ps1.clearParameters();
@@ -310,7 +310,5 @@ public class InsertQuery {
         ps1.execute();
         
     }
-    
-  
-    
+   
 }

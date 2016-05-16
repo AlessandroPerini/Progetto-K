@@ -160,13 +160,11 @@ public class ListeQuery {
         while (rs.next()) {
             String domanda = rs.getString("domanda");
             String studente = rs.getString("studente");
-            int like = rs.getInt("like");
-            int dislike = rs.getInt("dislike");
             int id = rs.getInt("id");
             String risposta = rs.getString("risposta");
             String nickname = rs.getString("nickname");
 
-            Risposta rispsta = new Risposta(risposta, domanda, like, dislike,id, studente, nickname);
+            Risposta rispsta = new Risposta(risposta, domanda, id, studente, nickname);
             Applicazione.listaRisposteAttuali.add(rispsta);
             
         }
