@@ -7,6 +7,7 @@ package Login;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Connection.ConnessioneDB;
 import Database.Query.LoginQuery;
 import Studente.Vista.AccountPanel;
 import java.awt.event.ActionEvent;
@@ -38,13 +39,13 @@ public class DoLogin implements ActionListener, KeyListener{
             try {
                 LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
                 if(Applicazione.utenteLoggato){
-                String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
-                JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
-                AccountPanel account = new AccountPanel();
-                Grafica.container.add(account,"account");
-            }
-            else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
-            }
+                    String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
+                    JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
+                    AccountPanel account = new AccountPanel();
+                    Grafica.container.add(account,"account");
+                }
+                else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
+                }
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore connessione col database", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
             }
