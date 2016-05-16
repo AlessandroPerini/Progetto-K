@@ -20,8 +20,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
@@ -38,7 +36,7 @@ public class AggiungiAppunto implements ActionListener{
     private JButton bottone;
     private JButton botton2;
     private GifFrame gif;
-
+    
     public AggiungiAppunto(JTextArea nome, JTextArea descrizione, File file, JButton bottone, JButton botton2) {
         this.nome = nome;
         this.descrizione = descrizione;
@@ -47,8 +45,6 @@ public class AggiungiAppunto implements ActionListener{
         this.botton2 = botton2;
         this.gif = new GifFrame();
     }
-    
-    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -67,6 +63,7 @@ public class AggiungiAppunto implements ActionListener{
             botton2.setEnabled(false);
             
             gif.apri();
+            
             new java.util.Timer().schedule(
                     new java.util.TimerTask() {
                         @Override
@@ -75,7 +72,6 @@ public class AggiungiAppunto implements ActionListener{
                                 InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
                                 
                                 //parte di caricamento file su dropbox
-                                
                                 String percorso = file.getPath();
                                 int i = percorso.lastIndexOf('.');
                                 String formato = percorso.substring(i+1);
@@ -83,7 +79,6 @@ public class AggiungiAppunto implements ActionListener{
                                 
                                 Upload upload = new Upload(percorso, nomeFile);
                                 upload.up();
-                                
                                 //fine parte caricamento su dropbox
                                 
                                 if(Upload.uploadOK){

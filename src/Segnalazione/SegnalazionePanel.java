@@ -41,16 +41,15 @@ public class SegnalazionePanel extends JPanel{
         TopPanel top = new TopPanel("Inviaci un consiglio o una segnalazione");
         top.setBackground(Color.white);
         
-        JTextArea testo = new JTextArea();
+        JTextArea testo = new JTextArea("");
         testo.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        testo.setLineWrap(true);
-        testo.setWrapStyleWord(true);
-        testo.setPreferredSize(new Dimension(600,400));
         testo.setBackground(new Color(204, 229, 255));
         testo.setForeground(Color.BLACK);
-        JScrollPane scrollPanel = new JScrollPane(testo,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setViewportView(testo);
-        scrollPanel.setWheelScrollingEnabled(true);
+        
+        JScrollPane scrollPanel = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setPreferredSize(new Dimension(600, 400));
+        testo.setLineWrap(true);
+        testo.setWrapStyleWord(true);
         
         Icon button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         JButton submit = new JButton(button);
@@ -91,7 +90,7 @@ public class SegnalazionePanel extends JPanel{
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "Testo non valido (max 20000 caratteri)", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Testo non valido (max 2000 caratteri)", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                     
                 }
                 
