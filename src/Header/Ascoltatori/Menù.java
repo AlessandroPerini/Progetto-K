@@ -26,8 +26,6 @@ import Università.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -94,10 +92,13 @@ public class Menù implements ActionListener{
                 ListeQuery.caricaAppuntiPreferiti();
                 ListeQuery.caricaLibriPreferiti();
                 ListeQuery.caricaDomandePreferite();
-                
+
                 PreferitiPanel preferitiPanel = new PreferitiPanel();
                 Grafica.container.add(preferitiPanel, "preferiti");
                 Grafica.card.show(Grafica.container, "preferiti");
+                
+                resetMenu();
+                
             } catch (SQLException ex) {
                 System.out.println("Errore durante il caricamento dei preferiti");
             }

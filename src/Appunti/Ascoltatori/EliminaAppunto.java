@@ -55,6 +55,9 @@ public class EliminaAppunto implements ActionListener{
                         public void run() {
                             try {
                                 DeleteQuery.eliminaAppunto();
+                                
+                                DeleteQuery.eliminaValutazioneAppunto();
+                                
                                 if(ControlloQuery.controlloAppuntiPreferiti()==false){
                                     DeleteQuery.eliminaAppuntiPreferiti();
                                 }

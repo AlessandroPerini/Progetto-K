@@ -43,7 +43,7 @@ public class AggiungiLibro implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if((!titolo.getText().equals(""))&&(!descrizione.getText().equals(""))&&((Integer)prezzo.getValue() != 0)){
-            if((titolo.getText().length()<100)&&(descrizione.getText().length()<500)&&((Integer)prezzo.getValue() <999)){
+            if((titolo.getText().length()<100)&&(descrizione.getText().length()<500)&&((Integer)prezzo.getValue()<999)&&((Integer)prezzo.getValue()>0)){
                 if(telefono.isSelected()){
                     tel = Applicazione.guest.getTelefono();
                 }else{

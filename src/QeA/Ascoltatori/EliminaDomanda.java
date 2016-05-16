@@ -31,6 +31,11 @@ public class EliminaDomanda implements ActionListener{
         if(showConfirmDialog == 0 ){
             try {
                 DeleteQuery.eliminaDomanda();
+                DeleteQuery.eliminaTuttiLikeDomanda();
+                if(!Applicazione.listaRisposteAttuali.isEmpty()){
+                    DeleteQuery.eliminaRisposteDomanda();
+                    DeleteQuery.eliminaTuttiLikeRisposta();
+                }
                 
                 JOptionPane.showMessageDialog(null, "Domanda eliminata correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                 

@@ -6,11 +6,15 @@
 package Header.Vista;
 
 import Application.Controller.Applicazione;
+import Application.Vista.Grafica;
 import Header.Ascoltatori.Back;
 import Header.Ascoltatori.Menù;
+import Segnalazione.SegnalazionePanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -19,6 +23,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -30,7 +35,7 @@ public class TopPanel extends JPanel{
     
     public TopPanel(String t) {
         
-        Icon button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")); 
+        Icon button = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         JButton backButton = new JButton(button);
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setContentAreaFilled(false);
@@ -48,11 +53,36 @@ public class TopPanel extends JPanel{
         
         JPanel empty = new JPanel();
         empty.setPreferredSize(new Dimension(110, 40));
+        empty.setBackground(Color.white);
+        
+        //-------------------------------------- SEGNALAZIONE!!! --------------------------------------
+        JButton segnalazioni = new JButton();
+        segnalazioni.setText("Segnalazioni");
+        segnalazioni.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        segnalazioni.setForeground(new Color(255, 102, 102));
+        segnalazioni.setBorder(new LineBorder(new Color(255, 102, 102), 1));
+        segnalazioni.setBackground(Color.white);
+        segnalazioni.setPreferredSize(new Dimension(110, 40));
+        segnalazioni.setFocusPainted(false);
+        
+        segnalazioni.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                Applicazione.back.add("segnalazione");
+                
+                SegnalazionePanel segnalazione = new SegnalazionePanel();
+                Grafica.container.add(segnalazione, "segnalazione");
+                Grafica.card.show(Grafica.container, "segnalazione");
+            }
+        });
+        //----------------------------------- FINE SEGNALAZIONE!!! -----------------------------------
         
         JLabel title = new JLabel(t);
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 20));
         title.setPreferredSize(new Dimension(420, 40));
+        title.requestFocus();
         
         String[] opzioni = new String[]{"Home","Account","Preferiti","Logout"};
         menu = new JComboBox(opzioni);
@@ -64,7 +94,7 @@ public class TopPanel extends JPanel{
         menu.addActionListener(menù);
         resetMenu();
         
-        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(empty); empty.setBackground(Color.white);}
+        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(segnalazioni);}
         else{add(backButton);}
         add(title);
         add(menu);

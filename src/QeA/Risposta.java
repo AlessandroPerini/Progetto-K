@@ -40,5 +40,9 @@ public class Risposta {
     public String getNickname() {
         return nickname;
     }
-    
+
+    public String getDomanda() {
+        return domanda;
+    }
+   
 }

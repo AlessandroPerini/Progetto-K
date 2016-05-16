@@ -40,8 +40,8 @@ public class AggiungiLike implements ActionListener{
             
             if(!ControlloQuery.controlloLikeDomanda()){
                     
-                DeleteQuery.deleteLikeDomanda();
-                DeleteQuery.rimuoviLikeDomanda();
+                DeleteQuery.decrementaLikeDomanda();
+                DeleteQuery.eliminaLikeDomanda();
                 Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()-1);
                 Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
                 like.setBackground(null);

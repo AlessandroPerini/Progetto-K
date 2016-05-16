@@ -6,11 +6,8 @@
 package Database.Query;
 
 import Application.Controller.Applicazione;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -206,35 +203,89 @@ public class DeleteQuery {
         ps1.execute();
         
     }
-        public static void deleteLikeDomanda() throws SQLException{
+    
+    public static void decrementaLikeDomanda() throws SQLException{
         
-            String sql = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
-
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
-            ps1.clearParameters();
-            ps1.setInt(1, (Applicazione.domandaAttuale.getLike()-1));
-            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-            ps1.setString(3, Applicazione.corsoAttuale.getNome());
-            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
-
-            ps1.execute();
+        String sql = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
         
-    }
-        public static void rimuoviLikeDomanda() throws SQLException{
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        ps1.clearParameters();
+        ps1.setInt(1, (Applicazione.domandaAttuale.getLike()-1));
+        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, Applicazione.corsoAttuale.getNome());
+        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
         
-            String insertLikeDomanda = "delete from likeDomanda where corso=? and domanda=?and studente=? and facoltà=?  ";
-
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
-            ps1.clearParameters();
-            ps1.setString(1, Applicazione.corsoAttuale.getNome());
-            ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-            ps1.setString(3, Applicazione.guest.getEmail());
-            ps1.setString(4, Applicazione.facoltàAttuale.getNome());
-
-            ps1.execute();
+        ps1.execute();
         
     }
     
+    public static void eliminaLikeDomanda() throws SQLException{
+        
+        String insertLikeDomanda = "delete from likeDomanda where corso=? and domanda=?and studente=? and facoltà=?  ";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.corsoAttuale.getNome());
+        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, Applicazione.guest.getEmail());
+        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        
+        ps1.execute();
+        
+    }
     
+    public static void eliminaValutazioneAppunto() throws SQLException{
+        
+        String eliminaValutazione = "delete from valutazioni where appunto=? and corso=? and facoltà=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaValutazione);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        
+        ps1.execute();
+    }
+    
+    public static void eliminaRisposteDomanda() throws SQLException{
+        
+        String eliminaRisposta = "delete from risposte where domanda=? and corso=? and facoltà=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaRisposta);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        
+        ps1.execute();
+    }
+    
+    public static void eliminaTuttiLikeDomanda() throws SQLException{
+        
+        String insertLikeDomanda = "delete from likeDomanda where corso=? and domanda=? and facoltà=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.corsoAttuale.getNome());
+        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        
+        ps1.execute();
+    }
+    
+    public static void eliminaTuttiLikeRisposta() throws SQLException{
+        
+        String eliminaLikeRisposta = "delete from likeRisposte where id=?";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
+        
+        for(int i=0; i<Applicazione.listaRisposteAttuali.size(); i++){
+            
+            ps1.clearParameters();
+            ps1.setInt(1, Applicazione.listaRisposteAttuali.get(i).getId());
+            ps1.execute();
+        }
+        
+    }
     
 }

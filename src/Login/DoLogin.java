@@ -37,17 +37,16 @@ public class DoLogin implements ActionListener, KeyListener{
         if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {
             try {
                 LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Errore connessione col database", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
-            }
-            
-            if(Applicazione.utenteLoggato){
+                if(Applicazione.utenteLoggato){
                 String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
                 JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
                 AccountPanel account = new AccountPanel();
                 Grafica.container.add(account,"account");
             }
             else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
+            }
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Errore connessione col database", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
             }
         }
         else{
