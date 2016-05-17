@@ -117,7 +117,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "appuntiPreferiti");
-                appuntiPreferitiLabel.setIcon(searchPressed);
+                appuntiPreferitiLabel.setIcon(searchHover);
                 domandePreferiteLabel.setIcon(search);
                 libriPreferitiLabel.setIcon(search);
             }
@@ -167,7 +167,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "libriPreferiti");
-                libriPreferitiLabel.setIcon(searchPressed);
+                libriPreferitiLabel.setIcon(searchHover);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
   
@@ -217,7 +217,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "domandePreferite");
-                domandePreferiteLabel.setIcon(searchPressed);
+                domandePreferiteLabel.setIcon(searchHover);
                 libriPreferitiLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
             }

@@ -121,7 +121,7 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "facoltàPreferite");
-                 facoltàPreferiteLabel.setIcon(searchPressed);
+                 facoltàPreferiteLabel.setIcon(searchHover);
                 corsiPreferitiLabel.setIcon(search);
                  libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
@@ -172,7 +172,7 @@ public class PreferitiPanel extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "corsiPreferiti");
                 facoltàPreferiteLabel.setIcon(search);
-                corsiPreferitiLabel.setIcon(searchPressed);
+                corsiPreferitiLabel.setIcon(searchHover);
                  libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
@@ -225,7 +225,7 @@ public class PreferitiPanel extends JPanel{
                 corsiPreferitiLabel.setIcon(search);
                  libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
-                appuntiPreferitiLabel.setIcon(searchPressed);
+                appuntiPreferitiLabel.setIcon(searchHover);
             }
         });
         gbc.gridx = 2;
@@ -275,7 +275,7 @@ public class PreferitiPanel extends JPanel{
                 cardLayout.show(centro, "libriPreferiti");
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(search);
-                 libriPreferitiLabel.setIcon(searchPressed);
+                 libriPreferitiLabel.setIcon(searchHover);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
             }
@@ -327,7 +327,7 @@ public class PreferitiPanel extends JPanel{
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(search);
                  libriPreferitiLabel.setIcon(search);
-                domandePreferiteLabel.setIcon(searchPressed);
+                domandePreferiteLabel.setIcon(searchHover);
                 appuntiPreferitiLabel.setIcon(search);
             }
         });
