@@ -341,5 +341,26 @@ public class ControlloQuery {
         }
         return bool;
     }
+    public static int controlloLikeRisposta( int id) throws SQLException{
+            String sql ="select * from likeRisposte where studente=? and id=? ";
+            int valoreLike = 0;
+            
+                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+                ps1.clearParameters();
+                ps1.setString(1, Applicazione.guest.getEmail());
+                ps1.setInt(2, id);
+               
+                ResultSet rs = ps1.executeQuery();
+            
+                if (rs.next()) 
+                {
+                    valoreLike = rs.getInt("like");
+                   return valoreLike;
+                    
+                }else{
+                    
+                   return 0;
+                }
+    }
     
 }
