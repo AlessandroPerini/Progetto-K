@@ -115,7 +115,7 @@ public class AppuntoPanel extends JPanel{
         recensioni.addActionListener(goToRecensioniAppuntoPanel);
         gbc2.gridx = 1;
         gbc2.gridy = 0;
-        gbc2.insets = new Insets(0, 105, 0, 0);
+        gbc2.insets = new Insets(0, 110, 0, 0);
         gbc2.anchor = GridBagConstraints.CENTER;
         recensioniPanel.add(recensioni, gbc2);
         

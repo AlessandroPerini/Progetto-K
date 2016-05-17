@@ -5,7 +5,6 @@
 */
 package Frame;
 
-import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.VotaAppunto;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -54,14 +53,19 @@ public class ValutaAppuntoFrame{
         valutaFrame.setUndecorated(true);
         
         container = new JPanel();
+        container.setBackground(Color.white);
         valutaFrame.setContentPane(container);
         
         titolo = new JPanel();
+        titolo.setBackground(Color.white);
         titolo.setPreferredSize(new Dimension(650,100));
+        
         body = new JPanel(new GridBagLayout());
+        body.setBackground(Color.white);
         
         titoloFrame = new JLabel("Valuta appunto");
         titoloFrame.setFont(new Font("Century Gothic", Font.BOLD, 23));
+        titoloFrame.setBackground(Color.white);
         
         titolo.add(titoloFrame);
         
@@ -69,16 +73,19 @@ public class ValutaAppuntoFrame{
         punteggio.setPreferredSize(new Dimension(150,50));
         punteggio.setLabelTable(punteggio.createStandardLabels(1));
         punteggio.setMajorTickSpacing(1);
+        punteggio.setBackground(Color.white);
         punteggio.setPaintLabels(true);
+        punteggio.setBorder(BorderFactory.createTitledBorder("Punteggio"));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(20, 250, 0, 0);
+        gbc.insets = new Insets(20, 325, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         body.add(punteggio, gbc);
         
         commento = new JTextArea();
+        commento.setBorder(BorderFactory.createTitledBorder("Commento"));
         commento.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        commento.setBackground(new Color(204, 229, 255));
+        commento.setBackground(Color.white);
         commento.setForeground(Color.BLACK);
         JScrollPane scrollPanel = new JScrollPane(commento, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(300, 200));
@@ -86,7 +93,7 @@ public class ValutaAppuntoFrame{
         commento.setWrapStyleWord(true);
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.insets = new Insets(30, 250, 0, 0);
+        gbc.insets = new Insets(30, 325, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         body.add(scrollPanel, gbc);
         
