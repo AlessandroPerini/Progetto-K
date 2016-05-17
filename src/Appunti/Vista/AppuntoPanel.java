@@ -22,9 +22,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.math.RoundingMode;
 import java.sql.SQLException;
-import java.text.DecimalFormat;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -41,9 +39,10 @@ import javax.swing.border.LineBorder;
  */
 public class AppuntoPanel extends JPanel{
     
-    private JButton valuta;
-    private JPanel top, panel, preferitiPanel, recensioniPanel;
+    private JButton valuta, recensioni;
+    private JPanel top, panel, preferitiPanel, recensioniPanel, descrizionePanel;;
     private JTextArea descrizione;
+    private JLabel media, email;
     private JScrollPane scrollPanel;
     
     public AppuntoPanel() {
@@ -98,7 +97,7 @@ public class AppuntoPanel extends JPanel{
         String s = mediaTagliata.replace(".", ",");
         String parts[] = s.split(",");
         mediaTagliata = parts[0]+"."+parts[1].charAt(0);
-        JLabel media = new JLabel("Punteggio: "+mediaTagliata+" / 5   ");
+        media = new JLabel("Punteggio: "+mediaTagliata+" / 5   ");
         media.setFont(new Font("Century Gothic", Font.BOLD, 15));
         gbc2.gridx = 0;
         gbc2.gridy = 0;
@@ -106,7 +105,7 @@ public class AppuntoPanel extends JPanel{
         gbc2.anchor = GridBagConstraints.LINE_START;
         recensioniPanel.add(media, gbc2);
 
-        JButton recensioni = new JButton("Recensioni");
+        recensioni = new JButton("Recensioni");
         recensioni.setForeground(new Color(218,194,127));
         recensioni.setBorder(new LineBorder(new Color(218,194,118), 1, true));
         recensioni.setBackground(Color.white);
@@ -156,15 +155,19 @@ public class AppuntoPanel extends JPanel{
             System.out.println("Errore durante il controllo della valutazione dell'appunto");
         }
         
-        JLabel email = new JLabel("Caricato da: "+Applicazione.appuntoAttuale.getStudente());
-        email.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.appuntoAttuale.getStudente()+"</html>");
+        email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(0, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(email, gbc);
         
-        JTextArea descrizione = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
+        descrizionePanel = new JPanel();
+        descrizionePanel.setBackground(Color.white);
+        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
+        
+        descrizione = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
         descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 16));
         descrizione.setBackground(new Color(239,242,243));
         scrollPanel = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -172,11 +175,12 @@ public class AppuntoPanel extends JPanel{
         descrizione.setLineWrap(true);
         descrizione.setWrapStyleWord(true);
         descrizione.setEditable(false);
+        descrizionePanel.add(scrollPanel);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(scrollPanel, gbc);
+        panel.add(descrizionePanel, gbc);
         
         Icon scaricaNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         JButton scarica = new JButton(scaricaNormal);
@@ -212,8 +216,7 @@ public class AppuntoPanel extends JPanel{
         elimina.setBackground(new Color(249,123,123));
         EliminaAppunto eliminaAppunto = new EliminaAppunto(elimina, elimina);
         elimina.addActionListener(eliminaAppunto);
-        
-        panel.add(scarica);
+
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(20, 0, 0, 0);

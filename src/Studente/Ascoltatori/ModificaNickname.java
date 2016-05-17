@@ -58,8 +58,9 @@ public class ModificaNickname implements ActionListener{
                             nick.setText(Applicazione.guest.getNickname());
                             JOptionPane.showMessageDialog(null, "Nickname già presente", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         }
-                    }
+                    }    
                 }
+                nick.setText(Applicazione.guest.getNickname());
                 nClick = 0;
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore durante la modifica del nickname", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);

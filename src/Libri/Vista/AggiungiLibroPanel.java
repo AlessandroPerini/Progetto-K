@@ -1,24 +1,32 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Libri.Vista;
 
-import Libri.Ascoltatori.AggiungiLibro;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
+import Libri.Ascoltatori.AggiungiLibro;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
 
 /**
@@ -27,76 +35,140 @@ import javax.swing.SpinnerNumberModel;
  */
 public class AggiungiLibroPanel extends JPanel{
     
-    private static JTextArea titolo2 = new JTextArea();
-    private static JTextArea descrizione2 = new JTextArea();
-    private static JSpinner prezzo2 = new JSpinner();
+    private static JTextArea nome, descrizione;
+    private JButton aggiungi;
+    private JSpinner prezzo;
+    private JCheckBox telefono;
+    private JPanel prezzoPanel, nomePanel, descrizionePanel;
+    private JLabel euro;
     
     public AggiungiLibroPanel() {
         
-        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoAttuale.getNome());
+        GridBagConstraints gbc = new GridBagConstraints();
         
-        JPanel panel = new JPanel(new GridLayout(7,2,5,10));
+        setBackground(Color.white);
         
-        JPanel prezzoPanel = new JPanel(new GridLayout(1, 2));
+        TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoAttuale.getNome());
+        top.setBackground(Color.white);
         
-        JLabel titolo = new JLabel("Titolo :");
-        JLabel descrizione = new JLabel("Descrizione :");
-        JLabel prezzo = new JLabel("Prezzo :");
-        JLabel telefono = new JLabel("Telefono :");
-        JLabel email = new JLabel("Email :");
+        JPanel panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.white);
         
-        SpinnerNumberModel prezzoModel = new SpinnerNumberModel(0, 0, 999, 1);  
+        nome = new JTextArea("");
+        descrizione = new JTextArea("");
         
-        titolo2 = new JTextArea("");
-        descrizione2 = new JTextArea("");
-        prezzo2 = new JSpinner(prezzoModel);
-        JLabel email2 = new JLabel(Applicazione.guest.getEmail());
-        JCheckBox telefono2 = new JCheckBox("Vuoi far vedere il tuo numero?");
-         
-        JScrollPane scrollPanel = new JScrollPane(descrizione2);
+        nomePanel = new JPanel();
+        nomePanel.setBackground(Color.white);
+        descrizionePanel = new JPanel();
+        descrizionePanel.setBackground(Color.white);
         
-        descrizione2.setLineWrap(true);
-        descrizione2.setWrapStyleWord(true);
-        titolo2.setLineWrap(true);
+        nomePanel.setBorder(BorderFactory.createTitledBorder("Titolo"));
+        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
-        JLabel euro = new JLabel("€");
-        euro.setFont(new Font("Arial", Font.PLAIN, 20));
-        prezzo2.setFont(new Font("Arial", Font.PLAIN, 20));
-        ((DefaultEditor)prezzo2.getEditor()).getTextField().setEditable(false);
+        nome.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         
-        JButton aggiungi = new JButton("Aggiungi");
-        AggiungiLibro aggiungiLibro = new AggiungiLibro(titolo2, descrizione2, prezzo2,telefono2);
+        nome.setBackground(Color.white);
+        nome.setForeground(Color.BLACK);
+        descrizione.setBackground(Color.white);
+        descrizione.setForeground(Color.BLACK);
+        
+        JScrollPane scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelNome.setPreferredSize(new Dimension(250, 50));
+        nome.setLineWrap(true);
+        nome.setWrapStyleWord(true);
+        
+        JScrollPane scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDescrizione.setPreferredSize(new Dimension(250, 100));
+        descrizione.setLineWrap(true);
+        descrizione.setWrapStyleWord(true);
+        
+        nomePanel.add(scrollPanelNome);
+        descrizionePanel.add(scrollPanelDescrizione);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(nomePanel, gbc);
+        
+        telefono = new JCheckBox("Vuoi far vedere il tuo numero?");
+        telefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        telefono.setBorder(BorderFactory.createTitledBorder("Telefono"));
+        telefono.setBackground(Color.white);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(telefono, gbc);
+        
+        SpinnerNumberModel prezzoModel = new SpinnerNumberModel(0, 0, 999, 1);
+        prezzo = new JSpinner(prezzoModel);
+        ((DefaultEditor) prezzo.getEditor()).getTextField().setEditable(false);
+        prezzo.setPreferredSize(new Dimension(150, 30));
+        prezzo.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        prezzo.setBackground(Color.white);
+        JComponent editor = prezzo.getEditor();
+        JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)editor;
+        spinnerEditor.getTextField().setHorizontalAlignment(JTextField.CENTER);
+        
+        euro = new JLabel("€");
+        euro.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        euro.setBackground(Color.white);
+        
+        prezzoPanel = new JPanel();
+        prezzoPanel.add(euro);
+        prezzoPanel.add(prezzo);
+        prezzoPanel.setBorder(BorderFactory.createTitledBorder("Prezzo"));
+        prezzoPanel.setBackground(Color.white);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(prezzoPanel, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(descrizionePanel, gbc);
+        
+        Icon aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        aggiungi = new JButton(aggiungiNormal);
+        aggiungi.setBorder(BorderFactory.createEmptyBorder());
+        aggiungi.setContentAreaFilled(false);
+        Icon aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        aggiungi.setRolloverIcon(aggiungiHover);
+        Icon aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        aggiungi.setPressedIcon(aggiungiPressed);
+        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        aggiungi.setForeground(Color.white);
+        aggiungi.setIconTextGap(-88);
+        aggiungi.setPreferredSize(new Dimension(110, 40));
+        aggiungi.setEnabled(true);
+        aggiungi.setText("AGGIUNGI");
+        AggiungiLibro aggiungiLibro = new AggiungiLibro(nome, descrizione, prezzo, telefono);
         aggiungi.addActionListener(aggiungiLibro);
         
-        prezzoPanel.add(euro);
-        prezzoPanel.add(prezzo2);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        gbc.insets = new Insets(20, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(aggiungi, gbc);
         
-        panel.add(titolo);
-        panel.add(titolo2);
-        panel.add(descrizione);
-        panel.add(scrollPanel);
-        panel.add(prezzo);
-        panel.add(prezzoPanel);
-        panel.add(telefono);
-        panel.add(telefono2);
-        panel.add(email);
-        panel.add(email2);
-        
-        panel.add(aggiungi);
-        
-        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 450));
-        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
+        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanel.setPreferredSize(new Dimension(650, 450));
         
         add(top);
-        add(scrollPanel1);
-     
+        add(scrollPanel);
+        
     }
     
     public static void clearForm(){
-    
-        titolo2.setText("");
-        descrizione2.setText("");
-        prezzo2.setValue(0);
+        
+        nome.setText("");
+        descrizione.setText("");
     }
 }

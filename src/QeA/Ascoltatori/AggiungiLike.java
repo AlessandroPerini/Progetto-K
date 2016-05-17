@@ -11,10 +11,10 @@ import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
-import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,7 +44,7 @@ public class AggiungiLike implements ActionListener{
                 DeleteQuery.eliminaLikeDomanda();
                 Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()-1);
                 Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
-                like.setBackground(null);
+                like.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
                 
             }else{
                 
@@ -52,7 +52,7 @@ public class AggiungiLike implements ActionListener{
                 InsertQuery.updateLikeDomanda();
                 Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()+1);
                 Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
-                like.setBackground(Color.blue);
+                like.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
             }
            
             Applicazione.svuotaRisposte();

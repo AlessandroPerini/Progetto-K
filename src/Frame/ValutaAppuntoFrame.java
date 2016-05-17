@@ -35,7 +35,7 @@ public class ValutaAppuntoFrame{
     private JSlider punteggio;
     private JFrame valutaFrame;
     private JLabel titoloFrame;
-    private JPanel container, titolo, body;
+    private JPanel container, titolo, body, commentoPanel;;
     private JButton annulla, conferma;
 
     public ValutaAppuntoFrame() {
@@ -81,9 +81,12 @@ public class ValutaAppuntoFrame{
         gbc.insets = new Insets(20, 325, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         body.add(punteggio, gbc);
+
+        commentoPanel = new JPanel();
+        commentoPanel.setBackground(Color.white);
+        commentoPanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
         commento = new JTextArea();
-        commento.setBorder(BorderFactory.createTitledBorder("Commento"));
         commento.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         commento.setBackground(Color.white);
         commento.setForeground(Color.BLACK);
@@ -91,11 +94,12 @@ public class ValutaAppuntoFrame{
         scrollPanel.setPreferredSize(new Dimension(300, 200));
         commento.setLineWrap(true);
         commento.setWrapStyleWord(true);
+        commentoPanel.add(scrollPanel);
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 325, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(scrollPanel, gbc);
+        body.add(commentoPanel, gbc);
         
         Icon annullaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
         annulla = new JButton(annullaNormal);

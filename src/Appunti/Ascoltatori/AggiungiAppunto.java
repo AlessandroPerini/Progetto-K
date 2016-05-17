@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
@@ -36,6 +37,7 @@ public class AggiungiAppunto implements ActionListener{
     private JButton bottone;
     private JButton botton2;
     private GifFrame gif;
+    private JPanel nomePanel, descrizionePanel;
     
     public AggiungiAppunto(JTextArea nome, JTextArea descrizione, File file, JButton bottone, JButton botton2) {
         this.nome = nome;

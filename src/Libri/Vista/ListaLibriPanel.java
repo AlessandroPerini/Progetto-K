@@ -143,6 +143,7 @@ public class ListaLibriPanel extends JPanel{
                 GoToLibro goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID());
                 libriLabel[i]= new JLabel();
                 libri[i] = new JLabel(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libri[i].setToolTipText(Applicazione.listaLibriAttuali.get(i).getTitolo());
                 libriLabel[i].setLayout(new BoxLayout(libriLabel[i], BoxLayout.X_AXIS));
                 libriLabel[i].setPreferredSize(new Dimension(220, 30));
                 libri[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -152,7 +153,7 @@ public class ListaLibriPanel extends JPanel{
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, -7, 0, 10);
-                gbcd.anchor = GridBagConstraints.NORTH;
+                gbcd.anchor = GridBagConstraints.CENTER;
                 panel.add(libriLabel[i], gbcd);
              
             }

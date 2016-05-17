@@ -31,6 +31,7 @@ public class ListaFacoltàPanel extends JPanel{
 
     private JLabel[] facoltà = new JLabel[Applicazione.listaFacoltàAttuali.size()];
     private JPanel[] panels = new JPanel[Applicazione.listaRamiFacoltà.size()];
+    private JPanel[] innerPanels = new JPanel[Applicazione.listaRamiFacoltà.size()];
     private JScrollPane[] scrollP = new JScrollPane[Applicazione.listaRamiFacoltà.size()];
    
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
@@ -57,15 +58,18 @@ public class ListaFacoltàPanel extends JPanel{
                     System.out.println("Errore durante il caricamento delle facoltà per ramo");
                 }
                 
-                panels[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 5));
+                panels[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 10));
                 panels[i].setBackground(Color.white);
+                
+                innerPanels[i] = new JPanel();
+                innerPanels[i].setBackground(Color.white);
                 
                 scrollP[i] = new JScrollPane();
                 titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
                 
                 titoloBordo[i].setTitleFont(new Font("Century Gothic", Font.BOLD, 17));
                 titoloBordo[i].setTitleColor(new Color(0,85,118));
-                panels[i].setBorder(titoloBordo[i]);
+                innerPanels[i].setBorder(titoloBordo[i]);
 
                 for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
                     facoltà[j] = new JLabel();
@@ -81,12 +85,13 @@ public class ListaFacoltàPanel extends JPanel{
                 scrollBar.setBackground(Color.white);
                 scrollBar.setPreferredSize(new Dimension(0, 20));
                 scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                scrollP[i].setPreferredSize(new Dimension(30, 210));
+                scrollP[i].setPreferredSize(new Dimension(252, 182));
                 scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
-                scrollP[i].getVerticalScrollBar().setUnitIncrement(16);
+                scrollP[i].getVerticalScrollBar().setUnitIncrement(24);
                 scrollP[i].setVerticalScrollBar(scrollBar);
                 scrollP[i].setBackground(Color.white);
-                panel.add(scrollP[i]);
+                innerPanels[i].add(scrollP[i]);
+                panel.add(innerPanels[i]);
                 svuotaListaFacoltàXRamo();
                 
             }

@@ -5,186 +5,163 @@
  */
 package Libri.Vista;
 
-import Libri.Ascoltatori.EliminaLibro;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.EliminaAppunto;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
-import Preferiti.Facoltà.Ascoltatori.AggiungiLibroPreferito;
-import Preferiti.Facoltà.Ascoltatori.RimuoviLibroPreferito;
+import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 /**
  *
  * @author cl410688
  */
 public class LibroPanel extends JPanel{
+
+    private JPanel top, panel, preferitiPanel, descrizionePanel;
+    private JLabel email, telefono, prezzo;
+    private JTextArea descrizione;
+    private JScrollPane scrollPanel;
     
-    private TopPanel top;
-    private JPanel panel;
-    private JLabel titolo, titolo2, descrizione, prezzo, prezzo2, telefono, telefono2, email, email2;
-    private JTextArea descrizione2;
-    private JScrollPane scrollPanel, scrollPanel1;
-    private JButton elimina;
-            
     public LibroPanel() {
         
-        top = new TopPanel(Applicazione.libroAttuale.getTitolo());
+        setBackground(Color.white);
         
-        panel = new JPanel();
-        
-        this.build();
-       
-        scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 450));
-        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
-        
-        add(top);
-        add(scrollPanel1);
-     
-    }
-    
-    public void build(){
-        
-        panel.setLayout(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
-
+        GridBagConstraints gbc2 = new GridBagConstraints();
+        
+        top = new TopPanel(Applicazione.libroAttuale.getTitolo());
+        top.setBackground(Color.white);
+        
+        panel = new JPanel(new GridBagLayout());
+        panel.setBackground(Color.white);
+        
+        preferitiPanel = new JPanel();
+        preferitiPanel.setBackground(Color.white);
+        preferitiPanel.setPreferredSize(new Dimension(650, 35));
+        
         //preferito
         JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        preferitiOn.setBackground(Color.white);
+        preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
+        
         JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
+        preferitiOff.setBackground(Color.white);
+        preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
-        AggiungiLibroPreferito aggiungiLibroPreferito = new AggiungiLibroPreferito();
-        preferitiOff.addActionListener(aggiungiLibroPreferito);
+        AggiungiAppuntoPreferito aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
+        preferitiOff.addActionListener(aggiungiAppuntoPreferito);
         
-        RimuoviLibroPreferito rimuoviLibroPreferito = new RimuoviLibroPreferito();
-        preferitiOn.addActionListener(rimuoviLibroPreferito);
+        RimuoviAppuntoPreferito rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
+        preferitiOn.addActionListener(rimuoviAppuntoPreferito);
         
         try {
             if (ControlloQuery.controlloLibroPreferito()) {
-                panel.add(preferitiOff);
+                preferitiPanel.add(preferitiOff);
             }
             else {
-                panel.add(preferitiOn);
+                preferitiPanel.add(preferitiOn);
             }
         } catch (SQLException ex) {
-            System.out.println("Errore durante il controllo del libro preferito");
+            System.out.println("Errore durante il controllo dell'appunto preferito");
         }//fine zona preferito
         
-        //prima riga - colonna 0
-        this.titolo = new JLabel("titolo");
-	gbc.gridx = 0;
-	gbc.gridy = 0;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
-	panel.add(this.titolo, gbc);
+        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.libroAttuale.getStudente()+"</html>");
+        email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(email, gbc);
         
-        //colonna 1
-        this.titolo2 = new JLabel(Applicazione.libroAttuale.getTitolo());
-	gbc.gridx = 1;
-	gbc.gridy = 0;
-	gbc.insets = new Insets(10, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.titolo2, gbc);
+        telefono = new JLabel("<html><b>Telefono: </b>"+Applicazione.libroAttuale.getTelefono()+"</html>");
+        telefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(telefono, gbc);
         
-        //seconda riga - colonna 0
+        prezzo = new JLabel("<html><b>Prezzo: </b>"+Applicazione.libroAttuale.getPrezzo()+" €</html>");
+        prezzo.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(prezzo, gbc);
+
+        descrizionePanel = new JPanel();
+        descrizionePanel.setBackground(Color.white);
+        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
-        this.descrizione = new JLabel("descrizione:");
-	gbc.gridx = 0;
-	gbc.gridy = 1;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
-	panel.add(this.descrizione, gbc);
+        descrizione = new JTextArea(Applicazione.libroAttuale.getDescrizione());
+        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 16));
+        descrizione.setBackground(new Color(239,242,243));
+        scrollPanel = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setPreferredSize(new Dimension(300, 150));
+        descrizione.setLineWrap(true);
+        descrizione.setWrapStyleWord(true);
+        descrizione.setEditable(false);
+        descrizionePanel.add(scrollPanel);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        panel.add(descrizionePanel, gbc);
+                
+        Icon eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
+        JButton elimina = new JButton(eliminaNormal);
+        elimina.setBorder(BorderFactory.createEmptyBorder());
+        elimina.setContentAreaFilled(false);
+        Icon eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
+        elimina.setRolloverIcon(eliminaHover);
+        Icon eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
+        elimina.setPressedIcon(eliminaPressed);
+        elimina.setText("ELIMINA");
+        elimina.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        elimina.setForeground(Color.white);
+        elimina.setIconTextGap(-81);
+        elimina.setPreferredSize(new Dimension(110, 40));
         
-        //colonna 1
-        this.descrizione2 = new JTextArea(Applicazione.libroAttuale.getDescrizione(),7,30);
-        descrizione2.setEditable(false);
-        descrizione2.setLineWrap(true);
-        descrizione2.setWrapStyleWord(true);
-        
-        this.scrollPanel = new JScrollPane();
-        scrollPanel.setViewportView(descrizione2);
-        scrollPanel.setWheelScrollingEnabled(true);
-	gbc.gridx = 1;
-	gbc.gridy = 1;
-	gbc.insets = new Insets(20, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.scrollPanel, gbc);
-        
-        // terza riga - colonna 0
-        
-        this.prezzo = new JLabel("prezzo:");
-	gbc.gridx = 0;
-	gbc.gridy = 2;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
-	panel.add(this.prezzo, gbc);
-        
-        //colonna 1
-        this.prezzo2 = new JLabel(""+Applicazione.libroAttuale.getPrezzo());
-	gbc.gridx = 1;
-	gbc.gridy = 2;
-	gbc.insets = new Insets(5, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.prezzo2, gbc);
-        
-        // quarta riga - colonna 0
-        
-        this.telefono = new JLabel("telefono:");
-	gbc.gridx = 0;
-	gbc.gridy = 3;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
-	panel.add(this.telefono, gbc);
-        
-        //colonna 1
-        this.telefono2 = new JLabel(Applicazione.libroAttuale.getTelefono());
-	gbc.gridx = 1;
-	gbc.gridy = 3;
-	gbc.insets = new Insets(5, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.telefono2, gbc);
-        
-        // quita riga colonna 0
-        
-        this.email = new JLabel("email:");
-	gbc.gridx = 0;
-	gbc.gridy = 4;
-	gbc.insets = new Insets(5, 0, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_END;
-	panel.add(this.email, gbc);
-        
-        //colonna 1
-        this.email2 = new JLabel(Applicazione.libroAttuale.getStudente());
-	gbc.gridx = 1;
-	gbc.gridy = 4;
-	gbc.insets = new Insets(5, 30, 0, 10);
-	gbc.anchor = GridBagConstraints.LINE_START;
-	panel.add(this.email2, gbc);
-        
+        elimina.setBackground(new Color(249,123,123));
+        EliminaAppunto eliminaAppunto = new EliminaAppunto(elimina, elimina);
+        elimina.addActionListener(eliminaAppunto);
+
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            EliminaLibro eliminaLibro = new EliminaLibro();
-            this.elimina = new JButton("Elimina");
-            elimina.setBackground(new Color(249,123,123));
-            gbc.gridx = 1;
-            gbc.gridy = 5;
-            gbc.insets = new Insets(5, 30, 0, 10);
-            gbc.anchor = GridBagConstraints.LINE_START;
-            elimina.addActionListener(eliminaLibro);
-            panel.add(this.elimina, gbc);
+            panel.add(elimina);
+            gbc.gridx = 0;
+            gbc.gridy = 4;
+            gbc.insets = new Insets(30, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.CENTER;
+            panel.add(elimina, gbc);
         }
-    }
+        
+        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel1.setPreferredSize(new Dimension(650, 400));
+        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
+        
+        add(top);
+        add(preferitiPanel);
+        add(scrollPanel1);
 
+    }
     
 }
     

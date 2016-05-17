@@ -7,14 +7,12 @@ package Appunti.Vista;
 
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
-import Header.Ascoltatori.Back;
 import Header.Vista.TopPanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,12 +22,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -37,12 +33,12 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiAppuntoPanel extends JPanel{
     
-    private static JTextArea nome = new JTextArea();
-    private static JTextArea descrizione = new JTextArea();
+    private static JTextArea nome, descrizione;
     private static JTextField persorsoFile;
     private JFileChooser fileChooser;
     private File fileAppunto;
-    private JButton scegliFile;
+    private JButton scegliFile, aggiungi;
+    private JPanel filePanel, nomePanel, descrizionePanel;;
     
     public AggiungiAppuntoPanel() {
         
@@ -59,11 +55,16 @@ public class AggiungiAppuntoPanel extends JPanel{
         nome = new JTextArea("");
         descrizione = new JTextArea("");
         
-        nome.setBorder(BorderFactory.createTitledBorder("Nome"));
-        descrizione.setBorder(BorderFactory.createTitledBorder("Descrizione"));
+        nomePanel = new JPanel();
+        nomePanel.setBackground(Color.white);
+        descrizionePanel = new JPanel();
+        descrizionePanel.setBackground(Color.white);
+        
+        nomePanel.setBorder(BorderFactory.createTitledBorder("Nome"));
+        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
         nome.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         
         nome.setBackground(Color.white);
         nome.setForeground(Color.BLACK);
@@ -80,20 +81,23 @@ public class AggiungiAppuntoPanel extends JPanel{
         descrizione.setLineWrap(true);
         descrizione.setWrapStyleWord(true);
         
+        nomePanel.add(scrollPanelNome);
+        descrizionePanel.add(scrollPanelDescrizione);
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(scrollPanelNome, gbc);
+        panel.add(nomePanel, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.insets = new Insets(30, 0, 0, 0);
+        gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(scrollPanelDescrizione, gbc);
+        panel.add(descrizionePanel, gbc);
         
         Icon aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        JButton aggiungi = new JButton(aggiungiNormal);
+        aggiungi = new JButton(aggiungiNormal);
         aggiungi.setBorder(BorderFactory.createEmptyBorder());
         aggiungi.setContentAreaFilled(false);
         Icon aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
@@ -101,14 +105,14 @@ public class AggiungiAppuntoPanel extends JPanel{
         Icon aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         aggiungi.setPressedIcon(aggiungiPressed);
         aggiungi.setText("INSERISCI FILE");
-        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 12));
+        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         aggiungi.setForeground(Color.white);
-        aggiungi.setIconTextGap(-90);
+        aggiungi.setIconTextGap(-95);
         aggiungi.setPreferredSize(new Dimension(110, 40));
         aggiungi.setEnabled(false);
         
         //file
-        JPanel filePanel = new JPanel();
+        filePanel = new JPanel();
         persorsoFile = new JTextField(18);
         persorsoFile.setEditable(false);
         persorsoFile.setBackground(Color.white );
@@ -128,15 +132,14 @@ public class AggiungiAppuntoPanel extends JPanel{
                     persorsoFile.setText(fileAppunto.getAbsolutePath());
                     aggiungi.setEnabled(true);
                     aggiungi.setText("AGGIUNGI");
-                    aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-                    aggiungi.setIconTextGap(-90);
+                    aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+                    aggiungi.setIconTextGap(-88);
                     AggiungiAppunto aggiungiAppunto = new AggiungiAppunto(nome, descrizione, fileAppunto, aggiungi, scegliFile);
                     aggiungi.addActionListener(aggiungiAppunto);
                 }
                 
             }
         });
-        
         
         filePanel.add(persorsoFile);
         filePanel.add(scegliFile);
@@ -146,13 +149,13 @@ public class AggiungiAppuntoPanel extends JPanel{
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.insets = new Insets(40, 0, 0, 0);
+        gbc.insets = new Insets(30, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(filePanel, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.insets = new Insets(50, 0, 0, 0);
+        gbc.insets = new Insets(40, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(aggiungi, gbc);
         

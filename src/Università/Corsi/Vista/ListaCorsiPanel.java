@@ -35,6 +35,7 @@ public class ListaCorsiPanel extends JPanel{
     
     private JLabel[] corsi = new JLabel[Applicazione.listaCorsiAttuali.size()];
     private JPanel[] panels = new JPanel[3];
+    private JPanel[] innerPanels = new JPanel[3];
     private JScrollPane[] scrollP = new JScrollPane[3];
     
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
@@ -92,15 +93,18 @@ public class ListaCorsiPanel extends JPanel{
             
             Ordina.CorsiXAnno();
             
-            panels[i] = new JPanel(new GridLayout(Applicazione.listaCorsiXAnno.size()+1, 1, 0, 5));
+            panels[i] = new JPanel(new GridLayout(Applicazione.listaCorsiXAnno.size()+1, 1, 0, 15));
             panels[i].setBackground(Color.white);
+            
+            innerPanels[i] = new JPanel();
+            innerPanels[i].setBackground(Color.white);
             
             scrollP[i] = new JScrollPane();
             titoloBordo[i] = new TitledBorder(""+(i+1)+"° Anno");
             
             titoloBordo[i].setTitleFont(new Font("Century Gothic", Font.BOLD, 17));
             titoloBordo[i].setTitleColor(new Color(0,85,118));
-            panels[i].setBorder(titoloBordo[i]);
+            innerPanels[i].setBorder(titoloBordo[i]);
             
             for (int j = 0; j < Applicazione.listaCorsiXAnno.size(); j++) {
                 corsi[j] = new JLabel();
@@ -115,13 +119,14 @@ public class ListaCorsiPanel extends JPanel{
             JScrollBar scrollBar = new JScrollBar();
             scrollBar.setBackground(Color.white);
             scrollBar.setPreferredSize(new Dimension(0, 20));
-            scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scrollP[i].setPreferredSize(new Dimension(220, 320));
+            scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollP[i].setPreferredSize(new Dimension(200, 270));
             scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
             scrollP[i].getVerticalScrollBar().setUnitIncrement(16);
             scrollP[i].setVerticalScrollBar(scrollBar);
             scrollP[i].setBackground(Color.white);
-            panel.add(scrollP[i]);
+            innerPanels[i].add(scrollP[i]);
+            panel.add(innerPanels[i]);
             Applicazione.svuotaCorsiXAnno();
             
         }
