@@ -56,6 +56,8 @@ public class iMieiDatiPanel extends JPanel{
     private JButton  appuntiPreferitiLabel,
             libriPreferitiLabel, domandePreferiteLabel;
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
+   private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
+   private ImageIcon  search, searchPressed, searchHover;
     private CardLayout cardLayout = new CardLayout();
     
     public iMieiDatiPanel() {
@@ -72,30 +74,39 @@ public class iMieiDatiPanel extends JPanel{
         
         appPanel = new JPanel(new GridBagLayout());
         appPanel.setBackground(Color.white);
+        scrollPanel = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setPreferredSize(new Dimension(650, 400));
+        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         libPanel = new JPanel(new GridBagLayout());
         libPanel.setBackground(Color.white);
+        scrollPanel2 = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel2.setPreferredSize(new Dimension(650, 400));
+        scrollPanel2.getVerticalScrollBar().setUnitIncrement(16);
         domPanel = new JPanel(new GridBagLayout());
         domPanel.setBackground(Color.white);
+        scrollPanel3 = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel3.setPreferredSize(new Dimension(650, 400));
+        scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
         
       
-        centro.add(appPanel,"appuntiPreferiti");
-        centro.add(libPanel,"libriPreferiti");
-        centro.add(domPanel,"domandePreferite");
+        centro.add(scrollPanel,"appuntiPreferiti");
+        centro.add(scrollPanel2,"libriPreferiti");
+        centro.add(scrollPanel3,"domandePreferite");
         
         GridBagConstraints gbc = new GridBagConstraints();
         GridBagConstraints gbcd = new GridBagConstraints();
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
         
-      ImageIcon  search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
+       search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
           appuntiPreferitiLabel = new JButton("Appunti",search);
         
         appuntiPreferitiLabel.setPreferredSize(new Dimension(120,25));
         appuntiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
         appuntiPreferitiLabel.setContentAreaFilled(false);
-        ImageIcon searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         appuntiPreferitiLabel.setRolloverIcon(searchHover);
-         ImageIcon searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+       searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         appuntiPreferitiLabel.setPressedIcon(searchPressed);
         
         appuntiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -106,6 +117,9 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "appuntiPreferiti");
+                appuntiPreferitiLabel.setIcon(searchHover);
+                domandePreferiteLabel.setIcon(search);
+                libriPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 0;
@@ -153,6 +167,10 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "libriPreferiti");
+                libriPreferitiLabel.setIcon(searchHover);
+                domandePreferiteLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(search);
+  
             }
         });
         gbc.gridx = 1;
@@ -199,6 +217,9 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "domandePreferite");
+                domandePreferiteLabel.setIcon(searchHover);
+                libriPreferitiLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 2;
@@ -227,11 +248,9 @@ public class iMieiDatiPanel extends JPanel{
         }
         panel.add(nord,BorderLayout.NORTH);
         panel.add(centro,BorderLayout.CENTER);
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 450));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        
         
         add(top);
-        add(scrollPanel);
+        add(panel);
     }
 }
