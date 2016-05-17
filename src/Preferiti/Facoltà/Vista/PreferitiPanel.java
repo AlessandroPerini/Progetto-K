@@ -65,6 +65,7 @@ public class PreferitiPanel extends JPanel{
     
     private JButton facoltàPreferiteLabel, corsiPreferitiLabel, appuntiPreferitiLabel,
             libriPreferitiLabel, domandePreferiteLabel;
+      private ImageIcon  search, searchPressed, searchHover;
     private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
     private CardLayout cardLayout = new CardLayout();
     
@@ -100,16 +101,16 @@ public class PreferitiPanel extends JPanel{
         GridBagConstraints gbcd = new GridBagConstraints();
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
-        ImageIcon search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
+        search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
         
         facoltàPreferiteLabel = new JButton("Facoltà",search);
         
         facoltàPreferiteLabel.setPreferredSize(new Dimension(120,25));
         facoltàPreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
         facoltàPreferiteLabel.setContentAreaFilled(false);
-        ImageIcon searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         facoltàPreferiteLabel.setRolloverIcon(searchHover);
-        ImageIcon searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         facoltàPreferiteLabel.setPressedIcon(searchPressed);
         
         facoltàPreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -120,6 +121,11 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "facoltàPreferite");
+                 facoltàPreferiteLabel.setIcon(searchPressed);
+                corsiPreferitiLabel.setIcon(search);
+                 libriPreferitiLabel.setIcon(search);
+                domandePreferiteLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 0;
@@ -165,6 +171,11 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "corsiPreferiti");
+                facoltàPreferiteLabel.setIcon(search);
+                corsiPreferitiLabel.setIcon(searchPressed);
+                 libriPreferitiLabel.setIcon(search);
+                domandePreferiteLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 1;
@@ -210,6 +221,11 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "appuntiPreferiti");
+                facoltàPreferiteLabel.setIcon(search);
+                corsiPreferitiLabel.setIcon(search);
+                 libriPreferitiLabel.setIcon(search);
+                domandePreferiteLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(searchPressed);
             }
         });
         gbc.gridx = 2;
@@ -257,6 +273,11 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "libriPreferiti");
+                facoltàPreferiteLabel.setIcon(search);
+                corsiPreferitiLabel.setIcon(search);
+                 libriPreferitiLabel.setIcon(searchPressed);
+                domandePreferiteLabel.setIcon(search);
+                appuntiPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 3;
@@ -303,6 +324,11 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "domandePreferite");
+                facoltàPreferiteLabel.setIcon(search);
+                corsiPreferitiLabel.setIcon(search);
+                 libriPreferitiLabel.setIcon(search);
+                domandePreferiteLabel.setIcon(searchPressed);
+                appuntiPreferitiLabel.setIcon(search);
             }
         });
         gbc.gridx = 4;

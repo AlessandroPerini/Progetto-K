@@ -45,6 +45,7 @@ public class GoToAppunto implements MouseListener{
             if(e.getComponent() instanceof JButton) {
                 JButton button = (JButton)e.getComponent();
                 text = button.getText();
+                
             }
             
             String parts[] = text.split("          ");
