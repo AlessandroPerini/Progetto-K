@@ -20,6 +20,10 @@ import Studente.Ascoltatori.GoToPreferiti;
 import Studente.Ascoltatori.Logout;
 import Studente.Ascoltatori.ModificaNickname;
 import Studente.Ascoltatori.ModificaNumero;
+import java.awt.Color;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -29,24 +33,52 @@ public class AccountPanel extends JPanel{
     
     private static JLabel email;
     private static JTextField phone, nick;
-    private JButton back, preferiti, cambiaNumero, cambiaNickname;
+    private JButton backButton, preferiti, cambiaNumero, cambiaNickname;
     private JLabel title;
-    int nClickTel = 0;
-    int nClickNick = 0;
+    private int nClickTel = 0;
+    private int nClickNick = 0;
+    private Icon backNormal, backHover, backPressed;
+    private JPanel body, emailRow, nickRow, centro;
     public AccountPanel() {
         
         setPreferredSize(new Dimension(700, 450));
         
         //top panel
         JPanel top = new JPanel();
-
-        back = new JButton("Back");
-        Back back2 = new Back();
-        back.addActionListener(back2);
-        back.setPreferredSize(new Dimension(110, 40));
+        this.setBackground(Color.white);
+        top.setBackground(Color.white);
         
-        preferiti = new JButton("★Preferiti★");
-        preferiti.setPreferredSize(new Dimension(110, 40));
+
+        backNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        backButton = new JButton(backNormal);
+        backButton.setBorder(BorderFactory.createEmptyBorder());
+        backButton.setContentAreaFilled(false);
+        backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        backButton.setRolloverIcon(backHover);
+        backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        backButton.setPressedIcon(backPressed);
+        backButton.setText("<   BACK");
+        backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        backButton.setForeground(Color.white);
+        backButton.setIconTextGap(-85);
+        Back back = new Back();
+        backButton.addActionListener(back);
+        backButton.setPreferredSize(new Dimension(110, 40));
+        
+        
+        
+        preferiti = new JButton("PREFERITI");
+        preferiti.setForeground(Color.white);
+        preferiti.setBorder(BorderFactory.createEmptyBorder());
+        preferiti.setContentAreaFilled(false);
+        backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        preferiti.setRolloverIcon(backHover);
+        backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        preferiti.setPressedIcon(backPressed);
+        preferiti.setIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")));
+        preferiti.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        preferiti.setIconTextGap(-85);
+        preferiti.setPreferredSize(new Dimension(100, 40));
         GoToPreferiti goToPreferiti = new GoToPreferiti();
         preferiti.addActionListener(goToPreferiti);
         
@@ -55,36 +87,62 @@ public class AccountPanel extends JPanel{
         title.setFont(new Font("Arial", Font.BOLD, 35));
         title.setPreferredSize(new Dimension(420, 40));
         
-        top.add(back);
+        top.add(backButton);
         top.add(title);
         top.add(preferiti);
         //end top panel
         
         //body panel
-        JPanel body = new JPanel((new GridLayout(5, 1, 0, 20)));
+        body = new JPanel((new GridLayout(5, 1, 0, 20)));
+        body.setBackground(Color.white);
         
-        JPanel emailRow = new JPanel();
-        JPanel nickRow = new JPanel();
+        emailRow = new JPanel();
+        emailRow.setBackground(Color.white);
+        nickRow = new JPanel();
+        nickRow.setBackground(Color.white);
         JPanel phoneRow = new JPanel();
+        phoneRow.setBackground(Color.white);
         
-        JButton logout = new JButton("Logout");
-        logout.setPreferredSize(new Dimension(120, 75));
+        Icon logoutNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
+        JButton logout = new JButton("Logout",logoutNormal);
+        logout.setBorder(BorderFactory.createEmptyBorder());
+        logout.setContentAreaFilled(false);
+        Icon eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
+        logout.setRolloverIcon(eliminaHover);
+        Icon eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
+        logout.setPressedIcon(eliminaPressed);
+        logout.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        logout.setForeground(Color.white);
+        logout.setIconTextGap(-81);
+        logout.setPreferredSize(new Dimension(110, 40));
         Logout logout2 = new Logout();
         logout.addActionListener(logout2);
         
         JPanel logoutPanel = new JPanel();
+        logoutPanel.setBackground(Color.white);
         logoutPanel.add(logout);
         
         JButton iMieiDati = new JButton("Mie Attività");
-        iMieiDati.setPreferredSize(new Dimension(120, 75));
+        iMieiDati.setForeground(Color.white);
+        iMieiDati.setBorder(BorderFactory.createEmptyBorder());
+        iMieiDati.setContentAreaFilled(false);
+        iMieiDati.setRolloverIcon(backHover);
+        iMieiDati.setPressedIcon(backPressed);
+        iMieiDati.setIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")));
+        iMieiDati.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        iMieiDati.setIconTextGap(-85);
+        iMieiDati.setPreferredSize(new Dimension(100, 40));
         CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati();
         iMieiDati.addActionListener(caricaIMieiDati);
         
         JPanel iMieiDatiPanel = new JPanel();
+        iMieiDatiPanel.setBackground(Color.white);
         iMieiDatiPanel.add(iMieiDati);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
                 + "-------------------------------------------------------------------------");
+        
+       
         
         JLabel emailLabel = new JLabel("Email: ");
         emailLabel.setFont(new Font("Arial", Font.BOLD, 20));
@@ -96,6 +154,7 @@ public class AccountPanel extends JPanel{
         nickLabel.setFont(new Font("Arial", Font.BOLD, 20));
         
         nick = new JTextField(Applicazione.guest.getNickname());
+        nick.setBackground(Color.white);
         nick.setEditable(false);
         nick.setFont(new Font("Arial", Font.PLAIN, 18));
         nick.setMinimumSize(new Dimension(20, 0));
@@ -107,12 +166,30 @@ public class AccountPanel extends JPanel{
         phone.setEditable(false);
         phone.setFont(new Font("Arial", Font.PLAIN, 18));
         phone.setMinimumSize(new Dimension(20, 0));
+        phone.setBackground(Color.white);
         
-        cambiaNumero = new JButton("Modifica");
+        cambiaNumero = new JButton();
+    
+        cambiaNumero .setBorder(BorderFactory.createEmptyBorder());
+        cambiaNumero .setContentAreaFilled(false);
+        cambiaNumero .setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
+        cambiaNumero .setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        cambiaNumero .setIconTextGap(-85);
+        cambiaNumero .setPreferredSize(new Dimension(30,30));
+       
+   
         ModificaNumero modificaNumero = new ModificaNumero(nClickTel, phone, cambiaNumero);
+        
         cambiaNumero.addActionListener(modificaNumero);
         
-        cambiaNickname = new JButton("Modifica");
+        cambiaNickname = new JButton();
+        cambiaNickname .setBorder(BorderFactory.createEmptyBorder());
+        cambiaNickname .setContentAreaFilled(false);
+        cambiaNickname .setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
+        cambiaNickname .setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        cambiaNickname .setIconTextGap(-85);
+        cambiaNickname .setPreferredSize(new Dimension(30,30));
+       
         ModificaNickname modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
         cambiaNickname.addActionListener(modificaNickname);
         

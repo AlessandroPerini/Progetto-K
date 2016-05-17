@@ -11,6 +11,7 @@ import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -35,11 +36,11 @@ public class ModificaNumero implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         nClick += 1;
         phone.setEditable(true);
-        cambiaNumero.setText("Conferma");
+        cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/conferma.png")));
         
         if ( nClick == 2){
             phone.setEditable(false);
-            cambiaNumero.setText("Modifica");
+            cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
             try {
                 if(!phone.getText().equals("")){
                     InsertQuery.updateTelefono(phone.getText());

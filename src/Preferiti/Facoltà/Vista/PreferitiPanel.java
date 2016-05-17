@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package Preferiti.Facoltà.Vista;
 
 import Application.Controller.Applicazione;
@@ -12,15 +12,23 @@ import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Ascoltatori.GoToCorso;
+import com.sun.org.apache.bcel.internal.generic.IMPDEP1;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
@@ -30,11 +38,23 @@ import javax.swing.JScrollPane;
  */
 public class PreferitiPanel extends JPanel{
     
-    private JButton[] facoltàPreferite = new JButton[Applicazione.preferiti.getFacoltàPreferite().size()];
-    private JButton[] corsiPreferiti = new JButton[Applicazione.preferiti.getCorsiPreferiti().size()];
-    private JButton[] appuntiPreferiti = new JButton[Applicazione.preferiti.getAppuntiPreferiti().size()];
-    private JButton[] libriPreferiti = new JButton[Applicazione.preferiti.getLibriPreferiti().size()];
-    private JButton[] domandePreferite = new JButton[Applicazione.preferiti.getDomandePreferite().size()];
+    private JLabel[] facoltàPreferite = new JLabel[Applicazione.preferiti.getFacoltàPreferite().size()];
+    private JLabel[] corsiPreferiti = new JLabel[Applicazione.preferiti.getCorsiPreferiti().size()];
+    private JLabel[] appuntiPreferiti = new JLabel[Applicazione.preferiti.getAppuntiPreferiti().size()];
+    private JLabel [] libriPreferiti = new JLabel[Applicazione.preferiti.getLibriPreferiti().size()];
+    private JLabel[] domandePreferite = new JLabel[Applicazione.preferiti.getDomandePreferite().size()];
+    
+    private JLabel[] facoltàPreferiteLab = new JLabel[Applicazione.preferiti.getFacoltàPreferite().size()];
+    private JLabel[] corsiPreferitiLab = new JLabel[Applicazione.preferiti.getCorsiPreferiti().size()];
+    private JLabel[] appuntiPreferitiLab = new JLabel[Applicazione.preferiti.getAppuntiPreferiti().size()];
+    private JLabel [] libriPreferitiLab = new JLabel[Applicazione.preferiti.getLibriPreferiti().size()];
+    private JLabel[] domandePreferiteLab = new JLabel[Applicazione.preferiti.getDomandePreferite().size()];
+    
+    private JLabel[] facoltàPreferiteIco = new JLabel[Applicazione.preferiti.getFacoltàPreferite().size()];
+    private JLabel[] corsiPreferitiIco = new JLabel[Applicazione.preferiti.getCorsiPreferiti().size()];
+    private JLabel[] appuntiPreferitiIco = new JLabel[Applicazione.preferiti.getAppuntiPreferiti().size()];
+    private JLabel [] libriPreferitiIco = new JLabel[Applicazione.preferiti.getLibriPreferiti().size()];
+    private JLabel[] domandePreferiteIco = new JLabel[Applicazione.preferiti.getDomandePreferite().size()];
     
     private GoToCorso[] goToCorso = new GoToCorso[Applicazione.preferiti.getCorsiPreferiti().size()];
     private GoToAppunto[] goToAppunto = new GoToAppunto[Applicazione.preferiti.getAppuntiPreferiti().size()];
@@ -42,26 +62,35 @@ public class PreferitiPanel extends JPanel{
     private GoToDomanda[] goToDomanda = new GoToDomanda[Applicazione.preferiti.getDomandePreferite().size()];
     
     private int n = Applicazione.preferiti.getFacoltàPreferite().size()+Applicazione.preferiti.getCorsiPreferiti().size()+
-                    Applicazione.preferiti.getAppuntiPreferiti().size()+Applicazione.preferiti.getLibriPreferiti().size()+
-                    Applicazione.preferiti.getDomandePreferite().size(); //totale righe preferiti (escluse le label)
-
-   private JButton facoltàPreferiteLabel, corsiPreferitiLabel, appuntiPreferitiLabel,
-           libriPreferitiLabel, domandePreferiteLabel;
-   private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
-   private CardLayout cardLayout = new CardLayout();
-   
+            Applicazione.preferiti.getAppuntiPreferiti().size()+Applicazione.preferiti.getLibriPreferiti().size()+
+            Applicazione.preferiti.getDomandePreferite().size(); //totale righe preferiti (escluse le label)
+    
+    private JButton facoltàPreferiteLabel, corsiPreferitiLabel, appuntiPreferitiLabel,
+            libriPreferitiLabel, domandePreferiteLabel;
+    private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
+    private CardLayout cardLayout = new CardLayout();
+    
     public PreferitiPanel() {
         TopPanel top = new TopPanel("Preferiti");
-        
+        top.setBackground(Color.white);
+        this.setBackground(Color.white);
         panel = new JPanel(new BorderLayout());
+        panel.setBackground(Color.white);
         nord = new JPanel(new GridBagLayout());
+        nord.setBackground(Color.white);
         centro = new JPanel();
+        centro.setBackground(Color.white);
         centro.setLayout(cardLayout);
         facPanel = new JPanel(new GridBagLayout());
+        facPanel.setBackground(Color.white);
         corsiPanel = new JPanel(new GridBagLayout());
+        corsiPanel.setBackground(Color.white);
         appPanel = new JPanel(new GridBagLayout());
+        appPanel.setBackground(Color.white);
         libPanel = new JPanel(new GridBagLayout());
+        libPanel.setBackground(Color.white);
         domPanel = new JPanel(new GridBagLayout());
+        domPanel.setBackground(Color.white);
         
         centro.add(facPanel,"facoltàPreferite");
         centro.add(corsiPanel,"corsiPreferiti");
@@ -73,9 +102,23 @@ public class PreferitiPanel extends JPanel{
         GridBagConstraints gbcd = new GridBagConstraints();
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
-        facoltàPreferiteLabel = new JButton("Facoltà Preferite");
-         facoltàPreferiteLabel.addActionListener(new ActionListener() {
-
+        ImageIcon search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
+        
+        facoltàPreferiteLabel = new JButton("Facoltà",search);
+        
+        facoltàPreferiteLabel.setPreferredSize(new Dimension(120,25));
+        facoltàPreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
+        facoltàPreferiteLabel.setContentAreaFilled(false);
+        ImageIcon searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        facoltàPreferiteLabel.setRolloverIcon(searchHover);
+        ImageIcon searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        facoltàPreferiteLabel.setPressedIcon(searchPressed);
+        
+        facoltàPreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        facoltàPreferiteLabel.setForeground(Color.white);
+        facoltàPreferiteLabel.setIconTextGap(-85);
+        facoltàPreferiteLabel.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "facoltàPreferite");
@@ -83,24 +126,44 @@ public class PreferitiPanel extends JPanel{
         });
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(5, 0, 0, 10);
+        gbc.insets = new Insets(5, 0, 0, 5);
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(facoltàPreferiteLabel, gbc);
         
         for (int i = 0; i < Applicazione.preferiti.getFacoltàPreferite().size(); i++) {
-            facoltàPreferite[i] = new JButton();
+            facoltàPreferite[i] = new JLabel();
+            facoltàPreferiteLab[i] = new JLabel();
+            facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
+            facoltàPreferiteLab[i].setLayout(new BoxLayout(facoltàPreferiteLab[i], BoxLayout.X_AXIS));
+            facoltàPreferiteLab[i].setPreferredSize(new Dimension(220, 30));
+            facoltàPreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+            facoltàPreferiteLab[i].add(facoltàPreferiteIco[i]);
+            facoltàPreferiteLab[i].add(facoltàPreferite[i]);
             facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
             facoltàPreferite[i].addMouseListener(caricaCorsi);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 5);
             gbcd.anchor = GridBagConstraints.CENTER;
-            facPanel.add(facoltàPreferite[i],gbcd);
+            facPanel.add(facoltàPreferiteLab[i],gbcd);
         }
         
-        corsiPreferitiLabel = new JButton("Corsi Preferiti");
-         corsiPreferitiLabel.addActionListener(new ActionListener() {
-
+         corsiPreferitiLabel = new JButton("Corsi",search);
+        
+        corsiPreferitiLabel.setPreferredSize(new Dimension(120,25));
+        corsiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
+        corsiPreferitiLabel.setContentAreaFilled(false);
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        corsiPreferitiLabel.setRolloverIcon(searchHover);
+         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        corsiPreferitiLabel.setPressedIcon(searchPressed);
+        
+        corsiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        corsiPreferitiLabel.setForeground(Color.white);
+        corsiPreferitiLabel.setIconTextGap(-78);
+        corsiPreferitiLabel.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "corsiPreferiti");
@@ -112,20 +175,40 @@ public class PreferitiPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(corsiPreferitiLabel, gbc);
         for (int i = 0; i < Applicazione.preferiti.getCorsiPreferiti().size(); i++) {
-            corsiPreferiti[i] = new JButton();
+            corsiPreferiti[i] = new JLabel();
+            corsiPreferitiLab[i] = new JLabel();
+            corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
+            corsiPreferitiLab[i].setLayout(new BoxLayout(corsiPreferitiLab[i], BoxLayout.X_AXIS));
+            corsiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
+            corsiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+            corsiPreferitiLab[i].add(corsiPreferitiIco[i]);
+            corsiPreferitiLab[i].add(corsiPreferiti[i]);
+            
             goToCorso[i] = new GoToCorso(Applicazione.preferiti.getCorsiPreferiti().get(i).getFacoltà());
             corsiPreferiti[i].addMouseListener(goToCorso[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 5);
             gbcd.anchor = GridBagConstraints.CENTER;
-            corsiPanel.add(corsiPreferiti[i],gbcd);
+            corsiPanel.add(corsiPreferitiLab[i],gbcd);
         }
         
-        appuntiPreferitiLabel = new JButton("Appunti Preferiti");
-         appuntiPreferitiLabel.addActionListener(new ActionListener() {
-
+          appuntiPreferitiLabel = new JButton("Appunti",search);
+        
+        appuntiPreferitiLabel.setPreferredSize(new Dimension(120,25));
+        appuntiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
+        appuntiPreferitiLabel.setContentAreaFilled(false);
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        appuntiPreferitiLabel.setRolloverIcon(searchHover);
+         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        appuntiPreferitiLabel.setPressedIcon(searchPressed);
+        
+        appuntiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        appuntiPreferitiLabel.setForeground(Color.white);
+        appuntiPreferitiLabel.setIconTextGap(-85);
+        appuntiPreferitiLabel.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "appuntiPreferiti");
@@ -137,21 +220,42 @@ public class PreferitiPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(appuntiPreferitiLabel, gbc);
         for (int i = 0; i < Applicazione.preferiti.getAppuntiPreferiti().size(); i++) {
-            appuntiPreferiti[i] = new JButton();
+            
+            
+            appuntiPreferiti[i] = new JLabel();
+            appuntiPreferitiLab[i] = new JLabel();
+            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
+            appuntiPreferitiLab[i].setLayout(new BoxLayout(appuntiPreferitiLab[i], BoxLayout.X_AXIS));
+            appuntiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
+            appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+            appuntiPreferitiLab[i].add(appuntiPreferitiIco[i]);
+            appuntiPreferitiLab[i].add(appuntiPreferiti[i]);
             goToAppunto[i] = new GoToAppunto(Applicazione.preferiti.getAppuntiPreferiti().get(i).getCorso(),
-                                             Applicazione.preferiti.getAppuntiPreferiti().get(i).getFacoltà());
+                    Applicazione.preferiti.getAppuntiPreferiti().get(i).getFacoltà());
             appuntiPreferiti[i].addMouseListener(goToAppunto[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.CENTER;
-            appPanel.add(appuntiPreferiti[i], gbcd);
+            appPanel.add(appuntiPreferitiLab[i], gbcd);
         }
         
-        libriPreferitiLabel = new JButton("Libri Preferiti");
-         libriPreferitiLabel.addActionListener(new ActionListener() {
-
+        libriPreferitiLabel = new JButton("Libri",search);
+        
+        libriPreferitiLabel.setPreferredSize(new Dimension(120,25));
+        libriPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
+        libriPreferitiLabel.setContentAreaFilled(false);
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        libriPreferitiLabel.setRolloverIcon(searchHover);
+         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        libriPreferitiLabel.setPressedIcon(searchPressed);
+        
+        libriPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        libriPreferitiLabel.setForeground(Color.white);
+        libriPreferitiLabel.setIconTextGap(-75);
+        libriPreferitiLabel.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "libriPreferiti");
@@ -163,22 +267,41 @@ public class PreferitiPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(libriPreferitiLabel, gbc);
         for (int i = 0; i < Applicazione.preferiti.getLibriPreferiti().size(); i++) {
-            libriPreferiti[i] = new JButton();
+            libriPreferiti[i] = new JLabel();
+            libriPreferitiLab[i] = new JLabel();
+            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             libriPreferiti[i].setText(Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
+            libriPreferitiLab[i].setLayout(new BoxLayout(libriPreferitiLab[i], BoxLayout.X_AXIS));
+            libriPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
+            libriPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+            libriPreferitiLab[i].add(libriPreferitiIco[i]);
+            libriPreferitiLab[i].add(libriPreferiti[i]);
             goToLibro[i] = new GoToLibro(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
-                                         Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà(),
-                                         Applicazione.preferiti.getLibriPreferiti().get(i).getID());
+                    Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà(),
+                    Applicazione.preferiti.getLibriPreferiti().get(i).getID());
             libriPreferiti[i].addMouseListener(goToLibro[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.CENTER;
-            libPanel.add(libriPreferiti[i], gbcd );
+            libPanel.add(libriPreferitiLab[i], gbcd );
         }
         
-        domandePreferiteLabel = new JButton("Domande Preferiti");
-         domandePreferiteLabel.addActionListener(new ActionListener() {
-
+          domandePreferiteLabel = new JButton("Domande",search);
+        
+        domandePreferiteLabel.setPreferredSize(new Dimension(120,25));
+        domandePreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
+        domandePreferiteLabel.setContentAreaFilled(false);
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        domandePreferiteLabel.setRolloverIcon(searchHover);
+         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        domandePreferiteLabel.setPressedIcon(searchPressed);
+        
+        domandePreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        domandePreferiteLabel.setForeground(Color.white);
+        domandePreferiteLabel.setIconTextGap(-92);
+        domandePreferiteLabel.addActionListener(new ActionListener() {
+            
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "domandePreferite");
@@ -190,16 +313,23 @@ public class PreferitiPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(domandePreferiteLabel, gbc);
         for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
-            domandePreferite[i] = new JButton();
+            domandePreferite[i] = new JLabel();
+            domandePreferiteLab[i] = new JLabel();
+            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
+            domandePreferiteLab[i].setLayout(new BoxLayout(domandePreferiteLab[i], BoxLayout.X_AXIS));
+            domandePreferiteLab[i].setPreferredSize(new Dimension(220, 30));
+            domandePreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+            domandePreferiteLab[i].add(domandePreferiteIco[i]);
+            domandePreferiteLab[i].add(domandePreferite[i]);
             goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getDomandePreferite().get(i).getCorso(),
-                                             Applicazione.preferiti.getDomandePreferite().get(i).getFacoltà());
+                    Applicazione.preferiti.getDomandePreferite().get(i).getFacoltà());
             domandePreferite[i].addMouseListener(goToDomanda[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;
             gbcd.insets = new Insets(5, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.CENTER;
-            domPanel.add(domandePreferite[i], gbcd );
+            domPanel.add(domandePreferiteLab[i], gbcd );
         }
         panel.add(nord,BorderLayout.NORTH);
         panel.add(centro,BorderLayout.CENTER);

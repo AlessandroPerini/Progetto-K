@@ -11,6 +11,7 @@ import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -35,12 +36,12 @@ public class ModificaNickname implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         nClick += 1;
         nick.setEditable(true);
-        cambiaNickname.setText("Conferma");
+        cambiaNickname.setIcon(new ImageIcon(this.getClass().getResource("/immagini/conferma.png")));
         boolean ok = false;
         
         if ( nClick == 2){
             nick.setEditable(false);
-            cambiaNickname.setText("Modifica");
+            cambiaNickname.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
             try {
                 if(nick.getText().equals("")){
                     JOptionPane.showMessageDialog(null, "Nickname non valido", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
