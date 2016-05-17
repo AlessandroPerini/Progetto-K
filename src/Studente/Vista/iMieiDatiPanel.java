@@ -15,7 +15,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,22 +32,22 @@ import javax.swing.JScrollPane;
  */
 public class iMieiDatiPanel extends JPanel{
     
-
+    
     private JLabel[] appuntiPreferiti = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferiti = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferite = new JLabel[Applicazione.domandeGuest.size()];
     
- 
+    
     private JLabel[] appuntiPreferitiLab = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferitiLab = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferiteLab = new JLabel[Applicazione.domandeGuest.size()];
     
-
+    
     private JLabel[] appuntiPreferitiIco = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferitiIco = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferiteIco = new JLabel[Applicazione.domandeGuest.size()];
     
-
+    
     private GoToAppunto[] goToAppunto = new GoToAppunto[Applicazione.appuntiGuest.size()];
     private GoToLibro[] goToLibro = new GoToLibro[Applicazione.libriGuest.size()];
     private GoToDomanda[] goToDomanda = new GoToDomanda[Applicazione.domandeGuest.size()];
@@ -56,8 +55,8 @@ public class iMieiDatiPanel extends JPanel{
     private JButton  appuntiPreferitiLabel,
             libriPreferitiLabel, domandePreferiteLabel;
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
-   private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
-   private ImageIcon  search, searchPressed, searchHover;
+    private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
+    private ImageIcon  search, searchPressed, searchHover;
     private CardLayout cardLayout = new CardLayout();
     
     public iMieiDatiPanel() {
@@ -88,7 +87,7 @@ public class iMieiDatiPanel extends JPanel{
         scrollPanel3.setPreferredSize(new Dimension(650, 400));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
         
-      
+        
         centro.add(scrollPanel,"appuntiPreferiti");
         centro.add(scrollPanel2,"libriPreferiti");
         centro.add(scrollPanel3,"domandePreferite");
@@ -98,15 +97,15 @@ public class iMieiDatiPanel extends JPanel{
         CaricaCorsi caricaCorsi = new CaricaCorsi();
         
         
-       search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
-          appuntiPreferitiLabel = new JButton("Appunti",search);
+        search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
+        appuntiPreferitiLabel = new JButton("Appunti",search);
         
         appuntiPreferitiLabel.setPreferredSize(new Dimension(120,25));
         appuntiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
         appuntiPreferitiLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         appuntiPreferitiLabel.setRolloverIcon(searchHover);
-       searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         appuntiPreferitiLabel.setPressedIcon(searchPressed);
         
         appuntiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -139,7 +138,7 @@ public class iMieiDatiPanel extends JPanel{
             appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             appuntiPreferitiLab[i].add(appuntiPreferitiIco[i]);
             appuntiPreferitiLab[i].add(appuntiPreferiti[i]);
-               goToAppunto[i] = new GoToAppunto(Applicazione.appuntiGuest.get(i).getCorso(),
+            goToAppunto[i] = new GoToAppunto(Applicazione.appuntiGuest.get(i).getCorso(),
                     Applicazione.appuntiGuest.get(i).getFacoltà());
             appuntiPreferiti[i].addMouseListener(goToAppunto[i]);
             gbcd.gridx = 0;
@@ -156,7 +155,7 @@ public class iMieiDatiPanel extends JPanel{
         libriPreferitiLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         libriPreferitiLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         libriPreferitiLabel.setPressedIcon(searchPressed);
         
         libriPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -170,7 +169,7 @@ public class iMieiDatiPanel extends JPanel{
                 libriPreferitiLabel.setIcon(searchHover);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
-  
+                
             }
         });
         gbc.gridx = 1;
@@ -199,14 +198,14 @@ public class iMieiDatiPanel extends JPanel{
             libPanel.add(libriPreferitiLab[i], gbcd );
         }
         
-          domandePreferiteLabel = new JButton("Domande",search);
+        domandePreferiteLabel = new JButton("Domande",search);
         
         domandePreferiteLabel.setPreferredSize(new Dimension(120,25));
         domandePreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
         domandePreferiteLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         domandePreferiteLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         domandePreferiteLabel.setPressedIcon(searchPressed);
         
         domandePreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -238,7 +237,7 @@ public class iMieiDatiPanel extends JPanel{
             domandePreferiteLab[i].add(domandePreferiteIco[i]);
             domandePreferiteLab[i].add(domandePreferite[i]);
             goToDomanda[i] = new GoToDomanda(Applicazione.domandeGuest.get(i).getCorso(),
-             Applicazione.domandeGuest.get(i).getFacoltà());
+                    Applicazione.domandeGuest.get(i).getFacoltà());
             domandePreferite[i].addMouseListener(goToDomanda[i]);
             gbcd.gridx = 0;
             gbcd.gridy = i;

@@ -129,7 +129,7 @@ public class AccountPanel extends JPanel{
         iMieiDati.setIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")));
         iMieiDati.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png")));
         iMieiDati.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png")));
-        iMieiDati.setPressedIcon(logoutPressed);
+        
         iMieiDati.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         iMieiDati.setIconTextGap(-95);
         iMieiDati.setPreferredSize(new Dimension(110, 40));
