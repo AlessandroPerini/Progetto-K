@@ -124,14 +124,16 @@ public class iMieiDatiPanel extends JPanel{
             
             appuntiPreferiti[i] = new JLabel();
             appuntiPreferitiLab[i] = new JLabel();
-            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
             appuntiPreferiti[i].setText(Applicazione.appuntiGuest.get(i).getNome());
             appuntiPreferiti[i].setToolTipText(appuntiPreferiti[i].getText());
             appuntiPreferitiLab[i].setLayout(new BoxLayout(appuntiPreferitiLab[i], BoxLayout.X_AXIS));
             appuntiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             appuntiPreferitiLab[i].add(appuntiPreferitiIco[i]);
+            appuntiPreferitiLab[i].add(new JLabel("   "));
             appuntiPreferitiLab[i].add(appuntiPreferiti[i]);
+            
             goToAppunto[i] = new GoToAppunto(Applicazione.appuntiGuest.get(i).getCorso(),
                     Applicazione.appuntiGuest.get(i).getFacoltà());
             appuntiPreferiti[i].addMouseListener(goToAppunto[i]);
@@ -174,14 +176,16 @@ public class iMieiDatiPanel extends JPanel{
         for (int i = 0; i < Applicazione.libriGuest.size(); i++) {
             libriPreferiti[i] = new JLabel();
             libriPreferitiLab[i] = new JLabel();
-            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
             libriPreferiti[i].setText(Applicazione.libriGuest.get(i).getTitolo());
             libriPreferiti[i].setToolTipText(libriPreferiti[i].getText());
             libriPreferitiLab[i].setLayout(new BoxLayout(libriPreferitiLab[i], BoxLayout.X_AXIS));
             libriPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             libriPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             libriPreferitiLab[i].add(libriPreferitiIco[i]);
+            libriPreferitiLab[i].add(new JLabel("   "));
             libriPreferitiLab[i].add(libriPreferiti[i]);
+            
             goToLibro[i] = new GoToLibro(Applicazione.libriGuest.get(i).getCorso(),
                     Applicazione.libriGuest.get(i).getFacoltà(),
                     Applicazione.libriGuest.get(i).getID());
@@ -224,14 +228,16 @@ public class iMieiDatiPanel extends JPanel{
         for (int i = 0; i < Applicazione.domandeGuest.size(); i++) {
             domandePreferite[i] = new JLabel();
             domandePreferiteLab[i] = new JLabel();
-            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
-            domandePreferite[i].setText(Applicazione.domandeGuest.get(i).getTitolo());
+            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
+            domandePreferite[i].setText("   "+Applicazione.domandeGuest.get(i).getTitolo());
             domandePreferite[i].setToolTipText(domandePreferite[i].getText());
             domandePreferiteLab[i].setLayout(new BoxLayout(domandePreferiteLab[i], BoxLayout.X_AXIS));
             domandePreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             domandePreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             domandePreferiteLab[i].add(domandePreferiteIco[i]);
+            domandePreferiteLab[i].add(new JLabel("   "));
             domandePreferiteLab[i].add(domandePreferite[i]);
+            
             goToDomanda[i] = new GoToDomanda(Applicazione.domandeGuest.get(i).getCorso(),
                     Applicazione.domandeGuest.get(i).getFacoltà());
             domandePreferite[i].addMouseListener(goToDomanda[i]);

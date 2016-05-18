@@ -153,15 +153,15 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getFacoltàPreferite().size(); i++) {
             facoltàPreferite[i] = new JLabel();
             facoltàPreferiteLab[i] = new JLabel();
-            facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotFacoltà.png")));
             facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
             facoltàPreferite[i].setToolTipText(facoltàPreferite[i].getText());
             facoltàPreferiteLab[i].setLayout(new BoxLayout(facoltàPreferiteLab[i], BoxLayout.X_AXIS));
             facoltàPreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             facoltàPreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             facoltàPreferiteLab[i].add(facoltàPreferiteIco[i]);
+            facoltàPreferiteLab[i].add(new JLabel("   "));
             facoltàPreferiteLab[i].add(facoltàPreferite[i]);
-            facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
             facoltàPreferite[i].addMouseListener(caricaCorsi);
             gbcd.gridx = 0;
             gbcd.gridy = i;
@@ -204,12 +204,13 @@ public class PreferitiPanel extends JPanel{
             corsiPreferiti[i] = new JLabel();
             corsiPreferitiLab[i] = new JLabel();
             corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotCorso.png")));
-            corsiPreferiti[i].setText("   "+Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
+            corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
             corsiPreferiti[i].setToolTipText(corsiPreferiti[i].getText());
             corsiPreferitiLab[i].setLayout(new BoxLayout(corsiPreferitiLab[i], BoxLayout.X_AXIS));
             corsiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             corsiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             corsiPreferitiLab[i].add(corsiPreferitiIco[i]);
+            corsiPreferitiLab[i].add(new JLabel("   "));
             corsiPreferitiLab[i].add(corsiPreferiti[i]);
             
             goToCorso[i] = new GoToCorso(Applicazione.preferiti.getCorsiPreferiti().get(i).getFacoltà());
@@ -256,13 +257,14 @@ public class PreferitiPanel extends JPanel{
             
             appuntiPreferiti[i] = new JLabel();
             appuntiPreferitiLab[i] = new JLabel();
-            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
             appuntiPreferiti[i].setToolTipText(appuntiPreferiti[i].getText());
             appuntiPreferitiLab[i].setLayout(new BoxLayout(appuntiPreferitiLab[i], BoxLayout.X_AXIS));
             appuntiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             appuntiPreferitiLab[i].add(appuntiPreferitiIco[i]);
+            appuntiPreferitiLab[i].add(new JLabel("   "));
             appuntiPreferitiLab[i].add(appuntiPreferiti[i]);
             goToAppunto[i] = new GoToAppunto(Applicazione.preferiti.getAppuntiPreferiti().get(i).getCorso(),
                     Applicazione.preferiti.getAppuntiPreferiti().get(i).getFacoltà());
@@ -307,13 +309,14 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getLibriPreferiti().size(); i++) {
             libriPreferiti[i] = new JLabel();
             libriPreferitiLab[i] = new JLabel();
-            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
             libriPreferiti[i].setText(Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
             libriPreferiti[i].setToolTipText(libriPreferiti[i].getText());
             libriPreferitiLab[i].setLayout(new BoxLayout(libriPreferitiLab[i], BoxLayout.X_AXIS));
             libriPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             libriPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             libriPreferitiLab[i].add(libriPreferitiIco[i]);
+            libriPreferitiLab[i].add(new JLabel("   "));
             libriPreferitiLab[i].add(libriPreferiti[i]);
             goToLibro[i] = new GoToLibro(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
                     Applicazione.preferiti.getLibriPreferiti().get(i).getFacoltà(),
@@ -357,13 +360,14 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
             domandePreferite[i] = new JLabel();
             domandePreferiteLab[i] = new JLabel();
-            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
             domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
             domandePreferite[i].setToolTipText(domandePreferite[i].getText());
             domandePreferiteLab[i].setLayout(new BoxLayout(domandePreferiteLab[i], BoxLayout.X_AXIS));
             domandePreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             domandePreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             domandePreferiteLab[i].add(domandePreferiteIco[i]);
+            domandePreferiteLab[i].add(new JLabel("   "));
             domandePreferiteLab[i].add(domandePreferite[i]);
             goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getDomandePreferite().get(i).getCorso(),
                     Applicazione.preferiti.getDomandePreferite().get(i).getFacoltà());

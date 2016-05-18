@@ -21,6 +21,7 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -40,7 +41,8 @@ public class ListaDomandePanel extends JPanel{
     
     private JLabel[] domande = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JLabel[] domandeNLike = new JLabel[Applicazione.listaDomandeAttuali.size()];
-    private JLabel[] domandeIco = new JLabel[Applicazione.listaDomandeAttuali.size()];
+    private JLabel[] domandeIcon = new JLabel[Applicazione.listaDomandeAttuali.size()];
+    private JLabel[] domandeLabel = new JLabel[Applicazione.listaDomandeAttuali.size()];
     private JButton addDomanda, searchButton, clearSearch;
     private JTextField searchField;
     private JLabel noDomande, ordinamento;
@@ -159,35 +161,40 @@ public class ListaDomandePanel extends JPanel{
         }else{
             
             for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
+                domandeLabel[i]= new JLabel();
                 domande[i] = new JLabel(Applicazione.listaDomandeAttuali.get(i).getTitolo(), HEIGHT);
+                domandeIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
                 domande[i].setToolTipText(domande[i].getText());
                 domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
-                domande[i].setPreferredSize(new Dimension(220, 30));
                 domande[i].addMouseListener(goToDomanda);
+                domandeLabel[i].setLayout(new BoxLayout(domandeLabel[i], BoxLayout.X_AXIS));
+                domandeLabel[i].setPreferredSize(new Dimension(220, 30));
+                domandeLabel[i].add(domandeIcon[i]);
+                domandeLabel[i].add(new JLabel("   "));
+                domandeLabel[i].add(domande[i]);
                 gbcImg.gridx = 0;
                 gbcImg.gridy = i+1;
                 gbcImg.insets = new Insets(17, 0, 0, 20);
                 gbcImg.anchor = GridBagConstraints.LINE_END;
-                panel.add(domande[i], gbcImg);
+                panel.add(domandeLabel[i], gbcImg);
                 
                 domandeNLike[i] = new JLabel(""+Applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);
-                domandeNLike[i].setIconTextGap(-200);
-                
+                domandeNLike[i].setIconTextGap(-180);
                 domandeNLike[i].setFont(new Font("Century Gothic", Font.BOLD, 13));
-                domandeNLike[i].setForeground(Color.blue);
+                domandeNLike[i].setForeground(Color.black);
                 gbcImg.gridx = 1;
                 gbcImg.gridy = i+1;
-                gbcImg.insets = new Insets(17, 0, 0, -21);
+                gbcImg.insets = new Insets(18, 0, 0, 5);
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 panel.add(domandeNLike[i], gbcImg);
                 
-                domandeIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")), HEIGHT);
+                domandeIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")), HEIGHT);
                 gbcImg.gridx = 2;
                 gbcImg.gridy = i+1;
                 gbcImg.insets = new Insets(10, 0, 0, 10);
                 gbcImg.anchor = GridBagConstraints.LINE_START;
-                panel.add(domandeIco[i], gbcImg);
+                panel.add(domandeIcon[i], gbcImg);
             }
         }
         

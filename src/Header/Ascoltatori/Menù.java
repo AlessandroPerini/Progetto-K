@@ -23,6 +23,7 @@ import Database.Query.ListeQuery;
 import Login.LoginPanel;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
 import Università.Facolta.Vista.ListaFacoltàPanel;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -92,6 +93,8 @@ public class Menù implements ActionListener{
                 ListeQuery.caricaAppuntiPreferiti();
                 ListeQuery.caricaLibriPreferiti();
                 ListeQuery.caricaDomandePreferite();
+                
+                Ordina.ListePreferiti();
 
                 PreferitiPanel preferitiPanel = new PreferitiPanel();
                 Grafica.container.add(preferitiPanel, "preferiti");

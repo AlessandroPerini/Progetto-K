@@ -9,6 +9,7 @@ import Studente.Vista.iMieiDatiPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.GuestQuery;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -30,6 +31,8 @@ public class CaricaIMieiDati implements ActionListener{
             GuestQuery.caricaMieDomande();
             
             Applicazione.back.add("i miei dati");
+            
+            Ordina.ListeMieiDati();
             
             iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
             Grafica.container.add(mieiDatiPanel, "i miei dati");

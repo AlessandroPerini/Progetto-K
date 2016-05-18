@@ -120,7 +120,7 @@ public class CorsoPanel extends JPanel{
         appuntiLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 0;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(50, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 30, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(appuntiLab,gbcImg);
         
@@ -128,7 +128,7 @@ public class CorsoPanel extends JPanel{
         libriLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 1;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(50, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(libriLab,gbcImg);
         
@@ -136,7 +136,7 @@ public class CorsoPanel extends JPanel{
         qeaLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 2;
         gbcImg.gridy = 1;
-        gbcImg.insets = new Insets(50, 0, 0, 10);
+        gbcImg.insets = new Insets(50, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;    
         panel.add(qeaLab,gbcImg);
         
@@ -148,7 +148,7 @@ public class CorsoPanel extends JPanel{
         appunti.setPreferredSize(new Dimension(166, 200));
         gbcImg.gridx = 0;
         gbcImg.gridy = 2;
-        gbcImg.insets = new Insets(10, 0, 0, 10);
+        gbcImg.insets = new Insets(10, 50, 0, 10);
         gbcImg.anchor = GridBagConstraints.NORTH;    
         panel.add(appunti,gbcImg);
         
@@ -158,7 +158,7 @@ public class CorsoPanel extends JPanel{
         libri.setPreferredSize(new Dimension(166, 215));
         gbcImg.gridx = 1;
         gbcImg.gridy = 2;
-        gbcImg.insets = new Insets(10, 20, 0, 10);
+        gbcImg.insets = new Insets(10, 35, 0, 10);
         gbcImg.anchor = GridBagConstraints.NORTH;    
         panel.add(libri, gbcImg);
         

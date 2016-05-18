@@ -38,6 +38,7 @@ import javax.swing.border.LineBorder;
 public class ListaLibriPanel extends JPanel{
     
     private JLabel[] libri = new JLabel[Applicazione.listaLibriAttuali.size()];
+    private JLabel[] libriIcon = new JLabel[Applicazione.listaLibriAttuali.size()];
     private JLabel[] libriLabel = new JLabel[Applicazione.listaLibriAttuali.size()];
     private JTextField searchField;
     private JLabel noLibri, ordinamento;
@@ -143,10 +144,13 @@ public class ListaLibriPanel extends JPanel{
                 GoToLibro goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID());
                 libriLabel[i]= new JLabel();
                 libri[i] = new JLabel(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libriIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
                 libri[i].setToolTipText(Applicazione.listaLibriAttuali.get(i).getTitolo());
                 libriLabel[i].setLayout(new BoxLayout(libriLabel[i], BoxLayout.X_AXIS));
                 libriLabel[i].setPreferredSize(new Dimension(220, 30));
                 libri[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+                libriLabel[i].add(libriIcon[i]);
+                libriLabel[i].add(new JLabel("   "));
                 libriLabel[i].add(libri[i]);
                 
                 libri[i].addMouseListener(goToLibro);
