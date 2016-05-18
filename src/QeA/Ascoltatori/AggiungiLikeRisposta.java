@@ -10,8 +10,6 @@ import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.InfoQuery;
 import QeA.Vista.DomandaPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -60,7 +58,6 @@ public class AggiungiLikeRisposta implements MouseListener{
        //******************************
        if(nome.equals("like")){
             valore = 1;
-            System.out.println(valoreLike);
             if(valoreLike==0){
                 likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
             }else{
@@ -74,7 +71,6 @@ public class AggiungiLikeRisposta implements MouseListener{
        }
         if(nome.equals("dislike")){
             valore = -1;
-            System.out.println(valoreLike);
             if(valoreLike==0){
                 dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdownON.png")));
             }else{
