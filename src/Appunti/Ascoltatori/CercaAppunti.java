@@ -31,10 +31,11 @@ public class CercaAppunti implements ActionListener, KeyListener{
         if(!searchField.getText().equals("")){
             Utils.Cerca.Appunti(searchField);
 
+            Applicazione.back.remove(Applicazione.back.size()-1);
+            
             Applicazione.back.add("appunti cercati");
 
             ListaAppuntiPanel appuntiCercati = new ListaAppuntiPanel();
-
             Grafica.container.add(appuntiCercati,"appunti cercati");
             Grafica.card.show(Grafica.container, "appunti cercati");
         }

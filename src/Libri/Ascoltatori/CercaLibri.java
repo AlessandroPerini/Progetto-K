@@ -31,6 +31,8 @@ public class CercaLibri implements ActionListener, KeyListener{
     
         if(!searchField.getText().equals("")){
             Utils.Cerca.Libri(searchField);
+            
+            Applicazione.back.remove(Applicazione.back.size()-1);
 
             Applicazione.back.add("libri cercati");
 

@@ -130,7 +130,12 @@ public class ListaLibriPanel extends JPanel{
         int size = Applicazione.listaLibriAttuali.size();
         
         if(size == 0){
-            noLibri = new JLabel("Non ci sono libri relativi a questo corso.");
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
+                noLibri = new JLabel("Non ci sono libri relativi a questo corso.");
+            }
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri cercati")) {
+                noLibri = new JLabel("Nessun libro trovato.");
+            }
             noLibri.setFont(new Font("Arial", Font.BOLD, 20));
             panel.add(noLibri);
             gbcd.gridx = 0;

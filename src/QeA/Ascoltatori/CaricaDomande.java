@@ -8,14 +8,11 @@ package QeA.Ascoltatori;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
-import QeA.Domanda;
 import QeA.Vista.ListaDomandePanel;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *
