@@ -10,7 +10,9 @@ import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.EliminaLibro;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.AggiungiLibroPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviLibroPreferito;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -65,11 +67,11 @@ public class LibroPanel extends JPanel{
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
-        AggiungiAppuntoPreferito aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
-        preferitiOff.addActionListener(aggiungiAppuntoPreferito);
+        AggiungiLibroPreferito aggiungiLibroPreferito = new AggiungiLibroPreferito();
+        preferitiOff.addActionListener(aggiungiLibroPreferito);
         
-        RimuoviAppuntoPreferito rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
-        preferitiOn.addActionListener(rimuoviAppuntoPreferito);
+        RimuoviLibroPreferito rimuoviLibroPreferito = new RimuoviLibroPreferito();
+        preferitiOn.addActionListener(rimuoviLibroPreferito);
         
         try {
             if (ControlloQuery.controlloLibroPreferito()) {

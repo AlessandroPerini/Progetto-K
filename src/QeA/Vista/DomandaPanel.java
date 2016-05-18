@@ -12,7 +12,9 @@ import Database.Query.InfoQuery;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
+import Preferiti.Facoltà.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
 import QeA.Ascoltatori.AggiungiLikeRisposta;
 import java.awt.Color;
@@ -80,11 +82,11 @@ public class DomandaPanel extends JPanel{
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
-        AggiungiAppuntoPreferito aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
-        preferitiOff.addActionListener(aggiungiAppuntoPreferito);
+        AggiungiDomandaPreferita aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
+        preferitiOff.addActionListener(aggiungiDomandaPreferita);
         
-        RimuoviAppuntoPreferito rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
-        preferitiOn.addActionListener(rimuoviAppuntoPreferito);
+        RimuoviDomandaPreferita rimuoviDomandaPreferito = new RimuoviDomandaPreferita();
+        preferitiOn.addActionListener(rimuoviDomandaPreferito);
         
         try {
             if (ControlloQuery.controlloDomandaPreferita()) {
