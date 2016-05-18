@@ -22,6 +22,8 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -48,7 +50,7 @@ public class DomandaPanel extends JPanel{
     private AggiungiRisposta risposta;
     private GridBagConstraints gbcRisposte;
     private static int i;
-   
+    private int valoreLike;
     public DomandaPanel() {
         
         setBackground(Color.white);
@@ -260,6 +262,11 @@ public class DomandaPanel extends JPanel{
     }
 
     public void setRisposte2(String risposta, int i, String nome) {
+        try {
+            valoreLike = ControlloQuery.controlloLikeRisposta(Applicazione.listaRisposteAttuali.get(i).getId());
+        } catch (SQLException ex) {
+            Logger.getLogger(DomandaPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
             nomeRisposta = new JLabel();
             nomeRisposta.setText(nome);
             gbcRisposte.gridx = 0;
@@ -292,8 +299,21 @@ public class DomandaPanel extends JPanel{
                 likelike = InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), 1);
                 numeroLikeRisposta = new JLabel(""+likelike);
                 pannelloLike.add(numeroLikeRisposta);
-                
-                likeRisposta = new JButton(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
+                likeRisposta = new JButton();
+                if(valoreLike==0){
+                 
+                    likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
+                }else{
+                    if(valoreLike==1){
+                        
+                        likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
+                    }else{
+                        
+                        likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
+                    }
+                    
+                }
+               
                 likeRisposta.setName("like");
                 likeRisposta.setBackground(new Color(239,242,243));
                 likeRisposta.setPreferredSize(new Dimension(30, 30));
@@ -318,7 +338,18 @@ public class DomandaPanel extends JPanel{
             
                 numeroDislikeRisposta = new JLabel(""+dislikelike);
                 pannelloDislike.add(numeroDislikeRisposta);
-                dislikeRisposta = new JButton(new ImageIcon(this.getClass().getResource("/immagini/thumbdown.png")));
+                dislikeRisposta = new JButton();
+                if(valoreLike==0){
+                    dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdown.png")));
+                }else{
+                    if(valoreLike==1){
+                        dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdown.png")));
+                    }else{
+                        dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdownON.png")));
+                    }
+                    
+                }
+               
                 dislikeRisposta.setName("dislike");
                 dislikeRisposta.setBackground(new Color(239,242,243));
                 dislikeRisposta.setPreferredSize(new Dimension(30, 30));
@@ -328,7 +359,7 @@ public class DomandaPanel extends JPanel{
             }
             
             pannelloDislike.add(dislikeRisposta);
-            AggiungiLikeRisposta alr = new AggiungiLikeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), numeroLikeRisposta, numeroDislikeRisposta, likeRisposta, dislikeRisposta);
+            AggiungiLikeRisposta alr = new AggiungiLikeRisposta(i,Applicazione.listaRisposteAttuali.get(i).getId(), numeroLikeRisposta, numeroDislikeRisposta, likeRisposta, dislikeRisposta);
             likeRisposta.addMouseListener(alr);
             dislikeRisposta.addMouseListener(alr);
             gbcRisposte.gridx = 4;
