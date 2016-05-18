@@ -281,6 +281,7 @@ public class iMieiDatiPanel extends JPanel{
         
             label[i].setText(text);
             label[i].setToolTipText(label[i].getText());
+            label[i].setPreferredSize(new Dimension(120, 30));
             label[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
             principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
             principale[i].setPreferredSize(new Dimension(220, 30));          

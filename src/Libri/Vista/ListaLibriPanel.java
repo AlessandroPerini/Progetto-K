@@ -144,6 +144,7 @@ public class ListaLibriPanel extends JPanel{
                 GoToLibro goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID());
                 libriLabel[i]= new JLabel();
                 libri[i] = new JLabel(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libri[i].setPreferredSize(new Dimension(120, 30));
                 libriIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
                 libri[i].setToolTipText(Applicazione.listaLibriAttuali.get(i).getTitolo());
                 libriLabel[i].setLayout(new BoxLayout(libriLabel[i], BoxLayout.X_AXIS));
