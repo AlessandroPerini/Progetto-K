@@ -87,8 +87,8 @@ public class iMieiDatiPanel extends JPanel{
         searchSelected = new ImageIcon(this.getClass().getResource("/immagini/button2Selected.png"));
         
         //dichiarazione bottoni - label
-        noLibri = new JLabel("Non hai ancora caricato nessun appunto.");
-        noAppunti = new JLabel("Non hai ancora aggiunto nessun libro.");
+        noLibri = new JLabel("Non hai ancora caricato nessun libro.");
+        noAppunti = new JLabel("Non hai ancora aggiunto nessun appunto.");
         noDomande = new JLabel("Non hai ancora inserito nessuna domanda.");
         appuntiPreferitiButton = new JButton("Appunti",search);
         libriPreferitiButton = new JButton("Libri",search);

@@ -21,6 +21,9 @@ import Studente.Ascoltatori.Logout;
 import Studente.Ascoltatori.ModificaNickname;
 import Studente.Ascoltatori.ModificaNumero;
 import java.awt.Color;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -33,54 +36,85 @@ public class AccountPanel extends JPanel{
     
     private static JLabel email;
     private static JTextField phone, nick;
-    private JButton backButton, preferiti, cambiaNumero, cambiaNickname;
-    private JLabel title;
+    private JButton backButton, preferiti, cambiaNumero, cambiaNickname, logout,iMieiDati;
+    private JLabel title, emailLabel, nickLabel, phoneLabel;
     private int nClickTel = 0;
     private int nClickNick = 0;
     private Icon backNormal, backHover, backPressed;
-    private JPanel body, emailRow, nickRow, phoneRow, centro;
+    private JPanel body, emailRow, nickRow, phoneRow, centro, top, logoutPanel, iMieiDatiPanel;
+    private Back back;
+    private GoToPreferiti goToPreferiti;
+    private Icon logoutNormal, logoutHover, logoutPressed;
+    private Logout logout2;
+    private CaricaIMieiDati caricaIMieiDati;
+    private ModificaNumero modificaNumero;
+    private ModificaNickname modificaNickname;
+    private GridBagConstraints gbc;
     
     public AccountPanel() {
         
-        setPreferredSize(new Dimension(700, 450));
+        top = new JPanel();
+        body = new JPanel(new GridBagLayout());
+        emailRow = new JPanel();
+        nickRow = new JPanel();
+        phoneRow = new JPanel();
+        logoutPanel = new JPanel();
+        iMieiDatiPanel = new JPanel();
         
-        //top panel
-        JPanel top = new JPanel();
+        gbc = new GridBagConstraints();
+
         this.setBackground(Color.white);
         top.setBackground(Color.white);
-
+        
+        //dichiarazione icon
+        backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         backNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        logoutHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
+        logoutNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
+        logoutPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
+        
+        //dichiarazione button - label
         backButton = new JButton(backNormal);
+        logout = new JButton("LOGOUT",logoutNormal);
+        preferiti = new JButton("PREFERITI");
+        title = new JLabel("Account");
+        iMieiDati = new JButton("MIE ATTIVITÀ");
+        emailLabel = new JLabel("Email: ");
+        nickLabel = new JLabel("Nickname: ");
+        phoneLabel = new JLabel("Telefono: ");
+        nick = new JTextField(Applicazione.guest.getNickname());
+        email = new JLabel(Applicazione.guest.getEmail());
+        
         backButton.setBorder(BorderFactory.createEmptyBorder());
         backButton.setContentAreaFilled(false);
-        backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        
         backButton.setRolloverIcon(backHover);
-        backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        
         backButton.setPressedIcon(backPressed);
         backButton.setText("<   BACK");
         backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         backButton.setForeground(Color.white);
         backButton.setIconTextGap(-85);
-        Back back = new Back();
+        
+        back = new Back();
         backButton.addActionListener(back);
         backButton.setPreferredSize(new Dimension(110, 40));     
-        
-        preferiti = new JButton("PREFERITI");
+          
         preferiti.setForeground(Color.white);
         preferiti.setBorder(BorderFactory.createEmptyBorder());
         preferiti.setContentAreaFilled(false);
-        backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        
         preferiti.setRolloverIcon(backHover);
-        backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        
         preferiti.setPressedIcon(backPressed);
         preferiti.setIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")));
         preferiti.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         preferiti.setIconTextGap(-85);
         preferiti.setPreferredSize(new Dimension(110, 40));
-        GoToPreferiti goToPreferiti = new GoToPreferiti();
+        goToPreferiti = new GoToPreferiti();
         preferiti.addActionListener(goToPreferiti);
         
-        title = new JLabel("Account");
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 35));
         title.setPreferredSize(new Dimension(420, 40));
@@ -91,36 +125,30 @@ public class AccountPanel extends JPanel{
         //end top panel
         
         //body panel
-        body = new JPanel((new GridLayout(5, 1, 0, 20)));
+       
         body.setBackground(Color.white);
-        
-        emailRow = new JPanel();
         emailRow.setBackground(Color.white);
-        nickRow = new JPanel();
-        nickRow.setBackground(Color.white);
-        phoneRow = new JPanel();
+        nickRow.setBackground(Color.white); 
         phoneRow.setBackground(Color.white);
         
-        Icon logoutNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
-        JButton logout = new JButton("LOGOUT",logoutNormal);
+       
+         
         logout.setBorder(BorderFactory.createEmptyBorder());
         logout.setContentAreaFilled(false);
-        Icon logoutHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
+        
         logout.setRolloverIcon(logoutHover);
-        Icon logoutPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
         logout.setPressedIcon(logoutPressed);
         logout.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         logout.setForeground(Color.white);
         logout.setIconTextGap(-81);
         logout.setPreferredSize(new Dimension(110, 40));
-        Logout logout2 = new Logout();
+        logout2 = new Logout();
         logout.addActionListener(logout2);
         
-        JPanel logoutPanel = new JPanel();
+        
         logoutPanel.setBackground(Color.white);
         logoutPanel.add(logout);
         
-        JButton iMieiDati = new JButton("MIE ATTIVITÀ");
         iMieiDati.setForeground(Color.white);
         iMieiDati.setBorder(BorderFactory.createEmptyBorder());
         iMieiDati.setContentAreaFilled(false);
@@ -133,33 +161,34 @@ public class AccountPanel extends JPanel{
         iMieiDati.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         iMieiDati.setIconTextGap(-95);
         iMieiDati.setPreferredSize(new Dimension(110, 40));
-        CaricaIMieiDati caricaIMieiDati = new CaricaIMieiDati();
+        
+        caricaIMieiDati = new CaricaIMieiDati();
         iMieiDati.addActionListener(caricaIMieiDati);
         
-        JPanel iMieiDatiPanel = new JPanel();
+        
         iMieiDatiPanel.setBackground(Color.white);
         iMieiDatiPanel.add(iMieiDati);
         
         JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
-                + "-------------------------------------------------------------------------");
+               + "-------------------------------------------------------------------------");
         
-        JLabel emailLabel = new JLabel("Email: ");
+        
         emailLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
-        email = new JLabel(Applicazione.guest.getEmail());
+        
         email.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         
-        JLabel nickLabel = new JLabel("Nickname: ");
+        
         nickLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
-        nick = new JTextField(Applicazione.guest.getNickname());
+        
         nick.setBackground(Color.white);
         nick.setEditable(false);
         nick.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         nick.setColumns(14);
         nick.setHorizontalAlignment(JTextField.CENTER);
         
-        JLabel phoneLabel = new JLabel("Telefono: ");
+        
         phoneLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
         phone = new JTextField(Applicazione.guest.getTelefono());
@@ -176,7 +205,7 @@ public class AccountPanel extends JPanel{
         cambiaNumero.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         cambiaNumero.setIconTextGap(-85);
         cambiaNumero.setPreferredSize(new Dimension(30,30));
-        ModificaNumero modificaNumero = new ModificaNumero(nClickTel, phone, cambiaNumero);
+        modificaNumero = new ModificaNumero(nClickTel, phone, cambiaNumero);
         cambiaNumero.addActionListener(modificaNumero);
 
         cambiaNickname = new JButton();
@@ -186,7 +215,7 @@ public class AccountPanel extends JPanel{
         cambiaNickname .setFont(new Font("Century Gothic", Font.PLAIN, 15));
         cambiaNickname .setIconTextGap(-85);
         cambiaNickname .setPreferredSize(new Dimension(30,30));
-        ModificaNickname modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
+        modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
         cambiaNickname.addActionListener(modificaNickname);
         
         emailRow.add(emailLabel);
@@ -200,16 +229,41 @@ public class AccountPanel extends JPanel{
         phoneRow.add(phone);
         phoneRow.add(cambiaNumero);
         
-        body.add(line);
-        body.add(emailRow);
-        body.add(nickRow);
-        body.add(phoneRow);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(100, 10, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(emailRow, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(nickRow, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(phoneRow, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(30, -90, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(logoutPanel, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(30, -170, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_START;
+        body.add(iMieiDatiPanel, gbc);
+        
         //end body panel
         
         add(top);
         add(body);
-        add(logoutPanel);
-        add(iMieiDatiPanel);
+       
         
     }
     

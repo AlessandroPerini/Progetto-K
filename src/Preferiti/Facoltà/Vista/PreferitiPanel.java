@@ -111,9 +111,9 @@ public class PreferitiPanel extends JPanel{
         libriPreferitiButton = new JButton("Libri",search);
         domandePreferiteButton = new JButton("Domande",search);
         noFacoltà = new JLabel("Non hai ancora nessuna facoltà preferita");
-        noLibri = new JLabel("Non hai ancora nessun corso preferito.");
-        noCorsi = new JLabel("Non hai ancora nessun appunto preferito");
-        noAppunti = new JLabel("Non hai ancora nessun libro preferito");
+        noLibri = new JLabel("Non hai ancora nessun libro preferito.");
+        noCorsi = new JLabel("Non hai ancora nessun corso preferito");
+        noAppunti = new JLabel("Non hai ancora nessun appunto preferito");
         noDomande = new JLabel("Non hai ancora nessuna domanda preferita");
         
         //dichiarazione gbc
