@@ -5,7 +5,7 @@
 */
 package Login;
 
-import Università.Facolta.Ascoltatori.CaricaFacoltà;
+import Universita.Facolta.Ascoltatori.CaricaFacoltà;
 import java.awt.*;
 import javax.swing.*;
 

@@ -9,7 +9,7 @@ import Application.Controller.Applicazione;
 import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
-import Università.Corsi.Corso;
+import Universita.Corsi.Corso;
 
 import javax.swing.JTextField;
 

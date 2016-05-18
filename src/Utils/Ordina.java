@@ -9,8 +9,8 @@ import Application.Controller.Applicazione;
 import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
-import Università.Corsi.Corso;
-import Università.Facolta.Facoltà;
+import Universita.Corsi.Corso;
+import Universita.Facolta.Facoltà;
 import java.util.Collections;
 import java.util.Comparator;
 

@@ -3,12 +3,12 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Università.Facolta.Ascoltatori;
+package Universita.Facolta.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
-import Università.Facolta.Vista.ListaFacoltàPanel;
+import Universita.Facolta.Vista.ListaFacoltàPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;

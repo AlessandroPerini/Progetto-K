@@ -3,9 +3,9 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Università.Corsi.Vista;
+package Universita.Corsi.Vista;
 
-import Università.Corsi.Ascoltatori.GoToCorso;
+import Universita.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
 import Database.Query.ControlloQuery;
 import Database.Query.ListeQuery;

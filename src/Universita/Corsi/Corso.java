@@ -3,32 +3,38 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Facolta;
+package Universita.Corsi;
 
 /**
  *
  * @author te4o
  */
-public class Facoltà {
+public class Corso {
     
     private String nome;
-    private String ramo;
+    private int anno;
+    private String facoltà;
 
-    public Facoltà(String nome, String ramo) {
+    public Corso(String nome, int anno, String facoltà) {
         this.nome = nome;
-        this.ramo = ramo;
+        this.anno = anno;
+        this.facoltà = facoltà;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getRamo() {
-        return ramo;
+    public int getAnno() {
+        return anno;
     }
-
+   
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getFacoltà() {
+        return facoltà;
     }
     
 }

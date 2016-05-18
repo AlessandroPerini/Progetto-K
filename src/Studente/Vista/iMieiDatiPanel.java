@@ -6,7 +6,7 @@ import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Universita.Corsi.Ascoltatori.CaricaCorsi;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;

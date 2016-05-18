@@ -3,14 +3,14 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Università.Corsi.Ascoltatori;
+package Universita.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
-import Database.Query.ListeQuery;
-import Università.Corsi.Vista.ListaCorsiPanel;
+import Universita.Corsi.Vista.CorsoPanel;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -20,51 +20,57 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author te4o
+ * @author Te4o
  */
-public class CaricaCorsi implements MouseListener{
+public class GoToCorso implements MouseListener{
     
+    private String facoltà;
     private String text;
+    
+    public GoToCorso(String facoltà) {
+        this.facoltà = facoltà;
+    }
     
     @Override
     public void mouseClicked(MouseEvent e) {
         
-        Applicazione.back.add("corsi");
-        
-        if(e.getComponent() instanceof JLabel) {
-            JLabel label = (JLabel)e.getComponent();
-            text = label.getText();
-        }
-        
-        if(e.getComponent() instanceof JButton) {
-            JButton button = (JButton)e.getComponent();
-            text = button.getText();
-        }
-        
-        Applicazione.facoltàAttuale.setNome(text);
         try {
-            InfoQuery.caricaInfoFacoltà();
             
-            ListeQuery.caricaCorsi();
+            if(e.getComponent() instanceof JLabel) {
+                JLabel label = (JLabel)e.getComponent();
+                text = label.getText();
+            }
             
-            ListaCorsiPanel corsi = new ListaCorsiPanel();
-            Grafica.container.add(corsi, "corsi");
-            Grafica.card.show(Grafica.container, "corsi");
+            if(e.getComponent() instanceof JButton) {
+                JButton button = (JButton)e.getComponent();
+                text = button.getText();
+            }
+            
+            Applicazione.corsoAttuale.setNome(text);
+            
+            InfoQuery.caricaInfoCorso(facoltà);
+            
+            Applicazione.facoltàAttuale.setNome(facoltà);
+            
+            Applicazione.back.add("corso");
+            
+            CorsoPanel corso = new CorsoPanel();
+            Grafica.container.add(corso, "corso");
+            Grafica.card.show(Grafica.container, "corso");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Errore durante il caricamento dei dati", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     @Override
     public void mousePressed(MouseEvent e) {
     }
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
-        
     }
-    
+
     @Override
     public void mouseEntered(MouseEvent e) {
         e.getComponent().setForeground(new Color(3,201,169));

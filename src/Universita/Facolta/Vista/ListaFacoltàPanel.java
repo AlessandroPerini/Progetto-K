@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Facolta.Vista;
+package Universita.Facolta.Vista;
 
 import Application.Controller.Applicazione;
 import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import Database.Query.ListeQuery;
 import Header.Vista.TopPanel;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Universita.Corsi.Ascoltatori.CaricaCorsi;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

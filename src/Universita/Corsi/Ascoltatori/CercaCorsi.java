@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Università.Corsi.Ascoltatori;
+package Universita.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Università.Corsi.Vista.ListaCorsiPanel;
+import Universita.Corsi.Vista.ListaCorsiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;

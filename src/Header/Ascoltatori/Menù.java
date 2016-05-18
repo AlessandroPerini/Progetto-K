@@ -22,7 +22,7 @@ import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Login.LoginPanel;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
-import Università.Facolta.Vista.ListaFacoltàPanel;
+import Universita.Facolta.Vista.ListaFacoltàPanel;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
