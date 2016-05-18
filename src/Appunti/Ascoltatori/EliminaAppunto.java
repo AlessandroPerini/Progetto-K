@@ -10,9 +10,12 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
+import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
 import Dropbox.Elimina;
 import Frame.GifFrame;
+import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Studente.Vista.iMieiDatiPanel;
 import Utils.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
@@ -72,15 +75,49 @@ public class EliminaAppunto implements ActionListener{
                                     JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
                                     
                                     Applicazione.svuotaAppunti();
+                                    
                                     ListeQuery.caricaAppunti();
                                     
                                     Applicazione.back.remove(Applicazione.back.size()-1);
                                     
                                     Ordina.Appunti();
                                     
-                                    ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-                                    Grafica.container.add(appunti, "appunti");
-                                    Grafica.card.show(Grafica.container, "appunti");
+                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")){
+                                        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                                        Grafica.container.add(appunti, "appunti");
+                                        Grafica.card.show(Grafica.container, "appunti");
+                                    }
+                                    
+                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
+                                        Applicazione.svuotaPreferiti();
+                                        
+                                        ListeQuery.caricaFacoltàPreferite();
+                                        ListeQuery.caricaCorsiPreferiti();
+                                        ListeQuery.caricaAppuntiPreferiti();
+                                        ListeQuery.caricaLibriPreferiti();
+                                        ListeQuery.caricaDomandePreferite();
+                                        
+                                        Ordina.ListePreferiti();
+                                        
+                                        PreferitiPanel preferitiPanel = new PreferitiPanel();
+                                        Grafica.container.add(preferitiPanel, "preferiti");
+                                        Grafica.card.show(Grafica.container, "preferiti");
+                                    }
+                                    
+                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
+                                        Applicazione.svuotaMieiDati();
+                                        
+                                        GuestQuery.caricaMieiAppunti();
+                                        GuestQuery.caricaMieiLibri();
+                                        GuestQuery.caricaMieDomande();
+                                        
+                                        Ordina.ListeMieiDati();
+                                        
+                                        iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+                                        Grafica.container.add(mieiDatiPanel, "i miei dati");
+                                        Grafica.card.show(Grafica.container, "i miei dati");
+                                        
+                                    }
                                     
                                     bottone.setEnabled(true);
                                     bottone2.setEnabled(true);

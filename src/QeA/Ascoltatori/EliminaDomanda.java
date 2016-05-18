@@ -9,8 +9,12 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
+import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
+import Libri.Vista.ListaLibriPanel;
+import Preferiti.Facoltà.Vista.PreferitiPanel;
 import QeA.Vista.ListaDomandePanel;
+import Studente.Vista.iMieiDatiPanel;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -50,10 +54,43 @@ public class EliminaDomanda implements ActionListener{
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 
                 Ordina.Domande();
-                
-                ListaDomandePanel domande = new ListaDomandePanel();
+
+                if(Applicazione.back.get(Applicazione.back.size()-1).equals("domande")){
+                    ListaDomandePanel domande = new ListaDomandePanel();
                 Grafica.container.add(domande, "domande");
                 Grafica.card.show(Grafica.container, "domande");
+                }
+                
+                if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
+                    Applicazione.svuotaPreferiti();
+                    
+                    ListeQuery.caricaFacoltàPreferite();
+                    ListeQuery.caricaCorsiPreferiti();
+                    ListeQuery.caricaAppuntiPreferiti();
+                    ListeQuery.caricaLibriPreferiti();
+                    ListeQuery.caricaDomandePreferite();
+                    
+                    Ordina.ListePreferiti();
+                    
+                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    Grafica.container.add(preferitiPanel, "preferiti");
+                    Grafica.card.show(Grafica.container, "preferiti");
+                }
+                
+                if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
+                    Applicazione.svuotaMieiDati();
+                    
+                    GuestQuery.caricaMieiAppunti();
+                    GuestQuery.caricaMieiLibri();
+                    GuestQuery.caricaMieDomande();
+                    
+                    Ordina.ListeMieiDati();
+                    
+                    iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+                    Grafica.container.add(mieiDatiPanel, "i miei dati");
+                    Grafica.card.show(Grafica.container, "i miei dati");
+                    
+                }
                 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione della domanda ", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);

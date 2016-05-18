@@ -37,6 +37,7 @@ public class CaricaIMieiDati implements ActionListener{
             iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
             Grafica.container.add(mieiDatiPanel, "i miei dati");
             Grafica.card.show(Grafica.container, "i miei dati");
+            
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Errore durante il caricamento dei dati", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }

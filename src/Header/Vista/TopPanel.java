@@ -100,12 +100,12 @@ public class TopPanel extends JPanel{
         add(title);
         add(menu);
         
-    }
-    
-    public void resetMenu() {
-        menu.setEditable(true);
-        menu.setSelectedItem("Menù");
-        menu.setEditable(false);
-    }
-    
+}
+
+public void resetMenu() {
+menu.setEditable(true);
+menu.setSelectedItem("Menù");
+menu.setEditable(false);
+}
+
 }

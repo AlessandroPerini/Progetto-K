@@ -55,7 +55,7 @@ public class iMieiDatiPanel extends JPanel{
             libriPreferitiButton, domandePreferiteButton;
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
     private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
-    private ImageIcon  search, searchPressed, searchHover;
+    private ImageIcon  search, searchPressed, searchHover, searchSelected;
     private GridBagConstraints gbc, gbcd;
     private JLabel  noAppunti, noLibri, noDomande;
     private CardLayout cardLayout = new CardLayout();
@@ -84,11 +84,12 @@ public class iMieiDatiPanel extends JPanel{
         search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchSelected = new ImageIcon(this.getClass().getResource("/immagini/button2Selected.png"));
         
         //dichiarazione bottoni - label
-        noLibri = new JLabel("Non è stato messo ai Preferiti alcun Libro .");
-        noAppunti = new JLabel("Non è stato messo ai Preferiti alcun Appunto.");
-        noDomande = new JLabel("Non è stata messa ai Preferiti alcuna Domanda.");
+        noLibri = new JLabel("Non hai ancora caricato nessun appunto.");
+        noAppunti = new JLabel("Non hai ancora aggiunto nessun libro.");
+        noDomande = new JLabel("Non hai ancora inserito nessuna domanda.");
         appuntiPreferitiButton = new JButton("Appunti",search);
         libriPreferitiButton = new JButton("Libri",search);
         domandePreferiteButton = new JButton("Domande",search);
@@ -111,7 +112,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "appuntiPreferiti");
-                 setIconListener(searchHover,search, search );
+                 setIconListener(searchSelected, search, search );
             }
         });
         gbc.gridx = 0;
@@ -154,7 +155,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "libriPreferiti");
-               setIconListener(search,searchHover, search);
+               setIconListener(search, searchSelected, search);
                 
             }
         });
@@ -200,7 +201,7 @@ public class iMieiDatiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "domandePreferite");
-              setIconListener(search, search, searchHover);
+              setIconListener(search, search, searchSelected);
             }
         });
         gbc.gridx = 2;
@@ -210,7 +211,6 @@ public class iMieiDatiPanel extends JPanel{
         nord.add(domandePreferiteButton, gbc);
         
         if(dimDomande == 0){
-            System.out.println(dimDomande);
             noDomande.setFont(new Font("Arial", Font.BOLD, 20));
             
             gbcd.gridx = 0;
@@ -220,7 +220,6 @@ public class iMieiDatiPanel extends JPanel{
             domPanel.add(noDomande, gbcd);
             
         }else{
-            System.out.println(dimDomande);
             for (int i = 0; i < dimDomande; i++) {
                 domandePreferite[i] = new JLabel();
                 domandePreferiteLab[i] = new JLabel();
@@ -244,6 +243,7 @@ public class iMieiDatiPanel extends JPanel{
         add(top);
         add(panel);
     }
+    
     public void setPanelWhite(){
         top.setBackground(Color.white);
         this.setBackground(Color.white);
@@ -254,6 +254,7 @@ public class iMieiDatiPanel extends JPanel{
         libPanel.setBackground(Color.white);
         domPanel.setBackground(Color.white);
     }
+    
     public void setScrollPanePanel(){
         
         scrollPanel.setPreferredSize(new Dimension(650, 400));
@@ -265,6 +266,7 @@ public class iMieiDatiPanel extends JPanel{
         scrollPanel3.setPreferredSize(new Dimension(650, 400));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
     }
+    
      public void setButtonCharacteristic(JButton button){
         
         button.setPreferredSize(new Dimension(120,25));
@@ -277,24 +279,26 @@ public class iMieiDatiPanel extends JPanel{
         button.setHorizontalTextPosition(JButton.CENTER);
         button.setVerticalTextPosition(JButton.CENTER);
     }
-        public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){
+     
+    public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){
         
-            label[i].setText(text);
-            label[i].setToolTipText(label[i].getText());
-            label[i].setPreferredSize(new Dimension(120, 30));
-            label[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
-            principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
-            principale[i].setPreferredSize(new Dimension(220, 30));          
-            principale[i].add(ico[i]);
-            principale[i].add(new JLabel("   "));
-            principale[i].add(label[i]);
+        label[i].setText(text);
+        label[i].setToolTipText(label[i].getText());
+        label[i].setPreferredSize(new Dimension(120, 30));
+        label[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+        principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
+        principale[i].setPreferredSize(new Dimension(220, 30));          
+        principale[i].add(ico[i]);
+        principale[i].add(new JLabel("   "));
+        principale[i].add(label[i]);
             
     }
-           public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2){
+        
+    public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2){
                 
-                appuntiPreferitiButton.setIcon(search);
-                libriPreferitiButton.setIcon(search1);
-                domandePreferiteButton.setIcon(search2);
+        appuntiPreferitiButton.setIcon(search);
+        libriPreferitiButton.setIcon(search1);
+        domandePreferiteButton.setIcon(search2);
                 
     }
 }
