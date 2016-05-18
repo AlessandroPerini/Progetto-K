@@ -48,7 +48,7 @@ public class AggiungiLibroPanel extends JPanel{
         
         setBackground(Color.white);
         
-        TopPanel top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoAttuale.getNome());
+        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoAttuale.getNome());
         top.setBackground(Color.white);
         
         JPanel panel = new JPanel(new GridBagLayout());

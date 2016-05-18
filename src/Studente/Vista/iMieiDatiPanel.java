@@ -6,7 +6,6 @@ import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
-
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
@@ -31,23 +30,19 @@ import javax.swing.JScrollPane;
  * @author te4o
  */
 public class iMieiDatiPanel extends JPanel{
-    
-    
+
     private JLabel[] appuntiPreferiti = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferiti = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferite = new JLabel[Applicazione.domandeGuest.size()];
-    
-    
+
     private JLabel[] appuntiPreferitiLab = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferitiLab = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferiteLab = new JLabel[Applicazione.domandeGuest.size()];
-    
-    
+
     private JLabel[] appuntiPreferitiIco = new JLabel[Applicazione.appuntiGuest.size()];
     private JLabel [] libriPreferitiIco = new JLabel[Applicazione.libriGuest.size()];
     private JLabel[] domandePreferiteIco = new JLabel[Applicazione.domandeGuest.size()];
-    
-    
+
     private GoToAppunto[] goToAppunto = new GoToAppunto[Applicazione.appuntiGuest.size()];
     private GoToLibro[] goToLibro = new GoToLibro[Applicazione.libriGuest.size()];
     private GoToDomanda[] goToDomanda = new GoToDomanda[Applicazione.domandeGuest.size()];
@@ -87,7 +82,6 @@ public class iMieiDatiPanel extends JPanel{
         scrollPanel3.setPreferredSize(new Dimension(650, 400));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
         
-        
         centro.add(scrollPanel,"appuntiPreferiti");
         centro.add(scrollPanel2,"libriPreferiti");
         centro.add(scrollPanel3,"domandePreferite");
@@ -95,8 +89,7 @@ public class iMieiDatiPanel extends JPanel{
         GridBagConstraints gbc = new GridBagConstraints();
         GridBagConstraints gbcd = new GridBagConstraints();
         CaricaCorsi caricaCorsi = new CaricaCorsi();
-        
-        
+
         search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
         appuntiPreferitiLabel = new JButton("Appunti",search);
         
@@ -133,6 +126,7 @@ public class iMieiDatiPanel extends JPanel{
             appuntiPreferitiLab[i] = new JLabel();
             appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             appuntiPreferiti[i].setText(Applicazione.appuntiGuest.get(i).getNome());
+            appuntiPreferiti[i].setToolTipText(appuntiPreferiti[i].getText());
             appuntiPreferitiLab[i].setLayout(new BoxLayout(appuntiPreferitiLab[i], BoxLayout.X_AXIS));
             appuntiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -182,6 +176,7 @@ public class iMieiDatiPanel extends JPanel{
             libriPreferitiLab[i] = new JLabel();
             libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             libriPreferiti[i].setText(Applicazione.libriGuest.get(i).getTitolo());
+            libriPreferiti[i].setToolTipText(libriPreferiti[i].getText());
             libriPreferitiLab[i].setLayout(new BoxLayout(libriPreferitiLab[i], BoxLayout.X_AXIS));
             libriPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             libriPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -231,6 +226,7 @@ public class iMieiDatiPanel extends JPanel{
             domandePreferiteLab[i] = new JLabel();
             domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             domandePreferite[i].setText(Applicazione.domandeGuest.get(i).getTitolo());
+            domandePreferite[i].setToolTipText(domandePreferite[i].getText());
             domandePreferiteLab[i].setLayout(new BoxLayout(domandePreferiteLab[i], BoxLayout.X_AXIS));
             domandePreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             domandePreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));

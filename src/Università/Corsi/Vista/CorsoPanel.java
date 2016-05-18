@@ -117,7 +117,7 @@ public class CorsoPanel extends JPanel{
         }//fine zona preferito
         
         JLabel appuntiLab = new JLabel("Appunti");
-        appuntiLab.setFont(new Font("Arial", Font.BOLD, 20));
+        appuntiLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 0;
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 0, 0, 10);
@@ -125,7 +125,7 @@ public class CorsoPanel extends JPanel{
         panel.add(appuntiLab,gbcImg);
         
         JLabel libriLab = new JLabel("Libri");
-        libriLab.setFont(new Font("Arial", Font.BOLD, 20));
+        libriLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 1;
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 0, 0, 10);
@@ -133,7 +133,7 @@ public class CorsoPanel extends JPanel{
         panel.add(libriLab,gbcImg);
         
         JLabel qeaLab = new JLabel("Q&A");
-        qeaLab.setFont(new Font("Arial", Font.BOLD, 20));
+        qeaLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 2;
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 0, 0, 10);
@@ -149,27 +149,27 @@ public class CorsoPanel extends JPanel{
         gbcImg.gridx = 0;
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 0, 0, 10);
-        gbcImg.anchor = GridBagConstraints.CENTER;    
+        gbcImg.anchor = GridBagConstraints.NORTH;    
         panel.add(appunti,gbcImg);
         
-         // riga 0 colonna 1
+        // riga 0 colonna 1
         ImageIcon libriIco = new ImageIcon(this.getClass().getResource("/immagini/libri.png"));
         libri = new JButton(libriIco);
-        libri.setPreferredSize(new Dimension(166, 200));
+        libri.setPreferredSize(new Dimension(166, 215));
         gbcImg.gridx = 1;
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 20, 0, 10);
-        gbcImg.anchor = GridBagConstraints.CENTER;    
+        gbcImg.anchor = GridBagConstraints.NORTH;    
         panel.add(libri, gbcImg);
         
         // riga 0 colonna 2
         ImageIcon qeaIco = new ImageIcon(this.getClass().getResource("/immagini/qea.png"));
         qea = new JButton(qeaIco);
-        qea.setPreferredSize(new Dimension(166, 200));
+        qea.setPreferredSize(new Dimension(200, 200));
         gbcImg.gridx = 2;
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 20, 0, 10);
-        gbcImg.anchor = GridBagConstraints.CENTER;    
+        gbcImg.anchor = GridBagConstraints.NORTH;    
         panel.add(qea,gbcImg);
     }
      

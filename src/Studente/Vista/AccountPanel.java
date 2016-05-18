@@ -156,7 +156,7 @@ public class AccountPanel extends JPanel{
         nick.setBackground(Color.white);
         nick.setEditable(false);
         nick.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        nick.setColumns(12);
+        nick.setColumns(14);
         nick.setHorizontalAlignment(JTextField.CENTER);
         
         JLabel phoneLabel = new JLabel("Telefono: ");
@@ -165,7 +165,7 @@ public class AccountPanel extends JPanel{
         phone = new JTextField(Applicazione.guest.getTelefono());
         phone.setEditable(false);
         phone.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        phone.setColumns(10);
+        phone.setColumns(12);
         phone.setBackground(Color.white);
         phone.setHorizontalAlignment(JTextField.CENTER);
         

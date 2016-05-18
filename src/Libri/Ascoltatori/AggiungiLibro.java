@@ -11,6 +11,7 @@ import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
 import Libri.Vista.ListaLibriPanel;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -56,6 +57,8 @@ public class AggiungiLibro implements ActionListener{
                     Applicazione.svuotaLibri();
                     
                     ListeQuery.caricaLibri();
+                    
+                    Ordina.Libri();
                     
                     Applicazione.back.remove(Applicazione.back.size()-1);
                     

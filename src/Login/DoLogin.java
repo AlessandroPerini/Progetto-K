@@ -7,9 +7,9 @@ package Login;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Database.Connection.ConnessioneDB;
 import Database.Query.LoginQuery;
 import Studente.Vista.AccountPanel;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,6 +18,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.UIManager;
+import javax.swing.plaf.FontUIResource;
+import javax.swing.plaf.OptionPaneUI;
 
 /**
  *
@@ -33,14 +36,14 @@ public class DoLogin implements ActionListener, KeyListener{
         this.password = password;
     }
     
-    public static void doIt(){
-        
+    public static void doIt(){  
+
         if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {
             try {
                 LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
                 if(Applicazione.utenteLoggato){
                     String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
-                    JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con succensso" , JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con successo" , JOptionPane.INFORMATION_MESSAGE);
                     AccountPanel account = new AccountPanel();
                     Grafica.container.add(account,"account");
                 }

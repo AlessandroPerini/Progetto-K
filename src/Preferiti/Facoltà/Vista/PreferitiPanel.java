@@ -65,7 +65,7 @@ public class PreferitiPanel extends JPanel{
     
     private JButton facoltàPreferiteLabel, corsiPreferitiLabel, appuntiPreferitiLabel,
             libriPreferitiLabel, domandePreferiteLabel;
-      private ImageIcon  search, searchPressed, searchHover;
+    private ImageIcon  search, searchPressed, searchHover;
     private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
     private CardLayout cardLayout = new CardLayout();
     
@@ -108,9 +108,9 @@ public class PreferitiPanel extends JPanel{
         facoltàPreferiteLabel.setPreferredSize(new Dimension(120,25));
         facoltàPreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
         facoltàPreferiteLabel.setContentAreaFilled(false);
-         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
+        searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         facoltàPreferiteLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         facoltàPreferiteLabel.setPressedIcon(searchPressed);
         
         facoltàPreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -121,9 +121,9 @@ public class PreferitiPanel extends JPanel{
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(centro, "facoltàPreferite");
-                 facoltàPreferiteLabel.setIcon(searchHover);
+                facoltàPreferiteLabel.setIcon(searchHover);
                 corsiPreferitiLabel.setIcon(search);
-                 libriPreferitiLabel.setIcon(search);
+                libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
             }
@@ -139,6 +139,7 @@ public class PreferitiPanel extends JPanel{
             facoltàPreferiteLab[i] = new JLabel();
             facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             facoltàPreferite[i].setText(Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
+            facoltàPreferite[i].setToolTipText(facoltàPreferite[i].getText());
             facoltàPreferiteLab[i].setLayout(new BoxLayout(facoltàPreferiteLab[i], BoxLayout.X_AXIS));
             facoltàPreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             facoltàPreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -153,14 +154,14 @@ public class PreferitiPanel extends JPanel{
             facPanel.add(facoltàPreferiteLab[i],gbcd);
         }
         
-         corsiPreferitiLabel = new JButton("Corsi",search);
+        corsiPreferitiLabel = new JButton("Corsi",search);
         
         corsiPreferitiLabel.setPreferredSize(new Dimension(120,25));
         corsiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
         corsiPreferitiLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         corsiPreferitiLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         corsiPreferitiLabel.setPressedIcon(searchPressed);
         
         corsiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -173,7 +174,7 @@ public class PreferitiPanel extends JPanel{
                 cardLayout.show(centro, "corsiPreferiti");
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(searchHover);
-                 libriPreferitiLabel.setIcon(search);
+                libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
             }
@@ -186,8 +187,9 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < Applicazione.preferiti.getCorsiPreferiti().size(); i++) {
             corsiPreferiti[i] = new JLabel();
             corsiPreferitiLab[i] = new JLabel();
-            corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
-            corsiPreferiti[i].setText(Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
+            corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotCorso.png")));
+            corsiPreferiti[i].setText("   "+Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
+            corsiPreferiti[i].setToolTipText(corsiPreferiti[i].getText());
             corsiPreferitiLab[i].setLayout(new BoxLayout(corsiPreferitiLab[i], BoxLayout.X_AXIS));
             corsiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             corsiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -203,14 +205,14 @@ public class PreferitiPanel extends JPanel{
             corsiPanel.add(corsiPreferitiLab[i],gbcd);
         }
         
-          appuntiPreferitiLabel = new JButton("Appunti",search);
+        appuntiPreferitiLabel = new JButton("Appunti",search);
         
         appuntiPreferitiLabel.setPreferredSize(new Dimension(120,25));
         appuntiPreferitiLabel.setBorder(BorderFactory.createEmptyBorder());
         appuntiPreferitiLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         appuntiPreferitiLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         appuntiPreferitiLabel.setPressedIcon(searchPressed);
         
         appuntiPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -223,7 +225,7 @@ public class PreferitiPanel extends JPanel{
                 cardLayout.show(centro, "appuntiPreferiti");
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(search);
-                 libriPreferitiLabel.setIcon(search);
+                libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(searchHover);
             }
@@ -240,6 +242,7 @@ public class PreferitiPanel extends JPanel{
             appuntiPreferitiLab[i] = new JLabel();
             appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             appuntiPreferiti[i].setText(Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
+            appuntiPreferiti[i].setToolTipText(appuntiPreferiti[i].getText());
             appuntiPreferitiLab[i].setLayout(new BoxLayout(appuntiPreferitiLab[i], BoxLayout.X_AXIS));
             appuntiPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             appuntiPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -262,7 +265,7 @@ public class PreferitiPanel extends JPanel{
         libriPreferitiLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         libriPreferitiLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         libriPreferitiLabel.setPressedIcon(searchPressed);
         
         libriPreferitiLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -275,7 +278,7 @@ public class PreferitiPanel extends JPanel{
                 cardLayout.show(centro, "libriPreferiti");
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(search);
-                 libriPreferitiLabel.setIcon(searchHover);
+                libriPreferitiLabel.setIcon(searchHover);
                 domandePreferiteLabel.setIcon(search);
                 appuntiPreferitiLabel.setIcon(search);
             }
@@ -290,6 +293,7 @@ public class PreferitiPanel extends JPanel{
             libriPreferitiLab[i] = new JLabel();
             libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             libriPreferiti[i].setText(Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
+            libriPreferiti[i].setToolTipText(libriPreferiti[i].getText());
             libriPreferitiLab[i].setLayout(new BoxLayout(libriPreferitiLab[i], BoxLayout.X_AXIS));
             libriPreferitiLab[i].setPreferredSize(new Dimension(220, 30));
             libriPreferiti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
@@ -306,16 +310,14 @@ public class PreferitiPanel extends JPanel{
             libPanel.add(libriPreferitiLab[i], gbcd );
         }
         
-          domandePreferiteLabel = new JButton("Domande",search);
-        
+        domandePreferiteLabel = new JButton("Domande",search);
         domandePreferiteLabel.setPreferredSize(new Dimension(120,25));
         domandePreferiteLabel.setBorder(BorderFactory.createEmptyBorder());
         domandePreferiteLabel.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         domandePreferiteLabel.setRolloverIcon(searchHover);
-         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
+        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         domandePreferiteLabel.setPressedIcon(searchPressed);
-        
         domandePreferiteLabel.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         domandePreferiteLabel.setForeground(Color.white);
         domandePreferiteLabel.setIconTextGap(-92);
@@ -326,7 +328,7 @@ public class PreferitiPanel extends JPanel{
                 cardLayout.show(centro, "domandePreferite");
                 facoltàPreferiteLabel.setIcon(search);
                 corsiPreferitiLabel.setIcon(search);
-                 libriPreferitiLabel.setIcon(search);
+                libriPreferitiLabel.setIcon(search);
                 domandePreferiteLabel.setIcon(searchHover);
                 appuntiPreferitiLabel.setIcon(search);
             }
@@ -341,6 +343,7 @@ public class PreferitiPanel extends JPanel{
             domandePreferiteLab[i] = new JLabel();
             domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
             domandePreferite[i].setText(Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
+            domandePreferite[i].setToolTipText(domandePreferite[i].getText());
             domandePreferiteLab[i].setLayout(new BoxLayout(domandePreferiteLab[i], BoxLayout.X_AXIS));
             domandePreferiteLab[i].setPreferredSize(new Dimension(220, 30));
             domandePreferite[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
