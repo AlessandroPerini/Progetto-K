@@ -79,6 +79,7 @@ public class TopPanel extends JPanel{
         //----------------------------------- FINE SEGNALAZIONE!!! -----------------------------------
         
         JLabel title = new JLabel(t);
+        title.setToolTipText(title.getText());
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 20));
         title.setPreferredSize(new Dimension(420, 40));

@@ -160,6 +160,7 @@ public class ListaDomandePanel extends JPanel{
             
             for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
                 domande[i] = new JLabel(Applicazione.listaDomandeAttuali.get(i).getTitolo(), HEIGHT);
+                domande[i].setToolTipText(domande[i].getText());
                 domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
                 domande[i].setPreferredSize(new Dimension(220, 30));

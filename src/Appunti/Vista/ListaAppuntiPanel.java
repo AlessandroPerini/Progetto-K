@@ -165,6 +165,7 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiLabel[i]= new JLabel();
                 appuntiSIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
                 appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
+                appunti[i].setToolTipText(appunti[i].getText());
                 appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
                 appuntiLabel[i].setPreferredSize(new Dimension(220, 30));
                 appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));

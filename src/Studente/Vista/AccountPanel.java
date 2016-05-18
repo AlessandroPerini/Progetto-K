@@ -129,7 +129,7 @@ public class AccountPanel extends JPanel{
         iMieiDati.setIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png")));
         iMieiDati.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png")));
         iMieiDati.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png")));
-        iMieiDati.setPressedIcon(logoutPressed);
+        
         iMieiDati.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         iMieiDati.setIconTextGap(-95);
         iMieiDati.setPreferredSize(new Dimension(110, 40));
@@ -156,7 +156,7 @@ public class AccountPanel extends JPanel{
         nick.setBackground(Color.white);
         nick.setEditable(false);
         nick.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        nick.setColumns(12);
+        nick.setColumns(14);
         nick.setHorizontalAlignment(JTextField.CENTER);
         
         JLabel phoneLabel = new JLabel("Telefono: ");
@@ -165,7 +165,7 @@ public class AccountPanel extends JPanel{
         phone = new JTextField(Applicazione.guest.getTelefono());
         phone.setEditable(false);
         phone.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        phone.setColumns(10);
+        phone.setColumns(12);
         phone.setBackground(Color.white);
         phone.setHorizontalAlignment(JTextField.CENTER);
         

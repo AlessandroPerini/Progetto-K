@@ -9,6 +9,7 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.EliminaAppunto;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
+import Libri.Ascoltatori.EliminaLibro;
 import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
 import java.awt.Color;
@@ -140,8 +141,8 @@ public class LibroPanel extends JPanel{
         elimina.setPreferredSize(new Dimension(110, 40));
         
         elimina.setBackground(new Color(249,123,123));
-        EliminaAppunto eliminaAppunto = new EliminaAppunto(elimina, elimina);
-        elimina.addActionListener(eliminaAppunto);
+        EliminaLibro eliminaLibro = new EliminaLibro();
+        elimina.addActionListener(eliminaLibro);
 
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
