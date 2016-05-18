@@ -150,7 +150,7 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < dimFacoltàPreferite; i++) {
             facoltàPreferite[i] = new JLabel();
             facoltàPreferiteLab[i] = new JLabel();
-            facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            facoltàPreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotFacoltà.png")));
             setLabelCharacteristic(i, facoltàPreferiteLab, facoltàPreferite, facoltàPreferiteIco, Applicazione.preferiti.getFacoltàPreferite().get(i).getNome());
             
             facoltàPreferite[i].addMouseListener(caricaCorsi);
@@ -177,7 +177,7 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < dimCorsiPreferiti; i++) {
             corsiPreferiti[i] = new JLabel();
             corsiPreferitiLab[i] = new JLabel();
-            corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            corsiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotCorso.png")));
             setLabelCharacteristic(i, corsiPreferitiLab, corsiPreferiti, corsiPreferitiIco,Applicazione.preferiti.getCorsiPreferiti().get(i).getNome());
             
             goToCorso[i] = new GoToCorso(Applicazione.preferiti.getCorsiPreferiti().get(i).getFacoltà());
@@ -208,7 +208,7 @@ public class PreferitiPanel extends JPanel{
 
             appuntiPreferiti[i] = new JLabel();
             appuntiPreferitiLab[i] = new JLabel();
-            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
             
             setLabelCharacteristic(i, appuntiPreferitiLab, appuntiPreferiti, appuntiPreferitiIco, Applicazione.preferiti.getAppuntiPreferiti().get(i).getNome());
             goToAppunto[i] = new GoToAppunto(Applicazione.preferiti.getAppuntiPreferiti().get(i).getCorso(),
@@ -237,7 +237,7 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < dimLibriPreferiti; i++) {
             libriPreferiti[i] = new JLabel();
             libriPreferitiLab[i] = new JLabel();
-            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
             setLabelCharacteristic(i, libriPreferitiLab, libriPreferiti, libriPreferitiIco, Applicazione.preferiti.getLibriPreferiti().get(i).getTitolo());
 
             goToLibro[i] = new GoToLibro(Applicazione.preferiti.getLibriPreferiti().get(i).getCorso(),
@@ -268,7 +268,7 @@ public class PreferitiPanel extends JPanel{
         for (int i = 0; i < dimDomandePreferite; i++) {
             domandePreferite[i] = new JLabel();
             domandePreferiteLab[i] = new JLabel();
-            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
             setLabelCharacteristic(i, domandePreferiteLab, domandePreferite, domandePreferiteIco, Applicazione.preferiti.getDomandePreferite().get(i).getTitolo());
 
             goToDomanda[i] = new GoToDomanda(Applicazione.preferiti.getDomandePreferite().get(i).getCorso(),
@@ -338,6 +338,7 @@ public class PreferitiPanel extends JPanel{
             principale[i].setPreferredSize(new Dimension(220, 30));
            
             principale[i].add(ico[i]);
+            principale[i].add(new JLabel("   "));
             principale[i].add(label[i]);
             
     }

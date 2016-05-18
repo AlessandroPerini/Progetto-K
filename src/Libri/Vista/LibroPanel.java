@@ -6,7 +6,6 @@
 package Libri.Vista;
 
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.EliminaAppunto;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.EliminaLibro;

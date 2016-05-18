@@ -51,7 +51,7 @@ public class GoToAppunto implements MouseListener{
             text = parts[0];
             
             Applicazione.appuntoAttuale.setNome(text);
-            
+
             InfoQuery.caricaInfoAppunto(corso, facoltà);
             
             Applicazione.corsoAttuale.setNome(corso);

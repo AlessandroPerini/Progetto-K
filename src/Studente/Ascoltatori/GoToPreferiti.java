@@ -8,6 +8,7 @@ package Studente.Ascoltatori;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -28,6 +29,8 @@ public class GoToPreferiti implements ActionListener{
             ListeQuery.caricaAppuntiPreferiti();
             ListeQuery.caricaLibriPreferiti();
             ListeQuery.caricaDomandePreferite();
+            
+            Ordina.ListePreferiti();
 
             PreferitiPanel preferitiPanel = new PreferitiPanel();
             Grafica.container.add(preferitiPanel, "preferiti");

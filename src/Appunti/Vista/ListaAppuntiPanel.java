@@ -40,7 +40,7 @@ import javax.swing.border.LineBorder;
 public class ListaAppuntiPanel extends JPanel{
     
     private JLabel[] appunti = new JLabel[Applicazione.listaAppuntiAttuali.size()];
-    private JLabel[] appuntiSIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
+    private JLabel[] appuntiIcon = new JLabel[Applicazione.listaAppuntiAttuali.size()];
     private JLabel[] appuntiLabel = new JLabel[Applicazione.listaAppuntiAttuali.size()];
     private JTextField searchField;
     private JLabel noAppunti, ordinamento;
@@ -163,13 +163,14 @@ public class ListaAppuntiPanel extends JPanel{
         }else{
             for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
                 appuntiLabel[i]= new JLabel();
-                appuntiSIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+                appuntiIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
                 appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
                 appunti[i].setToolTipText(appunti[i].getText());
                 appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
                 appuntiLabel[i].setPreferredSize(new Dimension(220, 30));
                 appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
-                appuntiLabel[i].add(appuntiSIco[i]);
+                appuntiLabel[i].add(appuntiIcon[i]);
+                appuntiLabel[i].add(new JLabel("   "));
                 appuntiLabel[i].add(appunti[i]);
 
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();

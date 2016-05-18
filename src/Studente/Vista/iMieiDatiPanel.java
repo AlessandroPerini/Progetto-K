@@ -120,7 +120,7 @@ public class iMieiDatiPanel extends JPanel{
 
             appuntiPreferiti[i] = new JLabel();
             appuntiPreferitiLab[i] = new JLabel();
-            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
          
             setLabelCharacteristic(i, appuntiPreferitiLab, appuntiPreferiti, appuntiPreferitiIco, Applicazione.appuntiGuest.get(i).getNome());
 
@@ -152,10 +152,10 @@ public class iMieiDatiPanel extends JPanel{
             
             libriPreferiti[i] = new JLabel();
             libriPreferitiLab[i] = new JLabel();
-            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
+            libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
        
             setLabelCharacteristic(i, libriPreferitiLab, libriPreferiti, libriPreferitiIco, Applicazione.libriGuest.get(i).getTitolo());
-
+            
             goToLibro[i] = new GoToLibro(Applicazione.libriGuest.get(i).getCorso(),
                     Applicazione.libriGuest.get(i).getFacoltà(),
                     Applicazione.libriGuest.get(i).getID());
@@ -183,8 +183,7 @@ public class iMieiDatiPanel extends JPanel{
         for (int i = 0; i < Applicazione.domandeGuest.size(); i++) {
             domandePreferite[i] = new JLabel();
             domandePreferiteLab[i] = new JLabel();
-            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
-  
+            domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
             setLabelCharacteristic(i, domandePreferiteLab, domandePreferite, domandePreferiteIco, Applicazione.domandeGuest.get(i).getTitolo());
 
             goToDomanda[i] = new GoToDomanda(Applicazione.domandeGuest.get(i).getCorso(),
@@ -244,6 +243,7 @@ public class iMieiDatiPanel extends JPanel{
             principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
             principale[i].setPreferredSize(new Dimension(220, 30));          
             principale[i].add(ico[i]);
+            principale[i].add(new JLabel("   "));
             principale[i].add(label[i]);
             
     }
@@ -255,3 +255,5 @@ public class iMieiDatiPanel extends JPanel{
                 
     }
 }
+
+
