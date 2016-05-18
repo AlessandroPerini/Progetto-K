@@ -126,11 +126,11 @@ public class PreferitiPanel extends JPanel{
         centro.add(scrollPanel3,"libriPreferiti");
         centro.add(scrollPanel4,"domandePreferite");
         
-        setButtonCharacteristic(facoltàPreferiteButton, -85);
-        setButtonCharacteristic(corsiPreferitiButton, -78);
-        setButtonCharacteristic(appuntiPreferitiButton, -85);
-        setButtonCharacteristic(libriPreferitiButton, -75);
-        setButtonCharacteristic(domandePreferiteButton, -92);
+        setButtonCharacteristic(facoltàPreferiteButton);
+        setButtonCharacteristic(corsiPreferitiButton);
+        setButtonCharacteristic(appuntiPreferitiButton);
+        setButtonCharacteristic(libriPreferitiButton);
+        setButtonCharacteristic(domandePreferiteButton);
        
 
         facoltàPreferiteButton.addActionListener(new ActionListener() {
@@ -234,7 +234,7 @@ public class PreferitiPanel extends JPanel{
         gbc.insets = new Insets(5, 0, 0, 5);
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(libriPreferitiButton, gbc);
-        for (int i = 0; i < Applicazione.preferiti.getLibriPreferiti().size(); i++) {
+        for (int i = 0; i < dimLibriPreferiti; i++) {
             libriPreferiti[i] = new JLabel();
             libriPreferitiLab[i] = new JLabel();
             libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
@@ -265,7 +265,7 @@ public class PreferitiPanel extends JPanel{
         gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(domandePreferiteButton, gbc);
-        for (int i = 0; i < Applicazione.preferiti.getDomandePreferite().size(); i++) {
+        for (int i = 0; i < dimDomandePreferite; i++) {
             domandePreferite[i] = new JLabel();
             domandePreferiteLab[i] = new JLabel();
             domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/freccia.png")));
@@ -317,7 +317,7 @@ public class PreferitiPanel extends JPanel{
         scrollPanel4.getVerticalScrollBar().setUnitIncrement(16);
     }
     
-    public void setButtonCharacteristic(JButton button, int iconTextGap){
+    public void setButtonCharacteristic(JButton button){
         
         button.setPreferredSize(new Dimension(120,25));
         button.setBorder(BorderFactory.createEmptyBorder());
@@ -326,7 +326,8 @@ public class PreferitiPanel extends JPanel{
         button.setPressedIcon(searchPressed);
         button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         button.setForeground(Color.white);
-        button.setIconTextGap(iconTextGap);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
     }
     public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){
         
