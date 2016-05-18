@@ -151,7 +151,12 @@ public class ListaAppuntiPanel extends JPanel{
         int size = Applicazione.listaAppuntiAttuali.size();
         
         if(size == 0){
-            noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
+                noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");
+            }
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti cercati")) {
+                noAppunti = new JLabel("Nessun appunto trovato.");
+            }
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
             panel.add(noAppunti);
             gbcd.gridx = 0;

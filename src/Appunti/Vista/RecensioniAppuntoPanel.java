@@ -42,7 +42,7 @@ public class RecensioniAppuntoPanel extends JPanel{
         GridBagConstraints gbc = new GridBagConstraints();
         GridBagConstraints gbc2 = new GridBagConstraints();
         
-        TopPanel top = new TopPanel("Recensioni "+Applicazione.corsoAttuale.getNome());
+        TopPanel top = new TopPanel("Recensioni "+Applicazione.appuntoAttuale.getNome());
         top.setBackground(Color.white);
         
         JPanel panel = new JPanel(new GridBagLayout());

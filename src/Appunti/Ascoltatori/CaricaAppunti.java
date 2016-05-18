@@ -8,14 +8,11 @@ package Appunti.Ascoltatori;
 import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Appunto;
 import Database.Query.ListeQuery;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.Collections;
-import java.util.Comparator;
 
 /**
  *

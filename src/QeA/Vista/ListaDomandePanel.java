@@ -150,7 +150,12 @@ public class ListaDomandePanel extends JPanel{
         int size = Applicazione.listaDomandeAttuali.size();
         if(size == 0){
             noDomande = new JLabel();
-            noDomande.setText("Non ci sono domande relative a questo corso.");
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
+                noDomande = new JLabel("Non ci sono domande relative a questo corso.");
+            }
+            if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande cercate")) {
+                noDomande = new JLabel("Nessuna domanda trovata.");
+            }
             noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
             gbcImg.gridx = 0;
             gbcImg.gridy = 1;
