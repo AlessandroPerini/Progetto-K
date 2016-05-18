@@ -67,6 +67,7 @@ public class PreferitiPanel extends JPanel{
             libriPreferitiLabel, domandePreferiteLabel;
       private ImageIcon  search, searchPressed, searchHover;
     private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
+    private JScrollPane scrollPanel, scrollPanel1,scrollPanel2,scrollPanel3, scrollPanel4;
     private CardLayout cardLayout = new CardLayout();
     
     public PreferitiPanel() {
@@ -82,20 +83,35 @@ public class PreferitiPanel extends JPanel{
         centro.setLayout(cardLayout);
         facPanel = new JPanel(new GridBagLayout());
         facPanel.setBackground(Color.white);
+        scrollPanel = new JScrollPane(facPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel.setPreferredSize(new Dimension(650, 400));
+        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         corsiPanel = new JPanel(new GridBagLayout());
         corsiPanel.setBackground(Color.white);
+        scrollPanel1 = new JScrollPane(corsiPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel1.setPreferredSize(new Dimension(650, 400));
+        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
         appPanel = new JPanel(new GridBagLayout());
         appPanel.setBackground(Color.white);
+        scrollPanel2 = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel2.setPreferredSize(new Dimension(650, 400));
+        scrollPanel2.getVerticalScrollBar().setUnitIncrement(16);
         libPanel = new JPanel(new GridBagLayout());
         libPanel.setBackground(Color.white);
+        scrollPanel3 = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel3.setPreferredSize(new Dimension(650, 400));
+        scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
         domPanel = new JPanel(new GridBagLayout());
         domPanel.setBackground(Color.white);
+        scrollPanel4 = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel4.setPreferredSize(new Dimension(650, 400));
+        scrollPanel4.getVerticalScrollBar().setUnitIncrement(16);
         
-        centro.add(facPanel,"facoltàPreferite");
-        centro.add(corsiPanel,"corsiPreferiti");
-        centro.add(appPanel,"appuntiPreferiti");
-        centro.add(libPanel,"libriPreferiti");
-        centro.add(domPanel,"domandePreferite");
+        centro.add(scrollPanel,"facoltàPreferite");
+        centro.add(scrollPanel1,"corsiPreferiti");
+        centro.add(scrollPanel2,"appuntiPreferiti");
+        centro.add(scrollPanel3,"libriPreferiti");
+        centro.add(scrollPanel4,"domandePreferite");
         
         GridBagConstraints gbc = new GridBagConstraints();
         GridBagConstraints gbcd = new GridBagConstraints();
@@ -357,11 +373,11 @@ public class PreferitiPanel extends JPanel{
         }
         panel.add(nord,BorderLayout.NORTH);
         panel.add(centro,BorderLayout.CENTER);
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+         scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 450));
         scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         
         add(top);
-        add(scrollPanel);
+        add(panel);
     }
 }
