@@ -44,22 +44,18 @@ public class Back implements ActionListener{
                 case "recensioni": Applicazione.svuotaRecensioni();
                     break;
                 case "facoltà cercate": Applicazione.svuotaFacoltà();
-                ListeQuery lQuery1 = new ListeQuery();
-                {
-                    try {
-                        lQuery1.caricaFacoltà();
-                    } catch (SQLException ex) {
-                        System.out.println("Errore durante il caricamento delle facoltà");
-                    }
-                }
+                                        try {
+                                            ListeQuery.caricaFacoltà();
+                                        } catch (SQLException ex) {
+                                            System.out.println("Errore durante il caricamento delle facoltà");
+                                        }
                     break;
-                case "corsi cercati": Applicazione.svuotaCorsi();
-                                    ListeQuery lQuery2 = new ListeQuery();
-                                    try {
-                                        lQuery2.caricaCorsi();
-                                    } catch (SQLException ex) {
-                                        System.out.println("Errore durante il caricamento dei corsi");
-                                    }
+                case "corsi cercati":   Applicazione.svuotaCorsi();
+                                        try {
+                                            ListeQuery.caricaCorsi();
+                                        } catch (SQLException ex) {
+                                            System.out.println("Errore durante il caricamento dei corsi");
+                                        }
 
                     break;
                 case "preferiti": Applicazione.svuotaPreferiti();
