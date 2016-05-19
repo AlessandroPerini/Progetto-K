@@ -5,6 +5,7 @@
 */
 package Valutazione.Vista;
 
+import Application.Vista.Grafica;
 import Valutazione.Ascoltatori.VotaAppunto;
 import Utils.CustomScrollbarUI;
 import java.awt.Color;
@@ -38,7 +39,7 @@ public class ValutaAppuntoFrame{
     private JSlider punteggio;
     private JFrame valutaFrame;
     private JLabel titoloFrame;
-    private JPanel container, titolo, body, commentoPanel;;
+    private JPanel container, mainPanel, commentoPanel, buttonPanel;
     private JButton annulla, conferma;
 
     public ValutaAppuntoFrame() {
@@ -48,29 +49,36 @@ public class ValutaAppuntoFrame{
     public void apri(){
  
         GridBagConstraints gbc = new GridBagConstraints();
+        GridBagConstraints gbc2 = new GridBagConstraints();
         
         valutaFrame = new JFrame("Valuta Appunto");
-        valutaFrame.setSize(700, 560);
-        valutaFrame.setLocationRelativeTo(null);
+        valutaFrame.setSize(550, 444);
         valutaFrame.setResizable(false);
         valutaFrame.setUndecorated(true);
+        //centra questo frame esattamente al centro rispetto al MainFrame
+        int x = (int) (Grafica.posizione().getX() + 350 - valutaFrame.getWidth()/2);
+        int y = (int) (Grafica.posizione().getY() + 280 - valutaFrame.getHeight()/2);
+        valutaFrame.setLocation(x, y);
         
         container = new JPanel();
         container.setBackground(Color.white);
+        container.setBorder(new LineBorder(new Color(53,53,53), 3));
         valutaFrame.setContentPane(container);
         
-        titolo = new JPanel();
-        titolo.setBackground(Color.white);
-        titolo.setPreferredSize(new Dimension(650,100));
+        mainPanel = new JPanel(new GridBagLayout());
+        mainPanel.setBackground(Color.white);
         
-        body = new JPanel(new GridBagLayout());
-        body.setBackground(Color.white);
+        buttonPanel = new JPanel(new GridBagLayout());
+        buttonPanel.setBackground(Color.white);
         
         titoloFrame = new JLabel("Valuta appunto");
-        titoloFrame.setFont(new Font("Century Gothic", Font.BOLD, 23));
+        titoloFrame.setFont(new Font("Century Gothic", Font.BOLD, 25));
         titoloFrame.setBackground(Color.white);
-        
-        titolo.add(titoloFrame);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(titoloFrame, gbc);
         
         punteggio = new JSlider(1, 5);
         punteggio.setPreferredSize(new Dimension(150,50));
@@ -80,21 +88,21 @@ public class ValutaAppuntoFrame{
         punteggio.setPaintLabels(true);
         punteggio.setBorder(BorderFactory.createTitledBorder("Punteggio"));
         gbc.gridx = 0;
-        gbc.gridy = 0;
-        gbc.insets = new Insets(20, 325, 0, 0);
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(punteggio, gbc);
-
+        mainPanel.add(punteggio, gbc);
+        
         commentoPanel = new JPanel();
         commentoPanel.setBackground(Color.white);
-        commentoPanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
+        commentoPanel.setBorder(BorderFactory.createTitledBorder("Commento"));
         
         commento = new JTextArea();
         commento.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         commento.setBackground(Color.white);
         commento.setForeground(Color.BLACK);
         JScrollPane scrollPanel = new JScrollPane(commento, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(300, 200));
+        scrollPanel.setPreferredSize(new Dimension(300, 150));
         scrollPanel.setBorder(new LineBorder(Color.white));
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
@@ -106,10 +114,10 @@ public class ValutaAppuntoFrame{
         commento.setWrapStyleWord(true);
         commentoPanel.add(scrollPanel);
         gbc.gridx = 0;
-        gbc.gridy = 1;
-        gbc.insets = new Insets(30, 325, 0, 0);
+        gbc.gridy = 2;
+        gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(commentoPanel, gbc);
+        mainPanel.add(commentoPanel, gbc);
         
         Icon annullaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
         annulla = new JButton(annullaNormal);
@@ -122,19 +130,20 @@ public class ValutaAppuntoFrame{
         annulla.setText("ANNULLA");
         annulla.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         annulla.setForeground(Color.white);
-        annulla.setIconTextGap(-88);
+        annulla.setIconTextGap(-86);
         annulla.setPreferredSize(new Dimension(110, 40));
         annulla.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                valutaFrame.dispose();
                 valutaFrame.setVisible(false);
             }
         });
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(50, -30, 0, 30);
-        gbc.anchor = GridBagConstraints.CENTER;
-        body.add(annulla, gbc);
+        gbc2.gridx = 0;
+        gbc2.gridy = 0;
+        gbc2.insets = new Insets(0, 0, 0, 55);
+        gbc2.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(annulla, gbc2);
         
         Icon confermaNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         conferma = new JButton(confermaNormal);
@@ -147,18 +156,23 @@ public class ValutaAppuntoFrame{
         conferma.setText("CONFERMA");
         conferma.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         conferma.setForeground(Color.white);
-        conferma.setIconTextGap(-92);
+        conferma.setIconTextGap(-93);
         conferma.setPreferredSize(new Dimension(110, 40));
         VotaAppunto votaAppunto = new VotaAppunto(commento, punteggio, valutaFrame);
         conferma.addActionListener(votaAppunto);
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(50, 0, 0, 220);
-        gbc.anchor = GridBagConstraints.CENTER;
-        body.add(conferma, gbc);
+        gbc2.gridx = 1;
+        gbc2.gridy = 0;
+        gbc2.insets = new Insets(0, 55, 0, 0);
+        gbc2.anchor = GridBagConstraints.CENTER;
+        buttonPanel.add(conferma, gbc2);
         
-        container.add(titolo);
-        container.add(body);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(30, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        mainPanel.add(buttonPanel, gbc);
+        
+        container.add(mainPanel);
         
         valutaFrame.setVisible(true);
     }
