@@ -10,6 +10,7 @@ import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
+import Utils.CustomScrollbarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -26,6 +27,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -46,7 +48,7 @@ public class ListaLibriPanel extends JPanel{
     private TopPanel top;
     private Icon search, searchHover, searchPressed;
     private JPanel panel, searchPanel, ordinaPanel ,borderPanel;
-
+    
     public ListaLibriPanel() {
         
         setBackground(Color.white);
@@ -131,10 +133,10 @@ public class ListaLibriPanel extends JPanel{
         
         if(size == 0){
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
-                noLibri = new JLabel("Non ci sono libri relativi a questo corso.");
+                noLibri = new JLabel("Non ci sono libri relativi a questo corso");
             }
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri cercati")) {
-                noLibri = new JLabel("Nessun libro trovato.");
+                noLibri = new JLabel("Nessun libro trovato");
             }
             noLibri.setFont(new Font("Arial", Font.BOLD, 20));
             panel.add(noLibri);
@@ -165,7 +167,7 @@ public class ListaLibriPanel extends JPanel{
                 gbcd.insets = new Insets(5, -7, 0, 10);
                 gbcd.anchor = GridBagConstraints.CENTER;
                 panel.add(libriLabel[i], gbcd);
-             
+                
             }
         }
         
@@ -173,8 +175,14 @@ public class ListaLibriPanel extends JPanel{
         borderPanel.add(panel,BorderLayout.NORTH);
         JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 350));
-        
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
         
         add(top);
         add(searchPanel);

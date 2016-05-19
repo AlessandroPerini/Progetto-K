@@ -8,6 +8,7 @@ package Libri.Vista;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.AggiungiLibro;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,12 +23,14 @@ import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SpinnerNumberModel;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -75,11 +78,27 @@ public class AggiungiLibroPanel extends JPanel{
         
         JScrollPane scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelNome.setPreferredSize(new Dimension(250, 50));
+        scrollPanelNome.setBackground(Color.white);
+        scrollPanelNome.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanelNome.setVerticalScrollBar(scrollBar);
         nome.setLineWrap(true);
         nome.setWrapStyleWord(true);
         
         JScrollPane scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelDescrizione.setPreferredSize(new Dimension(250, 100));
+        scrollPanelDescrizione.setBackground(Color.white);
+        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
         descrizione.setLineWrap(true);
         descrizione.setWrapStyleWord(true);
         

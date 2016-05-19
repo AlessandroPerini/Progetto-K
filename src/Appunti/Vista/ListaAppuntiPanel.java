@@ -11,6 +11,7 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
+import Utils.CustomScrollbarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -152,10 +154,10 @@ public class ListaAppuntiPanel extends JPanel{
         
         if(size == 0){
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
-                noAppunti = new JLabel("Non ci sono appunti relativi a questo corso.");
+                noAppunti = new JLabel("Non ci sono appunti relativi a questo corso");
             }
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti cercati")) {
-                noAppunti = new JLabel("Nessun appunto trovato.");
+                noAppunti = new JLabel("Nessun appunto trovato");
             }
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
             panel.add(noAppunti);
@@ -178,7 +180,7 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiLabel[i].add(appuntiIcon[i]);
                 appuntiLabel[i].add(new JLabel("   "));
                 appuntiLabel[i].add(appunti[i]);
-
+                
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
@@ -231,7 +233,14 @@ public class ListaAppuntiPanel extends JPanel{
         borderPanel.add(panel,BorderLayout.NORTH);
         JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 350));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
         
         add(top);
         add(searchPanel);

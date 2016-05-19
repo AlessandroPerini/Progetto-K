@@ -8,6 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -23,9 +24,11 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -54,7 +57,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         filePanel = new JPanel();
         
         gbc = new GridBagConstraints();
-        //dichiarazione icone 
+        //dichiarazione icone
         aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
@@ -70,12 +73,30 @@ public class AggiungiAppuntoPanel extends JPanel{
         
         //dichiarazione scrollPane
         scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelNome.setBackground(Color.white);
+        scrollPanelNome.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanelNome.setVerticalScrollBar(scrollBar);
+        
         scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDescrizione.setBackground(Color.white);
+        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
+        
         scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-       
+        
         initComponent();
-           
+        
         nomePanel.add(scrollPanelNome);
         descrizionePanel.add(scrollPanelDescrizione);
         
@@ -90,8 +111,8 @@ public class AggiungiAppuntoPanel extends JPanel{
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(descrizionePanel, gbc);
-
-        //file  
+        
+        //file
         persorsoFile.setEditable(false);
         
         scegliFile.addActionListener(new ActionListener() {
@@ -143,7 +164,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         nome.setText("");
         descrizione.setText("");
     }
-       public void initComponent(){
+    public void initComponent(){
         top.setBackground(Color.white);
         this.setBackground(Color.white);
         panel.setBackground(Color.white);
@@ -158,7 +179,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         persorsoFile.setBackground(Color.white );
         persorsoFile.setBackground(Color.white);
         persorsoFile.setForeground(Color.BLACK);
-       
+        
         nomePanel.setBorder(BorderFactory.createTitledBorder("Nome"));
         descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
@@ -174,11 +195,11 @@ public class AggiungiAppuntoPanel extends JPanel{
         scrollPanelDescrizione.setPreferredSize(new Dimension(250, 100));
         
         aggiungi.setBorder(BorderFactory.createEmptyBorder());
-        aggiungi.setContentAreaFilled(false);      
+        aggiungi.setContentAreaFilled(false);
         aggiungi.setRolloverIcon(aggiungiHover);
         aggiungi.setPressedIcon(aggiungiPressed);
         aggiungi.setText("INSERISCI FILE");
-        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));   
+        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         aggiungi.setIconTextGap(-95);
         aggiungi.setPreferredSize(new Dimension(110, 40));
         aggiungi.setEnabled(false);

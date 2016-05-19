@@ -3,7 +3,7 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Preferiti.Facoltà.Ascoltatori;
+package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;

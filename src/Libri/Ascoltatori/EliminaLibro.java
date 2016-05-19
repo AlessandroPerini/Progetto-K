@@ -12,7 +12,7 @@ import Database.Query.DeleteQuery;
 import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
-import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Preferiti.Vista.PreferitiPanel;
 import Studente.Vista.iMieiDatiPanel;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;

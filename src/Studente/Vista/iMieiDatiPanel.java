@@ -7,6 +7,7 @@ import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
 import Universita.Corsi.Ascoltatori.CaricaCorsi;
+import Utils.CustomScrollbarUI;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -23,7 +24,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -35,24 +38,24 @@ public class iMieiDatiPanel extends JPanel{
     private int dimLibri = Applicazione.libriGuest.size();
     private int dimDomande = Applicazione.domandeGuest.size();
     
-    private JLabel[] appuntiPreferiti = new JLabel[dimAppunti];
-    private JLabel[] libriPreferiti = new JLabel[dimLibri];
-    private JLabel[] domandePreferite = new JLabel[dimDomande];
+    private JLabel[] mieiAppunti = new JLabel[dimAppunti];
+    private JLabel[] mieiLibri = new JLabel[dimLibri];
+    private JLabel[] mieDomande = new JLabel[dimDomande];
 
-    private JLabel[] appuntiPreferitiLab = new JLabel[dimAppunti];
-    private JLabel [] libriPreferitiLab = new JLabel[dimLibri];
-    private JLabel[] domandePreferiteLab = new JLabel[dimDomande];
+    private JLabel[] mieiAppuntiLab = new JLabel[dimAppunti];
+    private JLabel [] mieiLibriLab = new JLabel[dimLibri];
+    private JLabel[] mieDomandeLab = new JLabel[dimDomande];
 
-    private JLabel[] appuntiPreferitiIco = new JLabel[dimAppunti];
-    private JLabel [] libriPreferitiIco = new JLabel[dimLibri];
-    private JLabel[] domandePreferiteIco = new JLabel[dimDomande];
+    private JLabel[] mieiAppuntiIco = new JLabel[dimAppunti];
+    private JLabel [] mieiLibriIco = new JLabel[dimLibri];
+    private JLabel[] mieDomandeIco = new JLabel[dimDomande];
 
     private GoToAppunto[] goToAppunto = new GoToAppunto[dimAppunti];
     private GoToLibro[] goToLibro = new GoToLibro[dimLibri];
     private GoToDomanda[] goToDomanda = new GoToDomanda[dimDomande];
     
-    private JButton  appuntiPreferitiButton,
-            libriPreferitiButton, domandePreferiteButton;
+    private JButton  mieiAppuntiButton,
+            mieiLibriButton, mieDomandeButton;
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
     private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
     private ImageIcon  search, searchPressed, searchHover, searchSelected;
@@ -87,12 +90,12 @@ public class iMieiDatiPanel extends JPanel{
         searchSelected = new ImageIcon(this.getClass().getResource("/immagini/button2Selected.png"));
         
         //dichiarazione bottoni - label
-        noLibri = new JLabel("Non hai ancora caricato nessun libro.");
-        noAppunti = new JLabel("Non hai ancora aggiunto nessun appunto.");
-        noDomande = new JLabel("Non hai ancora inserito nessuna domanda.");
-        appuntiPreferitiButton = new JButton("Appunti",search);
-        libriPreferitiButton = new JButton("Libri",search);
-        domandePreferiteButton = new JButton("Domande",search);
+        noLibri = new JLabel("Non hai ancora caricato nessun libro");
+        noAppunti = new JLabel("Non hai ancora aggiunto nessun appunto");
+        noDomande = new JLabel("Non hai ancora inserito nessuna domanda");
+        mieiAppuntiButton = new JButton("Appunti",searchSelected);
+        mieiLibriButton = new JButton("Libri",search);
+        mieDomandeButton = new JButton("Domande",search);
         
         setPanelWhite();
         setScrollPanePanel();
@@ -101,13 +104,13 @@ public class iMieiDatiPanel extends JPanel{
         centro.add(scrollPanel2,"libriPreferiti");
         centro.add(scrollPanel3,"domandePreferite");
         
-        setButtonCharacteristic(appuntiPreferitiButton);
-        setButtonCharacteristic(libriPreferitiButton);
-        setButtonCharacteristic(domandePreferiteButton);
+        setButtonCharacteristic(mieiAppuntiButton);
+        setButtonCharacteristic(mieiLibriButton);
+        setButtonCharacteristic(mieDomandeButton);
         
         caricaCorsi = new CaricaCorsi();
     
-        appuntiPreferitiButton.addActionListener(new ActionListener() {
+        mieiAppuntiButton.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -119,7 +122,7 @@ public class iMieiDatiPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 0, 0, 5);
         gbc.anchor = GridBagConstraints.CENTER;
-        nord.add(appuntiPreferitiButton, gbc);
+        nord.add(mieiAppuntiButton, gbc);
         if(dimAppunti == 0){
             
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
@@ -133,24 +136,24 @@ public class iMieiDatiPanel extends JPanel{
         }else{
             for (int i = 0; i < dimAppunti; i++) {
 
-                appuntiPreferiti[i] = new JLabel();
-                appuntiPreferitiLab[i] = new JLabel();
-                appuntiPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
+                mieiAppunti[i] = new JLabel();
+                mieiAppuntiLab[i] = new JLabel();
+                mieiAppuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
 
-                setLabelCharacteristic(i, appuntiPreferitiLab, appuntiPreferiti, appuntiPreferitiIco, Applicazione.appuntiGuest.get(i).getNome());
+                setLabelCharacteristic(i, mieiAppuntiLab, mieiAppunti, mieiAppuntiIco, Applicazione.appuntiGuest.get(i).getNome());
 
                 goToAppunto[i] = new GoToAppunto(Applicazione.appuntiGuest.get(i).getCorso(),
                         Applicazione.appuntiGuest.get(i).getFacoltà());
-                appuntiPreferiti[i].addMouseListener(goToAppunto[i]);
+                mieiAppunti[i].addMouseListener(goToAppunto[i]);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, 0, 0, 10);
                 gbcd.anchor = GridBagConstraints.CENTER;
-                appPanel.add(appuntiPreferitiLab[i], gbcd);
+                appPanel.add(mieiAppuntiLab[i], gbcd);
             }
         }
       
-        libriPreferitiButton.addActionListener(new ActionListener() {
+        mieiLibriButton.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -163,7 +166,7 @@ public class iMieiDatiPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        nord.add(libriPreferitiButton, gbc);
+        nord.add(mieiLibriButton, gbc);
         
         if(dimLibri == 0){
             
@@ -178,25 +181,25 @@ public class iMieiDatiPanel extends JPanel{
         }else{
             for (int i = 0; i < dimLibri; i++) {
 
-                libriPreferiti[i] = new JLabel();
-                libriPreferitiLab[i] = new JLabel();
-                libriPreferitiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
+                mieiLibri[i] = new JLabel();
+                mieiLibriLab[i] = new JLabel();
+                mieiLibriIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
 
-                setLabelCharacteristic(i, libriPreferitiLab, libriPreferiti, libriPreferitiIco, Applicazione.libriGuest.get(i).getTitolo());
+                setLabelCharacteristic(i, mieiLibriLab, mieiLibri, mieiLibriIco, Applicazione.libriGuest.get(i).getTitolo());
 
                 goToLibro[i] = new GoToLibro(Applicazione.libriGuest.get(i).getCorso(),
                         Applicazione.libriGuest.get(i).getFacoltà(),
                         Applicazione.libriGuest.get(i).getID());
-                libriPreferiti[i].addMouseListener(goToLibro[i]);
+                mieiLibri[i].addMouseListener(goToLibro[i]);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, 0, 0, 10);
                 gbcd.anchor = GridBagConstraints.CENTER;
-                libPanel.add(libriPreferitiLab[i], gbcd );
+                libPanel.add(mieiLibriLab[i], gbcd );
             }
         }
      
-        domandePreferiteButton.addActionListener(new ActionListener() {
+        mieDomandeButton.addActionListener(new ActionListener() {
             
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -208,7 +211,7 @@ public class iMieiDatiPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        nord.add(domandePreferiteButton, gbc);
+        nord.add(mieDomandeButton, gbc);
         
         if(dimDomande == 0){
             noDomande.setFont(new Font("Arial", Font.BOLD, 20));
@@ -221,19 +224,19 @@ public class iMieiDatiPanel extends JPanel{
             
         }else{
             for (int i = 0; i < dimDomande; i++) {
-                domandePreferite[i] = new JLabel();
-                domandePreferiteLab[i] = new JLabel();
-                domandePreferiteIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
-                setLabelCharacteristic(i, domandePreferiteLab, domandePreferite, domandePreferiteIco, Applicazione.domandeGuest.get(i).getTitolo());
+                mieDomande[i] = new JLabel();
+                mieDomandeLab[i] = new JLabel();
+                mieDomandeIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
+                setLabelCharacteristic(i, mieDomandeLab, mieDomande, mieDomandeIco, Applicazione.domandeGuest.get(i).getTitolo());
 
                 goToDomanda[i] = new GoToDomanda(Applicazione.domandeGuest.get(i).getCorso(),
                         Applicazione.domandeGuest.get(i).getFacoltà());
-                domandePreferite[i].addMouseListener(goToDomanda[i]);
+                mieDomande[i].addMouseListener(goToDomanda[i]);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, 0, 0, 10);
                 gbcd.anchor = GridBagConstraints.CENTER;
-                domPanel.add(domandePreferiteLab[i], gbcd );
+                domPanel.add(mieDomandeLab[i], gbcd );
             }
         }
         panel.add(nord,BorderLayout.NORTH);
@@ -258,13 +261,34 @@ public class iMieiDatiPanel extends JPanel{
     public void setScrollPanePanel(){
         
         scrollPanel.setPreferredSize(new Dimension(650, 400));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
  
         scrollPanel2.setPreferredSize(new Dimension(650, 400));
-        scrollPanel2.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel2.setBackground(Color.white);
+        scrollPanel2.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanel2.setVerticalScrollBar(scrollBar2);
    
         scrollPanel3.setPreferredSize(new Dimension(650, 400));
-        scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel3.setBackground(Color.white);
+        scrollPanel3.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar3 = new JScrollBar();
+        scrollBar3.setBackground(Color.white);
+        scrollBar3.setPreferredSize(new Dimension(13, 0));
+        scrollBar3.setUI(new CustomScrollbarUI());
+        scrollBar3.setUnitIncrement(16);
+        scrollPanel3.setVerticalScrollBar(scrollBar3);
     }
     
      public void setButtonCharacteristic(JButton button){
@@ -296,9 +320,9 @@ public class iMieiDatiPanel extends JPanel{
         
     public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2){
                 
-        appuntiPreferitiButton.setIcon(search);
-        libriPreferitiButton.setIcon(search1);
-        domandePreferiteButton.setIcon(search2);
+        mieiAppuntiButton.setIcon(search);
+        mieiLibriButton.setIcon(search1);
+        mieDomandeButton.setIcon(search2);
                 
     }
 }

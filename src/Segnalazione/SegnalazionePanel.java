@@ -8,6 +8,7 @@ package Segnalazione;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Header.Vista.TopPanel;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -21,8 +22,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -45,6 +48,14 @@ public class SegnalazionePanel extends JPanel{
         
         JScrollPane scrollPanel = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(600, 400));
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar2);
         testo.setLineWrap(true);
         testo.setWrapStyleWord(true);
         

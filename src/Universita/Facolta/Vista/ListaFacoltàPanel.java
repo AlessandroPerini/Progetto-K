@@ -5,8 +5,8 @@
  */
 package Universita.Facolta.Vista;
 
+import Utils.CustomScrollbarUI;
 import Application.Controller.Applicazione;
-import static Application.Controller.Applicazione.svuotaListaFacoltàXRamo;
 import Database.Query.ListeQuery;
 import Header.Vista.TopPanel;
 import Universita.Corsi.Ascoltatori.CaricaCorsi;
@@ -92,16 +92,21 @@ public class ListaFacoltàPanel extends JPanel{
                 scrollP[i].setBackground(Color.white);
                 innerPanels[i].add(scrollP[i]);
                 panel.add(innerPanels[i]);
-                svuotaListaFacoltàXRamo();
+                Applicazione.svuotaListaFacoltàXRamo();
                 
             }
 
             JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPanel.setPreferredSize(new Dimension(650, 450));
             scrollPanel.setBackground(Color.white);
-            scrollPanel.setBorder(new LineBorder(Color.white, 1, true));
-            scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
-
+            scrollPanel.setBorder(new LineBorder(Color.white));
+            JScrollBar scrollBar = new JScrollBar();
+            scrollBar.setBackground(Color.white);
+            scrollBar.setPreferredSize(new Dimension(13, 0));
+            scrollBar.setUI(new CustomScrollbarUI());
+            scrollBar.setUnitIncrement(16);
+            scrollPanel.setVerticalScrollBar(scrollBar);
+            
             add(top);
             add(scrollPanel);
            

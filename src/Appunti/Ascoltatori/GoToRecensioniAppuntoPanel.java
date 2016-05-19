@@ -7,15 +7,11 @@ package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Vista.AppuntoPanel;
 import Appunti.Vista.RecensioniAppuntoPanel;
-import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

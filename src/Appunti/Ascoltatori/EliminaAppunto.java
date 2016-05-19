@@ -14,7 +14,7 @@ import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
 import Dropbox.Elimina;
 import Frame.GifFrame;
-import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Preferiti.Vista.PreferitiPanel;
 import Studente.Vista.iMieiDatiPanel;
 import Utils.Ordina;
 import com.dropbox.core.DbxException;

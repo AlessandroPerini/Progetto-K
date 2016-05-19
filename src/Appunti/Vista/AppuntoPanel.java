@@ -10,10 +10,11 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
 import Appunti.Ascoltatori.DownloadFileAppunto;
 import Database.Query.ControlloQuery;
-import Frame.ValutaAppuntoFrame;
+import Valutazione.Vista.ValutaAppuntoFrame;
 import Header.Vista.TopPanel;
-import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
-import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
+import Preferiti.Ascoltatori.AggiungiAppuntoPreferito;
+import Preferiti.Ascoltatori.RimuoviAppuntoPreferito;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -29,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
@@ -40,7 +42,7 @@ import javax.swing.border.LineBorder;
 public class AppuntoPanel extends JPanel{
     
     private JButton valuta, recensioni,preferitiOn , preferitiOff, scarica, elimina;
-    private JPanel top, panel, preferitiPanel, recensioniPanel, descrizionePanel,empty;
+    private JPanel top, panel, preferitiPanel, recensioniPanel, descrizionePanel, empty;
     private JTextArea descrizione;
     private JLabel media, email;
     private JScrollPane scrollPanel, scrollPanel1;
@@ -50,7 +52,7 @@ public class AppuntoPanel extends JPanel{
     private GoToRecensioniAppuntoPanel goToRecensioniAppuntoPanel;
     private String mediaTagliata, s;
     private Icon scaricaNormal,  scaricaHover, scaricaPressed,
-                    eliminaNormal, eliminaHover, eliminaPressed;
+            eliminaNormal, eliminaHover, eliminaPressed;
     private DownloadFileAppunto download;
     private EliminaAppunto eliminaAppunto;
     
@@ -85,6 +87,13 @@ public class AppuntoPanel extends JPanel{
         email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.appuntoAttuale.getStudente()+"</html>");
         
         scrollPanel = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
+        
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //dichiarazione actionListener
@@ -110,7 +119,7 @@ public class AppuntoPanel extends JPanel{
             System.out.println("Errore durante il controllo dell'appunto preferito");
         }
         //fine zona preferito
-         
+        
         mediaTagliata = Float.toString(Applicazione.appuntoAttuale.getMedia());
         s = mediaTagliata.replace(".", ",");
         String parts[] = s.split(",");
@@ -131,7 +140,7 @@ public class AppuntoPanel extends JPanel{
         gbc2.insets = new Insets(0, 110, 0, 0);
         gbc2.anchor = GridBagConstraints.CENTER;
         recensioniPanel.add(recensioni, gbc2);
-       
+        
         
         valuta.addActionListener(new ActionListener() {
             @Override
@@ -142,7 +151,7 @@ public class AppuntoPanel extends JPanel{
         });
         
         try {
-            if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){       
+            if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
                 
                 gbc2.gridx = 2;
                 gbc2.gridy = 0;
@@ -165,7 +174,6 @@ public class AppuntoPanel extends JPanel{
             System.out.println("Errore durante il controllo della valutazione dell'appunto");
         }
         
-        
         email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -181,7 +189,7 @@ public class AppuntoPanel extends JPanel{
         
         scarica.addActionListener(download);
         elimina.addActionListener(eliminaAppunto);
-
+        
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(20, 0, 0, 0);
@@ -199,8 +207,6 @@ public class AppuntoPanel extends JPanel{
         }
         
         
-     
-        
         add(top);
         add(preferitiPanel);
         add(recensioniPanel);
@@ -210,7 +216,7 @@ public class AppuntoPanel extends JPanel{
     public void initComponent(){
         this.setBackground(Color.white);
         top.setBackground(Color.white);
-        panel.setBackground(Color.white); 
+        panel.setBackground(Color.white);
         
         preferitiPanel.setBackground(Color.white);
         preferitiPanel.setPreferredSize(new Dimension(650, 35));
@@ -247,7 +253,7 @@ public class AppuntoPanel extends JPanel{
         descrizione.setEditable(false);
         
         scarica.setBorder(BorderFactory.createEmptyBorder());
-        scarica.setContentAreaFilled(false); 
+        scarica.setContentAreaFilled(false);
         scarica.setRolloverIcon(scaricaHover);
         scarica.setPressedIcon(scaricaPressed);
         scarica.setText("DOWNLOAD");
@@ -257,7 +263,7 @@ public class AppuntoPanel extends JPanel{
         scarica.setPreferredSize(new Dimension(110, 40));
         
         elimina.setBorder(BorderFactory.createEmptyBorder());
-        elimina.setContentAreaFilled(false); 
+        elimina.setContentAreaFilled(false);
         elimina.setRolloverIcon(eliminaHover);
         elimina.setPressedIcon(eliminaPressed);
         elimina.setText("ELIMINA");

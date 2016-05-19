@@ -8,6 +8,7 @@ package QeA.Vista;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.AggiungiDomanda;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -19,8 +20,10 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -64,17 +67,36 @@ public class AggiungiDomandaPanel extends JPanel{
         descrizione.setForeground(Color.BLACK);
         
         JScrollPane scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanelNome.setPreferredSize(new Dimension(250, 80));
-        nome.setLineWrap(true);
-        nome.setWrapStyleWord(true);
+        scrollPanelNome.setBackground(Color.white);
+        scrollPanelNome.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanelNome.setVerticalScrollBar(scrollBar);
         
         JScrollPane scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDescrizione.setBackground(Color.white);
+        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
+        
+        scrollPanelNome.setPreferredSize(new Dimension(250, 50));
         scrollPanelDescrizione.setPreferredSize(new Dimension(250, 150));
-        descrizione.setLineWrap(true);
-        descrizione.setWrapStyleWord(true);
         
         nomePanel.add(scrollPanelNome);
         descrizionePanel.add(scrollPanelDescrizione);
+        
+        nome.setLineWrap(true);
+        nome.setWrapStyleWord(true);
+        
+        descrizione.setLineWrap(true);
+        descrizione.setWrapStyleWord(true);
         
         gbc.gridx = 0;
         gbc.gridy = 0;

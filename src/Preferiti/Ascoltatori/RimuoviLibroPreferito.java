@@ -3,12 +3,12 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Preferiti.Facoltà.Ascoltatori;
+package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Vista.AppuntoPanel;
 import Database.Query.DeleteQuery;
+import Libri.Vista.LibroPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -16,24 +16,24 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author te4o
+ * @author Te4o
  */
-public class RimuoviAppuntoPreferito implements ActionListener{
+public class RimuoviLibroPreferito implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         try {
-            DeleteQuery.eliminaAppuntoPreferito();
+            DeleteQuery.eliminaLibroPreferito();
             
-            Applicazione.preferiti.getAppuntiPreferiti().remove(Applicazione.appuntoAttuale);
+            Applicazione.preferiti.getLibriPreferiti().remove(Applicazione.libroAttuale);
             
-            AppuntoPanel appunto = new AppuntoPanel();
-            Grafica.container.add(appunto, "appunto");
-            Grafica.card.show(Grafica.container, "appunto");
+            LibroPanel libro = new LibroPanel();
+            Grafica.container.add(libro, "libro");
+            Grafica.card.show(Grafica.container, "libro");
             
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione dellappunto preferito", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Errore durante l'eliminazione del libro preferito", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
     }
 }

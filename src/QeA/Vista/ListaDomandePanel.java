@@ -11,6 +11,7 @@ import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
+import Utils.CustomScrollbarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,6 +29,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -151,10 +153,10 @@ public class ListaDomandePanel extends JPanel{
         if(size == 0){
             noDomande = new JLabel();
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
-                noDomande = new JLabel("Non ci sono domande relative a questo corso.");
+                noDomande = new JLabel("Non ci sono domande relative a questo corso");
             }
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande cercate")) {
-                noDomande = new JLabel("Nessuna domanda trovata.");
+                noDomande = new JLabel("Nessuna domanda trovata");
             }
             noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
             gbcImg.gridx = 0;
@@ -208,8 +210,14 @@ public class ListaDomandePanel extends JPanel{
         centro.add(panel, BorderLayout.CENTER);
         JScrollPane scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 350));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
         scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
         
         add(top);
         add(searchPanel);

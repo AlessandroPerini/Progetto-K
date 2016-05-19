@@ -21,7 +21,7 @@ import static Application.Controller.Applicazione.svuotaRisposte;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Login.LoginPanel;
-import Preferiti.Facoltà.Vista.PreferitiPanel;
+import Preferiti.Vista.PreferitiPanel;
 import Universita.Facolta.Vista.ListaFacoltàPanel;
 import Utils.Ordina;
 import java.awt.event.ActionEvent;

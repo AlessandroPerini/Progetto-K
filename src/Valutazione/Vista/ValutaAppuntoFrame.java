@@ -3,9 +3,10 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Frame;
+package Valutazione.Vista;
 
-import Appunti.Ascoltatori.VotaAppunto;
+import Valutazione.Ascoltatori.VotaAppunto;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -21,9 +22,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSlider;
 import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -92,6 +95,13 @@ public class ValutaAppuntoFrame{
         commento.setForeground(Color.BLACK);
         JScrollPane scrollPanel = new JScrollPane(commento, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(300, 200));
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
         commento.setLineWrap(true);
         commento.setWrapStyleWord(true);
         commentoPanel.add(scrollPanel);

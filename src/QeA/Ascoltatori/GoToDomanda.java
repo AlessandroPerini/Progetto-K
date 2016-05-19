@@ -90,7 +90,7 @@ public class GoToDomanda implements MouseListener{
     
     @Override
     public void mouseExited(MouseEvent e) {
-        e.getComponent().setForeground(Color.black);
+        e.getComponent().setForeground(null);
     }
     
     public static DomandaPanel getDomanda() {

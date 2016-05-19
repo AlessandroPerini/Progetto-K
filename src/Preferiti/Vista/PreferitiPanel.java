@@ -3,7 +3,7 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Preferiti.Facoltà.Vista;
+package Preferiti.Vista;
 
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
@@ -12,6 +12,7 @@ import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
 import Universita.Corsi.Ascoltatori.CaricaCorsi;
 import Universita.Corsi.Ascoltatori.GoToCorso;
+import Utils.CustomScrollbarUI;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -28,7 +29,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -105,13 +108,13 @@ public class PreferitiPanel extends JPanel{
         searchSelected = new ImageIcon(this.getClass().getResource("/immagini/button2Selected.png"));
         
         //dichiarazione bottoni - label
-        facoltàPreferiteButton = new JButton("Facoltà",search);
+        facoltàPreferiteButton = new JButton("Facoltà",searchSelected);
         corsiPreferitiButton = new JButton("Corsi",search);
         appuntiPreferitiButton = new JButton("Appunti",search);
         libriPreferitiButton = new JButton("Libri",search);
         domandePreferiteButton = new JButton("Domande",search);
         noFacoltà = new JLabel("Non hai ancora nessuna facoltà preferita");
-        noCorsi = new JLabel("Non hai ancora nessun corso preferito.");
+        noCorsi = new JLabel("Non hai ancora nessun corso preferito");
         noAppunti = new JLabel("Non hai ancora nessun appunto preferito");
         noLibri = new JLabel("Non hai ancora nessun libro preferito");
         noDomande = new JLabel("Non hai ancora nessuna domanda preferita");
@@ -372,19 +375,54 @@ public class PreferitiPanel extends JPanel{
     public void setScrollPanePanel(){
         
         scrollPanel.setPreferredSize(new Dimension(650, 400));
-        scrollPanel.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
         
         scrollPanel1.setPreferredSize(new Dimension(650, 400));
-        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel1.setBackground(Color.white);
+        scrollPanel1.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar1 = new JScrollBar();
+        scrollBar1.setBackground(Color.white);
+        scrollBar1.setPreferredSize(new Dimension(13, 0));
+        scrollBar1.setUI(new CustomScrollbarUI());
+        scrollBar1.setUnitIncrement(16);
+        scrollPanel1.setVerticalScrollBar(scrollBar1);
         
         scrollPanel2.setPreferredSize(new Dimension(650, 400));
-        scrollPanel2.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel2.setBackground(Color.white);
+        scrollPanel2.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanel2.setVerticalScrollBar(scrollBar2);
         
         scrollPanel3.setPreferredSize(new Dimension(650, 400));
-        scrollPanel3.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel3.setBackground(Color.white);
+        scrollPanel3.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar3 = new JScrollBar();
+        scrollBar3.setBackground(Color.white);
+        scrollBar3.setPreferredSize(new Dimension(13, 0));
+        scrollBar3.setUI(new CustomScrollbarUI());
+        scrollBar3.setUnitIncrement(16);
+        scrollPanel3.setVerticalScrollBar(scrollBar3);
         
         scrollPanel4.setPreferredSize(new Dimension(650, 400));
-        scrollPanel4.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel4.setBackground(Color.white);
+        scrollPanel4.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar4 = new JScrollBar();
+        scrollBar4.setBackground(Color.white);
+        scrollBar4.setPreferredSize(new Dimension(13, 0));
+        scrollBar4.setUI(new CustomScrollbarUI());
+        scrollBar4.setUnitIncrement(16);
+        scrollPanel4.setVerticalScrollBar(scrollBar4);
     }
     
     public void setButtonCharacteristic(JButton button){

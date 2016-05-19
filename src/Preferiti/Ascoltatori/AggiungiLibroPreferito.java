@@ -3,12 +3,12 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package Preferiti.Facoltà.Ascoltatori;
+package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InsertQuery;
-import QeA.Vista.DomandaPanel;
+import Libri.Vista.LibroPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -18,19 +18,19 @@ import javax.swing.JOptionPane;
  *
  * @author Te4o
  */
-public class AggiungiDomandaPreferita implements ActionListener{
+public class AggiungiLibroPreferito implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         try {
-            InsertQuery.inserisciDomandaPreferita();
+            InsertQuery.inserisciLibroPreferito();
 
-            Applicazione.preferiti.getDomandePreferite().add(Applicazione.domandaAttuale);
+            Applicazione.preferiti.getLibriPreferiti().add(Applicazione.libroAttuale);
             
-            DomandaPanel domanda = new DomandaPanel();
-            Grafica.container.add(domanda, "domanda");
-            Grafica.card.show(Grafica.container, "domanda");
+            LibroPanel libro = new LibroPanel();
+            Grafica.container.add(libro, "libro");
+            Grafica.card.show(Grafica.container, "libro");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Errore durante l'aggiunta del preferito", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);

@@ -8,6 +8,7 @@ package Appunti.Vista;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -69,7 +70,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 emailRecensioni[i] = new JLabel();
                 emailRecensioni[i].setFont(new Font("Century Gothic", Font.PLAIN, 15));
                 emailRecensioni[i].setBackground(Color.white);
-               
+                
                 punteggioRecensioni[i] = new JLabel();
                 punteggioRecensioni[i].setFont(new Font("Century Gothic", Font.PLAIN, 15));
                 punteggioRecensioni[i].setBackground(Color.white);
@@ -81,14 +82,16 @@ public class RecensioniAppuntoPanel extends JPanel{
                 
                 JScrollBar scrollBar = new JScrollBar();
                 scrollBar.setBackground(Color.white);
-                scrollBar.setPreferredSize(new Dimension(10, 20));
+                scrollBar.setPreferredSize(new Dimension(13, 0));
+                scrollBar.setUI(new CustomScrollbarUI());
+                scrollBar.setUnitIncrement(16);
                 scrollPanel[i] = new JScrollPane(commentoRecensioni[i], JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollPanel[i].setPreferredSize(new Dimension(150, 70));
                 commentoRecensioni[i].setLineWrap(true);
                 commentoRecensioni[i].setWrapStyleWord(true);
                 commentoRecensioni[i].setEditable(false);
                 scrollPanel[i].setVerticalScrollBar(scrollBar);
-                scrollPanel[i].getVerticalScrollBar().setUnitIncrement(16);
+                
                 
                 emailRecensioni[i].setText(Applicazione.listaValutazioniAttuali.get(i).getStudente());
                 gbc.gridx = 0;

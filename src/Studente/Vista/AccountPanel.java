@@ -9,7 +9,6 @@ import Application.Controller.Applicazione;
 import Studente.Ascoltatori.CaricaIMieiDati;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -130,9 +129,7 @@ public class AccountPanel extends JPanel{
         emailRow.setBackground(Color.white);
         nickRow.setBackground(Color.white); 
         phoneRow.setBackground(Color.white);
-        
-       
-         
+
         logout.setBorder(BorderFactory.createEmptyBorder());
         logout.setContentAreaFilled(false);
         
@@ -144,8 +141,7 @@ public class AccountPanel extends JPanel{
         logout.setPreferredSize(new Dimension(110, 40));
         logout2 = new Logout();
         logout.addActionListener(logout2);
-        
-        
+
         logoutPanel.setBackground(Color.white);
         logoutPanel.add(logout);
         
@@ -168,11 +164,7 @@ public class AccountPanel extends JPanel{
         
         iMieiDatiPanel.setBackground(Color.white);
         iMieiDatiPanel.add(iMieiDati);
-        
-        JLabel line = new JLabel("-----------------------------------------------------------------------------------------"
-               + "-------------------------------------------------------------------------");
-        
-        
+
         emailLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
         
@@ -187,8 +179,7 @@ public class AccountPanel extends JPanel{
         nick.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         nick.setColumns(14);
         nick.setHorizontalAlignment(JTextField.CENTER);
-        
-        
+
         phoneLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
         phone = new JTextField(Applicazione.guest.getTelefono());
@@ -231,7 +222,7 @@ public class AccountPanel extends JPanel{
         
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(100, 10, 0, 10);
+        gbc.insets = new Insets(80, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
         body.add(emailRow, gbc);
         
@@ -249,13 +240,13 @@ public class AccountPanel extends JPanel{
         
         gbc.gridx = 0;
         gbc.gridy = 3;
-        gbc.insets = new Insets(30, -90, 0, 10);
+        gbc.insets = new Insets(60, -170, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
         body.add(logoutPanel, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        gbc.insets = new Insets(30, -170, 0, 10);
+        gbc.insets = new Insets(60, -170, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         body.add(iMieiDatiPanel, gbc);
         

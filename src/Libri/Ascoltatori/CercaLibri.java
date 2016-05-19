@@ -7,7 +7,6 @@ package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Vista.ListaAppuntiPanel;
 import Libri.Vista.ListaLibriPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

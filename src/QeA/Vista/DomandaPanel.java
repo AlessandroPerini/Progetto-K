@@ -11,12 +11,11 @@ import Application.Controller.Applicazione;
 import Database.Query.InfoQuery;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
-import Preferiti.Facoltà.Ascoltatori.AggiungiAppuntoPreferito;
-import Preferiti.Facoltà.Ascoltatori.AggiungiDomandaPreferita;
-import Preferiti.Facoltà.Ascoltatori.RimuoviAppuntoPreferito;
-import Preferiti.Facoltà.Ascoltatori.RimuoviDomandaPreferita;
+import Preferiti.Ascoltatori.AggiungiDomandaPreferita;
+import Preferiti.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
 import QeA.Ascoltatori.AggiungiLikeRisposta;
+import Utils.CustomScrollbarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -32,6 +31,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
@@ -103,8 +103,14 @@ public class DomandaPanel extends JPanel{
 
         scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel1.setPreferredSize(new Dimension(650, 400));
-        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
-        scrollPanel.setBackground(Color.white);
+        scrollPanel1.setBackground(Color.white);
+        scrollPanel1.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel1.setVerticalScrollBar(scrollBar);
         
         add(top);
         add(preferitiPanel);
@@ -140,6 +146,12 @@ public class DomandaPanel extends JPanel{
         scrollPanel = new JScrollPane();
         scrollPanel.setViewportView(descrizione);
         scrollPanel.setWheelScrollingEnabled(true);
+        JScrollBar scrollBar = new JScrollBar();
+        scrollBar.setBackground(Color.white);
+        scrollBar.setPreferredSize(new Dimension(13, 0));
+        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUnitIncrement(16);
+        scrollPanel.setVerticalScrollBar(scrollBar);
 	gbc.gridx = 0;
 	gbc.gridy = 1;
 	gbc.insets = new Insets(10, 0, 0, 0);
@@ -189,6 +201,12 @@ public class DomandaPanel extends JPanel{
         scrollPanel3.setPreferredSize(new Dimension(480 , 250));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(10);
         scrollPanel3.setWheelScrollingEnabled(true);
+        JScrollBar scrollBar2 = new JScrollBar();
+        scrollBar2.setBackground(Color.white);
+        scrollBar2.setPreferredSize(new Dimension(13, 0));
+        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUnitIncrement(16);
+        scrollPanel3.setVerticalScrollBar(scrollBar2);
 	gbc.gridx = 0;
 	gbc.gridy = 3;
 	gbc.insets = new Insets(10, 0, 0, 0);
@@ -197,13 +215,21 @@ public class DomandaPanel extends JPanel{
         rispostePanel.add(scrollPanel3);
 	panel.add(rispostePanel, gbc);
         
-        rispondiArea = new JTextArea(5,25);
+        rispondiArea = new JTextArea(4,20);
+        rispondiArea.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         rispondiArea.setLineWrap(true);
         rispondiArea.setWrapStyleWord(true);
         
         scrollPanel4 = new JScrollPane();
         scrollPanel4.setViewportView(rispondiArea);
         scrollPanel4.setWheelScrollingEnabled(true);
+        scrollPanel4.setBorder(new LineBorder(Color.white));
+        JScrollBar scrollBar4 = new JScrollBar();
+        scrollBar4.setBackground(Color.white);
+        scrollBar4.setPreferredSize(new Dimension(13, 0));
+        scrollBar4.setUI(new CustomScrollbarUI());
+        scrollBar4.setUnitIncrement(16);
+        scrollPanel4.setVerticalScrollBar(scrollBar4);
 	gbc.gridx = 0;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(10, 0, 30, 0);
@@ -270,24 +296,30 @@ public class DomandaPanel extends JPanel{
             Logger.getLogger(DomandaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
             nomeRisposta = new JLabel();
+            nomeRisposta.setFont(new Font("Century Gothic", Font.BOLD, 13));
             nomeRisposta.setText(nome);
             gbcRisposte.gridx = 0;
             gbcRisposte.gridy = i;
-            gbcRisposte.insets = new Insets(15, 1, 0, 10);
+            gbcRisposte.insets = new Insets(15, 5, 0, 10);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(this.nomeRisposta, gbcRisposte);
 
             risposte2 = new JTextArea(4,15);
+            risposte2.setFont(new Font("Century Gothic", Font.PLAIN, 13));
             risposte2.setText(risposta);
             risposte2.setEditable(false);
             risposte2.setLineWrap(true);
             risposte2.setWrapStyleWord(true);
-            scrollPanel5 = new JScrollPane();
-            scrollPanel5.setViewportView(risposte2);
+            scrollPanel5 = new JScrollPane(risposte2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPanel5.setWheelScrollingEnabled(true);
+            JScrollBar scrollBar = new JScrollBar();
+            scrollBar.setPreferredSize(new Dimension(13, 0));
+            scrollBar.setUI(new CustomScrollbarUI());
+            scrollBar.setUnitIncrement(16);
+            scrollPanel5.setVerticalScrollBar(scrollBar);
             gbcRisposte.gridx = 1;
             gbcRisposte.gridy = i;
-            gbcRisposte.insets = new Insets(15, -4, 0, 10);
+            gbcRisposte.insets = new Insets(10, 5, 10, 10);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(scrollPanel5, gbcRisposte);
             
@@ -328,7 +360,7 @@ public class DomandaPanel extends JPanel{
                      
             gbcRisposte.gridx = 3;
             gbcRisposte.gridy = i;
-            gbcRisposte.insets = new Insets(15, -12, 0, 0);
+            gbcRisposte.insets = new Insets(15, 5, 0, 0);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(pannelloLike, gbcRisposte);
             
