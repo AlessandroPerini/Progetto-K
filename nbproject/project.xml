@@ -6,7 +6,7 @@
             <name>Progetto-K</name>
             <source-roots>
                 <root id="src.dir"/>
-                <root id="src.nbproject.dir"/>
+                <root id="src.librerie.dir"/>
             </source-roots>
             <test-roots>
                 <root id="test.src.dir"/>
