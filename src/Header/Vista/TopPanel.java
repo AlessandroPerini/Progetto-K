@@ -31,7 +31,7 @@ import javax.swing.border.LineBorder;
  */
 public class TopPanel extends JPanel{
     
-    private JComboBox menu;
+    private JComboBox<String> menu;
     
     public TopPanel(String t) {
         
@@ -86,7 +86,7 @@ public class TopPanel extends JPanel{
         title.requestFocus();
         
         String[] opzioni = new String[]{"Home","Account","Preferiti","Logout"};
-        menu = new JComboBox(opzioni);
+        menu = new JComboBox<>(opzioni);
         
         menu.setBackground(Color.white);
         menu.setFont(new Font("Century Gothic", Font.PLAIN, 13));

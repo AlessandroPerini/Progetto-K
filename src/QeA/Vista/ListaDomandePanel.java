@@ -48,7 +48,7 @@ public class ListaDomandePanel extends JPanel{
     private JButton addDomanda, searchButton, clearSearch;
     private JTextField searchField;
     private JLabel noDomande, ordinamento;
-    private JComboBox ordina;
+    private JComboBox<String> ordina;
     private JPanel searchPanel, ordinaPanel, panel, centro;
     private Icon search, searchHover, searchPressed;
     
@@ -108,7 +108,7 @@ public class ListaDomandePanel extends JPanel{
         //pannello ordina
         ordinaPanel.setBackground(Color.white);
         String[] opzioni = new String[]{"Like", "Nome"};
-        ordina = new JComboBox(opzioni);
+        ordina = new JComboBox<>(opzioni);
         if(!OrdinaListaDomande.ordineCorrente.equals("")){
             ordina.setSelectedItem(OrdinaListaDomande.ordineCorrente);
         }

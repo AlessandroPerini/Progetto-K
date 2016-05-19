@@ -20,7 +20,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -47,7 +46,7 @@ public class ListaAppuntiPanel extends JPanel{
     private JTextField searchField;
     private JLabel noAppunti, ordinamento;
     private JLabel[] appuntiIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
-    private JComboBox ordina;
+    private JComboBox<String> ordina;
     private JButton addAppunto, searchButton, clearSearch;
     private TopPanel top;
     private Icon search, searchHover, searchPressed;
@@ -95,11 +94,8 @@ public class ListaAppuntiPanel extends JPanel{
         clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
-        clearSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchField.setText("");
-            }
+        clearSearch.addActionListener((ActionEvent e) -> {
+            searchField.setText("");
         });
         
         searchPanel.add(searchField);
@@ -109,7 +105,7 @@ public class ListaAppuntiPanel extends JPanel{
         
         //pannello ordina
         String[] opzioni = new String[]{"Valutazione", "Nome"};
-        ordina = new JComboBox(opzioni);
+        ordina = new JComboBox<>(opzioni);
         if(!OrdinaListaAppunti.ordineCorrente.equals("")){
             ordina.setSelectedItem(OrdinaListaAppunti.ordineCorrente);
         }
