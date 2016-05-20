@@ -7,7 +7,7 @@ package Studenti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Login.LoginPanel;
+import Login.Vista.LoginPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

@@ -1,7 +1,7 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore che effettua l'azione quando viene premuto il pulsante "conferma"
+* all'interno del frame ValutaAppuntoFrame
+* (Controlla che il commento sia non vuoto e valida e inserisce la valutazione)
 */
 package Valutazioni.Ascoltatori;
 
@@ -24,16 +24,17 @@ import javax.swing.JTextArea;
  */
 public class VotaAppunto implements ActionListener{
     
+    //dichiarazione oggetti
     private JTextArea commento;
     private JSlider punteggio;
     private JFrame valutaFrame;
-
+    
     public VotaAppunto(JTextArea commento, JSlider punteggio, JFrame valutaFrame) {
         this.commento = commento;
         this.punteggio = punteggio;
         this.valutaFrame = valutaFrame;
     }
-
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -41,13 +42,13 @@ public class VotaAppunto implements ActionListener{
             if(((commento.getText().length())<500)){
                 try {
                     InsertQuery.inserisciValutazione(commento, punteggio);
-
+                    
                     float newMedia = InfoQuery.mediaAppunto();
-
+                    
                     Applicazione.appuntoAttuale.setMedia(newMedia);
                     
                     InsertQuery.updateMedia(newMedia);
-  
+                    
                     JOptionPane.showMessageDialog(null, "Valutazione aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     
                     valutaFrame.dispose();
@@ -71,6 +72,5 @@ public class VotaAppunto implements ActionListener{
             JOptionPane.showMessageDialog(null, "Commento non valido", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
     
 }

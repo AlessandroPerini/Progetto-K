@@ -52,7 +52,7 @@ public class ListaAppuntiPanel extends JPanel{
     private Icon search, searchHover, searchPressed;
     private JPanel panel, searchPanel, ordinaPanel,borderPanel;
     
-    public ListaAppuntiPanel() {
+    public ListaAppuntiPanel() {System.out.println("Corso attuale: "+Applicazione.corsoAttuale.getNome());
         
         setBackground(Color.white);
         GridBagConstraints gbc = new GridBagConstraints();

@@ -6,7 +6,7 @@
 package Application.Vista;
 
 import Frame.MainFrame;
-import Login.LoginPanel;
+import Login.Vista.LoginPanel;
 import java.awt.CardLayout;
 import java.awt.Point;
 import javax.swing.JPanel;

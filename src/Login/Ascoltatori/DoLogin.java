@@ -1,15 +1,14 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore che effetua il login alla pressione del bottone "login", effettuando 
+* la query di login che salva anche i dati dell'utente loggato
+* (Controllo che i campi non siano vuoti e successivamente che le credenziali inserite siano corrette)
 */
-package Login;
+package Login.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.LoginQuery;
 import Studenti.Vista.AccountPanel;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -18,9 +17,6 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.UIManager;
-import javax.swing.plaf.FontUIResource;
-import javax.swing.plaf.OptionPaneUI;
 
 /**
  *

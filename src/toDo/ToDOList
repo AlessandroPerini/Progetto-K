@@ -12,17 +12,17 @@ Pulizia Codice{
     -Appunti;
     +Database;
     +Dropbox;
-    -Frame;
+    +Frame;
     -Header;
     -Libri;
-    -Login;
+    +Login;
     -QeA;
     +Segnalazioni;
     -Studente;
     -Università>Corsi;
     -Università>Facoltà;
-    -Utils;
-    -Valutazioni;
+    +Utils;
+    +Valutazioni;
 
 }
 
