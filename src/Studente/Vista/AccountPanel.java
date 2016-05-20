@@ -6,7 +6,7 @@
 package Studente.Vista;
 
 import Application.Controller.Applicazione;
-import Studente.Ascoltatori.CaricaIMieiDati;
+import Studenti.Ascoltatori.CaricaIMieiDati;
 import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -15,10 +15,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import Header.Ascoltatori.Back;
-import Studente.Ascoltatori.GoToPreferiti;
-import Studente.Ascoltatori.Logout;
-import Studente.Ascoltatori.ModificaNickname;
-import Studente.Ascoltatori.ModificaNumero;
+import Studenti.Ascoltatori.GoToPreferiti;
+import Studenti.Ascoltatori.Logout;
+import Studenti.Ascoltatori.ModificaNickname;
+import Studenti.Ascoltatori.ModificaNumero;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;

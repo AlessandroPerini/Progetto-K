@@ -9,7 +9,7 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
-import Utils.Ordina;
+import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

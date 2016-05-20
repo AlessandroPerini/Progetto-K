@@ -8,7 +8,7 @@ package Preferiti.Ascoltatori;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.InsertQuery;
-import Universita.Corsi.Vista.CorsoPanel;
+import Università.Corsi.Vista.CorsoPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

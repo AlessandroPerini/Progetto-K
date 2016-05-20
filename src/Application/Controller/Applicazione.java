@@ -11,10 +11,10 @@ import Libri.Libro;
 import Preferiti.Preferiti;
 import QeA.Domanda;
 import QeA.Risposta;
-import Studente.Studente;
-import Universita.Corsi.Corso;
-import Universita.Facolta.Facoltà;
-import Valutazione.Valutazione;
+import Studenti.Studente;
+import Università.Corsi.Corso;
+import Università.Facolta.Facoltà;
+import Valutazioni.Valutazione;
 import java.sql.Connection;
 import java.util.ArrayList;
 

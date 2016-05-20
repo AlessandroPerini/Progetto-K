@@ -11,7 +11,7 @@ import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -215,7 +215,7 @@ public class ListaDomandePanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         

@@ -8,7 +8,7 @@ package Appunti.Vista;
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -78,7 +78,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanelNome.setVerticalScrollBar(scrollBar);
         
@@ -88,7 +88,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         JScrollBar scrollBar2 = new JScrollBar();
         scrollBar2.setBackground(Color.white);
         scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUI(new ScrollBarUI());
         scrollBar2.setUnitIncrement(16);
         scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
         

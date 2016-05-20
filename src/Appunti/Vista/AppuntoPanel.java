@@ -10,11 +10,11 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
 import Appunti.Ascoltatori.DownloadFileAppunto;
 import Database.Query.ControlloQuery;
-import Valutazione.Vista.ValutaAppuntoFrame;
+import Valutazioni.Vista.ValutaAppuntoFrame;
 import Header.Vista.TopPanel;
 import Preferiti.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Ascoltatori.RimuoviAppuntoPreferito;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -22,8 +22,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -41,7 +42,7 @@ import javax.swing.border.LineBorder;
  */
 public class AppuntoPanel extends JPanel{
     
-    private JButton valuta, recensioni,preferitiOn , preferitiOff, scarica, elimina;
+    private JButton valuta, recensioni, preferitiOn , preferitiOff, scarica, elimina;
     private JPanel top, panel, preferitiPanel, recensioniPanel, descrizionePanel, empty;
     private JTextArea descrizione;
     private JLabel media, email;
@@ -68,7 +69,6 @@ public class AppuntoPanel extends JPanel{
         gbc2 = new GridBagConstraints();
         
         //dichiarazione icon
-        
         scaricaNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         scaricaHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         scaricaPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
@@ -80,7 +80,7 @@ public class AppuntoPanel extends JPanel{
         preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         recensioni = new JButton("Recensioni");
-        valuta = new JButton("Vota");
+        valuta = new JButton("Valuta");
         scarica = new JButton(scaricaNormal);
         elimina = new JButton(eliminaNormal);
         descrizione = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
@@ -90,7 +90,7 @@ public class AppuntoPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         
@@ -103,8 +103,8 @@ public class AppuntoPanel extends JPanel{
         eliminaAppunto = new EliminaAppunto(elimina, elimina);
         
         initComponent();
-        //preferito
         
+        //preferito
         preferitiOff.addActionListener(aggiungiAppuntoPreferito);
         preferitiOn.addActionListener(rimuoviAppuntoPreferito);
         
@@ -141,15 +141,10 @@ public class AppuntoPanel extends JPanel{
         gbc2.anchor = GridBagConstraints.CENTER;
         recensioniPanel.add(recensioni, gbc2);
         
-        
-        valuta.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ValutaAppuntoFrame valutaAppuntoFrame = new ValutaAppuntoFrame();
-                valutaAppuntoFrame.apri();
-            }
+        valuta.addActionListener((ActionEvent e) -> {
+            ValutaAppuntoFrame valutaAppuntoFrame = new ValutaAppuntoFrame();
+            valutaAppuntoFrame.apri();
         });
-        
         try {
             if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
                 
@@ -157,8 +152,7 @@ public class AppuntoPanel extends JPanel{
                 gbc2.gridy = 0;
                 gbc2.insets = new Insets(0, 200, 0, 0);
                 gbc2.anchor = GridBagConstraints.LINE_END;
-                recensioniPanel.add(valuta, gbc2);
-                
+                recensioniPanel.add(valuta, gbc2); 
             }
             else{
                 
@@ -214,7 +208,7 @@ public class AppuntoPanel extends JPanel{
         
     }
     public void initComponent(){
-        this.setBackground(Color.white);
+        setBackground(Color.white);
         top.setBackground(Color.white);
         panel.setBackground(Color.white);
         
@@ -231,12 +225,12 @@ public class AppuntoPanel extends JPanel{
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
         recensioni.setForeground(new Color(218,194,127));
-        recensioni.setBorder(new LineBorder(new Color(218,194,118), 1, true));
+        recensioni.setBorder(new LineBorder(new Color(218,194,118), 1));
         recensioni.setBackground(Color.white);
         recensioni.setFont(new Font("Century Gothic", Font.BOLD, 15));
         
         valuta.setForeground(new Color(43,122,219));
-        valuta.setBorder(new LineBorder(new Color(43,122,219), 1, true));
+        valuta.setBorder(new LineBorder(new Color(43,122,219), 1));
         valuta.setBackground(Color.white);
         valuta.setFont(new Font("Century Gothic", Font.BOLD, 15));
         
