@@ -11,7 +11,7 @@ import Header.Vista.TopPanel;
 import Libri.Ascoltatori.EliminaLibro;
 import Preferiti.Ascoltatori.AggiungiLibroPreferito;
 import Preferiti.Ascoltatori.RimuoviLibroPreferito;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -120,7 +120,7 @@ public class LibroPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         descrizione.setLineWrap(true);

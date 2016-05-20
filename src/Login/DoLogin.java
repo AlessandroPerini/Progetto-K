@@ -8,7 +8,7 @@ package Login;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.LoginQuery;
-import Studente.Vista.AccountPanel;
+import Studenti.Vista.AccountPanel;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

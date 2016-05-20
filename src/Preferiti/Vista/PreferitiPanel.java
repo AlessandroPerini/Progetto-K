@@ -10,9 +10,9 @@ import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
-import Universita.Corsi.Ascoltatori.CaricaCorsi;
-import Universita.Corsi.Ascoltatori.GoToCorso;
-import Utils.CustomScrollbarUI;
+import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Corsi.Ascoltatori.GoToCorso;
+import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -67,7 +67,6 @@ public class PreferitiPanel extends JPanel{
     private GoToAppunto[] goToAppunto = new GoToAppunto[dimAppuntiPreferiti];
     private GoToLibro[] goToLibro = new GoToLibro[dimLibriPreferiti];
     private GoToDomanda[] goToDomanda = new GoToDomanda[dimDomandePreferite];
-    
     
     private JButton facoltàPreferiteButton, corsiPreferitiButton, appuntiPreferitiButton,
             libriPreferitiButton, domandePreferiteButton;
@@ -141,7 +140,6 @@ public class PreferitiPanel extends JPanel{
         setButtonCharacteristic(appuntiPreferitiButton);
         setButtonCharacteristic(libriPreferitiButton);
         setButtonCharacteristic(domandePreferiteButton);
-        
         
         facoltàPreferiteButton.addActionListener(new ActionListener() {
             
@@ -380,7 +378,7 @@ public class PreferitiPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         
@@ -390,7 +388,7 @@ public class PreferitiPanel extends JPanel{
         JScrollBar scrollBar1 = new JScrollBar();
         scrollBar1.setBackground(Color.white);
         scrollBar1.setPreferredSize(new Dimension(13, 0));
-        scrollBar1.setUI(new CustomScrollbarUI());
+        scrollBar1.setUI(new ScrollBarUI());
         scrollBar1.setUnitIncrement(16);
         scrollPanel1.setVerticalScrollBar(scrollBar1);
         
@@ -400,7 +398,7 @@ public class PreferitiPanel extends JPanel{
         JScrollBar scrollBar2 = new JScrollBar();
         scrollBar2.setBackground(Color.white);
         scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUI(new ScrollBarUI());
         scrollBar2.setUnitIncrement(16);
         scrollPanel2.setVerticalScrollBar(scrollBar2);
         
@@ -410,7 +408,7 @@ public class PreferitiPanel extends JPanel{
         JScrollBar scrollBar3 = new JScrollBar();
         scrollBar3.setBackground(Color.white);
         scrollBar3.setPreferredSize(new Dimension(13, 0));
-        scrollBar3.setUI(new CustomScrollbarUI());
+        scrollBar3.setUI(new ScrollBarUI());
         scrollBar3.setUnitIncrement(16);
         scrollPanel3.setVerticalScrollBar(scrollBar3);
         
@@ -420,7 +418,7 @@ public class PreferitiPanel extends JPanel{
         JScrollBar scrollBar4 = new JScrollBar();
         scrollBar4.setBackground(Color.white);
         scrollBar4.setPreferredSize(new Dimension(13, 0));
-        scrollBar4.setUI(new CustomScrollbarUI());
+        scrollBar4.setUI(new ScrollBarUI());
         scrollBar4.setUnitIncrement(16);
         scrollPanel4.setVerticalScrollBar(scrollBar4);
     }
@@ -450,10 +448,10 @@ public class PreferitiPanel extends JPanel{
         principale[i].add(ico[i]);
         principale[i].add(new JLabel("   "));
         principale[i].add(label[i]);
-        
     }
     
     public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2, ImageIcon search3, ImageIcon search4){
+        
         facoltàPreferiteButton.setIcon(search);
         corsiPreferitiButton.setIcon(search1);
         appuntiPreferitiButton.setIcon(search2);

@@ -9,7 +9,7 @@ import Appunti.Appunto;
 import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
-import Universita.Corsi.Ascoltatori.CaricaCorsi;
+import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;

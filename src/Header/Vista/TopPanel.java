@@ -9,7 +9,7 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Header.Ascoltatori.Back;
 import Header.Ascoltatori.Menù;
-import Segnalazione.SegnalazionePanel;
+import Segnalazioni.SegnalazionePanel;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

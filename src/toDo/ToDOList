@@ -1,0 +1,37 @@
+TODOLIST
+
+
+// - = da fare; + = fatto
+
+Pulizia Codice{
+    //Dichiarazione oggetti fuori dal costruttore, eliminazione duplicazioni, commentare ogni cosa(anche all'inizio della classe), creare metodi
+    //fuori dai costruttori, settare nuova scrollBar (1*), usare "lambda expresison" per gli ascoltatore all'interno di una classe (2*), eliminare
+    //import non utilizzati (3*), ...
+
+    -Application;
+    -Appunti;
+    -Database;
+    -Dropbox;
+    -Frame;
+    -Header;
+    -Libri;
+    -Login;
+    -QeA;
+    +Segnalazioni;
+    -Studente;
+    -Università>Corsi;
+    -Università>Facoltà;
+    -Utils;
+    -Valutazioni;
+
+}
+
+1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
+
+2*  Usare "lambda expression" per gli ascoltatori al'interno delle classi invece che l'
+    "anonymous inner class" (@Override..), (è più figa), (per farlo basta cliccare sul suggerimento giallo);
+
+3*  Eliminare import inutili --> 'Ctrl' + 'Shift' + 'i'
+
+
+-Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar

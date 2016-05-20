@@ -8,8 +8,8 @@ package Preferiti;
 import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
-import Universita.Corsi.Corso;
-import Universita.Facolta.Facoltà;
+import Università.Corsi.Corso;
+import Università.Facolta.Facoltà;
 import java.util.ArrayList;
 
 /**

@@ -8,7 +8,7 @@ package Appunti.Vista;
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -83,7 +83,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 JScrollBar scrollBar = new JScrollBar();
                 scrollBar.setBackground(Color.white);
                 scrollBar.setPreferredSize(new Dimension(13, 0));
-                scrollBar.setUI(new CustomScrollbarUI());
+                scrollBar.setUI(new ScrollBarUI());
                 scrollBar.setUnitIncrement(16);
                 scrollPanel[i] = new JScrollPane(commentoRecensioni[i], JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
                 scrollPanel[i].setPreferredSize(new Dimension(150, 70));

@@ -10,11 +10,11 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
 import Appunti.Ascoltatori.DownloadFileAppunto;
 import Database.Query.ControlloQuery;
-import Valutazione.Vista.ValutaAppuntoFrame;
+import Valutazioni.Vista.ValutaAppuntoFrame;
 import Header.Vista.TopPanel;
 import Preferiti.Ascoltatori.AggiungiAppuntoPreferito;
 import Preferiti.Ascoltatori.RimuoviAppuntoPreferito;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -90,7 +90,7 @@ public class AppuntoPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         

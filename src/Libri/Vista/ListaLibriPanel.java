@@ -10,7 +10,7 @@ import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -180,7 +180,7 @@ public class ListaLibriPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         

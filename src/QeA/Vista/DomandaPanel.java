@@ -15,7 +15,7 @@ import Preferiti.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
 import QeA.Ascoltatori.AggiungiLikeRisposta;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -108,7 +108,7 @@ public class DomandaPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel1.setVerticalScrollBar(scrollBar);
         
@@ -149,7 +149,7 @@ public class DomandaPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
 	gbc.gridx = 0;
@@ -204,7 +204,7 @@ public class DomandaPanel extends JPanel{
         JScrollBar scrollBar2 = new JScrollBar();
         scrollBar2.setBackground(Color.white);
         scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new CustomScrollbarUI());
+        scrollBar2.setUI(new ScrollBarUI());
         scrollBar2.setUnitIncrement(16);
         scrollPanel3.setVerticalScrollBar(scrollBar2);
 	gbc.gridx = 0;
@@ -227,7 +227,7 @@ public class DomandaPanel extends JPanel{
         JScrollBar scrollBar4 = new JScrollBar();
         scrollBar4.setBackground(Color.white);
         scrollBar4.setPreferredSize(new Dimension(13, 0));
-        scrollBar4.setUI(new CustomScrollbarUI());
+        scrollBar4.setUI(new ScrollBarUI());
         scrollBar4.setUnitIncrement(16);
         scrollPanel4.setVerticalScrollBar(scrollBar4);
 	gbc.gridx = 0;
@@ -314,7 +314,7 @@ public class DomandaPanel extends JPanel{
             scrollPanel5.setWheelScrollingEnabled(true);
             JScrollBar scrollBar = new JScrollBar();
             scrollBar.setPreferredSize(new Dimension(13, 0));
-            scrollBar.setUI(new CustomScrollbarUI());
+            scrollBar.setUI(new ScrollBarUI());
             scrollBar.setUnitIncrement(16);
             scrollPanel5.setVerticalScrollBar(scrollBar);
             gbcRisposte.gridx = 1;

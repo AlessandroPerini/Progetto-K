@@ -29,7 +29,7 @@ public class CercaAppunti implements ActionListener, KeyListener{
     public void cerca(){
     
         if(!searchField.getText().equals("")){
-            Utils.Cerca.Appunti(searchField);
+            Utils.Azioni.Cerca.Appunti(searchField);
 
             Applicazione.back.remove(Applicazione.back.size()-1);
             

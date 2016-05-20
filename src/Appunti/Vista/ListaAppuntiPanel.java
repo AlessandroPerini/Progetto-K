@@ -11,7 +11,7 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
-import Utils.CustomScrollbarUI;
+import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -234,7 +234,7 @@ public class ListaAppuntiPanel extends JPanel{
         JScrollBar scrollBar = new JScrollBar();
         scrollBar.setBackground(Color.white);
         scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new CustomScrollbarUI());
+        scrollBar.setUI(new ScrollBarUI());
         scrollBar.setUnitIncrement(16);
         scrollPanel.setVerticalScrollBar(scrollBar);
         

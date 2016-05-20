@@ -12,7 +12,7 @@ import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
 import Preferiti.Vista.PreferitiPanel;
 import QeA.Vista.ListaDomandePanel;
-import Utils.Ordina;
+import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
