@@ -25,7 +25,7 @@ public class GoToAppunto implements MouseListener{
     
     private String corso;
     private String facoltà;
-    private String text;
+    private String nomeAppunto;
     private AppuntoPanel appunto;
     
     public GoToAppunto(String corso, String facoltà) {
@@ -39,20 +39,11 @@ public class GoToAppunto implements MouseListener{
         try {
             
             Applicazione.back.add("appunto");
+         
+            JLabel label = (JLabel)e.getComponent();
+            nomeAppunto = label.getText();
             
-            if(e.getComponent() instanceof JLabel) {
-                JLabel label = (JLabel)e.getComponent();
-                text = label.getText();
-            }
-            if(e.getComponent() instanceof JButton) {
-                JButton button = (JButton)e.getComponent();
-                text = button.getText();
-            }
-            
-            String parts[] = text.split("          ");
-            text = parts[0];
-            
-            Applicazione.appuntoAttuale.setNome(text);
+            Applicazione.appuntoAttuale.setNome(nomeAppunto);
 
             InfoQuery.caricaInfoAppunto(corso, facoltà);
             

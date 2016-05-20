@@ -1,17 +1,20 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello con la lista dei corsi della facoltà selezionata
 */
 package Università.Corsi.Vista;
 
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.CaricaAppunti;
 import Database.Query.ControlloQuery;
 import Database.Query.ListeQuery;
 import Header.Vista.TopPanel;
+import Libri.Ascoltatori.CaricaLibri;
+import Preferiti.Ascoltatori.AggiungiCorsoPreferito;
 import Preferiti.Ascoltatori.AggiungiFacoltàPreferita;
+import Preferiti.Ascoltatori.RimuoviCorsoPreferito;
 import Preferiti.Ascoltatori.RimuoviFacoltàPreferita;
+import QeA.Ascoltatori.CaricaDomande;
 import Utils.Azioni.Ordina;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,28 +36,49 @@ import javax.swing.border.TitledBorder;
  */
 public class ListaCorsiPanel extends JPanel{
     
+    //dichiarazione array oggetti
     private JLabel[] corsi = new JLabel[Applicazione.listaCorsiAttuali.size()];
     private JPanel[] panels = new JPanel[3];
     private JPanel[] innerPanels = new JPanel[3];
     private JScrollPane[] scrollP = new JScrollPane[3];
-    
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
+    
+    //dichiarazione pannelli
     private JPanel panel, topPref;
     private TopPanel top;
+    
+    //dichiarazione bottoni
+    private JButton  preferitiOn, preferitiOff;
+    
+    //dichiarazione ascoltatori
+    private AggiungiCorsoPreferito aggiungiCorsoPreferito;
+    private RimuoviCorsoPreferito rimuoviCorsoPreferito;
+    private GoToCorso goToCorso;
+    
     public ListaCorsiPanel() {
         
-        setBackground(Color.white);
-        
+        //inizializzazione pannelli
         top = new TopPanel(Applicazione.facoltàAttuale.getNome());
-        top.setBackground(Color.white);
-        
         panel = new JPanel(new GridLayout(1, 3, 10, 0));
-        panel.setBackground(Color.white);
-        
         topPref = new JPanel();
-        topPref.setBackground(Color.white);
         
-        //preferito
+        //inizializzazione bottoni
+        preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
+        
+        //inizializzazione ascoltatori
+        aggiungiCorsoPreferito = new AggiungiCorsoPreferito();
+        rimuoviCorsoPreferito = new RimuoviCorsoPreferito();
+        goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome());
+        
+        //creazione pannelli
+        creaPannelloPreferiti();
+        creaPannelliCorsi();
+        creaPannelloPrincipale();
+    }
+    
+    public void creaPannelloPreferiti(){
+        
         JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOn.setBackground(Color.white);
         preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
@@ -79,9 +103,10 @@ public class ListaCorsiPanel extends JPanel{
             
         } catch (SQLException ex) {
             System.out.println("Errore durante il controllo della facoltà preferita");
-        }//fine zona preferito
-        
-        GoToCorso goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome());
+        }
+    }
+    
+    public void creaPannelliCorsi(){
         
         for (int i = 0; i < 3; i++) {
             
@@ -93,12 +118,9 @@ public class ListaCorsiPanel extends JPanel{
             
             Ordina.CorsiXAnno();
             
+            //dichiarazione pannelli
             panels[i] = new JPanel(new GridLayout(Applicazione.listaCorsiXAnno.size()+1, 1, 0, 15));
-            panels[i].setBackground(Color.white);
-            
             innerPanels[i] = new JPanel();
-            innerPanels[i].setBackground(Color.white);
-            
             scrollP[i] = new JScrollPane();
             titoloBordo[i] = new TitledBorder(""+(i+1)+"° Anno");
             
@@ -107,7 +129,9 @@ public class ListaCorsiPanel extends JPanel{
             innerPanels[i].setBorder(titoloBordo[i]);
             
             for (int j = 0; j < Applicazione.listaCorsiXAnno.size(); j++) {
+                //dichiarazione label
                 corsi[j] = new JLabel();
+                
                 corsi[j].setPreferredSize(new Dimension(150, 20));
                 corsi[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 corsi[j].setText(Applicazione.listaCorsiXAnno.get(j).getNome());
@@ -117,19 +141,31 @@ public class ListaCorsiPanel extends JPanel{
             }
             
             JScrollBar scrollBar = new JScrollBar();
-            scrollBar.setBackground(Color.white);
             scrollBar.setPreferredSize(new Dimension(0, 20));
             scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollP[i].setPreferredSize(new Dimension(200, 270));
             scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
             scrollP[i].getVerticalScrollBar().setUnitIncrement(16);
             scrollP[i].setVerticalScrollBar(scrollBar);
+            
             scrollP[i].setBackground(Color.white);
+            panels[i].setBackground(Color.white);
+            innerPanels[i].setBackground(Color.white);
+            
             innerPanels[i].add(scrollP[i]);
             panel.add(innerPanels[i]);
-            Applicazione.svuotaCorsiXAnno();
             
+            Applicazione.svuotaCorsiXAnno();
         }
+        
+    }
+    
+    public void creaPannelloPrincipale(){
+        
+        top.setBackground(Color.white);
+        panel.setBackground(Color.white);
+        topPref.setBackground(Color.white);
+        setBackground(Color.white);
         
         add(top);
         add(topPref);

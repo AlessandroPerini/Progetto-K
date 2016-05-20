@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore che selezionata la facoltà in ListaFacoltàPanel va alla ListaCorsiPanel relativa
 */
 package Università.Corsi.Ascoltatori;
 
@@ -14,7 +12,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -24,27 +21,20 @@ import javax.swing.JOptionPane;
  */
 public class CaricaCorsi implements MouseListener{
     
-    private String text;
+    //dichiarazione variabili
+    private String nomeFacoltà;
     
     @Override
     public void mouseClicked(MouseEvent e) {
         
         Applicazione.back.add("corsi");
-        
-        if(e.getComponent() instanceof JLabel) {
-            JLabel label = (JLabel)e.getComponent();
-            text = label.getText();
-        }
-        
-        if(e.getComponent() instanceof JButton) {
-            JButton button = (JButton)e.getComponent();
-            text = button.getText();
-        }
-        
-        Applicazione.facoltàAttuale.setNome(text);
+
+        JLabel label = (JLabel)e.getComponent();
+        nomeFacoltà = label.getText();
+
+        Applicazione.facoltàAttuale.setNome(nomeFacoltà);
         try {
             InfoQuery.caricaInfoFacoltà();
-            
             ListeQuery.caricaCorsi();
             
             ListaCorsiPanel corsi = new ListaCorsiPanel();

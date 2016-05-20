@@ -74,8 +74,8 @@ public class ValutaAppuntoFrame{
         annullaHover = new ImageIcon(getClass().getResource("/immagini/deleteHover.png"));
         annullaPressed = new ImageIcon(getClass().getResource("/immagini/deletePressed.png"));
         
+        //creazione frame - pannello
         creaFrame();
-        
         creaPannello();
         
     }

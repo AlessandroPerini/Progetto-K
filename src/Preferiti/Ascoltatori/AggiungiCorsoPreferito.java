@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore per l'aggiunta di un corso preferito
 */
 package Preferiti.Ascoltatori;
 
@@ -12,8 +10,6 @@ import Università.Corsi.Vista.CorsoPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -27,7 +23,7 @@ public class AggiungiCorsoPreferito implements ActionListener{
         
         try {
             InsertQuery.inserisciCorsoPreferito();
-   
+            
             Applicazione.preferiti.getCorsiPreferiti().add(Applicazione.corsoAttuale);
             
             CorsoPanel corso = new CorsoPanel();

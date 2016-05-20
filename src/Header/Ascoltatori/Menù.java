@@ -8,6 +8,7 @@ import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Login.Vista.LoginPanel;
 import Preferiti.Vista.PreferitiPanel;
+import Studenti.Vista.AccountPanel;
 import Università.Facolta.Vista.ListaFacoltàPanel;
 import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
@@ -39,13 +40,13 @@ public class Menù implements ActionListener{
         switch(selezione){
             
             case "Home": home();
-                break;
+            break;
             case "Account": account();
-                break;
+            break;
             case "Preferiti": preferiti();
-                break;
+            break;
             case "Logout": logout();
-                break;
+            break;
         }
         
         resetMenu();
@@ -58,10 +59,11 @@ public class Menù implements ActionListener{
             
             ListeQuery.caricaFacoltà();
             ListeQuery.caricaRamiFacoltà();
-
+            
+            Applicazione.back.add("facoltà");
+            
             ListaFacoltàPanel facoltà = new ListaFacoltàPanel();
             Grafica.card.show(Grafica.container, "facoltà");
-            Applicazione.back.add("facoltà");
             
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Errore durante il caricamento delle facoltà", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
@@ -70,14 +72,18 @@ public class Menù implements ActionListener{
     
     public void account(){
         
-        Grafica.card.show(Grafica.container, "account");
-        Applicazione.back.add("account");
         Applicazione.svuotaMieiDati();
-
+        
+        Applicazione.back.add("account");
+        
+        AccountPanel account = new AccountPanel();
+        Grafica.container.add(account,"account");
+        Grafica.card.show(Grafica.container, "account");
+        
     }
     
     public void preferiti(){
-
+        
         try {
             ListeQuery.caricaTuttiPreferiti();
             

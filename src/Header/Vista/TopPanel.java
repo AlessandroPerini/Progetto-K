@@ -13,9 +13,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -45,16 +43,16 @@ public class TopPanel extends JPanel{
     
     public TopPanel(String t) {
         
+        //inizializzazione variabili
+        opzioniMenù = new String[]{"Home","Account","Preferiti","Logout"};
+        
         //inizializzazione oggetti
         backButton = new JButton(new ImageIcon(getClass().getResource("/immagini/buttonNormal.png")));
         title = new JLabel(t);
         menu = new JComboBox<>(opzioniMenù);
         empty = new JPanel();
         segnalazioni = new JButton();
-        
-        //inizializzazione variabili
-        opzioniMenù = new String[]{"Home","Account","Preferiti","Logout"};
-        
+
         //inizializzazione ascoltatori
         back = new Back();
         menù = new Menù(menu);

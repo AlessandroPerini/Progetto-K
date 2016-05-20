@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 public class GoToDomanda implements MouseListener{
     
     private static DomandaPanel domanda;
-    private String text;
+    private String nomeDomanda;
     
     private String corso;
     private String facoltà;
@@ -40,20 +40,13 @@ public class GoToDomanda implements MouseListener{
         
         Applicazione.back.add("domanda");
         
-        if(e.getComponent() instanceof JLabel) {
-            JLabel label = (JLabel)e.getComponent();
-            text = label.getText();
-        }
+        JLabel label = (JLabel)e.getComponent();
+        nomeDomanda = label.getText();
         
-        if(e.getComponent() instanceof JButton) {
-            JButton button = (JButton)e.getComponent();
-            text = button.getText();
-        }
+        String parts[] = nomeDomanda.split("          ");
+        nomeDomanda = parts[0];
         
-        String parts[] = text.split("          ");
-        text = parts[0];
-        
-        Applicazione.domandaAttuale.setTitolo(text);
+        Applicazione.domandaAttuale.setTitolo(nomeDomanda);
         
         try {
             InfoQuery.caricaInfoDomanda(corso, facoltà);

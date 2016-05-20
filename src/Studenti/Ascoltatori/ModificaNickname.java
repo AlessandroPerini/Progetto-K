@@ -33,9 +33,11 @@ public class ModificaNickname implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        
         nClick += 1;
         nick.setEditable(true);
         cambiaNickname.setIcon(new ImageIcon(this.getClass().getResource("/immagini/conferma.png")));
+        
         boolean ok = false;
         
         if ( nClick == 2){
