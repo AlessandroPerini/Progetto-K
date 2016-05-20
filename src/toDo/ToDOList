@@ -19,7 +19,7 @@ Pulizia Codice{
     +Login;
     -QeA;
     +Segnalazioni;
-    +Studente;
+    +Studenti;
     -Università>Corsi;
     -Università>Facoltà;
     +Utils;
@@ -35,15 +35,14 @@ Pulizia Codice{
 
 3*  Eliminare import inutili --> 'Ctrl' + 'Shift' + 'i'
 
-4* Aggiungere il controllo del numero di telefono quando lo si modifica ( solo numeri )!!
+4* Aggiungere il controllo del numero di telefono quando lo si modifica ( solo numeri )
 
-5* togliere lo scroolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
+5* Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
 
 -Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
 
 
-   
-    /* NON TOGLIERLO!!!
+    //metodo per settare il nickname dall'email
     public void setNickname() {
         String s = email;
         s = s.replace(".", ",");
@@ -54,4 +53,4 @@ Pulizia Codice{
         cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
         nickname = nome+" "+cognome+".";
     }
-    */
+    
