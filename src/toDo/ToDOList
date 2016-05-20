@@ -6,15 +6,15 @@ TODOLIST
 Pulizia Codice{
     //Dichiarazione oggetti fuori dal costruttore, eliminazione duplicazioni, commentare ogni cosa(anche all'inizio della classe), creare metodi
     //fuori dai costruttori, settare nuova scrollBar (1*), usare "lambda expresison" per gli ascoltatore all'interno di una classe (2*), eliminare
-    //import non utilizzati (3*), indentazione, usare nomi sensati!, ...
+    //import non utilizzati (3*), indentazione, usare nomi sensati, ...
 
     +Application;
     +Appunti;
     +Database;
     +Dropbox;
     +Frame;
-    -Header;
-    -Preferiti (da sistemare solo le dichiarazioni e inizializzazioni ) 
+    +Header;
+    -Preferiti (da sistemare solo le dichiarazioni e inizializzazioni) 
     -Libri;
     +Login;
     -QeA;
@@ -28,6 +28,14 @@ Pulizia Codice{
 }
 
 
+-Aggiungere il controllo del numero di telefono quando lo si modifica (solo numeri)
+
+-Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
+
+-Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
+
+
+
 1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
 
 2*  Usare "lambda expression" per gli ascoltatori al'interno delle classi invece che l'
@@ -35,22 +43,17 @@ Pulizia Codice{
 
 3*  Eliminare import inutili --> 'Ctrl' + 'Shift' + 'i'
 
-4* Aggiungere il controllo del numero di telefono quando lo si modifica ( solo numeri )
-
-5* Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
-
--Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
 
 
-    //metodo per settare il nickname dall'email
-    public void setNickname() {
-        String s = email;
-        s = s.replace(".", ",");
-        String parts[] = s.split(",");
-        String nome = parts[0];
-        String cognome = parts[1].charAt(0)+"";
-        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
-        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
-        nickname = nome+" "+cognome+".";
-    }
+//metodo per settare il nickname dall'email
+public void setNickname() {
+    String s = email;
+    s = s.replace(".", ",");
+    String parts[] = s.split(",");
+    String nome = parts[0];
+    String cognome = parts[1].charAt(0)+"";
+    nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+    cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
+    nickname = nome+" "+cognome+".";
+}
     
