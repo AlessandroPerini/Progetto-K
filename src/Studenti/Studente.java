@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Classe contentenete la struttura di uno studente:
+* attributi, costruttore, metodi get - set
+* 
+*/
 package Studenti;
 
 /**
@@ -31,19 +31,6 @@ public class Studente {
         this.nickname = nickname;
     }
     
-    /* NON TOGLIERLO!!!
-    public void setNickname() {
-        String s = email;
-        s = s.replace(".", ",");
-        String parts[] = s.split(",");
-        String nome = parts[0];
-        String cognome = parts[1].charAt(0)+"";
-        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
-        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
-        nickname = nome+" "+cognome+".";
-    }
-    */
-    
     public void setNome() {
         String s = email;
         s = s.replace(".", ",");
@@ -54,6 +41,7 @@ public class Studente {
     }
     
     public void setCognome() {
+        
         String s = email;
         s = s.replace(".", ",");
         String parts[] = s.split(",");

@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato al caricamento di tutti i dati riguardanti l'utente:
+* appunti inseriti, libri in vendita, domande poste
 */
 package Studenti.Ascoltatori;
 
@@ -21,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class CaricaIMieiDati implements ActionListener{
     
+    private iMieiDatiPanel mieiDatiPanel;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -34,7 +35,7 @@ public class CaricaIMieiDati implements ActionListener{
             
             Ordina.ListeMieiDati();
             
-            iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+            mieiDatiPanel = new iMieiDatiPanel();
             Grafica.container.add(mieiDatiPanel, "i miei dati");
             Grafica.card.show(Grafica.container, "i miei dati");
             

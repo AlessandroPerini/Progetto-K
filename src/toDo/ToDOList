@@ -9,22 +9,24 @@ Pulizia Codice{
     //import non utilizzati (3*), indentazione, usare nomi sensati!, ...
 
     +Application;
-    -Appunti;
+    +Appunti;
     +Database;
     +Dropbox;
     +Frame;
     -Header;
+    -Preferiti (da sistemare solo le dichiarazioni e inizializzazioni ) 
     -Libri;
     +Login;
     -QeA;
     +Segnalazioni;
-    -Studente;
+    +Studente;
     -Università>Corsi;
     -Università>Facoltà;
     +Utils;
     +Valutazioni;
 
 }
+
 
 1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
 
@@ -33,5 +35,23 @@ Pulizia Codice{
 
 3*  Eliminare import inutili --> 'Ctrl' + 'Shift' + 'i'
 
+4* Aggiungere il controllo del numero di telefono quando lo si modifica ( solo numeri )!!
+
+5* togliere lo scroolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
 
 -Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
+
+
+   
+    /* NON TOGLIERLO!!!
+    public void setNickname() {
+        String s = email;
+        s = s.replace(".", ",");
+        String parts[] = s.split(",");
+        String nome = parts[0];
+        String cognome = parts[1].charAt(0)+"";
+        nome = nome.substring(0, 1).toUpperCase() + nome.substring(1);
+        cognome = cognome.substring(0, 1).toUpperCase() + cognome.substring(1);
+        nickname = nome+" "+cognome+".";
+    }
+    */

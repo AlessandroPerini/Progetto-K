@@ -1,13 +1,17 @@
-package Studenti.Vista;
+/*
+*Pannello dedicato alla visualizzazione dei dati caricati dall'utente:
+* lista degli appunti da lui caricati, lista dei libri, e lista delle domande
+* da lui poste
+*/
 
+package Studenti.Vista;
 
 import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
-import Utils.Vista.ScrollBarUI;
+import Utils.Vista.CustomScrollBar;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -24,7 +28,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
@@ -33,40 +36,35 @@ import javax.swing.border.LineBorder;
  * @author te4o
  */
 public class iMieiDatiPanel extends JPanel{
+    //dichiarazione variabili
+    private int dimAppunti,dimLibri, dimDomande ;
     
-    private int dimAppunti =  Applicazione.appuntiGuest.size();
-    private int dimLibri = Applicazione.libriGuest.size();
-    private int dimDomande = Applicazione.domandeGuest.size();
+    //dichiarazione oggetti
     
-    private JLabel[] mieiAppunti = new JLabel[dimAppunti];
-    private JLabel[] mieiLibri = new JLabel[dimLibri];
-    private JLabel[] mieDomande = new JLabel[dimDomande];
+    private JLabel[] mieiAppunti, mieiLibri, mieDomande, mieiAppuntiLab ,mieiLibriLab, mieDomandeLab,
+                        mieiAppuntiIco ,mieiLibriIco, mieDomandeIco;
 
-    private JLabel[] mieiAppuntiLab = new JLabel[dimAppunti];
-    private JLabel [] mieiLibriLab = new JLabel[dimLibri];
-    private JLabel[] mieDomandeLab = new JLabel[dimDomande];
-
-    private JLabel[] mieiAppuntiIco = new JLabel[dimAppunti];
-    private JLabel [] mieiLibriIco = new JLabel[dimLibri];
-    private JLabel[] mieDomandeIco = new JLabel[dimDomande];
-
-    private GoToAppunto[] goToAppunto = new GoToAppunto[dimAppunti];
-    private GoToLibro[] goToLibro = new GoToLibro[dimLibri];
-    private GoToDomanda[] goToDomanda = new GoToDomanda[dimDomande];
+    private GoToAppunto[] goToAppunto;
+    private GoToLibro[] goToLibro;
+    private GoToDomanda[] goToDomanda;
     
-    private JButton  mieiAppuntiButton,
-            mieiLibriButton, mieDomandeButton;
+    private JButton  mieiAppuntiButton, mieiLibriButton, mieDomandeButton;            
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
-    private JScrollPane scrollPanel, scrollPanel2, scrollPanel3;
+    private JScrollPane scrollPanelAppunti, scrollPanelLibri, scrollPanelDomande;
     private ImageIcon  search, searchPressed, searchHover, searchSelected;
     private GridBagConstraints gbc, gbcd;
     private JLabel  noAppunti, noLibri, noDomande;
     private CardLayout cardLayout = new CardLayout();
     private TopPanel top;
-    private CaricaCorsi caricaCorsi;
     
     public iMieiDatiPanel() {
-        //dichiarazione panel
+        
+        // inizializzazine variabili
+        dimAppunti =  Applicazione.appuntiGuest.size();
+        dimLibri = Applicazione.libriGuest.size();
+        dimDomande = Applicazione.domandeGuest.size();
+    
+        //inizializzazione pannelli
         top = new TopPanel("Le Mie Attività");
         panel = new JPanel(new BorderLayout());
         nord = new JPanel(new GridBagLayout());
@@ -78,18 +76,18 @@ public class iMieiDatiPanel extends JPanel{
         gbc = new GridBagConstraints();
         gbcd = new GridBagConstraints();
         
-        //dichiarazione scrollPanel
-        scrollPanel = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel2 = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel3 = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        //inizializzazione scrollPanel
+        scrollPanelAppunti = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelLibri = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDomande = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
-        //dichiarazione icone
+        //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/button2Pressed.png"));
         searchSelected = new ImageIcon(this.getClass().getResource("/immagini/button2Selected.png"));
         
-        //dichiarazione bottoni - label
+        //inizializzazione bottoni - label
         noLibri = new JLabel("Non hai ancora caricato nessun libro");
         noAppunti = new JLabel("Non hai ancora aggiunto nessun appunto");
         noDomande = new JLabel("Non hai ancora inserito nessuna domanda");
@@ -97,18 +95,34 @@ public class iMieiDatiPanel extends JPanel{
         mieiLibriButton = new JButton("Libri",search);
         mieDomandeButton = new JButton("Domande",search);
         
+        mieiAppunti = new JLabel[dimAppunti];
+        mieiLibri = new JLabel[dimLibri];
+        mieDomande = new JLabel[dimDomande];
+
+        mieiAppuntiLab = new JLabel[dimAppunti];
+        mieiLibriLab = new JLabel[dimLibri];
+        mieDomandeLab = new JLabel[dimDomande];
+
+        mieiAppuntiIco = new JLabel[dimAppunti];
+        mieiLibriIco = new JLabel[dimLibri];
+        mieDomandeIco = new JLabel[dimDomande];
+        
+        //inizializzazine ascoltatori
+        goToAppunto = new GoToAppunto[dimAppunti];
+        goToLibro = new GoToLibro[dimLibri];
+        goToDomanda = new GoToDomanda[dimDomande];
+        
         setPanelWhite();
         setScrollPanePanel();
         
-        centro.add(scrollPanel,"appuntiPreferiti");
-        centro.add(scrollPanel2,"libriPreferiti");
-        centro.add(scrollPanel3,"domandePreferite");
+        centro.add(scrollPanelAppunti,"appuntiPreferiti");
+        centro.add(scrollPanelLibri,"libriPreferiti");
+        centro.add(scrollPanelDomande,"domandePreferite");
         
         setButtonCharacteristic(mieiAppuntiButton);
         setButtonCharacteristic(mieiLibriButton);
         setButtonCharacteristic(mieDomandeButton);
-        
-        caricaCorsi = new CaricaCorsi();
+
     
         mieiAppuntiButton.addActionListener(new ActionListener() {
             
@@ -260,35 +274,20 @@ public class iMieiDatiPanel extends JPanel{
     
     public void setScrollPanePanel(){
         
-        scrollPanel.setPreferredSize(new Dimension(650, 400));
-        scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+        scrollPanelAppunti.setPreferredSize(new Dimension(650, 400));
+        scrollPanelAppunti.setBackground(Color.white);
+        scrollPanelAppunti.setBorder(new LineBorder(Color.white));
+        scrollPanelAppunti.setVerticalScrollBar(new CustomScrollBar());
  
-        scrollPanel2.setPreferredSize(new Dimension(650, 400));
-        scrollPanel2.setBackground(Color.white);
-        scrollPanel2.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar2 = new JScrollBar();
-        scrollBar2.setBackground(Color.white);
-        scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new ScrollBarUI());
-        scrollBar2.setUnitIncrement(16);
-        scrollPanel2.setVerticalScrollBar(scrollBar2);
+        scrollPanelLibri.setPreferredSize(new Dimension(650, 400));
+        scrollPanelLibri.setBackground(Color.white);
+        scrollPanelLibri.setBorder(new LineBorder(Color.white));
+        scrollPanelLibri.setVerticalScrollBar(new CustomScrollBar());
    
-        scrollPanel3.setPreferredSize(new Dimension(650, 400));
-        scrollPanel3.setBackground(Color.white);
-        scrollPanel3.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar3 = new JScrollBar();
-        scrollBar3.setBackground(Color.white);
-        scrollBar3.setPreferredSize(new Dimension(13, 0));
-        scrollBar3.setUI(new ScrollBarUI());
-        scrollBar3.setUnitIncrement(16);
-        scrollPanel3.setVerticalScrollBar(scrollBar3);
+        scrollPanelDomande.setPreferredSize(new Dimension(650, 400));
+        scrollPanelDomande.setBackground(Color.white);
+        scrollPanelDomande.setBorder(new LineBorder(Color.white));
+        scrollPanelDomande.setVerticalScrollBar(new CustomScrollBar());
     }
     
      public void setButtonCharacteristic(JButton button){

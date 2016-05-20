@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+* Ascoltatore dedicato al apertura del pannello PREFERITI dell'utente
  */
 package Studenti.Ascoltatori;
 
@@ -20,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class GoToPreferiti implements ActionListener{
     
+    private PreferitiPanel preferitiPanel;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -32,7 +32,7 @@ public class GoToPreferiti implements ActionListener{
             
             Ordina.ListePreferiti();
 
-            PreferitiPanel preferitiPanel = new PreferitiPanel();
+            preferitiPanel = new PreferitiPanel();
             Grafica.container.add(preferitiPanel, "preferiti");
             Grafica.card.show(Grafica.container, "preferiti");
 
