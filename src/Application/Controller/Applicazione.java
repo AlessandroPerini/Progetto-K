@@ -1,7 +1,7 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Questo è il controller del progetto, colui che gestisce tutti i dati principali
+ * utilizzati dalle classi: la connessione al database, i dati dell'utente loggato
+ * e gestisce le liste di appunti, libri e domande.
  */
 package Application.Controller;
 
@@ -23,15 +23,20 @@ import java.util.ArrayList;
  * @author te4o
  */
 public class Applicazione {
-
+    
+    //connessione al database
     public static Connection DBconnection = new ConnessioneDB().connect();
         
+    //entità Studente che contiene i dati dell'utente loggato
     public static Studente guest;
+    //controllo se il login è stato effettuato
     public static boolean utenteLoggato = false;
     
+    //ArrayList per la gestione del bottone back
     public static ArrayList<String> back = new ArrayList<>();
 
-    //per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout()
+    //inizializzazione ArrayList dei dati attuali
+    //-------------------------------------------- per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout() --------------------------------------------//
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
     public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
     public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
@@ -43,14 +48,17 @@ public class Applicazione {
     public static ArrayList<Corso> listaCorsiXAnno= new ArrayList<>();
     public static ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
+    //inizializzazione entità preferiti, al cui interno ci sono le liste di facoltà, corsi, appunti, libri e domande preferite
     public static Preferiti preferiti = new Preferiti();
     
+    //inizializzazione delle entità attuali (dove si ha cliccato essenzialmente)
     public static Facoltà facoltàAttuale = new Facoltà("", "");
     public static Corso corsoAttuale = new Corso("", 0, "");
     public static Libro libroAttuale = new Libro("", "", 0, "", "", 0, "", "");
     public static Domanda domandaAttuale = new  Domanda("", "", "", 0, "", "");
     public static Appunto appuntoAttuale = new Appunto("", "", "", "", "", 0);
     
+    //inizializzazione dei dati caricati dall'utente loggato
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();
     public static ArrayList<Domanda> domandeGuest = new ArrayList<>();

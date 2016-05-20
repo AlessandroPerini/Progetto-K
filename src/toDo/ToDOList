@@ -6,9 +6,9 @@ TODOLIST
 Pulizia Codice{
     //Dichiarazione oggetti fuori dal costruttore, eliminazione duplicazioni, commentare ogni cosa(anche all'inizio della classe), creare metodi
     //fuori dai costruttori, settare nuova scrollBar (1*), usare "lambda expresison" per gli ascoltatore all'interno di una classe (2*), eliminare
-    //import non utilizzati (3*), ...
+    //import non utilizzati (3*), indentazione, usare nomi sensati!, ...
 
-    -Application;
+    +Application;
     -Appunti;
     -Database;
     -Dropbox;

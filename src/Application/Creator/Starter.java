@@ -1,13 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Questa classe non è altro che il Main del progetto, lo starter, ciò 
+ * che fa partire il controller e la grafica.
  */
 package Application.Creator;
 
 import Application.Controller.Applicazione;
-import Frame.MainFrame;
-import Login.LoginPanel;
 import Application.Vista.Grafica;
 
 
