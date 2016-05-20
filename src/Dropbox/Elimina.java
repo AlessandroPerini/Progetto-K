@@ -1,8 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+*  Qui viene eliminato un determinato file da Dropbox a seguito dell'eliminazione del relativo appunto
+*/
 package Dropbox;
 
 import Application.Controller.Applicazione;
@@ -10,11 +8,7 @@ import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
-import com.dropbox.core.DbxWriteMode;
-import java.io.File;
-import java.io.FileInputStream;
 import java.util.Locale;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,6 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class Elimina {
     
+    //inizializzazione variabili
     public static boolean eliminaOk = false;
     
     public void del() throws DbxException{
@@ -29,8 +24,10 @@ public class Elimina {
         DbxRequestConfig config = new DbxRequestConfig("UNI Per Voi",
             Locale.getDefault().toString());
         
+        //utilizza il token generato dall'autenticazione
         DbxClient client = new DbxClient(config, "_lcMc5LLpBQAAAAAAAAB_Uw-4dGvjNPY0kjwXwTH6CgROUkbEv040W7JwQLacvFu");
         
+        //nome completo del file su dropbox
         String nomeCompleto = Applicazione.appuntoAttuale.getNome()+"."+
                               Applicazione.corsoAttuale.getNome()+"."+
                               Applicazione.facoltàAttuale.getNome();
@@ -54,7 +51,7 @@ public class Elimina {
             eliminaOk = true;
         }//fine ricerca
 
-
+        //elimiazione file passatogli (solo nome.formato) dalla root della cartella del progetto su Dropbox
         client.delete("/"+nomeCompleto+""+formato+"");
 
     }

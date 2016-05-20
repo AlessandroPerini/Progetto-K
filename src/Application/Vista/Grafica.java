@@ -1,12 +1,12 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Qui viene creata la grafica: il frame generale con al suo interno
+* un container con un layout di tipo CardLayout per la gestione
+* dei pannelli da visualizzare.
+*/
 package Application.Vista;
 
 import Frame.MainFrame;
-import Login.LoginPanel;
+import Login.Vista.LoginPanel;
 import java.awt.CardLayout;
 import java.awt.Point;
 import javax.swing.JPanel;
@@ -17,22 +17,23 @@ import javax.swing.JPanel;
  */
 public class Grafica {
     
+    //dichiarazione oggetti
     public static CardLayout card;
     public static JPanel container;
-    public static MainFrame mainFrame = new MainFrame("UNI Per Voi");
+    public static MainFrame mainFrame;
     
     public Grafica(){
         
+        //inizializzazione oggetti
+        mainFrame  = new MainFrame("UNI Per Voi");
         card = new CardLayout();
-        
         container = new JPanel();
-        container.setLayout(card);
-        
         LoginPanel login = new LoginPanel();
         
+        container.setLayout(card);
         container.add(login,"login");
         card.show(container, "login");
-
+        
         mainFrame.add(container);
         mainFrame.setVisible(true);
         
@@ -40,5 +41,6 @@ public class Grafica {
     
     public static Point posizione(){
         
-        return mainFrame.getLocation();}
+        return mainFrame.getLocation();
+    }
 }

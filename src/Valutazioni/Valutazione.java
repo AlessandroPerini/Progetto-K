@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Classe contenente la struttura di una valutazione (Attributi, Costruttore, Metodi get e set)
  */
 package Valutazioni;
 
@@ -11,6 +9,7 @@ package Valutazioni;
  */
 public class Valutazione {
     
+    //dichiarazione variabili
     private String commento;
     private int punteggio;
     private String studente;
@@ -32,7 +31,5 @@ public class Valutazione {
     public String getStudente() {
         return studente;
     }
-
    
-    
 }

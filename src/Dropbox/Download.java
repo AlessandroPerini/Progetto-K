@@ -1,8 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Qui viene scaricato un determinato file da Dropbox e salvato in locale
+*/
 package Dropbox;
 
 import Application.Controller.Applicazione;
@@ -10,12 +8,9 @@ import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;
 import com.dropbox.core.DbxRequestConfig;
-import java.awt.Desktop;
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Locale;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -23,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class Download {
     
+    //inizializzazione variabili
     private String nome = Applicazione.appuntoAttuale.getNome();
     private String corso = Applicazione.corsoAttuale.getNome();
     private String facoltà = Applicazione.facoltàAttuale.getNome();
@@ -31,12 +27,16 @@ public class Download {
 
     public String down() throws IOException, DbxException {
     
+        //prende il percorso "C:\Users\'nome_utente'\" (purtroppo presumibilmente funziona solo con Windows)
         String computerUserName = System.getProperty("user.home");
+        
+        //nome completo del file su dropbox
         String nomeCompleto = nome+"."+corso+"."+facoltà;
         
         DbxRequestConfig config = new DbxRequestConfig("UNI Per Voi",
             Locale.getDefault().toString());
 
+        //utilizza il token generato dall'autenticazione
         DbxClient client = new DbxClient(config, "_lcMc5LLpBQAAAAAAAAB_Uw-4dGvjNPY0kjwXwTH6CgROUkbEv040W7JwQLacvFu");
         
         //ricerca file per formato
@@ -56,9 +56,11 @@ public class Download {
             }
         }//fine ricerca
 
+        //setta la destinazione del file scaricato nella cartella "C:\Users\'nome_utente'\Downloads" (purtroppo presumibilmente funziona solo con Windows)
         FileOutputStream outputStream = new FileOutputStream(computerUserName+"\\Downloads\\"+nome+""+formato+"");
         
         try {
+            //preleva il file passatogli (solo nome.formato) dalla root della cartella del progetto su Dropbox e lo salva in locale
             DbxEntry.File downloadedFile = client.getFile("/"+nomeCompleto+""+formato+"", null,
                 outputStream);
             

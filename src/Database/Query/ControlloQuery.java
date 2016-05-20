@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe con le query di controllo sui dati
 */
 package Database.Query;
 
@@ -63,11 +61,11 @@ public class ControlloQuery {
     
     public static boolean controlloNomeAppunto(String nome) throws SQLException {
         
-        String selectValutazioneStudente = "Select * from appunti where nome=? and corso=? and facoltà=?";
+        String selectNomeAppunto = "Select * from appunti where nome=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectNomeAppunto);
         ps1.clearParameters();
         ps1.setString(1, nome);
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -84,12 +82,11 @@ public class ControlloQuery {
     
     public static boolean controlloTitoloDomanda(String titolo) throws SQLException {
         
-        String selectValutazioneStudente = "Select * from domande where titolo=? and corso=? and facoltà=?";
+        String selectTitoloDomanda = "Select * from domande where titolo=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectTitoloDomanda);
         ps1.clearParameters();
         ps1.setString(1, titolo);
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -133,7 +130,6 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.corsoAttuale.getNome());
@@ -153,12 +149,11 @@ public class ControlloQuery {
     
     public static boolean controlloAppuntoPreferito() throws SQLException{
         
-        String selectCorsoPreferito = "Select * from appuntiPreferiti where studentePref=? and appunto=? and corso=? and facoltà=?";
+        String selectAppuntoPreferito = "Select * from appuntiPreferiti where studentePref=? and appunto=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntoPreferito);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
         ps1.setString(2, Applicazione.appuntoAttuale.getNome());
@@ -181,7 +176,6 @@ public class ControlloQuery {
         String selectLibroPreferito = "Select * from libriPreferiti where studentePref=? and id=? and corso=? and facoltà=?";
         
         boolean bool = true;
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
         ps1.clearParameters();
@@ -207,7 +201,6 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
@@ -228,11 +221,11 @@ public class ControlloQuery {
     
     public static boolean controlloAppuntiPreferiti() throws SQLException{
         
-        String selectCorsoPreferito = "Select * from appuntiPreferiti where appunto=? and corso=? and facoltà=?";
+        String selectAppuntiPreferiti = "Select * from appuntiPreferiti where appunto=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.appuntoAttuale.getNome());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -251,12 +244,11 @@ public class ControlloQuery {
     
     public static boolean controlloLibriPreferiti() throws SQLException{
         
-        String selectLibroPreferito = "Select * from libriPreferiti where id=? and corso=? and facoltà=?";
+        String selectLibriPreferito = "Select * from libriPreferiti where id=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibriPreferito);
         ps1.clearParameters();
         ps1.setInt(1, Applicazione.libroAttuale.getID());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -275,11 +267,11 @@ public class ControlloQuery {
     
     public static boolean controlloDomandePreferite() throws SQLException{
         
-        String selectDomandaPreferita = "Select * from domandePreferite where domanda=? and corso=? and facoltà=?";
+        String selectDomandePreferite = "Select * from domandePreferite where domanda=? and corso=? and facoltà=?";
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandePreferite);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -294,44 +286,18 @@ public class ControlloQuery {
         }
         
         return bool;
-    }
-    
-    public static void controlloLike( int id, int valore) throws SQLException{
-            String sql ="select * from likeRisposte where studente=? and id=? ";
-            int valoreLike = 0;
-            
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
-                ps1.clearParameters();
-                ps1.setString(1, Applicazione.guest.getEmail());
-                ps1.setInt(2, id);
-               
-                ResultSet rs = ps1.executeQuery();
-            
-                if (rs.next()) 
-                {
-                    valoreLike = rs.getInt("like");
-                    if(valoreLike == valore){
-                        DeleteQuery.eliminaLikeRisposta(id);
-                    }else{
-                        DeleteQuery.eliminaLikeRisposta(id);
-                        InsertQuery.inserisciLikeRisposta(id, valore);
-                    }
-                }else{
-                    
-                    InsertQuery.inserisciLikeRisposta(id, valore);
-                }
-    }
+    }    
     
     public static boolean controlloNickname(String nickname) throws SQLException {
         
-        String selectValutazioneStudente = "Select * from studenti where nickname=?";
+        String selectNickname = "Select * from studenti where nickname=?";
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectNickname);
         ps1.clearParameters();
         ps1.setString(1, nickname);
-
+        
         ResultSet rs = ps1.executeQuery();
         
         if (rs.next()) {
@@ -341,26 +307,57 @@ public class ControlloQuery {
         }
         return bool;
     }
-    public static int controlloLikeRisposta( int id) throws SQLException{
-            String sql ="select * from likeRisposte where studente=? and id=? ";
-            int valoreLike = 0;
+    
+    public static void controlloLikeRisposta( int id, int valore) throws SQLException{
+        
+        String selectLikeRisposte ="select * from likeRisposte where studente=? and id=? ";
+        
+        int valoreLike = 0;
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeRisposte);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setInt(2, id);
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        if (rs.next())
+        {
+            valoreLike = rs.getInt("like");
+            if(valoreLike == valore){
+                DeleteQuery.eliminaLikeRisposta(id);
+            }else{
+                DeleteQuery.eliminaLikeRisposta(id);
+                InsertQuery.inserisciLikeRisposta(id, valore);
+            }
+        }else{
             
-                PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
-                ps1.clearParameters();
-                ps1.setString(1, Applicazione.guest.getEmail());
-                ps1.setInt(2, id);
-               
-                ResultSet rs = ps1.executeQuery();
+            InsertQuery.inserisciLikeRisposta(id, valore);
+        }
+    }
+    
+    public static int controlloLikeRisposta(int id) throws SQLException{
+        
+        String selectLikeRisposta ="select * from likeRisposte where studente=? and id=? ";
+        
+        int valoreLike = 0;
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeRisposta);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setInt(2, id);
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        if (rs.next())
+        {
+            valoreLike = rs.getInt("like");
+            return valoreLike;
             
-                if (rs.next()) 
-                {
-                    valoreLike = rs.getInt("like");
-                   return valoreLike;
-                    
-                }else{
-                    
-                   return 0;
-                }
+        }else{
+            
+            return 0;
+        }
     }
     
 }

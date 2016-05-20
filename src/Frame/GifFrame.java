@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Frame contenente la gif di caricamento
 */
 package Frame;
 
@@ -16,6 +14,7 @@ import javax.swing.JLabel;
  */
 public class GifFrame {
     
+    //dichiarazione oggetti
     public JFrame loadingFrame;
 
     public GifFrame() {
@@ -26,13 +25,12 @@ public class GifFrame {
  
         loadingFrame = new JFrame("Loading ...");
         
-        ImageIcon loading = new ImageIcon(this.getClass().getResource("/immagini/loading.gif"));
-        loadingFrame.add(new JLabel("", loading, JLabel.CENTER));
+        loadingFrame.add(new JLabel("", new ImageIcon(this.getClass().getResource("/immagini/loading.gif")), JLabel.CENTER));
         
         loadingFrame.setUndecorated(true);
         loadingFrame.setSize(300, 300);
         
-        //centrare frame al centro dello schermo
+        //centrare frame al centro del MainFrame
         int x = (int) (Grafica.posizione().getX() + 350 - loadingFrame.getWidth()/2);
         int y = (int) (Grafica.posizione().getY() + 280 - loadingFrame.getHeight()/2);
         loadingFrame.setLocation(x, y);

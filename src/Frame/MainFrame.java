@@ -1,12 +1,9 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Frame generale dell'applicazione
  */
 package Frame;
 
 import java.awt.HeadlessException;
-import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -23,7 +20,7 @@ public class MainFrame extends JFrame{
         setLocationRelativeTo(null);
         setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setIconImage(new ImageIcon(this.getClass().getResource("/immagini/logo.png")).getImage());
+        setIconImage(new ImageIcon(getClass().getResource("/immagini/logo.png")).getImage());
     }
     
 }

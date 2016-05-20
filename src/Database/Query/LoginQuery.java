@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe non la query per verificare i dati di accesso
 */
 package Database.Query;
 
@@ -16,9 +14,9 @@ import java.sql.SQLException;
  */
 public class LoginQuery {
     
+    //inizializzazione variaili
     private static boolean check = false;
-    private static int punti;
-    private static String telefono, nickname;
+    private static String telefono = "", nickname = "";
     
     public static void login(String email, char[] psw) throws SQLException{
         

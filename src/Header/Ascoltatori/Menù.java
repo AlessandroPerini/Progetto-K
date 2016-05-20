@@ -20,7 +20,7 @@ import static Application.Controller.Applicazione.svuotaRecensioni;
 import static Application.Controller.Applicazione.svuotaRisposte;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
-import Login.LoginPanel;
+import Login.Vista.LoginPanel;
 import Preferiti.Vista.PreferitiPanel;
 import Università.Facolta.Vista.ListaFacoltàPanel;
 import Utils.Azioni.Ordina;

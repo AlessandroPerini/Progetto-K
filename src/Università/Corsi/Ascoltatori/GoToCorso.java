@@ -10,7 +10,6 @@ import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Università.Corsi.Vista.CorsoPanel;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
