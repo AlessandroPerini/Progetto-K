@@ -1,7 +1,7 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'ordinamento della lista degli appunti.
+* Possibile ordinamento in base al nome oppure alla valutazione.
+* Una volta ordinato, viene ricreato il pannello con la lista ordinata.
 */
 package Appunti.Ascoltatori;
 
@@ -23,6 +23,7 @@ public class OrdinaListaAppunti implements ActionListener{
     
     private JComboBox ordina;
     public static String ordineCorrente = "";
+    private ListaAppuntiPanel appunti;
     
     public OrdinaListaAppunti(JComboBox ordina) {
         this.ordina = ordina;
@@ -53,7 +54,7 @@ public class OrdinaListaAppunti implements ActionListener{
             ordineCorrente = "Nome";
         }
         
-        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+        appunti = new ListaAppuntiPanel();
         Grafica.container.add(appunti, "appunti");
         Grafica.card.show(Grafica.container, "appunti");
     }

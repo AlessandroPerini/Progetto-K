@@ -1,7 +1,7 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato al download di un appunto
+* L'utente può selezionare se scaricare il file e basta oppure
+* scaricare e aprire il file.
 */
 package Appunti.Ascoltatori;
 
@@ -23,18 +23,28 @@ import javax.swing.JOptionPane;
  */
 public class DownloadFileAppunto implements ActionListener{
 
-    private String nome = Applicazione.appuntoAttuale.getNome();
-    private String corso = Applicazione.corsoAttuale.getNome();
-    private String facoltà = Applicazione.facoltàAttuale.getNome();
+    private String nome ;
+    private String corso ;
+    private String facoltà ;
     private String formato = "";
     private JButton bottone;
     private JButton bottone2;
     private GifFrame gif;
+    private Download download;
+    private Desktop desktop;
+    private File file;
+    private String computerUserName ,nomeCompleto;
+    private String[] opzioni = new String[] {"Ok", "Apri File"};
     
     public DownloadFileAppunto(JButton bottone, JButton bottone2) {
+        
         this.bottone = bottone;
         this.bottone2 = bottone2;
         this.gif = new GifFrame();
+        
+        nome = Applicazione.appuntoAttuale.getNome();
+        corso = Applicazione.corsoAttuale.getNome();
+        facoltà = Applicazione.facoltàAttuale.getNome();
     }
     
     @Override
@@ -51,24 +61,22 @@ public class DownloadFileAppunto implements ActionListener{
                     public void run() {
                         try {
                             
-                            Download download = new Download();
+                            download = new Download();
                             formato = download.down();
                             if(Download.downloadOK){
                                 
                                 gif.chiudi();
                                 
-                                String computerUserName = System.getProperty("user.home");
-                                String nomeCompleto = nome+"."+corso+"."+facoltà;
-                                
-                                String[] opzioni = new String[] {"Ok", "Apri File"};
+                                computerUserName = System.getProperty("user.home");
+                                nomeCompleto = nome+"."+corso+"."+facoltà;
                                 
                                 int risposta = JOptionPane.showOptionDialog(null, "Download correttamente eseguito.\nIl file è stato salvato nella tua cartella \ndei Download  "
                                         + "("+computerUserName+"\\Downloads)", "Operazione avvenuta con successo", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
                                         null, opzioni, opzioni[0]);
                                 
                                 if(risposta==1){
-                                    Desktop desktop = Desktop.getDesktop();
-                                    File file = new File(computerUserName+"\\Downloads\\"+nome+""+formato+"");
+                                    desktop = Desktop.getDesktop();
+                                    file = new File(computerUserName+"\\Downloads\\"+nome+""+formato+"");
                                     desktop.open(file);
                                 }
                                 

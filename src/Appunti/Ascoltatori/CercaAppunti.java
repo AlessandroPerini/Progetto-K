@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Ascoltatore dedicato alla ricerca di un determinato appunto
+ * La ricerca viene effettuata in base al testo scritto in un apposita casella
+ * Se la ricerca va a buon fine, il pannello della lista degli appunti viene riaggiornato 
+ * con solo gli appunti contenenti le parole chiavi della ricerca
  */
 package Appunti.Ascoltatori;
 
@@ -21,6 +22,7 @@ import javax.swing.JTextField;
 public class CercaAppunti implements ActionListener, KeyListener{
     
     private JTextField searchField;
+    private ListaAppuntiPanel appuntiCercati;
     
     public CercaAppunti(JTextField searchField){
         this.searchField = searchField;
@@ -35,7 +37,7 @@ public class CercaAppunti implements ActionListener, KeyListener{
             
             Applicazione.back.add("appunti cercati");
 
-            ListaAppuntiPanel appuntiCercati = new ListaAppuntiPanel();
+            appuntiCercati = new ListaAppuntiPanel();
             Grafica.container.add(appuntiCercati,"appunti cercati");
             Grafica.card.show(Grafica.container, "appunti cercati");
         }

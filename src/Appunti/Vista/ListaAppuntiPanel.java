@@ -1,7 +1,7 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+*  Lista con tutti gli appunti relativi al corso selezionato.
+*  Oltre alla lista, è presente un pannello di ricerca di un determinato appunto.
+*  Per ogni appunto viene visualizzata anche la valutazione di esso
 */
 package Appunti.Vista;
 
@@ -11,7 +11,7 @@ import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
-import Utils.Vista.ScrollBarUI;
+import Utils.Vista.CustomScrollBar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -40,60 +40,74 @@ import javax.swing.border.LineBorder;
  */
 public class ListaAppuntiPanel extends JPanel{
     
-    private JLabel[] appunti = new JLabel[Applicazione.listaAppuntiAttuali.size()];
-    private JLabel[] appuntiIcon = new JLabel[Applicazione.listaAppuntiAttuali.size()];
-    private JLabel[] appuntiLabel = new JLabel[Applicazione.listaAppuntiAttuali.size()];
+    //dichiarazione oggetti
+    private JLabel[] appunti;
+    private JLabel[] appuntiIcon ;
+    private JLabel[] appuntiLabel ;
+    private JLabel[] appuntiIcoValutazione ;
     private JTextField searchField;
-    private JLabel noAppunti, ordinamento;
-    private JLabel[] appuntiIco = new JLabel[Applicazione.listaAppuntiAttuali.size()];
+    private JLabel noAppunti, ordinamento; 
     private JComboBox<String> ordina;
     private JButton addAppunto, searchButton, clearSearch;
     private TopPanel top;
-    private Icon search, searchHover, searchPressed;
-    private JPanel panel, searchPanel, ordinaPanel,borderPanel;
+    private Icon search, searchHover, searchPressed, clear, add, addHover, addPressed;
+    private JPanel listaPanel, searchPanel, ordinaPanel,borderPanel;
+    private GridBagConstraints gbc, gbcd;
+    private JScrollPane scrollPanel;
     
+    //dichiarazione ascoltatori
+    private CercaAppunti cercaAppunti;
+    private OrdinaListaAppunti ordinaListaAppunti;
+    private GoToAggiungiAppunto aggiungiAppunto;
+    private GoToAppunto goToAppunto;
+    
+    //dichiarazioni variabili
+    private String[] opzioni ;
+    private int dimListaAppunti;
+    private int size ;
     public ListaAppuntiPanel() {
         
-        setBackground(Color.white);
-        GridBagConstraints gbc = new GridBagConstraints();
-        GridBagConstraints gbcd = new GridBagConstraints();
+        //inizializzazione variabili
+        dimListaAppunti = Applicazione.listaAppuntiAttuali.size();
+        opzioni = new String[]{"Valutazione", "Nome"};
+        size = Applicazione.listaAppuntiAttuali.size();
         
+        //inizializzazione pannelli
         top = new TopPanel("Appunti "+Applicazione.corsoAttuale.getNome());
-        top.setBackground(Color.white);
         borderPanel = new JPanel(new BorderLayout());
-        panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.white);
-        ordinaPanel = new JPanel(new GridBagLayout());
-        ordinaPanel.setBackground(Color.white);
-        
-        //pannello ricerca
+        listaPanel = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
-        searchPanel.setBackground(Color.white);
-        searchField = new JTextField(30);
-        searchField.setHorizontalAlignment(SwingConstants.CENTER);
-        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        ordinaPanel = new JPanel(new GridBagLayout());
+        gbc = new GridBagConstraints();
+        gbcd = new GridBagConstraints();
         
+        //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        searchButton = new JButton(search);
-        searchButton.setBorder(BorderFactory.createEmptyBorder());
-        searchButton.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        searchButton.setRolloverIcon(searchHover);
         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        searchButton.setPressedIcon(searchPressed);
-        searchButton.setText("CERCA");
-        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        searchButton.setForeground(Color.white);
-        searchButton.setIconTextGap(-77);
+        add = new ImageIcon(this.getClass().getResource("/immagini/add.png"));
+        addHover = new ImageIcon(this.getClass().getResource("/immagini/addHover.png"));
+        addPressed = new ImageIcon(this.getClass().getResource("/immagini/addPressed.png"));
+        clear = new ImageIcon(this.getClass().getResource("/immagini/clear.png"));
         
-        CercaAppunti cercaAppunti = new CercaAppunti(searchField);
+        //inizializzazione bottoni - label - textfield
+        scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        addAppunto = new JButton("", add);
+        clearSearch = new JButton("",clear);
+        searchButton = new JButton(search);
+        searchField = new JTextField(30);
+        appunti = new JLabel[dimListaAppunti];
+        appuntiIcon = new JLabel[dimListaAppunti];
+        appuntiLabel = new JLabel[dimListaAppunti];
+        appuntiIcoValutazione = new JLabel[dimListaAppunti];
+        ordina = new JComboBox<>(opzioni);
         
+        settaggioComponenti();
+        
+        cercaAppunti = new CercaAppunti(searchField);
         searchField.addKeyListener(cercaAppunti);
         searchButton.addActionListener(cercaAppunti);
-        
-        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
-        clearSearch.setBackground(Color.white);
-        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
+
         clearSearch.addActionListener((ActionEvent e) -> {
             searchField.setText("");
         });
@@ -101,11 +115,8 @@ public class ListaAppuntiPanel extends JPanel{
         searchPanel.add(searchField);
         searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
-        // fine pannello ricerca
-        
+           
         //pannello ordina
-        String[] opzioni = new String[]{"Valutazione", "Nome"};
-        ordina = new JComboBox<>(opzioni);
         if(!OrdinaListaAppunti.ordineCorrente.equals("")){
             ordina.setSelectedItem(OrdinaListaAppunti.ordineCorrente);
         }
@@ -113,9 +124,10 @@ public class ListaAppuntiPanel extends JPanel{
         ordinamento = new JLabel("Ordina per: ");
         ordinamento.setBackground(Color.white);
         
-        OrdinaListaAppunti ordinaListaAppunti = new OrdinaListaAppunti(ordina);
+        ordinaListaAppunti = new OrdinaListaAppunti(ordina);
         ordina.addActionListener(ordinaListaAppunti);
         ordina.setBackground(Color.white);
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 220, 0, 10);
@@ -127,13 +139,7 @@ public class ListaAppuntiPanel extends JPanel{
         gbc.insets = new Insets(5, 0, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         ordinaPanel.add(ordina,gbc);
-        
-        addAppunto = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
-        addAppunto.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
-        addAppunto.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
-        addAppunto.setBackground(Color.white);
-        addAppunto.setPreferredSize(new Dimension(40, 40));
-        addAppunto.setBorder(new LineBorder(Color.white, 1));
+   
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 150, 0, 10);
@@ -141,30 +147,31 @@ public class ListaAppuntiPanel extends JPanel{
         ordinaPanel.add(addAppunto, gbc);
         // fine pannello ordina
         
-        GoToAggiungiAppunto aggiungiAppunto = new GoToAggiungiAppunto();
+        aggiungiAppunto = new GoToAggiungiAppunto();
         addAppunto.addActionListener(aggiungiAppunto);
         
-        GoToAppunto goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
-        
-        int size = Applicazione.listaAppuntiAttuali.size();
+        goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         
         if(size == 0){
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
+                
                 noAppunti = new JLabel("Non ci sono appunti relativi a questo corso");
             }
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti cercati")) {
+                
                 noAppunti = new JLabel("Nessun appunto trovato");
             }
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
-            panel.add(noAppunti);
+            listaPanel.add(noAppunti);
             gbcd.gridx = 0;
             gbcd.gridy = 1;
             gbcd.insets = new Insets(170, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.LINE_START;
-            panel.add(noAppunti, gbcd);
+            listaPanel.add(noAppunti, gbcd);
             
         }else{
             for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
+                
                 appuntiLabel[i]= new JLabel();
                 appuntiIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
                 appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
@@ -180,36 +187,45 @@ public class ListaAppuntiPanel extends JPanel{
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/0-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/0-star-rating.png")));
                     
                 }
                 if((media>0)&&(media<=1)){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/1-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/1-star-rating.png")));
                     
                 }
                 if((media>1)&&(media<=2)){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/2-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/2-star-rating.png")));
                     
                 }
                 if((media>2)&&(media<=3)){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/3-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/3-star-rating.png")));
                     
                 }
                 if((media>3)&&(media<=4)){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/4-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/4-star-rating.png")));
                     
                 }
                 if(media>4){
-                    appuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/5-star-rating.png")));
+                    
+                    appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/5-star-rating.png")));
                     
                 }
                 
                 appunti[i].addMouseListener(goToAppunto);
+                
                 gbcd.gridx = 0;
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, -7, 0, 10);
                 gbcd.anchor = GridBagConstraints.NORTHEAST;
-                panel.add(appuntiLabel[i], gbcd);
+                
+                listaPanel.add(appuntiLabel[i], gbcd);
+                
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
                 
@@ -221,29 +237,55 @@ public class ListaAppuntiPanel extends JPanel{
                 gbc.insets = new Insets(5, 150, 0, 10);
                 gbc.anchor = GridBagConstraints.LINE_END;
                 
-                panel.add(appuntiIco[i], gbcd);
+                listaPanel.add(appuntiIcoValutazione[i], gbcd);
                 
             }
         }
-        borderPanel.setBackground(Color.white);
-        borderPanel.add(panel,BorderLayout.NORTH);
-        JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 350));
-        scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+   
         
         add(top);
         add(searchPanel);
         add(ordinaPanel);
         add(scrollPanel);
     }
-    
+    public void settaggioComponenti(){
+        
+        this.setBackground(Color.white);
+        top.setBackground(Color.white);
+        listaPanel.setBackground(Color.white);
+        ordinaPanel.setBackground(Color.white);      
+        searchPanel.setBackground(Color.white);
+        
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));  
+        
+        searchButton.setBorder(BorderFactory.createEmptyBorder());
+        searchButton.setContentAreaFilled(false);
+        searchButton.setRolloverIcon(searchHover);
+        searchButton.setPressedIcon(searchPressed);
+        searchButton.setText("CERCA");
+        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        searchButton.setForeground(Color.white);
+        searchButton.setHorizontalTextPosition(JButton.CENTER);
+        searchButton.setVerticalTextPosition(JButton.CENTER);
+        
+        clearSearch.setBackground(Color.white);
+        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
+        
+        addAppunto.setRolloverIcon(addHover);
+        addAppunto.setPressedIcon(addPressed);
+        addAppunto.setBackground(Color.white);
+        addAppunto.setPreferredSize(new Dimension(40, 40));
+        addAppunto.setBorder(new LineBorder(Color.white, 1));
+        
+        borderPanel.setBackground(Color.white);
+        borderPanel.add(listaPanel,BorderLayout.NORTH);
+        
+        scrollPanel.setPreferredSize(new Dimension(650, 350));
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
+    }
     
     
 }

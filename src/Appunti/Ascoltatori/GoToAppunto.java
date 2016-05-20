@@ -1,7 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'apertura dell'appunto selezionato
+* In base all'appunto selezionato, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale appunto
+* e vengono visualizzati in un pannello
 */
 package Appunti.Ascoltatori;
 
@@ -25,6 +26,7 @@ public class GoToAppunto implements MouseListener{
     private String corso;
     private String facoltà;
     private String text;
+    private AppuntoPanel appunto;
     
     public GoToAppunto(String corso, String facoltà) {
         this.corso = corso;
@@ -58,7 +60,7 @@ public class GoToAppunto implements MouseListener{
             
             Applicazione.facoltàAttuale.setNome(facoltà);
             
-            AppuntoPanel appunto = new AppuntoPanel();
+            appunto = new AppuntoPanel();
             Grafica.container.add(appunto, "appunto");
             Grafica.card.show(Grafica.container, "appunto");
             

@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato al caricamento degli appunti relativo a un determinato 
+* corso. In caso non ci siano appunti relativi a tale corso, l'utente verrà informato
 */
 package Appunti.Ascoltatori;
 
@@ -19,6 +18,7 @@ import java.sql.SQLException;
  * @author Te4o
  */
 public class CaricaAppunti implements ActionListener{
+    private ListaAppuntiPanel appunti;
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -30,7 +30,7 @@ public class CaricaAppunti implements ActionListener{
 
             Ordina.Appunti();
             
-            ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+            appunti = new ListaAppuntiPanel();
             Grafica.container.add(appunti, "appunti");
             Grafica.card.show(Grafica.container, "appunti");
             

@@ -1,7 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'eliminazione di un appunto
+* L'appunto può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
 */
 package Appunti.Ascoltatori;
 
@@ -30,9 +31,16 @@ import javax.swing.JOptionPane;
  */
 public class EliminaAppunto implements ActionListener{
     
+    //dichiarazione oggetti
     private JButton bottone;
     private JButton bottone2;
     private GifFrame gif;
+    
+    //dichiarazione ascoltatori
+    private Elimina elimina;
+    private PreferitiPanel preferitiPanel;
+    private ListaAppuntiPanel appunti;
+    private iMieiDatiPanel mieiDatiPanel;
     
     public EliminaAppunto(JButton bottone, JButton bottone2) {
         this.bottone = bottone;
@@ -65,7 +73,7 @@ public class EliminaAppunto implements ActionListener{
                                     DeleteQuery.eliminaAppuntiPreferiti();
                                 }
                                 
-                                Elimina elimina = new Elimina();
+                                elimina = new Elimina();
                                 elimina.del();
                                 
                                 if(Elimina.eliminaOk){
@@ -83,7 +91,8 @@ public class EliminaAppunto implements ActionListener{
                                     Ordina.Appunti();
                                     
                                     if(Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")){
-                                        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                                        
+                                        appunti = new ListaAppuntiPanel();
                                         Grafica.container.add(appunti, "appunti");
                                         Grafica.card.show(Grafica.container, "appunti");
                                     }
@@ -99,7 +108,7 @@ public class EliminaAppunto implements ActionListener{
                                         
                                         Ordina.ListePreferiti();
                                         
-                                        PreferitiPanel preferitiPanel = new PreferitiPanel();
+                                        preferitiPanel = new PreferitiPanel();
                                         Grafica.container.add(preferitiPanel, "preferiti");
                                         Grafica.card.show(Grafica.container, "preferiti");
                                     }
@@ -113,7 +122,7 @@ public class EliminaAppunto implements ActionListener{
                                         
                                         Ordina.ListeMieiDati();
                                         
-                                        iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+                                        mieiDatiPanel = new iMieiDatiPanel();
                                         Grafica.container.add(mieiDatiPanel, "i miei dati");
                                         Grafica.card.show(Grafica.container, "i miei dati");
                                         

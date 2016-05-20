@@ -1,13 +1,14 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello dedicato all'inserimento di un nuovo appunto.
+* L'appunto potrà essere selezionato dal proprio PC
+* e aggiunto sulla piattaforma DropBox
 */
 package Appunti.Vista;
 
 import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
+import Utils.Vista.CustomScrollBar;
 import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -35,13 +36,14 @@ import javax.swing.border.LineBorder;
  * @author te4o
  */
 public class AggiungiAppuntoPanel extends JPanel{
-    
+   
+    //dichiarazione oggetti
     private static JTextArea nome, descrizione;
     private static JTextField persorsoFile;
     private JFileChooser fileChooser;
     private File fileAppunto;
     private JButton scegliFile, aggiungi;
-    private JPanel filePanel, nomePanel, descrizionePanel, panel;
+    private JPanel filePanel, nomePanel, descrizionePanel, pannelloPrincipale;
     private GridBagConstraints gbc;
     private TopPanel top;
     private JScrollPane scrollPanelNome, scrollPanel,scrollPanelDescrizione;
@@ -49,20 +51,21 @@ public class AggiungiAppuntoPanel extends JPanel{
     private AggiungiAppunto aggiungiAppunto;
     
     public AggiungiAppuntoPanel() {
-        //dichiarazione panel
+        
+        //inizializzazione pannelli
         top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoAttuale.getNome());
-        panel = new JPanel(new GridBagLayout());
+        pannelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();
         descrizionePanel = new JPanel();
         filePanel = new JPanel();
-        
         gbc = new GridBagConstraints();
-        //dichiarazione icone
+        
+        //inizializzazione icone
         aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         
-        //dichiarazione button - label - textarea
+        //inizializzazione button - label - textarea
         nome = new JTextArea("");
         descrizione = new JTextArea("");
         persorsoFile = new JTextField(18);
@@ -71,31 +74,12 @@ public class AggiungiAppuntoPanel extends JPanel{
         scegliFile = new JButton("Scegli File");
         fileAppunto = new File("");
         
-        //dichiarazione scrollPane
+        //inizializzazione scrollPane
         scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanelNome.setBackground(Color.white);
-        scrollPanelNome.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanelNome.setVerticalScrollBar(scrollBar);
+        scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);      
+        scrollPanel = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-        scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanelDescrizione.setBackground(Color.white);
-        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar2 = new JScrollBar();
-        scrollBar2.setBackground(Color.white);
-        scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new ScrollBarUI());
-        scrollBar2.setUnitIncrement(16);
-        scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
-        
-        scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        
-        initComponent();
+        settaggioComponenti();
         
         nomePanel.add(scrollPanelNome);
         descrizionePanel.add(scrollPanelDescrizione);
@@ -104,17 +88,16 @@ public class AggiungiAppuntoPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(nomePanel, gbc);
+        pannelloPrincipale.add(nomePanel, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(descrizionePanel, gbc);
+        pannelloPrincipale.add(descrizionePanel, gbc);
         
-        //file
+        //metodo per l'aggiunta dei file
         persorsoFile.setEditable(false);
-        
         scegliFile.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -124,9 +107,10 @@ public class AggiungiAppuntoPanel extends JPanel{
                 if(fileAppunto != null){
                     persorsoFile.setText(fileAppunto.getAbsolutePath());
                     aggiungi.setEnabled(true);
-                    aggiungi.setText("AGGIUNGI");
+                    aggiungi.setText("UPLOAD");
                     aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-                    aggiungi.setIconTextGap(-88);
+                    aggiungi.setHorizontalTextPosition(JButton.CENTER);
+                    aggiungi.setVerticalTextPosition(JButton.CENTER);
                     aggiungiAppunto = new AggiungiAppunto(nome, descrizione, fileAppunto, aggiungi, scegliFile);
                     aggiungi.addActionListener(aggiungiAppunto);
                 }
@@ -144,13 +128,13 @@ public class AggiungiAppuntoPanel extends JPanel{
         gbc.gridy = 2;
         gbc.insets = new Insets(30, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(filePanel, gbc);
+        pannelloPrincipale.add(filePanel, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(40, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(aggiungi, gbc);
+        pannelloPrincipale.add(aggiungi, gbc);
         
         scrollPanel.setPreferredSize(new Dimension(650, 450));
         
@@ -164,10 +148,11 @@ public class AggiungiAppuntoPanel extends JPanel{
         nome.setText("");
         descrizione.setText("");
     }
-    public void initComponent(){
+    public void settaggioComponenti(){
+        
         top.setBackground(Color.white);
         this.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        pannelloPrincipale.setBackground(Color.white);
         descrizionePanel.setBackground(Color.white);
         nome.setBackground(Color.white);
         descrizione.setBackground(Color.white);
@@ -175,6 +160,14 @@ public class AggiungiAppuntoPanel extends JPanel{
         descrizione.setForeground(Color.BLACK);
         nomePanel.setBackground(Color.white);
         aggiungi.setForeground(Color.white);
+        
+        scrollPanelNome.setBackground(Color.white);
+        scrollPanelNome.setBorder(new LineBorder(Color.white));
+        scrollPanelNome.setVerticalScrollBar(new CustomScrollBar());
+                
+        scrollPanelDescrizione.setBackground(Color.white);
+        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
+        scrollPanelDescrizione.setVerticalScrollBar(new CustomScrollBar());
         
         persorsoFile.setBackground(Color.white );
         persorsoFile.setBackground(Color.white);
@@ -198,9 +191,10 @@ public class AggiungiAppuntoPanel extends JPanel{
         aggiungi.setContentAreaFilled(false);
         aggiungi.setRolloverIcon(aggiungiHover);
         aggiungi.setPressedIcon(aggiungiPressed);
-        aggiungi.setText("INSERISCI FILE");
-        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-        aggiungi.setIconTextGap(-95);
+        aggiungi.setText("UPLOAD");
+        aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        aggiungi.setHorizontalTextPosition(JButton.CENTER);
+        aggiungi.setVerticalTextPosition(JButton.CENTER);
         aggiungi.setPreferredSize(new Dimension(110, 40));
         aggiungi.setEnabled(false);
     }

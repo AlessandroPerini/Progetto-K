@@ -1,7 +1,7 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato upload di un appunto su dropbox.
+* 
+* 
 */
 package Appunti.Ascoltatori;
 
@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 /**
@@ -31,13 +30,20 @@ import javax.swing.JTextArea;
  */
 public class AggiungiAppunto implements ActionListener{
     
+    //dichiarazione oggetti
     private JTextArea nome;
     private JTextArea descrizione;
     private File file;
     private JButton bottone;
     private JButton botton2;
     private GifFrame gif;
-    private JPanel nomePanel, descrizionePanel;
+    
+    private ListaAppuntiPanel appunti;
+    private Upload upload;
+    
+    //dichiarazioni variabili
+    private String percorso, formato, nomeFile;
+    private int i;
     
     public AggiungiAppunto(JTextArea nome, JTextArea descrizione, File file, JButton bottone, JButton botton2) {
         this.nome = nome;
@@ -74,12 +80,12 @@ public class AggiungiAppunto implements ActionListener{
                                 InsertQuery.inserisciAppunto(nome.getText(), descrizione.getText());
                                 
                                 //parte di caricamento file su dropbox
-                                String percorso = file.getPath();
-                                int i = percorso.lastIndexOf('.');
-                                String formato = percorso.substring(i+1);
-                                String nomeFile = nome.getText()+"."+Applicazione.corsoAttuale.getNome()+"."+Applicazione.facoltàAttuale.getNome()+"."+formato+"";
+                                percorso = file.getPath();
+                                i = percorso.lastIndexOf('.');
+                                formato = percorso.substring(i+1);
+                                nomeFile = nome.getText()+"."+Applicazione.corsoAttuale.getNome()+"."+Applicazione.facoltàAttuale.getNome()+"."+formato+"";
                                 
-                                Upload upload = new Upload(percorso, nomeFile);
+                                upload = new Upload(percorso, nomeFile);
                                 upload.up();
                                 //fine parte caricamento su dropbox
                                 
@@ -93,7 +99,7 @@ public class AggiungiAppunto implements ActionListener{
                                     ListeQuery.caricaAppunti();
                                     Applicazione.back.remove(Applicazione.back.size()-1);
                                     
-                                    ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+                                    appunti = new ListaAppuntiPanel();
                                     Grafica.container.add(appunti, "appunti");
                                     Grafica.card.show(Grafica.container, "appunti");
                                     

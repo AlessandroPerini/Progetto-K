@@ -11,7 +11,6 @@ import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,7 +36,7 @@ public class SegnalazionePanel extends JPanel{
     private JButton submitButton;
     
     //dichiarazione variabili
-    boolean ok = false;
+    private boolean ok = false;
     
     public SegnalazionePanel(){
         
