@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello dedicato alla visualizzazione di tutto ciò che l'utente 
+* ha messo come preferiti.
 */
 package Preferiti.Vista;
 
@@ -12,7 +11,7 @@ import Libri.Ascoltatori.GoToLibro;
 import QeA.Ascoltatori.GoToDomanda;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
 import Università.Corsi.Ascoltatori.GoToCorso;
-import Utils.Vista.ScrollBarUI;
+import Utils.Vista.CustomScrollBar;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -29,7 +28,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
 
@@ -39,41 +37,25 @@ import javax.swing.border.LineBorder;
  */
 public class PreferitiPanel extends JPanel{
     
-    private int dimFacoltàPreferite = Applicazione.preferiti.getFacoltàPreferite().size();
-    private int dimCorsiPreferiti = Applicazione.preferiti.getCorsiPreferiti().size();
-    private int dimAppuntiPreferiti = Applicazione.preferiti.getAppuntiPreferiti().size();
-    private int dimLibriPreferiti = Applicazione.preferiti.getLibriPreferiti().size();
-    private int dimDomandePreferite = Applicazione.preferiti.getDomandePreferite().size();
+    private int dimFacoltàPreferite, dimCorsiPreferiti, dimAppuntiPreferiti, 
+            dimLibriPreferiti, dimDomandePreferite ;
     
-    private JLabel[] facoltàPreferite = new JLabel[dimFacoltàPreferite];
-    private JLabel[] corsiPreferiti = new JLabel[dimCorsiPreferiti];
-    private JLabel[] appuntiPreferiti = new JLabel[dimAppuntiPreferiti];
-    private JLabel[] libriPreferiti = new JLabel[dimLibriPreferiti];
-    private JLabel[] domandePreferite = new JLabel[dimDomandePreferite];
+    private JLabel[] facoltàPreferite ,corsiPreferiti, appuntiPreferiti ,libriPreferiti,
+            domandePreferite, facoltàPreferiteLab, corsiPreferitiLab, appuntiPreferitiLab,
+            libriPreferitiLab, domandePreferiteLab, facoltàPreferiteIco, corsiPreferitiIco,
+            appuntiPreferitiIco, libriPreferitiIco, domandePreferiteIco;
     
-    private JLabel[] facoltàPreferiteLab = new JLabel[dimFacoltàPreferite];
-    private JLabel[] corsiPreferitiLab = new JLabel[dimCorsiPreferiti];
-    private JLabel[] appuntiPreferitiLab = new JLabel[dimAppuntiPreferiti];
-    private JLabel [] libriPreferitiLab = new JLabel[dimLibriPreferiti];
-    private JLabel[] domandePreferiteLab = new JLabel[dimDomandePreferite];
-    
-    private JLabel[] facoltàPreferiteIco = new JLabel[dimFacoltàPreferite];
-    private JLabel[] corsiPreferitiIco = new JLabel[dimCorsiPreferiti];
-    private JLabel[] appuntiPreferitiIco = new JLabel[dimAppuntiPreferiti];
-    private JLabel [] libriPreferitiIco = new JLabel[dimLibriPreferiti];
-    private JLabel[] domandePreferiteIco = new JLabel[dimDomandePreferite];
-    
-    private GoToCorso[] goToCorso = new GoToCorso[dimCorsiPreferiti];
-    private GoToAppunto[] goToAppunto = new GoToAppunto[dimAppuntiPreferiti];
-    private GoToLibro[] goToLibro = new GoToLibro[dimLibriPreferiti];
-    private GoToDomanda[] goToDomanda = new GoToDomanda[dimDomandePreferite];
+    private GoToCorso[] goToCorso ;
+    private GoToAppunto[] goToAppunto ;
+    private GoToLibro[] goToLibro ;
+    private GoToDomanda[] goToDomanda ;
     
     private JButton facoltàPreferiteButton, corsiPreferitiButton, appuntiPreferitiButton,
             libriPreferitiButton, domandePreferiteButton;
     private ImageIcon  search, searchPressed, searchHover, searchSelected;
     private JLabel noFacoltà, noCorsi, noAppunti, noLibri, noDomande;
     private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
-    private JScrollPane scrollPanel, scrollPanel1,scrollPanel2,scrollPanel3, scrollPanel4;
+    private JScrollPane scrollPanelFacoltà, scrollPanelCorsi,scrollPanelApp,scrollPanelLibri, scrollPanelDomande;
     private GridBagConstraints gbc, gbcd;
     private CardLayout cardLayout;
     private TopPanel top;
@@ -81,6 +63,12 @@ public class PreferitiPanel extends JPanel{
     
     public PreferitiPanel() {
         
+        //inizializzazione variabili
+        dimFacoltàPreferite = Applicazione.preferiti.getFacoltàPreferite().size();
+        dimCorsiPreferiti = Applicazione.preferiti.getCorsiPreferiti().size();
+        dimAppuntiPreferiti = Applicazione.preferiti.getAppuntiPreferiti().size();
+        dimLibriPreferiti = Applicazione.preferiti.getLibriPreferiti().size();
+        dimDomandePreferite = Applicazione.preferiti.getDomandePreferite().size();
         //dichiarazione panel
         top = new TopPanel("Preferiti");
         panel = new JPanel(new BorderLayout());
@@ -94,11 +82,11 @@ public class PreferitiPanel extends JPanel{
         cardLayout = new CardLayout();
         
         //dichiarazione scroll
-        scrollPanel = new JScrollPane(facPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1 = new JScrollPane(corsiPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel2 = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel3 = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel4 = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelFacoltà = new JScrollPane(facPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelCorsi = new JScrollPane(corsiPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelApp = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelLibri = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDomande = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //dichiarazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
@@ -118,22 +106,50 @@ public class PreferitiPanel extends JPanel{
         noLibri = new JLabel("Non hai ancora nessun libro preferito");
         noDomande = new JLabel("Non hai ancora nessuna domanda preferita");
         
-        //dichiarazione gbc
+        facoltàPreferite = new JLabel[dimFacoltàPreferite];
+        corsiPreferiti = new JLabel[dimCorsiPreferiti];
+        appuntiPreferiti = new JLabel[dimAppuntiPreferiti];
+        libriPreferiti = new JLabel[dimLibriPreferiti];
+        domandePreferite = new JLabel[dimDomandePreferite];
+    
+        facoltàPreferiteLab = new JLabel[dimFacoltàPreferite];
+        corsiPreferitiLab = new JLabel[dimCorsiPreferiti];
+        appuntiPreferitiLab = new JLabel[dimAppuntiPreferiti];
+        libriPreferitiLab = new JLabel[dimLibriPreferiti];
+        domandePreferiteLab = new JLabel[dimDomandePreferite];
+    
+        facoltàPreferiteIco = new JLabel[dimFacoltàPreferite];
+        corsiPreferitiIco = new JLabel[dimCorsiPreferiti];
+        appuntiPreferitiIco = new JLabel[dimAppuntiPreferiti];
+        libriPreferitiIco = new JLabel[dimLibriPreferiti];
+        domandePreferiteIco = new JLabel[dimDomandePreferite];
+            
+        //inizializzazione ascoltatori
+        goToCorso = new GoToCorso[dimCorsiPreferiti];
+        goToAppunto = new GoToAppunto[dimAppuntiPreferiti];
+        goToLibro = new GoToLibro[dimLibriPreferiti];
+        goToDomanda = new GoToDomanda[dimDomandePreferite];
+        caricaCorsi = new CaricaCorsi();
+        
+        //inizializzazione gbc
         gbc = new GridBagConstraints();
         gbcd = new GridBagConstraints();
         
-        //dichiarazione actionListener
-        caricaCorsi = new CaricaCorsi();
         
         setPanelWhite();
-        setScrollPanePanel();
+        
+        setScrollPanePanel(scrollPanelFacoltà);
+        setScrollPanePanel(scrollPanelCorsi);
+        setScrollPanePanel(scrollPanelApp);
+        setScrollPanePanel(scrollPanelLibri);
+        setScrollPanePanel(scrollPanelDomande);
         
         centro.setLayout(cardLayout);
-        centro.add(scrollPanel,"facoltàPreferite");
-        centro.add(scrollPanel1,"corsiPreferiti");
-        centro.add(scrollPanel2,"appuntiPreferiti");
-        centro.add(scrollPanel3,"libriPreferiti");
-        centro.add(scrollPanel4,"domandePreferite");
+        centro.add(scrollPanelFacoltà,"facoltàPreferite");
+        centro.add(scrollPanelCorsi,"corsiPreferiti");
+        centro.add(scrollPanelApp,"appuntiPreferiti");
+        centro.add(scrollPanelLibri,"libriPreferiti");
+        centro.add(scrollPanelDomande,"domandePreferite");
         
         setButtonCharacteristic(facoltàPreferiteButton);
         setButtonCharacteristic(corsiPreferitiButton);
@@ -370,57 +386,13 @@ public class PreferitiPanel extends JPanel{
         domPanel.setBackground(Color.white);
     }
     
-    public void setScrollPanePanel(){
+    public void setScrollPanePanel(JScrollPane scroll){
         
-        scrollPanel.setPreferredSize(new Dimension(650, 400));
-        scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+        scroll.setPreferredSize(new Dimension(650, 400));
+        scroll.setBackground(Color.white);
+        scroll.setBorder(new LineBorder(Color.white));
+        scroll.setVerticalScrollBar(new CustomScrollBar());
         
-        scrollPanel1.setPreferredSize(new Dimension(650, 400));
-        scrollPanel1.setBackground(Color.white);
-        scrollPanel1.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar1 = new JScrollBar();
-        scrollBar1.setBackground(Color.white);
-        scrollBar1.setPreferredSize(new Dimension(13, 0));
-        scrollBar1.setUI(new ScrollBarUI());
-        scrollBar1.setUnitIncrement(16);
-        scrollPanel1.setVerticalScrollBar(scrollBar1);
-        
-        scrollPanel2.setPreferredSize(new Dimension(650, 400));
-        scrollPanel2.setBackground(Color.white);
-        scrollPanel2.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar2 = new JScrollBar();
-        scrollBar2.setBackground(Color.white);
-        scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new ScrollBarUI());
-        scrollBar2.setUnitIncrement(16);
-        scrollPanel2.setVerticalScrollBar(scrollBar2);
-        
-        scrollPanel3.setPreferredSize(new Dimension(650, 400));
-        scrollPanel3.setBackground(Color.white);
-        scrollPanel3.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar3 = new JScrollBar();
-        scrollBar3.setBackground(Color.white);
-        scrollBar3.setPreferredSize(new Dimension(13, 0));
-        scrollBar3.setUI(new ScrollBarUI());
-        scrollBar3.setUnitIncrement(16);
-        scrollPanel3.setVerticalScrollBar(scrollBar3);
-        
-        scrollPanel4.setPreferredSize(new Dimension(650, 400));
-        scrollPanel4.setBackground(Color.white);
-        scrollPanel4.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar4 = new JScrollBar();
-        scrollBar4.setBackground(Color.white);
-        scrollBar4.setPreferredSize(new Dimension(13, 0));
-        scrollBar4.setUI(new ScrollBarUI());
-        scrollBar4.setUnitIncrement(16);
-        scrollPanel4.setVerticalScrollBar(scrollBar4);
     }
     
     public void setButtonCharacteristic(JButton button){
