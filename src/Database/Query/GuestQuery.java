@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe non le query di caricamento dei dati relativi all'utente loggato
 */
 package Database.Query;
 
@@ -9,12 +7,9 @@ import Appunti.Appunto;
 import Application.Controller.Applicazione;
 import Libri.Libro;
 import QeA.Domanda;
-import Università.Corsi.Ascoltatori.CaricaCorsi;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -25,8 +20,7 @@ public class GuestQuery {
     public static void caricaMieiAppunti() throws SQLException{
         
         String selectMieiAppunti = "select * from appunti where studente=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiAppunti);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
@@ -50,8 +44,7 @@ public class GuestQuery {
     public static void caricaMieiLibri() throws SQLException{
         
         String selectMieiLibri = "select * from libri where studente=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiLibri);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());

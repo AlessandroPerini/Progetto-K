@@ -89,7 +89,7 @@ public class AggiungiLikeRisposta implements MouseListener{
        
      
         try {
-            ControlloQuery.controlloLike(id, valore);
+            ControlloQuery.controlloLikeRisposta(id, valore);
             
             j1.setText(""+InfoQuery.likeRisposta(id, 1));
             

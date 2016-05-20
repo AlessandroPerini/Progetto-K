@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe con le queri di caricamento dei dati una determinata entità (Facoltà, Corso, Appunto, ...)
 */
 package Database.Query;
 
@@ -20,7 +18,6 @@ import java.sql.SQLException;
  * @author te4o
  */
 public class InfoQuery {
-    
     
     public static void caricaInfoFacoltà() throws SQLException{
         
@@ -45,8 +42,7 @@ public class InfoQuery {
     public static void caricaInfoCorso(String facoltà) throws SQLException{
         
         String selectInfoCorso = "select * from corsi where nome=? and facoltà=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoCorso);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.corsoAttuale.getNome());
@@ -68,7 +64,6 @@ public class InfoQuery {
     public static void caricaInfoLibro(String corso, String facoltà, int id) throws SQLException{
         
         String selectInfoLibro = "select * from libri where facoltà=? and corso=? and id=?";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoLibro);
         ps1.clearParameters();
@@ -97,8 +92,7 @@ public class InfoQuery {
     public static void caricaInfoDomanda(String corso, String facoltà) throws SQLException{
         
         String selectInfoDomanda = "select * from domande where facoltà=? and corso=? and titolo=?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
         ps1.clearParameters();
         ps1.setString(1, facoltà);
@@ -124,7 +118,6 @@ public class InfoQuery {
     public static void caricaInfoAppunto(String corso, String facoltà) throws SQLException{
         
         String selectInfoDomanda = "select * from appunti where facoltà=? and corso=? and nome=?";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectInfoDomanda);
         ps1.clearParameters();
@@ -152,9 +145,9 @@ public class InfoQuery {
         
         float media = 0;
         
-        String selectMedia = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
+        String selectMediaAppunto = "SELECT avg(punteggio) as media FROM valutazioni where facoltà=? and corso=? and appunto=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMediaAppunto);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -175,10 +168,9 @@ public class InfoQuery {
         
         int like = 0;
         
-        String selectMedia = "SELECT * FROM likeDomanda where facoltà=? and corso=? and domanda=?";
-        
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+        String selectLikeDomanda = "SELECT * FROM likeDomanda where facoltà=? and corso=? and domanda=?";
+
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeDomanda);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -198,13 +190,11 @@ public class InfoQuery {
         int like = 0;
         int dislike = 0;
         
-        String selectMedia = "SELECT * FROM likeRisposte where id=? ";
+        String selectLikeRisposta = "SELECT * FROM likeRisposte where id=? ";
         
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMedia);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeRisposta);
         ps1.clearParameters();
         ps1.setInt(1, id);
-        
         
         ResultSet rs = ps1.executeQuery();
         

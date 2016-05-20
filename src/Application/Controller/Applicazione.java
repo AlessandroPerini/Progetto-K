@@ -1,8 +1,8 @@
 /*
- * Questo è il controller del progetto, colui che gestisce tutti i dati principali
- * utilizzati dalle classi: la connessione al database, i dati dell'utente loggato
- * e gestisce le liste di appunti, libri e domande.
- */
+* Questo è il controller del progetto, colui che gestisce tutti i dati principali
+* utilizzati dalle classi: la connessione al database, i dati dell'utente loggato
+* e gestisce le liste di appunti, libri e domande.
+*/
 package Application.Controller;
 
 import Appunti.Appunto;

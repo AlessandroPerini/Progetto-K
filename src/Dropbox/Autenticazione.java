@@ -1,8 +1,10 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Classe che deve essere eseguita solo per generare un token da utilizzare per effettuare le
+* operazioni su Dropbox (download, upload, elimina). Viene creato un link ad una pagina di 
+* dropbox e dopo aver effettuato i login con un account a Dropbox (quell'account sarà quello
+*  dal quale verranno caricati i file) la pagina restituirà un codice. Quest'ultima va inserito 
+*  nella pagina dell'output di netbeans e verrà così stampato il token finale.
+*/
 package Dropbox;
 
 import com.dropbox.core.*;
@@ -19,6 +21,7 @@ public class Autenticazione {
   
     public static void main(String[] args) throws IOException, DbxException {
 
+        //dati dell'app (si trovano della pagina dell app accedenso a Dropbox Developers)
         final String APP_KEY = "v725fq2n09ko0kn";
         final String APP_SECRET = "dpglz54rrf9r4g6";
 
@@ -28,14 +31,14 @@ public class Autenticazione {
             Locale.getDefault().toString());
         DbxWebAuthNoRedirect webAuth = new DbxWebAuthNoRedirect(config, appInfo);
 
-        // Have the user sign in and authorize your app.
+        //Login utente e autorizzazione app
         String authorizeUrl = webAuth.start();
         System.out.println("1. Go to: " + authorizeUrl);
         System.out.println("2. Click \"Allow\" (you might have to log in first)");
         System.out.println("3. Copy the authorization code.");
         String code = new BufferedReader(new InputStreamReader(System.in)).readLine().trim();
 
-        // This will fail if the user enters an invalid authorization code.
+        //Questo fallisce se l'utente inserisce un codice di autorizzazione non valido
         DbxAuthFinish authFinish = webAuth.finish(code);
         String accessToken = authFinish.accessToken;
 

@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe con le query di inserimento dati
 */
 package Database.Query;
 
@@ -21,8 +19,7 @@ public class InsertQuery {
     public static void inserisciLibro(String titolo, String descrizione, int prezzo, String telefono) throws SQLException{
         
         String insertLibro = "INSERT INTO libri VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLibro);
         ps1.clearParameters();
         ps1.setInt(1, prossimoID("libri"));
@@ -41,8 +38,7 @@ public class InsertQuery {
     public static void inserisciAppunto(String nome, String descrizione) throws SQLException{
         
         String insertAppunto = " INSERT INTO appunti VALUES (?, ?, ?, ?, ?, 0);";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertAppunto);
         ps1.clearParameters();
         ps1.setString(1, nome);
@@ -55,34 +51,9 @@ public class InsertQuery {
         
     }
     
-    public static int prossimoID(String tabella) throws SQLException{
-        
-        String tabellaQuery = tabella.replaceAll("'", "\\\\'");
-        
-        int prossimoID = 0;
-        
-        String selectId = "select max(id) as massimo from "+tabellaQuery+"";
-        
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectId);
-        
-        ResultSet rs = ps1.executeQuery();
-        
-        if(rs.next()) {
-            
-            prossimoID = rs.getInt("massimo");
-            
-        }
-        
-        
-        
-        return prossimoID+1;
-    }
-    
     public static void inserisciDomanda(String titolo, String domanda) throws SQLException{
         
         String insertDomanda= "INSERT INTO domande VALUES (?, ?, ?, 0, ?, ?);";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomanda);
         ps1.clearParameters();
@@ -93,13 +64,11 @@ public class InsertQuery {
         ps1.setString(5, Applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
-        
-        
+
     }
     
     public static void inserisciRisposta(String risposta) throws SQLException{
-        
-        
+
         String insertRisposta = "INSERT INTO risposte VALUES (?, ?, ?, ?, ?, ?, ?);";
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertRisposta);
@@ -119,8 +88,7 @@ public class InsertQuery {
     public static void inserisciValutazione(JTextArea commento, JSlider punteggio) throws SQLException{
         
         String inserisciValutazione = "INSERT INTO valutazioni VALUES (?, ?, ?, ?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(inserisciValutazione);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.appuntoAttuale.getNome());
@@ -131,15 +99,13 @@ public class InsertQuery {
         ps1.setString(6, Applicazione.corsoAttuale.getNome());
         
         ps1.execute();
-        
-        
+  
     }
     
     public static void inserisciLikeDomanda() throws SQLException{
         
         String insertLikeDomanda = "INSERT INTO likeDomanda VALUES (?, ?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertLikeDomanda);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.corsoAttuale.getNome());
@@ -153,9 +119,9 @@ public class InsertQuery {
     
     public static void updateTelefono(String telefono) throws SQLException{
         
-        String sql = "update studenti set telefono=? where email=?";
+        String updateTelefono = "update studenti set telefono=? where email=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(updateTelefono);
         ps1.clearParameters();
         ps1.setString(1, telefono);
         ps1.setString(2, Applicazione.guest.getEmail());
@@ -166,9 +132,9 @@ public class InsertQuery {
     
     public static void updateNickname(String nickname) throws SQLException{
         
-        String sql = "update studenti set nickname=? where email=?";
+        String updateNickname = "update studenti set nickname=? where email=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(updateNickname);
         ps1.clearParameters();
         ps1.setString(1, nickname);
         ps1.setString(2, Applicazione.guest.getEmail());
@@ -179,9 +145,9 @@ public class InsertQuery {
     
     public static void updateMedia(float media) throws SQLException{
         
-        String sql = "update appunti set media=? where nome=? and corso=? and facoltà=?";
+        String updateMediaAppunto = "update appunti set media=? where nome=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(updateMediaAppunto);
         ps1.clearParameters();
         ps1.setFloat(1, media);
         ps1.setString(2, Applicazione.appuntoAttuale.getNome());
@@ -194,9 +160,9 @@ public class InsertQuery {
     
     public static void updateLikeDomanda() throws SQLException{
         
-        String sql = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
+        String updateLikeDomanda = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(updateLikeDomanda);
         ps1.clearParameters();
         ps1.setInt(1, (Applicazione.domandaAttuale.getLike()+1));
         ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
@@ -210,8 +176,7 @@ public class InsertQuery {
     public static void inserisciFacoltàPreferita() throws SQLException{
         
         String insertFacoltàPreferita = "INSERT INTO facoltàPreferite VALUES (?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertFacoltàPreferita);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
@@ -219,15 +184,13 @@ public class InsertQuery {
         ps1.setString(3, Applicazione.guest.getEmail());
         
         ps1.execute();
-        
-        
+  
     }
     
     public static void inserisciCorsoPreferito() throws SQLException{
         
         String insertCorsoPreferito = "INSERT INTO corsiPreferiti VALUES (?, ?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertCorsoPreferito);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
@@ -280,8 +243,7 @@ public class InsertQuery {
     public static void inserisciDomandaPreferita() throws SQLException{
         
         String insertDomandaPreferita = "INSERT INTO domandePreferite VALUES (?, ?, ?, ?, ?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(insertDomandaPreferita);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
@@ -299,8 +261,7 @@ public class InsertQuery {
     public static void inserisciLikeRisposta(int id, int like) throws SQLException{
         
         String sql = "INSERT INTO likeRisposte VALUES (?, ?, ?)";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.guest.getEmail());
@@ -309,6 +270,27 @@ public class InsertQuery {
         
         ps1.execute();
         
+    }
+    
+    public static int prossimoID(String tabella) throws SQLException{
+        
+        String tabellaQuery = tabella.replaceAll("'", "\\\\'");
+        
+        int prossimoID = 0;
+        
+        String selectId = "select max(id) as massimo from "+tabellaQuery+"";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectId);
+        
+        ResultSet rs = ps1.executeQuery();
+        
+        if(rs.next()) {
+            
+            prossimoID = rs.getInt("massimo");
+            
+        }
+        
+        return prossimoID+1;
     }
    
 }

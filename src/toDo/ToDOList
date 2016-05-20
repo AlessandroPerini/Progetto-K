@@ -10,8 +10,8 @@ Pulizia Codice{
 
     +Application;
     -Appunti;
-    -Database;
-    -Dropbox;
+    +Database;
+    +Dropbox;
     -Frame;
     -Header;
     -Libri;

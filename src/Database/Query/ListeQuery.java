@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Classe con le query di caricamento delle varie liste di dati
 */
 package Database.Query;
 
@@ -87,7 +85,7 @@ public class ListeQuery {
             
             Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro, corso, facoltà);
             Applicazione.listaLibriAttuali.add(libro);
-            
+        
         }
     }
     
@@ -114,7 +112,7 @@ public class ListeQuery {
             
             Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, like, corso, facoltà);
             Applicazione.listaDomandeAttuali.add(domanda);
-            
+        
         }
     }
     
@@ -122,8 +120,8 @@ public class ListeQuery {
         
         String selectAppunti = "select * from appunti where facoltà=? and corso=?";
         
-        
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppunti);
+        
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -141,7 +139,7 @@ public class ListeQuery {
             
             Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, corso, facoltà, media);
             Applicazione.listaAppuntiAttuali.add(appunto);
-            
+        
         }
     }
     
@@ -165,15 +163,16 @@ public class ListeQuery {
             String nickname = rs.getString("nickname");
 
             Risposta rispsta = new Risposta(risposta, domanda, id, studente, nickname);
-            Applicazione.listaRisposteAttuali.add(rispsta);
-            
+            Applicazione.listaRisposteAttuali.add(rispsta);    
+        
         }
     }
     
     public static void caricaRamiFacoltà() throws SQLException{
-        String sql = "select distinct ramo from facoltà";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        String selectRamiFacoltà = "select distinct ramo from facoltà";
+        
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRamiFacoltà);
         
         ResultSet rs = ps1.executeQuery();
         
@@ -181,16 +180,15 @@ public class ListeQuery {
             
             String ramo = rs.getString("ramo");
             
-            Applicazione.listaRamiFacoltà.add(ramo);
-            
+            Applicazione.listaRamiFacoltà.add(ramo); 
+        
         }
     }
     
     public static void caricaFacoltà(String ramo) throws SQLException{
         
         String selectFacoltà = "select * from facoltà where ramo =?";
-        
-        
+
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
         ps1.clearParameters();
         ps1.setString(1, ramo);
@@ -203,16 +201,15 @@ public class ListeQuery {
             String ramo1 = rs.getString("ramo");
             Facoltà facoltà = new Facoltà(nome, ramo1);
             Applicazione.listaFacoltàXRamo.add(facoltà);
-            
+        
         }
     }
     
     public static void caricaCorsi(int anno) throws SQLException{
         
-        String selectFacoltà = "select * from corsi where facoltà=? and anno =?";
-        
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+        String selectCorsi = "select * from corsi where facoltà=? and anno =?";
+
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
         ps1.setInt(2, anno);
@@ -226,19 +223,15 @@ public class ListeQuery {
             int anno1 = rs.getInt("anno");
             Corso corso = new Corso(nome, anno1, facoltà);
             Applicazione.listaCorsiXAnno.add(corso);
-            
+        
         }
     }
     
     public static void caricaRecensioniAppunto() throws SQLException{
         
-        String facoltàQuery = Applicazione.facoltàAttuale.getNome().replaceAll("'", "\\\\'");
-        String corsoQuery = Applicazione.corsoAttuale.getNome().replaceAll("'", "\\\\'");
-        String appuntoQuery = Applicazione.appuntoAttuale.getNome().replaceAll("'", "\\\\'");
+        String selectRecensioniAppunto = "select * from valutazioni where facoltà = ? and corso = ? and appunto = ?";
         
-        String selectRecensioni = "select * from valutazioni where facoltà = ? and corso = ? and appunto = ?";
-        
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRecensioni);
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRecensioniAppunto);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.facoltàAttuale.getNome());
         ps1.setString(2, Applicazione.corsoAttuale.getNome());
@@ -253,14 +246,13 @@ public class ListeQuery {
             String commento = rs.getString("commento");
             Valutazione valutazione = new Valutazione(commento, punteggio, studente);
             Applicazione.listaValutazioniAttuali.add(valutazione);
-            
+        
         }
     }
     
     public static void caricaFacoltàPreferite() throws SQLException {
         
         String selectFacoltàPreferite = "select * from facoltàPreferite where studente=?";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferite);
         ps1.clearParameters();
@@ -274,13 +266,13 @@ public class ListeQuery {
             String ramo = rs.getString("ramo");
             
             Applicazione.preferiti.getFacoltàPreferite().add(new Facoltà(nome, ramo));
+        
         }
     }
     
     public static void caricaCorsiPreferiti() throws SQLException {
         
         String selectCorsiPreferiti = "select * from corsiPreferiti where studente=?";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsiPreferiti);
         ps1.clearParameters();
@@ -294,15 +286,14 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             int anno = rs.getInt("anno");
             
-            Applicazione.preferiti.getCorsiPreferiti().add(new Corso(corso, anno, facoltà));
-            
+            Applicazione.preferiti.getCorsiPreferiti().add(new Corso(corso, anno, facoltà));   
+        
         }
     }
     
     public static void caricaAppuntiPreferiti() throws SQLException {
         
         String selectAppuntiPreferiti = "select * from appuntiPreferiti where studentePref=?";
-        
         
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
         ps1.clearParameters();
@@ -320,6 +311,7 @@ public class ListeQuery {
             float media = rs.getFloat("media");
             
             Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà, media));
+        
         }
     }
     
@@ -345,6 +337,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             
             Applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo, corso, facoltà));
+        
         }
     }
     
@@ -368,6 +361,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             
             Applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like, corso, facoltà));
+       
         }
     }
     

@@ -1,7 +1,7 @@
 /*
- * Qui viene creata la grafica: il frame generale con al suo interno
- * un container con un layout di tipo CardLayout per la gestione
- * dei pannelli da visualizzare.
+* Qui viene creata la grafica: il frame generale con al suo interno
+* un container con un layout di tipo CardLayout per la gestione
+* dei pannelli da visualizzare.
 */
 package Application.Vista;
 
