@@ -185,7 +185,7 @@ public class AccountPanel extends JPanel{
         phone = new JTextField(Applicazione.guest.getTelefono());
         phone.setEditable(false);
         phone.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        phone.setColumns(12);
+        phone.setColumns(14);
         phone.setBackground(Color.white);
         phone.setHorizontalAlignment(JTextField.CENTER);
         
@@ -209,46 +209,65 @@ public class AccountPanel extends JPanel{
         modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
         cambiaNickname.addActionListener(modificaNickname);
         
-        emailRow.add(emailLabel);
-        emailRow.add(email);
-        
-        nickRow.add(nickLabel);
-        nickRow.add(nick);
-        nickRow.add(cambiaNickname);
-        
-        phoneRow.add(phoneLabel);
-        phoneRow.add(phone);
-        phoneRow.add(cambiaNumero);
-        
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(80, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(emailRow, gbc);
+        body.add(emailLabel, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(80, 10, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(email, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(nickRow, gbc);
+        body.add(nickLabel, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.anchor = GridBagConstraints.CENTER;
+        body.add(nick, gbc);
+        
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, -5, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_START;
+        body.add(cambiaNickname, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(30, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(phoneRow, gbc);
+        body.add(phoneLabel, gbc);
         
-        gbc.gridx = 0;
-        gbc.gridy = 3;
-        gbc.insets = new Insets(60, -170, 0, 10);
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(30, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(logoutPanel, gbc);
+        body.add(phone, gbc);
+        
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(30, -5, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_START;
+        body.add(cambiaNumero, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        gbc.insets = new Insets(60, -170, 0, 10);
+        gbc.insets = new Insets(60, -60, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
-        body.add(iMieiDatiPanel, gbc);
+        body.add(logout, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.insets = new Insets(60, 0, 0, 10);
+        gbc.anchor = GridBagConstraints.LINE_END;
+        body.add(iMieiDati, gbc);
         
         //end body panel
         
