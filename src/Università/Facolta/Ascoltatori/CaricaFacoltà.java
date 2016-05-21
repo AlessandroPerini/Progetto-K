@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore in cui vengono caricate tutte le facoltà dopo aver effettuato il login
 */
 package Università.Facolta.Ascoltatori;
 
@@ -28,7 +26,6 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
             
             try {
                 ListeQuery.caricaFacoltà();
-                
                 ListeQuery.caricaRamiFacoltà();
                 
                 Applicazione.back.add("facoltà");

@@ -27,9 +27,7 @@ public class CaricaIMieiDati implements ActionListener{
         
         try {
             
-            GuestQuery.caricaMieiAppunti();
-            GuestQuery.caricaMieiLibri();
-            GuestQuery.caricaMieDomande();
+            GuestQuery.caricaTuttiMieiDati();
             
             Applicazione.back.add("i miei dati");
             

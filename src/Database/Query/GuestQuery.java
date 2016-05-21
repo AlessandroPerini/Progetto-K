@@ -90,4 +90,12 @@ public class GuestQuery {
             
         }
     }
+    
+    public static void caricaTuttiMieiDati() throws SQLException{
+    
+        caricaMieiAppunti();
+        caricaMieiLibri();
+        caricaMieDomande();
+    }
+    
 }

@@ -28,7 +28,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -248,9 +247,10 @@ public class ListaAppuntiPanel extends JPanel{
         add(ordinaPanel);
         add(scrollPanel);
     }
+    
     public void settaggioComponenti(){
         
-        this.setBackground(Color.white);
+        setBackground(Color.white);
         top.setBackground(Color.white);
         listaPanel.setBackground(Color.white);
         ordinaPanel.setBackground(Color.white);      

@@ -40,14 +40,11 @@ public class iMieiDatiPanel extends JPanel{
     private int dimAppunti,dimLibri, dimDomande ;
     
     //dichiarazione oggetti
-    
     private JLabel[] mieiAppunti, mieiLibri, mieDomande, mieiAppuntiLab ,mieiLibriLab, mieDomandeLab,
                         mieiAppuntiIco ,mieiLibriIco, mieDomandeIco;
-
     private GoToAppunto[] goToAppunto;
     private GoToLibro[] goToLibro;
     private GoToDomanda[] goToDomanda;
-    
     private JButton  mieiAppuntiButton, mieiLibriButton, mieDomandeButton;            
     private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
     private JScrollPane scrollPanelAppunti, scrollPanelLibri, scrollPanelDomande;
@@ -124,14 +121,11 @@ public class iMieiDatiPanel extends JPanel{
         setButtonCharacteristic(mieDomandeButton);
 
     
-        mieiAppuntiButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "appuntiPreferiti");
-                 setIconListener(searchSelected, search, search );
-            }
+        mieiAppuntiButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "appuntiPreferiti");
+            setIconListener(searchSelected, search, search );
         });
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 0, 0, 5);
@@ -140,7 +134,7 @@ public class iMieiDatiPanel extends JPanel{
         
         if(dimAppunti == 0){
             
-            noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
+            noAppunti.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -185,7 +179,7 @@ public class iMieiDatiPanel extends JPanel{
         
         if(dimLibri == 0){
             
-            noLibri.setFont(new Font("Arial", Font.BOLD, 20));
+            noLibri.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -214,13 +208,9 @@ public class iMieiDatiPanel extends JPanel{
             }
         }
      
-        mieDomandeButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "domandePreferite");
-              setIconListener(search, search, searchSelected);
-            }
+        mieDomandeButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "domandePreferite");
+            setIconListener(search, search, searchSelected);
         });
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -229,7 +219,7 @@ public class iMieiDatiPanel extends JPanel{
         nord.add(mieDomandeButton, gbc);
         
         if(dimDomande == 0){
-            noDomande.setFont(new Font("Arial", Font.BOLD, 20));
+            noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;

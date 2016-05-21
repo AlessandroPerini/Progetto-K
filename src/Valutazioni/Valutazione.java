@@ -9,7 +9,6 @@ package Valutazioni;
  */
 public class Valutazione {
     
-    //dichiarazione variabili
     private String commento;
     private int punteggio;
     private String studente;

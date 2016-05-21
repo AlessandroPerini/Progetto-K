@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello posto in alto ad ogni pagina, contiente il tasto back sulla sinistra, il titolo
+* nel centro e il menù sulla destra.
 */
 package Header.Vista;
 
@@ -14,9 +13,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -31,32 +28,43 @@ import javax.swing.border.LineBorder;
  */
 public class TopPanel extends JPanel{
     
+    //dichiarazione oggetti
     private JComboBox<String> menu;
+    private JButton backButton, segnalazioni;
+    private JLabel title;
+    private JPanel empty;
+    
+    //dichiarazione variabili
+    private String[] opzioniMenù;
+    
+    //dichiarazione ascoltatori
+    private Back back;
+    private Menù menù;
     
     public TopPanel(String t) {
         
-        Icon backNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        JButton backButton = new JButton(backNormal);
-        backButton.setBorder(BorderFactory.createEmptyBorder());
-        backButton.setContentAreaFilled(false);
-        Icon backHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        backButton.setRolloverIcon(backHover);
-        Icon backPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        backButton.setPressedIcon(backPressed);
-        backButton.setText("<   BACK");
-        backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        backButton.setForeground(Color.white);
-        backButton.setIconTextGap(-85);
-        Back back = new Back();
-        backButton.addActionListener(back);
-        backButton.setPreferredSize(new Dimension(110, 40));
+        //inizializzazione variabili
+        opzioniMenù = new String[]{"Home","Account","Preferiti","Logout"};
         
-        JPanel empty = new JPanel();
-        empty.setPreferredSize(new Dimension(110, 40));
-        empty.setBackground(Color.white);
+        //inizializzazione oggetti
+        backButton = new JButton(new ImageIcon(getClass().getResource("/immagini/buttonNormal.png")));
+        title = new JLabel(t);
+        menu = new JComboBox<>(opzioniMenù);
+        empty = new JPanel();
+        segnalazioni = new JButton();
+
+        //inizializzazione ascoltatori
+        back = new Back();
+        menù = new Menù(menu);
         
-        //-------------------------------------- SEGNALAZIONE!!! --------------------------------------
-        JButton segnalazioni = new JButton();
+        //creazione oggetti
+        creaBottoneSegnalazioni();
+        creaPannello();
+        
+    }
+
+    public void creaBottoneSegnalazioni(){
+
         segnalazioni.setText("Segnalazioni");
         segnalazioni.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         segnalazioni.setForeground(new Color(255, 102, 102));
@@ -65,47 +73,53 @@ public class TopPanel extends JPanel{
         segnalazioni.setPreferredSize(new Dimension(110, 40));
         segnalazioni.setFocusPainted(false);
         
-        segnalazioni.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                Applicazione.back.add("segnalazione");
-                
-                SegnalazionePanel segnalazione = new SegnalazionePanel();
-                Grafica.container.add(segnalazione, "segnalazione");
-                Grafica.card.show(Grafica.container, "segnalazione");
-            }
+        segnalazioni.addActionListener((ActionEvent e) -> {
+            Applicazione.back.add("segnalazione");
+            
+            SegnalazionePanel segnalazione = new SegnalazionePanel();
+            Grafica.container.add(segnalazione, "segnalazione");
+            Grafica.card.show(Grafica.container, "segnalazione");
         });
-        //----------------------------------- FINE SEGNALAZIONE!!! -----------------------------------
+    }
+    
+    public void creaPannello(){
+    
+        backButton.setBorder(BorderFactory.createEmptyBorder());
+        backButton.setContentAreaFilled(false);
+        backButton.setRolloverIcon(new ImageIcon(getClass().getResource("/immagini/buttonHover.png")));
+        backButton.setPressedIcon(new ImageIcon(getClass().getResource("/immagini/buttonPressed.png")));
+        backButton.setText("<   BACK");
+        backButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        backButton.setForeground(Color.white);
+        backButton.setIconTextGap(-85);
+        backButton.setPreferredSize(new Dimension(110, 40));
+        backButton.addActionListener(back);
         
-        JLabel title = new JLabel(t);
+        empty.setPreferredSize(new Dimension(110, 40));
+        empty.setBackground(Color.white);
+
         title.setToolTipText(title.getText());
         title.setHorizontalAlignment(SwingConstants.CENTER);
         title.setFont(new Font("Century Gothic", Font.BOLD, 20));
         title.setPreferredSize(new Dimension(420, 40));
         title.requestFocus();
         
-        String[] opzioni = new String[]{"Home","Account","Preferiti","Logout"};
-        menu = new JComboBox<>(opzioni);
-        
         menu.setBackground(Color.white);
         menu.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         menu.setPreferredSize(new Dimension(110, 40));
-        Menù menù = new Menù(menu);
         menu.addActionListener(menù);
         resetMenu();
         
-        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) {add(segnalazioni);}
-        else{add(backButton);}
+        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) add(segnalazioni);
+        else add(backButton);
         add(title);
         add(menu);
-        
-}
+    }
 
-public void resetMenu() {
-menu.setEditable(true);
-menu.setSelectedItem("Menù");
-menu.setEditable(false);
-}
-
+    public void resetMenu() {
+        menu.setEditable(true);
+        menu.setSelectedItem("Menù");
+        menu.setEditable(false);
+    }
+    
 }

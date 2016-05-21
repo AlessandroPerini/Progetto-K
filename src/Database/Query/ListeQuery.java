@@ -365,4 +365,13 @@ public class ListeQuery {
         }
     }
     
+    public static void caricaTuttiPreferiti() throws SQLException{
+    
+        caricaFacoltàPreferite();
+        caricaCorsiPreferiti();
+        caricaAppuntiPreferiti();
+        caricaLibriPreferiti();
+        caricaDomandePreferite();
+    }
+    
 }

@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore che selezionato un corso da ListaCorsiPanel va al CorsoPanel relativo
 */
 package Università.Corsi.Ascoltatori;
 
@@ -13,7 +11,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -23,8 +20,9 @@ import javax.swing.JOptionPane;
  */
 public class GoToCorso implements MouseListener{
     
+    //dichiarazione variabili
     private String facoltà;
-    private String text;
+    private String nomeCorso;
     
     public GoToCorso(String facoltà) {
         this.facoltà = facoltà;
@@ -35,17 +33,10 @@ public class GoToCorso implements MouseListener{
         
         try {
             
-            if(e.getComponent() instanceof JLabel) {
-                JLabel label = (JLabel)e.getComponent();
-                text = label.getText();
-            }
-            
-            if(e.getComponent() instanceof JButton) {
-                JButton button = (JButton)e.getComponent();
-                text = button.getText();
-            }
-            
-            Applicazione.corsoAttuale.setNome(text);
+            JLabel label = (JLabel)e.getComponent();
+            nomeCorso = label.getText();
+
+            Applicazione.corsoAttuale.setNome(nomeCorso);
             
             InfoQuery.caricaInfoCorso(facoltà);
             
@@ -61,15 +52,15 @@ public class GoToCorso implements MouseListener{
             JOptionPane.showMessageDialog(null, "Errore durante il caricamento dei dati", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
         e.getComponent().setForeground(new Color(3,201,169));

@@ -10,8 +10,6 @@ import Application.Vista.Grafica;
 import Database.Query.InfoQuery;
 import Libri.Vista.LibroPanel;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
@@ -27,7 +25,7 @@ public class GoToLibro implements MouseListener{
     private String corso;
     private String facoltà;
     private int id;
-    String text;
+    private String nomeLibro;
     
     public GoToLibro(String corso, String facoltà, int id) {
         this.corso = corso;
@@ -41,18 +39,11 @@ public class GoToLibro implements MouseListener{
         try {
             
             Applicazione.back.add("libro");
-            
-            if(e.getComponent() instanceof JLabel) {
-                JLabel label = (JLabel)e.getComponent();
-                text = label.getText();
-            }
-            if(e.getComponent() instanceof JButton) {
-                JButton button = (JButton)e.getComponent();
-                text = button.getText();
-            }
-            
-            Applicazione.libroAttuale.setTitolo(text);
-            
+
+            JLabel label = (JLabel)e.getComponent();
+            nomeLibro = label.getText();
+
+            Applicazione.libroAttuale.setTitolo(nomeLibro);
             
             InfoQuery.caricaInfoLibro(corso, facoltà, id);
             

@@ -1,15 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Pannello contenente la lista di tutte le facoltà presenti
+* raggruppate per ramo 
+*/
 package Università.Facolta.Vista;
 
-import Utils.Vista.ScrollBarUI;
 import Application.Controller.Applicazione;
 import Database.Query.ListeQuery;
 import Header.Vista.TopPanel;
 import Università.Corsi.Ascoltatori.CaricaCorsi;
+import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -29,89 +28,106 @@ import javax.swing.border.TitledBorder;
  */
 public class ListaFacoltàPanel extends JPanel{
 
+    //dichiarazione array oggetti
     private JLabel[] facoltà = new JLabel[Applicazione.listaFacoltàAttuali.size()];
     private JPanel[] panels = new JPanel[Applicazione.listaRamiFacoltà.size()];
     private JPanel[] innerPanels = new JPanel[Applicazione.listaRamiFacoltà.size()];
     private JScrollPane[] scrollP = new JScrollPane[Applicazione.listaRamiFacoltà.size()];
-   
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
+    
+    //dichiarazione pannelli
     private JPanel panel;
     private TopPanel top;
-        
+    private JScrollPane scrollPanel;
+    
+    //dichiarazione bottoni
     private JButton searchButton, clearSearch;
+    
+    //dichiarazione ascoltatori
+    private CaricaCorsi caricaCorsi;
 
-        public ListaFacoltàPanel() {
-            this.setBackground(Color.white);
-            top = new TopPanel("Facoltà");
-            top.setBackground(Color.white);
+    public ListaFacoltàPanel() {
+        
+        //inizializzazione pannelli
+        top = new TopPanel("Facoltà"); top.setBackground(Color.white);
+        panel = new JPanel(new GridLayout(5, 2, 5, 5)); panel.setBackground(Color.white);
+                
+        //inizializzazione ascoltatori
+        caricaCorsi = new CaricaCorsi();
+
+        //inizializzazione scrollPanel
+        scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        //creazione pannelli
+        creaPannelli();
+        creaScrollPanel();
+ 
+        add(top);
+        add(scrollPanel);
+
+    }
+    
+    public void creaPannelli(){
+    
+        for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
+
+            try {
+                ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
+                 } catch (SQLException ex) {
+                System.out.println("Errore durante il caricamento delle facoltà per ramo");
+            }
             
-            panel = new JPanel(new GridLayout(5, 2, 5, 5));
-            panel.setBackground(Color.white);
+            //inizializzazione pannelli
+            panels[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 10));
+            innerPanels[i] = new JPanel();
+            scrollP[i] = new JScrollPane();
+            titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
 
-            CaricaCorsi caricaCorsi = new CaricaCorsi();
+            titoloBordo[i].setTitleFont(new Font("Century Gothic", Font.BOLD, 17));
+            titoloBordo[i].setTitleColor(new Color(0,85,118));
+            innerPanels[i].setBorder(titoloBordo[i]);
 
-            for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
-
-                try {
-                    ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
-                     } catch (SQLException ex) {
-                    System.out.println("Errore durante il caricamento delle facoltà per ramo");
-                }
+            for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
+                //inizializzazione label
+                facoltà[j] = new JLabel();
                 
-                panels[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 10));
-                panels[i].setBackground(Color.white);
-                
-                innerPanels[i] = new JPanel();
-                innerPanels[i].setBackground(Color.white);
-                
-                scrollP[i] = new JScrollPane();
-                titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
-                
-                titoloBordo[i].setTitleFont(new Font("Century Gothic", Font.BOLD, 17));
-                titoloBordo[i].setTitleColor(new Color(0,85,118));
-                innerPanels[i].setBorder(titoloBordo[i]);
-
-                for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
-                    facoltà[j] = new JLabel();
-                    facoltà[j].setPreferredSize(new Dimension(150, 20));
-                    facoltà[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
-                    facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());
-                    facoltà[j].setName("facoltà"+j);
-                    facoltà[j].addMouseListener(caricaCorsi);
-                    panels[i].add(facoltà[j]);
-                }
-                
-                JScrollBar scrollBar = new JScrollBar();
-                scrollBar.setBackground(Color.white);
-                scrollBar.setPreferredSize(new Dimension(0, 20));
-                scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                scrollP[i].setPreferredSize(new Dimension(252, 182));
-                scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
-                scrollP[i].getVerticalScrollBar().setUnitIncrement(24);
-                scrollP[i].setVerticalScrollBar(scrollBar);
-                scrollP[i].setBackground(Color.white);
-                innerPanels[i].add(scrollP[i]);
-                panel.add(innerPanels[i]);
-                Applicazione.svuotaListaFacoltàXRamo();
-                
+                facoltà[j].setPreferredSize(new Dimension(150, 20));
+                facoltà[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
+                facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());
+                facoltà[j].setName("facoltà"+j);
+                facoltà[j].addMouseListener(caricaCorsi);
+                panels[i].add(facoltà[j]);
             }
 
-            JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scrollPanel.setPreferredSize(new Dimension(650, 450));
-            scrollPanel.setBackground(Color.white);
-            scrollPanel.setBorder(new LineBorder(Color.white));
             JScrollBar scrollBar = new JScrollBar();
-            scrollBar.setBackground(Color.white);
-            scrollBar.setPreferredSize(new Dimension(13, 0));
-            scrollBar.setUI(new ScrollBarUI());
-            scrollBar.setUnitIncrement(16);
-            scrollPanel.setVerticalScrollBar(scrollBar);
+            scrollBar.setPreferredSize(new Dimension(0, 20));
+            scrollP[i]= new JScrollPane(panels[i],JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollP[i].setPreferredSize(new Dimension(252, 182));
+            scrollP[i].setBorder(new LineBorder(Color.white, 1, true));
+            scrollP[i].getVerticalScrollBar().setUnitIncrement(24);
+            scrollP[i].setVerticalScrollBar(scrollBar);
             
-            add(top);
-            add(scrollPanel);
-           
+            scrollP[i].setBackground(Color.white);
+            innerPanels[i].setBackground(Color.white);
+            panels[i].setBackground(Color.white);
+            
+            innerPanels[i].add(scrollP[i]);
+            panel.add(innerPanels[i]);
+            
+            Applicazione.svuotaListaFacoltàXRamo();
+
         }
     
+    }
+    
+    public void creaScrollPanel(){
+    
+        setBackground(Color.white);
+        scrollPanel.setPreferredSize(new Dimension(650, 450));
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
+    }
 }
     
 

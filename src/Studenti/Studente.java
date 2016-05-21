@@ -1,7 +1,6 @@
 /*
 * Classe contentenete la struttura di uno studente:
 * attributi, costruttore, metodi get - set
-* 
 */
 package Studenti;
 

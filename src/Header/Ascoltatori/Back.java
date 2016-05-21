@@ -1,7 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Ascoltatore posto sul bottone back per tornare alla pagina precedente
  */
 package Header.Ascoltatori;
 
@@ -25,13 +23,18 @@ public class Back implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         String paginaCorrente = Applicazione.back.get(Applicazione.back.size()-1);
         
-        if((!paginaCorrente.equals("appunti cercati"))&&(!paginaCorrente.equals("libri cercati"))&&(!paginaCorrente.equals("domande cercate"))){
+        //comportamento specifico per il bottone back durante la ricerca
+        if(paginaCorrente.equals("appunti cercati")) backRicercaAppunti();
+        else if(paginaCorrente.equals("libri cercati")) backRicercaLibri();
+        else if(paginaCorrente.equals("domande cercate")) backRicercaDomande();
+
+        else{
 
             switch(paginaCorrente){
-                case "corsi": Applicazione.svuotaCorsi();
+                case "corsi":Applicazione.svuotaCorsi();
                     break;
                 case "libri": Applicazione.svuotaLibri();
                     break;
@@ -43,119 +46,111 @@ public class Back implements ActionListener{
                     break;
                 case "recensioni": Applicazione.svuotaRecensioni();
                     break;
-                case "facoltà cercate": Applicazione.svuotaFacoltà();
-                                        try {
-                                            ListeQuery.caricaFacoltà();
-                                        } catch (SQLException ex) {
-                                            System.out.println("Errore durante il caricamento delle facoltà");
-                                        }
-                    break;
-                case "corsi cercati":   Applicazione.svuotaCorsi();
-                                        try {
-                                            ListeQuery.caricaCorsi();
-                                        } catch (SQLException ex) {
-                                            System.out.println("Errore durante il caricamento dei corsi");
-                                        }
-
-                    break;
                 case "preferiti": Applicazione.svuotaPreferiti();
                     break;
-                case "appunto": Applicazione.svuotaAppunti();
-                                try{
-                                    ListeQuery.caricaAppunti();
-                                } catch (SQLException ex) {
-                                        System.out.println("Errore durante il caricamento degli appunti");
-                                    }
-                                Ordina.Appunti();
-                                ListaAppuntiPanel appunti = new ListaAppuntiPanel();
-                                Grafica.container.add(appunti, "appunti");
+                case "appunto": backAppunto();
                     break;
-                case "domanda": Applicazione.svuotaRisposte();
-                                Applicazione.svuotaDomande();
-                                try{
-                                    ListeQuery.caricaDomande();
-                                } catch (SQLException ex) {
-                                        System.out.println("Errore durante il caricamento delle domande");
-                                    }
-                                Ordina.Domande();
-                                ListaDomandePanel domande = new ListaDomandePanel();
-                                Grafica.container.add(domande, "domande");
-                    break;
-                case "libro": Ordina.Domande();            
+                case "domanda": backDomanda();
                     break;
             }
 
-            if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")){
-                Applicazione.svuotaPreferiti();
-
-                try {
-                    ListeQuery.caricaFacoltàPreferite();
-
-                    ListeQuery.caricaCorsiPreferiti();
-                    ListeQuery.caricaAppuntiPreferiti();
-                    ListeQuery.caricaLibriPreferiti();
-                    ListeQuery.caricaDomandePreferite();
-
-                    PreferitiPanel preferitiPanel = new PreferitiPanel();
-                    Grafica.container.add(preferitiPanel, "preferiti");
-                    Grafica.card.show(Grafica.container, "preferiti");
-
-                } catch (SQLException ex) {
-                    System.out.println("Errore durante il caricamento dei preferiti");
-                }
-
-            }
+            //comportamento specifico per il bottone back se si viene dalla pagina dei preferiti
+            if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")) backDopoPreferiti();
 
             Applicazione.back.remove(Applicazione.back.size()-1);
             Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
         }
-        
-        else if(paginaCorrente.equals("appunti cercati")){
-            Applicazione.svuotaAppunti();
-            try {
-                ListeQuery.caricaAppunti();
-            } catch (SQLException ex) {
+    }
+    
+    public void backRicercaAppunti(){
+    
+        Applicazione.svuotaAppunti();
+        try {
+            ListeQuery.caricaAppunti();
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento degli appunti");
+        }
+        Applicazione.back.remove(Applicazione.back.size()-1);
+        Applicazione.back.add("appunti");
+        Ordina.Appunti();
+        ListaAppuntiPanel appunti2 = new ListaAppuntiPanel();
+        Grafica.container.add(appunti2, "appunti");
+        Grafica.card.show(Grafica.container, "appunti");
+    }
+    
+    public void backRicercaLibri(){
+    
+        Applicazione.svuotaLibri();
+        try {
+            ListeQuery.caricaLibri();
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento dei libri");
+        }
+        Applicazione.back.remove(Applicazione.back.size()-1);
+        Applicazione.back.add("libri");
+        Ordina.Appunti();
+        ListaLibriPanel libri2 = new ListaLibriPanel();
+        Grafica.container.add(libri2, "libri");
+        Grafica.card.show(Grafica.container, "libri"); 
+    }
+    
+    public void backRicercaDomande(){
+    
+        Applicazione.svuotaAppunti();
+        try {
+            ListeQuery.caricaDomande();
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento delle domande");
+        }
+        Applicazione.back.remove(Applicazione.back.size()-1);
+        Applicazione.back.add("domande");
+        Ordina.Appunti();
+        ListaDomandePanel domande2 = new ListaDomandePanel();
+        Grafica.container.add(domande2, "domande");
+        Grafica.card.show(Grafica.container, "domande");  
+    }
+    
+    public void backAppunto(){
+    
+        Applicazione.svuotaAppunti();
+        try{
+            ListeQuery.caricaAppunti();
+        } catch (SQLException ex) {
                 System.out.println("Errore durante il caricamento degli appunti");
             }
-            Applicazione.back.remove(Applicazione.back.size()-1);
-            Applicazione.back.add("appunti");
-            Ordina.Appunti();
-            ListaAppuntiPanel appunti2 = new ListaAppuntiPanel();
-            Grafica.container.add(appunti2, "appunti");
-            Grafica.card.show(Grafica.container, "appunti");        
-
-        }
-        else if(paginaCorrente.equals("libri cercati")){
-            Applicazione.svuotaLibri();
-            try {
-                ListeQuery.caricaLibri();
-            } catch (SQLException ex) {
-                System.out.println("Errore durante il caricamento dei libri");
-            }
-            Applicazione.back.remove(Applicazione.back.size()-1);
-            Applicazione.back.add("libri");
-            Ordina.Appunti();
-            ListaLibriPanel libri2 = new ListaLibriPanel();
-            Grafica.container.add(libri2, "libri");
-            Grafica.card.show(Grafica.container, "libri");        
-
-        }
-        else if(paginaCorrente.equals("domande cercate")){
-            Applicazione.svuotaAppunti();
-            try {
-                ListeQuery.caricaDomande();
-            } catch (SQLException ex) {
+        Ordina.Appunti();
+        ListaAppuntiPanel appunti = new ListaAppuntiPanel();
+        Grafica.container.add(appunti, "appunti");
+    }
+    
+    public void backDomanda(){
+    
+        Applicazione.svuotaRisposte();
+        Applicazione.svuotaDomande();
+        try{
+            ListeQuery.caricaDomande();
+        } catch (SQLException ex) {
                 System.out.println("Errore durante il caricamento delle domande");
             }
-            Applicazione.back.remove(Applicazione.back.size()-1);
-            Applicazione.back.add("domande");
-            Ordina.Appunti();
-            ListaDomandePanel domande2 = new ListaDomandePanel();
-            Grafica.container.add(domande2, "domande");
-            Grafica.card.show(Grafica.container, "domande");        
-
-        }
+        Ordina.Domande();
+        ListaDomandePanel domande = new ListaDomandePanel();
+        Grafica.container.add(domande, "domande");
+    }
     
+    public void backDopoPreferiti(){
+    
+        Applicazione.svuotaPreferiti();
+                
+        try {
+            ListeQuery.caricaTuttiPreferiti();
+
+            PreferitiPanel preferitiPanel = new PreferitiPanel();
+            Grafica.container.add(preferitiPanel, "preferiti");
+            Grafica.card.show(Grafica.container, "preferiti");
+
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il caricamento dei preferiti");
+        }
     }
 }
     

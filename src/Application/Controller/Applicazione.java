@@ -26,7 +26,7 @@ public class Applicazione {
     
     //connessione al database
     public static Connection DBconnection = new ConnessioneDB().connect();
-        
+    
     //entità Studente che contiene i dati dell'utente loggato
     public static Studente guest;
     //controllo se il login è stato effettuato
@@ -34,7 +34,7 @@ public class Applicazione {
     
     //ArrayList per la gestione del bottone back
     public static ArrayList<String> back = new ArrayList<>();
-
+    
     //inizializzazione ArrayList dei dati attuali
     //-------------------------------------------- per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout() --------------------------------------------//
     public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
@@ -62,9 +62,9 @@ public class Applicazione {
     public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
     public static ArrayList<Libro> libriGuest = new ArrayList<>();
     public static ArrayList<Domanda> domandeGuest = new ArrayList<>();
-
-    public static void inizializzaUtente(String email, String password, String telefono, String nickname){
     
+    public static void inizializzaUtente(String email, String password, String telefono, String nickname){
+        
         guest = new Studente(email, password, telefono, nickname);
         guest.setNome();
         guest.setCognome();
@@ -131,6 +131,23 @@ public class Applicazione {
         preferiti.getCorsiPreferiti().clear();
     }
     
+    public static void svuotaTutteLeListe(){
+
+        svuotaCorsi();;
+        svuotaFacoltà();
+        svuotaLibri();
+        svuotaDomande();
+        svuotaAppunti();
+        svuotaRisposte();
+        svuotaMieiDati();
+        svuotaListaFacoltàXRamo();
+        svuotaRecensioni();
+        svuotaRami();
+        svuotaCorsiXAnno();
+        svuotaPreferiti();
+        
+    }
+    
     public static void logout(){
         
         eliminaUtente();
@@ -147,7 +164,7 @@ public class Applicazione {
         svuotaRami();
         svuotaCorsiXAnno();
         svuotaPreferiti();
-
+        
     }
-
+    
 }

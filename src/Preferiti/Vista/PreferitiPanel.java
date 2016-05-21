@@ -1,6 +1,6 @@
 /*
-* Pannello dedicato alla visualizzazione di tutto ciò che l'utente 
-* ha messo come preferiti.
+* Pannello dedicato alla visualizzazione di tutto ciò che l'utente
+* ha messo come preferiti
 */
 package Preferiti.Vista;
 
@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
  */
 public class PreferitiPanel extends JPanel{
     
-    private int dimFacoltàPreferite, dimCorsiPreferiti, dimAppuntiPreferiti, 
+    private int dimFacoltàPreferite, dimCorsiPreferiti, dimAppuntiPreferiti,
             dimLibriPreferiti, dimDomandePreferite ;
     
     private JLabel[] facoltàPreferite ,corsiPreferiti, appuntiPreferiti ,libriPreferiti,
@@ -111,19 +111,19 @@ public class PreferitiPanel extends JPanel{
         appuntiPreferiti = new JLabel[dimAppuntiPreferiti];
         libriPreferiti = new JLabel[dimLibriPreferiti];
         domandePreferite = new JLabel[dimDomandePreferite];
-    
+        
         facoltàPreferiteLab = new JLabel[dimFacoltàPreferite];
         corsiPreferitiLab = new JLabel[dimCorsiPreferiti];
         appuntiPreferitiLab = new JLabel[dimAppuntiPreferiti];
         libriPreferitiLab = new JLabel[dimLibriPreferiti];
         domandePreferiteLab = new JLabel[dimDomandePreferite];
-    
+        
         facoltàPreferiteIco = new JLabel[dimFacoltàPreferite];
         corsiPreferitiIco = new JLabel[dimCorsiPreferiti];
         appuntiPreferitiIco = new JLabel[dimAppuntiPreferiti];
         libriPreferitiIco = new JLabel[dimLibriPreferiti];
         domandePreferiteIco = new JLabel[dimDomandePreferite];
-            
+        
         //inizializzazione ascoltatori
         goToCorso = new GoToCorso[dimCorsiPreferiti];
         goToAppunto = new GoToAppunto[dimAppuntiPreferiti];
@@ -134,7 +134,6 @@ public class PreferitiPanel extends JPanel{
         //inizializzazione gbc
         gbc = new GridBagConstraints();
         gbcd = new GridBagConstraints();
-        
         
         setPanelWhite();
         
@@ -157,13 +156,9 @@ public class PreferitiPanel extends JPanel{
         setButtonCharacteristic(libriPreferitiButton);
         setButtonCharacteristic(domandePreferiteButton);
         
-        facoltàPreferiteButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "facoltàPreferite");
-                setIconListener(searchSelected, search, search, search, search);
-            }
+        facoltàPreferiteButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "facoltàPreferite");
+            setIconListener(searchSelected, search, search, search, search);
         });
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -197,13 +192,9 @@ public class PreferitiPanel extends JPanel{
                 facPanel.add(facoltàPreferiteLab[i],gbcd);
             }
         }
-        corsiPreferitiButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "corsiPreferiti");
-                setIconListener(search, searchSelected, search, search, search);
-            }
+        corsiPreferitiButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "corsiPreferiti");
+            setIconListener(search, searchSelected, search, search, search);
         });
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -238,14 +229,9 @@ public class PreferitiPanel extends JPanel{
             }
         }
         
-        
-        appuntiPreferitiButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "appuntiPreferiti");
-                setIconListener(search, search, searchSelected, search, search);
-            }
+        appuntiPreferitiButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "appuntiPreferiti");
+            setIconListener(search, search, searchSelected, search, search);
         });
         gbc.gridx = 2;
         gbc.gridy = 0;
@@ -282,13 +268,9 @@ public class PreferitiPanel extends JPanel{
             }
         }
         
-        libriPreferitiButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "libriPreferiti");
-                setIconListener(search, search, search, searchSelected, search);
-            }
+        libriPreferitiButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "libriPreferiti");
+            setIconListener(search, search, search, searchSelected, search);
         });
         gbc.gridx = 3;
         gbc.gridy = 0;
@@ -374,6 +356,7 @@ public class PreferitiPanel extends JPanel{
     }
     
     public void setPanelWhite(){
+        
         top.setBackground(Color.white);
         this.setBackground(Color.white);
         panel.setBackground(Color.white);

@@ -6,9 +6,7 @@
 package Login.Ascoltatori;
 
 import Application.Controller.Applicazione;
-import Application.Vista.Grafica;
 import Database.Query.LoginQuery;
-import Studenti.Vista.AccountPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -40,8 +38,6 @@ public class DoLogin implements ActionListener, KeyListener{
                 if(Applicazione.utenteLoggato){
                     String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
                     JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con successo" , JOptionPane.INFORMATION_MESSAGE);
-                    AccountPanel account = new AccountPanel();
-                    Grafica.container.add(account,"account");
                 }
                 else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);
                 }
