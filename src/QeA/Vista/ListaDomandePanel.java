@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello dedicato alla visualizzazione della lista delle domande
 */
 package QeA.Vista;
 
@@ -11,6 +9,7 @@ import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
+import Utils.Vista.CustomScrollBar;
 import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -41,58 +40,70 @@ import javax.swing.border.LineBorder;
  */
 public class ListaDomandePanel extends JPanel{
     
-    private JLabel[] domande = new JLabel[Applicazione.listaDomandeAttuali.size()];
-    private JLabel[] domandeNLike = new JLabel[Applicazione.listaDomandeAttuali.size()];
-    private JLabel[] domandeIcon = new JLabel[Applicazione.listaDomandeAttuali.size()];
-    private JLabel[] domandeLabel = new JLabel[Applicazione.listaDomandeAttuali.size()];
+    //dichiarazione variaibli
+    private int dimListaDomande;
+    private String[] opzioni;
+    private int size ;
+     
+    //dichiarazione oggetti
+    private JLabel[] domande ,domandeNLike, domandeIcon, domandeLabel;
     private JButton addDomanda, searchButton, clearSearch;
     private JTextField searchField;
     private JLabel noDomande, ordinamento;
     private JComboBox<String> ordina;
     private JPanel searchPanel, ordinaPanel, panel, centro;
     private Icon search, searchHover, searchPressed;
+    private GridBagConstraints gbcImg, gbc;
+    private JScrollPane scrollPanel;
+    private TopPanel top ;
+    
+    //dichiarazione ascoltatori
+    private CercaDomande cercaDomande;
+    private OrdinaListaDomande ordinaListaDomande;
+    private  GoToDomanda goToDomanda;
+    private GoToAggiungiDomanda goToAggiungiDomanda;
     
     public ListaDomandePanel() {
+        //inizializzazione variabili
+        dimListaDomande = Applicazione.listaDomandeAttuali.size();
+        opzioni = new String[]{"Like", "Nome"};
+        size = Applicazione.listaDomandeAttuali.size();
         
-        this.setBackground(Color.white);
-        TopPanel top = new TopPanel("Domande ");
-        top.setBackground(Color.white);
+        //inizializzazione pannelli    
+        top = new TopPanel("Domande ");
+        searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         panel = new JPanel(new GridBagLayout());
         centro = new JPanel(new BorderLayout());
-        centro.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        gbcImg = new GridBagConstraints();
+        gbc = new GridBagConstraints();
         
-        GridBagConstraints gbcImg = new GridBagConstraints();
-        GridBagConstraints gbc = new GridBagConstraints();
-        
-        //pannello ricerca
-        searchPanel = new JPanel();
-        searchPanel.setBackground(Color.white);
-        searchField = new JTextField(30);
-        searchField.setHorizontalAlignment(SwingConstants.CENTER);
-        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
-        
+        //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        searchButton = new JButton(search);
-        searchButton.setBorder(BorderFactory.createEmptyBorder());
-        searchButton.setContentAreaFilled(false);
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        searchButton.setRolloverIcon(searchHover);
         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        searchButton.setPressedIcon(searchPressed);
-        searchButton.setText("CERCA");
-        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        searchButton.setForeground(Color.white);
-        searchButton.setIconTextGap(-77);
         
-        CercaDomande cercaDomande = new CercaDomande(searchField);
+
+        
+        //inizializzazione bottoni - label
+        domande = new JLabel[dimListaDomande];
+        domandeNLike = new JLabel[dimListaDomande];
+        domandeIcon = new JLabel[dimListaDomande];
+        domandeLabel = new JLabel[dimListaDomande];
+        searchField = new JTextField(30);
+        searchButton = new JButton(search);
+        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
+        ordina = new JComboBox<>(opzioni);
+        ordinamento = new JLabel("Ordina per :");
+        addDomanda = new JButton("Aggiungi\n Domanda", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
+        scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        settaggioComponenti();
+ 
+        cercaDomande = new CercaDomande(searchField);
         searchField.addKeyListener(cercaDomande);
         searchButton.addActionListener(cercaDomande);
-        
-        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
-        clearSearch.setBackground(Color.white);
-        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
+
         clearSearch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -103,19 +114,73 @@ public class ListaDomandePanel extends JPanel{
         searchPanel.add(searchField);
         searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
-        // fine pannello ricerca
         
         //pannello ordina
-        ordinaPanel.setBackground(Color.white);
-        String[] opzioni = new String[]{"Like", "Nome"};
-        ordina = new JComboBox<>(opzioni);
+           
         if(!OrdinaListaDomande.ordineCorrente.equals("")){
             ordina.setSelectedItem(OrdinaListaDomande.ordineCorrente);
         }
-        
-        ordinamento = new JLabel("Ordina per :");
-        OrdinaListaDomande ordinaListaDomande = new OrdinaListaDomande(ordina);
+          
+        ordinaListaDomande = new OrdinaListaDomande(ordina);
         ordina.addActionListener(ordinaListaDomande);
+        
+        creaOrdina();
+        // fine pannello ordina
+        
+        goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
+        goToAggiungiDomanda = new GoToAggiungiDomanda();
+        
+        addDomanda.addActionListener(goToAggiungiDomanda);
+        
+        creaLabelDomande();
+      
+        centro.add(panel, BorderLayout.CENTER);
+ 
+        add(top);
+        add(searchPanel);
+        add(ordinaPanel);
+        add(scrollPanel);
+    }
+    
+    public void settaggioComponenti(){
+        
+        top.setBackground(Color.white);
+        this.setBackground(Color.white);
+        centro.setBackground(Color.white);
+        panel.setBackground(Color.white);
+        
+        searchPanel.setBackground(Color.white);
+        
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+
+        searchButton.setBorder(BorderFactory.createEmptyBorder());
+        searchButton.setContentAreaFilled(false);    
+        searchButton.setRolloverIcon(searchHover);
+        searchButton.setPressedIcon(searchPressed);
+        searchButton.setText("CERCA");
+        searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        searchButton.setForeground(Color.white);
+        searchButton.setHorizontalTextPosition(JButton.CENTER);
+        searchButton.setVerticalTextPosition(JButton.CENTER);
+        
+        addDomanda.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
+        addDomanda.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
+        addDomanda.setBackground(Color.white);
+        addDomanda.setPreferredSize(new Dimension(40, 40));
+        addDomanda.setBorder(new LineBorder(Color.white, 1, true));
+        
+        clearSearch.setBackground(Color.white);
+        clearSearch.setBorder(new LineBorder(Color.white, 1, true));
+        
+        ordinaPanel.setBackground(Color.white);
+         
+        scrollPanel.setPreferredSize(new Dimension(650, 350));
+        scrollPanel.setBackground(Color.white);
+        scrollPanel.setBorder(new LineBorder(Color.white));
+        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
+    }
+    public void creaOrdina(){
         
         ordina.setBackground(Color.white);
         gbc.gridx = 0;
@@ -130,27 +195,17 @@ public class ListaDomandePanel extends JPanel{
         gbc.anchor = GridBagConstraints.LINE_START;
         ordinaPanel.add(ordina,gbc);
         
-        addDomanda = new JButton("Aggiungi\n Domanda");
-        addDomanda = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
-        addDomanda.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
-        addDomanda.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
-        addDomanda.setBackground(Color.white);
-        addDomanda.setPreferredSize(new Dimension(40, 40));
-        addDomanda.setBorder(new LineBorder(Color.white, 1, true));
+       
+        
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 150, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(addDomanda, gbc);
-        // fine pannello ordina
+    }
+    public void creaLabelDomande(){
         
-        GoToDomanda goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
-        GoToAggiungiDomanda goToAggiungiDomanda = new GoToAggiungiDomanda();
-        
-        addDomanda.addActionListener(goToAggiungiDomanda);
-        
-        int size = Applicazione.listaDomandeAttuali.size();
-        if(size == 0){
+         if(size == 0){
             noDomande = new JLabel();
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
                 noDomande = new JLabel("Non ci sono domande relative a questo corso");
@@ -205,24 +260,5 @@ public class ListaDomandePanel extends JPanel{
                 panel.add(domandeIcon[i], gbcImg);
             }
         }
-        
-        
-        centro.add(panel, BorderLayout.CENTER);
-        JScrollPane scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(650, 350));
-        scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
-        
-        add(top);
-        add(searchPanel);
-        add(ordinaPanel);
-        add(scrollPanel);
     }
-    
 }

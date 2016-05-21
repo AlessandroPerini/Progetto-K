@@ -14,7 +14,7 @@ Pulizia Codice{
     +Dropbox;
     +Frame;
     +Header;
-    -Preferiti (da sistemare solo le dichiarazioni e inizializzazioni) 
+    +Preferiti (da sistemare solo le dichiarazioni e inizializzazioni) 
     -Libri;
     +Login;
     -QeA;
@@ -26,9 +26,6 @@ Pulizia Codice{
     +Valutazioni;
 
 }
-
-
--Aggiungere il controllo del numero di telefono quando lo si modifica (solo numeri)
 
 -Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
 

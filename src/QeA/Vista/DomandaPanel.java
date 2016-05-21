@@ -15,6 +15,7 @@ import Preferiti.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Ascoltatori.RimuoviDomandaPreferita;
 import QeA.Ascoltatori.AggiungiLike;
 import QeA.Ascoltatori.AggiungiLikeRisposta;
+import Utils.Vista.CustomScrollBar;
 import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -42,7 +43,8 @@ import javax.swing.border.LineBorder;
  */
 public class DomandaPanel extends JPanel{
 
-    private JButton rispondi, elimina, like2, likeRisposta, dislikeRisposta;
+    private JButton rispondi, elimina, like2, likeRisposta, dislikeRisposta, preferitiOn,
+            preferitiOff;
     private TopPanel top;
     private JPanel panel, pannelloRisposta, pannelloLike, pannelloDislike, preferitiPanel, descrizionePanel, rispostePanel, rispostaPanel;
     private JLabel email, Nlike, nomeRisposta, numeroLikeRisposta,numeroDislikeRisposta;
@@ -51,8 +53,14 @@ public class DomandaPanel extends JPanel{
     private JScrollPane scrollPanel, scrollPanel1, scrollPanel3, scrollPanel4, scrollPanel5;
     private AggiungiRisposta risposta;
     private GridBagConstraints gbcRisposte;
+    private ImageIcon rispondiNormal, rispondiHover, rispondiPressed, eliminaNormal,eliminaHover, eliminaPressed;
     private static int i;
     private int valoreLike;
+    private AggiungiDomandaPreferita aggiungiDomandaPreferita;
+    private RimuoviDomandaPreferita rimuoviDomandaPreferito;
+    private AggiungiLike aggiungiLike;
+    private EliminaDomanda eliminaDomanda;
+    
     public DomandaPanel() {
         
         setBackground(Color.white);
@@ -74,18 +82,18 @@ public class DomandaPanel extends JPanel{
         rispostaPanel.setBackground(Color.white);
         
         //preferito
-        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOn.setBackground(Color.white);
         preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
         
-        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
+        preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
-        AggiungiDomandaPreferita aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
+        aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
         preferitiOff.addActionListener(aggiungiDomandaPreferita);
         
-        RimuoviDomandaPreferita rimuoviDomandaPreferito = new RimuoviDomandaPreferita();
+        rimuoviDomandaPreferito = new RimuoviDomandaPreferita();
         preferitiOn.addActionListener(rimuoviDomandaPreferito);
         
         try {
@@ -105,12 +113,7 @@ public class DomandaPanel extends JPanel{
         scrollPanel1.setPreferredSize(new Dimension(650, 400));
         scrollPanel1.setBackground(Color.white);
         scrollPanel1.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel1.setVerticalScrollBar(scrollBar);
+        scrollPanel1.setVerticalScrollBar(new CustomScrollBar());
         
         add(top);
         add(preferitiPanel);
@@ -146,12 +149,7 @@ public class DomandaPanel extends JPanel{
         scrollPanel = new JScrollPane();
         scrollPanel.setViewportView(descrizione);
         scrollPanel.setWheelScrollingEnabled(true);
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
 	gbc.gridx = 0;
 	gbc.gridy = 1;
 	gbc.insets = new Insets(10, 0, 0, 0);
@@ -185,7 +183,7 @@ public class DomandaPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(Nlike, gbc);
 
-        AggiungiLike aggiungiLike = new AggiungiLike(like2, Nlike);
+        aggiungiLike = new AggiungiLike(like2, Nlike);
         like2.addActionListener(aggiungiLike);
         //fine zona like
         
@@ -201,12 +199,7 @@ public class DomandaPanel extends JPanel{
         scrollPanel3.setPreferredSize(new Dimension(480 , 250));
         scrollPanel3.getVerticalScrollBar().setUnitIncrement(10);
         scrollPanel3.setWheelScrollingEnabled(true);
-        JScrollBar scrollBar2 = new JScrollBar();
-        scrollBar2.setBackground(Color.white);
-        scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new ScrollBarUI());
-        scrollBar2.setUnitIncrement(16);
-        scrollPanel3.setVerticalScrollBar(scrollBar2);
+        scrollPanel3.setVerticalScrollBar(new CustomScrollBar());
 	gbc.gridx = 0;
 	gbc.gridy = 3;
 	gbc.insets = new Insets(10, 0, 0, 0);
@@ -224,12 +217,7 @@ public class DomandaPanel extends JPanel{
         scrollPanel4.setViewportView(rispondiArea);
         scrollPanel4.setWheelScrollingEnabled(true);
         scrollPanel4.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar4 = new JScrollBar();
-        scrollBar4.setBackground(Color.white);
-        scrollBar4.setPreferredSize(new Dimension(13, 0));
-        scrollBar4.setUI(new ScrollBarUI());
-        scrollBar4.setUnitIncrement(16);
-        scrollPanel4.setVerticalScrollBar(scrollBar4);
+        scrollPanel4.setVerticalScrollBar(new CustomScrollBar());
 	gbc.gridx = 0;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(10, 0, 30, 0);
@@ -238,13 +226,13 @@ public class DomandaPanel extends JPanel{
         rispostaPanel.add(scrollPanel4);
 	panel.add(rispostaPanel, gbc);
         
-        Icon rispondiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        rispondiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         rispondi = new JButton(rispondiNormal);
         rispondi.setBorder(BorderFactory.createEmptyBorder());
         rispondi.setContentAreaFilled(false);
-        Icon rispondiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        rispondiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         rispondi.setRolloverIcon(rispondiHover);
-        Icon rispondiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        rispondiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         rispondi.setPressedIcon(rispondiPressed);
         rispondi.setText("RISPONDI");
         rispondi.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -262,14 +250,14 @@ public class DomandaPanel extends JPanel{
         
         if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            EliminaDomanda eliminaDomanda = new EliminaDomanda();
-            Icon eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
-            JButton elimina = new JButton(eliminaNormal);
+            eliminaDomanda = new EliminaDomanda();
+            eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
+            elimina = new JButton(eliminaNormal);
             elimina.setBorder(BorderFactory.createEmptyBorder());
             elimina.setContentAreaFilled(false);
-            Icon eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
+            eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
             elimina.setRolloverIcon(eliminaHover);
-            Icon eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
+            eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
             elimina.setPressedIcon(eliminaPressed);
             elimina.setText("ELIMINA");
             elimina.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -312,11 +300,7 @@ public class DomandaPanel extends JPanel{
             risposte2.setWrapStyleWord(true);
             scrollPanel5 = new JScrollPane(risposte2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
             scrollPanel5.setWheelScrollingEnabled(true);
-            JScrollBar scrollBar = new JScrollBar();
-            scrollBar.setPreferredSize(new Dimension(13, 0));
-            scrollBar.setUI(new ScrollBarUI());
-            scrollBar.setUnitIncrement(16);
-            scrollPanel5.setVerticalScrollBar(scrollBar);
+            scrollPanel5.setVerticalScrollBar(new CustomScrollBar());
             gbcRisposte.gridx = 1;
             gbcRisposte.gridy = i;
             gbcRisposte.insets = new Insets(10, 5, 10, 10);

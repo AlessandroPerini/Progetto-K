@@ -44,11 +44,9 @@ public class ModificaNumero implements ActionListener{
         if ( nClick == 2){
             if (phone.getText().matches("[0-9]+")) {
             numeroOK = true;
-            System.out.println(numeroOK + phone.getText());
          }
             if(numeroOK){
                
-                System.out.println(numeroOK);
                 phone.setEditable(false);
                 cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
                 try {
