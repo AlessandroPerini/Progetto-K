@@ -283,7 +283,6 @@ public class ListaAppuntiPanel extends JPanel{
         
         scrollPanel.setPreferredSize(new Dimension(650, 350));
         scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
         scrollPanel.setVerticalScrollBar(new CustomScrollBar());
     }
     

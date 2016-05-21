@@ -46,7 +46,7 @@ public class DomandaPanel extends JPanel{
     private JPanel panel, pannelloRisposta, pannelloLike, pannelloDislike, preferitiPanel, descrizionePanel, rispostePanel, rispostaPanel;
     private JLabel email, NlikeDomanda, nomeRisposta, numeroLikeRisposta,numeroDislikeRisposta;
     private JTextArea descrizione, rispondiArea,risposte2;
-    private JScrollPane scrollPanelDescrizione, scrollPannelloPrincipale, scrollPanelRisposte, scrollPanelRIspondiArea, scrollPanel5;   
+    private JScrollPane scrollPanelDescrizione, scrollPanelPrincipale, scrollPanelRisposte, scrollPanelRIspondiArea, scrollPanel5;   
     private GridBagConstraints gbcRisposte;
     private ImageIcon rispondiNormal, rispondiHover, rispondiPressed, eliminaNormal,eliminaHover, eliminaPressed;
     private GridBagConstraints gbc;
@@ -89,7 +89,7 @@ public class DomandaPanel extends JPanel{
         eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
         eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
 
-        scrollPannelloPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         email = new JLabel("<html><b>Caricata da: </b>"+Applicazione.domandaAttuale.getStudente()+"</html>");
         descrizione = new JTextArea(Applicazione.domandaAttuale.getDomanda(),5,25);
         scrollPanelDescrizione = new JScrollPane();
@@ -125,14 +125,13 @@ public class DomandaPanel extends JPanel{
         
         this.build();
 
-        scrollPannelloPrincipale.setPreferredSize(new Dimension(650, 400));
-        scrollPannelloPrincipale.setBackground(Color.white);
-        scrollPannelloPrincipale.setBorder(new LineBorder(Color.white));
-        scrollPannelloPrincipale.setVerticalScrollBar(new CustomScrollBar());
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 400));
+        scrollPanelPrincipale.setBackground(Color.white);
+        scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
         
         add(top);
         add(preferitiPanel);
-        add(scrollPannelloPrincipale);
+        add(scrollPanelPrincipale);
     }
     
     public void build(){
@@ -396,8 +395,7 @@ public class DomandaPanel extends JPanel{
             gbcRisposte.insets = new Insets(15, -5, 0, 0);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(pannelloDislike, gbcRisposte);
-             
-  
+
     }
 
     public static void setI(int i) {
