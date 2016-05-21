@@ -125,7 +125,7 @@ public class DomandaPanel extends JPanel{
         
         this.build();
 
-        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 400));
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 415));
         scrollPanelPrincipale.setBackground(Color.white);
         scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
         
