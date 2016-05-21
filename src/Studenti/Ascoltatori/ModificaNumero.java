@@ -10,6 +10,7 @@ import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -24,6 +25,7 @@ public class ModificaNumero implements ActionListener{
     private int nClick;
     private JTextField phone;
     private JButton cambiaNumero;
+    private boolean numeroOK = false;
     
     public ModificaNumero(int nClick, JTextField phone, JButton cambiaNumero) {
         this.nClick = nClick;
@@ -36,25 +38,41 @@ public class ModificaNumero implements ActionListener{
         nClick += 1;
         phone.setEditable(true);
         cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/conferma.png")));
+
+       
         
         if ( nClick == 2){
-            phone.setEditable(false);
-            cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
-            try {
-                if(!phone.getText().equals("")){
-                    InsertQuery.updateTelefono(phone.getText());
-                    Applicazione.guest.setTelefono(phone.getText());
-                    phone.setText(Applicazione.guest.getTelefono());
+            if (phone.getText().matches("[0-9]+")) {
+            numeroOK = true;
+            System.out.println(numeroOK + phone.getText());
+         }
+            if(numeroOK){
+               
+                System.out.println(numeroOK);
+                phone.setEditable(false);
+                cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
+                try {
+                    if(!phone.getText().equals("")){
+                        InsertQuery.updateTelefono(phone.getText());
+                        Applicazione.guest.setTelefono(phone.getText());
+                        phone.setText(Applicazione.guest.getTelefono());
+                    }
+                    else{
+                        InsertQuery.updateTelefono("Numero non disponibile");
+                        Applicazione.guest.setTelefono("Numero non disponibile");
+                        phone.setText(Applicazione.guest.getTelefono());
+                    }
+                    JOptionPane.showMessageDialog(null, "Numero di telefono correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                    nClick = 0;
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, "Errore durante la modifica del numero di telefono", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
-                else{
-                    InsertQuery.updateTelefono("Numero non disponibile");
-                    Applicazione.guest.setTelefono("Numero non disponibile");
-                    phone.setText(Applicazione.guest.getTelefono());
-                }
-                JOptionPane.showMessageDialog(null, "Numero di telefono correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
-                nClick = 0;
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Errore durante la modifica del numero di telefono", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
+                 numeroOK = false;
+            }else{
+                    numeroOK = false;
+                    nClick = 1;
+                    JOptionPane.showMessageDialog(null, "Il numero non deve contenere lettere", "Impossibile completare l'operazione", JOptionPane.INFORMATION_MESSAGE);
+               
             }
         }
     }

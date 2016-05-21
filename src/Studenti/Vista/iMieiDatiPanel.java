@@ -137,6 +137,7 @@ public class iMieiDatiPanel extends JPanel{
         gbc.insets = new Insets(5, 0, 0, 5);
         gbc.anchor = GridBagConstraints.CENTER;
         nord.add(mieiAppuntiButton, gbc);
+        
         if(dimAppunti == 0){
             
             noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
@@ -324,6 +325,8 @@ public class iMieiDatiPanel extends JPanel{
         mieDomandeButton.setIcon(search2);
                 
     }
+    
+   
 }
 
 
