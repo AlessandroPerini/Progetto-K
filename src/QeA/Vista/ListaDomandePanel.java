@@ -90,12 +90,12 @@ public class ListaDomandePanel extends JPanel{
         domandeNLike = new JLabel[dimListaDomande];
         domandeIcon = new JLabel[dimListaDomande];
         domandeLabel = new JLabel[dimListaDomande];
-        searchField = new JTextField(30);
+        searchField = new JTextField(26);
         searchButton = new JButton(search);
         clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         ordina = new JComboBox<>(opzioni);
         ordinamento = new JLabel("Ordina per :");
-        addDomanda = new JButton("Aggiungi\n Domanda", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
+        addDomanda = new JButton( new ImageIcon(this.getClass().getResource("/immagini/add.png")));
         scrollPanel = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         settaggioComponenti();
@@ -177,7 +177,6 @@ public class ListaDomandePanel extends JPanel{
          
         scrollPanel.setPreferredSize(new Dimension(650, 350));
         scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
         scrollPanel.setVerticalScrollBar(new CustomScrollBar());
     }
     public void creaOrdina(){

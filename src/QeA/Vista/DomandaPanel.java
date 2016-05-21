@@ -124,12 +124,7 @@ public class DomandaPanel extends JPanel{
         }//fine zona preferito
         
         this.build();
-
-        scrollPannelloPrincipale.setPreferredSize(new Dimension(650, 400));
-        scrollPannelloPrincipale.setBackground(Color.white);
-        scrollPannelloPrincipale.setBorder(new LineBorder(Color.white));
-        scrollPannelloPrincipale.setVerticalScrollBar(new CustomScrollBar());
-        
+   
         add(top);
         add(preferitiPanel);
         add(scrollPannelloPrincipale);
@@ -397,7 +392,10 @@ public class DomandaPanel extends JPanel{
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
             pannelloRisposta.add(pannelloDislike, gbcRisposte);
              
-  
+            scrollPannelloPrincipale.setPreferredSize(new Dimension(650, 400));
+            scrollPannelloPrincipale.setBackground(Color.white);
+            scrollPannelloPrincipale.setBorder(new LineBorder(Color.white));
+            scrollPannelloPrincipale.setVerticalScrollBar(new CustomScrollBar());
     }
 
     public static void setI(int i) {
