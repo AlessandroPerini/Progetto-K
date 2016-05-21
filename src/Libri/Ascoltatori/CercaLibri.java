@@ -1,13 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Ascoltatore posto sul bottone cerca nella ListaLibriPanel e serve appunto
+* per rimodellare la lista dei libri a seconda della ricerca fatta
+*/
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Libri.Vista.ListaLibriPanel;
+import Utils.Azioni.Cerca;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -27,16 +27,16 @@ public class CercaLibri implements ActionListener, KeyListener{
     }
     
     public void cerca(){
-    
+        
         if(!searchField.getText().equals("")){
-            Utils.Azioni.Cerca.Libri(searchField);
+            
+            Cerca.Libri(searchField);
             
             Applicazione.back.remove(Applicazione.back.size()-1);
-
             Applicazione.back.add("libri cercati");
-
+            
             ListaLibriPanel libriCercati = new ListaLibriPanel();
-
+            
             Grafica.container.add(libriCercati,"libri cercati");
             Grafica.card.show(Grafica.container, "libri cercati");
         }
@@ -47,19 +47,19 @@ public class CercaLibri implements ActionListener, KeyListener{
         
         cerca();
     }
-
+    
     @Override
     public void keyTyped(KeyEvent e) {
         
     }
-
+    
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
             cerca();
         }
     }
-
+    
     @Override
     public void keyReleased(KeyEvent e) {
         

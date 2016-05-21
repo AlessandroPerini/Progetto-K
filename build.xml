@@ -71,14 +71,14 @@
 
     -->
     <target name="-post-jar">
-  <jar jarfile="dist/unique/ProgettoK.jar">
-    <zipfileset src="${dist.jar}" excludes="META-INF/*" />
-    <zipfileset src="dist/lib/dropbox-core-sdk-1.8.2.jar" excludes="META-INF/*" />
-    <zipfileset src="dist/lib/jackson-core-2.6.1.jar" excludes="META-INF/*" />
-    <zipfileset src="dist/lib/mysql-connector-java-5.1.23-bin.jar" excludes="META-INF/*" />
-    <manifest>
-        <attribute name="Main-Class" value="Application.Creator.Starter"/>
-    </manifest>
-  </jar>
-</target>
+        <jar jarfile="dist/unique/ProgettoK.jar">
+            <zipfileset src="${dist.jar}" excludes="META-INF/*" />
+            <zipfileset src="dist/lib/dropbox-core-sdk-1.8.2.jar" excludes="META-INF/*" />
+            <zipfileset src="dist/lib/jackson-core-2.6.1.jar" excludes="META-INF/*" />
+            <zipfileset src="dist/lib/mysql-connector-java-5.1.23-bin.jar" excludes="META-INF/*" />
+            <manifest>
+                <attribute name="Main-Class" value="Application.Creator.Starter"/>
+            </manifest>
+        </jar>
+    </target>
 </project>

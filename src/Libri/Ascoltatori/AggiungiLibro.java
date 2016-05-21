@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore posto nell'AggiungiLibroPanel sul bottone "aggiungi"
+* per appunto aggiungere un libro alla lista dei libri di quel corso
 */
 package Libri.Ascoltatori;
 
@@ -44,16 +43,17 @@ public class AggiungiLibro implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if((!titolo.getText().equals(""))&&(!descrizione.getText().equals(""))&&((Integer)prezzo.getValue() != 0)){
+            
             if((titolo.getText().length()<100)&&(descrizione.getText().length()<500)&&((Integer)prezzo.getValue()<999)&&((Integer)prezzo.getValue()>0)){
-                if(telefono.isSelected()){
-                    tel = Applicazione.guest.getTelefono();
-                }else{
-                    tel ="Numero non disponibile";
-                }
+                
+                if(telefono.isSelected()) tel = Applicazione.guest.getTelefono();
+                
+                else tel ="Numero non disponibile";
                 
                 try{
                     InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(), tel);
                     JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                    
                     Applicazione.svuotaLibri();
                     
                     ListeQuery.caricaLibri();

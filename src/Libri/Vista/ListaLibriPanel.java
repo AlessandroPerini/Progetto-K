@@ -1,7 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Pannello contenete la lista dei libri relativi al corso selezionato
+* Contiene anche una ricerca dei libri stessi
+* I libri sono ordinati alfabeticamente
+* Vi è infine un bottone che porta al form per l'aggiunta di un nuovo libro
 */
 package Libri.Vista;
 
@@ -10,7 +11,7 @@ import Libri.Ascoltatori.GoToAggiungiLibro;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
-import Utils.Vista.ScrollBarUI;
+import Utils.Vista.CustomScrollBar;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -19,15 +20,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -39,72 +37,99 @@ import javax.swing.border.LineBorder;
  */
 public class ListaLibriPanel extends JPanel{
     
+    //dichiarazione array label
     private JLabel[] libri = new JLabel[Applicazione.listaLibriAttuali.size()];
     private JLabel[] libriIcon = new JLabel[Applicazione.listaLibriAttuali.size()];
     private JLabel[] libriLabel = new JLabel[Applicazione.listaLibriAttuali.size()];
+    
+    //dichiarazione label - textfield - bottoni
     private JTextField searchField;
     private JLabel noLibri, ordinamento;
     private JButton addLibro, searchButton, clearSearch;
+    
+    //dichiarazione pannelli
     private TopPanel top;
-    private Icon search, searchHover, searchPressed;
     private JPanel panel, searchPanel, ordinaPanel ,borderPanel;
+    private JScrollPane scrollPanel;
+    
+    //dichiarazione ascoltatori
+    private CercaLibri cercaLibri;
+    private GoToAggiungiLibro goToAggiungiLibro;
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc, gbcd;
+    
+    //dichiarazione variabili
+    private int nLibri;
     
     public ListaLibriPanel() {
         
-        setBackground(Color.white);
-        GridBagConstraints gbc = new GridBagConstraints();
-        GridBagConstraints gbcd = new GridBagConstraints();
+        //inizializzazione label - textfield - bottoni
+        ordinamento = new JLabel("Ordinamento alfabetico");
+        searchField = new JTextField(26);
+        searchButton = new JButton(new ImageIcon(getClass().getResource("/immagini/buttonNormal.png")));
+        clearSearch = new JButton("", new ImageIcon(getClass().getResource("/immagini/clear.png")));
+        addLibro = new JButton("", new ImageIcon(getClass().getResource("/immagini/add.png")));
         
+        //inizializzazione pannelli
         top = new TopPanel("Libri "+Applicazione.corsoAttuale.getNome());
-        top.setBackground(Color.white);
         borderPanel = new JPanel(new BorderLayout());
         panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.white);
-        ordinaPanel = new JPanel(new GridBagLayout());
-        ordinaPanel.setBackground(Color.white);
-        
-        //pannello ricerca
         searchPanel = new JPanel();
-        searchPanel.setBackground(Color.white);
-        searchField = new JTextField(30);
-        searchField.setHorizontalAlignment(SwingConstants.CENTER);
-        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        ordinaPanel = new JPanel(new GridBagLayout());
+        scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        //inizializzazione ascoltatori
+        goToAggiungiLibro = new GoToAggiungiLibro();
+        cercaLibri = new CercaLibri(searchField);
         
-        search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        searchButton = new JButton(search);
+        //inizializzazione variabili layout
+        gbc = new GridBagConstraints();
+        gbcd = new GridBagConstraints();
+        
+        //inizializzazione variabili
+        nLibri = Applicazione.listaLibriAttuali.size();
+        
+        //creazione pannelli
+        creaPannelloRicerca();
+        creaPannelloOrdina();
+        creaPannelloLista();
+        creaPannelloPrincipale();
+        
+    }
+    
+    public void creaPannelloRicerca(){
+        
+        searchField.setHorizontalAlignment(SwingConstants.CENTER);
+        searchField.setFont(new Font("Century Gothic", Font.PLAIN, 20));
+        
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);
-        searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        searchButton.setRolloverIcon(searchHover);
-        searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        searchButton.setPressedIcon(searchPressed);
+        searchButton.setRolloverIcon(new ImageIcon(getClass().getResource("/immagini/buttonHover.png")));
+        searchButton.setPressedIcon(new ImageIcon(getClass().getResource("/immagini/buttonPressed.png")));
         searchButton.setText("CERCA");
         searchButton.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         searchButton.setForeground(Color.white);
         searchButton.setIconTextGap(-77);
         
-        CercaLibri cercaLibri = new CercaLibri(searchField);
-        
         searchField.addKeyListener(cercaLibri);
         searchButton.addActionListener(cercaLibri);
         
-        clearSearch = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/clear.png")));
         clearSearch.setBackground(Color.white);
         clearSearch.setBorder(new LineBorder(Color.white, 1, true));
-        clearSearch.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                searchField.setText("");
-            }
+        clearSearch.addActionListener((ActionEvent e) -> {
+            searchField.setText("");
         });
+        
+        searchPanel.setBackground(Color.white);
         
         searchPanel.add(searchField);
         searchPanel.add(clearSearch);
         searchPanel.add(searchButton);
-        // fine pannello ricerca
+    }
+    
+    public void creaPannelloOrdina(){
         
-        //pannello ordina
-        ordinamento = new JLabel("Ordinamento alfabetico");
         ordinamento.setBackground(Color.white);
         ordinamento.setFont(new Font("Century Gothic", Font.BOLD, 13));
         gbc.gridx = 0;
@@ -113,32 +138,32 @@ public class ListaLibriPanel extends JPanel{
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(ordinamento, gbc);
         
-        addLibro = new JButton("", new ImageIcon(this.getClass().getResource("/immagini/add.png")));
-        addLibro.setRolloverIcon(new ImageIcon(this.getClass().getResource("/immagini/addHover.png")));
-        addLibro.setPressedIcon(new ImageIcon(this.getClass().getResource("/immagini/addPressed.png")));
+        addLibro.setRolloverIcon(new ImageIcon(getClass().getResource("/immagini/addHover.png")));
+        addLibro.setPressedIcon(new ImageIcon(getClass().getResource("/immagini/addPressed.png")));
         addLibro.setBackground(Color.white);
         addLibro.setPreferredSize(new Dimension(40, 40));
         addLibro.setBorder(new LineBorder(Color.white, 1, true));
+        addLibro.addActionListener(goToAggiungiLibro);
         gbc.gridx = 2;
         gbc.gridy = 0;
         gbc.insets = new Insets(5, 150, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         ordinaPanel.add(addLibro, gbc);
-        //fine pannello ordina
         
-        GoToAggiungiLibro aggiungiLibro = new GoToAggiungiLibro();
-        addLibro.addActionListener(aggiungiLibro);
+        ordinaPanel.setBackground(Color.white);
         
-        int size = Applicazione.listaLibriAttuali.size();
+    }
+    
+    public void creaPannelloLista(){
         
-        if(size == 0){
+        if(nLibri == 0){
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
                 noLibri = new JLabel("Non ci sono libri relativi a questo corso");
             }
             if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri cercati")) {
                 noLibri = new JLabel("Nessun libro trovato");
             }
-            noLibri.setFont(new Font("Arial", Font.BOLD, 20));
+            noLibri.setFont(new Font("Century Gothic", Font.BOLD, 20));
             panel.add(noLibri);
             gbcd.gridx = 0;
             gbcd.gridy = 1;
@@ -170,19 +195,19 @@ public class ListaLibriPanel extends JPanel{
                 
             }
         }
+    }
+    
+    public void creaPannelloPrincipale(){
         
-        borderPanel.setBackground(Color.white);
         borderPanel.add(panel,BorderLayout.NORTH);
-        JScrollPane scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanel.setPreferredSize(new Dimension(650, 350));
         scrollPanel.setBackground(Color.white);
-        scrollPanel.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
+        
+        setBackground(Color.white);
+        borderPanel.setBackground(Color.white);
+        panel.setBackground(Color.white);
+        top.setBackground(Color.white);
         
         add(top);
         add(searchPanel);

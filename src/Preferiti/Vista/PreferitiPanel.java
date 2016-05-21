@@ -37,28 +37,42 @@ import javax.swing.border.LineBorder;
  */
 public class PreferitiPanel extends JPanel{
     
+    //dichiarazione variabili
     private int dimFacoltàPreferite, dimCorsiPreferiti, dimAppuntiPreferiti,
             dimLibriPreferiti, dimDomandePreferite ;
     
+    //sichiarazione array label
     private JLabel[] facoltàPreferite ,corsiPreferiti, appuntiPreferiti ,libriPreferiti,
             domandePreferite, facoltàPreferiteLab, corsiPreferitiLab, appuntiPreferitiLab,
             libriPreferitiLab, domandePreferiteLab, facoltàPreferiteIco, corsiPreferitiIco,
             appuntiPreferitiIco, libriPreferitiIco, domandePreferiteIco;
     
+    //dichiarazione array ascoltatori
     private GoToCorso[] goToCorso ;
     private GoToAppunto[] goToAppunto ;
     private GoToLibro[] goToLibro ;
     private GoToDomanda[] goToDomanda ;
     
+    //dichiarazione bottoni
     private JButton facoltàPreferiteButton, corsiPreferitiButton, appuntiPreferitiButton,
             libriPreferitiButton, domandePreferiteButton;
+    
+    //dichiarazione icone
     private ImageIcon  search, searchPressed, searchHover, searchSelected;
+    
+    //dichiarazione label
     private JLabel noFacoltà, noCorsi, noAppunti, noLibri, noDomande;
+    
+    //dichiarazione pannelli
+    private TopPanel top;
     private JPanel panel, nord, centro, facPanel, corsiPanel, appPanel, libPanel, domPanel;
     private JScrollPane scrollPanelFacoltà, scrollPanelCorsi,scrollPanelApp,scrollPanelLibri, scrollPanelDomande;
+   
+    //dichiarazione variabili layout
     private GridBagConstraints gbc, gbcd;
     private CardLayout cardLayout;
-    private TopPanel top;
+        
+    //dichiarazione ascoltatori
     private CaricaCorsi caricaCorsi;
     
     public PreferitiPanel() {
@@ -69,6 +83,7 @@ public class PreferitiPanel extends JPanel{
         dimAppuntiPreferiti = Applicazione.preferiti.getAppuntiPreferiti().size();
         dimLibriPreferiti = Applicazione.preferiti.getLibriPreferiti().size();
         dimDomandePreferite = Applicazione.preferiti.getDomandePreferite().size();
+        
         //dichiarazione panel
         top = new TopPanel("Preferiti");
         panel = new JPanel(new BorderLayout());
@@ -81,7 +96,7 @@ public class PreferitiPanel extends JPanel{
         domPanel = new JPanel(new GridBagLayout());
         cardLayout = new CardLayout();
         
-        //dichiarazione scroll
+        //dichiarazione scrollPanel
         scrollPanelFacoltà = new JScrollPane(facPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelCorsi = new JScrollPane(corsiPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelApp = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -168,7 +183,7 @@ public class PreferitiPanel extends JPanel{
         
         if(dimFacoltàPreferite == 0){
             
-            noFacoltà.setFont(new Font("Arial", Font.BOLD, 20));
+            noFacoltà.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -204,7 +219,7 @@ public class PreferitiPanel extends JPanel{
         
         if(dimCorsiPreferiti == 0){
             
-            noCorsi.setFont(new Font("Arial", Font.BOLD, 20));
+            noCorsi.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -241,7 +256,7 @@ public class PreferitiPanel extends JPanel{
         
         if(dimAppuntiPreferiti == 0){
             
-            noAppunti.setFont(new Font("Arial", Font.BOLD, 20));
+            noAppunti.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -280,7 +295,7 @@ public class PreferitiPanel extends JPanel{
         
         if(dimLibriPreferiti == 0){
             
-            noLibri.setFont(new Font("Arial", Font.BOLD, 20));
+            noLibri.setFont(new Font("Century Gothic", Font.BOLD, 20));
             
             gbcd.gridx = 0;
             gbcd.gridy = 0;
@@ -324,7 +339,7 @@ public class PreferitiPanel extends JPanel{
         
         if(dimDomandePreferite == 0){
             
-            noDomande.setFont(new Font("Arial", Font.BOLD, 20));
+            noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
             gbcd.gridx = 0;
             gbcd.gridy = 0;
             gbcd.insets = new Insets(10, 0, 0, 10);

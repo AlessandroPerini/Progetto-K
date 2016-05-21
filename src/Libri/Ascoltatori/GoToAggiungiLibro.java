@@ -1,18 +1,14 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* Ascoltatore posto nella ListaLibriPanel sul bottone "+"
+* che serve ad andare alla pagina per aggiungere un nuovo libro 
+*/
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JPanel;
 
 /**
  *

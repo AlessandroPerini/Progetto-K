@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore posto sull'immagine(bottone) "libro" nel CorsoPanel
+* e serve appunto a caricare i libri relativi a quel corso
 */
 package Libri.Ascoltatori;
 

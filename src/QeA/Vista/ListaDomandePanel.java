@@ -10,7 +10,6 @@ import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
 import Utils.Vista.CustomScrollBar;
-import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -28,7 +27,6 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -82,9 +80,7 @@ public class ListaDomandePanel extends JPanel{
         search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         searchPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        
-
-        
+                
         //inizializzazione bottoni - label
         domande = new JLabel[dimListaDomande];
         domandeNLike = new JLabel[dimListaDomande];
@@ -152,7 +148,7 @@ public class ListaDomandePanel extends JPanel{
         searchPanel.setBackground(Color.white);
         
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
-        searchField.setFont(new Font("Arial", Font.PLAIN, 20));
+        searchField.setFont(new Font("Century Gothic", Font.PLAIN, 20));
 
         searchButton.setBorder(BorderFactory.createEmptyBorder());
         searchButton.setContentAreaFilled(false);    

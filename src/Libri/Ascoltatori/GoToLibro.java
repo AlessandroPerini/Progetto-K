@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Acoltatore posto sulle label della ListaLibriPanel che serve ad andare
+* alla pagina con le info relative al libro premuto
 */
 package Libri.Ascoltatori;
 
@@ -13,7 +12,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -37,12 +35,11 @@ public class GoToLibro implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         
         try {
-            
             Applicazione.back.add("libro");
-
+            
             JLabel label = (JLabel)e.getComponent();
             nomeLibro = label.getText();
-
+            
             Applicazione.libroAttuale.setTitolo(nomeLibro);
             
             InfoQuery.caricaInfoLibro(corso, facoltà, id);

@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore posto sul bottone elimina(presente solo se il libro caricato è dell'
+* utente loggato) all'interno del LibroPanel
 */
 package Libri.Ascoltatori;
 
@@ -35,7 +34,6 @@ public class EliminaLibro implements ActionListener{
             try {
                 DeleteQuery.eliminaLibro();
                 
-                
                 if(ControlloQuery.controlloLibriPreferiti()==false){
                     DeleteQuery.eliminaLibriPreferiti();
                 }
@@ -59,11 +57,7 @@ public class EliminaLibro implements ActionListener{
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
                     Applicazione.svuotaPreferiti();
                     
-                    ListeQuery.caricaFacoltàPreferite();
-                    ListeQuery.caricaCorsiPreferiti();
-                    ListeQuery.caricaAppuntiPreferiti();
-                    ListeQuery.caricaLibriPreferiti();
-                    ListeQuery.caricaDomandePreferite();
+                    ListeQuery.caricaTuttiPreferiti();
                     
                     Ordina.ListePreferiti();
                     
@@ -75,9 +69,7 @@ public class EliminaLibro implements ActionListener{
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
                     Applicazione.svuotaMieiDati();
                     
-                    GuestQuery.caricaMieiAppunti();
-                    GuestQuery.caricaMieiLibri();
-                    GuestQuery.caricaMieDomande();
+                    GuestQuery.caricaTuttiMieiDati();
                     
                     Ordina.ListeMieiDati();
                     

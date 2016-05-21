@@ -5,16 +5,13 @@ package Università.Corsi.Vista;
 
 import Università.Corsi.Ascoltatori.GoToCorso;
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.CaricaAppunti;
 import Database.Query.ControlloQuery;
 import Database.Query.ListeQuery;
 import Header.Vista.TopPanel;
-import Libri.Ascoltatori.CaricaLibri;
 import Preferiti.Ascoltatori.AggiungiCorsoPreferito;
 import Preferiti.Ascoltatori.AggiungiFacoltàPreferita;
 import Preferiti.Ascoltatori.RimuoviCorsoPreferito;
 import Preferiti.Ascoltatori.RimuoviFacoltàPreferita;
-import QeA.Ascoltatori.CaricaDomande;
 import Utils.Azioni.Ordina;
 import java.awt.Color;
 import java.awt.Dimension;

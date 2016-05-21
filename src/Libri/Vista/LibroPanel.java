@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Pannello contenente le informazioni relative al libro selezionato
+ * E' inoltre possibile eliminare il libro se si è colui che l'ha caricato
  */
 package Libri.Vista;
 
@@ -11,6 +10,7 @@ import Header.Vista.TopPanel;
 import Libri.Ascoltatori.EliminaLibro;
 import Preferiti.Ascoltatori.AggiungiLibroPreferito;
 import Preferiti.Ascoltatori.RimuoviLibroPreferito;
+import Utils.Vista.CustomScrollBar;
 import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -36,41 +36,71 @@ import javax.swing.border.LineBorder;
  */
 public class LibroPanel extends JPanel{
 
+    //dichiarazione pannelli
     private JPanel top, panel, preferitiPanel, descrizionePanel;
+    private JScrollPane scrollDescrizione, scrollPanel;
+    
+    //dichiarazione label - textarea - buttoni
     private JLabel email, telefono, prezzo;
     private JTextArea descrizione;
-    private JScrollPane scrollPanel;
+    private JButton preferitiOn, preferitiOff, elimina; 
+    
+    //dichiarazione ascoltatori
+    private AggiungiLibroPreferito aggiungiLibroPreferito;
+    private RimuoviLibroPreferito rimuoviLibroPreferito;
+    private EliminaLibro eliminaLibro;
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc, gbc2;
     
     public LibroPanel() {
         
-        setBackground(Color.white);
+        //inizializzazione label - textarea - bottoni
+        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.libroAttuale.getStudente()+"</html>");
+        telefono = new JLabel("<html><b>Telefono: </b>"+Applicazione.libroAttuale.getTelefono()+"</html>");
+        prezzo = new JLabel("<html><b>Prezzo: </b>"+Applicazione.libroAttuale.getPrezzo()+" €</html>");
+        descrizione = new JTextArea(Applicazione.libroAttuale.getDescrizione());
+        preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
+        elimina = new JButton(new ImageIcon(getClass().getResource("/immagini/deleteNormal.png")));
         
-        GridBagConstraints gbc = new GridBagConstraints();
-        GridBagConstraints gbc2 = new GridBagConstraints();
-        
+        //inizializzazione pannelli
         top = new TopPanel(Applicazione.libroAttuale.getTitolo());
-        top.setBackground(Color.white);
-        
         panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.white);
-        
         preferitiPanel = new JPanel();
-        preferitiPanel.setBackground(Color.white);
+        descrizionePanel = new JPanel();
+        scrollDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanel = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+        //inizializzazione ascoltatori
+        aggiungiLibroPreferito = new AggiungiLibroPreferito();
+        rimuoviLibroPreferito = new RimuoviLibroPreferito();
+        eliminaLibro = new EliminaLibro();
+
+        //inizializzazione variabili layout
+        gbc = new GridBagConstraints();
+        gbc2 = new GridBagConstraints();
+
+        //creazione pannelli
+        creaPannelloPreferiti();
+        creaPannelloInfoLibro();
+        creaButtoneElimina();
+        creaPannelloPrincipale();
+        
+    }
+    
+    public void creaPannelloPreferiti(){
+
         preferitiPanel.setPreferredSize(new Dimension(650, 35));
         
-        //preferito
-        JButton preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOn.setBackground(Color.white);
         preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
         
-        JButton preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
         
-        AggiungiLibroPreferito aggiungiLibroPreferito = new AggiungiLibroPreferito();
         preferitiOff.addActionListener(aggiungiLibroPreferito);
-        
-        RimuoviLibroPreferito rimuoviLibroPreferito = new RimuoviLibroPreferito();
+      
         preferitiOn.addActionListener(rimuoviLibroPreferito);
         
         try {
@@ -82,17 +112,18 @@ public class LibroPanel extends JPanel{
             }
         } catch (SQLException ex) {
             System.out.println("Errore durante il controllo dell'appunto preferito");
-        }//fine zona preferito
-        
-        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.libroAttuale.getStudente()+"</html>");
+        }
+    }
+    
+    public void creaPannelloInfoLibro(){
+    
         email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(0, 0, 10, 0);
+        gbc.insets = new Insets(20, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(email, gbc);
         
-        telefono = new JLabel("<html><b>Telefono: </b>"+Applicazione.libroAttuale.getTelefono()+"</html>");
         telefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -100,7 +131,6 @@ public class LibroPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(telefono, gbc);
         
-        prezzo = new JLabel("<html><b>Prezzo: </b>"+Applicazione.libroAttuale.getPrezzo()+" €</html>");
         prezzo.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 2;
@@ -108,39 +138,30 @@ public class LibroPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(prezzo, gbc);
 
-        descrizionePanel = new JPanel();
         descrizionePanel.setBackground(Color.white);
         descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
-        descrizione = new JTextArea(Applicazione.libroAttuale.getDescrizione());
         descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 16));
         descrizione.setBackground(new Color(239,242,243));
-        scrollPanel = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel.setPreferredSize(new Dimension(300, 150));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanel.setVerticalScrollBar(scrollBar);
+        scrollDescrizione.setPreferredSize(new Dimension(300, 150));
+        scrollDescrizione.setVerticalScrollBar(new CustomScrollBar());
         descrizione.setLineWrap(true);
         descrizione.setWrapStyleWord(true);
         descrizione.setEditable(false);
-        descrizionePanel.add(scrollPanel);
+        descrizionePanel.add(scrollDescrizione);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(descrizionePanel, gbc);
-                
-        Icon eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
-        JButton elimina = new JButton(eliminaNormal);
+    }
+    
+    public void creaButtoneElimina(){
+        
         elimina.setBorder(BorderFactory.createEmptyBorder());
         elimina.setContentAreaFilled(false);
-        Icon eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
-        elimina.setRolloverIcon(eliminaHover);
-        Icon eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
-        elimina.setPressedIcon(eliminaPressed);
+        elimina.setRolloverIcon(new ImageIcon(getClass().getResource("/immagini/deleteHover.png")));
+        elimina.setPressedIcon(new ImageIcon(getClass().getResource("/immagini/deletePressed.png")));
         elimina.setText("ELIMINA");
         elimina.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         elimina.setForeground(Color.white);
@@ -148,7 +169,6 @@ public class LibroPanel extends JPanel{
         elimina.setPreferredSize(new Dimension(110, 40));
         
         elimina.setBackground(new Color(249,123,123));
-        EliminaLibro eliminaLibro = new EliminaLibro();
         elimina.addActionListener(eliminaLibro);
 
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
@@ -160,15 +180,21 @@ public class LibroPanel extends JPanel{
             gbc.anchor = GridBagConstraints.CENTER;
             panel.add(elimina, gbc);
         }
+    }
+    
+    public void creaPannelloPrincipale(){
+    
+        setBackground(Color.white);
+        top.setBackground(Color.white);
+        preferitiPanel.setBackground(Color.white);
+        panel.setBackground(Color.white);
+        scrollPanel.setBackground(Color.white);
         
-        JScrollPane scrollPanel1 = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel1.setPreferredSize(new Dimension(650, 400));
-        scrollPanel1.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanel.setPreferredSize(new Dimension(650, 415));
         
         add(top);
         add(preferitiPanel);
-        add(scrollPanel1);
-
+        add(scrollPanel);
     }
     
 }
