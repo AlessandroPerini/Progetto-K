@@ -223,9 +223,9 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
                 appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
                 appunti[i].setToolTipText(appunti[i].getText());
-                appunti[i].setPreferredSize(new Dimension(120, 30));
+                appunti[i].setPreferredSize(new Dimension(200, 30));
                 appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
-                appuntiLabel[i].setPreferredSize(new Dimension(220, 30));
+                appuntiLabel[i].setPreferredSize(new Dimension(240, 30));
                 appunti[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 appuntiLabel[i].add(appuntiIcon[i]);
                 appuntiLabel[i].add(new JLabel("   "));
@@ -270,18 +270,17 @@ public class ListaAppuntiPanel extends JPanel{
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, -7, 0, 10);
                 gbcd.anchor = GridBagConstraints.NORTHEAST;
-                
                 listaPanel.add(appuntiLabel[i], gbcd);
                 
                 gbcd.gridx = 1;
                 gbcd.gridy = i;
                 
                 gbc.gridy = 0;
-                gbc.insets = new Insets(5, 150, 0, 10);
+                gbc.insets = new Insets(5, 200, 0, 10);
                 gbc.anchor = GridBagConstraints.FIRST_LINE_END;
                 
                 gbc.gridy = 0;
-                gbc.insets = new Insets(5, 150, 0, 10);
+                gbc.insets = new Insets(5, 200, 0, 10);
                 gbc.anchor = GridBagConstraints.LINE_END;
                 
                 listaPanel.add(appuntiIcoValutazione[i], gbcd);

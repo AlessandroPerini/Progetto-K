@@ -71,7 +71,7 @@
 
     -->
     <target name="-post-jar">
-        <jar jarfile="dist/unique/ProgettoK.jar">
+        <jar jarfile="jar/ProgettoK.jar">
             <zipfileset src="${dist.jar}" excludes="META-INF/*" />
             <zipfileset src="dist/lib/dropbox-core-sdk-1.8.2.jar" excludes="META-INF/*" />
             <zipfileset src="dist/lib/jackson-core-2.6.1.jar" excludes="META-INF/*" />

@@ -93,6 +93,8 @@ public class Menù implements ActionListener{
             
             Ordina.ListePreferiti();
             
+            Applicazione.back.add("preferiti");
+            
             preferiti = new PreferitiPanel();
             Grafica.container.add(preferiti, "preferiti");
             Grafica.card.show(Grafica.container, "preferiti");

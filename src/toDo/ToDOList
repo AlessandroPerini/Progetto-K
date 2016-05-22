@@ -17,7 +17,7 @@ Pulizia Codice{
     +Libri
     +Preferiti
     +Login;
-    -QeA;
+    +QeA;
     +Segnalazioni;
     +Studenti;
     +Università>Corsi;
@@ -33,11 +33,17 @@ Pulizia Codice{
 
 +Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
 
--Allungare un po label nelle liste
++Allungare un po'label nelle liste
 
--Fissare in basso a domanda panel l'area per aggiungere la risposta
+-In lista domande parte a metterle in centro, in appunti e libri dall'alto
+
+-Fissare in basso a domanda panel l'area per aggiungere la risposta?
 
 -Ripetere titolo/nome oltre che nel TopPanel?
+
+-Nickname al posto di email nelle recensioni?
+
+
 
 1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
 

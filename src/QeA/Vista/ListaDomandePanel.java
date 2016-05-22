@@ -209,10 +209,10 @@ public class ListaDomandePanel extends JPanel{
                 domande[i].setToolTipText(domande[i].getText());
                 domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
-                domande[i].setPreferredSize(new Dimension(120, 30));
+                domande[i].setPreferredSize(new Dimension(200, 30));
                 domande[i].addMouseListener(goToDomanda);
                 domandeLabel[i].setLayout(new BoxLayout(domandeLabel[i], BoxLayout.X_AXIS));
-                domandeLabel[i].setPreferredSize(new Dimension(220, 30));
+                domandeLabel[i].setPreferredSize(new Dimension(240, 30));
                 domandeLabel[i].add(domandeIcon[i]);
                 domandeLabel[i].add(new JLabel("   "));
                 domandeLabel[i].add(domande[i]);
@@ -228,7 +228,7 @@ public class ListaDomandePanel extends JPanel{
                 domandeNLike[i].setForeground(Color.black);
                 gbcImg.gridx = 1;
                 gbcImg.gridy = i+1;
-                gbcImg.insets = new Insets(18, 0, 0, 5);
+                gbcImg.insets = new Insets(18, -10, 0, 5);
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 pannelloPrincipale.add(domandeNLike[i], gbcImg);
                 
