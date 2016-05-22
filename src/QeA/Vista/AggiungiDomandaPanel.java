@@ -40,7 +40,7 @@ public class AggiungiDomandaPanel extends JPanel{
     public AggiungiDomandaPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel("Aggiungi Domanda in "+Applicazione.corsoAttuale.getNome());
+        top = new TopPanel("Aggiungi Domanda in '"+Applicazione.corsoAttuale.getNome()+"'");
         gbc = new GridBagConstraints();
         panel = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();

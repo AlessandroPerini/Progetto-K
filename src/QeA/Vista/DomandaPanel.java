@@ -30,6 +30,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
@@ -46,7 +47,7 @@ public class DomandaPanel extends JPanel{
     private JPanel panel, pannelloRisposta, pannelloLike, pannelloDislike, preferitiPanel, descrizionePanel, rispostePanel, rispostaPanel;
     private JLabel email, NlikeDomanda, nomeRisposta, numeroLikeRisposta,numeroDislikeRisposta;
     private JTextArea descrizione, rispondiArea,risposte2;
-    private JScrollPane scrollPanelDescrizione, scrollPanelPrincipale, scrollPanelRisposte, scrollPanelRIspondiArea, scrollPanel5;   
+    private JScrollPane scrollPanelDescrizione, scrollPanelPrincipale, scrollPanelContainerRisposte, scrollPanelAreaRispondi, scrollPanelRisposta;   
     private GridBagConstraints gbcRisposte;
     private ImageIcon rispondiNormal, rispondiHover, rispondiPressed, eliminaNormal,eliminaHover, eliminaPressed;
     private GridBagConstraints gbc;
@@ -95,9 +96,9 @@ public class DomandaPanel extends JPanel{
         scrollPanelDescrizione = new JScrollPane();
         likeDomanda = new JButton(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
         NlikeDomanda = new JLabel();
-        scrollPanelRisposte = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelContainerRisposte = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         rispondiArea = new JTextArea(4,20);
-        scrollPanelRIspondiArea = new JScrollPane();
+        scrollPanelAreaRispondi = new JScrollPane();
         rispondi = new JButton(rispondiNormal);
         elimina = new JButton(eliminaNormal);
         nomeRisposta = new JLabel();
@@ -216,32 +217,34 @@ public class DomandaPanel extends JPanel{
         
         }
 
-        scrollPanelRisposte.setPreferredSize(new Dimension(480 , 250));
-        scrollPanelRisposte.getVerticalScrollBar().setUnitIncrement(10);
-        scrollPanelRisposte.setWheelScrollingEnabled(true);
-        scrollPanelRisposte.setVerticalScrollBar(new CustomScrollBar());
+        scrollPanelContainerRisposte.setPreferredSize(new Dimension(480 , 250));
+        scrollPanelContainerRisposte.getVerticalScrollBar().setUnitIncrement(10);
+        scrollPanelContainerRisposte.setWheelScrollingEnabled(true);
+        JScrollBar scrollBarContainerRisposte = new CustomScrollBar();
+        scrollBarContainerRisposte.setPreferredSize(new Dimension(0, 0));
+        scrollPanelContainerRisposte.setVerticalScrollBar(scrollBarContainerRisposte);
 	gbc.gridx = 0;
 	gbc.gridy = 3;
 	gbc.insets = new Insets(10, 0, 0, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
         rispostePanel.setBorder(BorderFactory.createTitledBorder("Risposte"));
-        rispostePanel.add(scrollPanelRisposte);
+        rispostePanel.add(scrollPanelContainerRisposte);
 	panel.add(rispostePanel, gbc);
         
         rispondiArea.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         rispondiArea.setLineWrap(true);
         rispondiArea.setWrapStyleWord(true);
         
-        scrollPanelRIspondiArea.setViewportView(rispondiArea);
-        scrollPanelRIspondiArea.setWheelScrollingEnabled(true);
-        scrollPanelRIspondiArea.setBorder(new LineBorder(Color.white));
-        scrollPanelRIspondiArea.setVerticalScrollBar(new CustomScrollBar());
+        scrollPanelAreaRispondi.setViewportView(rispondiArea);
+        scrollPanelAreaRispondi.setWheelScrollingEnabled(true);
+        scrollPanelAreaRispondi.setBorder(new LineBorder(Color.white));
+        scrollPanelAreaRispondi.setVerticalScrollBar(new CustomScrollBar());
 	gbc.gridx = 0;
 	gbc.gridy = 4;
 	gbc.insets = new Insets(10, 0, 30, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
         rispostaPanel.setBorder(BorderFactory.createTitledBorder("Inserisci qui una risposta"));
-        rispostaPanel.add(scrollPanelRIspondiArea);
+        rispostaPanel.add(scrollPanelAreaRispondi);
 	panel.add(rispostaPanel, gbc);
         
         rispondi.setBorder(BorderFactory.createEmptyBorder());
@@ -310,14 +313,16 @@ public class DomandaPanel extends JPanel{
             risposte2.setEditable(false);
             risposte2.setLineWrap(true);
             risposte2.setWrapStyleWord(true);
-            scrollPanel5 = new JScrollPane(risposte2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-            scrollPanel5.setWheelScrollingEnabled(true);
-            scrollPanel5.setVerticalScrollBar(new CustomScrollBar());
+            scrollPanelRisposta = new JScrollPane(risposte2,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+            scrollPanelRisposta.setWheelScrollingEnabled(true);
+            JScrollBar scrollBarRisposta = new CustomScrollBar();
+            scrollBarRisposta.setPreferredSize(new Dimension(5, 0));
+            scrollPanelRisposta.setVerticalScrollBar(scrollBarRisposta);
             gbcRisposte.gridx = 1;
             gbcRisposte.gridy = i;
             gbcRisposte.insets = new Insets(10, 5, 10, 10);
             gbcRisposte.anchor = GridBagConstraints.LINE_START;
-            pannelloRisposta.add(scrollPanel5, gbcRisposte);
+            pannelloRisposta.add(scrollPanelRisposta, gbcRisposte);
             
             pannelloDislike = new JPanel();
             pannelloLike = new JPanel();

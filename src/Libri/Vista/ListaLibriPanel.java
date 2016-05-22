@@ -12,7 +12,6 @@ import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
 import Utils.Vista.CustomScrollBar;
-import Utils.Vista.ScrollBarUI;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -73,7 +72,7 @@ public class ListaLibriPanel extends JPanel{
         addLibro = new JButton("", new ImageIcon(getClass().getResource("/immagini/add.png")));
         
         //inizializzazione pannelli
-        top = new TopPanel("Libri "+Applicazione.corsoAttuale.getNome());
+        top = new TopPanel("Libri '"+Applicazione.corsoAttuale.getNome()+"'");
         borderPanel = new JPanel(new BorderLayout());
         panel = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();

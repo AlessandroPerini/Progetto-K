@@ -72,7 +72,7 @@ public class ListaAppuntiPanel extends JPanel{
         size = Applicazione.listaAppuntiAttuali.size();
         
         //inizializzazione pannelli
-        top = new TopPanel("Appunti "+Applicazione.corsoAttuale.getNome());
+        top = new TopPanel("Appunti '"+Applicazione.corsoAttuale.getNome()+"'");
         borderPanel = new JPanel(new BorderLayout());
         listaPanel = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();

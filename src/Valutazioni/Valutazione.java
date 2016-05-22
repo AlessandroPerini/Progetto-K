@@ -1,6 +1,7 @@
 /*
- * Classe contenente la struttura di una valutazione (Attributi, Costruttore, Metodi get e set)
- */
+* Classe contentenete la struttura di una valutazione:
+* attributi, costruttore, metodi get - set
+*/
 package Valutazioni;
 
 /**

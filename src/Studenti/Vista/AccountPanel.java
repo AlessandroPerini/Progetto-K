@@ -32,9 +32,9 @@ public class AccountPanel extends JPanel{
     
     //dichiarazione oggetti
     private static JLabel email;
-    private static JTextField phone, nick;
+    private static JTextField telefono, nickname;
     private JButton cambiaNumero, cambiaNickname, logout, iMieiDati;
-    private JLabel emailLabel, nickLabel, phoneLabel;
+    private JLabel emailLabel, nicknameLabel, telefonoLabel;
     private ImageIcon buttonNormal, buttonHover, buttonPressed, logoutNormal, logoutHover, logoutPressed;
     private JPanel body, centro;
     private TopPanel top;
@@ -57,8 +57,8 @@ public class AccountPanel extends JPanel{
         gbc = new GridBagConstraints();
         
         //inizializzazione icon
-        buttonNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        buttonHover = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        buttonNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        buttonHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         buttonPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         logoutHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
         logoutNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
@@ -68,19 +68,19 @@ public class AccountPanel extends JPanel{
         logout = new JButton("LOGOUT",logoutNormal);
         iMieiDati = new JButton("MIE ATTIVITÀ",buttonNormal);
         emailLabel = new JLabel("Email: ");
-        nickLabel = new JLabel("Nickname: ");
-        phoneLabel = new JLabel("Telefono: ");
-        nick = new JTextField(Applicazione.guest.getNickname());
+        nicknameLabel = new JLabel("Nickname: ");
+        telefonoLabel = new JLabel("Telefono: ");
+        nickname = new JTextField(Applicazione.guest.getNickname());
         email = new JLabel(Applicazione.guest.getEmail());
-        phone = new JTextField(Applicazione.guest.getTelefono());
+        telefono = new JTextField(Applicazione.guest.getTelefono());
         cambiaNumero = new JButton();
         cambiaNickname = new JButton();
         
         //inizializzazione ascoltatori
         logout2 = new Logout();
         caricaIMieiDati = new CaricaIMieiDati();
-        modificaNumero = new ModificaNumero(nClickTel, phone, cambiaNumero);
-        modificaNickname = new ModificaNickname(nClickNick, nick, cambiaNickname);
+        modificaNumero = new ModificaNumero(nClickTel, telefono, cambiaNumero);
+        modificaNickname = new ModificaNickname(nClickNick, nickname, cambiaNickname);
         
         //creazione bottoni
         creaBottone(logout, logoutHover, logoutPressed,"LOGOUT");
@@ -92,8 +92,8 @@ public class AccountPanel extends JPanel{
         settaggioComponenti();
         
         //body panel
-        creaTextField(nick);
-        creaTextField(phone);
+        creaTextField(nickname);
+        creaTextField(telefono);
         
         creaBottoneModifica(cambiaNumero);
         creaBottoneModifica(cambiaNickname);
@@ -115,49 +115,49 @@ public class AccountPanel extends JPanel{
         
         gbc.gridx = 0;
         gbc.gridy = 1;
-        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.insets = new Insets(40, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(nickLabel, gbc);
+        body.add(nicknameLabel, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.insets = new Insets(40, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(nick, gbc);
+        body.add(nickname, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 1;
-        gbc.insets = new Insets(30, -5, 0, 10);
+        gbc.insets = new Insets(40, -5, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         body.add(cambiaNickname, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 2;
-        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.insets = new Insets(40, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(phoneLabel, gbc);
+        body.add(telefonoLabel, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 2;
-        gbc.insets = new Insets(30, 10, 0, 10);
+        gbc.insets = new Insets(40, 10, 0, 10);
         gbc.anchor = GridBagConstraints.CENTER;
-        body.add(phone, gbc);
+        body.add(telefono, gbc);
         
         gbc.gridx = 2;
         gbc.gridy = 2;
-        gbc.insets = new Insets(30, -5, 0, 10);
+        gbc.insets = new Insets(40, -5, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         body.add(cambiaNumero, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        gbc.insets = new Insets(60, -60, 0, 10);
+        gbc.insets = new Insets(70, -60, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_START;
         body.add(logout, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 3;
-        gbc.insets = new Insets(60, 0, 0, 10);
+        gbc.insets = new Insets(70, 0, 0, 10);
         gbc.anchor = GridBagConstraints.LINE_END;
         body.add(iMieiDati, gbc);
         
@@ -167,6 +167,7 @@ public class AccountPanel extends JPanel{
         add(body);
         
     }
+    
     public void settaggioComponenti(){
         
         this.setBackground(Color.white);
@@ -178,10 +179,11 @@ public class AccountPanel extends JPanel{
         
         email.setFont(new Font("Century Gothic", Font.PLAIN, 18));
         
-        nickLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
+        nicknameLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
         
-        phoneLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
+        telefonoLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
     }
+    
     public void creaBottone(JButton button, ImageIcon hover, ImageIcon pressed, String text){
         
         button.setBorder(BorderFactory.createEmptyBorder());
@@ -204,6 +206,7 @@ public class AccountPanel extends JPanel{
         field.setColumns(14);
         field.setHorizontalAlignment(JTextField.CENTER);
     }
+    
     public void creaBottoneModifica(JButton button){
         
         button.setBorder(BorderFactory.createEmptyBorder());

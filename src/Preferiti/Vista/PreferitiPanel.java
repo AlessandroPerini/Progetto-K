@@ -388,7 +388,6 @@ public class PreferitiPanel extends JPanel{
         
         scroll.setPreferredSize(new Dimension(650, 400));
         scroll.setBackground(Color.white);
-        scroll.setBorder(new LineBorder(Color.white));
         scroll.setVerticalScrollBar(new CustomScrollBar());
         
     }

@@ -68,7 +68,7 @@ public class ListaDomandePanel extends JPanel{
         size = Applicazione.listaDomandeAttuali.size();
         
         //inizializzazione pannelli    
-        top = new TopPanel("Domande ");
+        top = new TopPanel("Domande '"+Applicazione.corsoAttuale.getNome()+"'");
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         panel = new JPanel(new GridBagLayout());

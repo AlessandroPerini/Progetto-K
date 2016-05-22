@@ -36,6 +36,7 @@ import javax.swing.border.LineBorder;
  * @author te4o
  */
 public class iMieiDatiPanel extends JPanel{
+    
     //dichiarazione variabili
     private int dimAppunti,dimLibri, dimDomande ;
     
@@ -267,17 +268,14 @@ public class iMieiDatiPanel extends JPanel{
         
         scrollPanelAppunti.setPreferredSize(new Dimension(650, 400));
         scrollPanelAppunti.setBackground(Color.white);
-        scrollPanelAppunti.setBorder(new LineBorder(Color.white));
         scrollPanelAppunti.setVerticalScrollBar(new CustomScrollBar());
  
         scrollPanelLibri.setPreferredSize(new Dimension(650, 400));
         scrollPanelLibri.setBackground(Color.white);
-        scrollPanelLibri.setBorder(new LineBorder(Color.white));
         scrollPanelLibri.setVerticalScrollBar(new CustomScrollBar());
    
         scrollPanelDomande.setPreferredSize(new Dimension(650, 400));
         scrollPanelDomande.setBackground(Color.white);
-        scrollPanelDomande.setBorder(new LineBorder(Color.white));
         scrollPanelDomande.setVerticalScrollBar(new CustomScrollBar());
     }
     

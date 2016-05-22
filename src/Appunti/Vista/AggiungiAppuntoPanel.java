@@ -9,7 +9,6 @@ import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Utils.Vista.CustomScrollBar;
-import Utils.Vista.ScrollBarUI;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -25,7 +24,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -53,7 +51,7 @@ public class AggiungiAppuntoPanel extends JPanel{
     public AggiungiAppuntoPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel("Aggiungi Appunto in "+Applicazione.corsoAttuale.getNome());
+        top = new TopPanel("Aggiungi Appunto in '"+Applicazione.corsoAttuale.getNome()+"'");
         pannelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();
         descrizionePanel = new JPanel();

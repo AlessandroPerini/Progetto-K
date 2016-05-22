@@ -6,7 +6,7 @@ package Libri.Vista;
 import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.AggiungiLibro;
-import Utils.Vista.ScrollBarUI;
+import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,14 +14,12 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.DefaultEditor;
@@ -36,80 +34,88 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiLibroPanel extends JPanel{
     
+    //dichiarazione oggetti
     private static JTextArea nome, descrizione;
     private JButton aggiungi;
     private JSpinner prezzo;
+    private SpinnerNumberModel prezzoModel;
     private JCheckBox telefono;
-    private JPanel prezzoPanel, nomePanel, descrizionePanel;
     private JLabel euro;
+    
+    //dichiarazione pannelli
+    private JPanel top, panel, prezzoPanel, nomePanel, descrizionePanel;
+    private JScrollPane scrollPanelNome, scrollPanelDescrizione, scrollPanelPrincipale;
+    
+    //dichiarazione ascoltatori
+    private AggiungiLibro aggiungiLibro; 
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc;
     
     public AggiungiLibroPanel() {
         
-        GridBagConstraints gbc = new GridBagConstraints();
+        //inizializzazione pannelli
+        top = new TopPanel("Aggiungi Libro in '"+Applicazione.corsoAttuale.getNome()+"'");
+        panel = new JPanel(new GridBagLayout());
+        nomePanel = new JPanel();
+        descrizionePanel = new JPanel();
+        prezzoPanel = new JPanel();
+        scrollPanelPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
-        setBackground(Color.white);
-        
-        TopPanel top = new TopPanel("Aggiungi Libro in "+Applicazione.corsoAttuale.getNome());
-        top.setBackground(Color.white);
-        
-        JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.white);
-        
+        //inizializzazione oggetti
         nome = new JTextArea("");
         descrizione = new JTextArea("");
+        telefono = new JCheckBox("Vuoi far vedere il tuo numero?");
+        prezzoModel = new SpinnerNumberModel(0, 0, 999, 1);
+        prezzo = new JSpinner(prezzoModel);
+        euro = new JLabel("€");
+        aggiungi = new JButton(new ImageIcon(getClass().getResource("/immagini/buttonNormal.png")));
         
-        nomePanel = new JPanel();
+        //inizializzazione ascoltatori
+        aggiungiLibro = new AggiungiLibro(nome, descrizione, prezzo, telefono);
+        
+        //inizializzazione variabili layout
+        gbc = new GridBagConstraints();
+        
+        
+        //creazione pannelli
+        creaPannelloNome();
+        creaPannelloTelefono();
+        creaPannelloPrezzo();
+        creaPannelloDescrizione();
+        creaPannelloBottone();
+        creaPannelloPrincipale();
+        
+    }
+    
+    public void creaPannelloNome(){
+        
         nomePanel.setBackground(Color.white);
-        descrizionePanel = new JPanel();
-        descrizionePanel.setBackground(Color.white);
-        
         nomePanel.setBorder(BorderFactory.createTitledBorder("Titolo"));
-        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
         
         nome.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 13));
-        
         nome.setBackground(Color.white);
         nome.setForeground(Color.BLACK);
-        descrizione.setBackground(Color.white);
-        descrizione.setForeground(Color.BLACK);
         
-        JScrollPane scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelNome.setPreferredSize(new Dimension(250, 50));
         scrollPanelNome.setBackground(Color.white);
         scrollPanelNome.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar = new JScrollBar();
-        scrollBar.setBackground(Color.white);
-        scrollBar.setPreferredSize(new Dimension(13, 0));
-        scrollBar.setUI(new ScrollBarUI());
-        scrollBar.setUnitIncrement(16);
-        scrollPanelNome.setVerticalScrollBar(scrollBar);
+        scrollPanelNome.setVerticalScrollBar(new CustomScrollBar());
         nome.setLineWrap(true);
         nome.setWrapStyleWord(true);
         
-        JScrollPane scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanelDescrizione.setPreferredSize(new Dimension(250, 100));
-        scrollPanelDescrizione.setBackground(Color.white);
-        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
-        JScrollBar scrollBar2 = new JScrollBar();
-        scrollBar2.setBackground(Color.white);
-        scrollBar2.setPreferredSize(new Dimension(13, 0));
-        scrollBar2.setUI(new ScrollBarUI());
-        scrollBar2.setUnitIncrement(16);
-        scrollPanelDescrizione.setVerticalScrollBar(scrollBar2);
-        descrizione.setLineWrap(true);
-        descrizione.setWrapStyleWord(true);
-        
         nomePanel.add(scrollPanelNome);
-        descrizionePanel.add(scrollPanelDescrizione);
         
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(nomePanel, gbc);
+    }
+    
+    public void creaPannelloTelefono(){
         
-        telefono = new JCheckBox("Vuoi far vedere il tuo numero?");
         telefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         telefono.setBorder(BorderFactory.createTitledBorder("Telefono"));
         telefono.setBackground(Color.white);
@@ -119,9 +125,10 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(telefono, gbc);
+    }
+    
+    public void creaPannelloPrezzo(){
         
-        SpinnerNumberModel prezzoModel = new SpinnerNumberModel(0, 0, 999, 1);
-        prezzo = new JSpinner(prezzoModel);
         ((DefaultEditor) prezzo.getEditor()).getTextField().setEditable(false);
         prezzo.setPreferredSize(new Dimension(150, 30));
         prezzo.setFont(new Font("Century Gothic", Font.PLAIN, 15));
@@ -130,11 +137,11 @@ public class AggiungiLibroPanel extends JPanel{
         JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)editor;
         spinnerEditor.getTextField().setHorizontalAlignment(JTextField.CENTER);
         
-        euro = new JLabel("€");
+        
         euro.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         euro.setBackground(Color.white);
         
-        prezzoPanel = new JPanel();
+        
         prezzoPanel.add(euro);
         prezzoPanel.add(prezzo);
         prezzoPanel.setBorder(BorderFactory.createTitledBorder("Prezzo"));
@@ -145,28 +152,46 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(prezzoPanel, gbc);
+    }
+    
+    public void creaPannelloDescrizione(){
+        
+        descrizionePanel.setBackground(Color.white);
+        descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
+        
+        descrizione.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        descrizione.setBackground(Color.white);
+        descrizione.setForeground(Color.BLACK);
+        
+        scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDescrizione.setPreferredSize(new Dimension(250, 100));
+        scrollPanelDescrizione.setBackground(Color.white);
+        scrollPanelDescrizione.setBorder(new LineBorder(Color.white));
+        scrollPanelDescrizione.setVerticalScrollBar(new CustomScrollBar());
+        descrizione.setLineWrap(true);
+        descrizione.setWrapStyleWord(true);
+        
+        descrizionePanel.add(scrollPanelDescrizione);
         
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(descrizionePanel, gbc);
+    }
+    
+    public void creaPannelloBottone(){
         
-        Icon aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        aggiungi = new JButton(aggiungiNormal);
         aggiungi.setBorder(BorderFactory.createEmptyBorder());
         aggiungi.setContentAreaFilled(false);
-        Icon aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        aggiungi.setRolloverIcon(aggiungiHover);
-        Icon aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
-        aggiungi.setPressedIcon(aggiungiPressed);
+        aggiungi.setRolloverIcon(new ImageIcon(getClass().getResource("/immagini/buttonHover.png")));
+        aggiungi.setPressedIcon(new ImageIcon(getClass().getResource("/immagini/buttonPressed.png")));
         aggiungi.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         aggiungi.setForeground(Color.white);
         aggiungi.setIconTextGap(-88);
         aggiungi.setPreferredSize(new Dimension(110, 40));
         aggiungi.setEnabled(true);
         aggiungi.setText("AGGIUNGI");
-        AggiungiLibro aggiungiLibro = new AggiungiLibro(nome, descrizione, prezzo, telefono);
         aggiungi.addActionListener(aggiungiLibro);
         
         gbc.gridx = 0;
@@ -174,13 +199,18 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         panel.add(aggiungi, gbc);
+    }
+    
+    public void creaPannelloPrincipale(){
         
-        JScrollPane scrollPanel = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        scrollPanel.setPreferredSize(new Dimension(650, 450));
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 450));
         
         add(top);
-        add(scrollPanel);
+        add(scrollPanelPrincipale);
         
+        setBackground(Color.white);
+        top.setBackground(Color.white);
+        panel.setBackground(Color.white);
     }
     
     public static void clearForm(){

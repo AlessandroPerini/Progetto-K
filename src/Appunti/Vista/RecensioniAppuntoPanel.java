@@ -54,7 +54,7 @@ public class RecensioniAppuntoPanel extends JPanel{
         
         //inizializzazione pannelli
         recensioni = new JPanel[dimListaValutazioni];
-        top = new TopPanel("Recensioni "+Applicazione.appuntoAttuale.getNome());
+        top = new TopPanel("Recensioni '"+Applicazione.appuntoAttuale.getNome()+"'");
         emailPunteggio = new JPanel[dimListaValutazioni];  
         panel = new JPanel(new GridBagLayout());
         scrollPanel = new JScrollPane[dimListaValutazioni];

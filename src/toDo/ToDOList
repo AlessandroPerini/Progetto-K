@@ -29,9 +29,9 @@ Pulizia Codice{
 
 +Controllo sulla modifica del numero di telefono (solo numeri)
 
--Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
++Togliere lo scrolBar interno alle risposte, cioè farlo invisibile e lasciare solo quello esterno
 
--Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
++Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
 
 
 

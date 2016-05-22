@@ -4,6 +4,7 @@
 */
 package Valutazioni.Vista;
 
+import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Utils.Vista.CustomScrollBar;
 import Valutazioni.Ascoltatori.VotaAppunto;
@@ -34,38 +35,29 @@ public class ValutaAppuntoFrame{
     //dichiarazione oggetti
     private JTextArea commento;
     private JSlider punteggio;
-    private JFrame valutaFrame;
     private JLabel titoloFrame;
+    private JButton annulla, conferma;
+    
+    //dichiarazione frame - pannelli
+    private JFrame valutaFrame;
     private JPanel container, mainPanel, commentoPanel, buttonPanel;
     private JScrollPane scrollPanelCommento;
-    private JButton annulla, conferma;
-    private GridBagConstraints gbc, gbc2;
+    
+    //dichiarazione icone
     private ImageIcon confermaNormal, confermaHover, confermaPressed, annullaNormal, annullaHover, annullaPressed;
     
     //dichiarazione ascoltatori
     private VotaAppunto votaAppunto;
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc, gbc2;
     
     public ValutaAppuntoFrame() {
         this.valutaFrame = new JFrame();
     }
     
     public void apri(){
-        
-        ////inizializzazione variabili di layout
-        gbc = new GridBagConstraints();
-        gbc2 = new GridBagConstraints();
-        
-        //inizializzazione oggetti
-        valutaFrame = new JFrame("Valuta Appunto");
-        container = new JPanel();
-        mainPanel = new JPanel(new GridBagLayout());
-        buttonPanel = new JPanel(new GridBagLayout());
-        titoloFrame = new JLabel("Valuta appunto");
-        commentoPanel = new JPanel();
-        punteggio = new JSlider(1, 5);
-        commento = new JTextArea();
-        scrollPanelCommento = new JScrollPane(commento, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
+
         //inizializzaione immagini
         confermaNormal = new ImageIcon(getClass().getResource("/immagini/buttonNormal.png"));
         confermaHover = new ImageIcon(getClass().getResource("/immagini/buttonHover.png"));
@@ -73,6 +65,28 @@ public class ValutaAppuntoFrame{
         annullaNormal = new ImageIcon(getClass().getResource("/immagini/deleteNormal.png"));
         annullaHover = new ImageIcon(getClass().getResource("/immagini/deleteHover.png"));
         annullaPressed = new ImageIcon(getClass().getResource("/immagini/deletePressed.png"));
+        
+        //inizializzazione oggetti
+        titoloFrame = new JLabel("Valuta Appunto '"+Applicazione.appuntoAttuale.getNome()+"'");
+        commentoPanel = new JPanel();
+        punteggio = new JSlider(1, 5);
+        commento = new JTextArea();
+        annulla = new JButton(annullaNormal);
+        conferma = new JButton(confermaNormal);
+        
+        //inizializzazione frame - pannelli
+        valutaFrame = new JFrame("Valuta Appunto");
+        container = new JPanel();
+        mainPanel = new JPanel(new GridBagLayout());
+        buttonPanel = new JPanel(new GridBagLayout());
+        scrollPanelCommento = new JScrollPane(commento, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        //iniziaqlizzazione ascoltatori
+        votaAppunto = new VotaAppunto(commento, punteggio, valutaFrame);
+        
+        //inizializzazione variabili di layout
+        gbc = new GridBagConstraints();
+        gbc2 = new GridBagConstraints();
         
         //creazione frame - pannello
         creaFrame();
@@ -86,6 +100,7 @@ public class ValutaAppuntoFrame{
         valutaFrame.setResizable(false);
         valutaFrame.setUndecorated(true);
         valutaFrame.setVisible(true);
+        
         //centra questo frame esattamente al centro rispetto al MainFrame
         int x = (int) (Grafica.posizione().getX() + 350 - valutaFrame.getWidth()/2);
         int y = (int) (Grafica.posizione().getY() + 280 - valutaFrame.getHeight()/2);
@@ -99,11 +114,13 @@ public class ValutaAppuntoFrame{
     public void creaPannello(){
         
         mainPanel.setBackground(Color.white);
-        
         buttonPanel.setBackground(Color.white);
         
-        titoloFrame.setFont(new Font("Century Gothic", Font.BOLD, 25));
+        titoloFrame.setFont(new Font("Century Gothic", Font.BOLD, 23));
         titoloFrame.setBackground(Color.white);
+        titoloFrame.setToolTipText(titoloFrame.getText());
+        titoloFrame.setPreferredSize(new Dimension(500, 25));
+        titoloFrame.setHorizontalAlignment(JLabel.CENTER);
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
@@ -148,7 +165,7 @@ public class ValutaAppuntoFrame{
         gbc2.insets = new Insets(0, 0, 0, 55);
         gbc2.anchor = GridBagConstraints.CENTER;
         buttonPanel.add(annulla, gbc2);
-
+        
         gbc2.gridx = 1;
         gbc2.gridy = 0;
         gbc2.insets = new Insets(0, 55, 0, 0);
@@ -165,8 +182,7 @@ public class ValutaAppuntoFrame{
     }
     
     public void creaBottoni(){
-        
-        annulla = new JButton(annullaNormal);
+
         annulla.setBorder(BorderFactory.createEmptyBorder());
         annulla.setContentAreaFilled(false);
         annulla.setRolloverIcon(annullaHover);
@@ -181,7 +197,6 @@ public class ValutaAppuntoFrame{
             valutaFrame.setVisible(false);
         });
         
-        conferma = new JButton(confermaNormal);
         conferma.setBorder(BorderFactory.createEmptyBorder());
         conferma.setContentAreaFilled(false);
         conferma.setRolloverIcon(confermaHover);
@@ -191,7 +206,6 @@ public class ValutaAppuntoFrame{
         conferma.setForeground(Color.white);
         conferma.setIconTextGap(-93);
         conferma.setPreferredSize(new Dimension(110, 40));
-        votaAppunto = new VotaAppunto(commento, punteggio, valutaFrame);
         conferma.addActionListener(votaAppunto);
     }
 }
