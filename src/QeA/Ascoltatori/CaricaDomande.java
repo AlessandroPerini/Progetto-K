@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato al caricamento di tutte le domande relative
+* al corso selezionato
 */
 package QeA.Ascoltatori;
 
@@ -20,6 +19,8 @@ import java.sql.SQLException;
  */
 public class CaricaDomande implements ActionListener{
     
+    private ListaDomandePanel domande;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -30,7 +31,7 @@ public class CaricaDomande implements ActionListener{
             
             Ordina.Domande();
             
-            ListaDomandePanel domande = new ListaDomandePanel();
+            domande = new ListaDomandePanel();
             Grafica.container.add(domande, "domande");
             Grafica.card.show(Grafica.container, "domande");
             

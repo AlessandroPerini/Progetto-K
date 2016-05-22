@@ -1,14 +1,12 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'ordinamento della lista delle domande.
+* Possibile ordinamento in base al nome oppure ai like.
+* Una volta ordinato, viene ricreato il pannello con la lista ordinata.
 */
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Appunto;
-import Appunti.Vista.ListaAppuntiPanel;
 import QeA.Domanda;
 import QeA.Vista.ListaDomandePanel;
 import java.awt.event.ActionEvent;
@@ -23,8 +21,13 @@ import javax.swing.JComboBox;
  */
 public class OrdinaListaDomande implements ActionListener{
     
+    //dichiarazione oggetti
     private JComboBox ordina;
+    
+    //dichiarazione variabili
     public static String ordineCorrente = "";
+    
+    private ListaDomandePanel domande;
     
     public OrdinaListaDomande(JComboBox ordina) {
         this.ordina = ordina;
@@ -55,7 +58,7 @@ public class OrdinaListaDomande implements ActionListener{
             ordineCorrente = "Nome";
         }
         
-        ListaDomandePanel domande = new ListaDomandePanel();
+        domande = new ListaDomandePanel();
         Grafica.container.add(domande, "domande");
         Grafica.card.show(Grafica.container, "domande");
     }

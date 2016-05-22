@@ -30,18 +30,26 @@ import javax.swing.ImageIcon;
  */
 public class AccountPanel extends JPanel{
     
-    //dichiarazione oggetti
+    //dichiarazione label - textfield- bottoni
+    private JLabel emailLabel, nicknameLabel, telefonoLabel;
     private static JLabel email;
     private static JTextField telefono, nickname;
-    private JButton cambiaNumero, cambiaNickname, logout, iMieiDati;
-    private JLabel emailLabel, nicknameLabel, telefonoLabel;
+    private JButton cambiaNumero, cambiaNickname, logout, iMieiDati;    
+    
+    //dichiarazione icone
     private ImageIcon buttonNormal, buttonHover, buttonPressed, logoutNormal, logoutHover, logoutPressed;
+    
+    //dichiarazione pannelli
     private JPanel body, centro;
     private TopPanel top;
-    private Logout logout2;
+    
+    //dichiarazione ascoltatori
+    private Logout logout1;
     private CaricaIMieiDati caricaIMieiDati;
     private ModificaNumero modificaNumero;
     private ModificaNickname modificaNickname;
+    
+    //dichiarazione variabili layout
     private GridBagConstraints gbc;
     
     //dichiarazione variabili
@@ -54,9 +62,10 @@ public class AccountPanel extends JPanel{
         top = new TopPanel("Account");
         body = new JPanel(new GridBagLayout());
         
+        //inizializzazione variabili layout
         gbc = new GridBagConstraints();
         
-        //inizializzazione icon
+        //inizializzazione icone
         buttonNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         buttonHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         buttonPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
@@ -64,7 +73,7 @@ public class AccountPanel extends JPanel{
         logoutNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
         logoutPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
         
-        //inizializzazione button - label
+        //inizializzazione bottoni - label - textfield
         logout = new JButton("LOGOUT",logoutNormal);
         iMieiDati = new JButton("MIE ATTIVITÀ",buttonNormal);
         emailLabel = new JLabel("Email: ");
@@ -77,7 +86,7 @@ public class AccountPanel extends JPanel{
         cambiaNickname = new JButton();
         
         //inizializzazione ascoltatori
-        logout2 = new Logout();
+        logout1 = new Logout();
         caricaIMieiDati = new CaricaIMieiDati();
         modificaNumero = new ModificaNumero(nClickTel, telefono, cambiaNumero);
         modificaNickname = new ModificaNickname(nClickNick, nickname, cambiaNickname);
@@ -85,22 +94,78 @@ public class AccountPanel extends JPanel{
         //creazione bottoni
         creaBottone(logout, logoutHover, logoutPressed,"LOGOUT");
         creaBottone(iMieiDati, buttonHover, buttonPressed,"MIE ATTIVITÀ");
-
-        logout.addActionListener(logout2);
-        iMieiDati.addActionListener(caricaIMieiDati);
-        
-        settaggioComponenti();
-        
-        //body panel
-        creaTextField(nickname);
-        creaTextField(telefono);
-        
         creaBottoneModifica(cambiaNumero);
         creaBottoneModifica(cambiaNickname);
         
+        //creazione textfield
+        creaTextField(nickname);
+        creaTextField(telefono);
+        
+        //associazione ascoltatori -> bottoni
+        logout.addActionListener(logout1);
+        iMieiDati.addActionListener(caricaIMieiDati);
         cambiaNumero.addActionListener(modificaNumero);
         cambiaNickname.addActionListener(modificaNickname);
+
+        //creazione componenti - pannelli
+        creaComponenti();
+        creaPannelloCentrale();
+        creaPannelloPrincipale();        
         
+    }
+    
+    public void creaComponenti(){
+        
+        setBackground(Color.white);
+        top.setBackground(Color.white);
+ 
+        body.setBackground(Color.white);
+        
+        emailLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
+        
+        email.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        
+        nicknameLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
+        
+        telefonoLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
+    }
+    
+    public void creaBottone(JButton button, ImageIcon hover, ImageIcon pressed, String text){
+        
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setContentAreaFilled(false);
+        button.setRolloverIcon(hover);
+        button.setPressedIcon(pressed);
+        button.setText(text);
+        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        button.setForeground(Color.white);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setPreferredSize(new Dimension(110, 40));
+    }
+    
+    public void creaTextField(JTextField field){
+        
+        field.setBackground(Color.white);
+        field.setEditable(false);
+        field.setFont(new Font("Century Gothic", Font.PLAIN, 18));
+        field.setColumns(14);
+        field.setHorizontalAlignment(JTextField.CENTER);
+    }
+    
+    public void creaBottoneModifica(JButton button){
+        
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setContentAreaFilled(false);
+        button.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
+        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+        button.setPreferredSize(new Dimension(30,30));
+    }
+    
+    public void creaPannelloCentrale(){
+    
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(80, 10, 0, 10);
@@ -161,61 +226,11 @@ public class AccountPanel extends JPanel{
         gbc.anchor = GridBagConstraints.LINE_END;
         body.add(iMieiDati, gbc);
         
-        //end body panel
-        
+    }
+    
+    public void creaPannelloPrincipale(){
+    
         add(top);
         add(body);
-        
     }
-    
-    public void settaggioComponenti(){
-        
-        this.setBackground(Color.white);
-        top.setBackground(Color.white);
- 
-        body.setBackground(Color.white);
-        
-        emailLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-        
-        email.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        
-        nicknameLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-        
-        telefonoLabel.setFont(new Font("Century Gothic", Font.BOLD, 20));
-    }
-    
-    public void creaBottone(JButton button, ImageIcon hover, ImageIcon pressed, String text){
-        
-        button.setBorder(BorderFactory.createEmptyBorder());
-        button.setContentAreaFilled(false);
-        button.setRolloverIcon(hover);
-        button.setPressedIcon(pressed);
-        button.setText(text);
-        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        button.setForeground(Color.white);
-        button.setHorizontalTextPosition(JButton.CENTER);
-        button.setVerticalTextPosition(JButton.CENTER);
-        button.setPreferredSize(new Dimension(110, 40));
-    }
-    
-    public void creaTextField(JTextField field){
-        
-        field.setBackground(Color.white);
-        field.setEditable(false);
-        field.setFont(new Font("Century Gothic", Font.PLAIN, 18));
-        field.setColumns(14);
-        field.setHorizontalAlignment(JTextField.CENTER);
-    }
-    
-    public void creaBottoneModifica(JButton button){
-        
-        button.setBorder(BorderFactory.createEmptyBorder());
-        button.setContentAreaFilled(false);
-        button.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
-        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        button.setHorizontalTextPosition(JButton.CENTER);
-        button.setVerticalTextPosition(JButton.CENTER);
-        button.setPreferredSize(new Dimension(30,30));
-    }
-    
 }

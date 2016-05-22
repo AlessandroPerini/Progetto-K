@@ -1,7 +1,7 @@
 /*
 * Ascoltatore dedicato all'apertura del pannello delle recensioni
 * Quindi carica le recensioni relative all'appunto selezionato
-* eseguendo una query e le mostra in un pannello aposito.
+* eseguendo una query e le mostra in un pannello apposito.
 */
 package Appunti.Ascoltatori;
 
@@ -20,6 +20,7 @@ import java.sql.SQLException;
 public class GoToRecensioniAppuntoPanel implements ActionListener{
     
     private RecensioniAppuntoPanel recensioni;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         

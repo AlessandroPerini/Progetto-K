@@ -14,7 +14,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
@@ -23,9 +22,11 @@ import javax.swing.JLabel;
  */
 public class GoToAppunto implements MouseListener{
     
+    //dichiarazione variabili
     private String corso;
     private String facoltà;
     private String nomeAppunto;
+    
     private AppuntoPanel appunto;
     
     public GoToAppunto(String corso, String facoltà) {

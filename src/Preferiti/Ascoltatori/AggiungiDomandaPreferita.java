@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiDomandaPreferita implements ActionListener{
     
+    private DomandaPanel domanda;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -26,7 +28,7 @@ public class AggiungiDomandaPreferita implements ActionListener{
 
             Applicazione.preferiti.getDomandePreferite().add(Applicazione.domandaAttuale);
             
-            DomandaPanel domanda = new DomandaPanel();
+            domanda = new DomandaPanel();
             Grafica.container.add(domanda, "domanda");
             Grafica.card.show(Grafica.container, "domanda");
             

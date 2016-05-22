@@ -36,7 +36,6 @@ public class EliminaAppunto implements ActionListener{
     private JButton bottone2;
     private GifFrame gif;
     
-    //dichiarazione ascoltatori
     private Elimina elimina;
     private PreferitiPanel preferitiPanel;
     private ListaAppuntiPanel appunti;

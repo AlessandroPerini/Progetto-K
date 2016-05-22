@@ -21,9 +21,12 @@ import javax.swing.JTextField;
  */
 public class ModificaNickname implements ActionListener{
     
-    private int nClick;
+    //dichiarazione oggetti
     private JTextField nick;
     private JButton cambiaNickname;
+    
+    //dichirazione variabili
+    private int nClick;
     
     public ModificaNickname(int nClick, JTextField nick, JButton cambiaNumero) {
         this.nClick = nClick;

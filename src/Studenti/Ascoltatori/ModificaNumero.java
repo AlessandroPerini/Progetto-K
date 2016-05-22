@@ -10,7 +10,6 @@ import Database.Query.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -22,10 +21,13 @@ import javax.swing.JTextField;
  */
 public class ModificaNumero implements ActionListener{
     
-    private int nClick;
+    //dichiarazione oggetti
     private JTextField phone;
     private JButton cambiaNumero;
+    
+    //dichiarazione variabili
     private boolean numeroOK = false;
+    private int nClick;
     
     public ModificaNumero(int nClick, JTextField phone, JButton cambiaNumero) {
         this.nClick = nClick;

@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviAppuntoPreferito implements ActionListener{
     
+    private AppuntoPanel appunto;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -26,7 +28,7 @@ public class RimuoviAppuntoPreferito implements ActionListener{
             
             Applicazione.preferiti.getAppuntiPreferiti().remove(Applicazione.appuntoAttuale);
             
-            AppuntoPanel appunto = new AppuntoPanel();
+            appunto = new AppuntoPanel();
             Grafica.container.add(appunto, "appunto");
             Grafica.card.show(Grafica.container, "appunto");
             

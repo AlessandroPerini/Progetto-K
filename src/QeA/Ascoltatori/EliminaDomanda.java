@@ -1,7 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'eliminazione di un appunto
+* L'appunto può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
 */
 package QeA.Ascoltatori;
 
@@ -11,7 +12,6 @@ import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
 import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
-import Libri.Vista.ListaLibriPanel;
 import Preferiti.Vista.PreferitiPanel;
 import QeA.Vista.ListaDomandePanel;
 import Studenti.Vista.iMieiDatiPanel;
@@ -26,6 +26,10 @@ import javax.swing.JOptionPane;
  * @author adrian
  */
 public class EliminaDomanda implements ActionListener{
+
+    private ListaDomandePanel domande;
+    private PreferitiPanel preferitiPanel; 
+    private iMieiDatiPanel mieiDatiPanel; 
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -54,25 +58,21 @@ public class EliminaDomanda implements ActionListener{
                 Applicazione.back.remove(Applicazione.back.size()-1);
                 
                 Ordina.Domande();
-
+                
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("domande")){
-                    ListaDomandePanel domande = new ListaDomandePanel();
-                Grafica.container.add(domande, "domande");
-                Grafica.card.show(Grafica.container, "domande");
+                    domande = new ListaDomandePanel();
+                    Grafica.container.add(domande, "domande");
+                    Grafica.card.show(Grafica.container, "domande");
                 }
                 
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
                     Applicazione.svuotaPreferiti();
                     
-                    ListeQuery.caricaFacoltàPreferite();
-                    ListeQuery.caricaCorsiPreferiti();
-                    ListeQuery.caricaAppuntiPreferiti();
-                    ListeQuery.caricaLibriPreferiti();
-                    ListeQuery.caricaDomandePreferite();
+                    ListeQuery.caricaTuttiPreferiti();
                     
                     Ordina.ListePreferiti();
                     
-                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    preferitiPanel = new PreferitiPanel();
                     Grafica.container.add(preferitiPanel, "preferiti");
                     Grafica.card.show(Grafica.container, "preferiti");
                 }
@@ -80,13 +80,11 @@ public class EliminaDomanda implements ActionListener{
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
                     Applicazione.svuotaMieiDati();
                     
-                    GuestQuery.caricaMieiAppunti();
-                    GuestQuery.caricaMieiLibri();
-                    GuestQuery.caricaMieDomande();
+                    GuestQuery.caricaTuttiMieiDati();
                     
                     Ordina.ListeMieiDati();
                     
-                    iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+                    mieiDatiPanel = new iMieiDatiPanel();
                     Grafica.container.add(mieiDatiPanel, "i miei dati");
                     Grafica.card.show(Grafica.container, "i miei dati");
                     

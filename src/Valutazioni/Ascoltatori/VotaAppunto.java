@@ -29,6 +29,8 @@ public class VotaAppunto implements ActionListener{
     private JSlider punteggio;
     private JFrame valutaFrame;
     
+    private AppuntoPanel appunto; 
+    
     public VotaAppunto(JTextArea commento, JSlider punteggio, JFrame valutaFrame) {
         this.commento = commento;
         this.punteggio = punteggio;
@@ -54,7 +56,7 @@ public class VotaAppunto implements ActionListener{
                     valutaFrame.dispose();
                     valutaFrame.setVisible(false);
                     
-                    AppuntoPanel appunto = new AppuntoPanel();
+                    appunto = new AppuntoPanel();
                     
                     Grafica.container.add(appunto, "appunto");
                     Grafica.card.show(Grafica.container, "appunto");

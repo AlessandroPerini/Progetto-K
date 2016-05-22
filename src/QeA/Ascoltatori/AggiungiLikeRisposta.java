@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato alla modifica del numero di like di una risposta
 */
 package QeA.Ascoltatori;
 
@@ -25,13 +23,17 @@ import javax.swing.JLabel;
  */
 public class AggiungiLikeRisposta implements MouseListener{
     
-    private int id;
+    //dichiarazione oggetti
     private JLabel j1 ,j2;
     private JButton likeRisposta;
     private JButton dislikeRisposta;
-    private String text = "";
+    
+    //dichiarazione variabili
+    private int id;
+    private String nomeBottone = "";
     private int indice;
     private int valoreLike;
+    
     public AggiungiLikeRisposta (int indice, int id, JLabel j1, JLabel j2, JButton likeRisposta, JButton dislikeRisposta){
         this.id = id;
         this.j1=j1;
@@ -45,49 +47,46 @@ public class AggiungiLikeRisposta implements MouseListener{
         
         if(e.getComponent() instanceof JButton) {
             JButton button = (JButton)e.getComponent();
-            text = button.getName();
+            nomeBottone = button.getName();
         }
         
-        String nome = text;
-         try {
+        String nome = nomeBottone;
+        try {
             valoreLike = ControlloQuery.controlloLikeRisposta(Applicazione.listaRisposteAttuali.get(indice).getId());
         } catch (SQLException ex) {
             Logger.getLogger(DomandaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         int valore = 0;
-       //******************************
-       if(nome.equals("like")){
+        
+        //************************
+        if(nome.equals("like")){
             valore = 1;
             if(valoreLike==0){
-                likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
+                likeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbupON.png")));
             }else{
                 if(valoreLike==1){
-                    likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
+                    likeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbup.png")));
                 }else{
-                   likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));  
-                dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdown.png"))); 
+                    likeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbupON.png")));
+                    dislikeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbdown.png")));
                 }
             }
-       }
+        }
         if(nome.equals("dislike")){
             valore = -1;
             if(valoreLike==0){
-                dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdownON.png")));
+                dislikeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbdownON.png")));
             }else{
                 if(valoreLike==-1){
-                    dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdown.png")));
+                    dislikeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbdown.png")));
                 }else{
-                   likeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
-               dislikeRisposta.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbdownON.png")));
+                    likeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbup.png")));
+                    dislikeRisposta.setIcon(new ImageIcon(getClass().getResource("/immagini/thumbdownON.png")));
                 }
             }
-       }
-       
-       //*******************
+        }
+        //************************
         
-       
-       
-     
         try {
             ControlloQuery.controlloLikeRisposta(id, valore);
             
@@ -103,19 +102,19 @@ public class AggiungiLikeRisposta implements MouseListener{
         }
         
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseEntered(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }

@@ -24,6 +24,8 @@ public class GoToCorso implements MouseListener{
     private String facoltà;
     private String nomeCorso;
     
+    private CorsoPanel corso;
+    
     public GoToCorso(String facoltà) {
         this.facoltà = facoltà;
     }
@@ -44,7 +46,7 @@ public class GoToCorso implements MouseListener{
             
             Applicazione.back.add("corso");
             
-            CorsoPanel corso = new CorsoPanel();
+            corso = new CorsoPanel();
             Grafica.container.add(corso, "corso");
             Grafica.card.show(Grafica.container, "corso");
             

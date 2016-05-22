@@ -1,6 +1,8 @@
 /*
-* Acoltatore posto sulle label della ListaLibriPanel che serve ad andare
-* alla pagina con le info relative al libro premuto
+* Ascoltatore dedicato all'apertura del libro selezionato
+* In base al libro selezionato, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale libro
+* e vengono visualizzati in un pannello
 */
 package Libri.Ascoltatori;
 
@@ -20,10 +22,13 @@ import javax.swing.JLabel;
  */
 public class GoToLibro implements MouseListener{
     
+    //dichiarazione variabili
     private String corso;
     private String facoltà;
     private int id;
     private String nomeLibro;
+    
+    private LibroPanel libro;
     
     public GoToLibro(String corso, String facoltà, int id) {
         this.corso = corso;
@@ -47,7 +52,7 @@ public class GoToLibro implements MouseListener{
             Applicazione.facoltàAttuale.setNome(facoltà);
             Applicazione.corsoAttuale.setNome(corso);
             
-            LibroPanel libro = new LibroPanel();
+            libro = new LibroPanel();
             Grafica.container.add(libro, "libro");
             Grafica.card.show(Grafica.container, "libro");
             

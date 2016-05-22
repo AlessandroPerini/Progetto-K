@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviLibroPreferito implements ActionListener{
     
+    private LibroPanel libro;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -26,7 +28,7 @@ public class RimuoviLibroPreferito implements ActionListener{
             
             Applicazione.preferiti.getLibriPreferiti().remove(Applicazione.libroAttuale);
             
-            LibroPanel libro = new LibroPanel();
+            libro = new LibroPanel();
             Grafica.container.add(libro, "libro");
             Grafica.card.show(Grafica.container, "libro");
             

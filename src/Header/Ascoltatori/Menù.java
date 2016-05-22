@@ -27,6 +27,10 @@ public class Menù implements ActionListener{
     private JComboBox menu;
     private String selezione;
     
+    private ListaFacoltàPanel facoltà;
+    private AccountPanel account; 
+    private PreferitiPanel preferiti; 
+    
     public Menù(JComboBox menu) {
         this.menu = menu;
     }
@@ -62,7 +66,7 @@ public class Menù implements ActionListener{
             
             Applicazione.back.add("facoltà");
             
-            ListaFacoltàPanel facoltà = new ListaFacoltàPanel();
+            facoltà = new ListaFacoltàPanel();
             Grafica.card.show(Grafica.container, "facoltà");
             
         } catch (SQLException ex) {
@@ -76,7 +80,7 @@ public class Menù implements ActionListener{
         
         Applicazione.back.add("account");
         
-        AccountPanel account = new AccountPanel();
+        account = new AccountPanel();
         Grafica.container.add(account,"account");
         Grafica.card.show(Grafica.container, "account");
         
@@ -89,8 +93,8 @@ public class Menù implements ActionListener{
             
             Ordina.ListePreferiti();
             
-            PreferitiPanel preferitiPanel = new PreferitiPanel();
-            Grafica.container.add(preferitiPanel, "preferiti");
+            preferiti = new PreferitiPanel();
+            Grafica.container.add(preferiti, "preferiti");
             Grafica.card.show(Grafica.container, "preferiti");
             
         } catch (SQLException ex) {

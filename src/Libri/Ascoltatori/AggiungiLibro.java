@@ -1,6 +1,5 @@
 /*
-* Ascoltatore posto nell'AggiungiLibroPanel sul bottone "aggiungi"
-* per appunto aggiungere un libro alla lista dei libri di quel corso
+* Ascoltatore dedicato al caricamento di un nuovo libro al corso
 */
 package Libri.Ascoltatori;
 
@@ -25,11 +24,16 @@ import javax.swing.JTextArea;
  */
 public class AggiungiLibro implements ActionListener{
     
+    //dichiarazione oggetti
     private JTextArea titolo;
     private JTextArea descrizione;
     private JSpinner prezzo;
     private JCheckBox telefono;
+    
+    //dichiarazione variabili
     private String tel;
+    
+    private ListaLibriPanel libri;
     
     public AggiungiLibro(JTextArea titolo, JTextArea descrizione, JSpinner prezzo, JCheckBox telefono) {
         this.titolo = titolo;
@@ -62,7 +66,7 @@ public class AggiungiLibro implements ActionListener{
                     
                     Applicazione.back.remove(Applicazione.back.size()-1);
                     
-                    ListaLibriPanel libri = new ListaLibriPanel();
+                    libri = new ListaLibriPanel();
                     Grafica.container.add(libri, "libri");
                     Grafica.card.show(Grafica.container, "libri");
                     

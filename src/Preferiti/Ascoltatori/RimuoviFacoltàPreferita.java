@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviFacoltàPreferita implements ActionListener{
     
+    private ListaCorsiPanel corsi;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -26,7 +28,7 @@ public class RimuoviFacoltàPreferita implements ActionListener{
             
             Applicazione.preferiti.getFacoltàPreferite().remove(Applicazione.facoltàAttuale);
             
-            ListaCorsiPanel corsi = new ListaCorsiPanel();
+            corsi = new ListaCorsiPanel();
             Grafica.container.add(corsi, "corsi");
             Grafica.card.show(Grafica.container, "corsi");
             

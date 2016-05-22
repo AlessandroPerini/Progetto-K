@@ -1,7 +1,6 @@
 /*
-* Ascoltatore dedicato upload di un appunto su dropbox.
-* 
-* 
+* Ascoltatore dedicato al caricamento di un nuovo appunto al corso
+* (Sia i dati scritti su database che il file su dropbox)
 */
 package Appunti.Ascoltatori;
 

@@ -41,7 +41,7 @@ public class ListaCorsiPanel extends JPanel{
     private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
     
     //dichiarazione pannelli
-    private JPanel panel, topPref;
+    private JPanel panelloPrincipale, topPref;
     private TopPanel top;
     
     //dichiarazione bottoni
@@ -56,7 +56,7 @@ public class ListaCorsiPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel(Applicazione.facoltàAttuale.getNome());
-        panel = new JPanel(new GridLayout(1, 3, 10, 0));
+        panelloPrincipale = new JPanel(new GridLayout(1, 3, 10, 0));
         topPref = new JPanel();
         
         //inizializzazione bottoni
@@ -150,7 +150,7 @@ public class ListaCorsiPanel extends JPanel{
             innerPanels[i].setBackground(Color.white);
             
             innerPanels[i].add(scrollP[i]);
-            panel.add(innerPanels[i]);
+            panelloPrincipale.add(innerPanels[i]);
             
             Applicazione.svuotaCorsiXAnno();
         }
@@ -160,13 +160,13 @@ public class ListaCorsiPanel extends JPanel{
     public void creaPannelloPrincipale(){
         
         top.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        panelloPrincipale.setBackground(Color.white);
         topPref.setBackground(Color.white);
         setBackground(Color.white);
         
         add(top);
         add(topPref);
-        add(panel);
+        add(panelloPrincipale);
     }
     
 }

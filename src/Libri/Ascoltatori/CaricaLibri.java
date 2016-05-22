@@ -1,6 +1,6 @@
 /*
-* Ascoltatore posto sull'immagine(bottone) "libro" nel CorsoPanel
-* e serve appunto a caricare i libri relativi a quel corso
+* Ascoltatore dedicato al caricamento di tutti i libri relativi 
+* al corso selezionato
 */
 package Libri.Ascoltatori;
 
@@ -19,6 +19,8 @@ import java.sql.SQLException;
  */
 public class CaricaLibri implements ActionListener{
     
+    private ListaLibriPanel libri;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
@@ -29,7 +31,7 @@ public class CaricaLibri implements ActionListener{
             
             Ordina.Libri();
             
-            ListaLibriPanel libri = new ListaLibriPanel();
+            libri = new ListaLibriPanel();
             Grafica.container.add(libri, "libri");
             Grafica.card.show(Grafica.container, "libri");
             

@@ -6,7 +6,6 @@
 package Appunti.Vista;
 
 import Application.Controller.Applicazione;
-import Appunti.Ascoltatori.GoToAppunto;
 import Header.Vista.TopPanel;
 import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
@@ -26,25 +25,29 @@ import javax.swing.JTextArea;
  */
 public class RecensioniAppuntoPanel extends JPanel{
     
-    //dichiarazione oggetti
-    private JPanel[] recensioni ;
-    private JLabel[] emailRecensioni ;
-    private JLabel[] punteggioRecensioni ;
-    private JTextArea[] commentoRecensioni ;
-    private JPanel[] emailPunteggio ;
-    private JScrollPane[] scrollPanel ;
-    private JLabel noRecensioni;
-    private GridBagConstraints gbc, gbc2;
-    private TopPanel top;
-    private JPanel panel;
-    private JScrollPane scrollPanelPrincipale;
+    //dichiarazione array oggetti
+    private JLabel[] emailRecensioni;
+    private JLabel[] punteggioRecensioni;
+    private JTextArea[] commentoRecensioni;
     
-    //dichiarazione ascoltatori
-    private GoToAppunto goToAppunto;
+    //dichiarazione array pannelli
+    private JPanel[] emailPunteggio;
+    private JScrollPane[] scrollPanelRecensione;
+    private JPanel[] recensioni;
+    
+    //dichiarazione oggetti
+    private JLabel noRecensioni;
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc, gbc2;
+    
+    private TopPanel top;
+    private JPanel pannelloPrincipale;
+    private JScrollPane scrollPanelPrincipale;
     
     //dichiarazione variabili
     private int dimListaValutazioni;
-    private int size ;
+    private int size;
     
     public RecensioniAppuntoPanel() {
         
@@ -56,28 +59,29 @@ public class RecensioniAppuntoPanel extends JPanel{
         recensioni = new JPanel[dimListaValutazioni];
         top = new TopPanel("Recensioni '"+Applicazione.appuntoAttuale.getNome()+"'");
         emailPunteggio = new JPanel[dimListaValutazioni];  
-        panel = new JPanel(new GridBagLayout());
-        scrollPanel = new JScrollPane[dimListaValutazioni];
+        pannelloPrincipale = new JPanel(new GridBagLayout());
+        scrollPanelRecensione = new JScrollPane[dimListaValutazioni];
         gbc = new GridBagConstraints();
         gbc2 = new GridBagConstraints();
         
         //inizializzazione bottoni - label - textfield
-        scrollPanelPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         emailRecensioni = new JLabel[dimListaValutazioni];
         punteggioRecensioni = new JLabel[dimListaValutazioni];
         commentoRecensioni = new JTextArea[dimListaValutazioni];
-        
-        
-        setBackground(Color.white);
-        top.setBackground(Color.white);
-        panel.setBackground(Color.white);
-        
-        goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
 
+        //creazionep pannello
+        creaPannelloListaRecensioni();
+        creaPannelloPrincipale();
+        
+    }
+    
+    public void creaPannelloListaRecensioni(){
+    
         if( size == 0){
             
             noRecensioni = new JLabel("Non ci sono recensioni relative a questi appunti");
-            panel.add(noRecensioni);
+            pannelloPrincipale.add(noRecensioni);
             
         }else{
             for (int i = 0; i < Applicazione.listaValutazioniAttuali.size(); i++) {
@@ -105,12 +109,12 @@ public class RecensioniAppuntoPanel extends JPanel{
                 commentoRecensioni[i].setForeground(Color.BLACK);
                 commentoRecensioni[i].setBackground(new Color(227,239,243));
                 
-                scrollPanel[i] = new JScrollPane(commentoRecensioni[i], JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-                scrollPanel[i].setPreferredSize(new Dimension(150, 70));
+                scrollPanelRecensione[i] = new JScrollPane(commentoRecensioni[i], JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+                scrollPanelRecensione[i].setPreferredSize(new Dimension(150, 70));
                 commentoRecensioni[i].setLineWrap(true);
                 commentoRecensioni[i].setWrapStyleWord(true);
                 commentoRecensioni[i].setEditable(false);
-                scrollPanel[i].setVerticalScrollBar(new CustomScrollBar());
+                scrollPanelRecensione[i].setVerticalScrollBar(new CustomScrollBar());
                        
                 emailRecensioni[i].setText(Applicazione.listaValutazioniAttuali.get(i).getStudente());
                 gbc.gridx = 0;
@@ -141,15 +145,22 @@ public class RecensioniAppuntoPanel extends JPanel{
                 gbc2.gridy = 0;
                 gbc2.insets = new Insets(0, 0, 0, 0);
                 gbc2.anchor = GridBagConstraints.CENTER;
-                recensioni[i].add(scrollPanel[i], gbc2);
+                recensioni[i].add(scrollPanelRecensione[i], gbc2);
                 
                 gbc.gridx = 0;
                 gbc.gridy = i;
                 gbc.insets = new Insets(0, 0, 0, 0);
                 gbc.anchor = GridBagConstraints.CENTER;
-                panel.add(recensioni[i], gbc);
+                pannelloPrincipale.add(recensioni[i], gbc);
             }
         }
+    }
+    
+    public void creaPannelloPrincipale(){
+    
+        setBackground(Color.white);
+        top.setBackground(Color.white);
+        pannelloPrincipale.setBackground(Color.white);
         
         scrollPanelPrincipale.setPreferredSize(new Dimension(650, 450));
         scrollPanelPrincipale.getVerticalScrollBar().setUnitIncrement(16);

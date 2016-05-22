@@ -34,8 +34,8 @@ import javax.swing.border.LineBorder;
 public class LibroPanel extends JPanel{
 
     //dichiarazione pannelli
-    private JPanel top, panel, preferitiPanel, descrizionePanel;
-    private JScrollPane scrollDescrizione, scrollPanel;
+    private JPanel top, panelloPrincipale, preferitiPanel, descrizionePanel;
+    private JScrollPane scrollDescrizione, scrollPanelPrincipale;
     
     //dichiarazione label - textarea - buttoni
     private JLabel email, telefono, prezzo;
@@ -63,11 +63,11 @@ public class LibroPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel(Applicazione.libroAttuale.getTitolo());
-        panel = new JPanel(new GridBagLayout());
+        panelloPrincipale = new JPanel(new GridBagLayout());
         preferitiPanel = new JPanel();
         descrizionePanel = new JPanel();
         scrollDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        scrollPanel = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(panelloPrincipale, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //inizializzazione ascoltatori
         aggiungiLibroPreferito = new AggiungiLibroPreferito();
@@ -119,21 +119,21 @@ public class LibroPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(20, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(email, gbc);
+        panelloPrincipale.add(email, gbc);
         
         telefono.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(telefono, gbc);
+        panelloPrincipale.add(telefono, gbc);
         
         prezzo.setFont(new Font("Century Gothic", Font.PLAIN, 15));
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(10, 0, 10, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(prezzo, gbc);
+        panelloPrincipale.add(prezzo, gbc);
 
         descrizionePanel.setBackground(Color.white);
         descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
@@ -150,7 +150,7 @@ public class LibroPanel extends JPanel{
         gbc.gridy = 3;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(descrizionePanel, gbc);
+        panelloPrincipale.add(descrizionePanel, gbc);
     }
     
     public void creaButtoneElimina(){
@@ -170,12 +170,12 @@ public class LibroPanel extends JPanel{
 
         if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
-            panel.add(elimina);
+            panelloPrincipale.add(elimina);
             gbc.gridx = 0;
             gbc.gridy = 4;
             gbc.insets = new Insets(30, 0, 0, 0);
             gbc.anchor = GridBagConstraints.CENTER;
-            panel.add(elimina, gbc);
+            panelloPrincipale.add(elimina, gbc);
         }
     }
     
@@ -184,14 +184,14 @@ public class LibroPanel extends JPanel{
         setBackground(Color.white);
         top.setBackground(Color.white);
         preferitiPanel.setBackground(Color.white);
-        panel.setBackground(Color.white);
-        scrollPanel.setBackground(Color.white);
+        panelloPrincipale.setBackground(Color.white);
+        scrollPanelPrincipale.setBackground(Color.white);
         
-        scrollPanel.setPreferredSize(new Dimension(650, 415));
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 415));
         
         add(top);
         add(preferitiPanel);
-        add(scrollPanel);
+        add(scrollPanelPrincipale);
     }
     
 }

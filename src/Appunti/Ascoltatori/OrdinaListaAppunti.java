@@ -21,8 +21,12 @@ import javax.swing.JComboBox;
  */
 public class OrdinaListaAppunti implements ActionListener{
     
+    //dichiarazione oggetti
     private JComboBox ordina;
+    
+    //dichiarazione variabili
     public static String ordineCorrente = "";
+    
     private ListaAppuntiPanel appunti;
     
     public OrdinaListaAppunti(JComboBox ordina) {

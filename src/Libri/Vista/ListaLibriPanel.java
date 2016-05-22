@@ -49,8 +49,8 @@ public class ListaLibriPanel extends JPanel{
     
     //dichiarazione pannelli
     private TopPanel top;
-    private JPanel panel, searchPanel, ordinaPanel ,borderPanel;
-    private JScrollPane scrollPanel;
+    private JPanel panelloPrincipale, searchPanel, ordinaPanel ,borderPanel;
+    private JScrollPane scrollPanelPrincipale;
     
     //dichiarazione ascoltatori
     private CercaLibri cercaLibri;
@@ -74,10 +74,10 @@ public class ListaLibriPanel extends JPanel{
         //inizializzazione pannelli
         top = new TopPanel("Libri '"+Applicazione.corsoAttuale.getNome()+"'");
         borderPanel = new JPanel(new BorderLayout());
-        panel = new JPanel(new GridBagLayout());
+        panelloPrincipale = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
-        scrollPanel = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //inizializzazione ascoltatori
         goToAggiungiLibro = new GoToAggiungiLibro();
@@ -164,12 +164,12 @@ public class ListaLibriPanel extends JPanel{
                 noLibri = new JLabel("Nessun libro trovato");
             }
             noLibri.setFont(new Font("Century Gothic", Font.BOLD, 20));
-            panel.add(noLibri);
+            panelloPrincipale.add(noLibri);
             gbcd.gridx = 0;
             gbcd.gridy = 1;
             gbcd.insets = new Insets(170, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.LINE_START;
-            panel.add(noLibri, gbcd);
+            panelloPrincipale.add(noLibri, gbcd);
             
         }else{
             for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
@@ -191,7 +191,7 @@ public class ListaLibriPanel extends JPanel{
                 gbcd.gridy = i;
                 gbcd.insets = new Insets(5, -7, 0, 10);
                 gbcd.anchor = GridBagConstraints.CENTER;
-                panel.add(libriLabel[i], gbcd);
+                panelloPrincipale.add(libriLabel[i], gbcd);
                 
             }
         }
@@ -199,19 +199,19 @@ public class ListaLibriPanel extends JPanel{
     
     public void creaPannelloPrincipale(){
         
-        borderPanel.add(panel,BorderLayout.NORTH);
-        scrollPanel.setPreferredSize(new Dimension(650, 350));
-        scrollPanel.setBackground(Color.white);
-        scrollPanel.setVerticalScrollBar(new CustomScrollBar());
+        borderPanel.add(panelloPrincipale,BorderLayout.NORTH);
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 350));
+        scrollPanelPrincipale.setBackground(Color.white);
+        scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
         
         setBackground(Color.white);
         borderPanel.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        panelloPrincipale.setBackground(Color.white);
         top.setBackground(Color.white);
         
         add(top);
         add(searchPanel);
         add(ordinaPanel);
-        add(scrollPanel);
+        add(scrollPanelPrincipale);
     }
 }

@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class CaricaFacoltà implements ActionListener, KeyListener{
     
+    private ListaFacoltàPanel facoltà; 
+    
     public void carica(){
         
         if(Applicazione.utenteLoggato){
@@ -30,7 +32,7 @@ public class CaricaFacoltà implements ActionListener, KeyListener{
                 
                 Applicazione.back.add("facoltà");
                 
-                ListaFacoltàPanel facoltà = new ListaFacoltàPanel();
+                facoltà = new ListaFacoltàPanel();
                 
                 Grafica.container.add(facoltà,"facoltà");
                 Grafica.card.show(Grafica.container, "facoltà");

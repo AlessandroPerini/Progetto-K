@@ -43,7 +43,7 @@ public class AggiungiLibroPanel extends JPanel{
     private JLabel euro;
     
     //dichiarazione pannelli
-    private JPanel top, panel, prezzoPanel, nomePanel, descrizionePanel;
+    private JPanel top, panelloPrincipale, prezzoPanel, nomePanel, descrizionePanel;
     private JScrollPane scrollPanelNome, scrollPanelDescrizione, scrollPanelPrincipale;
     
     //dichiarazione ascoltatori
@@ -56,11 +56,11 @@ public class AggiungiLibroPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel("Aggiungi Libro in '"+Applicazione.corsoAttuale.getNome()+"'");
-        panel = new JPanel(new GridBagLayout());
+        panelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();
         descrizionePanel = new JPanel();
         prezzoPanel = new JPanel();
-        scrollPanelPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        scrollPanelPrincipale = new JScrollPane(panelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         
         //inizializzazione oggetti
         nome = new JTextArea("");
@@ -111,7 +111,7 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(nomePanel, gbc);
+        panelloPrincipale.add(nomePanel, gbc);
     }
     
     public void creaPannelloTelefono(){
@@ -124,7 +124,7 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(telefono, gbc);
+        panelloPrincipale.add(telefono, gbc);
     }
     
     public void creaPannelloPrezzo(){
@@ -151,7 +151,7 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.gridy = 2;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(prezzoPanel, gbc);
+        panelloPrincipale.add(prezzoPanel, gbc);
     }
     
     public void creaPannelloDescrizione(){
@@ -177,7 +177,7 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.gridy = 3;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(descrizionePanel, gbc);
+        panelloPrincipale.add(descrizionePanel, gbc);
     }
     
     public void creaPannelloBottone(){
@@ -198,7 +198,7 @@ public class AggiungiLibroPanel extends JPanel{
         gbc.gridy = 4;
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(aggiungi, gbc);
+        panelloPrincipale.add(aggiungi, gbc);
     }
     
     public void creaPannelloPrincipale(){
@@ -210,7 +210,7 @@ public class AggiungiLibroPanel extends JPanel{
         
         setBackground(Color.white);
         top.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        panelloPrincipale.setBackground(Color.white);
     }
     
     public static void clearForm(){

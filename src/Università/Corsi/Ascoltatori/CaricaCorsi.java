@@ -23,6 +23,7 @@ public class CaricaCorsi implements MouseListener{
     
     //dichiarazione variabili
     private String nomeFacoltà;
+    private ListaCorsiPanel corsi;
     
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -37,7 +38,7 @@ public class CaricaCorsi implements MouseListener{
             InfoQuery.caricaInfoFacoltà();
             ListeQuery.caricaCorsi();
             
-            ListaCorsiPanel corsi = new ListaCorsiPanel();
+            corsi = new ListaCorsiPanel();
             Grafica.container.add(corsi, "corsi");
             Grafica.card.show(Grafica.container, "corsi");
             

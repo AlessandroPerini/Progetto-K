@@ -1,7 +1,6 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato al caricamento di una nuova domanda all'interno
+* del corso
 */
 package QeA.Ascoltatori;
 
@@ -24,8 +23,11 @@ import javax.swing.JTextArea;
  */
 public class AggiungiDomanda implements ActionListener{
     
+    //dichiarazione
     private JTextArea titolo;
     private JTextArea descrizione;
+    
+    ListaDomandePanel domande;
     
     public AggiungiDomanda(JTextArea titolo, JTextArea descrizione) {
         this.titolo = titolo;
@@ -46,14 +48,13 @@ public class AggiungiDomanda implements ActionListener{
                             
                             JOptionPane.showMessageDialog(null, "Domanda aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                             
-                            
                             Applicazione.svuotaDomande();
                             
                             ListeQuery.caricaDomande();
                             
                             Applicazione.back.remove(Applicazione.back.size()-1);
                             
-                            ListaDomandePanel domande = new ListaDomandePanel();
+                            domande = new ListaDomandePanel();
                             Grafica.container.add(domande, "domande");
                             Grafica.card.show(Grafica.container, "domande");
                             

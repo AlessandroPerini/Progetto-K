@@ -1,6 +1,6 @@
 /*
  * Ascoltatore dedicato alla ricerca di un determinato appunto
- * La ricerca viene effettuata in base al testo scritto in un apposita casella
+ * La ricerca viene effettuata in base al testo scritto in un apposita'casella
  * Se la ricerca va a buon fine, il pannello della lista degli appunti viene riaggiornato 
  * con solo gli appunti contenenti le parole chiavi della ricerca
  */
@@ -21,7 +21,9 @@ import javax.swing.JTextField;
  */
 public class CercaAppunti implements ActionListener, KeyListener{
     
+    //dichiarazione oggetti
     private JTextField searchField;
+    
     private ListaAppuntiPanel appuntiCercati;
     
     public CercaAppunti(JTextField searchField){
@@ -31,6 +33,7 @@ public class CercaAppunti implements ActionListener, KeyListener{
     public void cerca(){
     
         if(!searchField.getText().equals("")){
+            
             Utils.Azioni.Cerca.Appunti(searchField);
 
             Applicazione.back.remove(Applicazione.back.size()-1);

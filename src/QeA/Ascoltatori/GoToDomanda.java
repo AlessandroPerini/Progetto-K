@@ -1,7 +1,8 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato all'apertura della domanda selezionata
+* In base alla domanda selezionata, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale appunto
+* e vengono visualizzati in un pannello
 */
 package QeA.Ascoltatori;
 
@@ -14,7 +15,6 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;
-import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -24,11 +24,12 @@ import javax.swing.JOptionPane;
  */
 public class GoToDomanda implements MouseListener{
     
-    private static DomandaPanel domanda;
+    //dichiarazione variabili
     private String nomeDomanda;
-    
     private String corso;
     private String facoltà;
+    
+    private static DomandaPanel domanda;
     
     public GoToDomanda(String corso, String facoltà) {
         this.corso = corso;

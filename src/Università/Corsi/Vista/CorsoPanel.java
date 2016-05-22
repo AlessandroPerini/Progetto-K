@@ -34,7 +34,7 @@ public class CorsoPanel extends JPanel{
     
     //dichiarazione pannelli
     private TopPanel top;
-    private JPanel panel, centro, topPref, doppioTop;
+    private JPanel pannelloPrincipale, centro, topPref, doppioTop;
     
     //dichiarazione bottoni
     private JButton appunti, libri, qea, preferitiOn, preferitiOff;
@@ -60,7 +60,7 @@ public class CorsoPanel extends JPanel{
         top = new TopPanel(Applicazione.corsoAttuale.getNome());
         topPref = new JPanel();
         doppioTop = new JPanel(new GridLayout(2, 1, 0, 5));
-        panel = new JPanel(new GridBagLayout());
+        pannelloPrincipale = new JPanel(new GridBagLayout());
         centro = new JPanel(new BorderLayout());
         
         //inizializzazione bottoni
@@ -82,9 +82,10 @@ public class CorsoPanel extends JPanel{
         //inizializzazione variabili layout
         gbcImg = new GridBagConstraints();
 
+        //creazione pannelli
         creaPannelloPreferiti();
         creaOggetti();
-        creaPannello();
+        creaPannelloPrincipale();
  
     }
     
@@ -119,21 +120,21 @@ public class CorsoPanel extends JPanel{
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 30, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;
-        panel.add(appuntiLab,gbcImg);
+        pannelloPrincipale.add(appuntiLab,gbcImg);
 
         libriLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 1;
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;
-        panel.add(libriLab,gbcImg);
+        pannelloPrincipale.add(libriLab,gbcImg);
   
         qeaLab.setFont(new Font("Century Gothic", Font.BOLD, 20));
         gbcImg.gridx = 2;
         gbcImg.gridy = 1;
         gbcImg.insets = new Insets(50, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.CENTER;
-        panel.add(qeaLab,gbcImg);
+        pannelloPrincipale.add(qeaLab,gbcImg);
 
         appunti = new JButton(new ImageIcon(getClass().getResource("/immagini/appunti.png")));
         appunti.setPreferredSize(new Dimension(166, 200));
@@ -141,7 +142,7 @@ public class CorsoPanel extends JPanel{
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 50, 0, 10);
         gbcImg.anchor = GridBagConstraints.NORTH;
-        panel.add(appunti,gbcImg);
+        pannelloPrincipale.add(appunti,gbcImg);
 
         libri = new JButton(new ImageIcon(getClass().getResource("/immagini/libri.png")));
         libri.setPreferredSize(new Dimension(166, 215));
@@ -149,7 +150,7 @@ public class CorsoPanel extends JPanel{
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 35, 0, 10);
         gbcImg.anchor = GridBagConstraints.NORTH;
-        panel.add(libri, gbcImg);
+        pannelloPrincipale.add(libri, gbcImg);
     
         qea = new JButton(new ImageIcon(getClass().getResource("/immagini/qea.png")));
         qea.setPreferredSize(new Dimension(200, 200));
@@ -157,7 +158,7 @@ public class CorsoPanel extends JPanel{
         gbcImg.gridy = 2;
         gbcImg.insets = new Insets(10, 20, 0, 10);
         gbcImg.anchor = GridBagConstraints.NORTH;
-        panel.add(qea,gbcImg);
+        pannelloPrincipale.add(qea,gbcImg);
         
         //aggiunta ascoltatori alle immagini(bottoni)
         libri.addActionListener(caricaLibri);
@@ -173,23 +174,22 @@ public class CorsoPanel extends JPanel{
         qea.setBorder(new LineBorder(Color.white, 1, true));
     }
     
-    public void creaPannello(){
+    public void creaPannelloPrincipale(){
     
-        centro.add(panel, BorderLayout.CENTER);
+        centro.add(pannelloPrincipale, BorderLayout.CENTER);
         
         doppioTop.add(top);
         doppioTop.add(topPref);
         
         centro.setBackground(Color.white);
-        panel.setBackground(Color.white);
+        pannelloPrincipale.setBackground(Color.white);
         doppioTop.setBackground(Color.white);
         topPref.setBackground(Color.white);
         top.setBackground(Color.white);
-        
         setBackground(Color.white);
-        
+
         add(doppioTop);
-        add(panel);
+        add(pannelloPrincipale);
     }
     
 }

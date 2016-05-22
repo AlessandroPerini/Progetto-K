@@ -1,7 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Ascoltatore dedicato alla ricerca di un determinato appunto
+ * La ricerca viene effettuata in base al testo scritto in un'apposita casella
+ * Se la ricerca va a buon fine, il pannello della lista degli appunti viene riaggiornato 
+ * con solo gli appunti contenenti le parole chiavi della ricerca
  */
 package QeA.Ascoltatori;
 
@@ -20,7 +21,10 @@ import javax.swing.JTextField;
  */
 public class CercaDomande implements ActionListener, KeyListener{
     
+    //dichiarazione oggetti
     private JTextField searchField;
+    
+    private ListaDomandePanel domandeCercate;
     
     public CercaDomande(JTextField searchField){
         this.searchField = searchField;
@@ -35,7 +39,7 @@ public class CercaDomande implements ActionListener, KeyListener{
 
             Applicazione.back.add("domande cercate");
 
-            ListaDomandePanel domandeCercate = new ListaDomandePanel();
+            domandeCercate = new ListaDomandePanel();
 
             Grafica.container.add(domandeCercate,"domande cercate");
             Grafica.card.show(Grafica.container, "domande cercate");

@@ -1,6 +1,6 @@
 /*
-* Ascoltatore dedicato al caricamento degli appunti relativo a un determinato 
-* corso. In caso non ci siano appunti relativi a tale corso, l'utente verrà informato
+* Ascoltatore dedicato al caricamento di tutti gli appunti relativi 
+* al corso selezionato
 */
 package Appunti.Ascoltatori;
 
@@ -18,6 +18,7 @@ import java.sql.SQLException;
  * @author Te4o
  */
 public class CaricaAppunti implements ActionListener{
+    
     private ListaAppuntiPanel appunti;
     
     @Override

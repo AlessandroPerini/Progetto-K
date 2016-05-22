@@ -1,6 +1,8 @@
 /*
-* Ascoltatore posto sul bottone elimina(presente solo se il libro caricato è dell'
-* utente loggato) all'interno del LibroPanel
+* Ascoltatore dedicato all'eliminazione di un libro
+* Il libro può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
 */
 package Libri.Ascoltatori;
 
@@ -24,6 +26,10 @@ import javax.swing.JOptionPane;
  * @author te4o
  */
 public class EliminaLibro implements ActionListener{
+    
+    private ListaLibriPanel libri;
+    private PreferitiPanel preferitiPanel; 
+    private iMieiDatiPanel mieiDatiPanel; 
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -49,7 +55,7 @@ public class EliminaLibro implements ActionListener{
                 Ordina.Libri();
                 
                 if(Applicazione.back.get(Applicazione.back.size()-1).equals("libri")){
-                    ListaLibriPanel libri = new ListaLibriPanel();
+                    libri = new ListaLibriPanel();
                     Grafica.container.add(libri, "libri");
                     Grafica.card.show(Grafica.container, "libri");
                 }
@@ -61,7 +67,7 @@ public class EliminaLibro implements ActionListener{
                     
                     Ordina.ListePreferiti();
                     
-                    PreferitiPanel preferitiPanel = new PreferitiPanel();
+                    preferitiPanel = new PreferitiPanel();
                     Grafica.container.add(preferitiPanel, "preferiti");
                     Grafica.card.show(Grafica.container, "preferiti");
                 }
@@ -73,7 +79,7 @@ public class EliminaLibro implements ActionListener{
                     
                     Ordina.ListeMieiDati();
                     
-                    iMieiDatiPanel mieiDatiPanel = new iMieiDatiPanel();
+                    mieiDatiPanel = new iMieiDatiPanel();
                     Grafica.container.add(mieiDatiPanel, "i miei dati");
                     Grafica.card.show(Grafica.container, "i miei dati");
                     

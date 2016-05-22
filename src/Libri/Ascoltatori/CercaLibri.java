@@ -1,7 +1,9 @@
 /*
-* Ascoltatore posto sul bottone cerca nella ListaLibriPanel e serve appunto
-* per rimodellare la lista dei libri a seconda della ricerca fatta
-*/
+ * Ascoltatore dedicato alla ricerca di un determinato libro
+ * La ricerca viene effettuata in base al testo scritto in un apposita'casella
+ * Se la ricerca va a buon fine, il pannello della lista dei libri viene riaggiornato 
+ * con solo i libri contenenti le parole chiavi della ricerca
+ */
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -20,7 +22,10 @@ import javax.swing.JTextField;
  */
 public class CercaLibri implements ActionListener, KeyListener{
     
+    //dichiarazione oggetti
     private JTextField searchField;
+    
+    private ListaLibriPanel libriCercati;
     
     public CercaLibri(JTextField searchField){
         this.searchField = searchField;
@@ -35,7 +40,7 @@ public class CercaLibri implements ActionListener, KeyListener{
             Applicazione.back.remove(Applicazione.back.size()-1);
             Applicazione.back.add("libri cercati");
             
-            ListaLibriPanel libriCercati = new ListaLibriPanel();
+            libriCercati = new ListaLibriPanel();
             
             Grafica.container.add(libriCercati,"libri cercati");
             Grafica.card.show(Grafica.container, "libri cercati");

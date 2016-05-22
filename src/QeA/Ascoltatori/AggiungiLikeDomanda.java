@@ -1,7 +1,5 @@
 /*
-* To change this license header, choose License Headers in Project Properties.
-* To change this template file, choose Tools | Templates
-* and open the template in the editor.
+* Ascoltatore dedicato alla modifica del numero di like della domanda attuale
 */
 package QeA.Ascoltatori;
 
@@ -23,12 +21,13 @@ import javax.swing.JOptionPane;
  *
  * @author adrian
  */
-public class AggiungiLike implements ActionListener{
+public class AggiungiLikeDomanda implements ActionListener{
     
+    //dichiarazione oggetti
     private JButton like;
     private JLabel Nlike;
     
-    public AggiungiLike(JButton like, JLabel Nlike) {
+    public AggiungiLikeDomanda(JButton like, JLabel Nlike) {
         this.like = like;
         this.Nlike = Nlike;
     }

@@ -19,9 +19,15 @@ public class LoginPanel extends JPanel{
     private static JTextField email;
     private static JPasswordField password;
     private JLabel emailLabel, passwordLabel, at, img, title, subTitle;
-    private JPanel main, top, inserimentoDati, centro;
     private JButton login;
+    
+    //dichiarazione pannelli
+    private JPanel pannelloPrincipale, top, inserimentoDati, centro;
+    
+    //dichiarazione icone
     private ImageIcon bottoneNormal, bottoneHover, bottonePressed;
+    
+    //dichiarazione variabili layout
     private GridBagConstraints gbc, gbcImg, gbcImgUp;
     
     //dichiarazione ascoltatori
@@ -31,7 +37,7 @@ public class LoginPanel extends JPanel{
     public LoginPanel(){
         
         //inizializzazione pannelli
-        main = new JPanel(new GridLayout(3, 1));
+        pannelloPrincipale = new JPanel(new GridLayout(3, 1));
         top = new JPanel(new GridBagLayout());
         centro = new JPanel(new GridBagLayout());
         inserimentoDati = new JPanel(new GridBagLayout());
@@ -65,15 +71,8 @@ public class LoginPanel extends JPanel{
         creaPannelloTop();//contiene titolo e sottotitolo
         creaPannelloInserimentoDati();//contiene le label, le textField e il botoone login
         creaPannelloCentrale();//contiene l'immagine login e il pannello per l'inserimento dei dati
+        creaPannelloPrincipale();//contiene tutti i pannelli precedenti
         
-        main.setBackground(Color.white);
-        
-        main.add(top);
-        main.add(centro);
-        
-        setBackground(Color.white);
-        
-        add(main);
     }
     
     public void creaPannelloTop(){
@@ -183,6 +182,17 @@ public class LoginPanel extends JPanel{
         gbcImg.insets = new Insets(30, 0, 0, 10);
         gbcImg.anchor = GridBagConstraints.LINE_START;
         centro.add(inserimentoDati, gbcImg);
+    }
+    
+    public void creaPannelloPrincipale(){
+    
+        setBackground(Color.white);
+        pannelloPrincipale.setBackground(Color.white);
+        
+        pannelloPrincipale.add(top);
+        pannelloPrincipale.add(centro);
+
+        add(pannelloPrincipale);
     }
     
     public static void clearForm(){

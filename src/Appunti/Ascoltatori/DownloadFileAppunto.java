@@ -22,14 +22,18 @@ import javax.swing.JOptionPane;
  * @author Te4o
  */
 public class DownloadFileAppunto implements ActionListener{
-
+    
+    //dichiarazione variabili
     private String nome ;
     private String corso ;
     private String facoltà ;
     private String formato = "";
+    
+    //dichiarazione oggetti
     private JButton bottone;
     private JButton bottone2;
     private GifFrame gif;
+    
     private Download download;
     private Desktop desktop;
     private File file;
@@ -49,7 +53,7 @@ public class DownloadFileAppunto implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        
         bottone.setEnabled(false);
         bottone2.setEnabled(false);
         

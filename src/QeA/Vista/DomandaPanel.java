@@ -13,7 +13,7 @@ import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
 import Preferiti.Ascoltatori.AggiungiDomandaPreferita;
 import Preferiti.Ascoltatori.RimuoviDomandaPreferita;
-import QeA.Ascoltatori.AggiungiLike;
+import QeA.Ascoltatori.AggiungiLikeDomanda;
 import QeA.Ascoltatori.AggiungiLikeRisposta;
 import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
@@ -41,16 +41,23 @@ import javax.swing.border.LineBorder;
  */
 public class DomandaPanel extends JPanel{
 
+    //dichiarazione bottoni - label - taxtarea
     private JButton rispondi, elimina, likeDomanda, likeRisposta, dislikeRisposta, preferitiOn,
             preferitiOff;
-    private TopPanel top;
-    private JPanel panel, pannelloRisposta, pannelloLike, pannelloDislike, preferitiPanel, descrizionePanel, rispostePanel, rispostaPanel;
     private JLabel email, NlikeDomanda, nomeRisposta, numeroLikeRisposta,numeroDislikeRisposta;
     private JTextArea descrizione, rispondiArea,risposte2;
+    
+    //dichiarazione pannelli
+    private TopPanel top;
+    private JPanel pannelloPrincipale, pannelloRisposta, pannelloLike, pannelloDislike, preferitiPanel, descrizionePanel, rispostePanel, rispostaPanel;
     private JScrollPane scrollPanelDescrizione, scrollPanelPrincipale, scrollPanelContainerRisposte, scrollPanelAreaRispondi, scrollPanelRisposta;   
-    private GridBagConstraints gbcRisposte;
+   
+    //dichiarazione icone
     private ImageIcon rispondiNormal, rispondiHover, rispondiPressed, eliminaNormal,eliminaHover, eliminaPressed;
+    
+    //dichiarazione variabili layout
     private GridBagConstraints gbc;
+    private GridBagConstraints gbcRisposte;
     
     //dichiarazione variabili
     private static int i;
@@ -59,8 +66,8 @@ public class DomandaPanel extends JPanel{
     
     //dichiarazione ascoltatori
     private AggiungiDomandaPreferita aggiungiDomandaPreferita;
-    private RimuoviDomandaPreferita rimuoviDomandaPreferito;
-    private AggiungiLike aggiungiLike;
+    private RimuoviDomandaPreferita rimuoviDomandaPreferita;
+    private AggiungiLikeDomanda aggiungiLike;
     private EliminaDomanda eliminaDomanda;
     private AggiungiRisposta risposta;
     private AggiungiLikeRisposta alr;
@@ -69,36 +76,35 @@ public class DomandaPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel(Applicazione.domandaAttuale.getTitolo());      
-        panel = new JPanel();
+        pannelloPrincipale = new JPanel(new GridBagLayout());
         preferitiPanel = new JPanel();
         rispostaPanel = new JPanel();
         rispostePanel = new JPanel();
         descrizionePanel = new JPanel();
-        pannelloRisposta = new JPanel(new GridBagLayout());     
-        gbcRisposte = new GridBagConstraints(); 
-        gbc = new GridBagConstraints();
+        pannelloRisposta = new JPanel(new GridBagLayout());
         pannelloDislike = new JPanel();
         pannelloLike = new JPanel();
-
-        //inizializzazione bottoni - label - scollPanel
-        preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
-        preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
+        scrollPanelContainerRisposte = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelDescrizione = new JScrollPane();
+        scrollPanelAreaRispondi = new JScrollPane();
+        
+        //inizializzazione icone
         rispondiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         rispondiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         rispondiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
         eliminaHover = new ImageIcon(this.getClass().getResource("/immagini/deleteHover.png"));
         eliminaPressed = new ImageIcon(this.getClass().getResource("/immagini/deletePressed.png"));
-
-        scrollPanelPrincipale = new JScrollPane(panel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        //inizializzazione bottoni - label - taxtarea
+        preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
+        preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         email = new JLabel("<html><b>Caricata da: </b>"+Applicazione.domandaAttuale.getStudente()+"</html>");
         descrizione = new JTextArea(Applicazione.domandaAttuale.getDomanda(),5,25);
-        scrollPanelDescrizione = new JScrollPane();
         likeDomanda = new JButton(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
         NlikeDomanda = new JLabel();
-        scrollPanelContainerRisposte = new JScrollPane(pannelloRisposta,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         rispondiArea = new JTextArea(4,20);
-        scrollPanelAreaRispondi = new JScrollPane();
         rispondi = new JButton(rispondiNormal);
         elimina = new JButton(eliminaNormal);
         nomeRisposta = new JLabel();
@@ -106,12 +112,41 @@ public class DomandaPanel extends JPanel{
         numeroLikeRisposta = new JLabel(""+likelike);
         numeroDislikeRisposta = new JLabel(""+dislikelike);
   
+        //inizializzazione variabili layout
+        gbcRisposte = new GridBagConstraints(); 
+        gbc = new GridBagConstraints();
+        
         //inizializzazione ascoltatori
         aggiungiDomandaPreferita = new AggiungiDomandaPreferita();
-        rimuoviDomandaPreferito = new RimuoviDomandaPreferita();
-        aggiungiLike = new AggiungiLike(likeDomanda, NlikeDomanda);
+        rimuoviDomandaPreferita = new RimuoviDomandaPreferita();
+        aggiungiLike = new AggiungiLikeDomanda(likeDomanda, NlikeDomanda);
         risposta = new AggiungiRisposta(rispondiArea);
         eliminaDomanda = new EliminaDomanda();
+
+        //creazione pannelli
+        creaPannelloPreferiti();
+        creaPannelloNomeEDescrizione();
+        creaPannelloRisposte();
+        creaPannelloLikeRisposte();
+        creaPannelloAggiungiRisposta();
+        creaPannelliElimina();
+        creaPannelloPrincipale();
+        
+    }
+    
+    public void creaPannelloPreferiti(){
+        
+        preferitiPanel.setBackground(Color.white);
+        preferitiPanel.setPreferredSize(new Dimension(650, 35));
+
+        preferitiOn.setBackground(Color.white);
+        preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
+        
+        preferitiOff.setBackground(Color.white);
+        preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
+        
+        preferitiOff.addActionListener(aggiungiDomandaPreferita);
+        preferitiOn.addActionListener(rimuoviDomandaPreferita);
         
         try {
             if (ControlloQuery.controlloDomandaPreferita()) {
@@ -122,47 +157,17 @@ public class DomandaPanel extends JPanel{
             }
         } catch (SQLException ex) {
             System.out.println("Errore durante il controllo dell'appunto preferito");
-        }//fine zona preferito
-        
-        this.build();
-
-        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 415));
-        scrollPanelPrincipale.setBackground(Color.white);
-        scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
-        
-        add(top);
-        add(preferitiPanel);
-        add(scrollPanelPrincipale);
+        }
     }
     
-    public void build(){
+    public void creaPannelloNomeEDescrizione(){
         
-        setBackground(Color.white);
-        top.setBackground(Color.white);
-        
-        rispostaPanel.setBorder(BorderFactory.createTitledBorder("Inserisci qui una risposta"));
-
-        panel.setBackground(Color.white);
-
-        preferitiPanel.setBackground(Color.white);
-        preferitiPanel.setPreferredSize(new Dimension(650, 35));
-
-        rispostePanel.setBackground(Color.white);
-        rispostaPanel.setBackground(Color.white);
-
-        preferitiOn.setBackground(Color.white);
-        preferitiOn.setBorder(new LineBorder(Color.white, 1, true));
-        
-        preferitiOff.setBackground(Color.white);
-        preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
-        panel.setLayout(new GridBagLayout());
-                        
         email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 	gbc.gridx = 0;
 	gbc.gridy = 0;
 	gbc.insets = new Insets(10, 0, 0, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
-	panel.add(email, gbc);
+	pannelloPrincipale.add(email, gbc);
         
         descrizionePanel.setBackground(Color.white);
         descrizionePanel.setBorder(BorderFactory.createTitledBorder("Descrizione"));
@@ -181,35 +186,14 @@ public class DomandaPanel extends JPanel{
 	gbc.insets = new Insets(10, 0, 0, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
         descrizionePanel.add(scrollPanelDescrizione);
-	panel.add(descrizionePanel, gbc);
+	pannelloPrincipale.add(descrizionePanel, gbc);
+    }
+    
+    public void creaPannelloRisposte(){
 
-        //like
-        likeDomanda.setBackground(Color.white);
-        likeDomanda.setPreferredSize(new Dimension(30, 30));
-        likeDomanda.setBorder(new LineBorder(Color.white, 1));
-            gbc.gridx = 0;
-            gbc.gridy = 2;
-            gbc.insets = new Insets(10, 0, 0, 0);
-            gbc.anchor = GridBagConstraints.CENTER;
-            panel.add(likeDomanda, gbc);
-        try {
-            if(!ControlloQuery.controlloLikeDomanda()){
-                likeDomanda.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
-            }
-        } catch (SQLException ex) {
-            System.out.println("Errore durante il controllo del like della domanda");
-        }
-        
-        NlikeDomanda.setText(Applicazione.domandaAttuale.getLike()+" likes");
-        gbc.gridx = 0;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(10, 100, 0, 0);
-        gbc.anchor = GridBagConstraints.CENTER;
-        panel.add(NlikeDomanda, gbc);
-
-        likeDomanda.addActionListener(aggiungiLike);
-        //fine zona like
-        
+        rispostaPanel.setBorder(BorderFactory.createTitledBorder("Inserisci qui una risposta"));
+        rispostePanel.setBackground(Color.white);
+        rispostaPanel.setBackground(Color.white);
 
         for(i = 0; i < Applicazione.listaRisposteAttuali.size(); i++){    
 
@@ -229,8 +213,41 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.CENTER;
         rispostePanel.setBorder(BorderFactory.createTitledBorder("Risposte"));
         rispostePanel.add(scrollPanelContainerRisposte);
-	panel.add(rispostePanel, gbc);
+	pannelloPrincipale.add(rispostePanel, gbc);
+  
+    }
+    
+    public void creaPannelloLikeRisposte(){
+    
+        likeDomanda.setBackground(Color.white);
+        likeDomanda.setPreferredSize(new Dimension(30, 30));
+        likeDomanda.setBorder(new LineBorder(Color.white, 1));
+            gbc.gridx = 0;
+            gbc.gridy = 2;
+            gbc.insets = new Insets(10, 0, 0, 0);
+            gbc.anchor = GridBagConstraints.CENTER;
+            pannelloPrincipale.add(likeDomanda, gbc);
+        try {
+            if(!ControlloQuery.controlloLikeDomanda()){
+                likeDomanda.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
+            }
+        } catch (SQLException ex) {
+            System.out.println("Errore durante il controllo del like della domanda");
+        }
         
+        NlikeDomanda.setText(Applicazione.domandaAttuale.getLike()+" likes");
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(10, 100, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        pannelloPrincipale.add(NlikeDomanda, gbc);
+
+        likeDomanda.addActionListener(aggiungiLike);
+        
+    }
+    
+    public void creaPannelloAggiungiRisposta(){
+    
         rispondiArea.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         rispondiArea.setLineWrap(true);
         rispondiArea.setWrapStyleWord(true);
@@ -245,7 +262,7 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.CENTER;
         rispostaPanel.setBorder(BorderFactory.createTitledBorder("Inserisci qui una risposta"));
         rispostaPanel.add(scrollPanelAreaRispondi);
-	panel.add(rispostaPanel, gbc);
+	pannelloPrincipale.add(rispostaPanel, gbc);
         
         rispondi.setBorder(BorderFactory.createEmptyBorder());
         rispondi.setContentAreaFilled(false);
@@ -264,8 +281,11 @@ public class DomandaPanel extends JPanel{
 	gbc.anchor = GridBagConstraints.CENTER;
         
         rispondi.addActionListener(risposta);
-	panel.add(rispondi, gbc);
-        
+	pannelloPrincipale.add(rispondi, gbc);
+    }
+
+    public void creaPannelliElimina(){
+    
         if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
             
             elimina.setBorder(BorderFactory.createEmptyBorder());
@@ -284,8 +304,23 @@ public class DomandaPanel extends JPanel{
             gbc.insets = new Insets(0, 0, 30, 0);
             gbc.anchor = GridBagConstraints.CENTER;
             elimina.addActionListener(eliminaDomanda);
-            panel.add(elimina, gbc);
+            pannelloPrincipale.add(elimina, gbc);
         }
+    }
+    
+    public void creaPannelloPrincipale(){
+    
+        setBackground(Color.white);
+        top.setBackground(Color.white);
+        pannelloPrincipale.setBackground(Color.white);
+        
+        scrollPanelPrincipale.setPreferredSize(new Dimension(650, 415));
+        scrollPanelPrincipale.setBackground(Color.white);
+        scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
+        
+        add(top);
+        add(preferitiPanel);
+        add(scrollPanelPrincipale);
     }
 
     public void setNomeRisposta(JLabel nomeRisposta) {

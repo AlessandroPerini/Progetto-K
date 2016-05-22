@@ -21,7 +21,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -29,7 +28,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 
 /**
  *
@@ -40,21 +38,31 @@ public class iMieiDatiPanel extends JPanel{
     //dichiarazione variabili
     private int dimAppunti,dimLibri, dimDomande ;
     
-    //dichiarazione oggetti
+    //dichiarazione array oggetti
     private JLabel[] mieiAppunti, mieiLibri, mieDomande, mieiAppuntiLab ,mieiLibriLab, mieDomandeLab,
                         mieiAppuntiIco ,mieiLibriIco, mieDomandeIco;
+    
+    //dichiarazione array ascoltatori
     private GoToAppunto[] goToAppunto;
     private GoToLibro[] goToLibro;
     private GoToDomanda[] goToDomanda;
+    
+    //dichiarazione bottoni - label
     private JButton  mieiAppuntiButton, mieiLibriButton, mieDomandeButton;            
-    private JPanel panel, nord, centro, appPanel, libPanel, domPanel;
-    private JScrollPane scrollPanelAppunti, scrollPanelLibri, scrollPanelDomande;
-    private ImageIcon  search, searchPressed, searchHover, searchSelected;
-    private GridBagConstraints gbc, gbcd;
     private JLabel  noAppunti, noLibri, noDomande;
-    private CardLayout cardLayout = new CardLayout();
+    
+    //dichiarazione pannelli
+    private JPanel panelloPrincipale, nord, centro, appPanel, libPanel, domPanel;
+    private JScrollPane scrollPanelAppunti, scrollPanelLibri, scrollPanelDomande;
     private TopPanel top;
     
+    //dichiarazione icone
+    private ImageIcon  search, searchPressed, searchHover, searchSelected;
+    
+    //dichiarazione variabili layout
+    private GridBagConstraints gbc, gbcd;
+    private CardLayout cardLayout = new CardLayout();;
+
     public iMieiDatiPanel() {
         
         // inizializzazine variabili
@@ -64,21 +72,21 @@ public class iMieiDatiPanel extends JPanel{
     
         //inizializzazione pannelli
         top = new TopPanel("Le Mie Attività");
-        panel = new JPanel(new BorderLayout());
+        panelloPrincipale = new JPanel(new BorderLayout());
         nord = new JPanel(new GridBagLayout());
         centro = new JPanel();
         centro.setLayout(cardLayout);
         appPanel = new JPanel(new GridBagLayout());
         libPanel = new JPanel(new GridBagLayout());
         domPanel = new JPanel(new GridBagLayout());
-        gbc = new GridBagConstraints();
-        gbcd = new GridBagConstraints();
-        
-        //inizializzazione scrollPanel
         scrollPanelAppunti = new JScrollPane(appPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelLibri = new JScrollPane(libPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelDomande = new JScrollPane(domPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
+        //inizializzazione variabili layout
+        gbc = new GridBagConstraints();
+        gbcd = new GridBagConstraints();
+
         //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/button2Normal.png"));
         searchHover = new ImageIcon(this.getClass().getResource("/immagini/button2Hover.png"));
@@ -93,34 +101,111 @@ public class iMieiDatiPanel extends JPanel{
         mieiLibriButton = new JButton("Libri",search);
         mieDomandeButton = new JButton("Domande",search);
         
+        //inizializzazione array testo label
         mieiAppunti = new JLabel[dimAppunti];
         mieiLibri = new JLabel[dimLibri];
         mieDomande = new JLabel[dimDomande];
 
-        mieiAppuntiLab = new JLabel[dimAppunti];
-        mieiLibriLab = new JLabel[dimLibri];
-        mieDomandeLab = new JLabel[dimDomande];
-
+        //inizializzazione array icona label
         mieiAppuntiIco = new JLabel[dimAppunti];
         mieiLibriIco = new JLabel[dimLibri];
         mieDomandeIco = new JLabel[dimDomande];
+        
+        //inizializzazione array label generale
+        mieiAppuntiLab = new JLabel[dimAppunti];
+        mieiLibriLab = new JLabel[dimLibri];
+        mieDomandeLab = new JLabel[dimDomande];
         
         //inizializzazine ascoltatori
         goToAppunto = new GoToAppunto[dimAppunti];
         goToLibro = new GoToLibro[dimLibri];
         goToDomanda = new GoToDomanda[dimDomande];
         
-        setPanelWhite();
-        setScrollPanePanel();
+        settaggioSfondiBianchi();
+        setScrollPanel();
         
         centro.add(scrollPanelAppunti,"appuntiPreferiti");
         centro.add(scrollPanelLibri,"libriPreferiti");
         centro.add(scrollPanelDomande,"domandePreferite");
         
+        //settaggio bottoni
         setButtonCharacteristic(mieiAppuntiButton);
         setButtonCharacteristic(mieiLibriButton);
         setButtonCharacteristic(mieDomandeButton);
 
+    
+        //creazione pannelli
+        creaPannelloMieiAppunti();
+        creaPannelloMieiLibri();
+        creaPannelloMieDomande();
+        
+        creaPannelloPrincipale();
+
+    }
+    
+    public void settaggioSfondiBianchi(){
+        
+        top.setBackground(Color.white);
+        setBackground(Color.white);
+        panelloPrincipale.setBackground(Color.white);
+        nord.setBackground(Color.white);
+        centro.setBackground(Color.white);
+        appPanel.setBackground(Color.white);
+        libPanel.setBackground(Color.white);
+        domPanel.setBackground(Color.white);
+    }
+    
+    public void setScrollPanel(){
+        
+        scrollPanelAppunti.setPreferredSize(new Dimension(650, 400));
+        scrollPanelAppunti.setBackground(Color.white);
+        scrollPanelAppunti.setVerticalScrollBar(new CustomScrollBar());
+ 
+        scrollPanelLibri.setPreferredSize(new Dimension(650, 400));
+        scrollPanelLibri.setBackground(Color.white);
+        scrollPanelLibri.setVerticalScrollBar(new CustomScrollBar());
+   
+        scrollPanelDomande.setPreferredSize(new Dimension(650, 400));
+        scrollPanelDomande.setBackground(Color.white);
+        scrollPanelDomande.setVerticalScrollBar(new CustomScrollBar());
+    }
+    
+    public void setButtonCharacteristic(JButton button){
+        
+        button.setPreferredSize(new Dimension(120,25));
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setContentAreaFilled(false); 
+        button.setRolloverIcon(searchHover); 
+        button.setPressedIcon(searchPressed);
+        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        button.setForeground(Color.white);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
+    }
+     
+    public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){
+        
+        label[i].setText(text);
+        label[i].setToolTipText(label[i].getText());
+        label[i].setPreferredSize(new Dimension(120, 30));
+        label[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
+        principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
+        principale[i].setPreferredSize(new Dimension(220, 30));          
+        principale[i].add(ico[i]);
+        principale[i].add(new JLabel("   "));
+        principale[i].add(label[i]);
+            
+    }
+        
+    public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2){
+                
+        mieiAppuntiButton.setIcon(search);
+        mieiLibriButton.setIcon(search1);
+        mieDomandeButton.setIcon(search2);
+                
+    }
+    
+    public void creaPannelloMieiAppunti(){
     
         mieiAppuntiButton.addActionListener((ActionEvent e) -> {
             cardLayout.show(centro, "appuntiPreferiti");
@@ -162,15 +247,13 @@ public class iMieiDatiPanel extends JPanel{
                 appPanel.add(mieiAppuntiLab[i], gbcd);
             }
         }
-      
-        mieiLibriButton.addActionListener(new ActionListener() {
-            
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(centro, "libriPreferiti");
-               setIconListener(search, searchSelected, search);
-                
-            }
+    }
+    
+    public void creaPannelloMieiLibri(){
+    
+        mieiLibriButton.addActionListener((ActionEvent e) -> {
+            cardLayout.show(centro, "libriPreferiti");
+            setIconListener(search, searchSelected, search);
         });
         gbc.gridx = 1;
         gbc.gridy = 0;
@@ -208,7 +291,10 @@ public class iMieiDatiPanel extends JPanel{
                 libPanel.add(mieiLibriLab[i], gbcd );
             }
         }
-     
+    }
+    
+    public void creaPannelloMieDomande(){
+    
         mieDomandeButton.addActionListener((ActionEvent e) -> {
             cardLayout.show(centro, "domandePreferite");
             setIconListener(search, search, searchSelected);
@@ -245,76 +331,17 @@ public class iMieiDatiPanel extends JPanel{
                 domPanel.add(mieDomandeLab[i], gbcd );
             }
         }
-        panel.add(nord,BorderLayout.NORTH);
-        panel.add(centro,BorderLayout.CENTER);
-        
-        
-        add(top);
-        add(panel);
     }
     
-    public void setPanelWhite(){
-        top.setBackground(Color.white);
-        this.setBackground(Color.white);
-        panel.setBackground(Color.white);
-        nord.setBackground(Color.white);
-        centro.setBackground(Color.white);
-        appPanel.setBackground(Color.white);
-        libPanel.setBackground(Color.white);
-        domPanel.setBackground(Color.white);
-    }
-    
-    public void setScrollPanePanel(){
-        
-        scrollPanelAppunti.setPreferredSize(new Dimension(650, 400));
-        scrollPanelAppunti.setBackground(Color.white);
-        scrollPanelAppunti.setVerticalScrollBar(new CustomScrollBar());
+    public void creaPannelloPrincipale(){
+
+        panelloPrincipale.add(nord,BorderLayout.NORTH);
+        panelloPrincipale.add(centro,BorderLayout.CENTER);
  
-        scrollPanelLibri.setPreferredSize(new Dimension(650, 400));
-        scrollPanelLibri.setBackground(Color.white);
-        scrollPanelLibri.setVerticalScrollBar(new CustomScrollBar());
-   
-        scrollPanelDomande.setPreferredSize(new Dimension(650, 400));
-        scrollPanelDomande.setBackground(Color.white);
-        scrollPanelDomande.setVerticalScrollBar(new CustomScrollBar());
+        add(top);
+        add(panelloPrincipale);
     }
     
-     public void setButtonCharacteristic(JButton button){
-        
-        button.setPreferredSize(new Dimension(120,25));
-        button.setBorder(BorderFactory.createEmptyBorder());
-        button.setContentAreaFilled(false); 
-        button.setRolloverIcon(searchHover); 
-        button.setPressedIcon(searchPressed);
-        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        button.setForeground(Color.white);
-        button.setHorizontalTextPosition(JButton.CENTER);
-        button.setVerticalTextPosition(JButton.CENTER);
-    }
-     
-    public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){
-        
-        label[i].setText(text);
-        label[i].setToolTipText(label[i].getText());
-        label[i].setPreferredSize(new Dimension(120, 30));
-        label[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
-        principale[i].setLayout(new BoxLayout(principale[i], BoxLayout.X_AXIS));
-        principale[i].setPreferredSize(new Dimension(220, 30));          
-        principale[i].add(ico[i]);
-        principale[i].add(new JLabel("   "));
-        principale[i].add(label[i]);
-            
-    }
-        
-    public void setIconListener(ImageIcon search, ImageIcon search1, ImageIcon search2){
-                
-        mieiAppuntiButton.setIcon(search);
-        mieiLibriButton.setIcon(search1);
-        mieDomandeButton.setIcon(search2);
-                
-    }
-    
-   
 }
 
 

@@ -1,7 +1,8 @@
 /*
-* Ascoltatore posto nella ListaLibriPanel sul bottone "+"
-* che serve ad andare alla pagina per aggiungere un nuovo libro 
-*/
+ * Ascoltatore dedicato all'apertura del pannello per l'inserimento di un nuovo
+ * libro.
+ *
+ */
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -16,12 +17,14 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiLibro implements ActionListener{
     
+    private AggiungiLibroPanel aggiungiLibroPanel;
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
         Applicazione.back.add("aggiungiLibro");
 
-        AggiungiLibroPanel aggiungiLibroPanel = new AggiungiLibroPanel();
+        aggiungiLibroPanel = new AggiungiLibroPanel();
         Grafica.container.add(aggiungiLibroPanel, "aggiungiLibro");
         Grafica.card.show(Grafica.container, "aggiungiLibro");
     }
