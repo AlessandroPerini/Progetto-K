@@ -165,7 +165,7 @@ public class DomandaPanel extends JPanel{
         email.setFont(new Font("Century Gothic", Font.PLAIN, 15));
 	gbc.gridx = 0;
 	gbc.gridy = 0;
-	gbc.insets = new Insets(10, 0, 0, 0);
+	gbc.insets = new Insets(20, 0, 0, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
 	pannelloPrincipale.add(email, gbc);
         
@@ -183,7 +183,7 @@ public class DomandaPanel extends JPanel{
         scrollPanelDescrizione.setVerticalScrollBar(new CustomScrollBar());
 	gbc.gridx = 0;
 	gbc.gridy = 1;
-	gbc.insets = new Insets(10, 0, 0, 0);
+	gbc.insets = new Insets(20, 0, 0, 0);
 	gbc.anchor = GridBagConstraints.CENTER;
         descrizionePanel.add(scrollPanelDescrizione);
 	pannelloPrincipale.add(descrizionePanel, gbc);

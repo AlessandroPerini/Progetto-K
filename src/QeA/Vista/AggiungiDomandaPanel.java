@@ -47,6 +47,11 @@ public class AggiungiDomandaPanel extends JPanel{
     private AggiungiDomanda aggiungiDomanda;
     
     public AggiungiDomandaPanel() {
+     
+        //inizializzazione icone
+        aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
+        aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         
         //inizializzazione bottoni - textarea
         nome = new JTextArea("");
@@ -62,11 +67,6 @@ public class AggiungiDomandaPanel extends JPanel{
         scrollPanelNome = new JScrollPane(nome, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelPrincipale = new JScrollPane(panelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_NEVER,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        
-        //inizializzazione icone
-        aggiungiNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
        
         //creazione pannelli
         creaPannelloCentrale();

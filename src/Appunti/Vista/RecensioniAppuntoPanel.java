@@ -80,7 +80,8 @@ public class RecensioniAppuntoPanel extends JPanel{
     
         if( size == 0){
             
-            noRecensioni = new JLabel("Non ci sono recensioni relative a questi appunti");
+            noRecensioni = new JLabel("Non ci sono recensioni relative a questi appunto");
+            noRecensioni.setFont(new Font("Century Gothic", Font.BOLD, 20));
             pannelloPrincipale.add(noRecensioni);
             
         }else{

@@ -33,7 +33,11 @@ Pulizia Codice{
 
 +Eliminare vecchia classe "ScrollBarUI.java" una volta sostitite tutte le scrollBar
 
+-Allungare un po label nelle liste
 
+-Fissare in basso a domanda panel l'area per aggiungere la risposta
+
+-Ripetere titolo/nome oltre che nel TopPanel?
 
 1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
 
