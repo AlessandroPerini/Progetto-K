@@ -43,6 +43,10 @@ Pulizia Codice{
 
 -Nickname al posto di email nelle recensioni?
 
+-Ordinare domande cronologicamente
+
+-Centrare JOptionPane al centro del frame
+
 
 
 1*  Settaggio nuova scrollBar --> scrollPane.setVerticalScrollBar(new CustomScrollBar());
