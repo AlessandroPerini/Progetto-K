@@ -87,16 +87,17 @@ public class InsertQuery {
     
     public static void inserisciValutazione(JTextArea commento, JSlider punteggio) throws SQLException{
         
-        String inserisciValutazione = "INSERT INTO valutazioni VALUES (?, ?, ?, ?, ?, ?)";
+        String inserisciValutazione = "INSERT INTO valutazioni VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(inserisciValutazione);
         ps1.clearParameters();
         ps1.setString(1, Applicazione.appuntoAttuale.getNome());
         ps1.setString(2, Applicazione.guest.getEmail());
-        ps1.setString(3, commento.getText());
-        ps1.setInt(4, punteggio.getValue());
-        ps1.setString(5, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(6, Applicazione.corsoAttuale.getNome());
+        ps1.setString(3, Applicazione.guest.getNickname());
+        ps1.setString(4, commento.getText());
+        ps1.setInt(5, punteggio.getValue());
+        ps1.setString(6, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(7, Applicazione.corsoAttuale.getNome());
         
         ps1.execute();
   

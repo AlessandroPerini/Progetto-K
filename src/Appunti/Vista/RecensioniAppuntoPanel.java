@@ -117,7 +117,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 commentoRecensioni[i].setEditable(false);
                 scrollPanelRecensione[i].setVerticalScrollBar(new CustomScrollBar());
                        
-                emailRecensioni[i].setText(Applicazione.listaValutazioniAttuali.get(i).getStudente());
+                emailRecensioni[i].setText("<html><b>"+Applicazione.listaValutazioniAttuali.get(i).getStudente()+"</b></html>");
                 gbc.gridx = 0;
                 gbc.gridy = 0;
                 gbc.insets = new Insets(0, 0, 0, 0);
