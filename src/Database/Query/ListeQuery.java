@@ -241,7 +241,7 @@ public class ListeQuery {
         
         while(rs.next()){
             
-            String studente = rs.getString("studente");
+            String studente = rs.getString("nickname");
             int punteggio = rs.getInt("punteggio");
             String commento = rs.getString("commento");
             Valutazione valutazione = new Valutazione(commento, punteggio, studente);

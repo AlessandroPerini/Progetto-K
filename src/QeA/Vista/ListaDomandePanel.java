@@ -10,7 +10,6 @@ import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
 import Utils.Vista.CustomScrollBar;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -78,9 +77,11 @@ public class ListaDomandePanel extends JPanel{
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         pannelloPrincipale = new JPanel(new GridBagLayout());
+        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        //inizializzazione variabili layout
         gbcImg = new GridBagConstraints();
         gbc = new GridBagConstraints();
-        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
@@ -226,7 +227,7 @@ public class ListaDomandePanel extends JPanel{
                 
                 domandeNLike[i] = new JLabel(""+Applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);
                 domandeNLike[i].setIconTextGap(-180);
-                domandeNLike[i].setFont(new Font("Century Gothic", Font.BOLD, 13));
+                domandeNLike[i].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 domandeNLike[i].setForeground(Color.black);
                 gbcImg.gridx = 1;
                 gbcImg.gridy = i+1;

@@ -48,7 +48,7 @@ public class AggiungiRisposta implements ActionListener{
                         nome = Applicazione.listaRisposteAttuali.get(i).getNickname();
                     }
                                       
-                    GoToDomanda.getDomanda().setRisposte2(s,DomandaPanel.getI(),nome);
+                    GoToDomanda.getDomanda().setRisposte(s,DomandaPanel.getI(),nome);
                     DomandaPanel.setI(DomandaPanel.getI()+1);
                     
                     Grafica.container.add(GoToDomanda.getDomanda(), "domanda");
