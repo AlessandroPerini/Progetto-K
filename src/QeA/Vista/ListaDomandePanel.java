@@ -101,7 +101,6 @@ public class ListaDomandePanel extends JPanel{
         
         //inizializzazione ascoltatori
         cercaDomande = new CercaDomande(searchField);
-        goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         goToAggiungiDomanda = new GoToAggiungiDomanda();
         ordinaListaDomande = new OrdinaListaDomande(ordina);
 
@@ -209,6 +208,10 @@ public class ListaDomandePanel extends JPanel{
                 domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
                 domande[i].setPreferredSize(new Dimension(200, 30));
+                       
+                goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(),domande[i]);
+
+                domandeLabel[i].addMouseListener(goToDomanda);
                 domande[i].addMouseListener(goToDomanda);
                 domandeLabel[i].setLayout(new BoxLayout(domandeLabel[i], BoxLayout.X_AXIS));
                 domandeLabel[i].setPreferredSize(new Dimension(240, 30));

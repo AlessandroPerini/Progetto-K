@@ -19,6 +19,9 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -114,7 +117,6 @@ public class ListaAppuntiPanel extends JPanel{
         //inizializzazione ascoltatori
         aggiungiAppunto = new GoToAggiungiAppunto();
         cercaAppunti = new CercaAppunti(searchField);
-        goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
         ordinaListaAppunti = new OrdinaListaAppunti(ordina);
         
         //creazione pannelli
@@ -232,6 +234,7 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiLabel[i].add(appuntiIcon[i]);
                 appuntiLabel[i].add(new JLabel("   "));
                 appuntiLabel[i].add(appunti[i]);
+                 
                 
                 float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
@@ -265,8 +268,11 @@ public class ListaAppuntiPanel extends JPanel{
                     appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/5-star-rating.png")));
                     
                 }
-                
+                goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(),appunti[i]);
+
+                appuntiLabel[i].addMouseListener(goToAppunto);
                 appunti[i].addMouseListener(goToAppunto);
+                
                 
                 gbcd.gridx = 0;
                 gbcd.gridy = i;

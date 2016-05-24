@@ -55,6 +55,7 @@ public class ListaLibriPanel extends JPanel{
     //dichiarazione ascoltatori
     private CercaLibri cercaLibri;
     private GoToAggiungiLibro goToAggiungiLibro;
+    private GoToLibro goToLibro;
     
     //dichiarazione variabili layout
     private GridBagConstraints gbc, gbcd;
@@ -172,7 +173,7 @@ public class ListaLibriPanel extends JPanel{
             
         }else{
             for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
-                GoToLibro goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID());
+                
                 libriLabel[i]= new JLabel();
                 libri[i] = new JLabel(Applicazione.listaLibriAttuali.get(i).getTitolo());
                 libri[i].setPreferredSize(new Dimension(200, 30));
@@ -184,7 +185,8 @@ public class ListaLibriPanel extends JPanel{
                 libriLabel[i].add(libriIcon[i]);
                 libriLabel[i].add(new JLabel("   "));
                 libriLabel[i].add(libri[i]);
-                
+                goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID(),libri[i]);
+                libriLabel[i].addMouseListener(goToLibro);
                 libri[i].addMouseListener(goToLibro);
                 gbcd.gridx = 0;
                 gbcd.gridy = i;

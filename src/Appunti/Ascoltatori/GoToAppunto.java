@@ -9,6 +9,7 @@ package Appunti.Ascoltatori;
 import Appunti.Vista.AppuntoPanel;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Appunti.Vista.ListaAppuntiPanel;
 import Database.Query.InfoQuery;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -26,12 +27,14 @@ public class GoToAppunto implements MouseListener{
     private String corso;
     private String facoltà;
     private String nomeAppunto;
+    private JLabel appunti;
     
     private AppuntoPanel appunto;
     
-    public GoToAppunto(String corso, String facoltà) {
+    public GoToAppunto(String corso, String facoltà, JLabel appunti) {
         this.corso = corso;
         this.facoltà = facoltà;
+        this.appunti = appunti;
     }
     
     @Override
@@ -73,11 +76,15 @@ public class GoToAppunto implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
+        
+        appunti.setForeground(new Color(3,201,169));
+        
         e.getComponent().setForeground(new Color(3,201,169));
     }
     
     @Override
     public void mouseExited(MouseEvent e) {
+         appunti.setForeground(null);
         e.getComponent().setForeground(null);
     }
     

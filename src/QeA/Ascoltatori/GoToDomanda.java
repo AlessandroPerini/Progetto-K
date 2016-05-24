@@ -28,12 +28,14 @@ public class GoToDomanda implements MouseListener{
     private String nomeDomanda;
     private String corso;
     private String facoltà;
+    private JLabel domande;
     
     private static DomandaPanel domanda;
     
-    public GoToDomanda(String corso, String facoltà) {
+    public GoToDomanda(String corso, String facoltà, JLabel domande) {
         this.corso = corso;
         this.facoltà = facoltà;
+        this.domande = domande;
     }
     
     @Override
@@ -79,12 +81,12 @@ public class GoToDomanda implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(new Color(3,201,169));
+        domande.setForeground(new Color(3,201,169));
     }
     
     @Override
     public void mouseExited(MouseEvent e) {
-        e.getComponent().setForeground(null);
+        domande.setForeground(null);
     }
     
     public static DomandaPanel getDomanda() {

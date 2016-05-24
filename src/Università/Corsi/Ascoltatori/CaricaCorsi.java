@@ -24,6 +24,11 @@ public class CaricaCorsi implements MouseListener{
     //dichiarazione variabili
     private String nomeFacoltà;
     private ListaCorsiPanel corsi;
+    private JLabel label;
+
+    public CaricaCorsi(JLabel label) {
+        this.label = label;
+    }
     
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -58,12 +63,12 @@ public class CaricaCorsi implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(new Color(3,201,169));
+        label.setForeground(new Color(3,201,169));
     }
     
     @Override
     public void mouseExited(MouseEvent e) {
-        e.getComponent().setForeground(null);
+        label.setForeground(null);
     }
     
 }

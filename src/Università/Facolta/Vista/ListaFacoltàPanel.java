@@ -53,7 +53,7 @@ public class ListaFacoltàPanel extends JPanel{
         panelloPrincipale = new JPanel(new GridLayout(5, 2, 5, 5)); panelloPrincipale.setBackground(Color.white);
                 
         //inizializzazione ascoltatori
-        caricaCorsi = new CaricaCorsi();
+     
 
         //inizializzazione scrollPanel
         scrollPanelPrincipale = new JScrollPane(panelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -87,7 +87,7 @@ public class ListaFacoltàPanel extends JPanel{
             for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
                 //inizializzazione label
                 facoltà[j] = new JLabel();
-                
+                caricaCorsi = new CaricaCorsi(  facoltà[j]);
                 facoltà[j].setPreferredSize(new Dimension(150, 20));
                 facoltà[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());

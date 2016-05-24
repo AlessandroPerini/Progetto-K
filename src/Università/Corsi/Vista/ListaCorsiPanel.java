@@ -66,7 +66,7 @@ public class ListaCorsiPanel extends JPanel{
         //inizializzazione ascoltatori
         aggiungiCorsoPreferito = new AggiungiCorsoPreferito();
         rimuoviCorsoPreferito = new RimuoviCorsoPreferito();
-        goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome());
+     
         
         //creazione pannelli
         creaPannelloPreferiti();
@@ -128,11 +128,13 @@ public class ListaCorsiPanel extends JPanel{
             for (int j = 0; j < Applicazione.listaCorsiXAnno.size(); j++) {
                 //dichiarazione label
                 corsi[j] = new JLabel();
+                goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome(),  corsi[j]);
                 
                 corsi[j].setPreferredSize(new Dimension(150, 20));
                 corsi[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 corsi[j].setText(Applicazione.listaCorsiXAnno.get(j).getNome());
                 corsi[j].setName("corso"+j);
+                
                 corsi[j].addMouseListener(goToCorso);
                 panels[i].add(corsi[j]);
             }

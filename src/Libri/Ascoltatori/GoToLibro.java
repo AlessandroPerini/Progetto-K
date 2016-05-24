@@ -27,13 +27,15 @@ public class GoToLibro implements MouseListener{
     private String facoltà;
     private int id;
     private String nomeLibro;
+    private JLabel libri;
     
     private LibroPanel libro;
     
-    public GoToLibro(String corso, String facoltà, int id) {
+    public GoToLibro(String corso, String facoltà, int id,JLabel libri) {
         this.corso = corso;
         this.facoltà = facoltà;
         this.id = id;
+        this.libri = libri;
     }
     
     @Override
@@ -73,12 +75,13 @@ public class GoToLibro implements MouseListener{
     
     @Override
     public void mouseEntered(MouseEvent e) {
-        e.getComponent().setForeground(new Color(3,201,169));
+        
+        libri.setForeground(new Color(3,201,169));
     }
     
     @Override
     public void mouseExited(MouseEvent e) {
-        e.getComponent().setForeground(null);
+        libri.setForeground(null);
     }
     
     
