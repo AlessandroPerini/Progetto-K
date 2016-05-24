@@ -11,6 +11,7 @@ import Database.Query.ControlloQuery;
 import Database.Query.ListeQuery;
 import QeA.Vista.AggiungiDomandaPanel;
 import QeA.Vista.ListaDomandePanel;
+import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -51,6 +52,8 @@ public class AggiungiDomanda implements ActionListener{
                             Applicazione.svuotaDomande();
                             
                             ListeQuery.caricaDomande();
+                            
+                            Ordina.Domande();
                             
                             Applicazione.back.remove(Applicazione.back.size()-1);
                             

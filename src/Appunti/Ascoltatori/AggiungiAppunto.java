@@ -13,6 +13,7 @@ import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import Dropbox.Upload;
 import Frame.GifFrame;
+import Utils.Azioni.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -96,6 +97,9 @@ public class AggiungiAppunto implements ActionListener{
                                     
                                     Applicazione.svuotaAppunti();
                                     ListeQuery.caricaAppunti();
+                                    
+                                    Ordina.Appunti();
+                                    
                                     Applicazione.back.remove(Applicazione.back.size()-1);
                                     
                                     appunti = new ListaAppuntiPanel();

@@ -12,7 +12,6 @@ import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
 import Utils.Vista.CustomScrollBar;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -59,7 +58,7 @@ public class ListaAppuntiPanel extends JPanel{
     
     //dichiarazione variabili layout
     private GridBagConstraints gbc, gbcd;
-
+    
     //dichiarazione ascoltatori
     private CercaAppunti cercaAppunti;
     private OrdinaListaAppunti ordinaListaAppunti;
@@ -80,10 +79,14 @@ public class ListaAppuntiPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel("Appunti '"+Applicazione.corsoAttuale.getNome()+"'");
-        pannelloPrincipale = new JPanel(new BorderLayout());
+        pannelloPrincipale = new JPanel(new GridBagLayout());
         listaPanel = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
+        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        
+        //inizializzazione variabili layout
         gbc = new GridBagConstraints();
         gbcd = new GridBagConstraints();
         
@@ -97,7 +100,6 @@ public class ListaAppuntiPanel extends JPanel{
         clear = new ImageIcon(this.getClass().getResource("/immagini/clear.png"));
         
         //inizializzazione bottoni - label - textfield
-        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         addAppunto = new JButton("", add);
         clearSearch = new JButton("",clear);
         searchButton = new JButton(search);
@@ -120,13 +122,13 @@ public class ListaAppuntiPanel extends JPanel{
         creaPannelloOrdina();
         creaPannelloLista();
         creaPannelloPrincipale();
-
+        
     }
-
+    
     public void creaPannelloRicerca(){
         
         searchPanel.setBackground(Color.white);
-    
+        
         searchField.setHorizontalAlignment(SwingConstants.CENTER);
         searchField.setFont(new Font("Century Gothic", Font.PLAIN, 20));
         
@@ -295,7 +297,7 @@ public class ListaAppuntiPanel extends JPanel{
         top.setBackground(Color.white);
         
         pannelloPrincipale.setBackground(Color.white);
-        pannelloPrincipale.add(listaPanel,BorderLayout.NORTH);
+        pannelloPrincipale.add(listaPanel);
         
         scrollPanelPrincipale.setPreferredSize(new Dimension(650, 350));
         scrollPanelPrincipale.setBackground(Color.white);
@@ -306,6 +308,6 @@ public class ListaAppuntiPanel extends JPanel{
         add(ordinaPanel);
         add(scrollPanelPrincipale);
     }
-
+    
 }
 

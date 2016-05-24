@@ -50,7 +50,7 @@ public class ListaDomandePanel extends JPanel{
     private JComboBox<String> ordina;
     
     //dichiarazione pannelli
-    private JPanel searchPanel, ordinaPanel, pannelloPrincipale, centro;
+    private JPanel searchPanel, ordinaPanel, pannelloPrincipale;
     private JScrollPane scrollPanelPrincipale;
     private TopPanel top ;
     
@@ -78,10 +78,9 @@ public class ListaDomandePanel extends JPanel{
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         pannelloPrincipale = new JPanel(new GridBagLayout());
-        centro = new JPanel(new BorderLayout());
         gbcImg = new GridBagConstraints();
         gbc = new GridBagConstraints();
-        scrollPanelPrincipale = new JScrollPane(centro,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //inizializzazione icone
         search = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
@@ -218,7 +217,7 @@ public class ListaDomandePanel extends JPanel{
                 domandeLabel[i].add(domande[i]);
                 gbcImg.gridx = 0;
                 gbcImg.gridy = i+1;
-                gbcImg.insets = new Insets(17, 0, 0, 20);
+                gbcImg.insets = new Insets(7, 0, 0, 20);
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 pannelloPrincipale.add(domandeLabel[i], gbcImg);
                 
@@ -228,14 +227,14 @@ public class ListaDomandePanel extends JPanel{
                 domandeNLike[i].setForeground(Color.black);
                 gbcImg.gridx = 1;
                 gbcImg.gridy = i+1;
-                gbcImg.insets = new Insets(18, -10, 0, 5);
+                gbcImg.insets = new Insets(8, -10, 0, 5);
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 pannelloPrincipale.add(domandeNLike[i], gbcImg);
                 
-                domandeIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")), HEIGHT);
+                domandeIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/thumbupList.png")), HEIGHT);
                 gbcImg.gridx = 2;
                 gbcImg.gridy = i+1;
-                gbcImg.insets = new Insets(10, 0, 0, 10);
+                gbcImg.insets = new Insets(3, 0, 0, 10);
                 gbcImg.anchor = GridBagConstraints.LINE_START;
                 pannelloPrincipale.add(domandeIcon[i], gbcImg);
             }
@@ -243,9 +242,6 @@ public class ListaDomandePanel extends JPanel{
     }
     
     public void creaPannelloPrincipale(){
-        
-        centro.setBackground(Color.white);
-        centro.add(pannelloPrincipale, BorderLayout.CENTER);
         
         top.setBackground(Color.white);
         pannelloPrincipale.setBackground(Color.white);

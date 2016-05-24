@@ -49,7 +49,7 @@ public class ListaLibriPanel extends JPanel{
     
     //dichiarazione pannelli
     private TopPanel top;
-    private JPanel panelloPrincipale, searchPanel, ordinaPanel ,borderPanel;
+    private JPanel panelloPrincipale, searchPanel, ordinaPanel;
     private JScrollPane scrollPanelPrincipale;
     
     //dichiarazione ascoltatori
@@ -73,11 +73,10 @@ public class ListaLibriPanel extends JPanel{
         
         //inizializzazione pannelli
         top = new TopPanel("Libri '"+Applicazione.corsoAttuale.getNome()+"'");
-        borderPanel = new JPanel(new BorderLayout());
         panelloPrincipale = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
-        scrollPanelPrincipale = new JScrollPane(borderPanel,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelPrincipale = new JScrollPane(panelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 
         //inizializzazione ascoltatori
         goToAggiungiLibro = new GoToAggiungiLibro();
@@ -199,13 +198,11 @@ public class ListaLibriPanel extends JPanel{
     
     public void creaPannelloPrincipale(){
         
-        borderPanel.add(panelloPrincipale,BorderLayout.NORTH);
         scrollPanelPrincipale.setPreferredSize(new Dimension(650, 350));
         scrollPanelPrincipale.setBackground(Color.white);
         scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
         
         setBackground(Color.white);
-        borderPanel.setBackground(Color.white);
         panelloPrincipale.setBackground(Color.white);
         top.setBackground(Color.white);
         
