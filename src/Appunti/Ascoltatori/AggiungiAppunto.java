@@ -113,7 +113,7 @@ public class AggiungiAppunto implements ActionListener{
                                     
                                 }
                                 
-                            }catch (SQLException ex) {
+                            } catch (SQLException ex) {
                                 gif.chiudi();
                                 System.out.println("Errore durante il controllo del nome dell'appunto");
                             } catch (IOException ex) {
