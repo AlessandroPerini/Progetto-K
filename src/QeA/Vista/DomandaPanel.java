@@ -127,7 +127,7 @@ public class DomandaPanel extends JPanel{
         creaPannelloPreferiti();
         creaPannelloNomeEDescrizione();
         creaPannelloRisposte();
-        creaPannelloLikeRisposte();
+        creaPannelloLikeRisposta();
         creaPannelloAggiungiRisposta();
         creaPannelliElimina();
         creaPannelloPrincipale();
@@ -217,7 +217,7 @@ public class DomandaPanel extends JPanel{
   
     }
     
-    public void creaPannelloLikeRisposte(){
+    public void creaPannelloLikeRisposta(){
     
         likeDomanda.setBackground(Color.white);
         likeDomanda.setPreferredSize(new Dimension(30, 30));

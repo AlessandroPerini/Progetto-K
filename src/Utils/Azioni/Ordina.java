@@ -58,6 +58,16 @@ public class Ordina {
         });
     }
     
+    public static void Rami(){
+        Collections.sort(Applicazione.listaRamiFacoltà, new Comparator<String>() {
+            
+            @Override
+            public int compare(String f1, String f2) {
+                return f1.toUpperCase().compareTo(f2.toUpperCase());
+            }
+        });
+    }
+    
     public static void FacoltàPreferite(){
         Collections.sort(Applicazione.preferiti.getFacoltàPreferite(), new Comparator<Facoltà>() {
             

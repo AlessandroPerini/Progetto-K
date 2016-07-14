@@ -165,6 +165,7 @@ public class RecensioniAppuntoPanel extends JPanel{
         
         scrollPanelPrincipale.setPreferredSize(new Dimension(650, 450));
         scrollPanelPrincipale.getVerticalScrollBar().setUnitIncrement(16);
+        scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
         
         add(top);
         add(scrollPanelPrincipale);

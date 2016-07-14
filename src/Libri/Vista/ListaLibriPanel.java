@@ -166,7 +166,7 @@ public class ListaLibriPanel extends JPanel{
             panelloPrincipale.add(noLibri);
             gbcd.gridx = 0;
             gbcd.gridy = 1;
-            gbcd.insets = new Insets(170, 0, 0, 10);
+            gbcd.insets = new Insets(10, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.LINE_START;
             panelloPrincipale.add(noLibri, gbcd);
             

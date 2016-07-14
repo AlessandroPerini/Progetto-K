@@ -67,7 +67,6 @@ public class ListaCorsiPanel extends JPanel{
         aggiungiCorsoPreferito = new AggiungiCorsoPreferito();
         rimuoviCorsoPreferito = new RimuoviCorsoPreferito();
      
-        
         //creazione pannelli
         creaPannelloPreferiti();
         creaPannelliCorsi();
@@ -133,6 +132,7 @@ public class ListaCorsiPanel extends JPanel{
                 corsi[j].setPreferredSize(new Dimension(150, 20));
                 corsi[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 corsi[j].setText(Applicazione.listaCorsiXAnno.get(j).getNome());
+                corsi[j].setToolTipText(Applicazione.listaCorsiXAnno.get(j).getNome());
                 corsi[j].setName("corso"+j);
                 
                 corsi[j].addMouseListener(goToCorso);

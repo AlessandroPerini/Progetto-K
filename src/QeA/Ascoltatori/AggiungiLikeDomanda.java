@@ -7,6 +7,7 @@ import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
+import Database.Query.InfoQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import java.awt.event.ActionEvent;
@@ -38,7 +39,8 @@ public class AggiungiLikeDomanda implements ActionListener{
         try {
             
             if(!ControlloQuery.controlloLikeDomanda()){
-                    
+                
+                InfoQuery.caricaInfoDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
                 DeleteQuery.decrementaLikeDomanda();
                 DeleteQuery.eliminaLikeDomanda();
                 Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()-1);
@@ -47,6 +49,7 @@ public class AggiungiLikeDomanda implements ActionListener{
                 
             }else{
                 
+                InfoQuery.caricaInfoDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
                 InsertQuery.inserisciLikeDomanda();
                 InsertQuery.updateLikeDomanda();
                 Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()+1);

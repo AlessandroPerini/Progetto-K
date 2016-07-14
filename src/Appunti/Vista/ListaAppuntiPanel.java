@@ -19,9 +19,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.Icon;
@@ -87,8 +84,7 @@ public class ListaAppuntiPanel extends JPanel{
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
-        
+                
         //inizializzazione variabili layout
         gbc = new GridBagConstraints();
         gbcd = new GridBagConstraints();
@@ -216,7 +212,7 @@ public class ListaAppuntiPanel extends JPanel{
             listaPanel.add(noAppunti);
             gbcd.gridx = 0;
             gbcd.gridy = 1;
-            gbcd.insets = new Insets(170, 0, 0, 10);
+            gbcd.insets = new Insets(10, 0, 0, 10);
             gbcd.anchor = GridBagConstraints.LINE_START;
             listaPanel.add(noAppunti, gbcd);
             
