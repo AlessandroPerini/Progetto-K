@@ -5,6 +5,8 @@ package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Database.Query.GuestQuery;
+import Database.Query.InfoQuery;
 import Database.Query.ListeQuery;
 import Login.Vista.LoginPanel;
 import Preferiti.Vista.PreferitiPanel;
@@ -14,6 +16,8 @@ import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
@@ -76,14 +80,20 @@ public class Menù implements ActionListener{
     
     public void account(){
         
+        try {
+            GuestQuery.ricaricaDatiUtente();
+            } catch (SQLException ex) {
+            System.out.println("Errore durante la sincronizzazione dei dati utente");;
+        }
+            
         Applicazione.svuotaMieiDati();
-        
+
         Applicazione.back.add("account");
-        
+
         account = new AccountPanel();
         Grafica.container.add(account,"account");
         Grafica.card.show(Grafica.container, "account");
-        
+
     }
     
     public void preferiti(){

@@ -6,10 +6,12 @@ package Header.Ascoltatori;
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Appunti.Vista.ListaAppuntiPanel;
+import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
 import Preferiti.Vista.PreferitiPanel;
 import QeA.Vista.ListaDomandePanel;
+import Studenti.Vista.AccountPanel;
 import Utils.Azioni.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -20,6 +22,8 @@ import java.sql.SQLException;
  * @author Te4o
  */
 public class Back implements ActionListener{
+    
+    private AccountPanel account; 
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -56,6 +60,9 @@ public class Back implements ActionListener{
 
             //comportamento specifico per il bottone back se si viene dalla pagina dei preferiti
             if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")) backDopoPreferiti();
+            
+            //comportamento specifico per il bottone back se si viene dalla pagina account
+            if(Applicazione.back.get(Applicazione.back.size()-2).equals("account")) backDopoAccount();
 
             Applicazione.back.remove(Applicazione.back.size()-1);
             Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
@@ -151,6 +158,19 @@ public class Back implements ActionListener{
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento dei preferiti");
         }
+    }
+    
+    public void backDopoAccount(){
+    
+         try {
+            GuestQuery.ricaricaDatiUtente();
+            } catch (SQLException ex) {
+            System.out.println("Errore durante la sincronizzazione dei dati utente");;
+        }
+
+        account = new AccountPanel();
+        Grafica.container.add(account,"account");
+        Grafica.card.show(Grafica.container, "account");
     }
 }
     

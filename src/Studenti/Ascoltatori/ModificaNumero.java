@@ -1,7 +1,7 @@
 /*
 * Ascoltatore dedicato alla modifica del proprio numero di telefono
 *
-* 
+*
 */
 package Studenti.Ascoltatori;
 
@@ -40,15 +40,17 @@ public class ModificaNumero implements ActionListener{
         nClick += 1;
         phone.setEditable(true);
         cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/conferma.png")));
-
-       
         
         if ( nClick == 2){
             if (phone.getText().matches("[0-9]+")) {
-            numeroOK = true;
-         }
+                numeroOK = true;
+            }
+            if(phone.getText().equals("")){
+                numeroOK = true;
+            }
+            
             if(numeroOK){
-               
+                
                 phone.setEditable(false);
                 cambiaNumero.setIcon(new ImageIcon(this.getClass().getResource("/immagini/modifica.png")));
                 try {
@@ -67,12 +69,11 @@ public class ModificaNumero implements ActionListener{
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(null, "Errore durante la modifica del numero di telefono", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
-                 numeroOK = false;
+                numeroOK = false;
             }else{
-                    numeroOK = false;
-                    nClick = 1;
-                    JOptionPane.showMessageDialog(null, "Il numero non deve contenere lettere", "Impossibile completare l'operazione", JOptionPane.INFORMATION_MESSAGE);
-               
+                nClick = 1;
+                JOptionPane.showMessageDialog(null, "Il numero non deve contenere lettere", "Impossibile completare l'operazione", JOptionPane.INFORMATION_MESSAGE);
+                
             }
         }
     }

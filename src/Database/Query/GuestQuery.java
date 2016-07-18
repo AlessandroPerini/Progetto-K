@@ -98,4 +98,23 @@ public class GuestQuery {
         caricaMieDomande();
     }
     
+    public static void ricaricaDatiUtente()throws SQLException{
+    
+        String selectDatiUtente = "select * from studenti where email=?";
+
+        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDatiUtente);
+        ps1.clearParameters();
+        ps1.setString(1, Applicazione.guest.getEmail());
+        ResultSet rs = ps1.executeQuery();
+        
+        while(rs.next()){
+            
+            String telefono = rs.getString("telefono");
+            String nickname = rs.getString("nickname");
+            
+            Applicazione.guest.setNickname(nickname);
+            Applicazione.guest.setTelefono(telefono);
+        }
+    }
+    
 }
