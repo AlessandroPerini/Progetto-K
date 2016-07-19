@@ -178,7 +178,19 @@ public class PreferitiPanel extends JPanel{
         creaPannelloDomandePreferite();
         
         creaPannelloPrincipale();
-
+    }
+    
+    public void setButtonCharacteristic(JButton button){
+        
+        button.setPreferredSize(new Dimension(120,25));
+        button.setBorder(BorderFactory.createEmptyBorder());
+        button.setContentAreaFilled(false);
+        button.setRolloverIcon(searchHover);
+        button.setPressedIcon(searchPressed);
+        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        button.setForeground(Color.white);
+        button.setHorizontalTextPosition(JButton.CENTER);
+        button.setVerticalTextPosition(JButton.CENTER);
     }
     
     public void settaggioSfondiBianchi(){
@@ -201,19 +213,6 @@ public class PreferitiPanel extends JPanel{
         scroll.setBackground(Color.white);
         scroll.setVerticalScrollBar(new CustomScrollBar());
         
-    }
-    
-    public void setButtonCharacteristic(JButton button){
-        
-        button.setPreferredSize(new Dimension(120,25));
-        button.setBorder(BorderFactory.createEmptyBorder());
-        button.setContentAreaFilled(false);
-        button.setRolloverIcon(searchHover);
-        button.setPressedIcon(searchPressed);
-        button.setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        button.setForeground(Color.white);
-        button.setHorizontalTextPosition(JButton.CENTER);
-        button.setVerticalTextPosition(JButton.CENTER);
     }
     
     public void setLabelCharacteristic(int i, JLabel[] principale, JLabel[] label, JLabel[] ico, String text){

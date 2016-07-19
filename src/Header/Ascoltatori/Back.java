@@ -5,11 +5,13 @@ package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Appunti.Vista.ListaAppuntiPanel;
 import Database.Query.GuestQuery;
 import Database.Query.ListeQuery;
 import Libri.Vista.ListaLibriPanel;
 import Preferiti.Vista.PreferitiPanel;
+import QeA.Ascoltatori.OrdinaListaDomande;
 import QeA.Vista.ListaDomandePanel;
 import Studenti.Vista.AccountPanel;
 import Utils.Azioni.Ordina;
@@ -79,7 +81,11 @@ public class Back implements ActionListener{
         }
         Applicazione.back.remove(Applicazione.back.size()-1);
         Applicazione.back.add("appunti");
-        Ordina.Appunti();
+        
+        if(OrdinaListaAppunti.ordineCorrente.equals("Valutazione")||
+                OrdinaListaAppunti.ordineCorrente.equals("")) Ordina.Appunti();
+        if(OrdinaListaAppunti.ordineCorrente.equals("Nome")) Ordina.AppuntiAlfabetic();
+        
         ListaAppuntiPanel appunti2 = new ListaAppuntiPanel();
         Grafica.container.add(appunti2, "appunti");
         Grafica.card.show(Grafica.container, "appunti");
@@ -103,7 +109,7 @@ public class Back implements ActionListener{
     
     public void backRicercaDomande(){
     
-        Applicazione.svuotaAppunti();
+        Applicazione.svuotaDomande();
         try {
             ListeQuery.caricaDomande();
         } catch (SQLException ex) {
@@ -111,7 +117,11 @@ public class Back implements ActionListener{
         }
         Applicazione.back.remove(Applicazione.back.size()-1);
         Applicazione.back.add("domande");
-        Ordina.Appunti();
+        
+        if(OrdinaListaDomande.ordineCorrente.equals("Like")||
+                OrdinaListaDomande.ordineCorrente.equals("")) Ordina.Domande();
+        if(OrdinaListaDomande.ordineCorrente.equals("Nome")) Ordina.DomandeAlfabetic();
+        
         ListaDomandePanel domande2 = new ListaDomandePanel();
         Grafica.container.add(domande2, "domande");
         Grafica.card.show(Grafica.container, "domande");  

@@ -5,14 +5,10 @@
 */
 package QeA.Ascoltatori;
 
-import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import QeA.Domanda;
 import QeA.Vista.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 import javax.swing.JComboBox;
 
 /**
@@ -37,24 +33,12 @@ public class OrdinaListaDomande implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Like")){
-            Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
-                
-                @Override
-                public int compare(Domanda d1, Domanda d2) {
-                    return Integer.compare(d2.getLike(), d1.getLike());
-                }
-            });
+            Utils.Azioni.Ordina.Domande();
             ordineCorrente = "Like";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
-                
-                @Override
-                public int compare(Domanda d1, Domanda d2) {
-                    return d1.getTitolo().compareTo(d2.getTitolo());
-                }
-            });
+            Utils.Azioni.Ordina.DomandeAlfabetic();
             ordineCorrente = "Nome";
         }
         

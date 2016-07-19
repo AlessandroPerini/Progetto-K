@@ -5,14 +5,10 @@
 */
 package Appunti.Ascoltatori;
 
-import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
-import Appunti.Appunto;
 import Appunti.Vista.ListaAppuntiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Collections;
-import java.util.Comparator;
 import javax.swing.JComboBox;
 
 /**
@@ -37,24 +33,12 @@ public class OrdinaListaAppunti implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Valutazione")){
-            Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
-                
-                @Override
-                public int compare(Appunto a1, Appunto a2) {
-                    return Float.compare(a2.getMedia(), a1.getMedia());
-                }
-            });
+            Utils.Azioni.Ordina.Appunti();
             ordineCorrente = "Valutazione";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
-                
-                @Override
-                public int compare(Appunto a3, Appunto a4) {
-                    return a3.getNome().compareTo(a4.getNome());
-                }
-            });
+            Utils.Azioni.Ordina.AppuntiAlfabetic();
             ordineCorrente = "Nome";
         }
         

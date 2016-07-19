@@ -28,12 +28,32 @@ public class Ordina {
         });
     }
     
+    public static void DomandeAlfabetic(){
+        Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
+            
+            @Override
+            public int compare(Domanda d1, Domanda d2) {
+                return d1.getTitolo().toLowerCase().compareTo(d2.getTitolo().toLowerCase());
+            }
+        });
+    }
+    
     public static void Appunti(){
         Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
             
             @Override
             public int compare(Appunto a1, Appunto a2) {
                 return Float.compare(a2.getMedia(), a1.getMedia());
+            }
+        });
+    }
+    
+    public static void AppuntiAlfabetic(){
+        Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
+            
+            @Override
+            public int compare(Appunto a3, Appunto a4) {
+                return a3.getNome().toLowerCase().compareTo(a4.getNome().toLowerCase());
             }
         });
     }

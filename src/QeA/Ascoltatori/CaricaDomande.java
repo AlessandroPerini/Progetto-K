@@ -30,7 +30,7 @@ public class CaricaDomande implements ActionListener{
             Applicazione.back.add("domande");
             
             Ordina.Domande();
-            
+
             domande = new ListaDomandePanel();
             Grafica.container.add(domande, "domande");
             Grafica.card.show(Grafica.container, "domande");
