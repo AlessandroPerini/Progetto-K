@@ -25,6 +25,8 @@ import javax.swing.JTextArea;
  */
 public class RecensioniAppuntoPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione array oggetti
     private JLabel[] emailRecensioni;
     private JLabel[] punteggioRecensioni;
@@ -52,12 +54,12 @@ public class RecensioniAppuntoPanel extends JPanel{
     public RecensioniAppuntoPanel() {
         
         //inizializzazione variabili
-        dimListaValutazioni = Applicazione.listaValutazioniAttuali.size();
-        size = Applicazione.listaValutazioniAttuali.size();
+        dimListaValutazioni = applicazione.listaValutazioniAttuali.size();
+        size = applicazione.listaValutazioniAttuali.size();
         
         //inizializzazione pannelli
         recensioni = new JPanel[dimListaValutazioni];
-        top = new TopPanel("Recensioni '"+Applicazione.appuntoAttuale.getNome()+"'");
+        top = new TopPanel("Recensioni '"+applicazione.appuntoAttuale.getNome()+"'");
         emailPunteggio = new JPanel[dimListaValutazioni];  
         pannelloPrincipale = new JPanel(new GridBagLayout());
         scrollPanelRecensione = new JScrollPane[dimListaValutazioni];
@@ -85,7 +87,7 @@ public class RecensioniAppuntoPanel extends JPanel{
             pannelloPrincipale.add(noRecensioni);
             
         }else{
-            for (int i = 0; i < Applicazione.listaValutazioniAttuali.size(); i++) {
+            for (int i = 0; i < applicazione.listaValutazioniAttuali.size(); i++) {
                 
                 recensioni[i] = new JPanel(new GridBagLayout());
                 recensioni[i].setPreferredSize(new Dimension(600,80));
@@ -117,7 +119,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 commentoRecensioni[i].setEditable(false);
                 scrollPanelRecensione[i].setVerticalScrollBar(new CustomScrollBar());
                        
-                emailRecensioni[i].setText("<html><b>"+Applicazione.listaValutazioniAttuali.get(i).getStudente()+"</b></html>");
+                emailRecensioni[i].setText("<html><b>"+applicazione.listaValutazioniAttuali.get(i).getStudente()+"</b></html>");
                 gbc.gridx = 0;
                 gbc.gridy = 0;
                 gbc.insets = new Insets(0, 0, 0, 0);
@@ -125,7 +127,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 emailPunteggio[i].add(emailRecensioni[i], gbc);
                 
                 punteggioRecensioni[i].setText("Punteggio: "+
-                        Integer.toString(Applicazione.listaValutazioniAttuali.get(i).getPunteggio())+" / 5");
+                        Integer.toString(applicazione.listaValutazioniAttuali.get(i).getPunteggio())+" / 5");
                 gbc.gridx = 0;
                 gbc.gridy = 1;
                 gbc.insets = new Insets(0, 0, 0, 0);
@@ -138,7 +140,7 @@ public class RecensioniAppuntoPanel extends JPanel{
                 gbc2.anchor = GridBagConstraints.LINE_START;
                 recensioni[i].add(emailPunteggio[i], gbc2);
                 
-                commentoRecensioni[i].setText(Applicazione.listaValutazioniAttuali.get(i).getCommento());
+                commentoRecensioni[i].setText(applicazione.listaValutazioniAttuali.get(i).getCommento());
                 commentoRecensioni[i].setEditable(false);
                 commentoRecensioni[i].setLineWrap(true);
                 commentoRecensioni[i].setWrapStyleWord(true);

@@ -3,9 +3,9 @@
 */
 package QeA.Vista;
 
+import Application.Controller.Applicazione;
 import QeA.Ascoltatori.GoToAggiungiDomanda;
 import QeA.Ascoltatori.GoToDomanda;
-import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import QeA.Ascoltatori.CercaDomande;
 import QeA.Ascoltatori.OrdinaListaDomande;
@@ -35,6 +35,8 @@ import javax.swing.border.LineBorder;
  * @author Te4o
  */
 public class ListaDomandePanel extends JPanel{
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variaibli
     private int dimListaDomande;
@@ -68,12 +70,12 @@ public class ListaDomandePanel extends JPanel{
     public ListaDomandePanel() {
         
         //inizializzazione variabili
-        dimListaDomande = Applicazione.listaDomandeAttuali.size();
+        dimListaDomande = applicazione.listaDomandeAttuali.size();
         opzioni = new String[]{"Like", "Nome"};
-        size = Applicazione.listaDomandeAttuali.size();
+        size = applicazione.listaDomandeAttuali.size();
         
         //inizializzazione pannelli
-        top = new TopPanel("Domande '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Domande '"+applicazione.corsoAttuale.getNome()+"'");
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
         pannelloPrincipale = new JPanel(new GridBagLayout());
@@ -186,10 +188,10 @@ public class ListaDomandePanel extends JPanel{
         
         if(size == 0){
             noDomande = new JLabel();
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("domande")) {
                 noDomande = new JLabel("Non ci sono domande relative a questo corso");
             }
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("domande cercate")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("domande cercate")) {
                 noDomande = new JLabel("Nessuna domanda trovata");
             }
             noDomande.setFont(new Font("Century Gothic", Font.BOLD, 20));
@@ -201,16 +203,16 @@ public class ListaDomandePanel extends JPanel{
             
         }else{
             
-            for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
+            for (int i = 0; i < applicazione.listaDomandeAttuali.size(); i++) {
                 domandeLabel[i]= new JLabel();
-                domande[i] = new JLabel(Applicazione.listaDomandeAttuali.get(i).getTitolo(), HEIGHT);
+                domande[i] = new JLabel(applicazione.listaDomandeAttuali.get(i).getTitolo(), HEIGHT);
                 domandeIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
                 domande[i].setToolTipText(domande[i].getText());
                 domande[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 domande[i].setName("domande"+i);
                 domande[i].setPreferredSize(new Dimension(200, 30));
                        
-                goToDomanda = new GoToDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(),domande[i]);
+                goToDomanda = new GoToDomanda(applicazione.corsoAttuale.getNome(), applicazione.facoltàAttuale.getNome(),domande[i]);
 
                 domandeLabel[i].addMouseListener(goToDomanda);
                 domande[i].addMouseListener(goToDomanda);
@@ -225,7 +227,7 @@ public class ListaDomandePanel extends JPanel{
                 gbcImg.anchor = GridBagConstraints.LINE_END;
                 pannelloPrincipale.add(domandeLabel[i], gbcImg);
                 
-                domandeNLike[i] = new JLabel(""+Applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);
+                domandeNLike[i] = new JLabel(""+applicazione.listaDomandeAttuali.get(i).getLike(), HEIGHT);
                 domandeNLike[i].setIconTextGap(-180);
                 domandeNLike[i].setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 domandeNLike[i].setForeground(Color.black);

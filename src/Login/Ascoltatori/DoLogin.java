@@ -22,6 +22,8 @@ import javax.swing.JTextField;
  */
 public class DoLogin implements ActionListener, KeyListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private static JTextField email;
     private static JPasswordField password;
     
@@ -30,13 +32,13 @@ public class DoLogin implements ActionListener, KeyListener{
         this.password = password;
     }
     
-    public static void doIt(){  
+    public void doIt(){  
 
         if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {
             try {
                 LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
-                if(Applicazione.utenteLoggato){
-                    String nomeCompleto = Applicazione.guest.getNome()+" "+Applicazione.guest.getCognome();
+                if(applicazione.utenteLoggato){
+                    String nomeCompleto = applicazione.guest.getNome()+" "+applicazione.guest.getCognome();
                     JOptionPane.showMessageDialog(null, "Benvenuto "+nomeCompleto+"!","Login avvenuto con successo" , JOptionPane.INFORMATION_MESSAGE);
                 }
                 else{JOptionPane.showMessageDialog(null, "Hai inserito email o password errata.", "Email o password errata.", JOptionPane.ERROR_MESSAGE);

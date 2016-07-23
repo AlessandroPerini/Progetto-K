@@ -21,6 +21,8 @@ import javax.swing.JTextField;
  */
 public class ModificaNumero implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextField phone;
     private JButton cambiaNumero;
@@ -56,13 +58,13 @@ public class ModificaNumero implements ActionListener{
                 try {
                     if(!phone.getText().equals("")){
                         InsertQuery.updateTelefono(phone.getText());
-                        Applicazione.guest.setTelefono(phone.getText());
-                        phone.setText(Applicazione.guest.getTelefono());
+                        applicazione.guest.setTelefono(phone.getText());
+                        phone.setText(applicazione.guest.getTelefono());
                     }
                     else{
                         InsertQuery.updateTelefono("Numero non disponibile");
-                        Applicazione.guest.setTelefono("Numero non disponibile");
-                        phone.setText(Applicazione.guest.getTelefono());
+                        applicazione.guest.setTelefono("Numero non disponibile");
+                        phone.setText(applicazione.guest.getTelefono());
                     }
                     JOptionPane.showMessageDialog(null, "Numero di telefono correttamente modificato", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     nClick = 0;

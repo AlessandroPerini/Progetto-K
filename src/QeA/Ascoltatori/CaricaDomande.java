@@ -19,6 +19,8 @@ import java.sql.SQLException;
  */
 public class CaricaDomande implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private ListaDomandePanel domande;
     
     @Override
@@ -27,7 +29,7 @@ public class CaricaDomande implements ActionListener{
         try {
             ListeQuery.caricaDomande();
 
-            Applicazione.back.add("domande");
+            applicazione.back.add("domande");
             
             Ordina.Domande();
 

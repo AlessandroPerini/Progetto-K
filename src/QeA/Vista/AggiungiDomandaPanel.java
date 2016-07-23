@@ -28,6 +28,8 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiDomandaPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione textarea - bottoni
     private static JTextArea nome, descrizione;
     private JButton  aggiungi;
@@ -59,7 +61,7 @@ public class AggiungiDomandaPanel extends JPanel{
         aggiungi = new JButton(aggiungiNormal);
         
         //inizializzazione pannelli
-        top = new TopPanel("Aggiungi Domanda in '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Aggiungi Domanda in '"+applicazione.corsoAttuale.getNome()+"'");
         gbc = new GridBagConstraints();
         panelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();

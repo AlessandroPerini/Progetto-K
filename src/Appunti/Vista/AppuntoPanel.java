@@ -5,8 +5,8 @@
 */
 package Appunti.Vista;
 
-import Appunti.Ascoltatori.EliminaAppunto;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.EliminaAppunto;
 import Appunti.Ascoltatori.GoToRecensioniAppuntoPanel;
 import Appunti.Ascoltatori.DownloadFileAppunto;
 import Database.Query.ControlloQuery;
@@ -38,6 +38,8 @@ import javax.swing.border.LineBorder;
  * @author Te4o
  */
 public class AppuntoPanel extends JPanel{
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione bottoni - textarea - label
     private JButton valuta, recensioni, preferitiOn , preferitiOff, scarica, elimina;
@@ -82,12 +84,12 @@ public class AppuntoPanel extends JPanel{
         valuta = new JButton("Valuta");
         scarica = new JButton(scaricaNormal);
         elimina = new JButton(eliminaNormal);
-        descrizione = new JTextArea(Applicazione.appuntoAttuale.getDescrizione());
-        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.appuntoAttuale.getStudente()+"</html>");
+        descrizione = new JTextArea(applicazione.appuntoAttuale.getDescrizione());
+        email = new JLabel("<html><b>Caricato da: </b>"+applicazione.appuntoAttuale.getStudente()+"</html>");
         
         //inizializzazione pannelli
         pannelloPrincipale = new JPanel(new GridBagLayout());
-        top = new TopPanel(Applicazione.appuntoAttuale.getNome());
+        top = new TopPanel(applicazione.appuntoAttuale.getNome());
         preferitiPanel = new JPanel();
         recensioniPanel = new JPanel(new GridBagLayout());
         empty = new JPanel();
@@ -194,7 +196,7 @@ public class AppuntoPanel extends JPanel{
     
     public void creaPannelloCentrale(){
         
-        mediaTagliata = Float.toString(Applicazione.appuntoAttuale.getMedia());
+        mediaTagliata = Float.toString(applicazione.appuntoAttuale.getMedia());
         s = mediaTagliata.replace(".", ",");
         String parts[] = s.split(",");
         mediaTagliata = parts[0]+"."+parts[1].charAt(0);
@@ -221,7 +223,7 @@ public class AppuntoPanel extends JPanel{
             valutaAppuntoFrame.apri();
         });
         try {
-            if((ControlloQuery.controlloValutazioneAppunto())&&(!Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))){
+            if((ControlloQuery.controlloValutazioneAppunto())&&(!applicazione.appuntoAttuale.getStudente().equals(applicazione.guest.getEmail()))){
                 
                 gbc2.gridx = 2;
                 gbc2.gridy = 0;
@@ -265,7 +267,7 @@ public class AppuntoPanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         pannelloPrincipale.add(scarica, gbc);
         
-        if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+        if (applicazione.appuntoAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
             pannelloPrincipale.add(elimina);
             gbc.gridx = 0;

@@ -13,15 +13,17 @@ import java.sql.SQLException;
  */
 public class DeleteQuery {
     
+    public static Applicazione applicazione = Applicazione.getInstance();
+    
     public static void eliminaLibro() throws SQLException{
         
-        if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+        if (applicazione.libroAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
             String eliminaLibro = "delete from libri where id=?";
 
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibro);
+            PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLibro);
             ps1.clearParameters();
-            ps1.setInt(1, Applicazione.libroAttuale.getID());
+            ps1.setInt(1, applicazione.libroAttuale.getID());
             
             ps1.execute();
             
@@ -30,13 +32,13 @@ public class DeleteQuery {
     
     public static void eliminaAppunto() throws SQLException{
         
-        if (Applicazione.appuntoAttuale.getStudente().equals(Applicazione.guest.getEmail()))  {
+        if (applicazione.appuntoAttuale.getStudente().equals(applicazione.guest.getEmail()))  {
             
             String eliminaAppunto = "delete from appunti where nome=?";
 
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaAppunto);
+            PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaAppunto);
             ps1.clearParameters();
-            ps1.setString(1, Applicazione.appuntoAttuale.getNome());
+            ps1.setString(1, applicazione.appuntoAttuale.getNome());
             
             ps1.execute();
 
@@ -45,13 +47,13 @@ public class DeleteQuery {
     
     public static void eliminaDomanda() throws SQLException{
         
-        if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+        if (applicazione.domandaAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
             String eliminaDomanda = "delete from domande where titolo=?";
 
-            PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomanda);
+            PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaDomanda);
             ps1.clearParameters();
-            ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
+            ps1.setString(1, applicazione.domandaAttuale.getTitolo());
             
             ps1.execute();
             
@@ -63,10 +65,10 @@ public class DeleteQuery {
         
         String eliminaFacoltàPreferita = "delete from facoltàPreferite where facoltà=? and studente=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaFacoltàPreferita);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaFacoltàPreferita);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.guest.getEmail());
         
         ps1.execute();
  
@@ -76,11 +78,11 @@ public class DeleteQuery {
         
         String eliminaCorsoPreferito = "delete from corsiPreferiti where corso=? and facoltà=? and studente=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaCorsoPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaCorsoPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.corsoAttuale.getNome());
-        ps1.setString(2, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(3, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.corsoAttuale.getNome());
+        ps1.setString(2, applicazione.facoltàAttuale.getNome());
+        ps1.setString(3, applicazione.guest.getEmail());
         
         ps1.execute();
 
@@ -90,12 +92,12 @@ public class DeleteQuery {
         
         String eliminaAppuntoPreferito = "delete from appuntiPreferiti where studentePref=? and appunto=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaAppuntoPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaAppuntoPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.appuntoAttuale.getNome());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -105,12 +107,12 @@ public class DeleteQuery {
         
         String eliminaLibroPreferito = "delete from libriPreferiti where studentePref=? and id=? and corso=? and facoltà=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setInt(2, Applicazione.libroAttuale.getID());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setInt(2, applicazione.libroAttuale.getID());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -121,12 +123,12 @@ public class DeleteQuery {
         
         String eliminaDomandaPreferita = "delete from domandePreferite where studentePref=? and domanda=? and corso=? and facoltà=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
 
@@ -136,11 +138,11 @@ public class DeleteQuery {
         
         String eliminaAppuntoPreferito = "delete from appuntiPreferiti where appunto=? and corso=? and facoltà=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaAppuntoPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaAppuntoPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.appuntoAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -150,11 +152,11 @@ public class DeleteQuery {
         
         String eliminaLibroPreferito = "delete from libriPreferiti where id=? and corso=? and facoltà=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLibroPreferito);
         ps1.clearParameters();
-        ps1.setInt(1, Applicazione.libroAttuale.getID());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setInt(1, applicazione.libroAttuale.getID());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
 
@@ -164,11 +166,11 @@ public class DeleteQuery {
         
         String eliminaDomandaPreferita = "delete from domandePreferite where domanda=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaDomandaPreferita);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -178,9 +180,9 @@ public class DeleteQuery {
         
         String eliminaLikeRisposta = "delete from likeRisposte where studente=? and id=? ";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ps1.setInt(2, id);
         
         ps1.execute();
@@ -191,12 +193,12 @@ public class DeleteQuery {
         
         String updateLikeDomanda = "update `domande` set `like`=? where `titolo`=? and `corso`=? and `facoltà`=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(updateLikeDomanda);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(updateLikeDomanda);
         ps1.clearParameters();
-        ps1.setInt(1, (Applicazione.domandaAttuale.getLike()-1));
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setInt(1, (applicazione.domandaAttuale.getLike()-1));
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -206,12 +208,12 @@ public class DeleteQuery {
         
         String eliminaLikeDomanda = "delete from likeDomanda where corso=? and domanda=?and studente=? and facoltà=?  ";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeDomanda);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLikeDomanda);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.corsoAttuale.getNome());
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.guest.getEmail());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.corsoAttuale.getNome());
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.guest.getEmail());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
         
@@ -221,11 +223,11 @@ public class DeleteQuery {
         
         String eliminaValutazione = "delete from valutazioni where appunto=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaValutazione);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaValutazione);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.appuntoAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
     }
@@ -234,11 +236,11 @@ public class DeleteQuery {
         
         String eliminaRisposta = "delete from risposte where domanda=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaRisposta);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaRisposta);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
     }
@@ -247,11 +249,11 @@ public class DeleteQuery {
         
         String eliminaLikeDomanda = "delete from likeDomanda where corso=? and domanda=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeDomanda);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLikeDomanda);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.corsoAttuale.getNome());
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.corsoAttuale.getNome());
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ps1.execute();
     }
@@ -260,12 +262,12 @@ public class DeleteQuery {
         
         String eliminaLikeRisposta = "delete from likeRisposte where id=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(eliminaLikeRisposta);
         
-        for(int i=0; i<Applicazione.listaRisposteAttuali.size(); i++){
+        for(int i=0; i<applicazione.listaRisposteAttuali.size(); i++){
             
             ps1.clearParameters();
-            ps1.setInt(1, Applicazione.listaRisposteAttuali.get(i).getId());
+            ps1.setInt(1, applicazione.listaRisposteAttuali.get(i).getId());
             ps1.execute();
         }
         

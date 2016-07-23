@@ -18,10 +18,12 @@ import java.util.Locale;
  */
 public class Download {
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //inizializzazione variabili
-    private String nome = Applicazione.appuntoAttuale.getNome();
-    private String corso = Applicazione.corsoAttuale.getNome();
-    private String facoltà = Applicazione.facoltàAttuale.getNome();
+    private String nome = applicazione.appuntoAttuale.getNome();
+    private String corso = applicazione.corsoAttuale.getNome();
+    private String facoltà = applicazione.facoltàAttuale.getNome();
     private String formato = "";
     public static boolean downloadOK = false;
 

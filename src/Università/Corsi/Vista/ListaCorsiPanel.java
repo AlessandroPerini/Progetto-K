@@ -33,12 +33,14 @@ import javax.swing.border.TitledBorder;
  */
 public class ListaCorsiPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione array oggetti
-    private JLabel[] corsi = new JLabel[Applicazione.listaCorsiAttuali.size()];
+    private JLabel[] corsi = new JLabel[applicazione.listaCorsiAttuali.size()];
     private JPanel[] panels = new JPanel[3];
     private JPanel[] innerPanels = new JPanel[3];
     private JScrollPane[] scrollP = new JScrollPane[3];
-    private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
+    private TitledBorder[] titoloBordo = new TitledBorder[applicazione.listaRamiFacoltà.size()];
     
     //dichiarazione pannelli
     private JPanel panelloPrincipale, topPref;
@@ -55,7 +57,7 @@ public class ListaCorsiPanel extends JPanel{
     public ListaCorsiPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel(Applicazione.facoltàAttuale.getNome());
+        top = new TopPanel(applicazione.facoltàAttuale.getNome());
         panelloPrincipale = new JPanel(new GridLayout(1, 3, 10, 0));
         topPref = new JPanel();
         
@@ -115,7 +117,7 @@ public class ListaCorsiPanel extends JPanel{
             Ordina.CorsiXAnno();
             
             //dichiarazione pannelli
-            panels[i] = new JPanel(new GridLayout(Applicazione.listaCorsiXAnno.size()+1, 1, 0, 15));
+            panels[i] = new JPanel(new GridLayout(applicazione.listaCorsiXAnno.size()+1, 1, 0, 15));
             innerPanels[i] = new JPanel();
             scrollP[i] = new JScrollPane();
             titoloBordo[i] = new TitledBorder(""+(i+1)+"° Anno");
@@ -124,15 +126,15 @@ public class ListaCorsiPanel extends JPanel{
             titoloBordo[i].setTitleColor(new Color(0,85,118));
             innerPanels[i].setBorder(titoloBordo[i]);
             
-            for (int j = 0; j < Applicazione.listaCorsiXAnno.size(); j++) {
+            for (int j = 0; j < applicazione.listaCorsiXAnno.size(); j++) {
                 //dichiarazione label
                 corsi[j] = new JLabel();
-                goToCorso = new GoToCorso(Applicazione.facoltàAttuale.getNome(),  corsi[j]);
+                goToCorso = new GoToCorso(applicazione.facoltàAttuale.getNome(),  corsi[j]);
                 
                 corsi[j].setPreferredSize(new Dimension(150, 20));
                 corsi[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
-                corsi[j].setText(Applicazione.listaCorsiXAnno.get(j).getNome());
-                corsi[j].setToolTipText(Applicazione.listaCorsiXAnno.get(j).getNome());
+                corsi[j].setText(applicazione.listaCorsiXAnno.get(j).getNome());
+                corsi[j].setToolTipText(applicazione.listaCorsiXAnno.get(j).getNome());
                 corsi[j].setName("corso"+j);
                 
                 corsi[j].addMouseListener(goToCorso);
@@ -154,7 +156,7 @@ public class ListaCorsiPanel extends JPanel{
             innerPanels[i].add(scrollP[i]);
             panelloPrincipale.add(innerPanels[i]);
             
-            Applicazione.svuotaCorsiXAnno();
+            applicazione.svuotaCorsiXAnno();
         }
         
     }

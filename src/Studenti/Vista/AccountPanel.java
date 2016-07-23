@@ -30,6 +30,8 @@ import javax.swing.ImageIcon;
  */
 public class AccountPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione label - textfield- bottoni
     private JLabel emailLabel, nicknameLabel, telefonoLabel;
     private static JLabel email;
@@ -79,9 +81,9 @@ public class AccountPanel extends JPanel{
         emailLabel = new JLabel("Email: ");
         nicknameLabel = new JLabel("Nickname: ");
         telefonoLabel = new JLabel("Telefono: ");
-        nickname = new JTextField(Applicazione.guest.getNickname());
-        email = new JLabel(Applicazione.guest.getEmail());
-        telefono = new JTextField(Applicazione.guest.getTelefono());
+        nickname = new JTextField(applicazione.guest.getNickname());
+        email = new JLabel(applicazione.guest.getEmail());
+        telefono = new JTextField(applicazione.guest.getTelefono());
         cambiaNumero = new JButton();
         cambiaNickname = new JButton();
         

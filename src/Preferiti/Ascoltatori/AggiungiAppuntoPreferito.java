@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiAppuntoPreferito implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
     private AppuntoPanel appunto;
     
     @Override
@@ -26,7 +27,7 @@ public class AggiungiAppuntoPreferito implements ActionListener{
         try {
             InsertQuery.inserisciAppuntoPreferito();
  
-            Applicazione.preferiti.getAppuntiPreferiti().add(Applicazione.appuntoAttuale);
+            applicazione.preferiti.getAppuntiPreferiti().add(applicazione.appuntoAttuale);
             
             appunto = new AppuntoPanel();
             Grafica.container.add(appunto, "appunto");

@@ -19,6 +19,7 @@ import java.sql.SQLException;
  */
 public class GoToRecensioniAppuntoPanel implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
     private RecensioniAppuntoPanel recensioni;
     
     @Override
@@ -27,7 +28,7 @@ public class GoToRecensioniAppuntoPanel implements ActionListener{
         try {
             ListeQuery.caricaRecensioniAppunto();
             
-            Applicazione.back.add("recensioni");
+            applicazione.back.add("recensioni");
             
             recensioni = new RecensioniAppuntoPanel();
             Grafica.container.add(recensioni, "recensioni");

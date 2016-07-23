@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiDomandaPreferita implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private DomandaPanel domanda;
     
     @Override
@@ -26,7 +28,7 @@ public class AggiungiDomandaPreferita implements ActionListener{
         try {
             InsertQuery.inserisciDomandaPreferita();
 
-            Applicazione.preferiti.getDomandePreferite().add(Applicazione.domandaAttuale);
+            applicazione.preferiti.getDomandePreferite().add(applicazione.domandaAttuale);
             
             domanda = new DomandaPanel();
             Grafica.container.add(domanda, "domanda");

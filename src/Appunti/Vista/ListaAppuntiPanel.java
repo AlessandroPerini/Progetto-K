@@ -5,9 +5,9 @@
 */
 package Appunti.Vista;
 
+import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.GoToAppunto;
 import Appunti.Ascoltatori.GoToAggiungiAppunto;
-import Application.Controller.Applicazione;
 import Appunti.Ascoltatori.CercaAppunti;
 import Appunti.Ascoltatori.OrdinaListaAppunti;
 import Header.Vista.TopPanel;
@@ -37,6 +37,8 @@ import javax.swing.border.LineBorder;
  * @author Te4o
  */
 public class ListaAppuntiPanel extends JPanel{
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JLabel[] appunti;
@@ -73,12 +75,12 @@ public class ListaAppuntiPanel extends JPanel{
     public ListaAppuntiPanel() {
         
         //inizializzazione variabili
-        dimListaAppunti = Applicazione.listaAppuntiAttuali.size();
+        dimListaAppunti = applicazione.listaAppuntiAttuali.size();
         opzioni = new String[]{"Valutazione", "Nome"};
-        size = Applicazione.listaAppuntiAttuali.size();
+        size = applicazione.listaAppuntiAttuali.size();
         
         //inizializzazione pannelli
-        top = new TopPanel("Appunti '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Appunti '"+applicazione.corsoAttuale.getNome()+"'");
         pannelloPrincipale = new JPanel(new GridBagLayout());
         listaPanel = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
@@ -200,11 +202,11 @@ public class ListaAppuntiPanel extends JPanel{
         listaPanel.setBackground(Color.white);
         
         if(size == 0){
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("appunti")) {
                 
                 noAppunti = new JLabel("Non ci sono appunti relativi a questo corso");
             }
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("appunti cercati")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("appunti cercati")) {
                 
                 noAppunti = new JLabel("Nessun appunto trovato");
             }
@@ -217,11 +219,11 @@ public class ListaAppuntiPanel extends JPanel{
             listaPanel.add(noAppunti, gbcd);
             
         }else{
-            for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
+            for (int i = 0; i < applicazione.listaAppuntiAttuali.size(); i++) {
                 
                 appuntiLabel[i]= new JLabel();
                 appuntiIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
-                appunti[i] = new JLabel(Applicazione.listaAppuntiAttuali.get(i).getNome());
+                appunti[i] = new JLabel(applicazione.listaAppuntiAttuali.get(i).getNome());
                 appunti[i].setToolTipText(appunti[i].getText());
                 appunti[i].setPreferredSize(new Dimension(200, 30));
                 appuntiLabel[i].setLayout(new BoxLayout(appuntiLabel[i], BoxLayout.X_AXIS));
@@ -232,7 +234,7 @@ public class ListaAppuntiPanel extends JPanel{
                 appuntiLabel[i].add(appunti[i]);
                  
                 
-                float media = Applicazione.listaAppuntiAttuali.get(i).getMedia();
+                float media = applicazione.listaAppuntiAttuali.get(i).getMedia();
                 
                 if((media==0)){
                     
@@ -264,7 +266,7 @@ public class ListaAppuntiPanel extends JPanel{
                     appuntiIcoValutazione[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/5-star-rating.png")));
                     
                 }
-                goToAppunto = new GoToAppunto(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(),appunti[i]);
+                goToAppunto = new GoToAppunto(applicazione.corsoAttuale.getNome(), applicazione.facoltàAttuale.getNome(),appunti[i]);
 
                 appuntiLabel[i].addMouseListener(goToAppunto);
                 appunti[i].addMouseListener(goToAppunto);

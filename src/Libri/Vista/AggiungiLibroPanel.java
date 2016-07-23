@@ -34,6 +34,8 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiLibroPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private static JTextArea nome, descrizione;
     private JButton aggiungi;
@@ -55,7 +57,7 @@ public class AggiungiLibroPanel extends JPanel{
     public AggiungiLibroPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel("Aggiungi Libro in '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Aggiungi Libro in '"+applicazione.corsoAttuale.getNome()+"'");
         panelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();
         descrizionePanel = new JPanel();

@@ -28,12 +28,14 @@ import javax.swing.border.TitledBorder;
  */
 public class ListaFacoltàPanel extends JPanel{
 
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione array oggetti
-    private JLabel[] facoltà = new JLabel[Applicazione.listaFacoltàAttuali.size()];
-    private JPanel[] panels = new JPanel[Applicazione.listaRamiFacoltà.size()];
-    private JPanel[] innerPanels = new JPanel[Applicazione.listaRamiFacoltà.size()];
-    private JScrollPane[] scrollP = new JScrollPane[Applicazione.listaRamiFacoltà.size()];
-    private TitledBorder[] titoloBordo = new TitledBorder[Applicazione.listaRamiFacoltà.size()];
+    private JLabel[] facoltà = new JLabel[applicazione.listaFacoltàAttuali.size()];
+    private JPanel[] panels = new JPanel[applicazione.listaRamiFacoltà.size()];
+    private JPanel[] innerPanels = new JPanel[applicazione.listaRamiFacoltà.size()];
+    private JScrollPane[] scrollP = new JScrollPane[applicazione.listaRamiFacoltà.size()];
+    private TitledBorder[] titoloBordo = new TitledBorder[applicazione.listaRamiFacoltà.size()];
     
     //dichiarazione pannelli
     private JPanel panelloPrincipale;
@@ -63,32 +65,32 @@ public class ListaFacoltàPanel extends JPanel{
     
     public void creaPannelliFacoltà(){
     
-        for (int i = 0; i < Applicazione.listaRamiFacoltà.size(); i++) {
+        for (int i = 0; i < applicazione.listaRamiFacoltà.size(); i++) {
 
             try {
-                ListeQuery.caricaFacoltà(Applicazione.listaRamiFacoltà.get(i));
+                ListeQuery.caricaFacoltà(applicazione.listaRamiFacoltà.get(i));
                  } catch (SQLException ex) {
                 System.out.println("Errore durante il caricamento delle facoltà per ramo");
             }
             
             //inizializzazione pannelli
-            panels[i] = new JPanel(new GridLayout(Applicazione.listaFacoltàXRamo.size()+1, 1, 0, 10));
+            panels[i] = new JPanel(new GridLayout(applicazione.listaFacoltàXRamo.size()+1, 1, 0, 10));
             innerPanels[i] = new JPanel();
             scrollP[i] = new JScrollPane();
-            titoloBordo[i] = new TitledBorder(Applicazione.listaRamiFacoltà.get(i));
+            titoloBordo[i] = new TitledBorder(applicazione.listaRamiFacoltà.get(i));
 
             titoloBordo[i].setTitleFont(new Font("Century Gothic", Font.BOLD, 17));
             titoloBordo[i].setTitleColor(new Color(0,85,118));
             innerPanels[i].setBorder(titoloBordo[i]);
 
-            for (int j = 0; j < Applicazione.listaFacoltàXRamo.size(); j++) {
+            for (int j = 0; j < applicazione.listaFacoltàXRamo.size(); j++) {
 
                 facoltà[j] = new JLabel();
                 caricaCorsi = new CaricaCorsi(facoltà[j]);
                 facoltà[j].setPreferredSize(new Dimension(150, 20));
                 facoltà[j].setFont(new Font("Century Gothic", Font.PLAIN, 14));
-                facoltà[j].setText(Applicazione.listaFacoltàXRamo.get(j).getNome());
-                facoltà[j].setToolTipText(Applicazione.listaFacoltàXRamo.get(j).getNome());
+                facoltà[j].setText(applicazione.listaFacoltàXRamo.get(j).getNome());
+                facoltà[j].setToolTipText(applicazione.listaFacoltàXRamo.get(j).getNome());
                 facoltà[j].setName("facoltà"+j);
                 facoltà[j].addMouseListener(caricaCorsi);
                 panels[i].add(facoltà[j]);
@@ -109,7 +111,7 @@ public class ListaFacoltàPanel extends JPanel{
             innerPanels[i].add(scrollP[i]);
             panelloPrincipale.add(innerPanels[i]);
             
-            Applicazione.svuotaListaFacoltàXRamo();
+            applicazione.svuotaListaFacoltàXRamo();
 
         }
     

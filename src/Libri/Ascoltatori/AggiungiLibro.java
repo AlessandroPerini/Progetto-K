@@ -3,8 +3,8 @@
 */
 package Libri.Ascoltatori;
 
-import Database.Query.InsertQuery;
 import Application.Controller.Applicazione;
+import Database.Query.InsertQuery;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Libri.Vista.AggiungiLibroPanel;
@@ -23,6 +23,9 @@ import javax.swing.JTextArea;
  * @author te4o
  */
 public class AggiungiLibro implements ActionListener{
+    
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextArea titolo;
@@ -50,7 +53,7 @@ public class AggiungiLibro implements ActionListener{
             
             if((titolo.getText().length()<100)&&(descrizione.getText().length()<500)&&((Integer)prezzo.getValue()<999)&&((Integer)prezzo.getValue()>0)){
                 
-                if(telefono.isSelected()) tel = Applicazione.guest.getTelefono();
+                if(telefono.isSelected()) tel = applicazione.guest.getTelefono();
                 
                 else tel ="Numero non disponibile";
                 
@@ -58,13 +61,13 @@ public class AggiungiLibro implements ActionListener{
                     InsertQuery.inserisciLibro(titolo.getText(), descrizione.getText(), (Integer)prezzo.getValue(), tel);
                     JOptionPane.showMessageDialog(null, "Libro aggiunto correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     
-                    Applicazione.svuotaLibri();
+                    applicazione.svuotaLibri();
                     
                     ListeQuery.caricaLibri();
                     
                     Ordina.Libri();
                     
-                    Applicazione.back.remove(Applicazione.back.size()-1);
+                    applicazione.back.remove(applicazione.back.size()-1);
                     
                     libri = new ListaLibriPanel();
                     Grafica.container.add(libri, "libri");

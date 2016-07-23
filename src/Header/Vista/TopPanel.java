@@ -28,6 +28,8 @@ import javax.swing.border.LineBorder;
  */
 public class TopPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JComboBox<String> menu;
     private JButton backButton, segnalazioni;
@@ -74,7 +76,7 @@ public class TopPanel extends JPanel{
         segnalazioni.setFocusPainted(false);
         
         segnalazioni.addActionListener((ActionEvent e) -> {
-            Applicazione.back.add("segnalazione");
+            applicazione.back.add("segnalazione");
             
             SegnalazionePanel segnalazione = new SegnalazionePanel();
             Grafica.container.add(segnalazione, "segnalazione");
@@ -110,7 +112,7 @@ public class TopPanel extends JPanel{
         menu.addActionListener(menù);
         resetMenu();
         
-        if (Applicazione.back.get(Applicazione.back.size()-1).equals("facoltà")) add(segnalazioni);
+        if (applicazione.back.get(applicazione.back.size()-1).equals("facoltà")) add(segnalazioni);
         else add(backButton);
         add(title);
         add(menu);

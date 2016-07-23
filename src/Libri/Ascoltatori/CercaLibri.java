@@ -22,6 +22,8 @@ import javax.swing.JTextField;
  */
 public class CercaLibri implements ActionListener, KeyListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextField searchField;
     
@@ -37,8 +39,8 @@ public class CercaLibri implements ActionListener, KeyListener{
             
             Cerca.Libri(searchField);
             
-            Applicazione.back.remove(Applicazione.back.size()-1);
-            Applicazione.back.add("libri cercati");
+            applicazione.back.remove(applicazione.back.size()-1);
+            applicazione.back.add("libri cercati");
             
             libriCercati = new ListaLibriPanel();
             

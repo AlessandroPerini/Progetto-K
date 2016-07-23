@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiLikeDomanda implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JButton like;
     private JLabel Nlike;
@@ -40,24 +42,24 @@ public class AggiungiLikeDomanda implements ActionListener{
             
             if(!ControlloQuery.controlloLikeDomanda()){
                 
-                InfoQuery.caricaInfoDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
+                InfoQuery.caricaInfoDomanda(applicazione.corsoAttuale.getNome(), applicazione.facoltàAttuale.getNome());
                 DeleteQuery.decrementaLikeDomanda();
                 DeleteQuery.eliminaLikeDomanda();
-                Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()-1);
-                Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
+                applicazione.domandaAttuale.setLike(applicazione.domandaAttuale.getLike()-1);
+                Nlike.setText(applicazione.domandaAttuale.getLike()+" likes");
                 like.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
                 
             }else{
                 
-                InfoQuery.caricaInfoDomanda(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome());
+                InfoQuery.caricaInfoDomanda(applicazione.corsoAttuale.getNome(), applicazione.facoltàAttuale.getNome());
                 InsertQuery.inserisciLikeDomanda();
                 InsertQuery.updateLikeDomanda();
-                Applicazione.domandaAttuale.setLike(Applicazione.domandaAttuale.getLike()+1);
-                Nlike.setText(Applicazione.domandaAttuale.getLike()+" likes");
+                applicazione.domandaAttuale.setLike(applicazione.domandaAttuale.getLike()+1);
+                Nlike.setText(applicazione.domandaAttuale.getLike()+" likes");
                 like.setIcon(new ImageIcon(this.getClass().getResource("/immagini/thumbupON.png")));
             }
            
-            Applicazione.svuotaRisposte();
+            applicazione.svuotaRisposte();
             
             ListeQuery.caricaRisposteDomanda();
             Grafica.container.add(GoToDomanda.getDomanda(), "domanda");

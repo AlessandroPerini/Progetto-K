@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class GoToCorso implements MouseListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione variabili
     private String facoltà;
     private String nomeCorso;
@@ -39,13 +41,13 @@ public class GoToCorso implements MouseListener{
             JLabel label = (JLabel)e.getComponent();
             nomeCorso = label.getText();
 
-            Applicazione.corsoAttuale.setNome(nomeCorso);
+            applicazione.corsoAttuale.setNome(nomeCorso);
             
             InfoQuery.caricaInfoCorso(facoltà);
             
-            Applicazione.facoltàAttuale.setNome(facoltà);
+            applicazione.facoltàAttuale.setNome(facoltà);
             
-            Applicazione.back.add("corso");
+            applicazione.back.add("corso");
             
             corso = new CorsoPanel();
             Grafica.container.add(corso, "corso");

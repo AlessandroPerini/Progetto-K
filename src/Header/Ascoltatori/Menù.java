@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
  */
 public class Menù implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JComboBox menu;
     private String selezione;
@@ -60,12 +62,12 @@ public class Menù implements ActionListener{
     public void home(){
         
         try {
-            Applicazione.svuotaTutteLeListe();
+            applicazione.svuotaTutteLeListe();
             
             ListeQuery.caricaFacoltà();
             ListeQuery.caricaRamiFacoltà();
             
-            Applicazione.back.add("facoltà");
+            applicazione.back.add("facoltà");
             
             facoltà = new ListaFacoltàPanel();
             Grafica.card.show(Grafica.container, "facoltà");
@@ -83,9 +85,9 @@ public class Menù implements ActionListener{
             System.out.println("Errore durante la sincronizzazione dei dati utente");;
         }
             
-        Applicazione.svuotaMieiDati();
+        applicazione.svuotaMieiDati();
 
-        Applicazione.back.add("account");
+        applicazione.back.add("account");
 
         account = new AccountPanel();
         Grafica.container.add(account,"account");
@@ -100,7 +102,7 @@ public class Menù implements ActionListener{
             
             Ordina.ListePreferiti();
             
-            Applicazione.back.add("preferiti");
+            applicazione.back.add("preferiti");
             
             preferiti = new PreferitiPanel();
             Grafica.container.add(preferiti, "preferiti");
@@ -119,8 +121,8 @@ public class Menù implements ActionListener{
             
             Grafica.card.show(Grafica.container, "login");
             LoginPanel.clearForm();
-            Applicazione.logout();
-            Applicazione.back.clear();
+            applicazione.logout();
+            applicazione.back.clear();
         }
     }
     

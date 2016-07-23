@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviCorsoPreferito implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private CorsoPanel corso;
     
     @Override
@@ -27,7 +29,7 @@ public class RimuoviCorsoPreferito implements ActionListener{
             DeleteQuery.eliminaCorsoPreferito();
             
             
-            Applicazione.preferiti.getCorsiPreferiti().remove(Applicazione.corsoAttuale);
+            applicazione.preferiti.getCorsiPreferiti().remove(applicazione.corsoAttuale);
             
             corso = new CorsoPanel();
             Grafica.container.add(corso, "corso");

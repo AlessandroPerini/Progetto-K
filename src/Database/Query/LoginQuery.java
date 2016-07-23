@@ -14,6 +14,8 @@ import java.sql.SQLException;
  */
 public class LoginQuery {
     
+    public static Applicazione applicazione = Applicazione.getInstance();
+
     //inizializzazione variaili
     private static boolean check = false;
     private static String telefono = "", nickname = "";
@@ -24,7 +26,7 @@ public class LoginQuery {
         
         String password = String.valueOf(psw);
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(sql);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(sql);
         ps1.clearParameters();
         ps1.setString(1, email);
         ps1.setString(2, password);
@@ -38,7 +40,7 @@ public class LoginQuery {
             telefono = rs.getString("telefono");
             nickname = rs.getString("nickname");
             
-            Applicazione.inizializzaUtente(email, password, telefono, nickname);
+            applicazione.inizializzaUtente(email, password, telefono, nickname);
         }
     }
     

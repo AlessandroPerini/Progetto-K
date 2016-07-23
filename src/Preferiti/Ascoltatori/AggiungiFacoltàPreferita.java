@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiFacoltàPreferita implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
     private ListaCorsiPanel corsi;
     
     @Override
@@ -26,7 +27,7 @@ public class AggiungiFacoltàPreferita implements ActionListener{
         try {
             InsertQuery.inserisciFacoltàPreferita();
 
-            Applicazione.preferiti.getFacoltàPreferite().add(Applicazione.facoltàAttuale);
+            applicazione.preferiti.getFacoltàPreferite().add(applicazione.facoltàAttuale);
             
             corsi = new ListaCorsiPanel();
             Grafica.container.add(corsi, "corsi");

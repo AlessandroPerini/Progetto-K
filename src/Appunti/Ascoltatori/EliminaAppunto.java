@@ -6,8 +6,8 @@
 */
 package Appunti.Ascoltatori;
 
-import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
+import Appunti.Vista.ListaAppuntiPanel;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.DeleteQuery;
@@ -31,7 +31,8 @@ import javax.swing.JOptionPane;
  */
 public class EliminaAppunto implements ActionListener{
     
-    //dichiarazione oggetti
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private JButton bottone;
     private JButton bottone2;
     private GifFrame gif;
@@ -59,8 +60,7 @@ public class EliminaAppunto implements ActionListener{
             
             gif.apri();
             
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
+            new java.util.Timer().schedule(new java.util.TimerTask() {
                         @Override
                         public void run() {
                             try {
@@ -81,23 +81,23 @@ public class EliminaAppunto implements ActionListener{
                                     
                                     JOptionPane.showMessageDialog(null, "Appunto eliminato correttamente.", "Eliminazione Confermata", JOptionPane.INFORMATION_MESSAGE);
                                     
-                                    Applicazione.svuotaAppunti();
+                                    applicazione.svuotaAppunti();
                                     
                                     ListeQuery.caricaAppunti();
                                     
-                                    Applicazione.back.remove(Applicazione.back.size()-1);
+                                    applicazione.back.remove(applicazione.back.size()-1);
                                     
                                     Ordina.Appunti();
                                     
-                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("appunti")){
+                                    if(applicazione.back.get(applicazione.back.size()-1).equals("appunti")){
                                         
                                         appunti = new ListaAppuntiPanel();
                                         Grafica.container.add(appunti, "appunti");
                                         Grafica.card.show(Grafica.container, "appunti");
                                     }
                                     
-                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
-                                        Applicazione.svuotaPreferiti();
+                                    if(applicazione.back.get(applicazione.back.size()-1).equals("preferiti")){
+                                        applicazione.svuotaPreferiti();
                                         
                                         ListeQuery.caricaFacoltàPreferite();
                                         ListeQuery.caricaCorsiPreferiti();
@@ -112,8 +112,8 @@ public class EliminaAppunto implements ActionListener{
                                         Grafica.card.show(Grafica.container, "preferiti");
                                     }
                                     
-                                    if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
-                                        Applicazione.svuotaMieiDati();
+                                    if(applicazione.back.get(applicazione.back.size()-1).equals("i miei dati")){
+                                        applicazione.svuotaMieiDati();
                                         
                                         GuestQuery.caricaMieiAppunti();
                                         GuestQuery.caricaMieiLibri();

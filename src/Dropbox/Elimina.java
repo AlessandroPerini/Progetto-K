@@ -16,6 +16,8 @@ import java.util.Locale;
  */
 public class Elimina {
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //inizializzazione variabili
     public static boolean eliminaOk = false;
     
@@ -28,9 +30,9 @@ public class Elimina {
         DbxClient client = new DbxClient(config, "_lcMc5LLpBQAAAAAAAAB_Uw-4dGvjNPY0kjwXwTH6CgROUkbEv040W7JwQLacvFu");
         
         //nome completo del file su dropbox
-        String nomeCompleto = Applicazione.appuntoAttuale.getNome()+"."+
-                              Applicazione.corsoAttuale.getNome()+"."+
-                              Applicazione.facoltàAttuale.getNome();
+        String nomeCompleto = applicazione.appuntoAttuale.getNome()+"."+
+                              applicazione.corsoAttuale.getNome()+"."+
+                              applicazione.facoltàAttuale.getNome();
         String formato = "";
         
         //ricerca file per formato
@@ -44,7 +46,7 @@ public class Elimina {
             String appunto = parti[0];
             
             nomeFile = nomeFile.replace(",", ".");
-            if (Applicazione.appuntoAttuale.getNome().equals(appunto)) {
+            if (applicazione.appuntoAttuale.getNome().equals(appunto)) {
                 int i = nomeFile.lastIndexOf('.');
                 formato = nomeFile.substring(i);
             }

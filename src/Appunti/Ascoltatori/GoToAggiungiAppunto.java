@@ -5,8 +5,8 @@
  */
 package Appunti.Ascoltatori;
 
-import Appunti.Vista.AggiungiAppuntoPanel;
 import Application.Controller.Applicazione;
+import Appunti.Vista.AggiungiAppuntoPanel;
 import Application.Vista.Grafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,12 +17,13 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiAppunto implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
     private AggiungiAppuntoPanel aggiungiAppuntoPanel;
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.back.add("aggiungiAppunto");
+        applicazione.back.add("aggiungiAppunto");
 
         aggiungiAppuntoPanel = new AggiungiAppuntoPanel();
         

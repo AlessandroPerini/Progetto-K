@@ -32,6 +32,8 @@ import javax.swing.border.LineBorder;
  */
 public class CorsoPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione pannelli
     private TopPanel top;
     private JPanel pannelloPrincipale, centro, topPref, doppioTop;
@@ -57,7 +59,7 @@ public class CorsoPanel extends JPanel{
     public CorsoPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel(Applicazione.corsoAttuale.getNome());
+        top = new TopPanel(applicazione.corsoAttuale.getNome());
         topPref = new JPanel();
         doppioTop = new JPanel(new GridLayout(2, 1, 0, 5));
         pannelloPrincipale = new JPanel(new GridBagLayout());

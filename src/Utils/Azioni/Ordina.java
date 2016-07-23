@@ -18,8 +18,10 @@ import java.util.Comparator;
  */
 public class Ordina {
     
+    private static Applicazione applicazione = Applicazione.getInstance();
+    
     public static void Domande(){
-        Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
+        Collections.sort(applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
             
             @Override
             public int compare(Domanda d1, Domanda d2) {
@@ -29,7 +31,7 @@ public class Ordina {
     }
     
     public static void DomandeAlfabetic(){
-        Collections.sort(Applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
+        Collections.sort(applicazione.listaDomandeAttuali, new Comparator<Domanda>() {
             
             @Override
             public int compare(Domanda d1, Domanda d2) {
@@ -39,7 +41,7 @@ public class Ordina {
     }
     
     public static void Appunti(){
-        Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
+        Collections.sort(applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
             
             @Override
             public int compare(Appunto a1, Appunto a2) {
@@ -49,7 +51,7 @@ public class Ordina {
     }
     
     public static void AppuntiAlfabetic(){
-        Collections.sort(Applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
+        Collections.sort(applicazione.listaAppuntiAttuali, new Comparator<Appunto>() {
             
             @Override
             public int compare(Appunto a3, Appunto a4) {
@@ -59,7 +61,7 @@ public class Ordina {
     }
     
     public static void Libri(){
-        Collections.sort(Applicazione.listaLibriAttuali, new Comparator<Libro>() {
+        Collections.sort(applicazione.listaLibriAttuali, new Comparator<Libro>() {
             
             @Override
             public int compare(Libro l1, Libro l2) {
@@ -69,7 +71,7 @@ public class Ordina {
     }
     
     public static void CorsiXAnno(){
-        Collections.sort(Applicazione.listaCorsiXAnno, new Comparator<Corso>() {
+        Collections.sort(applicazione.listaCorsiXAnno, new Comparator<Corso>() {
             
             @Override
             public int compare(Corso c1, Corso c2) {
@@ -79,7 +81,7 @@ public class Ordina {
     }
     
     public static void Rami(){
-        Collections.sort(Applicazione.listaRamiFacoltà, new Comparator<String>() {
+        Collections.sort(applicazione.listaRamiFacoltà, new Comparator<String>() {
             
             @Override
             public int compare(String f1, String f2) {
@@ -89,7 +91,7 @@ public class Ordina {
     }
     
     public static void FacoltàPreferite(){
-        Collections.sort(Applicazione.preferiti.getFacoltàPreferite(), new Comparator<Facoltà>() {
+        Collections.sort(applicazione.preferiti.getFacoltàPreferite(), new Comparator<Facoltà>() {
             
             @Override
             public int compare(Facoltà f1, Facoltà f2) {
@@ -99,7 +101,7 @@ public class Ordina {
     }
     
     public static void CorsiPreferiti(){
-        Collections.sort(Applicazione.preferiti.getCorsiPreferiti(), new Comparator<Corso>() {
+        Collections.sort(applicazione.preferiti.getCorsiPreferiti(), new Comparator<Corso>() {
             
             @Override
             public int compare(Corso c1, Corso c2) {
@@ -109,7 +111,7 @@ public class Ordina {
     }
     
     public static void AppuntiPreferiti(){
-        Collections.sort(Applicazione.preferiti.getAppuntiPreferiti(), new Comparator<Appunto>() {
+        Collections.sort(applicazione.preferiti.getAppuntiPreferiti(), new Comparator<Appunto>() {
             
             @Override
             public int compare(Appunto a1, Appunto a2) {
@@ -119,7 +121,7 @@ public class Ordina {
     }
     
     public static void LibriPreferiti(){
-        Collections.sort(Applicazione.preferiti.getLibriPreferiti(), new Comparator<Libro>() {
+        Collections.sort(applicazione.preferiti.getLibriPreferiti(), new Comparator<Libro>() {
             
             @Override
             public int compare(Libro l1, Libro l2) {
@@ -129,7 +131,7 @@ public class Ordina {
     }
     
     public static void DomandePreferite(){
-        Collections.sort(Applicazione.preferiti.getDomandePreferite(), new Comparator<Domanda>() {
+        Collections.sort(applicazione.preferiti.getDomandePreferite(), new Comparator<Domanda>() {
             
             @Override
             public int compare(Domanda d1, Domanda d2) {
@@ -148,7 +150,7 @@ public class Ordina {
     }
     
     public static void MieiAppunti(){
-        Collections.sort(Applicazione.appuntiGuest, new Comparator<Appunto>() {
+        Collections.sort(applicazione.appuntiGuest, new Comparator<Appunto>() {
             
             @Override
             public int compare(Appunto a1, Appunto a2) {
@@ -158,7 +160,7 @@ public class Ordina {
     }
     
     public static void MieiLibri(){
-        Collections.sort(Applicazione.libriGuest, new Comparator<Libro>() {
+        Collections.sort(applicazione.libriGuest, new Comparator<Libro>() {
             
             @Override
             public int compare(Libro l1, Libro l2) {
@@ -168,7 +170,7 @@ public class Ordina {
     }
     
     public static void MieDomande(){
-        Collections.sort(Applicazione.domandeGuest, new Comparator<Domanda>() {
+        Collections.sort(applicazione.domandeGuest, new Comparator<Domanda>() {
             
             @Override
             public int compare(Domanda d1, Domanda d2) {

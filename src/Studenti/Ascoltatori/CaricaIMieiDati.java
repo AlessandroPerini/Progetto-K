@@ -4,8 +4,8 @@
 */
 package Studenti.Ascoltatori;
 
-import Studenti.Vista.iMieiDatiPanel;
 import Application.Controller.Applicazione;
+import Studenti.Vista.iMieiDatiPanel;
 import Application.Vista.Grafica;
 import Database.Query.GuestQuery;
 import Utils.Azioni.Ordina;
@@ -20,6 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class CaricaIMieiDati implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private iMieiDatiPanel mieiDatiPanel;
     
     @Override
@@ -29,7 +31,7 @@ public class CaricaIMieiDati implements ActionListener{
             
             GuestQuery.caricaTuttiMieiDati();
             
-            Applicazione.back.add("i miei dati");
+            applicazione.back.add("i miei dati");
             
             Ordina.ListeMieiDati();
             

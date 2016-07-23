@@ -6,8 +6,8 @@
 */
 package Appunti.Ascoltatori;
 
-import Appunti.Vista.AppuntoPanel;
 import Application.Controller.Applicazione;
+import Appunti.Vista.AppuntoPanel;
 import Application.Vista.Grafica;
 import Appunti.Vista.ListaAppuntiPanel;
 import Database.Query.InfoQuery;
@@ -23,7 +23,8 @@ import javax.swing.JLabel;
  */
 public class GoToAppunto implements MouseListener{
     
-    //dichiarazione variabili
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private String corso;
     private String facoltà;
     private String nomeAppunto;
@@ -42,18 +43,18 @@ public class GoToAppunto implements MouseListener{
         
         try {
             
-            Applicazione.back.add("appunto");
+            applicazione.back.add("appunto");
          
             JLabel label = (JLabel)e.getComponent();
             nomeAppunto = label.getText();
             
-            Applicazione.appuntoAttuale.setNome(nomeAppunto);
+            applicazione.appuntoAttuale.setNome(nomeAppunto);
 
             InfoQuery.caricaInfoAppunto(corso, facoltà);
             
-            Applicazione.corsoAttuale.setNome(corso);
+            applicazione.corsoAttuale.setNome(corso);
             
-            Applicazione.facoltàAttuale.setNome(facoltà);
+            applicazione.facoltàAttuale.setNome(facoltà);
             
             appunto = new AppuntoPanel();
             Grafica.container.add(appunto, "appunto");

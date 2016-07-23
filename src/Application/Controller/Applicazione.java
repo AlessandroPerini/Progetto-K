@@ -24,46 +24,48 @@ import java.util.ArrayList;
  */
 public class Applicazione {
     
-    //connessione al database
-    public static Connection DBconnection = new ConnessioneDB().connect();
+    private static Applicazione instance;
     
-    //entità Studente che contiene i dati dell'utente loggato
-    public static Studente guest;
-    //controllo se il login è stato effettuato
-    public static boolean utenteLoggato = false;
+    private Applicazione(){
+    }
     
-    //ArrayList per la gestione del bottone back
-    public static ArrayList<String> back = new ArrayList<>();
+    public static synchronized Applicazione getInstance(){
     
-    //inizializzazione ArrayList dei dati attuali
-    //-------------------------------------------- per ogni nuova ArrayList, aggiungere il suo metodo svuota e inserirlo nel logout() --------------------------------------------//
-    public static ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
-    public static ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
-    public static ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
-    public static ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
-    public static ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
-    public static ArrayList<Risposta> listaRisposteAttuali = new ArrayList<>();
-    public static ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
-    public static ArrayList<String> listaRamiFacoltà = new ArrayList<>();
-    public static ArrayList<Corso> listaCorsiXAnno= new ArrayList<>();
-    public static ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
+        if(instance == null){ 
+            instance = new Applicazione(); }
+        return instance;
+    }
     
-    //inizializzazione entità preferiti, al cui interno ci sono le liste di facoltà, corsi, appunti, libri e domande preferite
-    public static Preferiti preferiti = new Preferiti();
+    public Connection DBconnection = new ConnessioneDB().connect();
     
-    //inizializzazione delle entità attuali (dove si ha cliccato essenzialmente)
-    public static Facoltà facoltàAttuale = new Facoltà("", "");
-    public static Corso corsoAttuale = new Corso("", 0, "");
-    public static Libro libroAttuale = new Libro("", "", 0, "", "", 0, "", "");
-    public static Domanda domandaAttuale = new  Domanda("", "", "", 0, "", "");
-    public static Appunto appuntoAttuale = new Appunto("", "", "", "", "", 0);
+    public Studente guest;
+    public boolean utenteLoggato = false;
+    public ArrayList<String> back = new ArrayList<>();
     
-    //inizializzazione dei dati caricati dall'utente loggato
-    public static ArrayList<Appunto> appuntiGuest = new ArrayList<>();
-    public static ArrayList<Libro> libriGuest = new ArrayList<>();
-    public static ArrayList<Domanda> domandeGuest = new ArrayList<>();
+    public ArrayList<Corso> listaCorsiAttuali = new ArrayList<>();
+    public ArrayList<Facoltà> listaFacoltàAttuali = new ArrayList<>();
+    public ArrayList<Libro> listaLibriAttuali = new ArrayList<>();
+    public ArrayList<Domanda> listaDomandeAttuali = new ArrayList<>();
+    public ArrayList<Appunto> listaAppuntiAttuali = new ArrayList<>();
+    public ArrayList<Risposta> listaRisposteAttuali = new ArrayList<>();
+    public ArrayList<Facoltà> listaFacoltàXRamo = new ArrayList<>();
+    public ArrayList<String> listaRamiFacoltà = new ArrayList<>();
+    public ArrayList<Corso> listaCorsiXAnno= new ArrayList<>();
+    public ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
-    public static void inizializzaUtente(String email, String password, String telefono, String nickname){
+    public Preferiti preferiti = new Preferiti();
+    
+    public Facoltà facoltàAttuale = new Facoltà("", "");
+    public Corso corsoAttuale = new Corso("", 0, "");
+    public Libro libroAttuale = new Libro("", "", 0, "", "", 0, "", "");
+    public Domanda domandaAttuale = new  Domanda("", "", "", 0, "", "");
+    public Appunto appuntoAttuale = new Appunto("", "", "", "", "", 0);
+    
+    public ArrayList<Appunto> appuntiGuest = new ArrayList<>();
+    public ArrayList<Libro> libriGuest = new ArrayList<>();
+    public ArrayList<Domanda> domandeGuest = new ArrayList<>();
+    
+    public void inizializzaUtente(String email, String password, String telefono, String nickname){
         
         guest = new Studente(email, password, telefono, nickname);
         guest.setNome();
@@ -72,58 +74,58 @@ public class Applicazione {
         utenteLoggato = true;
     }
     
-    public static void eliminaUtente(){
+    public void eliminaUtente(){
         guest = new Studente("", "","", "");
         utenteLoggato = false;
     }
     
-    public static void svuotaCorsi() {
+    public void svuotaCorsi() {
         listaCorsiAttuali.clear();
     }
     
-    public static void svuotaFacoltà() {
+    public void svuotaFacoltà() {
         listaFacoltàAttuali.clear();
     }
     
-    public static void svuotaLibri() {
+    public void svuotaLibri() {
         listaLibriAttuali.clear();
     }
     
-    public static void svuotaDomande() {
+    public void svuotaDomande() {
         listaDomandeAttuali.clear();
     }
     
-    public static void svuotaAppunti() {
+    public void svuotaAppunti() {
         listaAppuntiAttuali.clear();
     }
     
-    public static void svuotaRisposte() {
+    public void svuotaRisposte() {
         listaRisposteAttuali.clear();
     }
     
-    public static void svuotaMieiDati() {
+    public void svuotaMieiDati() {
         appuntiGuest.clear();
         libriGuest.clear();
         domandeGuest.clear();
     }
     
-    public static void svuotaListaFacoltàXRamo(){
+    public void svuotaListaFacoltàXRamo(){
         listaFacoltàXRamo.clear();
     }
     
-    public static void svuotaRami(){
+    public void svuotaRami(){
         listaRamiFacoltà.clear();
     }
     
-    public static void svuotaCorsiXAnno(){
+    public void svuotaCorsiXAnno(){
         listaCorsiXAnno.clear();
     }
     
-    public static void svuotaRecensioni(){
+    public void svuotaRecensioni(){
         listaValutazioniAttuali.clear();
     }
     
-    public static void svuotaPreferiti(){
+    public void svuotaPreferiti(){
         preferiti.getAppuntiPreferiti().clear();
         preferiti.getCorsiPreferiti().clear();
         preferiti.getLibriPreferiti().clear();
@@ -131,7 +133,7 @@ public class Applicazione {
         preferiti.getCorsiPreferiti().clear();
     }
     
-    public static void svuotaTutteLeListe(){
+    public void svuotaTutteLeListe(){
 
         svuotaCorsi();;
         svuotaFacoltà();
@@ -148,7 +150,7 @@ public class Applicazione {
         
     }
     
-    public static void logout(){
+    public void logout(){
         
         eliminaUtente();
         

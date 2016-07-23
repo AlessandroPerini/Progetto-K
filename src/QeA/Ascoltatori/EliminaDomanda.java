@@ -27,6 +27,8 @@ import javax.swing.JOptionPane;
  */
 public class EliminaDomanda implements ActionListener{
 
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private ListaDomandePanel domande;
     private PreferitiPanel preferitiPanel; 
     private iMieiDatiPanel mieiDatiPanel; 
@@ -40,7 +42,7 @@ public class EliminaDomanda implements ActionListener{
             try {
                 DeleteQuery.eliminaDomanda();
                 DeleteQuery.eliminaTuttiLikeDomanda();
-                if(!Applicazione.listaRisposteAttuali.isEmpty()){
+                if(!applicazione.listaRisposteAttuali.isEmpty()){
                     DeleteQuery.eliminaRisposteDomanda();
                     DeleteQuery.eliminaTuttiLikeRisposta();
                 }
@@ -51,22 +53,22 @@ public class EliminaDomanda implements ActionListener{
                     DeleteQuery.eliminaDomandePreferite();
                 }
                 
-                Applicazione.svuotaDomande();
+                applicazione.svuotaDomande();
                 
                 ListeQuery.caricaDomande();
                 
-                Applicazione.back.remove(Applicazione.back.size()-1);
+                applicazione.back.remove(applicazione.back.size()-1);
                 
                 Ordina.Domande();
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("domande")){
+                if(applicazione.back.get(applicazione.back.size()-1).equals("domande")){
                     domande = new ListaDomandePanel();
                     Grafica.container.add(domande, "domande");
                     Grafica.card.show(Grafica.container, "domande");
                 }
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
-                    Applicazione.svuotaPreferiti();
+                if(applicazione.back.get(applicazione.back.size()-1).equals("preferiti")){
+                    applicazione.svuotaPreferiti();
                     
                     ListeQuery.caricaTuttiPreferiti();
                     
@@ -77,8 +79,8 @@ public class EliminaDomanda implements ActionListener{
                     Grafica.card.show(Grafica.container, "preferiti");
                 }
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
-                    Applicazione.svuotaMieiDati();
+                if(applicazione.back.get(applicazione.back.size()-1).equals("i miei dati")){
+                    applicazione.svuotaMieiDati();
                     
                     GuestQuery.caricaTuttiMieiDati();
                     

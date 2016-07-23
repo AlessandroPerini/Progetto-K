@@ -16,53 +16,55 @@ import javax.swing.JTextField;
  */
 public class Cerca {
 
+    public static Applicazione applicazione = Applicazione.getInstance();
+    
     public static void Appunti(JTextField testoRicerca){
     
-        Appunto[] appuntiCercati = new Appunto[Applicazione.listaAppuntiAttuali.size()];
+        Appunto[] appuntiCercati = new Appunto[applicazione.listaAppuntiAttuali.size()];
 
-        for (int i = 0; i < Applicazione.listaAppuntiAttuali.size(); i++) {
-            if (Applicazione.listaAppuntiAttuali.get(i).getNome().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
-                appuntiCercati[i] = Applicazione.listaAppuntiAttuali.get(i);
+        for (int i = 0; i < applicazione.listaAppuntiAttuali.size(); i++) {
+            if (applicazione.listaAppuntiAttuali.get(i).getNome().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
+                appuntiCercati[i] = applicazione.listaAppuntiAttuali.get(i);
             }
         }
-        Applicazione.listaAppuntiAttuali.clear();
+        applicazione.listaAppuntiAttuali.clear();
         for (int i = 0; i < appuntiCercati.length; i++) {
             if (appuntiCercati[i] != null) {
-                Applicazione.listaAppuntiAttuali.add(appuntiCercati[i]);
+                applicazione.listaAppuntiAttuali.add(appuntiCercati[i]);
             }
         }
     }
     
     public static void Libri(JTextField testoRicerca){
     
-        Libro[] libriCercati = new Libro[Applicazione.listaLibriAttuali.size()];
+        Libro[] libriCercati = new Libro[applicazione.listaLibriAttuali.size()];
 
-        for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
-            if (Applicazione.listaLibriAttuali.get(i).getTitolo().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
-                libriCercati[i] = Applicazione.listaLibriAttuali.get(i);
+        for (int i = 0; i < applicazione.listaLibriAttuali.size(); i++) {
+            if (applicazione.listaLibriAttuali.get(i).getTitolo().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
+                libriCercati[i] = applicazione.listaLibriAttuali.get(i);
             }
         }
-        Applicazione.listaLibriAttuali.clear();
+        applicazione.listaLibriAttuali.clear();
         for (int i = 0; i < libriCercati.length; i++) {
             if (libriCercati[i] != null) {
-                Applicazione.listaLibriAttuali.add(libriCercati[i]);
+                applicazione.listaLibriAttuali.add(libriCercati[i]);
             }
         }
     }
     
     public static void Domande(JTextField testoRicerca){
     
-        Domanda[] domandeCercate = new Domanda[Applicazione.listaDomandeAttuali.size()];
+        Domanda[] domandeCercate = new Domanda[applicazione.listaDomandeAttuali.size()];
 
-        for (int i = 0; i < Applicazione.listaDomandeAttuali.size(); i++) {
-            if (Applicazione.listaDomandeAttuali.get(i).getTitolo().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
-                domandeCercate[i] = Applicazione.listaDomandeAttuali.get(i);
+        for (int i = 0; i < applicazione.listaDomandeAttuali.size(); i++) {
+            if (applicazione.listaDomandeAttuali.get(i).getTitolo().toLowerCase().contains(testoRicerca.getText().toLowerCase())) {
+                domandeCercate[i] = applicazione.listaDomandeAttuali.get(i);
             }
         }
-        Applicazione.listaDomandeAttuali.clear();
+        applicazione.listaDomandeAttuali.clear();
         for (int i = 0; i < domandeCercate.length; i++) {
             if (domandeCercate[i] != null) {
-                Applicazione.listaDomandeAttuali.add(domandeCercate[i]);
+                applicazione.listaDomandeAttuali.add(domandeCercate[i]);
             }
         }
     }

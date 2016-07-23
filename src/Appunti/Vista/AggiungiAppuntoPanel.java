@@ -5,8 +5,8 @@
 */
 package Appunti.Vista;
 
-import Appunti.Ascoltatori.AggiungiAppunto;
 import Application.Controller.Applicazione;
+import Appunti.Ascoltatori.AggiungiAppunto;
 import Header.Vista.TopPanel;
 import Utils.Vista.CustomScrollBar;
 import java.awt.Color;
@@ -33,6 +33,8 @@ import javax.swing.border.LineBorder;
  * @author te4o
  */
 public class AggiungiAppuntoPanel extends JPanel{
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private static JTextArea nome, descrizione;
@@ -72,7 +74,7 @@ public class AggiungiAppuntoPanel extends JPanel{
         fileAppunto = new File("");
         
         //inizializzazione pannelli
-        top = new TopPanel("Aggiungi Appunto in '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Aggiungi Appunto in '"+applicazione.corsoAttuale.getNome()+"'");
         pannelloPrincipale = new JPanel(new GridBagLayout());
         nomePanel = new JPanel();
         descrizionePanel = new JPanel();

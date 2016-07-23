@@ -3,9 +3,8 @@
 * al corso selezionato
 */
 package Appunti.Ascoltatori;
-
-import Appunti.Vista.ListaAppuntiPanel;
 import Application.Controller.Applicazione;
+import Appunti.Vista.ListaAppuntiPanel;
 import Application.Vista.Grafica;
 import Database.Query.ListeQuery;
 import Utils.Azioni.Ordina;
@@ -19,6 +18,8 @@ import java.sql.SQLException;
  */
 public class CaricaAppunti implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+
     private ListaAppuntiPanel appunti;
     
     @Override
@@ -27,7 +28,7 @@ public class CaricaAppunti implements ActionListener{
         try {
             ListeQuery.caricaAppunti();
             
-            Applicazione.back.add("appunti");
+            applicazione.back.add("appunti");
 
             Ordina.Appunti();
             

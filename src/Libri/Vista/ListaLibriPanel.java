@@ -6,9 +6,9 @@
 */
 package Libri.Vista;
 
+import Application.Controller.Applicazione;
 import Libri.Ascoltatori.GoToLibro;
 import Libri.Ascoltatori.GoToAggiungiLibro;
-import Application.Controller.Applicazione;
 import Header.Vista.TopPanel;
 import Libri.Ascoltatori.CercaLibri;
 import Utils.Vista.CustomScrollBar;
@@ -36,10 +36,12 @@ import javax.swing.border.LineBorder;
  */
 public class ListaLibriPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione array label
-    private JLabel[] libri = new JLabel[Applicazione.listaLibriAttuali.size()];
-    private JLabel[] libriIcon = new JLabel[Applicazione.listaLibriAttuali.size()];
-    private JLabel[] libriLabel = new JLabel[Applicazione.listaLibriAttuali.size()];
+    private JLabel[] libri = new JLabel[applicazione.listaLibriAttuali.size()];
+    private JLabel[] libriIcon = new JLabel[applicazione.listaLibriAttuali.size()];
+    private JLabel[] libriLabel = new JLabel[applicazione.listaLibriAttuali.size()];
     
     //dichiarazione label - textfield - bottoni
     private JTextField searchField;
@@ -72,7 +74,7 @@ public class ListaLibriPanel extends JPanel{
         addLibro = new JButton("", new ImageIcon(getClass().getResource("/immagini/add.png")));
         
         //inizializzazione pannelli
-        top = new TopPanel("Libri '"+Applicazione.corsoAttuale.getNome()+"'");
+        top = new TopPanel("Libri '"+applicazione.corsoAttuale.getNome()+"'");
         panelloPrincipale = new JPanel(new GridBagLayout());
         searchPanel = new JPanel();
         ordinaPanel = new JPanel(new GridBagLayout());
@@ -87,7 +89,7 @@ public class ListaLibriPanel extends JPanel{
         gbcd = new GridBagConstraints();
         
         //inizializzazione variabili
-        nLibri = Applicazione.listaLibriAttuali.size();
+        nLibri = applicazione.listaLibriAttuali.size();
         
         //creazione pannelli
         creaPannelloRicerca();
@@ -156,10 +158,10 @@ public class ListaLibriPanel extends JPanel{
     public void creaPannelloLista(){
         
         if(nLibri == 0){
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("libri")) {
                 noLibri = new JLabel("Non ci sono libri relativi a questo corso");
             }
-            if (Applicazione.back.get(Applicazione.back.size()-1).equals("libri cercati")) {
+            if (applicazione.back.get(applicazione.back.size()-1).equals("libri cercati")) {
                 noLibri = new JLabel("Nessun libro trovato");
             }
             noLibri.setFont(new Font("Century Gothic", Font.BOLD, 20));
@@ -171,20 +173,20 @@ public class ListaLibriPanel extends JPanel{
             panelloPrincipale.add(noLibri, gbcd);
             
         }else{
-            for (int i = 0; i < Applicazione.listaLibriAttuali.size(); i++) {
+            for (int i = 0; i < applicazione.listaLibriAttuali.size(); i++) {
                 
                 libriLabel[i]= new JLabel();
-                libri[i] = new JLabel(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libri[i] = new JLabel(applicazione.listaLibriAttuali.get(i).getTitolo());
                 libri[i].setPreferredSize(new Dimension(200, 30));
                 libriIcon[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
-                libri[i].setToolTipText(Applicazione.listaLibriAttuali.get(i).getTitolo());
+                libri[i].setToolTipText(applicazione.listaLibriAttuali.get(i).getTitolo());
                 libriLabel[i].setLayout(new BoxLayout(libriLabel[i], BoxLayout.X_AXIS));
                 libriLabel[i].setPreferredSize(new Dimension(240, 30));
                 libri[i].setFont(new Font("Century Gothic", Font.BOLD, 15));
                 libriLabel[i].add(libriIcon[i]);
                 libriLabel[i].add(new JLabel("   "));
                 libriLabel[i].add(libri[i]);
-                goToLibro = new GoToLibro(Applicazione.corsoAttuale.getNome(), Applicazione.facoltàAttuale.getNome(), Applicazione.listaLibriAttuali.get(i).getID(),libri[i]);
+                goToLibro = new GoToLibro(applicazione.corsoAttuale.getNome(), applicazione.facoltàAttuale.getNome(), applicazione.listaLibriAttuali.get(i).getID(),libri[i]);
                 libriLabel[i].addMouseListener(goToLibro);
                 libri[i].addMouseListener(goToLibro);
                 gbcd.gridx = 0;

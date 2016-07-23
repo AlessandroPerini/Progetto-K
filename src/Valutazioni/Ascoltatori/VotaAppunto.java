@@ -27,6 +27,8 @@ import javax.swing.JTextArea;
  */
 public class VotaAppunto implements ActionListener{
     
+    private static Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextArea commento;
     private JSlider punteggio;
@@ -54,7 +56,7 @@ public class VotaAppunto implements ActionListener{
                             
                             float newMedia = InfoQuery.mediaAppunto();
                             
-                            Applicazione.appuntoAttuale.setMedia(newMedia);
+                            applicazione.appuntoAttuale.setMedia(newMedia);
                             
                             InsertQuery.updateMedia(newMedia);
                             

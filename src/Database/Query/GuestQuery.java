@@ -3,8 +3,8 @@
 */
 package Database.Query;
 
-import Appunti.Appunto;
 import Application.Controller.Applicazione;
+import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
 import java.sql.PreparedStatement;
@@ -17,13 +17,15 @@ import java.sql.SQLException;
  */
 public class GuestQuery {
     
+    public static Applicazione applicazione = Applicazione.getInstance();
+    
     public static void caricaMieiAppunti() throws SQLException{
         
         String selectMieiAppunti = "select * from appunti where studente=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiAppunti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectMieiAppunti);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ResultSet rs = ps1.executeQuery();
         
         while(rs.next()){
@@ -36,7 +38,7 @@ public class GuestQuery {
             float media = rs.getFloat("media");
             
             Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto,  emailAppunto, corso, facoltà, media);
-            Applicazione.appuntiGuest.add(appunto);
+            applicazione.appuntiGuest.add(appunto);
         }
         
     }
@@ -45,9 +47,9 @@ public class GuestQuery {
         
         String selectMieiLibri = "select * from libri where studente=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectMieiLibri);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectMieiLibri);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ResultSet rs = ps1.executeQuery();
         
         while(rs.next()){
@@ -62,7 +64,7 @@ public class GuestQuery {
             String facoltà = rs.getString("facoltà");
             
             Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro, corso, facoltà);
-            Applicazione.libriGuest.add(libro);
+            applicazione.libriGuest.add(libro);
             
         }
     }
@@ -71,9 +73,9 @@ public class GuestQuery {
         
         String selectDomande = "select * from domande where studente=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomande);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ResultSet rs = ps1.executeQuery();
         
         while(rs.next()){
@@ -86,7 +88,7 @@ public class GuestQuery {
             String facoltà = rs.getString("facoltà");
             
             Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, studenteLike, corso, facoltà);
-            Applicazione.domandeGuest.add(domanda);
+            applicazione.domandeGuest.add(domanda);
             
         }
     }
@@ -102,9 +104,9 @@ public class GuestQuery {
     
         String selectDatiUtente = "select * from studenti where email=?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDatiUtente);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDatiUtente);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ResultSet rs = ps1.executeQuery();
         
         while(rs.next()){
@@ -112,8 +114,8 @@ public class GuestQuery {
             String telefono = rs.getString("telefono");
             String nickname = rs.getString("nickname");
             
-            Applicazione.guest.setNickname(nickname);
-            Applicazione.guest.setTelefono(telefono);
+            applicazione.guest.setNickname(nickname);
+            applicazione.guest.setTelefono(telefono);
         }
     }
     

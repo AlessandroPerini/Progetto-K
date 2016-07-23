@@ -17,6 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class Logout implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     @Override
     public void actionPerformed(ActionEvent e) {
 
@@ -26,7 +28,7 @@ public class Logout implements ActionListener{
 
             Grafica.card.show(Grafica.container, "login");
             LoginPanel.clearForm();
-            Applicazione.logout();
+            applicazione.logout();
         }
     }
 }

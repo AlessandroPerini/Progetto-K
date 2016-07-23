@@ -33,6 +33,8 @@ import javax.swing.border.LineBorder;
  */
 public class LibroPanel extends JPanel{
 
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione pannelli
     private JPanel top, panelloPrincipale, preferitiPanel, descrizionePanel;
     private JScrollPane scrollDescrizione, scrollPanelPrincipale;
@@ -53,16 +55,16 @@ public class LibroPanel extends JPanel{
     public LibroPanel() {
         
         //inizializzazione label - textarea - bottoni
-        email = new JLabel("<html><b>Caricato da: </b>"+Applicazione.libroAttuale.getStudente()+"</html>");
-        telefono = new JLabel("<html><b>Telefono: </b>"+Applicazione.libroAttuale.getTelefono()+"</html>");
-        prezzo = new JLabel("<html><b>Prezzo: </b>"+Applicazione.libroAttuale.getPrezzo()+" €</html>");
-        descrizione = new JTextArea(Applicazione.libroAttuale.getDescrizione());
+        email = new JLabel("<html><b>Caricato da: </b>"+applicazione.libroAttuale.getStudente()+"</html>");
+        telefono = new JLabel("<html><b>Telefono: </b>"+applicazione.libroAttuale.getTelefono()+"</html>");
+        prezzo = new JLabel("<html><b>Prezzo: </b>"+applicazione.libroAttuale.getPrezzo()+" €</html>");
+        descrizione = new JTextArea(applicazione.libroAttuale.getDescrizione());
         preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
         elimina = new JButton(new ImageIcon(getClass().getResource("/immagini/deleteNormal.png")));
         
         //inizializzazione pannelli
-        top = new TopPanel(Applicazione.libroAttuale.getTitolo());
+        top = new TopPanel(applicazione.libroAttuale.getTitolo());
         panelloPrincipale = new JPanel(new GridBagLayout());
         preferitiPanel = new JPanel();
         descrizionePanel = new JPanel();
@@ -168,7 +170,7 @@ public class LibroPanel extends JPanel{
         elimina.setBackground(new Color(249,123,123));
         elimina.addActionListener(eliminaLibro);
 
-        if (Applicazione.libroAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+        if (applicazione.libroAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
             panelloPrincipale.add(elimina);
             gbc.gridx = 0;

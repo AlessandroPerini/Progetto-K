@@ -22,6 +22,8 @@ import javax.swing.JLabel;
  */
 public class GoToLibro implements MouseListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione variabili
     private String corso;
     private String facoltà;
@@ -42,17 +44,17 @@ public class GoToLibro implements MouseListener{
     public void mouseClicked(MouseEvent e) {
         
         try {
-            Applicazione.back.add("libro");
+            applicazione.back.add("libro");
             
             JLabel label = (JLabel)e.getComponent();
             nomeLibro = label.getText();
             
-            Applicazione.libroAttuale.setTitolo(nomeLibro);
+            applicazione.libroAttuale.setTitolo(nomeLibro);
             
             InfoQuery.caricaInfoLibro(corso, facoltà, id);
             
-            Applicazione.facoltàAttuale.setNome(facoltà);
-            Applicazione.corsoAttuale.setNome(corso);
+            applicazione.facoltàAttuale.setNome(facoltà);
+            applicazione.corsoAttuale.setNome(corso);
             
             libro = new LibroPanel();
             Grafica.container.add(libro, "libro");

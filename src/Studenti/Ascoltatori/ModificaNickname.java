@@ -21,6 +21,8 @@ import javax.swing.JTextField;
  */
 public class ModificaNickname implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextField nick;
     private JButton cambiaNickname;
@@ -51,20 +53,20 @@ public class ModificaNickname implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Nickname non valido", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
                 else{
-                    if(!nick.getText().equals(Applicazione.guest.getNickname())){
+                    if(!nick.getText().equals(applicazione.guest.getNickname())){
                         if(ControlloQuery.controlloNickname(nick.getText())){
                             InsertQuery.updateNickname(nick.getText());
-                            Applicazione.guest.setNickname(nick.getText());
-                            nick.setText(Applicazione.guest.getNickname());
+                            applicazione.guest.setNickname(nick.getText());
+                            nick.setText(applicazione.guest.getNickname());
                             ok = true;
                         }
                         else{
-                            nick.setText(Applicazione.guest.getNickname());
+                            nick.setText(applicazione.guest.getNickname());
                             JOptionPane.showMessageDialog(null, "Nickname già presente", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         }
                     }    
                 }
-                nick.setText(Applicazione.guest.getNickname());
+                nick.setText(applicazione.guest.getNickname());
                 nClick = 0;
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Errore durante la modifica del nickname", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);

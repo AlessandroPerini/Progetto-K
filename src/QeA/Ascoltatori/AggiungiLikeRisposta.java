@@ -23,6 +23,8 @@ import javax.swing.JLabel;
  */
 public class AggiungiLikeRisposta implements MouseListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JLabel j1 ,j2;
     private JButton likeRisposta;
@@ -52,7 +54,7 @@ public class AggiungiLikeRisposta implements MouseListener{
         
         String nome = nomeBottone;
         try {
-            valoreLike = ControlloQuery.controlloLikeRisposta(Applicazione.listaRisposteAttuali.get(indice).getId());
+            valoreLike = ControlloQuery.controlloLikeRisposta(applicazione.listaRisposteAttuali.get(indice).getId());
         } catch (SQLException ex) {
             Logger.getLogger(DomandaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }

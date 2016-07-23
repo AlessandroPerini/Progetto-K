@@ -21,6 +21,8 @@ import javax.swing.JTextField;
  */
 public class CercaDomande implements ActionListener, KeyListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextField searchField;
     
@@ -35,9 +37,9 @@ public class CercaDomande implements ActionListener, KeyListener{
         if(!searchField.getText().equals("")){
             Utils.Azioni.Cerca.Domande(searchField);
             
-            Applicazione.back.remove(Applicazione.back.size()-1);
+            applicazione.back.remove(applicazione.back.size()-1);
 
-            Applicazione.back.add("domande cercate");
+            applicazione.back.add("domande cercate");
 
             domandeCercate = new ListaDomandePanel();
 

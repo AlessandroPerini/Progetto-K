@@ -17,12 +17,14 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiLibro implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private AggiungiLibroPanel aggiungiLibroPanel;
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.back.add("aggiungiLibro");
+        applicazione.back.add("aggiungiLibro");
 
         aggiungiLibroPanel = new AggiungiLibroPanel();
         Grafica.container.add(aggiungiLibroPanel, "aggiungiLibro");

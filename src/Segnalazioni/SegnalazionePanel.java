@@ -29,6 +29,8 @@ import javax.swing.border.LineBorder;
  */
 public class SegnalazionePanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+
     //dichiarazione oggetti
     private JPanel top;
     private JTextArea testo;
@@ -59,10 +61,10 @@ public class SegnalazionePanel extends JPanel{
                 
                 try {
                     
-                    ps1 = Applicazione.DBconnection.prepareStatement(insertSegnalazione);
+                    ps1 = applicazione.DBconnection.prepareStatement(insertSegnalazione);
                     
                     ps1.clearParameters();
-                    ps1.setString(1, Applicazione.guest.getEmail());
+                    ps1.setString(1, applicazione.guest.getEmail());
                     ps1.setString(2, testo.getText());
                     
                     ps1.execute();
@@ -80,8 +82,8 @@ public class SegnalazionePanel extends JPanel{
                 
                 JOptionPane.showMessageDialog(null, "Grazie per la segnalazione ;)", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                 
-                Applicazione.back.remove(Applicazione.back.size()-1);
-                Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
+                applicazione.back.remove(applicazione.back.size()-1);
+                Grafica.card.show(Grafica.container, applicazione.back.get(applicazione.back.size()-1));
                 
                 testo.setText("");
             }

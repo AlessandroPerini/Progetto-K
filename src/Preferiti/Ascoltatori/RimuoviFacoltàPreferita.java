@@ -3,6 +3,7 @@
 */
 package Preferiti.Ascoltatori;
 
+
 import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.DeleteQuery;
@@ -18,6 +19,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviFacoltàPreferita implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private ListaCorsiPanel corsi;
     
     @Override
@@ -26,7 +29,7 @@ public class RimuoviFacoltàPreferita implements ActionListener{
         try {
             DeleteQuery.eliminaFacoltàPreferita();
             
-            Applicazione.preferiti.getFacoltàPreferite().remove(Applicazione.facoltàAttuale);
+            applicazione.preferiti.getFacoltàPreferite().remove(applicazione.facoltàAttuale);
             
             corsi = new ListaCorsiPanel();
             Grafica.container.add(corsi, "corsi");

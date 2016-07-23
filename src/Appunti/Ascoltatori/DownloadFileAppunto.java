@@ -23,13 +23,13 @@ import javax.swing.JOptionPane;
  */
 public class DownloadFileAppunto implements ActionListener{
     
-    //dichiarazione variabili
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private String nome ;
     private String corso ;
     private String facoltà ;
     private String formato = "";
     
-    //dichiarazione oggetti
     private JButton bottone;
     private JButton bottone2;
     private GifFrame gif;
@@ -46,9 +46,9 @@ public class DownloadFileAppunto implements ActionListener{
         this.bottone2 = bottone2;
         this.gif = new GifFrame();
         
-        nome = Applicazione.appuntoAttuale.getNome();
-        corso = Applicazione.corsoAttuale.getNome();
-        facoltà = Applicazione.facoltàAttuale.getNome();
+        nome = applicazione.appuntoAttuale.getNome();
+        corso = applicazione.corsoAttuale.getNome();
+        facoltà = applicazione.facoltàAttuale.getNome();
     }
     
     @Override

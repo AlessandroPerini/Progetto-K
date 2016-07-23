@@ -3,8 +3,8 @@
 */
 package Database.Query;
 
-import Appunti.Appunto;
 import Application.Controller.Applicazione;
+import Appunti.Appunto;
 import Libri.Libro;
 import QeA.Domanda;
 import QeA.Risposta;
@@ -21,11 +21,13 @@ import java.sql.SQLException;
  */
 public class ListeQuery {
     
+    public static Applicazione applicazione = Applicazione.getInstance();
+    
     public static void caricaFacoltà() throws SQLException{
         
         String selectFacoltà = "select * from facoltà";
                 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectFacoltà);
         
         ResultSet rs = ps1.executeQuery();
         
@@ -34,7 +36,7 @@ public class ListeQuery {
             String nome = rs.getString("nome");
             String ramo = rs.getString("ramo");
             Facoltà facoltà = new Facoltà(nome, ramo);
-            Applicazione.listaFacoltàAttuali.add(facoltà);
+            applicazione.listaFacoltàAttuali.add(facoltà);
             
         }
     }
@@ -44,9 +46,9 @@ public class ListeQuery {
         String selectCorsi = "select * from corsi where facoltà=?";
         
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectCorsi);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -56,7 +58,7 @@ public class ListeQuery {
             int annoCorso = rs.getInt("anno");
             String facoltàCorso = rs.getString("facoltà");
             Corso corso = new Corso(nomeCorso, annoCorso, facoltàCorso);
-            Applicazione.listaCorsiAttuali.add(corso);
+            applicazione.listaCorsiAttuali.add(corso);
         }
     }
     
@@ -65,10 +67,10 @@ public class ListeQuery {
         String selectLibri = "select * from libri where facoltà=? and corso=?";
         
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibri);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLibri);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -84,7 +86,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             
             Libro libro = new Libro(nomeLibro, descrizioneLibro, idLibro, emailLibro, telefonoLibro, prezzoLibro, corso, facoltà);
-            Applicazione.listaLibriAttuali.add(libro);
+            applicazione.listaLibriAttuali.add(libro);
         
         }
     }
@@ -94,10 +96,10 @@ public class ListeQuery {
         String selectDomande = "select * from domande where facoltà=? and corso=?";
         
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomande);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomande);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -111,7 +113,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             
             Domanda domanda = new Domanda(titoloDomanda, testoDomanda, studenteDomanda, like, corso, facoltà);
-            Applicazione.listaDomandeAttuali.add(domanda);
+            applicazione.listaDomandeAttuali.add(domanda);
         
         }
     }
@@ -120,11 +122,11 @@ public class ListeQuery {
         
         String selectAppunti = "select * from appunti where facoltà=? and corso=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppunti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectAppunti);
         
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -138,7 +140,7 @@ public class ListeQuery {
             float media = rs.getFloat("media");
             
             Appunto appunto = new Appunto(nomeAppunto, descrizioneAppunto, emailAppunto, corso, facoltà, media);
-            Applicazione.listaAppuntiAttuali.add(appunto);
+            applicazione.listaAppuntiAttuali.add(appunto);
         
         }
     }
@@ -147,11 +149,11 @@ public class ListeQuery {
         
         String selectRisposteDomanda = "select * from risposte where domanda=? and corso=? and facoltà=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectRisposteDomanda);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -163,7 +165,7 @@ public class ListeQuery {
             String nickname = rs.getString("nickname");
 
             Risposta rispsta = new Risposta(risposta, domanda, id, studente, nickname);
-            Applicazione.listaRisposteAttuali.add(rispsta);    
+            applicazione.listaRisposteAttuali.add(rispsta);    
         
         }
     }
@@ -172,7 +174,7 @@ public class ListeQuery {
         
         String selectRamiFacoltà = "select distinct ramo from facoltà";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRamiFacoltà);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectRamiFacoltà);
         
         ResultSet rs = ps1.executeQuery();
         
@@ -180,7 +182,7 @@ public class ListeQuery {
             
             String ramo = rs.getString("ramo");
             
-            Applicazione.listaRamiFacoltà.add(ramo); 
+            applicazione.listaRamiFacoltà.add(ramo); 
         
         }
     }
@@ -189,7 +191,7 @@ public class ListeQuery {
         
         String selectFacoltà = "select * from facoltà where ramo =?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltà);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectFacoltà);
         ps1.clearParameters();
         ps1.setString(1, ramo);
         
@@ -200,7 +202,7 @@ public class ListeQuery {
             String nome = rs.getString("nome");
             String ramo1 = rs.getString("ramo");
             Facoltà facoltà = new Facoltà(nome, ramo1);
-            Applicazione.listaFacoltàXRamo.add(facoltà);
+            applicazione.listaFacoltàXRamo.add(facoltà);
         
         }
     }
@@ -209,9 +211,9 @@ public class ListeQuery {
         
         String selectCorsi = "select * from corsi where facoltà=? and anno =?";
 
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsi);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectCorsi);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
         ps1.setInt(2, anno);
         
         ResultSet rs = ps1.executeQuery();
@@ -222,7 +224,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             int anno1 = rs.getInt("anno");
             Corso corso = new Corso(nome, anno1, facoltà);
-            Applicazione.listaCorsiXAnno.add(corso);
+            applicazione.listaCorsiXAnno.add(corso);
         
         }
     }
@@ -231,11 +233,11 @@ public class ListeQuery {
         
         String selectRecensioniAppunto = "select * from valutazioni where facoltà = ? and corso = ? and appunto = ?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectRecensioniAppunto);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectRecensioniAppunto);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.appuntoAttuale.getNome());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.appuntoAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -245,7 +247,7 @@ public class ListeQuery {
             int punteggio = rs.getInt("punteggio");
             String commento = rs.getString("commento");
             Valutazione valutazione = new Valutazione(commento, punteggio, studente);
-            Applicazione.listaValutazioniAttuali.add(valutazione);
+            applicazione.listaValutazioniAttuali.add(valutazione);
         
         }
     }
@@ -254,18 +256,18 @@ public class ListeQuery {
         
         String selectFacoltàPreferite = "select * from facoltàPreferite where studente=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferite);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectFacoltàPreferite);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
-        Applicazione.preferiti.getFacoltàPreferite().clear();
+        applicazione.preferiti.getFacoltàPreferite().clear();
         while (rs.next()) {
             String nome = rs.getString("facoltà");
             String ramo = rs.getString("ramo");
             
-            Applicazione.preferiti.getFacoltàPreferite().add(new Facoltà(nome, ramo));
+            applicazione.preferiti.getFacoltàPreferite().add(new Facoltà(nome, ramo));
         
         }
     }
@@ -274,19 +276,19 @@ public class ListeQuery {
         
         String selectCorsiPreferiti = "select * from corsiPreferiti where studente=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsiPreferiti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectCorsiPreferiti);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
-        Applicazione.preferiti.getCorsiPreferiti().clear();
+        applicazione.preferiti.getCorsiPreferiti().clear();
         while (rs.next()) {
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
             int anno = rs.getInt("anno");
             
-            Applicazione.preferiti.getCorsiPreferiti().add(new Corso(corso, anno, facoltà));   
+            applicazione.preferiti.getCorsiPreferiti().add(new Corso(corso, anno, facoltà));   
         
         }
     }
@@ -295,13 +297,13 @@ public class ListeQuery {
         
         String selectAppuntiPreferiti = "select * from appuntiPreferiti where studentePref=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
-        Applicazione.preferiti.getAppuntiPreferiti().clear();
+        applicazione.preferiti.getAppuntiPreferiti().clear();
         while (rs.next()) {
             String appunto = rs.getString("appunto");
             String descrizione = rs.getString("descrizione");
@@ -310,7 +312,7 @@ public class ListeQuery {
             String facoltà = rs.getString("facoltà");
             float media = rs.getFloat("media");
             
-            Applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà, media));
+            applicazione.preferiti.getAppuntiPreferiti().add(new Appunto(appunto, descrizione, studente, corso, facoltà, media));
         
         }
     }
@@ -319,13 +321,13 @@ public class ListeQuery {
         
         String selectLibriPreferiti = "select * from libriPreferiti where studentePref=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibriPreferiti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLibriPreferiti);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
-        Applicazione.preferiti.getLibriPreferiti().clear();
+        applicazione.preferiti.getLibriPreferiti().clear();
         while (rs.next()) {
             int id = rs.getInt("id");
             String libro = rs.getString("libro");
@@ -336,7 +338,7 @@ public class ListeQuery {
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
             
-            Applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo, corso, facoltà));
+            applicazione.preferiti.getLibriPreferiti().add(new Libro(libro, descrizione, id, telefono, studente, prezzo, corso, facoltà));
         
         }
     }
@@ -345,13 +347,13 @@ public class ListeQuery {
         
         String selectDomandePreferite = "select * from domandePreferite where studentePref=?";
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandePreferite);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomandePreferite);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
-        Applicazione.preferiti.getDomandePreferite().clear();
+        applicazione.preferiti.getDomandePreferite().clear();
         while (rs.next()) {
             String domanda = rs.getString("domanda");
             String descrizione = rs.getString("descrizione");
@@ -360,7 +362,7 @@ public class ListeQuery {
             String corso = rs.getString("corso");
             String facoltà = rs.getString("facoltà");
             
-            Applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like, corso, facoltà));
+            applicazione.preferiti.getDomandePreferite().add(new Domanda(domanda, descrizione, studente, like, corso, facoltà));
        
         }
     }

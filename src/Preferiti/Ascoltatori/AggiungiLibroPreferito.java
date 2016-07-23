@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiLibroPreferito implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
     private LibroPanel libro;
     
     @Override
@@ -26,7 +27,7 @@ public class AggiungiLibroPreferito implements ActionListener{
         try {
             InsertQuery.inserisciLibroPreferito();
 
-            Applicazione.preferiti.getLibriPreferiti().add(Applicazione.libroAttuale);
+            applicazione.preferiti.getLibriPreferiti().add(applicazione.libroAttuale);
             
             libro = new LibroPanel();
             Grafica.container.add(libro, "libro");

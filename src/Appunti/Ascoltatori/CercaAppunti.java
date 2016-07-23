@@ -21,7 +21,8 @@ import javax.swing.JTextField;
  */
 public class CercaAppunti implements ActionListener, KeyListener{
     
-    //dichiarazione oggetti
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private JTextField searchField;
     
     private ListaAppuntiPanel appuntiCercati;
@@ -36,9 +37,9 @@ public class CercaAppunti implements ActionListener, KeyListener{
             
             Utils.Azioni.Cerca.Appunti(searchField);
 
-            Applicazione.back.remove(Applicazione.back.size()-1);
+            applicazione.back.remove(applicazione.back.size()-1);
             
-            Applicazione.back.add("appunti cercati");
+            applicazione.back.add("appunti cercati");
 
             appuntiCercati = new ListaAppuntiPanel();
             Grafica.container.add(appuntiCercati,"appunti cercati");

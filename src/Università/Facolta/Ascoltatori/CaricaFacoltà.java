@@ -21,17 +21,19 @@ import javax.swing.JOptionPane;
  */
 public class CaricaFacoltà implements ActionListener, KeyListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private ListaFacoltàPanel facoltà; 
     
     public void carica(){
         
-        if(Applicazione.utenteLoggato){
+        if(applicazione.utenteLoggato){
             
             try {
                 ListeQuery.caricaFacoltà();
                 ListeQuery.caricaRamiFacoltà();
                 
-                Applicazione.back.add("facoltà");
+                applicazione.back.add("facoltà");
 
                 facoltà = new ListaFacoltàPanel();
                 

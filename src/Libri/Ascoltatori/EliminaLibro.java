@@ -27,6 +27,8 @@ import javax.swing.JOptionPane;
  */
 public class EliminaLibro implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private ListaLibriPanel libri;
     private PreferitiPanel preferitiPanel; 
     private iMieiDatiPanel mieiDatiPanel; 
@@ -46,22 +48,22 @@ public class EliminaLibro implements ActionListener{
                 
                 JOptionPane.showMessageDialog(null, "Libro eliminato correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                 
-                Applicazione.svuotaLibri();
+                applicazione.svuotaLibri();
                 
                 ListeQuery.caricaLibri();
                 
-                Applicazione.back.remove(Applicazione.back.size()-1);
+                applicazione.back.remove(applicazione.back.size()-1);
                 
                 Ordina.Libri();
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("libri")){
+                if(applicazione.back.get(applicazione.back.size()-1).equals("libri")){
                     libri = new ListaLibriPanel();
                     Grafica.container.add(libri, "libri");
                     Grafica.card.show(Grafica.container, "libri");
                 }
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("preferiti")){
-                    Applicazione.svuotaPreferiti();
+                if(applicazione.back.get(applicazione.back.size()-1).equals("preferiti")){
+                    applicazione.svuotaPreferiti();
                     
                     ListeQuery.caricaTuttiPreferiti();
                     
@@ -72,8 +74,8 @@ public class EliminaLibro implements ActionListener{
                     Grafica.card.show(Grafica.container, "preferiti");
                 }
                 
-                if(Applicazione.back.get(Applicazione.back.size()-1).equals("i miei dati")){
-                    Applicazione.svuotaMieiDati();
+                if(applicazione.back.get(applicazione.back.size()-1).equals("i miei dati")){
+                    applicazione.svuotaMieiDati();
                     
                     GuestQuery.caricaTuttiMieiDati();
                     

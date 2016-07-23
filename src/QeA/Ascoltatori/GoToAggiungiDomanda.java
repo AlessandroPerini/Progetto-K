@@ -16,10 +16,12 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiDomanda implements ActionListener{
 
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        Applicazione.back.add("aggiungiDomanda");
+        applicazione.back.add("aggiungiDomanda");
 
         AggiungiDomandaPanel aggiungiDomandaPanel = new AggiungiDomandaPanel();
         Grafica.container.add(aggiungiDomandaPanel, "aggiungiDomanda");

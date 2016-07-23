@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviDomandaPreferita implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private DomandaPanel domanda;
     
     @Override
@@ -26,7 +28,7 @@ public class RimuoviDomandaPreferita implements ActionListener{
         try {
             DeleteQuery.eliminaDomandaPreferita();
             
-            Applicazione.preferiti.getDomandePreferite().remove(Applicazione.domandaAttuale);
+            applicazione.preferiti.getDomandePreferite().remove(applicazione.domandaAttuale);
             
             domanda = new DomandaPanel();
             Grafica.container.add(domanda, "domanda");

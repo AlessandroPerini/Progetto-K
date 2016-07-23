@@ -20,6 +20,8 @@ import javax.swing.JTextArea;
  */
 public class AggiungiRisposta implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextArea titolo;
     
@@ -38,14 +40,14 @@ public class AggiungiRisposta implements ActionListener{
                 try {
                     InsertQuery.inserisciRisposta(titolo.getText());
                     
-                    Applicazione.svuotaRisposte();
+                    applicazione.svuotaRisposte();
                     
                     ListeQuery.caricaRisposteDomanda();
                     
                     String s="";
-                    for(int i = 0;i < Applicazione.listaRisposteAttuali.size();i++){
-                        s= (Applicazione.listaRisposteAttuali.get(i).getTitolo());
-                        nome = Applicazione.listaRisposteAttuali.get(i).getNickname();
+                    for(int i = 0;i < applicazione.listaRisposteAttuali.size();i++){
+                        s= (applicazione.listaRisposteAttuali.get(i).getTitolo());
+                        nome = applicazione.listaRisposteAttuali.get(i).getNickname();
                     }
                                       
                     GoToDomanda.getDomanda().setRisposte(s,DomandaPanel.getI(),nome);

@@ -25,12 +25,14 @@ import java.sql.SQLException;
  */
 public class Back implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private AccountPanel account; 
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        String paginaCorrente = Applicazione.back.get(Applicazione.back.size()-1);
+        String paginaCorrente = applicazione.back.get(applicazione.back.size()-1);
         
         //comportamento specifico per il bottone back durante la ricerca
         if(paginaCorrente.equals("appunti cercati")) backRicercaAppunti();
@@ -40,19 +42,19 @@ public class Back implements ActionListener{
         else{
 
             switch(paginaCorrente){
-                case "corsi":Applicazione.svuotaCorsi();
+                case "corsi":applicazione.svuotaCorsi();
                     break;
-                case "libri": Applicazione.svuotaLibri();
+                case "libri": applicazione.svuotaLibri();
                     break;
-                case "domande": Applicazione.svuotaDomande();
+                case "domande": applicazione.svuotaDomande();
                     break;
-                case "appunti": Applicazione.svuotaAppunti();
+                case "appunti": applicazione.svuotaAppunti();
                     break;
-                case "i miei dati": Applicazione.svuotaMieiDati();
+                case "i miei dati": applicazione.svuotaMieiDati();
                     break;
-                case "recensioni": Applicazione.svuotaRecensioni();
+                case "recensioni": applicazione.svuotaRecensioni();
                     break;
-                case "preferiti": Applicazione.svuotaPreferiti();
+                case "preferiti": applicazione.svuotaPreferiti();
                     break;
                 case "appunto": backAppunto();
                     break;
@@ -61,26 +63,26 @@ public class Back implements ActionListener{
             }
 
             //comportamento specifico per il bottone back se si viene dalla pagina dei preferiti
-            if(Applicazione.back.get(Applicazione.back.size()-2).equals("preferiti")) backDopoPreferiti();
+            if(applicazione.back.get(applicazione.back.size()-2).equals("preferiti")) backDopoPreferiti();
             
             //comportamento specifico per il bottone back se si viene dalla pagina account
-            if(Applicazione.back.get(Applicazione.back.size()-2).equals("account")) backDopoAccount();
+            if(applicazione.back.get(applicazione.back.size()-2).equals("account")) backDopoAccount();
 
-            Applicazione.back.remove(Applicazione.back.size()-1);
-            Grafica.card.show(Grafica.container, Applicazione.back.get(Applicazione.back.size()-1));
+            applicazione.back.remove(applicazione.back.size()-1);
+            Grafica.card.show(Grafica.container, applicazione.back.get(applicazione.back.size()-1));
         }
     }
     
     public void backRicercaAppunti(){
     
-        Applicazione.svuotaAppunti();
+        applicazione.svuotaAppunti();
         try {
             ListeQuery.caricaAppunti();
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento degli appunti");
         }
-        Applicazione.back.remove(Applicazione.back.size()-1);
-        Applicazione.back.add("appunti");
+        applicazione.back.remove(applicazione.back.size()-1);
+        applicazione.back.add("appunti");
         
         if(OrdinaListaAppunti.ordineCorrente.equals("Valutazione")||
                 OrdinaListaAppunti.ordineCorrente.equals("")) Ordina.Appunti();
@@ -93,14 +95,14 @@ public class Back implements ActionListener{
     
     public void backRicercaLibri(){
     
-        Applicazione.svuotaLibri();
+        applicazione.svuotaLibri();
         try {
             ListeQuery.caricaLibri();
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento dei libri");
         }
-        Applicazione.back.remove(Applicazione.back.size()-1);
-        Applicazione.back.add("libri");
+        applicazione.back.remove(applicazione.back.size()-1);
+        applicazione.back.add("libri");
         Ordina.Appunti();
         ListaLibriPanel libri2 = new ListaLibriPanel();
         Grafica.container.add(libri2, "libri");
@@ -109,14 +111,14 @@ public class Back implements ActionListener{
     
     public void backRicercaDomande(){
     
-        Applicazione.svuotaDomande();
+        applicazione.svuotaDomande();
         try {
             ListeQuery.caricaDomande();
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento delle domande");
         }
-        Applicazione.back.remove(Applicazione.back.size()-1);
-        Applicazione.back.add("domande");
+        applicazione.back.remove(applicazione.back.size()-1);
+        applicazione.back.add("domande");
         
         if(OrdinaListaDomande.ordineCorrente.equals("Like")||
                 OrdinaListaDomande.ordineCorrente.equals("")) Ordina.Domande();
@@ -129,7 +131,7 @@ public class Back implements ActionListener{
     
     public void backAppunto(){
     
-        Applicazione.svuotaAppunti();
+        applicazione.svuotaAppunti();
         try{
             ListeQuery.caricaAppunti();
         } catch (SQLException ex) {
@@ -142,8 +144,8 @@ public class Back implements ActionListener{
     
     public void backDomanda(){
     
-        Applicazione.svuotaRisposte();
-        Applicazione.svuotaDomande();
+        applicazione.svuotaRisposte();
+        applicazione.svuotaDomande();
         try{
             ListeQuery.caricaDomande();
         } catch (SQLException ex) {
@@ -156,7 +158,7 @@ public class Back implements ActionListener{
     
     public void backDopoPreferiti(){
     
-        Applicazione.svuotaPreferiti();
+        applicazione.svuotaPreferiti();
                 
         try {
             ListeQuery.caricaTuttiPreferiti();

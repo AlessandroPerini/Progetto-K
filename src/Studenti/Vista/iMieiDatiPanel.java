@@ -35,6 +35,8 @@ import javax.swing.JScrollPane;
  */
 public class iMieiDatiPanel extends JPanel{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione variabili
     private int dimAppunti,dimLibri, dimDomande ;
     
@@ -66,9 +68,9 @@ public class iMieiDatiPanel extends JPanel{
     public iMieiDatiPanel() {
         
         // inizializzazine variabili
-        dimAppunti =  Applicazione.appuntiGuest.size();
-        dimLibri = Applicazione.libriGuest.size();
-        dimDomande = Applicazione.domandeGuest.size();
+        dimAppunti =  applicazione.appuntiGuest.size();
+        dimLibri = applicazione.libriGuest.size();
+        dimDomande = applicazione.domandeGuest.size();
     
         //inizializzazione pannelli
         top = new TopPanel("Le Mie Attività");
@@ -234,10 +236,10 @@ public class iMieiDatiPanel extends JPanel{
                 mieiAppuntiLab[i] = new JLabel();
                 mieiAppuntiIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotAppunto.png")));
 
-                setLabelCharacteristic(i, mieiAppuntiLab, mieiAppunti, mieiAppuntiIco, Applicazione.appuntiGuest.get(i).getNome());
+                setLabelCharacteristic(i, mieiAppuntiLab, mieiAppunti, mieiAppuntiIco, applicazione.appuntiGuest.get(i).getNome());
 
-                goToAppunto[i] = new GoToAppunto(Applicazione.appuntiGuest.get(i).getCorso(),
-                Applicazione.appuntiGuest.get(i).getFacoltà(),mieiAppunti[i]);
+                goToAppunto[i] = new GoToAppunto(applicazione.appuntiGuest.get(i).getCorso(),
+                applicazione.appuntiGuest.get(i).getFacoltà(),mieiAppunti[i]);
                 mieiAppuntiLab[i].addMouseListener(goToAppunto[i]);
                 mieiAppunti[i].addMouseListener(goToAppunto[i]);
                 gbcd.gridx = 0;
@@ -278,11 +280,11 @@ public class iMieiDatiPanel extends JPanel{
                 mieiLibriLab[i] = new JLabel();
                 mieiLibriIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotLibro.png")));
 
-                setLabelCharacteristic(i, mieiLibriLab, mieiLibri, mieiLibriIco, Applicazione.libriGuest.get(i).getTitolo());
+                setLabelCharacteristic(i, mieiLibriLab, mieiLibri, mieiLibriIco, applicazione.libriGuest.get(i).getTitolo());
 
-                goToLibro[i] = new GoToLibro(Applicazione.libriGuest.get(i).getCorso(),
-                        Applicazione.libriGuest.get(i).getFacoltà(),
-                        Applicazione.libriGuest.get(i).getID(), mieiLibri[i]);
+                goToLibro[i] = new GoToLibro(applicazione.libriGuest.get(i).getCorso(),
+                        applicazione.libriGuest.get(i).getFacoltà(),
+                        applicazione.libriGuest.get(i).getID(), mieiLibri[i]);
                 mieiLibriLab[i].addMouseListener(goToLibro[i]);
                 mieiLibri[i].addMouseListener(goToLibro[i]);
                 gbcd.gridx = 0;
@@ -320,10 +322,10 @@ public class iMieiDatiPanel extends JPanel{
                 mieDomande[i] = new JLabel();
                 mieDomandeLab[i] = new JLabel();
                 mieDomandeIco[i] = new JLabel(new ImageIcon(this.getClass().getResource("/immagini/dotDomanda.png")));
-                setLabelCharacteristic(i, mieDomandeLab, mieDomande, mieDomandeIco, Applicazione.domandeGuest.get(i).getTitolo());
+                setLabelCharacteristic(i, mieDomandeLab, mieDomande, mieDomandeIco, applicazione.domandeGuest.get(i).getTitolo());
 
-                goToDomanda = new GoToDomanda(Applicazione.domandeGuest.get(i).getCorso(),
-                        Applicazione.domandeGuest.get(i).getFacoltà(), mieDomande[i]);
+                goToDomanda = new GoToDomanda(applicazione.domandeGuest.get(i).getCorso(),
+                        applicazione.domandeGuest.get(i).getFacoltà(), mieDomande[i]);
                 mieDomandeLab[i].addMouseListener(goToDomanda);
                 mieDomande[i].addMouseListener(goToDomanda);
                 gbcd.gridx = 0;

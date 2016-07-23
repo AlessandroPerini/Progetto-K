@@ -18,6 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviLibroPreferito implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     private LibroPanel libro;
     
     @Override
@@ -26,7 +28,7 @@ public class RimuoviLibroPreferito implements ActionListener{
         try {
             DeleteQuery.eliminaLibroPreferito();
             
-            Applicazione.preferiti.getLibriPreferiti().remove(Applicazione.libroAttuale);
+            applicazione.preferiti.getLibriPreferiti().remove(applicazione.libroAttuale);
             
             libro = new LibroPanel();
             Grafica.container.add(libro, "libro");

@@ -24,6 +24,8 @@ import javax.swing.JTextArea;
  */
 public class AggiungiDomanda implements ActionListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione
     private JTextArea titolo;
     private JTextArea descrizione;
@@ -49,13 +51,13 @@ public class AggiungiDomanda implements ActionListener{
                             
                             JOptionPane.showMessageDialog(null, "Domanda aggiunta correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                             
-                            Applicazione.svuotaDomande();
+                            applicazione.svuotaDomande();
                             
                             ListeQuery.caricaDomande();
                             
                             Ordina.Domande();
                             
-                            Applicazione.back.remove(Applicazione.back.size()-1);
+                            applicazione.back.remove(applicazione.back.size()-1);
                             
                             domande = new ListaDomandePanel();
                             Grafica.container.add(domande, "domande");
@@ -68,7 +70,7 @@ public class AggiungiDomanda implements ActionListener{
                         }
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno \ndi '"+Applicazione.facoltàAttuale.getNome()+">"+Applicazione.corsoAttuale.getNome()+"', verifica "
+                        JOptionPane.showMessageDialog(null, "Una domanda con lo stesso titolo è già presente all'interno \ndi '"+applicazione.facoltàAttuale.getNome()+">"+applicazione.corsoAttuale.getNome()+"', verifica "
                                 + "che non sia \nla stessa e riprova cambiando titolo.","Impossibile caricare domanda" , JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (SQLException ex) {

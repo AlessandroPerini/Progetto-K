@@ -5,9 +5,9 @@
  */
 package QeA.Vista;
 
+import Application.Controller.Applicazione;
 import QeA.Ascoltatori.EliminaDomanda;
 import QeA.Ascoltatori.AggiungiRisposta;
-import Application.Controller.Applicazione;
 import Database.Query.InfoQuery;
 import Database.Query.ControlloQuery;
 import Header.Vista.TopPanel;
@@ -41,6 +41,8 @@ import javax.swing.border.LineBorder;
  */
 public class DomandaPanel extends JPanel{
 
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione bottoni - label - taxtarea
     private JButton rispondi, elimina, likeDomanda, likeRisposta, dislikeRisposta, preferitiOn,
             preferitiOff;
@@ -75,7 +77,7 @@ public class DomandaPanel extends JPanel{
     public DomandaPanel() {
         
         //inizializzazione pannelli
-        top = new TopPanel(Applicazione.domandaAttuale.getTitolo());      
+        top = new TopPanel(applicazione.domandaAttuale.getTitolo());      
         pannelloPrincipale = new JPanel(new GridBagLayout());
         preferitiPanel = new JPanel();
         rispostaPanel = new JPanel();
@@ -100,8 +102,8 @@ public class DomandaPanel extends JPanel{
         //inizializzazione bottoni - label - taxtarea
         preferitiOn = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOn.png")));
         preferitiOff = new JButton(new ImageIcon(this.getClass().getResource("/immagini/preferitiOff.png")));
-        email = new JLabel("<html><b>Caricata da: </b>"+Applicazione.domandaAttuale.getStudente()+"</html>");
-        descrizione = new JTextArea(Applicazione.domandaAttuale.getDomanda(),5,25);
+        email = new JLabel("<html><b>Caricata da: </b>"+applicazione.domandaAttuale.getStudente()+"</html>");
+        descrizione = new JTextArea(applicazione.domandaAttuale.getDomanda(),5,25);
         likeDomanda = new JButton(new ImageIcon(this.getClass().getResource("/immagini/thumbup.png")));
         NlikeDomanda = new JLabel();
         rispondiArea = new JTextArea(4,20);
@@ -195,9 +197,9 @@ public class DomandaPanel extends JPanel{
         rispostePanel.setBackground(Color.white);
         rispostaPanel.setBackground(Color.white);
 
-        for(i = 0; i < Applicazione.listaRisposteAttuali.size(); i++){    
+        for(i = 0; i < applicazione.listaRisposteAttuali.size(); i++){    
 
-            setRisposte(Applicazione.listaRisposteAttuali.get(i).getTitolo(), i, Applicazione.listaRisposteAttuali.get(i).getNickname());
+            setRisposte(applicazione.listaRisposteAttuali.get(i).getTitolo(), i, applicazione.listaRisposteAttuali.get(i).getNickname());
         
         }
 
@@ -235,7 +237,7 @@ public class DomandaPanel extends JPanel{
             System.out.println("Errore durante il controllo del like della domanda");
         }
         
-        NlikeDomanda.setText(Applicazione.domandaAttuale.getLike()+" likes");
+        NlikeDomanda.setText(applicazione.domandaAttuale.getLike()+" likes");
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(10, 100, 0, 0);
@@ -286,7 +288,7 @@ public class DomandaPanel extends JPanel{
 
     public void creaPannelliElimina(){
     
-        if (Applicazione.domandaAttuale.getStudente().equals(Applicazione.guest.getEmail())) {
+        if (applicazione.domandaAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
             elimina.setBorder(BorderFactory.createEmptyBorder());
             elimina.setContentAreaFilled(false);
@@ -329,7 +331,7 @@ public class DomandaPanel extends JPanel{
 
     public void setRisposte(String risposta, int i, String nome) {
         try {
-            valoreLike = ControlloQuery.controlloLikeRisposta(Applicazione.listaRisposteAttuali.get(i).getId());
+            valoreLike = ControlloQuery.controlloLikeRisposta(applicazione.listaRisposteAttuali.get(i).getId());
         } catch (SQLException ex) {
             Logger.getLogger(DomandaPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -367,7 +369,7 @@ public class DomandaPanel extends JPanel{
             //all interno dell pannello like
             
             try {
-                like = InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), 1);
+                like = InfoQuery.likeRisposta(applicazione.listaRisposteAttuali.get(i).getId(), 1);
                 numeroLikeRisposta = new JLabel(""+like);
                 pannelloLike.add(numeroLikeRisposta);
                 likeRisposta = new JButton();
@@ -404,7 +406,7 @@ public class DomandaPanel extends JPanel{
             //all interno dell pannello dislike
             
             try {
-                dislike = InfoQuery.likeRisposta(Applicazione.listaRisposteAttuali.get(i).getId(), -1);
+                dislike = InfoQuery.likeRisposta(applicazione.listaRisposteAttuali.get(i).getId(), -1);
             
                 numeroDislikeRisposta = new JLabel(""+dislike);
                 pannelloDislike.add(numeroDislikeRisposta);
@@ -429,7 +431,7 @@ public class DomandaPanel extends JPanel{
             }
             
             pannelloDislike.add(dislikeRisposta);
-            alr = new AggiungiLikeRisposta(i,Applicazione.listaRisposteAttuali.get(i).getId(), numeroLikeRisposta, numeroDislikeRisposta, likeRisposta, dislikeRisposta);
+            alr = new AggiungiLikeRisposta(i,applicazione.listaRisposteAttuali.get(i).getId(), numeroLikeRisposta, numeroDislikeRisposta, likeRisposta, dislikeRisposta);
             likeRisposta.addMouseListener(alr);
             dislikeRisposta.addMouseListener(alr);
             gbcRisposte.gridx = 4;

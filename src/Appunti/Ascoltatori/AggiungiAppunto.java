@@ -4,9 +4,9 @@
 */
 package Appunti.Ascoltatori;
 
+import Application.Controller.Applicazione;
 import Appunti.Vista.AggiungiAppuntoPanel;
 import Appunti.Vista.ListaAppuntiPanel;
-import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
 import Database.Query.ControlloQuery;
 import Database.Query.InsertQuery;
@@ -29,6 +29,9 @@ import javax.swing.JTextArea;
  * @author te4o
  */
 public class AggiungiAppunto implements ActionListener{
+    
+    
+    public Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextArea nome;
@@ -72,8 +75,7 @@ public class AggiungiAppunto implements ActionListener{
             
             gif.apri();
             
-            new java.util.Timer().schedule(
-                    new java.util.TimerTask() {
+            new java.util.Timer().schedule(new java.util.TimerTask() {
                         @Override
                         public void run() {
                             try {
@@ -83,7 +85,7 @@ public class AggiungiAppunto implements ActionListener{
                                 percorso = file.getPath();
                                 i = percorso.lastIndexOf('.');
                                 formato = percorso.substring(i+1);
-                                nomeFile = nome.getText()+"."+Applicazione.corsoAttuale.getNome()+"."+Applicazione.facoltàAttuale.getNome()+"."+formato+"";
+                                nomeFile = nome.getText()+"."+applicazione.corsoAttuale.getNome()+"."+applicazione.facoltàAttuale.getNome()+"."+formato+"";
                                 
                                 upload = new Upload(percorso, nomeFile);
                                 upload.up();
@@ -95,12 +97,12 @@ public class AggiungiAppunto implements ActionListener{
                                     
                                     JOptionPane.showMessageDialog(null, "Appunto aggiunto correttamente.", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                                     
-                                    Applicazione.svuotaAppunti();
+                                    applicazione.svuotaAppunti();
                                     ListeQuery.caricaAppunti();
                                     
                                     Ordina.Appunti();
                                     
-                                    Applicazione.back.remove(Applicazione.back.size()-1);
+                                    applicazione.back.remove(applicazione.back.size()-1);
                                     
                                     appunti = new ListaAppuntiPanel();
                                     Grafica.container.add(appunti, "appunti");
@@ -141,7 +143,7 @@ public class AggiungiAppunto implements ActionListener{
                     JOptionPane.showMessageDialog(null, "Nome(max 100 caratteri) e/o Descrizione (max 500 caratteri troppo lunghi)", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                     break;
                 case 3:
-                    JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno \ndi '"+Applicazione.facoltàAttuale.getNome()+">"+Applicazione.corsoAttuale.getNome()+"', verifica "
+                    JOptionPane.showMessageDialog(null, "Un appunto con lo stesso nome è già presente all'interno \ndi '"+applicazione.facoltàAttuale.getNome()+">"+applicazione.corsoAttuale.getNome()+"', verifica "
                             + "che non sia \nlo stesso e riprova cambiando nome.","Impossibile caricare appunto" , JOptionPane.ERROR_MESSAGE);
                     break;
                 case 4:

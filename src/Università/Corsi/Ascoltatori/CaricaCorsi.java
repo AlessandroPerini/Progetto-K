@@ -21,6 +21,8 @@ import javax.swing.JOptionPane;
  */
 public class CaricaCorsi implements MouseListener{
     
+    public Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione variabili
     private String nomeFacoltà;
     private ListaCorsiPanel corsi;
@@ -33,12 +35,12 @@ public class CaricaCorsi implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         
-        Applicazione.back.add("corsi");
+        applicazione.back.add("corsi");
 
         JLabel label = (JLabel)e.getComponent();
         nomeFacoltà = label.getText();
 
-        Applicazione.facoltàAttuale.setNome(nomeFacoltà);
+        applicazione.facoltàAttuale.setNome(nomeFacoltà);
         try {
             InfoQuery.caricaInfoFacoltà();
             ListeQuery.caricaCorsi();

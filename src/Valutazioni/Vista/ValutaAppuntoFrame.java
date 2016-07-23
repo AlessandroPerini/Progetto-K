@@ -32,6 +32,8 @@ import javax.swing.border.LineBorder;
  */
 public class ValutaAppuntoFrame{
     
+    private Applicazione applicazione = Applicazione.getInstance();
+    
     //dichiarazione oggetti
     private JTextArea commento;
     private JSlider punteggio;
@@ -67,7 +69,7 @@ public class ValutaAppuntoFrame{
         annullaPressed = new ImageIcon(getClass().getResource("/immagini/deletePressed.png"));
         
         //inizializzazione oggetti
-        titoloFrame = new JLabel("Valuta Appunto '"+Applicazione.appuntoAttuale.getNome()+"'");
+        titoloFrame = new JLabel("Valuta Appunto '"+applicazione.appuntoAttuale.getNome()+"'");
         commentoPanel = new JPanel();
         punteggio = new JSlider(1, 5);
         commento = new JTextArea();

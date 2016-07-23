@@ -12,19 +12,21 @@ import java.sql.SQLException;
  *
  * @author Te4o
  */
-public class ControlloQuery {
+public class ControlloQuery{
+    
+    public static Applicazione applicazione = Applicazione.getInstance();
     
     public static boolean controlloLikeDomanda() throws SQLException {
         
         String selectLikeStudente = "Select * from likeDomanda where studente=? and domanda=? and corso=? and facoltà=?";
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeStudente);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLikeStudente);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -41,12 +43,12 @@ public class ControlloQuery {
         String selectValutazioneStudente = "Select * from valutazioni where studente=? and appunto=? and corso=? and facoltà=?";
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectValutazioneStudente);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.appuntoAttuale.getNome());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -65,11 +67,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectNomeAppunto);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectNomeAppunto);
         ps1.clearParameters();
         ps1.setString(1, nome);
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         ResultSet rs = ps1.executeQuery();
         
         if (rs.next()) {
@@ -86,11 +88,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectTitoloDomanda);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectTitoloDomanda);
         ps1.clearParameters();
         ps1.setString(1, titolo);
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -108,10 +110,10 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectFacoltàPreferita);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectFacoltàPreferita);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(2, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.facoltàAttuale.getNome());
+        ps1.setString(2, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -130,11 +132,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectCorsoPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.corsoAttuale.getNome());
-        ps1.setString(2, Applicazione.facoltàAttuale.getNome());
-        ps1.setString(3, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.corsoAttuale.getNome());
+        ps1.setString(2, applicazione.facoltàAttuale.getNome());
+        ps1.setString(3, applicazione.guest.getEmail());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -153,12 +155,12 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntoPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectAppuntoPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.appuntoAttuale.getNome());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -177,12 +179,12 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibroPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLibroPreferito);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setInt(2, Applicazione.libroAttuale.getID());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setInt(2, applicazione.libroAttuale.getID());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -201,12 +203,12 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomandaPreferita);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
-        ps1.setString(2, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(3, Applicazione.corsoAttuale.getNome());
-        ps1.setString(4, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.guest.getEmail());
+        ps1.setString(2, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(3, applicazione.corsoAttuale.getNome());
+        ps1.setString(4, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -225,11 +227,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectAppuntiPreferiti);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.appuntoAttuale.getNome());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.appuntoAttuale.getNome());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -248,11 +250,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLibriPreferito);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLibriPreferito);
         ps1.clearParameters();
-        ps1.setInt(1, Applicazione.libroAttuale.getID());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setInt(1, applicazione.libroAttuale.getID());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -271,11 +273,11 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectDomandePreferite);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomandePreferite);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.domandaAttuale.getTitolo());
-        ps1.setString(2, Applicazione.corsoAttuale.getNome());
-        ps1.setString(3, Applicazione.facoltàAttuale.getNome());
+        ps1.setString(1, applicazione.domandaAttuale.getTitolo());
+        ps1.setString(2, applicazione.corsoAttuale.getNome());
+        ps1.setString(3, applicazione.facoltàAttuale.getNome());
         
         ResultSet rs = ps1.executeQuery();
         
@@ -294,7 +296,7 @@ public class ControlloQuery {
         
         boolean bool = true;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectNickname);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectNickname);
         ps1.clearParameters();
         ps1.setString(1, nickname);
         
@@ -314,9 +316,9 @@ public class ControlloQuery {
         
         int valoreLike = 0;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeRisposte);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLikeRisposte);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ps1.setInt(2, id);
         
         ResultSet rs = ps1.executeQuery();
@@ -342,9 +344,9 @@ public class ControlloQuery {
         
         int valoreLike = 0;
         
-        PreparedStatement ps1 = Applicazione.DBconnection.prepareStatement(selectLikeRisposta);
+        PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectLikeRisposta);
         ps1.clearParameters();
-        ps1.setString(1, Applicazione.guest.getEmail());
+        ps1.setString(1, applicazione.guest.getEmail());
         ps1.setInt(2, id);
         
         ResultSet rs = ps1.executeQuery();
