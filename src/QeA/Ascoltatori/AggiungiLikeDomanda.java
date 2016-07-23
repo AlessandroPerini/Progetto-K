@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiLikeDomanda implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JButton like;

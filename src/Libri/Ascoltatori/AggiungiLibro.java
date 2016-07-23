@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
 public class AggiungiLibro implements ActionListener{
     
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextArea titolo;

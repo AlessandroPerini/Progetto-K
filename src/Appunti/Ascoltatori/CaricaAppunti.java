@@ -18,7 +18,7 @@ import java.sql.SQLException;
  */
 public class CaricaAppunti implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
 
     private ListaAppuntiPanel appunti;
     

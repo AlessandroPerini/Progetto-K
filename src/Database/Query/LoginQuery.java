@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class LoginQuery {
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
 
     //inizializzazione variaili
     private static boolean check = false;

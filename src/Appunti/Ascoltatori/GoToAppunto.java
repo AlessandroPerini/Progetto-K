@@ -23,7 +23,7 @@ import javax.swing.JLabel;
  */
 public class GoToAppunto implements MouseListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private String corso;
     private String facoltà;

@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  */
 public class CaricaFacoltà implements ActionListener, KeyListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private ListaFacoltàPanel facoltà; 
     

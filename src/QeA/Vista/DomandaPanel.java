@@ -41,7 +41,7 @@ import javax.swing.border.LineBorder;
  */
 public class DomandaPanel extends JPanel{
 
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione bottoni - label - taxtarea
     private JButton rispondi, elimina, likeDomanda, likeRisposta, dislikeRisposta, preferitiOn,

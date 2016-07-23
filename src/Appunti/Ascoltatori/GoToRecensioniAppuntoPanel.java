@@ -19,7 +19,8 @@ import java.sql.SQLException;
  */
 public class GoToRecensioniAppuntoPanel implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
+    
     private RecensioniAppuntoPanel recensioni;
     
     @Override

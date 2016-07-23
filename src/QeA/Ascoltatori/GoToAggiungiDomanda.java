@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiDomanda implements ActionListener{
 
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     @Override
     public void actionPerformed(ActionEvent e) {

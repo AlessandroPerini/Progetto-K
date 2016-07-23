@@ -16,7 +16,7 @@ import java.util.Locale;
  */
 public class Elimina {
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //inizializzazione variabili
     public static boolean eliminaOk = false;

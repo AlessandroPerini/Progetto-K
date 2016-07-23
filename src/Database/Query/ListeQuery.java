@@ -21,7 +21,7 @@ import java.sql.SQLException;
  */
 public class ListeQuery {
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static void caricaFacoltà() throws SQLException{
         

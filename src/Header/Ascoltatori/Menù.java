@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class Menù implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JComboBox menu;

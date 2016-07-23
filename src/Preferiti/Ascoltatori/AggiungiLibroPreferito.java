@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiLibroPreferito implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
+    
     private LibroPanel libro;
     
     @Override

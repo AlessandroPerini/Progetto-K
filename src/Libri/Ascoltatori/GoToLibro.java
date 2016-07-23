@@ -22,7 +22,7 @@ import javax.swing.JLabel;
  */
 public class GoToLibro implements MouseListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variabili
     private String corso;

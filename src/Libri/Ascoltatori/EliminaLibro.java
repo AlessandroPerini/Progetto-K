@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminaLibro implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private ListaLibriPanel libri;
     private PreferitiPanel preferitiPanel; 

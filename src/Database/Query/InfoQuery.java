@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class InfoQuery {
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static void caricaInfoFacoltà() throws SQLException{
         

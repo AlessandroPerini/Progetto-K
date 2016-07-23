@@ -1,5 +1,5 @@
 /*
-* Ascoltatore che effetua il login alla pressione del bottone "login", effettuando 
+* Ascoltatore che effetua il login alla pressione del bottone "login", effettuando
 * la query di login che salva anche i dati dell'utente loggato
 * (Controllo che i campi non siano vuoti e successivamente che le credenziali inserite siano corrette)
 */
@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -22,7 +24,7 @@ import javax.swing.JTextField;
  */
 public class DoLogin implements ActionListener, KeyListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private static JTextField email;
     private static JPasswordField password;
@@ -32,8 +34,8 @@ public class DoLogin implements ActionListener, KeyListener{
         this.password = password;
     }
     
-    public void doIt(){  
-
+    public void doIt() throws Exception{
+        
         if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {
             try {
                 LoginQuery.login(email.getText()+"@universitadipavia.it", password.getPassword());
@@ -56,7 +58,11 @@ public class DoLogin implements ActionListener, KeyListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         
-        doIt();
+        try {
+            doIt();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Verificare la propria connessione internet", "Errore di rete", JOptionPane.ERROR_MESSAGE);
+        }
     }
     
     @Override
@@ -66,7 +72,11 @@ public class DoLogin implements ActionListener, KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            doIt();
+            try {
+                doIt();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(null, "Verificare la propria connessione internet", "Errore di rete", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     

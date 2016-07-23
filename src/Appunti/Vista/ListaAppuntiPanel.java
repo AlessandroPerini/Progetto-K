@@ -38,7 +38,7 @@ import javax.swing.border.LineBorder;
  */
 public class ListaAppuntiPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JLabel[] appunti;

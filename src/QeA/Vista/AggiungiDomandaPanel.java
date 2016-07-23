@@ -28,7 +28,7 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiDomandaPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione textarea - bottoni
     private static JTextArea nome, descrizione;

@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class CaricaDomande implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private ListaDomandePanel domande;
     

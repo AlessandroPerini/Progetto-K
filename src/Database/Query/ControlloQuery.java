@@ -14,7 +14,7 @@ import java.sql.SQLException;
  */
 public class ControlloQuery{
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static boolean controlloLikeDomanda() throws SQLException {
         

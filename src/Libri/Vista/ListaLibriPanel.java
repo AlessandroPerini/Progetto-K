@@ -36,7 +36,7 @@ import javax.swing.border.LineBorder;
  */
 public class ListaLibriPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione array label
     private JLabel[] libri = new JLabel[applicazione.listaLibriAttuali.size()];

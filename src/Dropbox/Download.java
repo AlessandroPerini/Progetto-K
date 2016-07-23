@@ -18,7 +18,7 @@ import java.util.Locale;
  */
 public class Download {
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //inizializzazione variabili
     private String nome = applicazione.appuntoAttuale.getNome();

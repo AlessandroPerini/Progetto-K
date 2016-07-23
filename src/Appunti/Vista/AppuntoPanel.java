@@ -39,7 +39,7 @@ import javax.swing.border.LineBorder;
  */
 public class AppuntoPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione bottoni - textarea - label
     private JButton valuta, recensioni, preferitiOn , preferitiOff, scarica, elimina;

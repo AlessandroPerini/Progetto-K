@@ -32,7 +32,7 @@ import javax.swing.border.LineBorder;
  */
 public class CorsoPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione pannelli
     private TopPanel top;
