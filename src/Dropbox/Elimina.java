@@ -3,7 +3,7 @@
 */
 package Dropbox;
 
-import Application.Controller.Applicazione;
+import Application.Applicazione;
 import com.dropbox.core.DbxClient;
 import com.dropbox.core.DbxEntry;
 import com.dropbox.core.DbxException;

@@ -1,0 +1,50 @@
+/*
+* Qui viene creata la grafica: il frame generale con al suo interno
+* un container con un layout di tipo CardLayout per la gestione
+* dei pannelli da visualizzare.
+*/
+package Vista;
+
+import java.awt.CardLayout;
+import java.awt.Point;
+import javax.swing.JPanel;
+
+/**
+ *
+ * @author te4o
+ */
+public class Grafica {
+    
+    //dichiarazione oggetti
+    public static CardLayout card;
+    public static JPanel container;
+    public static MainFrame mainFrame;
+    
+    public Grafica(){
+        
+        //inizializzazione oggetti
+        mainFrame  = new MainFrame("UNI Per Voi");
+        card = new CardLayout();
+        container = new JPanel();
+        LoginPanel login = new LoginPanel();
+        
+        container.setLayout(card);
+        container.add(login,"login");
+        card.show(container, "login");
+        
+        mainFrame.add(container);
+        mainFrame.setVisible(true);
+        
+    }
+    
+    public static Point posizione(){
+        
+        return mainFrame.getLocation();
+    }
+    
+    public void chiudi(){
+    
+        mainFrame.setVisible(false);
+        mainFrame.dispose();
+    }
+}
