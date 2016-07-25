@@ -19,7 +19,7 @@ import java.sql.SQLException;
  */
 public class CaricaLibri implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
 
     private ListaLibriPanel libri;
     

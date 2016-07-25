@@ -23,7 +23,7 @@ import javax.swing.JLabel;
  */
 public class AggiungiLikeRisposta implements MouseListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JLabel j1 ,j2;

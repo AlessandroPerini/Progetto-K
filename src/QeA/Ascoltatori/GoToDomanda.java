@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class GoToDomanda implements MouseListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variabili
     private String nomeDomanda;

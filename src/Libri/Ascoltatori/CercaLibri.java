@@ -22,7 +22,7 @@ import javax.swing.JTextField;
  */
 public class CercaLibri implements ActionListener, KeyListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextField searchField;

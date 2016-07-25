@@ -18,7 +18,8 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiAppuntoPreferito implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
+    
     private AppuntoPanel appunto;
     
     @Override

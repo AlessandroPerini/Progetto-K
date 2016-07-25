@@ -28,7 +28,7 @@ import javax.swing.border.LineBorder;
  */
 public class TopPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JComboBox<String> menu;

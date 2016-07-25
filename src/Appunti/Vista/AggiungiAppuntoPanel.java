@@ -34,7 +34,7 @@ import javax.swing.border.LineBorder;
  */
 public class AggiungiAppuntoPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private static JTextArea nome, descrizione;

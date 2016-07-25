@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviCorsoPreferito implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private CorsoPanel corso;
     
@@ -27,7 +27,6 @@ public class RimuoviCorsoPreferito implements ActionListener{
         
         try {
             DeleteQuery.eliminaCorsoPreferito();
-            
             
             applicazione.preferiti.getCorsiPreferiti().remove(applicazione.corsoAttuale);
             

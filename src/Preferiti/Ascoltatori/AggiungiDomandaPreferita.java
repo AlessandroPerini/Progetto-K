@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  */
 public class AggiungiDomandaPreferita implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private DomandaPanel domanda;
     

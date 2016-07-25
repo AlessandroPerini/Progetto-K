@@ -24,9 +24,17 @@ import java.util.ArrayList;
  */
 public class Applicazione {
     
-    private static Applicazione instance;
+    private static Applicazione instance;  
+    public Connection DBconnection;
+    public boolean erroreConnessione = false;
     
     private Applicazione(){
+        try {
+            ConnessioneDB connessioneDB = ConnessioneDB.getInstance();
+            DBconnection = connessioneDB.connect();
+        } catch (Exception ex) {
+            erroreConnessione = true;
+        }
     }
     
     public static synchronized Applicazione getInstance(){
@@ -35,9 +43,7 @@ public class Applicazione {
             instance = new Applicazione(); }
         return instance;
     }
-    
-    public Connection DBconnection = new ConnessioneDB().connect();
-    
+        
     public Studente guest;
     public boolean utenteLoggato = false;
     public ArrayList<String> back = new ArrayList<>();
@@ -135,7 +141,7 @@ public class Applicazione {
     
     public void svuotaTutteLeListe(){
 
-        svuotaCorsi();;
+        svuotaCorsi();
         svuotaFacoltà();
         svuotaLibri();
         svuotaDomande();
@@ -147,26 +153,12 @@ public class Applicazione {
         svuotaRami();
         svuotaCorsiXAnno();
         svuotaPreferiti();
-        
     }
     
     public void logout(){
         
         eliminaUtente();
-        
-        svuotaCorsi();;
-        svuotaFacoltà();
-        svuotaLibri();
-        svuotaDomande();
-        svuotaAppunti();
-        svuotaRisposte();
-        svuotaMieiDati();
-        svuotaListaFacoltàXRamo();
-        svuotaRecensioni();
-        svuotaRami();
-        svuotaCorsiXAnno();
-        svuotaPreferiti();
-        
+        svuotaTutteLeListe();
     }
     
 }

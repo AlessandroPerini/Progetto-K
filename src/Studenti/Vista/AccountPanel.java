@@ -30,7 +30,7 @@ import javax.swing.ImageIcon;
  */
 public class AccountPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione label - textfield- bottoni
     private JLabel emailLabel, nicknameLabel, telefonoLabel;

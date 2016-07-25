@@ -17,7 +17,8 @@ import java.awt.event.ActionListener;
  */
 public class GoToAggiungiAppunto implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
+    
     private AggiungiAppuntoPanel aggiungiAppuntoPanel;
     
     @Override

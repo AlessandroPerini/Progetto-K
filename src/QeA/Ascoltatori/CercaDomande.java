@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  */
 public class CercaDomande implements ActionListener, KeyListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextField searchField;

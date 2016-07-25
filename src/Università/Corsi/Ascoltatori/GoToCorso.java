@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class GoToCorso implements MouseListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variabili
     private String facoltà;

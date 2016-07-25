@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  */
 public class EliminaDomanda implements ActionListener{
 
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private ListaDomandePanel domande;
     private PreferitiPanel preferitiPanel; 

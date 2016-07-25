@@ -25,7 +25,7 @@ import java.sql.SQLException;
  */
 public class Back implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private AccountPanel account; 
     

@@ -35,7 +35,7 @@ import javax.swing.JScrollPane;
  */
 public class iMieiDatiPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variabili
     private int dimAppunti,dimLibri, dimDomande ;

@@ -16,7 +16,7 @@ import javax.swing.JTextField;
  */
 public class Cerca {
 
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static void Appunti(JTextField testoRicerca){
     

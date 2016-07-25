@@ -29,7 +29,7 @@ import javax.swing.border.LineBorder;
  */
 public class SegnalazionePanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
 
     //dichiarazione oggetti
     private JPanel top;

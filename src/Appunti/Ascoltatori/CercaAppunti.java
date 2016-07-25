@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  */
 public class CercaAppunti implements ActionListener, KeyListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private JTextField searchField;
     

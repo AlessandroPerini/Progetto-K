@@ -16,7 +16,7 @@ import javax.swing.JTextArea;
  */
 public class InsertQuery {
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static void inserisciLibro(String titolo, String descrizione, int prezzo, String telefono) throws SQLException{
         

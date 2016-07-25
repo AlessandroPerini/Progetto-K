@@ -33,7 +33,7 @@ import javax.swing.border.TitledBorder;
  */
 public class ListaCorsiPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione array oggetti
     private JLabel[] corsi = new JLabel[applicazione.listaCorsiAttuali.size()];

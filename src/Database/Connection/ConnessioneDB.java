@@ -13,31 +13,41 @@ import java.sql.SQLException;
  */
 public class ConnessioneDB {
     
-    //dichiarazione variabili
-    private Connection DbConnection;
+    private static ConnessioneDB instance;
     
-    public Connection connect(){
+    private ConnessioneDB(){
+    }
+    
+    public static synchronized ConnessioneDB getInstance(){
+    
+        if(instance == null){ 
+            instance = new ConnessioneDB(); }
+        return instance;
+    }
+    
+    public Connection connect() throws Exception{
         
+        Connection connessione = null;
         try{
             
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Connection Success");
+            //System.out.println("Connection Success");
         }
         catch(ClassNotFoundException cnfe){
             
-            System.out.println("Connection Fail"+ cnfe);
+            System.out.println("Connection Failed"+ cnfe);
         }
         
-        try{
+        try {
             //effettua la connessione al server freemysqlhosting.net con i nostri dati di accesso
-            DbConnection = (Connection) DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7114898","sql7114898","RC4ZIQMDHd");
+            connessione = (Connection) DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7114898","sql7114898","RC4ZIQMDHd");
             System.out.println("Database Connected");
-        }catch(SQLException se){
-            
-            System.out.println("No Database "+ se);
-            
+        } catch (SQLException ex) {
+            System.out.println("Impossible to connect jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7114898");
+            throw new Exception();
         }
-        return DbConnection;
+            
+        return connessione;
     }
     
 }

@@ -43,4 +43,10 @@ public class Grafica {
         
         return mainFrame.getLocation();
     }
+    
+    public void chiudi(){
+    
+        mainFrame.setVisible(false);
+        mainFrame.dispose();
+    }
 }

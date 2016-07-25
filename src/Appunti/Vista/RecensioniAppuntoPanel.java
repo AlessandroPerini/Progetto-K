@@ -25,7 +25,7 @@ import javax.swing.JTextArea;
  */
 public class RecensioniAppuntoPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione array oggetti
     private JLabel[] emailRecensioni;

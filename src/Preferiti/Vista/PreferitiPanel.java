@@ -35,7 +35,7 @@ import javax.swing.JScrollPane;
  */
 public class PreferitiPanel extends JPanel{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione variabili
     private int dimFacoltàPreferite, dimCorsiPreferiti, dimAppuntiPreferiti,

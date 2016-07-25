@@ -33,7 +33,7 @@ import javax.swing.border.LineBorder;
  */
 public class LibroPanel extends JPanel{
 
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione pannelli
     private JPanel top, panelloPrincipale, preferitiPanel, descrizionePanel;

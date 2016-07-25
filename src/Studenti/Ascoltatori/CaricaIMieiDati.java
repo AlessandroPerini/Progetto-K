@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
  */
 public class CaricaIMieiDati implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private iMieiDatiPanel mieiDatiPanel;
     

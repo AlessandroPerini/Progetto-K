@@ -4,7 +4,9 @@
 */
 package Application.Creator;
 
+import Application.Controller.Applicazione;
 import Application.Vista.Grafica;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -15,8 +17,13 @@ public class Starter {
 
     public static void main(String[] args) {
         
-        new Grafica();
-
+        Applicazione applicazione = Applicazione.getInstance();
+        Grafica grafica = new Grafica();
+        
+        if(applicazione.erroreConnessione){
+           JOptionPane.showMessageDialog(null, "Verificare la propria connessione internet e riavviare l'applicazione", "Errore di rete", JOptionPane.ERROR_MESSAGE);
+           grafica.chiudi();
+        }
     }
 }
 

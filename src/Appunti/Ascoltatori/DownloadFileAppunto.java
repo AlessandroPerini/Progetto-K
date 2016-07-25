@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  */
 public class DownloadFileAppunto implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private String nome ;
     private String corso ;

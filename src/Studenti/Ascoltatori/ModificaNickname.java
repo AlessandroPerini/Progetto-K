@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  */
 public class ModificaNickname implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     private JTextField nick;

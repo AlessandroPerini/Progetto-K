@@ -17,7 +17,7 @@ import java.sql.SQLException;
  */
 public class GuestQuery {
     
-    public static Applicazione applicazione = Applicazione.getInstance();
+    private static Applicazione applicazione = Applicazione.getInstance();
     
     public static void caricaMieiAppunti() throws SQLException{
         

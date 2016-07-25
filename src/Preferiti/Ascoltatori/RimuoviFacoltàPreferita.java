@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class RimuoviFacoltàPreferita implements ActionListener{
     
-    public Applicazione applicazione = Applicazione.getInstance();
+    private Applicazione applicazione = Applicazione.getInstance();
     
     private ListaCorsiPanel corsi;
     
