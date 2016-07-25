@@ -21,7 +21,7 @@ public class Autenticazione {
   
     public static void main(String[] args) throws IOException, DbxException {
 
-        //dati dell'app (si trovano della pagina dell app accedenso a Dropbox Developers)
+        //dati dell'app (si trovano della pagina dell app accedendo a Dropbox Developers)
         final String APP_KEY = "v725fq2n09ko0kn";
         final String APP_SECRET = "dpglz54rrf9r4g6";
 

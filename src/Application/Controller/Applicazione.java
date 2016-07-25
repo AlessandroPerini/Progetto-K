@@ -16,11 +16,7 @@ import Università.Corsi.Corso;
 import Università.Facolta.Facoltà;
 import Valutazioni.Valutazione;
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -145,25 +141,6 @@ public class Applicazione {
     
     public void svuotaTutteLeListe(){
 
-        svuotaCorsi();;
-        svuotaFacoltà();
-        svuotaLibri();
-        svuotaDomande();
-        svuotaAppunti();
-        svuotaRisposte();
-        svuotaMieiDati();
-        svuotaListaFacoltàXRamo();
-        svuotaRecensioni();
-        svuotaRami();
-        svuotaCorsiXAnno();
-        svuotaPreferiti();
-        
-    }
-    
-    public void logout(){
-        
-        eliminaUtente();
-        
         svuotaCorsi();
         svuotaFacoltà();
         svuotaLibri();
@@ -176,7 +153,12 @@ public class Applicazione {
         svuotaRami();
         svuotaCorsiXAnno();
         svuotaPreferiti();
+    }
+    
+    public void logout(){
         
+        eliminaUtente();
+        svuotaTutteLeListe();
     }
     
 }

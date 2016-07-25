@@ -28,7 +28,6 @@ public class RimuoviCorsoPreferito implements ActionListener{
         try {
             DeleteQuery.eliminaCorsoPreferito();
             
-            
             applicazione.preferiti.getCorsiPreferiti().remove(applicazione.corsoAttuale);
             
             corso = new CorsoPanel();

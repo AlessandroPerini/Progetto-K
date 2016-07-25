@@ -18,10 +18,11 @@ public class Starter {
     public static void main(String[] args) {
         
         Applicazione applicazione = Applicazione.getInstance();
-        new Grafica();
+        Grafica grafica = new Grafica();
         
         if(applicazione.erroreConnessione){
            JOptionPane.showMessageDialog(null, "Verificare la propria connessione internet e riavviare l'applicazione", "Errore di rete", JOptionPane.ERROR_MESSAGE);
+           grafica.chiudi();
         }
     }
 }
