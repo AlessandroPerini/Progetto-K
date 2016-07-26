@@ -5,12 +5,15 @@ import Database.Query.ListeQuery;
 import QeA.Domanda;
 import Utils.Azioni.Cerca;
 import java.sql.SQLException;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  * Dato che non è possibile inserire una domanda con lo stesso titolo nello stesso corso e facolta,
@@ -21,11 +24,6 @@ public class TestCercaDomanda {
     
     
     public static void main(String[] args) {
-
-        int oltre = (int) System.currentTimeMillis();
-        String domanda1 = "Prova 1 "+oltre;
-        String domanda2 = "Test 2 "+oltre;
-        String domanda3 = "Provola 3 "+oltre;
         
         try {
             Applicazione applicazione = Applicazione.getInstance();
@@ -34,14 +32,16 @@ public class TestCercaDomanda {
             applicazione.facoltàAttuale.setNome("Ingegneria dell'Informazione");
             applicazione.corsoAttuale.setNome("Fondamenti di Informatica I");
             
-            InsertQuery.inserisciDomanda(domanda1, "Descrizione 1");
-            InsertQuery.inserisciDomanda(domanda2, "Descrizione 2");
-            InsertQuery.inserisciDomanda(domanda3, "Descrizione 3");           
+            InsertQuery.inserisciDomanda("Fondamenti 2", "Cosa studiare l'orale di fondamenti 2?");
+            InsertQuery.inserisciDomanda("circuiti", "Cosa  per l'orale di fondamenti 2?");
+            InsertQuery.inserisciDomanda("elettronica", "Cosa studiare per  di fondamenti 2?");           
                   
             ListeQuery.caricaDomande();
-
-            Cerca.Domande(new JTextField("Te"));
-
+            
+       
+            Cerca.Domande(new JTextField("Fond"));
+            
+            
             for(Domanda d: applicazione.listaDomandeAttuali){
                 System.out.println(d);
             }

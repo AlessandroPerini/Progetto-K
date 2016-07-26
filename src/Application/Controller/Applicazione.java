@@ -93,6 +93,9 @@ public class Applicazione {
         
         utenteLoggato = true;
     }
+    public void setLibroAttuale(Libro libro){
+        libroAttuale = libro;
+    }
     
     /**
      * Ricrea un'istanza vuota di Studente e la inserisce in guest.
