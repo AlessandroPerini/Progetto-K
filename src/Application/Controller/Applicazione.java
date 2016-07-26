@@ -103,6 +103,14 @@ public class Applicazione {
         utenteLoggato = false;
     }
     
+    /**
+     * Metodo utilizzato solo durante la fase di test dei componenti.
+     * @param libro 
+     */
+    public void setLibroAttuale(Libro libro){
+        libroAttuale = libro;
+    }
+    
     public void svuotaCorsi() {
         listaCorsiAttuali.clear();
     }

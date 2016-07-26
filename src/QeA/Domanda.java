@@ -54,6 +54,12 @@ public class Domanda {
     public void setLike(int like) {
         this.like = like;
     }
+
+    @Override
+    public String toString() {
+        return "Domanda{" + "titolo=" + titolo + ", domanda=" + domanda + ", studente=" + studente + ", like=" + like + ", corso=" + corso + ", facolt\u00e0=" + facoltà + '}';
+    }
+    
     
     
 }
