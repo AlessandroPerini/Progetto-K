@@ -1,6 +1,4 @@
-/*
-* Ascoltatore che selezionata la facoltà in ListaFacoltàPanel va alla ListaCorsiPanel relativa
-*/
+
 package Università.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -16,9 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore che selezionata la facoltà in ListaFacoltàPanel va alla ListaCorsiPanel relativa.
+*/
 public class CaricaCorsi implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

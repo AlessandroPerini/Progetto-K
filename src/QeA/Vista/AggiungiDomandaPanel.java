@@ -1,6 +1,4 @@
-/*
-* Pannello dedicato all'inserimento di unanuova domanda
-*/
+
 package QeA.Vista;
 
 import Application.Controller.Applicazione;
@@ -23,9 +21,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author te4o
- */
+* Pannello dedicato all'inserimento di una nuova domanda
+*/
 public class AggiungiDomandaPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

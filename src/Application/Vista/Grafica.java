@@ -8,12 +8,9 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
- *
- * @author te4o
- * 
  * Qui viene creata la grafica: il frame generale con al suo interno
-   un container con un layout di tipo CardLayout per la gestione
-   dei pannelli da visualizzare.
+ * un container con un layout di tipo CardLayout per la gestione
+ * dei pannelli da visualizzare.
  */
 public class Grafica {
     
@@ -39,6 +36,10 @@ public class Grafica {
         
     }
     
+    /**
+    * Restituisce la posizione del frame principale che può tornare utile per centrare
+    * vari oggetti con una posizione relativa al frame.
+    */
     public static Point posizione(){
         
         return mainFrame.getLocation();

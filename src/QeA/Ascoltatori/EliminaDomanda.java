@@ -1,9 +1,4 @@
-/*
-* Ascoltatore dedicato all'eliminazione di un appunto
-* L'appunto può essere eliminato solo da colui che lo ha caricato
-* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
-* verrà aggiornata cosi come la lista dei preferiti.
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -22,9 +17,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author adrian
- */
+* Ascoltatore dedicato all'eliminazione di un appunto.
+* L'appunto può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
+*/
 public class EliminaDomanda implements ActionListener{
 
     private Applicazione applicazione = Applicazione.getInstance();

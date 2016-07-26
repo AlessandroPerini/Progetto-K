@@ -1,6 +1,4 @@
-/*
-* Pannello con la lista dei corsi della facoltà selezionata
-*/
+
 package Università.Corsi.Vista;
 
 import Università.Corsi.Ascoltatori.GoToCorso;
@@ -28,9 +26,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.border.TitledBorder;
 
 /**
- *
- * @author te4o
- */
+* Pannello con la lista dei corsi della facoltà selezionata.
+*/
 public class ListaCorsiPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

@@ -1,6 +1,4 @@
-/*
-* Classe con le queri di caricamento dei dati una determinata entità (Facoltà, Corso, Appunto, ...)
-*/
+
 package Database.Query;
 
 import Application.Controller.Applicazione;
@@ -14,9 +12,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author te4o
- */
+* Classe che raggruppa tutte le query per il caricamento delle informazioni relative ad un determinato
+* appunto, libro o domanda.
+* Tutti i metodi sono di tipo statico, accessibili senza nessità di instanziare la classe.
+* Tutti i metodi rilanciano l'eventuale eccezione al componente del livello superiore.
+*/
 public class InfoQuery {
     
     private static Applicazione applicazione = Applicazione.getInstance();

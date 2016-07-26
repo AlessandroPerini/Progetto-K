@@ -1,6 +1,4 @@
-/*
- * Ascoltatore posto sul bottone back per tornare alla pagina precedente
- */
+
 package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -20,8 +18,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 /**
- *
- * @author Te4o
+ * Ascoltatore posto sul bottone back per tornare alla pagina precedente.
+ * Vi sono dei metodi per un comportamento specifico per effettuare l'operazione di back
+ * a seconda della pagina in cui ci si trova.
  */
 public class Back implements ActionListener{
     

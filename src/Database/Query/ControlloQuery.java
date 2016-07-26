@@ -1,6 +1,4 @@
-/*
-* Classe con le query di controllo sui dati
-*/
+
 package Database.Query;
 
 import Application.Controller.Applicazione;
@@ -9,9 +7,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author Te4o
- */
+* Classe che raggruppa tutte le query di controllo sui dati del database.
+* Tutti i metodi sono di tipo statico, accessibili senza nessità di instanziare la classe.
+* Tutti i metodi rilanciano l'eventuale eccezione al componente del livello superiore.
+*/
 public class ControlloQuery{
     
     private static Applicazione applicazione = Applicazione.getInstance();

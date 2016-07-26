@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di tutti gli appunti relativi 
-* al corso selezionato
-*/
+
 package Appunti.Ascoltatori;
 import Application.Controller.Applicazione;
 import Appunti.Vista.ListaAppuntiPanel;
@@ -13,9 +10,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato al caricamento di tutti gli appunti relativi 
+* al corso selezionato
+*/
 public class CaricaAppunti implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

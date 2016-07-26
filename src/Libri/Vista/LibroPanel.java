@@ -1,7 +1,4 @@
-/*
- * Pannello contenente le informazioni relative al libro selezionato
- * E' inoltre possibile eliminare il libro se si è colui che l'ha caricato
- */
+
 package Libri.Vista;
 
 import Application.Controller.Applicazione;
@@ -28,8 +25,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author cl410688
+ * Pannello contenente le informazioni relative al libro selezionato
+ * E' inoltre possibile eliminare il libro se si è colui che l'ha caricato
  */
 public class LibroPanel extends JPanel{
 

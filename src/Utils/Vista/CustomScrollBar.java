@@ -1,6 +1,4 @@
-/*
- * ScrollBar personalizzata 
- */
+
 package Utils.Vista;
 
 import java.awt.Color;
@@ -15,8 +13,9 @@ import javax.swing.JScrollBar;
 import javax.swing.plaf.metal.MetalScrollBarUI;
 
 /**
- *
- * @author Te4o
+ * Creazione di una ScrollBar personalizzata che utilizziamo più volte 
+ * all'interno dell'interfaccia grafica. 
+ * Contiene solo metodi di personalizzazione grafica.
  */
 public class CustomScrollBar extends JScrollBar{
 

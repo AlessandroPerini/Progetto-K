@@ -1,6 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di un nuovo libro al corso
-*/
+
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -19,9 +17,8 @@ import javax.swing.JSpinner;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato al caricamento di un nuovo libro al corso
+*/
 public class AggiungiLibro implements ActionListener{
     
     

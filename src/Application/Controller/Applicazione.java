@@ -1,4 +1,5 @@
 
+
 package Application.Controller;
 
 import Appunti.Appunto;
@@ -15,14 +16,12 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 /**
- *
- * @author te4o
- * 
  * Questo è il controller facade del progetto, colui che gestisce tutti i dati e le strutture principali
  * utilizzati dalle classi: la connessione al database, i dati dell'utente loggato
  * e le liste di appunti, libri e domande.
  * Riceve i dati modificati dalla logica applicativa e li rende disponibile alla grafica.
  */
+
 public class Applicazione {
     
     private static Applicazione instance;  
@@ -38,6 +37,12 @@ public class Applicazione {
         }
     }
     
+    /**
+     * Assicura che la classe sia singleton.
+     * Se la classe non è ancora stata istanziata, il metodo crea l'istanza e la restituisce.
+     * Se invece l'istanza è gia stata creata, la restituisce semplicemente.
+     * 
+     */
     public static synchronized Applicazione getInstance(){
     
         if(instance == null){ 
@@ -72,6 +77,14 @@ public class Applicazione {
     public ArrayList<Libro> libriGuest = new ArrayList<>();
     public ArrayList<Domanda> domandeGuest = new ArrayList<>();
     
+    /**
+     * Crea un'istanza guest di tipo Studente con i parametri ricevuti e la inserisce in guest.
+     * @param email 
+     * @param password 
+     * @param telefono 
+     * @param nickname
+     *
+     */
     public void inizializzaUtente(String email, String password, String telefono, String nickname){
         
         guest = new Studente(email, password, telefono, nickname);
@@ -81,6 +94,10 @@ public class Applicazione {
         utenteLoggato = true;
     }
     
+    /**
+     * Ricrea un'istanza vuota di Studente e la inserisce in guest.
+     * Poi setta la variabile booleana utenteLoggato a false.
+     */
     public void eliminaUtente(){
         guest = new Studente("", "","", "");
         utenteLoggato = false;
@@ -156,6 +173,11 @@ public class Applicazione {
         svuotaPreferiti();
     }
     
+    /**
+     * Metodo necessario per l'operazione di logout dall'applicazione.
+     * Elimina l'utente loggato e svuota tutte le liste relative.
+     * 
+     */
     public void logout(){
         
         eliminaUtente();

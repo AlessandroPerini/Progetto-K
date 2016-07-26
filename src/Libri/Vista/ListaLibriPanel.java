@@ -1,9 +1,4 @@
-/*
-* Pannello contenete la lista dei libri relativi al corso selezionato
-* Contiene anche una ricerca dei libri stessi
-* I libri sono ordinati alfabeticamente
-* Vi è infine un bottone che porta al form per l'aggiunta di un nuovo libro
-*/
+
 package Libri.Vista;
 
 import Application.Controller.Applicazione;
@@ -31,9 +26,11 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Pannello contenete la lista dei libri relativi al corso selezionato
+* Contiene anche una ricerca dei libri stessi
+* I libri sono ordinati alfabeticamente
+* Vi è infine un bottone che porta al form per l'aggiunta di un nuovo libro
+*/
 public class ListaLibriPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

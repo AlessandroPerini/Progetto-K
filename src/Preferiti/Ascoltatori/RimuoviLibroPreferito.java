@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per la rimozione di un libro preferito
-*/
+
 package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore per la rimozione di un libro preferito
+*/
 public class RimuoviLibroPreferito implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

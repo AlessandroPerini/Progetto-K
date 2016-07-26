@@ -1,8 +1,4 @@
- /*
- * Pannello dedicato alla visualizzazione della domanda e delle 
- * relative rispose. Possibilità di mettere Like alla domanda e Like - DisLike alla risposta.
- * L'utente a sua volta può rispondere alla domanda.
- */
+
 package QeA.Vista;
 
 import Application.Controller.Applicazione;
@@ -35,9 +31,10 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
-/**
- *
- * @author cl410688
+ /**
+ * Pannello dedicato alla visualizzazione della domanda e delle relative rispose.
+ * Possibilità di mettere Like alla domanda e Like - DisLike alla risposta.
+ * L'utente a sua volta può rispondere alla domanda.
  */
 public class DomandaPanel extends JPanel{
 

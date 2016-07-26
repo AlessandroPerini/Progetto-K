@@ -1,13 +1,12 @@
-/*
-* Classe contentenete la struttura di uno studente:
-* attributi, costruttore, metodi get - set
-*/
+
 package Studenti;
 
 /**
- *
- * @author cl418646
+ * Classe contentenete la struttura di uno studente:
+ * attributi, costruttore, metodi get - set
+ * @author te4o
  */
+
 public class Studente {
     
     private String email;
@@ -17,6 +16,15 @@ public class Studente {
     private String nickname;
     private String telefono; 
 
+    /**
+     * Il metodo inizializza Studente in base ai parametri passati
+     * 
+     * @param email 
+     * @param password
+     * @param telefono
+     * @param nickname 
+     */
+    
     public Studente(String email, String password, String telefono, String nickname) {
         this.email = email;
         this.password = password;
@@ -30,6 +38,9 @@ public class Studente {
         this.nickname = nickname;
     }
     
+    /**
+     * Crea il nome scomponendo la mail
+     */
     public void setNome() {
         String s = email;
         s = s.replace(".", ",");
@@ -39,6 +50,9 @@ public class Studente {
         this.nome = nome;
     }
     
+    /**
+     * Crea il cognome scomponendo la mail
+     */
     public void setCognome() {
         
         String s = email;

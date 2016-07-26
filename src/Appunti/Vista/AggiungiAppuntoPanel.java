@@ -1,8 +1,4 @@
-/*
-* Pannello dedicato all'inserimento di un nuovo appunto.
-* L'appunto potrà essere selezionato dal proprio PC
-* e aggiunto sulla piattaforma DropBox
-*/
+
 package Appunti.Vista;
 
 import Application.Controller.Applicazione;
@@ -29,9 +25,10 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author te4o
- */
+* Pannello dedicato all'inserimento di un nuovo appunto.
+* L'appunto potrà essere selezionato dal proprio PC
+* e aggiunto sulla piattaforma DropBox
+*/
 public class AggiungiAppuntoPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

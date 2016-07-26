@@ -1,6 +1,4 @@
-/*
-* Pannello dedicato alla visualizzazione della lista delle domande
-*/
+
 package QeA.Vista;
 
 import Application.Controller.Applicazione;
@@ -31,9 +29,8 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Pannello dedicato alla visualizzazione della lista delle domande
+*/
 public class ListaDomandePanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

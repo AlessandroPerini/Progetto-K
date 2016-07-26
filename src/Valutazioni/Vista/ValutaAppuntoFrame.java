@@ -1,7 +1,4 @@
-/*
-* Frame per permettere la valutazione di un appunto, tramite l'inserimento
-* di un punteggio e un commento.
-*/
+
 package Valutazioni.Vista;
 
 import Application.Controller.Applicazione;
@@ -27,9 +24,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Frame per permettere la valutazione di un appunto, tramite l'inserimento
+* di un punteggio e un commento.
+*/
 public class ValutaAppuntoFrame{
     
     private Applicazione applicazione = Applicazione.getInstance();

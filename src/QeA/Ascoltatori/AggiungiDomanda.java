@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di una nuova domanda all'interno
-* del corso
-*/
+
 package QeA.Ascoltatori;
 
 import Database.Query.InsertQuery;
@@ -19,9 +16,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato al caricamento di una nuova domanda all'interno del corso. 
+*/
 public class AggiungiDomanda implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

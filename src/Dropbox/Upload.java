@@ -1,6 +1,4 @@
-/*
-* Qui viene caricato un determinato file su Dropbox
-*/
+
 package Dropbox;
 
 import com.dropbox.core.DbxClient;
@@ -14,9 +12,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
- *
- * @author Te4o
- */
+* Qui viene caricato un determinato file su Dropbox con il seguente formato: nomeFacoltà.nomeCorso.nomeApputno
+*/
 public class Upload {
     
     //dichiarazione variabili

@@ -1,9 +1,4 @@
-/*
-* Ascoltatore dedicato all'eliminazione di un appunto
-* L'appunto può essere eliminato solo da colui che lo ha caricato
-* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
-* verrà aggiornata cosi come la lista dei preferiti.
-*/
+
 package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -26,9 +21,11 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato all'eliminazione di un appunto
+* L'appunto può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato, verrà rimosso da dropbox, la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
+*/
 public class EliminaAppunto implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

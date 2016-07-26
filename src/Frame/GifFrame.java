@@ -1,6 +1,4 @@
-/*
-* Frame contenente la gif di caricamento
-*/
+
 package Frame;
 
 import Application.Vista.Grafica;
@@ -9,9 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
- *
- * @author te4o
- */
+* Frame contenente la gif di caricamento, usata durante l'upload e il download del file
+*/
 public class GifFrame {
     
     //dichiarazione oggetti

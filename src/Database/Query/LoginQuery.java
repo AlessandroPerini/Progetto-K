@@ -9,9 +9,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author te4o
- */
+* Classe contenente la query per verificare la correttezza dei dati di accesso per il login
+* Il metodo è di tipo statico, accessibile senza nessità di instanziare la classe.
+* Il metodo rilancia l'eventuale eccezione al componente del livello superiore.
+*/
 public class LoginQuery {
     
     private static Applicazione applicazione = Applicazione.getInstance();

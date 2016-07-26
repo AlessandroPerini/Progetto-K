@@ -1,10 +1,4 @@
-/*
-* Classe che deve essere eseguita solo per generare un token da utilizzare per effettuare le
-* operazioni su Dropbox (download, upload, elimina). Viene creato un link ad una pagina di 
-* dropbox e dopo aver effettuato i login con un account a Dropbox (quell'account sarà quello
-*  dal quale verranno caricati i file) la pagina restituirà un codice. Quest'ultima va inserito 
-*  nella pagina dell'output di netbeans e verrà così stampato il token finale.
-*/
+
 package Dropbox;
 
 import com.dropbox.core.*;
@@ -14,9 +8,12 @@ import java.io.InputStreamReader;
 import java.util.Locale;
 
 /**
- *
- * @author Te4o
- */
+* Classe che deve essere eseguita solo per generare un token da utilizzare per effettuare le
+* operazioni su Dropbox (download, upload, elimina). Viene creato un link ad una pagina di 
+* dropbox e dopo aver effettuato i login con un account a Dropbox (quell'account sarà quello
+* dal quale verranno caricati i file) la pagina restituirà un codice. Quest'ultima va inserito 
+* nella pagina dell'output di netbeans e verrà così stampato il token finale.
+*/
 public class Autenticazione {
   
     public static void main(String[] args) throws IOException, DbxException {

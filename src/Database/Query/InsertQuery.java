@@ -1,6 +1,4 @@
-/*
-* Classe con le query di inserimento dati
-*/
+
 package Database.Query;
 
 import Application.Controller.Applicazione;
@@ -11,9 +9,10 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author te4o
- */
+* Classe che raggruppa tutte le query di inserimento dei dati nel database.
+* Tutti i metodi sono di tipo statico, accessibili senza nessità di instanziare la classe.
+* Tutti i metodi rilanciano l'eventuale eccezione al componente del livello superiore.
+*/
 public class InsertQuery {
     
     private static Applicazione applicazione = Applicazione.getInstance();

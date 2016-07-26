@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di tutti i dati riguardanti l'utente:
-* appunti inseriti, libri in vendita, domande poste
-*/
+
 package Studenti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -15,9 +12,9 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato al caricamento di tutti i dati riguardanti l'utente:
+* appunti inseriti, libri in vendita, domande poste.
+*/
 public class CaricaIMieiDati implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

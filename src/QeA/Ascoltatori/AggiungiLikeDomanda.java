@@ -1,6 +1,4 @@
-/*
-* Ascoltatore dedicato alla modifica del numero di like della domanda attuale
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -19,9 +17,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author adrian
- */
+* Ascoltatore dedicato alla modifica del numero di like della domanda attuale.
+*/
 public class AggiungiLikeDomanda implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

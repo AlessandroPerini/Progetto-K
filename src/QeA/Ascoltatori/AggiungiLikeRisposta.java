@@ -1,6 +1,4 @@
-/*
-* Ascoltatore dedicato alla modifica del numero di like di una risposta
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -18,9 +16,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 /**
- *
- * @author danie
- */
+* Ascoltatore dedicato alla modifica del numero di like di una risposta.
+*/
 public class AggiungiLikeRisposta implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

@@ -1,9 +1,4 @@
-/*
-* Ascoltatore dedicato all'apertura della domanda selezionata
-* In base alla domanda selezionata, al corso e alla facoltà viene mandata in 
-* esecuzione una query che carica i dati relativi a tale appunto
-* e vengono visualizzati in un pannello
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -19,9 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author adrian
- */
+* Ascoltatore dedicato all'apertura della domanda selezionata.
+* In base alla domanda selezionata, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale appunto
+* e vengono visualizzati in un pannello
+*/
 public class GoToDomanda implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

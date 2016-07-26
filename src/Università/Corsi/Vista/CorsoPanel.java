@@ -1,6 +1,4 @@
-/*
-* Pannello per la scelta tra appunti, libri o domande relative a un corso
-*/
+
 package Università.Corsi.Vista;
 
 import Appunti.Ascoltatori.CaricaAppunti;
@@ -27,9 +25,8 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Pannello per la scelta tra appunti, libri o domande relative a un corso.
+*/
 public class CorsoPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

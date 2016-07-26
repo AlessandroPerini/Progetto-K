@@ -1,6 +1,4 @@
-/*
-* Classe non le query di caricamento dei dati relativi all'utente loggato
-*/
+
 package Database.Query;
 
 import Application.Controller.Applicazione;
@@ -12,9 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
- *
- * @author te4o
- */
+* Classe che raggruppa tutte le query di caricamento dei dati relativi all'utente loggato.
+* Tutti i metodi sono di tipo statico, accessibili senza nessità di instanziare la classe.
+* Tutti i metodi rilanciano l'eventuale eccezione al componente del livello superiore.
+*/
 public class GuestQuery {
     
     private static Applicazione applicazione = Applicazione.getInstance();

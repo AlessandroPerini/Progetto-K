@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per l'aggiunta di una facoltà preferita
-*/
+
 package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore per l'aggiunta di una facoltà preferita
+*/
 public class AggiungiFacoltàPreferita implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

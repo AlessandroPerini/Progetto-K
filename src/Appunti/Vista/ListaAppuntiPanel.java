@@ -1,8 +1,4 @@
-/*
-*  Lista con tutti gli appunti relativi al corso selezionato.
-*  Oltre alla lista, è presente un pannello di ricerca di un determinato appunto.
-*  Per ogni appunto viene visualizzata anche la valutazione di esso
-*/
+
 package Appunti.Vista;
 
 import Application.Controller.Applicazione;
@@ -33,9 +29,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+*  Lista con tutti gli appunti relativi al corso selezionato.
+*  Oltre alla lista, è presente un pannello di ricerca di un determinato appunto.
+*  Per ogni appunto viene visualizzata anche la valutazione di esso
+*/
 public class ListaAppuntiPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

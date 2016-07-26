@@ -1,6 +1,4 @@
-/*
-* Classe con i metodi statici per l'ordinamento di liste di oggetti
-*/
+
 package Utils.Azioni;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.util.Collections;
 import java.util.Comparator;
 
 /**
- *
- * @author te4o
- */
+* Classe con i metodi statici per l'ordinamento di liste di oggetti.
+*/
 public class Ordina {
     
     private static Applicazione applicazione = Applicazione.getInstance();

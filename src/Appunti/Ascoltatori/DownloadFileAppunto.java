@@ -1,8 +1,4 @@
-/*
-* Ascoltatore dedicato al download di un appunto
-* L'utente può selezionare se scaricare il file e basta oppure
-* scaricare e aprire il file.
-*/
+
 package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -18,9 +14,10 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato al download di un appunto
+* L'utente può selezionare se scaricare il file e basta oppure
+* scaricare e aprire il file.
+*/
 public class DownloadFileAppunto implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

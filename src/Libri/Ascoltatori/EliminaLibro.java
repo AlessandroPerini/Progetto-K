@@ -1,9 +1,4 @@
-/*
-* Ascoltatore dedicato all'eliminazione di un libro
-* Il libro può essere eliminato solo da colui che lo ha caricato
-* Una volta eliminato la lista degli appunti
-* verrà aggiornata cosi come la lista dei preferiti.
-*/
+
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -22,9 +17,11 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato all'eliminazione di un libro
+* Il libro può essere eliminato solo da colui che lo ha caricato
+* Una volta eliminato la lista degli appunti
+* verrà aggiornata cosi come la lista dei preferiti.
+*/
 public class EliminaLibro implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

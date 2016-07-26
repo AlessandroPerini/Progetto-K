@@ -1,14 +1,11 @@
-/*
+
+package Appunti;
+
+/**
 * Classe contentenete la struttura di un Appunto:
 * attributi, costruttore, metodi get - set
 * 
 */
-package Appunti;
-
-/**
- *
- * @author cl418646
- */
 public class Appunto {
     
     private String nome;

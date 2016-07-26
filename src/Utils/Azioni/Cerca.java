@@ -1,6 +1,4 @@
-/*
- * Classe con i metodi statici per la ricerca all'interno di una lista di oggetti
- */
+
 package Utils.Azioni;
 
 import Application.Controller.Applicazione;
@@ -11,8 +9,7 @@ import QeA.Domanda;
 import javax.swing.JTextField;
 
 /**
- *
- * @author te4o
+ * Classe con i metodi statici per la ricerca all'interno di una lista di oggetti.
  */
 public class Cerca {
 

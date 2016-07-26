@@ -1,6 +1,4 @@
-/*
-* Ascoltatore che selezionato un corso da ListaCorsiPanel va al CorsoPanel relativo
-*/
+
 package Università.Corsi.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -15,9 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore che selezionato un corso da ListaCorsiPanel va al CorsoPanel relativo.
+*/
 public class GoToCorso implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

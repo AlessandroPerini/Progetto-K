@@ -1,6 +1,4 @@
-/*
-* Ascoltatore in cui vengono caricate tutte le facoltà dopo aver effettuato il login
-*/
+
 package Università.Facolta.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -15,9 +13,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore in cui vengono caricate tutte le facoltà dopo aver effettuato il login.
+*/
 public class CaricaFacoltà implements ActionListener, KeyListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

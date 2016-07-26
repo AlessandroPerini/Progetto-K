@@ -1,7 +1,4 @@
-/*
-* Pannello login. E' il primo pannello ad essere visualizzato, ed è appunto
-* quello in cui è possibile effettuale il login.
-*/
+
 package Login.Vista;
 
 import Login.Ascoltatori.DoLogin;
@@ -10,9 +7,10 @@ import java.awt.*;
 import javax.swing.*;
 
 /**
- *
- * @author Te4o
- */
+* Pannello login. E' il primo pannello ad essere visualizzato, ed è appunto
+* quello in cui è possibile effettuale il login.
+*/
+
 public class LoginPanel extends JPanel{
     
     //dichiarazione oggetti

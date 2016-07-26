@@ -1,15 +1,9 @@
-/*
-* Ascoltatore dedicato all'apertura dell'appunto selezionato
-* In base all'appunto selezionato, al corso e alla facoltà viene mandata in 
-* esecuzione una query che carica i dati relativi a tale appunto
-* e vengono visualizzati in un pannello
-*/
+
 package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
 import Appunti.Vista.AppuntoPanel;
 import Application.Vista.Grafica;
-import Appunti.Vista.ListaAppuntiPanel;
 import Database.Query.InfoQuery;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
@@ -18,9 +12,11 @@ import java.sql.SQLException;
 import javax.swing.JLabel;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato all'apertura dell'appunto selezionato
+* In base all'appunto selezionato, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale appunto
+* e vengono visualizzati in un pannello
+*/
 public class GoToAppunto implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

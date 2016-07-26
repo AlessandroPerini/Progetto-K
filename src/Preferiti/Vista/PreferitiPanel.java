@@ -1,7 +1,4 @@
-/*
-* Pannello dedicato alla visualizzazione di tutto ciò che l'utente
-* ha messo come preferiti
-*/
+
 package Preferiti.Vista;
 
 import Application.Controller.Applicazione;
@@ -30,9 +27,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- *
- * @author te4o
- */
+* Pannello dedicato alla visualizzazione di tutto ciò che l'utente
+* ha messo come preferiti
+*/
 public class PreferitiPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

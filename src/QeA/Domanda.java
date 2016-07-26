@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di una domanda:
-* attributi, costruttore, metodi get - set
-*/
+
 package QeA;
 
 /**
- *
- * @author te4o
- */
+* Classe contenente la struttura di una domanda:
+* attributi, costruttore, metodi get - set
+*/
 public class Domanda { 
     
     private String titolo;

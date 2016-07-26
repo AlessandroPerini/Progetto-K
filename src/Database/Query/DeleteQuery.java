@@ -8,9 +8,10 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 /**
- *
- * @author te4o
- */
+* Classe che raggruppa tutte le query per l'eliminazione dei dati dal database.
+* Tutti i metodi sono di tipo statico, accessibili senza nessità di instanziare la classe.
+* Tutti i metodi rilanciano l'eventuale eccezione al componente del livello superiore.
+*/
 public class DeleteQuery {
     
     private static Applicazione applicazione = Applicazione.getInstance();

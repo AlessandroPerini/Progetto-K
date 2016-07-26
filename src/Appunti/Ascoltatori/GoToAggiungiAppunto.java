@@ -1,8 +1,4 @@
-/*
- * Ascoltatore dedicato all'apertura del pannello per l'inserimento di un nuovo
- * appunto. 
- *
- */
+
 package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -12,8 +8,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Ascoltatore dedicato all'apertura del pannello per l'inserimento di un nuovo
+ * appunto. 
  *
- * @author te4o
  */
 public class GoToAggiungiAppunto implements ActionListener{
     

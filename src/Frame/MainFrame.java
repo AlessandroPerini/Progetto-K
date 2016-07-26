@@ -1,6 +1,4 @@
-/*
- * Frame generale dell'applicazione
- */
+
 package Frame;
 
 import java.awt.HeadlessException;
@@ -8,8 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
- *
- * @author Te4o
+ * Frame principale dell'applicazione, nel quale i pannelli sono gestiti con un cardLayout
  */
 public class MainFrame extends JFrame{
 

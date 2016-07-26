@@ -1,6 +1,4 @@
-/*
-* Pagina con il form per l'aggiunta di un nuovo libro
-*/
+
 package Libri.Vista;
 
 import Application.Controller.Applicazione;
@@ -29,9 +27,8 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author te4o
- */
+* Pagina con il form per l'aggiunta di un nuovo libro
+*/
 public class AggiungiLibroPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

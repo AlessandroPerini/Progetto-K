@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per l'aggiunta di una domanda preferita
-*/
+
 package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore per l'aggiunta di una domanda preferita
+*/
 public class AggiungiDomandaPreferita implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

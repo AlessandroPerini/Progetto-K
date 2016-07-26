@@ -1,6 +1,4 @@
-/*
-*  Qui viene eliminato un determinato file da Dropbox a seguito dell'eliminazione del relativo appunto
-*/
+
 package Dropbox;
 
 import Application.Controller.Applicazione;
@@ -11,9 +9,8 @@ import com.dropbox.core.DbxRequestConfig;
 import java.util.Locale;
 
 /**
- *
- * @author te4o
- */
+*  Qui viene eliminato un determinato file da Dropbox a seguito dell'eliminazione del relativo appunto
+*/
 public class Elimina {
     
     private Applicazione applicazione = Applicazione.getInstance();

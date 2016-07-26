@@ -1,7 +1,4 @@
-/*
-* Pannello posto in alto ad ogni pagina, contiente il tasto back sulla sinistra, il titolo
-* nel centro e il menù sulla destra.
-*/
+
 package Header.Vista;
 
 import Application.Controller.Applicazione;
@@ -23,9 +20,10 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Pannello posto in alto ad ogni pagina, contiente il tasto back sulla sinistra, il titolo
+* nel centro e il menù a tendina sulla destra.
+*/
+
 public class TopPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

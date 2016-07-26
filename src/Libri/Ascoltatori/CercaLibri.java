@@ -1,9 +1,4 @@
-/*
- * Ascoltatore dedicato alla ricerca di un determinato libro
- * La ricerca viene effettuata in base al testo scritto in un apposita'casella
- * Se la ricerca va a buon fine, il pannello della lista dei libri viene riaggiornato 
- * con solo i libri contenenti le parole chiavi della ricerca
- */
+
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -17,8 +12,10 @@ import java.awt.event.KeyListener;
 import javax.swing.JTextField;
 
 /**
- *
- * @author te4o
+ * Ascoltatore dedicato alla ricerca di un determinato libro.
+ * La ricerca viene effettuata in base al testo scritto in un apposita'casella
+ * Se la ricerca va a buon fine, il pannello della lista dei libri viene riaggiornato 
+ * con solo i libri contenenti le parole chiavi della ricerca
  */
 public class CercaLibri implements ActionListener, KeyListener{
     

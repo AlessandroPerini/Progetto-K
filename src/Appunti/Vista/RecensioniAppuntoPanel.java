@@ -1,8 +1,4 @@
-/*
-* Pannello dedicato alla visualizzazione delle recensioni riguardanti l'appunto selezionato
-* Per ogni recensione viene visualizzata la mail di chi l' ha fatta e il relativo
-* punteggio.
-*/
+
 package Appunti.Vista;
 
 import Application.Controller.Applicazione;
@@ -20,8 +16,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author Te4o
+* Pannello dedicato alla visualizzazione delle recensioni riguardanti l'appunto selezionato
+* Per ogni recensione viene visualizzata la mail di chi l' ha fatta e il relativo
+* punteggio.
  */
 public class RecensioniAppuntoPanel extends JPanel{
     

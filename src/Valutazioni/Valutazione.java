@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di una valutazione:
-* attributi, costruttore, metodi get - set
-*/
+
 package Valutazioni;
 
 /**
- *
- * @author cl418646
- */
+* Classe contentenete la struttura di una valutazione:
+* attributi, costruttore, metodi get - set
+*/
 public class Valutazione {
     
     private String commento;

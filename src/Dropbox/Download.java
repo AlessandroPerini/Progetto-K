@@ -1,6 +1,4 @@
-/*
-* Qui viene scaricato un determinato file da Dropbox e salvato in locale
-*/
+
 package Dropbox;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.io.IOException;
 import java.util.Locale;
 
 /**
- *
- * @author Te4o
- */
+* Qui viene scaricato un determinato file da Dropbox e salvato in locale
+*/
 public class Download {
     
     private Applicazione applicazione = Applicazione.getInstance();

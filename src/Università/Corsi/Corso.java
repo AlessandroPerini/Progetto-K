@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di un corso:
-* attributi, costruttore, metodi get - set
-*/
+
 package Università.Corsi;
 
 /**
- *
- * @author te4o
- */
+* Classe contentenete la struttura di un corso:
+* attributi, costruttore, metodi get - set
+*/
 public class Corso {
     
     private String nome;

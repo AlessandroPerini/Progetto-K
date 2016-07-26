@@ -1,8 +1,4 @@
-/*
-* Pannello dedicato alla visualizzazione delle informazioni dell'utente
-* con la possibilità di modificare il nickname e il numero di telefono.
-*
-*/
+
 package Studenti.Vista;
 
 import Application.Controller.Applicazione;
@@ -25,9 +21,9 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author te4o
- */
+* Pannello dedicato alla visualizzazione delle informazioni dell'utente
+* con la possibilità di modificare il nickname e il numero di telefono.
+*/
 public class AccountPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

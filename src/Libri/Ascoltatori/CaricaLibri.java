@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di tutti i libri relativi 
-* al corso selezionato
-*/
+
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -14,9 +11,9 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato al caricamento di tutti i libri relativi 
+* al corso selezionato
+*/
 public class CaricaLibri implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

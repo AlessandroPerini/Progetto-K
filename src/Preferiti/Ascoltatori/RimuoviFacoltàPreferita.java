@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per la rimozione di una facoltà preferita
-*/
+
 package Preferiti.Ascoltatori;
 
 
@@ -14,9 +12,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore per la rimozione di una facoltà preferita
+*/
 public class RimuoviFacoltàPreferita implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di un nuovo appunto al corso
-* (Sia i dati scritti su database che il file su dropbox)
-*/
+
 package Appunti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -25,12 +22,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore dedicato al caricamento di un nuovo appunto al corso
+* (Sia i dati scritti su database che il file su dropbox)
+*/
 public class AggiungiAppunto implements ActionListener{
-    
-    
+
     private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti

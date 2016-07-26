@@ -1,7 +1,4 @@
-/*
-* Pannello con il form per l'invio delle segnalazioni da parte degli
-* altri gruppi del corso.
-*/
+
 package Segnalazioni;
 
 import Application.Controller.Applicazione;
@@ -24,9 +21,9 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author te4o
- */
+* Pannello con il form per l'invio delle segnalazioni da parte degli
+* altri gruppi del corso.
+*/
 public class SegnalazionePanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

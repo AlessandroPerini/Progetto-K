@@ -1,9 +1,4 @@
-/*
-* Ascoltatore dedicato all'apertura del libro selezionato
-* In base al libro selezionato, al corso e alla facoltà viene mandata in 
-* esecuzione una query che carica i dati relativi a tale libro
-* e vengono visualizzati in un pannello
-*/
+
 package Libri.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -17,9 +12,11 @@ import java.sql.SQLException;
 import javax.swing.JLabel;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato all'apertura del libro selezionato
+* In base al libro selezionato, al corso e alla facoltà viene mandata in 
+* esecuzione una query che carica i dati relativi a tale libro
+* e vengono visualizzati in un pannello
+*/
 public class GoToLibro implements MouseListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

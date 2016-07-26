@@ -1,6 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di una nuova rispota alla domanda attuale
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -15,9 +13,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author adrian
- */
+* Ascoltatore dedicato al caricamento di una nuova rispota alla domanda attuale.
+*/
 public class AggiungiRisposta implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

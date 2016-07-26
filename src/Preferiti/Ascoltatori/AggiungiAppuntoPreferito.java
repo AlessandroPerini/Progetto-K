@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per l'aggiunta di un appunto preferito
-*/
+
 package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore per l'aggiunta di un appunto preferito
+*/
 public class AggiungiAppuntoPreferito implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

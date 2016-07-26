@@ -1,7 +1,4 @@
-/*
-*Ascoltatore dedicato alla modifica del proprio nickname
-*
-*/
+
 package Studenti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -16,9 +13,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato alla modifica del proprio nickname.
+*
+*/
 public class ModificaNickname implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al caricamento di tutte le domande relative
-* al corso selezionato
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -14,9 +11,8 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato al caricamento di tutte le domande relative al corso selezionato.
+*/
 public class CaricaDomande implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

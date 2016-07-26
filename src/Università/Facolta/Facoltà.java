@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di uno facoltà:
-* attributi, costruttore, metodi get - set
-*/
+
 package Università.Facolta;
 
 /**
- *
- * @author te4o
- */
+* Classe contentenete la struttura di uno facoltà:
+* attributi, costruttore, metodi get - set
+*/
 public class Facoltà {
     
     private String nome;

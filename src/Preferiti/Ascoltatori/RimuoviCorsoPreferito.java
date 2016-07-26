@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per la rimozione di un corso preferito
-*/
+
 package Preferiti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -13,9 +11,8 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore per la rimozione di un corso preferito
+*/
 public class RimuoviCorsoPreferito implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

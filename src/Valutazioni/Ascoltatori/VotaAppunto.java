@@ -1,8 +1,4 @@
-/*
-* Ascoltatore che effettua l'azione quando viene premuto il pulsante "conferma"
-* all'interno del frame ValutaAppuntoFrame
-* (Controlla che il commento sia non vuoto e valida e inserisce la valutazione)
-*/
+
 package Valutazioni.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -20,9 +16,10 @@ import javax.swing.JSlider;
 import javax.swing.JTextArea;
 
 /**
- *
- * @author te4o
- */
+* Ascoltatore che effettua l'azione quando viene premuto il pulsante "conferma"
+* all'interno del frame ValutaAppuntoFrame.
+* (Controlla che il commento sia non vuoto e valida e inserisce la valutazione)
+*/
 public class VotaAppunto implements ActionListener{
     
     private static Applicazione applicazione = Applicazione.getInstance();

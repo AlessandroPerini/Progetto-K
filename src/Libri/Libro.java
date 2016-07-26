@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di un libro:
-* attributi, costruttore, metodi get - set
-*/
+
 package Libri;
 
 /**
- *
- * @author cl418646
- */
+* Classe contentenete la struttura di un libro:
+* attributi, costruttore, metodi get - set
+*/
 public class Libro {
     
     private String titolo;

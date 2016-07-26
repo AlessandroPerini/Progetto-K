@@ -1,13 +1,10 @@
-/*
-* Classe contentenete la struttura di una risposta:
-* attributi, costruttore, metodi get - set
-*/
+
 package QeA;
 
 /**
- *
- * @author te4o
- */
+* Classe contenente la struttura di una risposta:
+* attributi, costruttore, metodi get - set
+*/
 public class Risposta {
     
     private String titolo;

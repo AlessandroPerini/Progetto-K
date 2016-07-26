@@ -1,8 +1,4 @@
-/*
-* Ascoltatore che effetua il login alla pressione del bottone "login", effettuando
-* la query di login che salva anche i dati dell'utente loggato
-* (Controllo che i campi non siano vuoti e successivamente che le credenziali inserite siano corrette)
-*/
+
 package Login.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -17,9 +13,10 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore che effetua il login alla pressione del bottone "login", effettuando
+* la query di login che salva anche i dati dell'utente loggato.
+* (Controllo che i campi non siano vuoti e successivamente che le credenziali inserite siano corrette)
+*/
 public class DoLogin implements ActionListener, KeyListener{
     
     private Applicazione applicazione = Applicazione.getInstance();
@@ -32,6 +29,11 @@ public class DoLogin implements ActionListener, KeyListener{
         this.password = password;
     }
     
+    /**
+     * Metodo che lancia effettivamente la query per controllare i dati inseriti per il login
+     * e crea il guest, nonchè lo studente loggato.
+     * @throws Exception 
+     */
     public void doIt() throws Exception{
         
         if ((!email.getText().equals(""))&&(password.getPassword().length != 0)) {

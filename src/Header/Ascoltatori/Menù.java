@@ -1,6 +1,4 @@
-/*
-* Ascoltatore per la gestione del menù JComboBox in alto a destra
-*/
+
 package Header.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -19,9 +17,9 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore per la gestione del menù JComboBox in alto a destra, utile per la navigazione
+* all'interno dell'applicazione
+*/
 public class Menù implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();
@@ -59,6 +57,10 @@ public class Menù implements ActionListener{
         resetMenu();
     }
     
+    /**
+     * Azione eseguita alla selezione di "home" nel menù.
+     * Serve a tornare alla lista delle facoltà iniziali.
+     */
     public void home(){
         
         try {
@@ -77,6 +79,10 @@ public class Menù implements ActionListener{
         }
     }
     
+    /**
+     * Azione eseguita alla selezione di "account" nel menù.
+     * Serve ad andare alla pagina di gestione dell'account.
+     */
     public void account(){
         
         try {
@@ -95,6 +101,10 @@ public class Menù implements ActionListener{
 
     }
     
+    /**
+     * Azione eseguita alla selezione di "preferiti" nel menù.
+     * Serve ad andare alla pagina di gestione dei propri preferiti.
+     */
     public void preferiti(){
         
         try {
@@ -113,6 +123,10 @@ public class Menù implements ActionListener{
         }
     }
     
+    /**
+     * Azione eseguita alla selezione di "logout" nel menù.
+     * Serve ad effettuare il logout.
+     */
     public void logout(){
         
         int showConfirmDialog = JOptionPane.showConfirmDialog(null, "Sei sicuro?", "Logout", JOptionPane.YES_NO_OPTION);
@@ -126,6 +140,9 @@ public class Menù implements ActionListener{
         }
     }
     
+    /**
+     * Lascia come opzione selezionata nel menù sempre la scritta "Menù" (ragioni estetiche)
+     */
     public void resetMenu() {
         
         menu.setEditable(true);

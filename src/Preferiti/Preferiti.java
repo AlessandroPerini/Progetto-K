@@ -1,7 +1,4 @@
-/*
-* Classe contentenete la struttura di uno preferito:
-* attributi, costruttore, metodi get - set
-*/
+
 package Preferiti;
 
 import Appunti.Appunto;
@@ -12,9 +9,9 @@ import Università.Facolta.Facoltà;
 import java.util.ArrayList;
 
 /**
- *
- * @author te4o
- */
+* Classe contentenete la struttura di uno preferito:
+* attributi, costruttore, metodi get - set
+*/
 public class Preferiti {
     
     private ArrayList<Facoltà> facoltàPreferite;

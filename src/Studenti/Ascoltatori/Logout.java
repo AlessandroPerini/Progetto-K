@@ -1,7 +1,4 @@
-/*
-* Ascoltatore dedicato al logout dell'utente dall'applicazione
-*
- */
+
 package Studenti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -12,9 +9,8 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato al logout dell'utente dall'applicazione.
+*/
 public class Logout implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

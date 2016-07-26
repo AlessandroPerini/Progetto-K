@@ -1,8 +1,4 @@
-/*
-*Pannello dedicato alla visualizzazione dei dati caricati dall'utente:
-* lista degli appunti da lui caricati, lista dei libri, e lista delle domande
-* da lui poste
-*/
+
 
 package Studenti.Vista;
 
@@ -30,9 +26,10 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 /**
- *
- * @author te4o
- */
+* Pannello dedicato alla visualizzazione dei dati caricati dall'utente:
+* lista degli appunti da lui caricati, lista dei libri, e lista delle domande
+* da lui poste.
+*/
 public class iMieiDatiPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();

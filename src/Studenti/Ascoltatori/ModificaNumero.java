@@ -1,8 +1,4 @@
-/*
-* Ascoltatore dedicato alla modifica del proprio numero di telefono
-*
-*
-*/
+
 package Studenti.Ascoltatori;
 
 import Application.Controller.Applicazione;
@@ -16,9 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato alla modifica del proprio numero di telefono.
+*/
 public class ModificaNumero implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();

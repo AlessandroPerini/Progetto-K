@@ -1,8 +1,4 @@
-/*
-* Ascoltatore dedicato all'ordinamento della lista delle domande.
-* Possibile ordinamento in base al nome oppure ai like.
-* Una volta ordinato, viene ricreato il pannello con la lista ordinata.
-*/
+
 package QeA.Ascoltatori;
 
 import Application.Vista.Grafica;
@@ -12,9 +8,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
 
 /**
- *
- * @author Te4o
- */
+* Ascoltatore dedicato all'ordinamento della lista delle domande.
+* Possibile ordinamento in base al nome oppure ai like.
+* Una volta ordinato, viene ricreato il pannello con la lista ordinata.
+*/
 public class OrdinaListaDomande implements ActionListener{
     
     //dichiarazione oggetti

@@ -1,8 +1,4 @@
-/*
-* Pannello dedicato all'download di un appunto.
-* Si può anche valutare l'appunto oppure leggere le recensioni fatte da altri studenti
-* riguardanti l'appunto in questione.
-*/
+
 package Appunti.Vista;
 
 import Application.Controller.Applicazione;
@@ -34,9 +30,10 @@ import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
 /**
- *
- * @author Te4o
- */
+* Pannello dedicato all'download di un appunto.
+* Si può anche valutare l'appunto oppure leggere le recensioni fatte da altri studenti
+* riguardanti l'appunto in questione.
+*/
 public class AppuntoPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();
