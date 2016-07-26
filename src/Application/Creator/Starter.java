@@ -1,7 +1,4 @@
-/*
-* Questa classe non è altro che il Main del progetto, lo starter, ciò 
-* che fa partire la grafica.
-*/
+
 package Application.Creator;
 
 import Application.Controller.Applicazione;
@@ -12,6 +9,10 @@ import javax.swing.JOptionPane;
 /**
  *
  * @author te4o
+ * 
+ * Questa classe non è altro che il Main del progetto, lo starter, ciò che crea
+  le istanze della grafica e di Applicazione. Poiche quest'ultima è singleton
+  tramite il metodo getInstance viene creata la prima ed unica instanza di Applicazione.
  */
 public class Starter {
 

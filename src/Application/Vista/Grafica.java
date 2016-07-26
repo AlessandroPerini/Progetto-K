@@ -1,8 +1,4 @@
-/*
-* Qui viene creata la grafica: il frame generale con al suo interno
-* un container con un layout di tipo CardLayout per la gestione
-* dei pannelli da visualizzare.
-*/
+
 package Application.Vista;
 
 import Frame.MainFrame;
@@ -14,6 +10,10 @@ import javax.swing.JPanel;
 /**
  *
  * @author te4o
+ * 
+ * Qui viene creata la grafica: il frame generale con al suo interno
+   un container con un layout di tipo CardLayout per la gestione
+   dei pannelli da visualizzare.
  */
 public class Grafica {
     
