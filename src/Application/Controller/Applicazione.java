@@ -79,7 +79,9 @@ public class Applicazione {
         
         utenteLoggato = true;
     }
-    
+    public void setLibroAttuale(Libro libro){
+        libroAttuale = libro;
+    }
     public void eliminaUtente(){
         guest = new Studente("", "","", "");
         utenteLoggato = false;
