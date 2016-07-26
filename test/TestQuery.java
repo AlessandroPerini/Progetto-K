@@ -9,8 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *  Test d'unità del Caricamento libro.
- *  
+ *  Test d'unità del Caricamento libro. 
  * 
  */
 public class TestQuery {
