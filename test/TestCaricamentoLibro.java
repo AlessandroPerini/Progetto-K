@@ -1,6 +1,4 @@
 
-package TestDiUnità;
-
 import Application.Controller.Applicazione;
 import Database.Query.DeleteQuery;
 import Database.Query.InsertQuery;
@@ -35,7 +33,6 @@ public class TestCaricamentoLibro {
             String descrizione = "Dalla A alla Z passando per C";
             String numero = "3123454245";
             
-            
             // Inserisce il libro nel database
             InsertQuery.inserisciLibro(titolo, descrizione, 20, numero);
             
@@ -56,6 +53,5 @@ public class TestCaricamentoLibro {
         } catch (SQLException ex) {
             Logger.getLogger(TestCaricamentoLibro.class.getName()).log(Level.SEVERE, null, ex);
         }
-          
     }
 }

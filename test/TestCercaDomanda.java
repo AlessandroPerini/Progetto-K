@@ -1,6 +1,4 @@
 
-package TestDiUnità;
-
 import Application.Controller.Applicazione;
 import Database.Query.DeleteQuery;
 import Database.Query.InsertQuery;
@@ -34,9 +32,9 @@ public class TestCercaDomanda {
             */
             int oltre = (int) System.currentTimeMillis();
             ArrayList<String> domande = new ArrayList<>();
-            String stringa_da_trovare = "Prova";
+            String stringa_da_trovare = "Prova"+oltre;
             
-            domande.add( stringa_da_trovare + oltre);
+            domande.add(stringa_da_trovare);
             domande.add("Test" + oltre);
             domande.add("Tentativo" + oltre);
             
@@ -62,7 +60,7 @@ public class TestCercaDomanda {
             }
             
             // Eliminazione domande inserite per il test
-            for (int i = 0; i < (domande.size() - 1) ; i++) {
+            for (int i = 0; i < domande.size() ; i++) {
                 applicazione.listaDomandeAttuali.clear();
                 ListeQuery.caricaDomande();
                 Cerca.Domande(new JTextField(domande.get(i)));
@@ -76,5 +74,4 @@ public class TestCercaDomanda {
             Logger.getLogger(TestCercaDomanda.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }
