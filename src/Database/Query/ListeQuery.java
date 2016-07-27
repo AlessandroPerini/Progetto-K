@@ -94,7 +94,6 @@ public class ListeQuery {
         
         String selectDomande = "select * from domande where facoltà=? and corso=?";
         
-        
         PreparedStatement ps1 = applicazione.DBconnection.prepareStatement(selectDomande);
         ps1.clearParameters();
         ps1.setString(1, applicazione.facoltàAttuale.getNome());

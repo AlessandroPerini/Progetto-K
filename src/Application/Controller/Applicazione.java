@@ -111,6 +111,10 @@ public class Applicazione {
         libroAttuale = libro;
     }
     
+    public void setDomandaAttuale(Domanda domanda){
+        domandaAttuale = domanda;
+    }
+    
     public void svuotaCorsi() {
         listaCorsiAttuali.clear();
     }

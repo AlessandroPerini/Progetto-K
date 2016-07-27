@@ -1,56 +1,80 @@
+
 package TestDiUnità;
 
-
 import Application.Controller.Applicazione;
+import Database.Query.DeleteQuery;
 import Database.Query.InsertQuery;
 import Database.Query.ListeQuery;
 import QeA.Domanda;
 import Utils.Azioni.Cerca;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JTextField;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
- * Dato che non è possibile inserire una domanda con lo stesso titolo nello stesso corso e facolta,
- * per eseguire nuovamente il test sarà necessario non ricaricare le domande, oppure eliminare quelle precedenti
+ * Test di controllo della ricerca di una domanda.
+ * Vengono inserite nel database alcune domande.
+ * In seguito viene eseguita la query di ricerca e si effettua il controllo dei dati
  * 
+ * @author aless
  */
+
 public class TestCercaDomanda {
     
-    
-    public static void main(String[] args) {
+    @Test
+    public void hello() {
         
         try {
-            Applicazione applicazione = Applicazione.getInstance();
-            
+            /* Poichè il primo parametro della query inserisciDomanda è chiave primaria nella tabella domande del database,
+            *  il prarametro verrà costruito concatenando alla stringa base il currentTimeMillis, per evitare ripetizioni.
+            */
             int oltre = (int) System.currentTimeMillis();
-            String domanda1 = "Prova" + oltre;
-            String domanda2 = "Test" + oltre;
-            String domanda3 = "Provola" + oltre;
+            ArrayList<String> domande = new ArrayList<>();
+            String stringa_da_trovare = "Prova";
             
+            domande.add( stringa_da_trovare + oltre);
+            domande.add("Test" + oltre);
+            domande.add("Tentativo" + oltre);
+            
+            int numero_match_trovati = 0;
+            int numero_match_effettivi = 1; // Poichè cercando stringa_da_trovare avrò un solo match
+            
+            // Riempio i conponendi di Applicazioni che le query utilizzeranno
+            Applicazione applicazione = Applicazione.getInstance();
             applicazione.inizializzaUtente("adrian.procop01@universitadipavia.it", "alexcabrini5", "3123454245", "Adrian");
             applicazione.facoltàAttuale.setNome("Ingegneria dell'Informazione");
-            applicazione.corsoAttuale.setNome("Fondamenti di Informatica I");
+            applicazione.corsoAttuale.setNome("Analisi I");
             
-            InsertQuery.inserisciDomanda(domanda1, "Descrizione 1");
-            InsertQuery.inserisciDomanda(domanda2, "Descrizione 2");
-            InsertQuery.inserisciDomanda(domanda3, "Descrizione 3");           
-                  
+            InsertQuery.inserisciDomanda(domande.get(0), "Descrizione 0");                    
+            InsertQuery.inserisciDomanda(domande.get(1), "Descrizione 1");
+            InsertQuery.inserisciDomanda(domande.get(2), "Descrizione 2");
+            
+            // Carica in listaDomandeAttuali le domande relative alla facoltà e al corso attuale.
             ListeQuery.caricaDomande();
+            Cerca.Domande(new JTextField(stringa_da_trovare));
             
-       
-            Cerca.Domande(new JTextField("Fond"));
-            
-            
-            for(Domanda d: applicazione.listaDomandeAttuali){
-                System.out.println(d);
+            for(Domanda domanda: applicazione.listaDomandeAttuali){
+                numero_match_trovati ++;
             }
+            
+            // Eliminazione domande inserite per il test
+            for (int i = 0; i < (domande.size() - 1) ; i++) {
+                applicazione.listaDomandeAttuali.clear();
+                ListeQuery.caricaDomande();
+                Cerca.Domande(new JTextField(domande.get(i)));
+                applicazione.setDomandaAttuale(applicazione.listaDomandeAttuali.get(0));
+                DeleteQuery.eliminaDomanda();
+            }
+            
+            assertEquals(numero_match_effettivi, numero_match_trovati);
             
         } catch (SQLException ex) {
             Logger.getLogger(TestCercaDomanda.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
     }
+    
 }
