@@ -8,7 +8,7 @@ import Application.Applicazione;
 import Vista.iMieiDatiPanel;
 import Vista.Grafica;
 import Database.GuestQuery;
-import Utils.Ordina;
+import utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

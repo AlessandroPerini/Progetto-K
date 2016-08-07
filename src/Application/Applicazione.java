@@ -59,6 +59,7 @@ public class Applicazione {
     public ArrayList<Corso> listaCorsiXAnno= new ArrayList<>();
     public ArrayList<Valutazione> listaValutazioniAttuali = new ArrayList<>();
     
+    public String fileScaricato = "";
     public Preferiti preferiti = new Preferiti();
     
     public Facoltà facoltàAttuale = new Facoltà("", "");

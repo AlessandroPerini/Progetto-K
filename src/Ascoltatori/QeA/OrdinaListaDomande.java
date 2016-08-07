@@ -33,12 +33,12 @@ public class OrdinaListaDomande implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Like")){
-            Utils.Ordina.Domande();
+            utility.Ordina.Domande();
             ordineCorrente = "Like";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            Utils.Ordina.DomandeAlfabetic();
+            utility.Ordina.DomandeAlfabetic();
             ordineCorrente = "Nome";
         }
         

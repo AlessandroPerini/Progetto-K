@@ -12,7 +12,7 @@ import Ascoltatori.Preferiti.AggiungiCorsoPreferito;
 import Ascoltatori.Preferiti.AggiungiFacoltàPreferita;
 import Ascoltatori.Preferiti.RimuoviCorsoPreferito;
 import Ascoltatori.Preferiti.RimuoviFacoltàPreferita;
-import Utils.Ordina;
+import utility.Ordina;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;

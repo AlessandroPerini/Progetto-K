@@ -14,7 +14,7 @@ import Vista.PreferitiPanel;
 import Ascoltatori.QeA.OrdinaListaDomande;
 import Vista.ListaDomandePanel;
 import Vista.AccountPanel;
-import Utils.Ordina;
+import utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

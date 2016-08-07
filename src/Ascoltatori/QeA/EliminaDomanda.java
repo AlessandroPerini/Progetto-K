@@ -15,7 +15,7 @@ import Database.ListeQuery;
 import Vista.PreferitiPanel;
 import Vista.ListaDomandePanel;
 import Vista.iMieiDatiPanel;
-import Utils.Ordina;
+import utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

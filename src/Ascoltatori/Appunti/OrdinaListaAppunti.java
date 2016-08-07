@@ -33,12 +33,12 @@ public class OrdinaListaAppunti implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Valutazione")){
-            Utils.Ordina.Appunti();
+            utility.Ordina.Appunti();
             ordineCorrente = "Valutazione";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            Utils.Ordina.AppuntiAlfabetic();
+            utility.Ordina.AppuntiAlfabetic();
             ordineCorrente = "Nome";
         }
         

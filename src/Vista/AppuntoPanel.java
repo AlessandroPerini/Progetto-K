@@ -6,11 +6,11 @@
 package Vista;
 
 import Application.Applicazione;
+import Ascoltatori.Appunti.GoToOCRPanel;
 import Ascoltatori.Appunti.EliminaAppunto;
 import Ascoltatori.Appunti.GoToRecensioniAppuntoPanel;
 import Ascoltatori.Appunti.DownloadFileAppunto;
 import Database.ControlloQuery;
-import Vista.ValutaAppuntoFrame;
 import Ascoltatori.Preferiti.AggiungiAppuntoPreferito;
 import Ascoltatori.Preferiti.RimuoviAppuntoPreferito;
 import java.awt.Color;
@@ -40,7 +40,7 @@ public class AppuntoPanel extends JPanel{
     private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione bottoni - textarea - label
-    private JButton valuta, recensioni, preferitiOn , preferitiOff, scarica, elimina;
+    private JButton valuta, recensioni, preferitiOn , preferitiOff, scarica, ocr, elimina;
     private JTextArea descrizione;
     private JLabel media, email;
     
@@ -52,11 +52,12 @@ public class AppuntoPanel extends JPanel{
     private String mediaTagliata, s;
     
     //dichiarazione immagini
-    private Icon scaricaNormal,  scaricaHover, scaricaPressed,
+    private Icon scaricaNormal, ocrNormal,  scaricaHover, scaricaPressed,
             eliminaNormal, eliminaHover, eliminaPressed;
     
     //dichiarazione ascoltatori
     private DownloadFileAppunto downloadAppunto;
+    private GoToOCRPanel doOcr;
     private EliminaAppunto eliminaAppunto;
     private AggiungiAppuntoPreferito aggiungiAppuntoPreferito;
     private RimuoviAppuntoPreferito rimuoviAppuntoPreferito;
@@ -69,6 +70,7 @@ public class AppuntoPanel extends JPanel{
         
         //dichiarazione icone
         scaricaNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
+        ocrNormal = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
         scaricaHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
         scaricaPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
         eliminaNormal = new ImageIcon(this.getClass().getResource("/immagini/deleteNormal.png"));
@@ -81,6 +83,7 @@ public class AppuntoPanel extends JPanel{
         recensioni = new JButton("Recensioni");
         valuta = new JButton("Valuta");
         scarica = new JButton(scaricaNormal);
+        ocr = new JButton(ocrNormal);
         elimina = new JButton(eliminaNormal);
         descrizione = new JTextArea(applicazione.appuntoAttuale.getDescrizione());
         email = new JLabel("<html><b>Caricato da: </b>"+applicazione.appuntoAttuale.getStudente()+"</html>");
@@ -97,6 +100,7 @@ public class AppuntoPanel extends JPanel{
         
         //inizializzazione actionListener
         downloadAppunto = new DownloadFileAppunto(elimina, elimina);
+        doOcr = new GoToOCRPanel();
         aggiungiAppuntoPreferito = new AggiungiAppuntoPreferito();
         rimuoviAppuntoPreferito = new RimuoviAppuntoPreferito();
         eliminaAppunto = new EliminaAppunto(elimina, elimina);
@@ -117,10 +121,10 @@ public class AppuntoPanel extends JPanel{
         
         scrollPanelDescrizione.setVerticalScrollBar(new CustomScrollBar());
         scrollPanelDescrizione.setPreferredSize(new Dimension(300, 150));
-
+        
         recensioniPanel.setBackground(Color.white);
         recensioniPanel.setPreferredSize(new Dimension(680, 30));
-
+        
         recensioni.setForeground(new Color(218,194,127));
         recensioni.setBorder(new LineBorder(new Color(218,194,118), 1));
         recensioni.setBackground(Color.white);
@@ -152,6 +156,17 @@ public class AppuntoPanel extends JPanel{
         scarica.setVerticalTextPosition(JButton.CENTER);
         scarica.setPreferredSize(new Dimension(110, 40));
         
+        ocr.setBorder(BorderFactory.createEmptyBorder());
+        ocr.setContentAreaFilled(false);
+        ocr.setRolloverIcon(scaricaHover);
+        ocr.setPressedIcon(scaricaPressed);
+        ocr.setText("OCR");
+        ocr.setFont(new Font("Century Gothic", Font.PLAIN, 15));
+        ocr.setForeground(Color.white);
+        ocr.setHorizontalTextPosition(JButton.CENTER);
+        ocr.setVerticalTextPosition(JButton.CENTER);
+        ocr.setPreferredSize(new Dimension(110, 40));
+        
         elimina.setBorder(BorderFactory.createEmptyBorder());
         elimina.setContentAreaFilled(false);
         elimina.setRolloverIcon(eliminaHover);
@@ -163,7 +178,7 @@ public class AppuntoPanel extends JPanel{
         elimina.setVerticalTextPosition(JButton.CENTER);
         elimina.setPreferredSize(new Dimension(110, 40));
         elimina.setBackground(new Color(249,123,123));
-
+        
     }
     
     public void creaPannelloPreferiti(){
@@ -176,7 +191,7 @@ public class AppuntoPanel extends JPanel{
         
         preferitiOff.setBackground(Color.white);
         preferitiOff.setBorder(new LineBorder(Color.white, 1, true));
-
+        
         preferitiOff.addActionListener(aggiungiAppuntoPreferito);
         preferitiOn.addActionListener(rimuoviAppuntoPreferito);
         
@@ -257,6 +272,8 @@ public class AppuntoPanel extends JPanel{
         pannelloPrincipale.add(descrizionePanel, gbc);
         
         scarica.addActionListener(downloadAppunto);
+        ocr.addActionListener(doOcr);
+        
         elimina.addActionListener(eliminaAppunto);
         
         gbc.gridx = 0;
@@ -264,6 +281,12 @@ public class AppuntoPanel extends JPanel{
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         pannelloPrincipale.add(scarica, gbc);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.insets = new Insets(20, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        pannelloPrincipale.add(ocr, gbc);
         
         if (applicazione.appuntoAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
@@ -281,7 +304,7 @@ public class AppuntoPanel extends JPanel{
         setBackground(Color.white);
         top.setBackground(Color.white);
         pannelloPrincipale.setBackground(Color.white);
-
+        
         scrollPanelPrincipale.setPreferredSize(new Dimension(650, 380));
         scrollPanelPrincipale.getVerticalScrollBar().setUnitIncrement(16);
         scrollPanelPrincipale.setVerticalScrollBar(new CustomScrollBar());
