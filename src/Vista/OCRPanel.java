@@ -77,11 +77,11 @@ public class OCRPanel extends JPanel{
         testoPanel = new JPanel();
         bottoniPanel = new JPanel();
         gbc = new GridBagConstraints();
-        scrollPanelTesto = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        scrollPanelTesto = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //inizializzazione actionListener
         
-        doOcr = new doOCR(testo);  
+        doOcr = new doOCR(testo);
         
         
         //creazione componenti - pannelli
@@ -89,7 +89,7 @@ public class OCRPanel extends JPanel{
         
         creaPannelloCentrale();
         creaPannelloPrincipale();
- 
+        
     }
     
     public void creaComponenti(){
@@ -104,11 +104,13 @@ public class OCRPanel extends JPanel{
         testo.setBackground(Color.white);
         testo.setForeground(Color.BLACK);
         
+        bottoniPanel.setBackground(Color.white);
+        
         scrollPanelTesto.setBackground(Color.white);
         scrollPanelTesto.setBorder(new LineBorder(Color.white));
         scrollPanelTesto.setVerticalScrollBar(new CustomScrollBar());
         
-        titoloPanel.setBorder(BorderFactory.createTitledBorder("Titolo appunto da convertire"));
+        titoloPanel.setBorder(BorderFactory.createTitledBorder("Appunto da convertire:"));
         testoPanel.setBorder(BorderFactory.createTitledBorder("Testo convertito:"));
         
         titolo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
@@ -116,7 +118,7 @@ public class OCRPanel extends JPanel{
         testo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         testo.setLineWrap(true);
         testo.setWrapStyleWord(true);
-
+        
         ocr.setBorder(BorderFactory.createEmptyBorder());
         ocr.setContentAreaFilled(false);
         ocr.setRolloverIcon(aggiungiHover);
@@ -125,7 +127,7 @@ public class OCRPanel extends JPanel{
         ocr.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         ocr.setHorizontalTextPosition(JButton.CENTER);
         ocr.setVerticalTextPosition(JButton.CENTER);
-        ocr.setPreferredSize(new Dimension(90, 40));
+        ocr.setPreferredSize(new Dimension(110, 40));
         ocr.setEnabled(true);
         
         esporta.setBorder(BorderFactory.createEmptyBorder());
@@ -136,7 +138,7 @@ public class OCRPanel extends JPanel{
         esporta.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         esporta.setHorizontalTextPosition(JButton.CENTER);
         esporta.setVerticalTextPosition(JButton.CENTER);
-        esporta.setPreferredSize(new Dimension(90, 40));
+        esporta.setPreferredSize(new Dimension(110, 40));
         esporta.setEnabled(true);
         
     }
@@ -145,9 +147,25 @@ public class OCRPanel extends JPanel{
         
         testoPanel.add(scrollPanelTesto);
         
+        /*
+        bottoniPanel.add(ocr);
+        bottoniPanel.add(esporta);*/
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
-        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.insets = new Insets(10, 10, 0, 0);
+        gbc.anchor = GridBagConstraints.EAST;
+        bottoniPanel.add(ocr, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.insets = new Insets(30, 10, 0, 0);
+        gbc.anchor = GridBagConstraints.EAST;
+        bottoniPanel.add(esporta, gbc);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         titoloPanel.add(titolo);
         pannelloPrincipale.add(titoloPanel, gbc);
@@ -156,16 +174,16 @@ public class OCRPanel extends JPanel{
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        testoPanel.add(testo);
+        testoPanel.add(scrollPanelTesto);
         pannelloPrincipale.add(testoPanel, gbc);
         
         gbc.gridx = 1;
         gbc.gridy = 1;
-        gbc.insets = new Insets(10, 0, 0, 0);
+        gbc.insets = new Insets(10, 10, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        bottoniPanel.add(ocr);
-        bottoniPanel.add(esporta);
         pannelloPrincipale.add(bottoniPanel, gbc);
+        
+        
         
         ocr.addActionListener(doOcr);
         esporta.addActionListener(new ActionListener() {
@@ -174,10 +192,10 @@ public class OCRPanel extends JPanel{
                 
                 try {
                     EsportaFile.esportaFile(testo);
-                    JOptionPane.showMessageDialog(null, "Appunto convertito correttamente. Lo trovi nella cartella dei tuoi Downloads!", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "File esportato! Lo trovi nella cartella dei tuoi Downloads", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     
                 } catch (FileNotFoundException ex) {
-                    Logger.getLogger(OCRPanel.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "Errore durante l'esportazione del file", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -187,10 +205,11 @@ public class OCRPanel extends JPanel{
     public void creaPannelloPrincipale(){
         
         top.setBackground(Color.white);
+        
         setBackground(Color.white);
         pannelloPrincipale.setBackground(Color.white);
         
-        scrollPanelTesto.setPreferredSize(new Dimension(250, 50));
+        scrollPanelTesto.setPreferredSize(new Dimension(250, 300));
         
         add(top);
         add(pannelloPrincipale);

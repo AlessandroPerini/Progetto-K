@@ -7,18 +7,13 @@ package Ascoltatori.Appunti;
 
 import Application.Applicazione;
 import Application.Converter;
-import Entità.Appunto;
+import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
-import tess4j.Tesseract;
-import tess4j.TesseractException;
-import utility.EsportaFile;
 
 /**
  *
@@ -39,12 +34,19 @@ public class doOCR implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         
-        DownloadFileAppunto download = new DownloadFileAppunto();
-        download.actionPerformed(e);
-        
-        String convert = Converter.convert();
-        
-        jTextArea.setText(convert);
+        try {
+            DownloadFileAppunto download = new DownloadFileAppunto();
+            boolean DownloadSecret = download.DownloadSecret();
+            if(DownloadSecret){
+                String convert = Converter.convert();
+                jTextArea.setText(convert);
+            }
+            
+        } catch (IOException ex) {
+            Logger.getLogger(doOCR.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DbxException ex) {
+            Logger.getLogger(doOCR.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }
     

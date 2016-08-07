@@ -9,18 +9,17 @@ public class Converter {
     
     public static String convert() {
         
-        /* Applicazione applicazione = Applicazione.getInstance();
+        Applicazione applicazione = Applicazione.getInstance();
         
-        String file = applicazione.fileScaricato;*/
-        
-        String file = "C:\\Users\\aless\\Desktop\\provaaa.jpg";
+        String file = applicazione.fileScaricato;
         File imageFile = new File(file);
+        
         Tesseract tesseract = Tesseract.getInstance();
         String result = "";
         
         try {
-           result = tesseract.doOCR(imageFile);
-        } catch (TesseractException ex) {
+            result = tesseract.doOCR(imageFile);
+        } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Errore durante la conversione dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
         }
         return result;

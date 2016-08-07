@@ -20,7 +20,7 @@ public class EsportaFile {
     public static void esportaFile(JTextArea testo) throws FileNotFoundException{
         
         Applicazione applicazione = Applicazione.getInstance();
-        String path = System.getProperty("user.home") + "\\Downloads\\" + applicazione.appuntoAttuale +".txt";
+        String path = System.getProperty("user.home") + "\\Downloads\\" + applicazione.appuntoAttuale.getNome() +".txt";
         PrintStream scrivi = new PrintStream(new FileOutputStream(path));
         scrivi.println(testo.getText());
         

@@ -16,7 +16,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
-import javax.swing.plaf.basic.BasicArrowButton;
 
 /**
  *
@@ -30,7 +29,6 @@ public class DownloadFileAppunto implements ActionListener{
     private String corso ;
     private String facoltà ;
     private String formato = "";
-    private boolean secret = false;
     
     private JButton bottone;
     private JButton bottone2;
@@ -55,16 +53,24 @@ public class DownloadFileAppunto implements ActionListener{
     
     public DownloadFileAppunto() {
         
-        this.secret = true;
-        
-        this.bottone = new JButton();
-        this.bottone2 = new JButton();
         nome = applicazione.appuntoAttuale.getNome();
         corso = applicazione.corsoAttuale.getNome();
         facoltà = applicazione.facoltàAttuale.getNome();
         
     }
     
+    public boolean DownloadSecret() throws IOException, DbxException{
+        
+        download = new Download();
+        formato = download.down();
+        if(Download.downloadOK) {
+            computerUserName = System.getProperty("user.home");
+            nomeCompleto = nome+"."+corso+"."+facoltà;
+            applicazione.fileScaricato = computerUserName+"\\Downloads\\"+nome+formato;
+            return true;
+        }
+        return false;
+    }
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -72,7 +78,7 @@ public class DownloadFileAppunto implements ActionListener{
         bottone.setEnabled(false);
         bottone2.setEnabled(false);
         
-        if(!secret) gif.apri();
+        gif.apri();
         
         new java.util.Timer().schedule(
                 new java.util.TimerTask() {
@@ -85,33 +91,32 @@ public class DownloadFileAppunto implements ActionListener{
                             if(Download.downloadOK){
                                 
                                 
-                                if(!secret) gif.chiudi();
+                                gif.chiudi();
                                 
                                 computerUserName = System.getProperty("user.home");
                                 nomeCompleto = nome+"."+corso+"."+facoltà;
                                 applicazione.fileScaricato = computerUserName+"\\Downloads\\"+nome+formato;
                                 
-                                if(!secret){
-                                    
-                                    int risposta = JOptionPane.showOptionDialog(null, "Download correttamente eseguito.\nIl file è stato salvato nella tua cartella \ndei Download  "
-                                            + "("+computerUserName+"\\Downloads)", "Operazione avvenuta con successo", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
-                                            null, opzioni, opzioni[0]);
-
-                                    if(risposta==1){
-                                        desktop = Desktop.getDesktop();
-                                        file = new File(computerUserName+"\\Downloads\\"+nome+""+formato+"");
-                                        desktop.open(file);
-                                    }
+                                
+                                int risposta = JOptionPane.showOptionDialog(null, "Download correttamente eseguito.\nIl file è stato salvato nella tua cartella \ndei Download  "
+                                        + "("+computerUserName+"\\Downloads)", "Operazione avvenuta con successo", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE,
+                                        null, opzioni, opzioni[0]);
+                                
+                                if(risposta==1){
+                                    desktop = Desktop.getDesktop();
+                                    file = new File(computerUserName+"\\Downloads\\"+nome+""+formato+"");
+                                    desktop.open(file);
                                 }
+                                
                                 
                                 bottone.setEnabled(true);
                                 bottone2.setEnabled(true);
                             }
                         } catch (IOException ex) {
-                            if(!secret) gif.chiudi();
+                            gif.chiudi();
                             JOptionPane.showMessageDialog(null, "Errore durante il download del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         } catch (DbxException ex) {
-                            if(!secret) gif.chiudi();
+                            gif.chiudi();
                             JOptionPane.showMessageDialog(null, "Errore durante il download del file dell'appunto", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
                         }
                         
