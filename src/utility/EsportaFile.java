@@ -23,6 +23,6 @@ public class EsportaFile {
         String path = System.getProperty("user.home") + "\\Downloads\\" + applicazione.appuntoAttuale.getNome() +".txt";
         PrintStream scrivi = new PrintStream(new FileOutputStream(path));
         scrivi.println(testo.getText());
-        
+        scrivi.close();
     }
 }

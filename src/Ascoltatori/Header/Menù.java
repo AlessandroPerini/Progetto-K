@@ -11,6 +11,7 @@ import Vista.LoginPanel;
 import Vista.PreferitiPanel;
 import Vista.AccountPanel;
 import Vista.ListaFacoltàPanel;
+import Vista.OCRFilePersonalePanel;
 import utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -31,8 +32,9 @@ public class Menù implements ActionListener{
     private String selezione;
     
     private ListaFacoltàPanel facoltà;
-    private AccountPanel account; 
-    private PreferitiPanel preferiti; 
+    private AccountPanel account;
+    private PreferitiPanel preferiti;
+    private OCRFilePersonalePanel ocr;
     
     public Menù(JComboBox menu) {
         this.menu = menu;
@@ -52,6 +54,9 @@ public class Menù implements ActionListener{
             break;
             case "Preferiti": preferiti();
             break;
+            case "OCR file": ocr();
+            break;
+            
             case "Logout": logout();
             break;
         }
@@ -81,18 +86,18 @@ public class Menù implements ActionListener{
         
         try {
             GuestQuery.ricaricaDatiUtente();
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
             System.out.println("Errore durante la sincronizzazione dei dati utente");;
         }
-            
+        
         applicazione.svuotaMieiDati();
-
+        
         applicazione.back.add("account");
-
+        
         account = new AccountPanel();
         Grafica.container.add(account,"account");
         Grafica.card.show(Grafica.container, "account");
-
+        
     }
     
     public void preferiti(){
@@ -111,6 +116,15 @@ public class Menù implements ActionListener{
         } catch (SQLException ex) {
             System.out.println("Errore durante il caricamento dei preferiti");
         }
+    }
+    
+    
+    private void ocr() {
+        
+        ocr = new OCRFilePersonalePanel();
+        Grafica.container.add(ocr, "ocr");
+        Grafica.card.show(Grafica.container, "ocr");
+        
     }
     
     public void logout(){
@@ -132,5 +146,6 @@ public class Menù implements ActionListener{
         menu.setSelectedItem("Menù");
         menu.setEditable(false);
     }
+    
 }
 

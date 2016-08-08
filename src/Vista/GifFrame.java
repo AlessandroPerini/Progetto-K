@@ -26,14 +26,15 @@ public class GifFrame {
         loadingFrame = new JFrame("Loading ...");
         
         loadingFrame.add(new JLabel("", new ImageIcon(this.getClass().getResource("/immagini/loading.gif")), JLabel.CENTER));
-        
+
         loadingFrame.setUndecorated(true);
-        loadingFrame.setSize(300, 300);
-        
+        loadingFrame.setSize(196, 196);
+
         //centrare frame al centro del MainFrame
         int x = (int) (Grafica.posizione().getX() + 350 - loadingFrame.getWidth()/2);
         int y = (int) (Grafica.posizione().getY() + 280 - loadingFrame.getHeight()/2);
         loadingFrame.setLocation(x, y);
+        
         loadingFrame.setVisible(true);
     }
     

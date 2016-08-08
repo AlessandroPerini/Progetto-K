@@ -45,7 +45,7 @@ public class TopPanel extends JPanel{
     public TopPanel(String t) {
         
         //inizializzazione variabili
-        opzioniMenù = new String[]{"Home","Account","Preferiti","Logout"};
+        opzioniMenù = new String[]{"Home","Account","Preferiti","OCR file","Logout"};
         
         //inizializzazione oggetti
         backButton = new JButton(new ImageIcon(getClass().getResource("/immagini/buttonNormal.png")));

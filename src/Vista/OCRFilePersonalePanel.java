@@ -1,11 +1,12 @@
 /*
-* Pannello dedicato alla conversione dell'appunto tramite OCR.
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
 */
 package Vista;
 
 import Application.Applicazione;
 import Ascoltatori.Appunti.doOCR;
-import utility.EsportaFile;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -14,34 +15,40 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileNotFoundException;
 import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
+import utility.EsportaFile;
 
 /**
  *
  * @author aless
  */
-public class OCRPanel extends JPanel{
+public class OCRFilePersonalePanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();
     
     //dichiarazione oggetti
     
-    private static JTextField titolo;
+    private static JTextField percorsoFile;
     private static JTextArea testo;
-    private JButton ocr, esporta;
+    private JButton ocr, esporta, scegliFile;
+    private JFileChooser fileChooser;
+    private File fileAppunto = null;
+    private boolean filePersonale = true;
     
     //dichiarazione pannelli
-    private JPanel titoloPanel, testoPanel, bottoniPanel, pannelloPrincipale;
+    private JPanel sceltaFilePanel, testoPanel, bottoniPanel, pannelloPrincipale;
     private TopPanel top;
     private JScrollPane scrollPanelTesto;
     
@@ -55,7 +62,7 @@ public class OCRPanel extends JPanel{
     private doOCR doOcr;
     
     
-    public OCRPanel() {
+    public OCRFilePersonalePanel() {
         
         //inizializzazione icone
         bottoneNormale = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
@@ -65,23 +72,23 @@ public class OCRPanel extends JPanel{
         //inizializzazione bottoni - label - textarea
         testo = new JTextArea("");
         testo.setEditable(false);
-        titolo = new JTextField(18);
+        percorsoFile = new JTextField(18);
         ocr = new JButton(bottoneNormale);
         esporta = new JButton(bottoneNormale);
+        fileChooser = new JFileChooser();
+        scegliFile = new JButton("Scegli File");
+        
         
         //inizializzazione pannelli
         top = new TopPanel("OCR appunto");
         pannelloPrincipale = new JPanel(new GridBagLayout());
-        titoloPanel = new JPanel();
+        sceltaFilePanel = new JPanel();
         testoPanel = new JPanel();
-        
         bottoniPanel = new JPanel();
         gbc = new GridBagConstraints();
         scrollPanelTesto = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         
         //inizializzazione actionListener
-        
-        doOcr = new doOCR(testo);
         
         
         //creazione componenti - pannelli
@@ -94,11 +101,11 @@ public class OCRPanel extends JPanel{
     
     public void creaComponenti(){
         
-        titoloPanel.setBackground(Color.white);
-        titolo.setBackground(Color.white);
-        titolo.setForeground(Color.BLACK);
-        titolo.setText(applicazione.appuntoAttuale.getNome());
-        titolo.setEditable(false);
+        sceltaFilePanel.setBackground(Color.white);
+        percorsoFile.setBackground(Color.white);
+        percorsoFile.setForeground(Color.BLACK);
+        percorsoFile.setText("");
+        percorsoFile.setEditable(false);
         
         testoPanel.setBackground(Color.white);
         testo.setBackground(Color.white);
@@ -110,11 +117,11 @@ public class OCRPanel extends JPanel{
         scrollPanelTesto.setBorder(new LineBorder(Color.white));
         scrollPanelTesto.setVerticalScrollBar(new CustomScrollBar());
         
-        titoloPanel.setBorder(BorderFactory.createTitledBorder("Appunto da convertire:"));
+        sceltaFilePanel.setBorder(BorderFactory.createTitledBorder("Appunto da convertire:"));
         testoPanel.setBorder(BorderFactory.createTitledBorder("Testo convertito:"));
-        testoPanel.setSize(350 , 320);
+        testoPanel.setSize(350 , 300);
         
-        titolo.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+        percorsoFile.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         
         testo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
         testo.setLineWrap(true);
@@ -129,7 +136,7 @@ public class OCRPanel extends JPanel{
         ocr.setHorizontalTextPosition(JButton.CENTER);
         ocr.setVerticalTextPosition(JButton.CENTER);
         ocr.setPreferredSize(new Dimension(110, 40));
-        ocr.setEnabled(true);
+        ocr.setEnabled(false);
         
         esporta.setBorder(BorderFactory.createEmptyBorder());
         esporta.setContentAreaFilled(false);
@@ -147,13 +154,41 @@ public class OCRPanel extends JPanel{
     public void creaPannelloCentrale(){
         
         testoPanel.add(scrollPanelTesto);
-                
+        
+        percorsoFile.setEditable(false);
+        scegliFile.addActionListener((ActionEvent e) -> {
+            fileChooser.showOpenDialog(null);
+            fileAppunto = fileChooser.getSelectedFile();
+            
+            if(fileAppunto != null){
+                percorsoFile.setText(fileAppunto.getAbsolutePath());
+                ocr.setEnabled(true);
+                ocr.setText("OCR");
+                ocr.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+                ocr.setHorizontalTextPosition(JButton.CENTER);
+                ocr.setVerticalTextPosition(JButton.CENTER);
+                doOcr = new doOCR(filePersonale, percorsoFile.getText(), testo);
+                ocr.addActionListener(doOcr);
+            }
+        });
+        
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(15, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        titoloPanel.add(titolo);
-        pannelloPrincipale.add(titoloPanel, gbc);
+        sceltaFilePanel.add(percorsoFile);
+        
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        sceltaFilePanel.add(scegliFile);
+        
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        pannelloPrincipale.add(sceltaFilePanel, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -165,20 +200,20 @@ public class OCRPanel extends JPanel{
         gbc.gridx = 0;
         gbc.gridy = 0;
         gbc.insets = new Insets(10, 10, 0, 0);
-        gbc.anchor = GridBagConstraints.NORTH;
+        gbc.anchor = GridBagConstraints.EAST;
         bottoniPanel.add(ocr, gbc);
         
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(30, 10, 0, 0);
-        gbc.anchor = GridBagConstraints.SOUTH;
+        gbc.anchor = GridBagConstraints.EAST;
         bottoniPanel.add(esporta, gbc);
-        
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 10, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         pannelloPrincipale.add(bottoniPanel, gbc);
+        
         
         
         ocr.addActionListener(doOcr);
@@ -205,7 +240,7 @@ public class OCRPanel extends JPanel{
         setBackground(Color.white);
         pannelloPrincipale.setBackground(Color.white);
         
-        scrollPanelTesto.setPreferredSize(new Dimension(350 , 320));
+        scrollPanelTesto.setPreferredSize(new Dimension(350, 300));
         
         add(top);
         add(pannelloPrincipale);
@@ -214,7 +249,7 @@ public class OCRPanel extends JPanel{
     public static void clearForm(){
         
         testo.setText("");
-        titolo.setText("");
+        percorsoFile.setText("");
     }
     
 }
