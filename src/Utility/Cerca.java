@@ -1,7 +1,7 @@
 /*
  * Classe con i metodi statici per la ricerca all'interno di una lista di oggetti
  */
-package utilityaaa;
+package Utility;
 
 import Application.Applicazione;
 import Entità.Appunto;

@@ -5,7 +5,7 @@ package Grafica;
 
 import Application.Applicazione;
 import Ascoltatori.Appunti.doOCR;
-import utilityaaa.EsportaFile;
+import Utility.EsportaFile;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -58,9 +58,9 @@ public class OCRPanel extends JPanel{
     public OCRPanel() {
         
         //inizializzazione icone
-        bottoneNormale = new ImageIcon(this.getClass().getResource("/immagini/buttonNormal.png"));
-        aggiungiHover = new ImageIcon(this.getClass().getResource("/immagini/buttonHover.png"));
-        aggiungiPressed = new ImageIcon(this.getClass().getResource("/immagini/buttonPressed.png"));
+        bottoneNormale = new ImageIcon(this.getClass().getResource("/Grafica/immagini/buttonNormal.png"));
+        aggiungiHover = new ImageIcon(this.getClass().getResource("/Grafica/immagini/buttonHover.png"));
+        aggiungiPressed = new ImageIcon(this.getClass().getResource("/Grafica/immagini/buttonPressed.png"));
         
         //inizializzazione bottoni - label - textarea
         testo = new JTextArea("");

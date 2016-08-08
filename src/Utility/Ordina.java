@@ -1,7 +1,7 @@
 /*
 * Classe con i metodi statici per l'ordinamento di liste di oggetti
 */
-package utilityaaa;
+package Utility;
 
 import Application.Applicazione;
 import Entità.Appunto;

@@ -3,7 +3,7 @@
 * To change this template file, choose Tools | Templates
 * and open the template in the editor.
 */
-package utilityaaa;
+package Utility;
 
 import Application.Applicazione;
 import java.io.FileNotFoundException;

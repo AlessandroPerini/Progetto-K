@@ -35,7 +35,7 @@ public class CercaDomande implements ActionListener, KeyListener{
     public void cerca(){
     
         if(!searchField.getText().equals("")){
-            utilityaaa.Cerca.Domande(searchField);
+            Utility.Cerca.Domande(searchField);
             
             applicazione.back.remove(applicazione.back.size()-1);
 

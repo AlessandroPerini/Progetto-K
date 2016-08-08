@@ -4,7 +4,7 @@ import Database.DeleteQuery;
 import Database.InsertQuery;
 import Database.ListeQuery;
 import Entità.Domanda;
-import utilityaaa.Cerca;
+import Utility.Cerca;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;

@@ -12,7 +12,7 @@ import Grafica.PreferitiPanel;
 import Grafica.AccountPanel;
 import Grafica.ListaFacoltàPanel;
 import Grafica.OCRFilePersonalePanel;
-import utilityaaa.Ordina;
+import Utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

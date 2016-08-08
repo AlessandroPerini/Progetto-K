@@ -59,12 +59,12 @@ public class ValutaAppuntoFrame{
     public void apri(){
 
         //inizializzaione immagini
-        confermaNormal = new ImageIcon(getClass().getResource("/immagini/buttonNormal.png"));
-        confermaHover = new ImageIcon(getClass().getResource("/immagini/buttonHover.png"));
-        confermaPressed = new ImageIcon(getClass().getResource("/immagini/buttonPressed.png"));
-        annullaNormal = new ImageIcon(getClass().getResource("/immagini/deleteNormal.png"));
-        annullaHover = new ImageIcon(getClass().getResource("/immagini/deleteHover.png"));
-        annullaPressed = new ImageIcon(getClass().getResource("/immagini/deletePressed.png"));
+        confermaNormal = new ImageIcon(getClass().getResource("/Grafica/immagini/buttonNormal.png"));
+        confermaHover = new ImageIcon(getClass().getResource("/Grafica/immagini/buttonHover.png"));
+        confermaPressed = new ImageIcon(getClass().getResource("/Grafica/immagini/buttonPressed.png"));
+        annullaNormal = new ImageIcon(getClass().getResource("/Grafica/immagini/deleteNormal.png"));
+        annullaHover = new ImageIcon(getClass().getResource("/Grafica/immagini/deleteHover.png"));
+        annullaPressed = new ImageIcon(getClass().getResource("/Grafica/immagini/deletePressed.png"));
         
         //inizializzazione oggetti
         titoloFrame = new JLabel("Valuta Appunto '"+applicazione.appuntoAttuale.getNome()+"'");

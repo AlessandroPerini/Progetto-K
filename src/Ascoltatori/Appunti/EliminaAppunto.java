@@ -17,7 +17,7 @@ import Dropbox.Elimina;
 import Grafica.GifFrame;
 import Grafica.PreferitiPanel;
 import Grafica.iMieiDatiPanel;
-import utilityaaa.Ordina;
+import Utility.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

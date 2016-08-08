@@ -14,7 +14,7 @@ import Grafica.PreferitiPanel;
 import Ascoltatori.QeA.OrdinaListaDomande;
 import Grafica.ListaDomandePanel;
 import Grafica.AccountPanel;
-import utilityaaa.Ordina;
+import Utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

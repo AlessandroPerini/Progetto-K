@@ -11,7 +11,7 @@ import Database.ControlloQuery;
 import Database.ListeQuery;
 import Grafica.AggiungiDomandaPanel;
 import Grafica.ListaDomandePanel;
-import utilityaaa.Ordina;
+import Utility.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
