@@ -86,6 +86,14 @@ public class Applicazione {
         utenteLoggato = false;
     }
     
+    public void setLibroAttuale(Libro libro){
+        libroAttuale = libro;
+    }
+    
+    public void setDomandaAttuale(Domanda domanda){
+        domandaAttuale = domanda;
+    }
+    
     public void svuotaCorsi() {
         listaCorsiAttuali.clear();
     }

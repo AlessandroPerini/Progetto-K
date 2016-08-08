@@ -6,9 +6,9 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.AggiungiAppuntoPanel;
-import Vista.Grafica;
-import Vista.OCRPanel;
+import Grafica.AggiungiAppuntoPanel;
+import Grafica.Grafica;
+import Grafica.OCRPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

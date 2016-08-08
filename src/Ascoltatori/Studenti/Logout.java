@@ -5,8 +5,8 @@
 package Ascoltatori.Studenti;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.LoginPanel;
+import Grafica.Grafica;
+import Grafica.LoginPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

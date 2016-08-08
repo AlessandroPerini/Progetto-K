@@ -4,15 +4,15 @@
 package Ascoltatori.Header;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.GuestQuery;
 import Database.ListeQuery;
-import Vista.LoginPanel;
-import Vista.PreferitiPanel;
-import Vista.AccountPanel;
-import Vista.ListaFacoltàPanel;
-import Vista.OCRFilePersonalePanel;
-import utility.Ordina;
+import Grafica.LoginPanel;
+import Grafica.PreferitiPanel;
+import Grafica.AccountPanel;
+import Grafica.ListaFacoltàPanel;
+import Grafica.OCRFilePersonalePanel;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

@@ -4,9 +4,9 @@
 package Ascoltatori.Preferiti;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.InsertQuery;
-import Vista.ListaCorsiPanel;
+import Grafica.ListaCorsiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

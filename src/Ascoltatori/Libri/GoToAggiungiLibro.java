@@ -6,8 +6,8 @@
 package Ascoltatori.Libri;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.AggiungiLibroPanel;
+import Grafica.Grafica;
+import Grafica.AggiungiLibroPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

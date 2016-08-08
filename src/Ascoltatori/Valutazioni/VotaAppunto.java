@@ -6,11 +6,11 @@
 package Ascoltatori.Valutazioni;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.AppuntoPanel;
+import Grafica.AppuntoPanel;
 import Database.ControlloQuery;
 import Database.InfoQuery;
 import Database.InsertQuery;
+import Grafica.Grafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

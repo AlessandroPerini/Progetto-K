@@ -4,7 +4,7 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.DeleteQuery;
 import Database.InfoQuery;

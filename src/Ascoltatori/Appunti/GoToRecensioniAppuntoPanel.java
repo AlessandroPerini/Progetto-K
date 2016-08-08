@@ -6,8 +6,8 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.RecensioniAppuntoPanel;
+import Grafica.Grafica;
+import Grafica.RecensioniAppuntoPanel;
 import Database.ListeQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

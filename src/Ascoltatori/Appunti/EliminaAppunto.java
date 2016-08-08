@@ -7,17 +7,17 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.ListaAppuntiPanel;
-import Vista.Grafica;
+import Grafica.ListaAppuntiPanel;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.DeleteQuery;
 import Database.GuestQuery;
 import Database.ListeQuery;
 import Dropbox.Elimina;
-import Vista.GifFrame;
-import Vista.PreferitiPanel;
-import Vista.iMieiDatiPanel;
-import utility.Ordina;
+import Grafica.GifFrame;
+import Grafica.PreferitiPanel;
+import Grafica.iMieiDatiPanel;
+import utilityaaa.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

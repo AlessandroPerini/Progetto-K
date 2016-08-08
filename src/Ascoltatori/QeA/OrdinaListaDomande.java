@@ -5,8 +5,8 @@
 */
 package Ascoltatori.QeA;
 
-import Vista.Grafica;
-import Vista.ListaDomandePanel;
+import Grafica.Grafica;
+import Grafica.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
@@ -33,12 +33,12 @@ public class OrdinaListaDomande implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Like")){
-            utility.Ordina.Domande();
+            utilityaaa.Ordina.Domande();
             ordineCorrente = "Like";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            utility.Ordina.DomandeAlfabetic();
+            utilityaaa.Ordina.DomandeAlfabetic();
             ordineCorrente = "Nome";
         }
         

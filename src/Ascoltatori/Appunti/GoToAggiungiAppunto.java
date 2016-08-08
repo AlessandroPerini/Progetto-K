@@ -6,8 +6,8 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.AggiungiAppuntoPanel;
-import Vista.Grafica;
+import Grafica.AggiungiAppuntoPanel;
+import Grafica.Grafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

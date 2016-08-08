@@ -6,12 +6,12 @@ package Ascoltatori.QeA;
 
 import Database.InsertQuery;
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.ListeQuery;
-import Vista.AggiungiDomandaPanel;
-import Vista.ListaDomandePanel;
-import utility.Ordina;
+import Grafica.AggiungiDomandaPanel;
+import Grafica.ListaDomandePanel;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

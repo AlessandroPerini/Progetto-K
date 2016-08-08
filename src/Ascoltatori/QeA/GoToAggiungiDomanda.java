@@ -5,8 +5,8 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.AggiungiDomandaPanel;
+import Grafica.Grafica;
+import Grafica.AggiungiDomandaPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

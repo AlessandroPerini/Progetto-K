@@ -4,9 +4,9 @@
 package Ascoltatori.Facolta;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ListeQuery;
-import Vista.ListaFacoltàPanel;
+import Grafica.ListaFacoltàPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;

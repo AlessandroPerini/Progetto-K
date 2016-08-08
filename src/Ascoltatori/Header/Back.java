@@ -4,17 +4,17 @@
 package Ascoltatori.Header;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Ascoltatori.Appunti.OrdinaListaAppunti;
-import Vista.ListaAppuntiPanel;
+import Grafica.ListaAppuntiPanel;
 import Database.GuestQuery;
 import Database.ListeQuery;
-import Vista.ListaLibriPanel;
-import Vista.PreferitiPanel;
+import Grafica.ListaLibriPanel;
+import Grafica.PreferitiPanel;
 import Ascoltatori.QeA.OrdinaListaDomande;
-import Vista.ListaDomandePanel;
-import Vista.AccountPanel;
-import utility.Ordina;
+import Grafica.ListaDomandePanel;
+import Grafica.AccountPanel;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

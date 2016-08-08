@@ -4,9 +4,9 @@
 package Ascoltatori.Preferiti;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.DeleteQuery;
-import Vista.LibroPanel;
+import Grafica.LibroPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

@@ -7,9 +7,9 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.AppuntoPanel;
-import Vista.Grafica;
-import Vista.ListaAppuntiPanel;
+import Grafica.AppuntoPanel;
+import Grafica.Grafica;
+import Grafica.ListaAppuntiPanel;
 import Database.InfoQuery;
 import java.awt.Color;
 import java.awt.event.MouseEvent;

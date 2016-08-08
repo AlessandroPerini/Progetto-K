@@ -5,15 +5,15 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.AggiungiAppuntoPanel;
-import Vista.ListaAppuntiPanel;
-import Vista.Grafica;
+import Grafica.AggiungiAppuntoPanel;
+import Grafica.ListaAppuntiPanel;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.InsertQuery;
 import Database.ListeQuery;
 import Dropbox.Upload;
-import Vista.GifFrame;
-import utility.Ordina;
+import Grafica.GifFrame;
+import utilityaaa.Ordina;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -5,11 +5,11 @@ package Ascoltatori.Libri;
 
 import Application.Applicazione;
 import Database.InsertQuery;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ListeQuery;
-import Vista.AggiungiLibroPanel;
-import Vista.ListaLibriPanel;
-import utility.Ordina;
+import Grafica.AggiungiLibroPanel;
+import Grafica.ListaLibriPanel;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

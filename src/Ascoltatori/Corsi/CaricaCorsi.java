@@ -4,10 +4,10 @@
 package Ascoltatori.Corsi;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.InfoQuery;
 import Database.ListeQuery;
-import Vista.ListaCorsiPanel;
+import Grafica.ListaCorsiPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

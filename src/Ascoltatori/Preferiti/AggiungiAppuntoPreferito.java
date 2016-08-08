@@ -4,8 +4,8 @@
 package Ascoltatori.Preferiti;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.AppuntoPanel;
+import Grafica.Grafica;
+import Grafica.AppuntoPanel;
 import Database.InsertQuery;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

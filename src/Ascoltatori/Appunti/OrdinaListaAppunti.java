@@ -5,8 +5,8 @@
 */
 package Ascoltatori.Appunti;
 
-import Vista.Grafica;
-import Vista.ListaAppuntiPanel;
+import Grafica.Grafica;
+import Grafica.ListaAppuntiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JComboBox;
@@ -33,12 +33,12 @@ public class OrdinaListaAppunti implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         
         if(ordina.getSelectedItem().equals("Valutazione")){
-            utility.Ordina.Appunti();
+            utilityaaa.Ordina.Appunti();
             ordineCorrente = "Valutazione";
         }
         
         if(ordina.getSelectedItem().equals("Nome")){
-            utility.Ordina.AppuntiAlfabetic();
+            utilityaaa.Ordina.AppuntiAlfabetic();
             ordineCorrente = "Nome";
         }
         

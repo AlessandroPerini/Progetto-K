@@ -7,8 +7,8 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.ListaDomandePanel;
+import Grafica.Grafica;
+import Grafica.ListaDomandePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,7 +35,7 @@ public class CercaDomande implements ActionListener, KeyListener{
     public void cerca(){
     
         if(!searchField.getText().equals("")){
-            utility.Cerca.Domande(searchField);
+            utilityaaa.Cerca.Domande(searchField);
             
             applicazione.back.remove(applicazione.back.size()-1);
 

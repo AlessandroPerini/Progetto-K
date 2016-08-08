@@ -7,8 +7,8 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.ListaAppuntiPanel;
+import Grafica.Grafica;
+import Grafica.ListaAppuntiPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -35,7 +35,7 @@ public class CercaAppunti implements ActionListener, KeyListener{
     
         if(!searchField.getText().equals("")){
             
-            utility.Cerca.Appunti(searchField);
+            utilityaaa.Cerca.Appunti(searchField);
 
             applicazione.back.remove(applicazione.back.size()-1);
             

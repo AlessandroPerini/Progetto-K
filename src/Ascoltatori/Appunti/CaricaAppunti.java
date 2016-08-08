@@ -4,10 +4,10 @@
 */
 package Ascoltatori.Appunti;
 import Application.Applicazione;
-import Vista.ListaAppuntiPanel;
-import Vista.Grafica;
+import Grafica.ListaAppuntiPanel;
+import Grafica.Grafica;
 import Database.ListeQuery;
-import utility.Ordina;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

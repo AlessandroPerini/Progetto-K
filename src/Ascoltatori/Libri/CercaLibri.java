@@ -7,9 +7,9 @@
 package Ascoltatori.Libri;
 
 import Application.Applicazione;
-import Vista.Grafica;
-import Vista.ListaLibriPanel;
-import utility.Cerca;
+import Grafica.Grafica;
+import Grafica.ListaLibriPanel;
+import utilityaaa.Cerca;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;

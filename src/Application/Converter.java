@@ -2,7 +2,7 @@ package Application;
 
 import java.io.File;
 import javax.swing.JOptionPane;
-import tess4j.Tesseract;
+import Tesseract.tess4j.Tesseract;
 
 public class Converter {
     

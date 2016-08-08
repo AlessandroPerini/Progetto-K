@@ -5,10 +5,10 @@
 package Ascoltatori.Studenti;
 
 import Application.Applicazione;
-import Vista.iMieiDatiPanel;
-import Vista.Grafica;
+import Grafica.iMieiDatiPanel;
+import Grafica.Grafica;
 import Database.GuestQuery;
-import utility.Ordina;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;

@@ -4,7 +4,7 @@
 */
 package Application;
 
-import Vista.Grafica;
+import Grafica.Grafica;
 import javax.swing.JOptionPane;
 
 

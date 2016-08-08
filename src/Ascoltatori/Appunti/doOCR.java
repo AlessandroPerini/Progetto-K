@@ -7,7 +7,7 @@ package Ascoltatori.Appunti;
 
 import Application.Applicazione;
 import Application.Converter;
-import Vista.GifFrame;
+import Grafica.GifFrame;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -7,10 +7,10 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.InfoQuery;
 import Database.ListeQuery;
-import Vista.DomandaPanel;
+import Grafica.DomandaPanel;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

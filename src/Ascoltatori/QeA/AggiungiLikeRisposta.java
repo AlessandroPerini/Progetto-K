@@ -4,10 +4,10 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.InfoQuery;
-import Vista.DomandaPanel;
+import Grafica.DomandaPanel;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.sql.SQLException;

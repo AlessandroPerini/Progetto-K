@@ -7,15 +7,15 @@
 package Ascoltatori.QeA;
 
 import Application.Applicazione;
-import Vista.Grafica;
+import Grafica.Grafica;
 import Database.ControlloQuery;
 import Database.DeleteQuery;
 import Database.GuestQuery;
 import Database.ListeQuery;
-import Vista.PreferitiPanel;
-import Vista.ListaDomandePanel;
-import Vista.iMieiDatiPanel;
-import utility.Ordina;
+import Grafica.PreferitiPanel;
+import Grafica.ListaDomandePanel;
+import Grafica.iMieiDatiPanel;
+import utilityaaa.Ordina;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
