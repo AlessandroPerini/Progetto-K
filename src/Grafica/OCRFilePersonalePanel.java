@@ -29,6 +29,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import Utility.EsportaFile;
+import javax.swing.JComboBox;
 
 /**
  *
@@ -46,9 +47,10 @@ public class OCRFilePersonalePanel extends JPanel{
     private JFileChooser fileChooser;
     private File fileAppunto = null;
     private boolean filePersonale = true;
+    private JComboBox<String> lingua;
     
     //dichiarazione pannelli
-    private JPanel sceltaFilePanel, testoPanel, bottoniPanel, pannelloPrincipale;
+    private JPanel sceltaFilePanel, testoPanel, bottoniPanel, pannelloPrincipale, linguaPanel;
     private TopPanel top;
     private JScrollPane scrollPanelTesto;
     
@@ -77,11 +79,12 @@ public class OCRFilePersonalePanel extends JPanel{
         esporta = new JButton(bottoneNormale);
         fileChooser = new JFileChooser();
         scegliFile = new JButton("Scegli File");
-        
+        lingua = new JComboBox<>(new String[] {"Italiano", "Inglese"});
         
         //inizializzazione pannelli
         top = new TopPanel("OCR appunto");
         pannelloPrincipale = new JPanel(new GridBagLayout());
+        linguaPanel = new JPanel();
         sceltaFilePanel = new JPanel();
         testoPanel = new JPanel();
         bottoniPanel = new JPanel();
@@ -121,6 +124,9 @@ public class OCRFilePersonalePanel extends JPanel{
         testoPanel.setBorder(BorderFactory.createTitledBorder("Testo convertito:"));
         testoPanel.setSize(350 , 300);
         
+        linguaPanel.setBackground(Color.white);
+        linguaPanel.setBorder(BorderFactory.createTitledBorder("Lingua: "));
+        
         percorsoFile.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         
         testo.setFont(new Font("Century Gothic", Font.PLAIN, 13));
@@ -154,6 +160,7 @@ public class OCRFilePersonalePanel extends JPanel{
     public void creaPannelloCentrale(){
         
         testoPanel.add(scrollPanelTesto);
+        linguaPanel.add(lingua);
         
         percorsoFile.setEditable(false);
         scegliFile.addActionListener((ActionEvent e) -> {
@@ -167,7 +174,11 @@ public class OCRFilePersonalePanel extends JPanel{
                 ocr.setFont(new Font("Century Gothic", Font.PLAIN, 14));
                 ocr.setHorizontalTextPosition(JButton.CENTER);
                 ocr.setVerticalTextPosition(JButton.CENTER);
-                doOcr = new doOCR(filePersonale, percorsoFile.getText(), testo);
+                String language = (String) lingua.getSelectedItem();
+                if(language.equals("Italiano")){
+                    language = "ita";
+                }else language = "eng";
+                doOcr = new doOCR(filePersonale, percorsoFile.getText(), ocr, testo, language);
                 ocr.addActionListener(doOcr);
             }
         });
@@ -190,12 +201,19 @@ public class OCRFilePersonalePanel extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         pannelloPrincipale.add(sceltaFilePanel, gbc);
         
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.insets = new Insets(15, 0, 0, 0);
+        gbc.anchor = GridBagConstraints.CENTER;
+        pannelloPrincipale.add(linguaPanel, gbc);
+        
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         testoPanel.add(scrollPanelTesto);
         pannelloPrincipale.add(testoPanel, gbc);
+        
         
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -208,23 +226,21 @@ public class OCRFilePersonalePanel extends JPanel{
         gbc.insets = new Insets(30, 10, 0, 0);
         gbc.anchor = GridBagConstraints.EAST;
         bottoniPanel.add(esporta, gbc);
+        
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 10, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
         pannelloPrincipale.add(bottoniPanel, gbc);
         
-        
-        ocr.addActionListener(doOcr);
         esporta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 
                 try {
                     if(fileAppunto != null){
-                        EsportaFile esporta = new EsportaFile(testo, fileAppunto.getName());
-                        esporta.esportaFile();
-                        ocr.removeActionListener(doOcr);
+                        EsportaFile esportaFile = new EsportaFile(testo, fileAppunto.getName());
+                        esportaFile.esportaFile();
                         JOptionPane.showMessageDialog(null, "File esportato! Lo trovi nella cartella dei tuoi Downloads", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     }
                 } catch (FileNotFoundException ex) {

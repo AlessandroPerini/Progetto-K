@@ -8,6 +8,7 @@ public class Converter {
     
     private Applicazione applicazione = Applicazione.getInstance();
     private String percorsoFile;
+    private String language = "ita";
        
     public Converter(){
         this.percorsoFile = null;
@@ -17,6 +18,10 @@ public class Converter {
         this.percorsoFile = percorsoFile;
     }
 
+    public void setLanguage(String language){
+        this.language = language;
+    }
+    
     public String convert() {
 
         File imageFile;
@@ -28,6 +33,7 @@ public class Converter {
         }
         
         Tesseract tesseract = Tesseract.getInstance();
+        tesseract.setLanguage(language);
         String result = "";
 
         try {

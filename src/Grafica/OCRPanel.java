@@ -81,7 +81,7 @@ public class OCRPanel extends JPanel{
         
         //inizializzazione actionListener
         
-        doOcr = new doOCR(testo);
+        doOcr = new doOCR(ocr, testo, "ita");
         
         
         //creazione componenti - pannelli

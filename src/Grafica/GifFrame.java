@@ -34,6 +34,7 @@ public class GifFrame {
         int y = (int) (Grafica.posizione().getY() + 280 - loadingFrame.getHeight()/2);
         loadingFrame.setLocation(x, y);
         
+        loadingFrame.setAlwaysOnTop(true);
         loadingFrame.setVisible(true);
     }
     

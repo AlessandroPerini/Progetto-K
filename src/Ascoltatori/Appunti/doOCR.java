@@ -12,6 +12,7 @@ import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
@@ -27,21 +28,29 @@ public class doOCR implements ActionListener{
     private GifFrame gif = new GifFrame();
     private boolean filePersonale = false;
     private String percorsoFile;
+    private String language = "ita";
+    private JButton ocr;
     
-    public doOCR(JTextArea jTextArea) {
+    public doOCR(JButton ocr, JTextArea jTextArea, String language) {
         this.jTextArea = jTextArea;
+        this.language = language;
+        this.ocr = ocr;
     }
     
-    public doOCR(Boolean filePersonale, String percorsoFile, JTextArea jTextArea) {
+    public doOCR(Boolean filePersonale, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
         this.filePersonale = true;
         this.percorsoFile = percorsoFile;
         this.jTextArea = jTextArea;
+        this.language = language;
+        this.ocr = ocr;
     }
     
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
+        ocr.removeActionListener(this);
+        ocr.setEnabled(false);
         gif.apri();
         new java.util.Timer().schedule(new java.util.TimerTask() {
             
@@ -54,6 +63,7 @@ public class doOCR implements ActionListener{
                         boolean DownloadSecret = download.DownloadSecret();
                         if(DownloadSecret){
                             converter = new Converter();
+                            converter.setLanguage(language);
                             String convert = converter.convert();
                             gif.chiudi();
                             jTextArea.setText(convert);
@@ -61,6 +71,7 @@ public class doOCR implements ActionListener{
                         }
                     }else{
                         converter = new Converter(percorsoFile);
+                        converter.setLanguage(language);
                         String convert = converter.convert();
                         gif.chiudi();
                         jTextArea.setText(convert);
