@@ -25,7 +25,9 @@ import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import Utility.EsportaFile;
 import java.awt.GridLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JComboBox;
+import javax.swing.JRadioButton;
 
 /**
  *
@@ -44,9 +46,12 @@ public class OCRFilePersonalePanel extends JPanel{
     private File fileAppunto = null;
     private boolean filePersonale = true;
     private JComboBox<String> lingua;
+    private JRadioButton velocita;
+    private JRadioButton precisione;
+    private ButtonGroup bg = new ButtonGroup();
     
     //dichiarazione pannelli
-    private JPanel sceltaFilePanel, testoPanel, pannelloPrincipale, bottoniPanel, linguaPanel;
+    private JPanel sceltaFilePanel, testoPanel, pannelloPrincipale, bottoniPanel, linguaPanel, radioPanel, destraPanel;
     private TopPanel top;
     private JScrollPane scrollPanelTesto;
     
@@ -68,12 +73,15 @@ public class OCRFilePersonalePanel extends JPanel{
         aggiungiPressed = new ImageIcon(this.getClass().getResource("/Grafica/immagini/buttonPressed.png"));
         
         //inizializzazione bottoni - label - textarea
+        fileAppunto = null;
         testo.setEditable(false);
         percorsoFile = new JTextField(18);
         ocr = new JButton(bottoneNormale);
         esporta = new JButton(bottoneNormale);
         fileChooser = new JFileChooser();
         scegliFile = new JButton("Scegli File");
+        velocita = new JRadioButton("Velocità", true);
+        precisione = new JRadioButton("Precisione");
         lingua = new JComboBox<>(new String[] {"Italiano", "Inglese"});
         
         //inizializzazione pannelli
@@ -86,6 +94,8 @@ public class OCRFilePersonalePanel extends JPanel{
         bottoniPanel.setSize(120, 300);
         gbc = new GridBagConstraints();
         scrollPanelTesto = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        radioPanel = new JPanel(new GridLayout(2, 1, 0, 0));
+        destraPanel = new JPanel(new GridLayout(2, 1, 15, 50));
         
         //creazione componenti - pannelli
         creaComponenti();
@@ -118,6 +128,17 @@ public class OCRFilePersonalePanel extends JPanel{
         
         linguaPanel.setBackground(Color.white);
         linguaPanel.setBorder(BorderFactory.createTitledBorder("Lingua: "));
+        
+        velocita.setBackground(Color.white);
+        precisione.setBackground(Color.white);
+        
+        bg.add(velocita);
+        bg.add(precisione);
+        
+        destraPanel.setBackground(Color.white);
+        
+        radioPanel.setBackground(Color.white);
+        radioPanel.setBorder(BorderFactory.createTitledBorder("Priorità alla "));
         
         percorsoFile.setFont(new Font("Century Gothic", Font.PLAIN, 14));
         
@@ -153,6 +174,10 @@ public class OCRFilePersonalePanel extends JPanel{
         
         testoPanel.add(scrollPanelTesto);
         linguaPanel.add(lingua);
+        radioPanel.add(velocita);
+        radioPanel.add(precisione);
+        destraPanel.add(radioPanel);
+        destraPanel.add(bottoniPanel);
         
         percorsoFile.setEditable(false);
         scegliFile.addActionListener((ActionEvent e) -> {
@@ -167,10 +192,11 @@ public class OCRFilePersonalePanel extends JPanel{
                 ocr.setHorizontalTextPosition(JButton.CENTER);
                 ocr.setVerticalTextPosition(JButton.CENTER);
                 String language = (String) lingua.getSelectedItem();
-                if(language.equals("Italiano")){
-                    language = "ita";
-                }else language = "eng";
-                doOcr = new doOCR(filePersonale, percorsoFile.getText(), ocr, testo, language);
+                String priorità;
+                if(velocita.isSelected()){
+                    priorità = "Velocità";
+                }else priorità = "Precisione";
+                doOcr = new doOCR(priorità, percorsoFile.getText(), ocr, testo, language);
                 ocr.addActionListener(doOcr);
             }
         });
@@ -213,7 +239,7 @@ public class OCRFilePersonalePanel extends JPanel{
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 10, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        pannelloPrincipale.add(bottoniPanel, gbc);
+        pannelloPrincipale.add(destraPanel, gbc);
         
         esporta.addActionListener(new ActionListener() {
             @Override
@@ -225,7 +251,7 @@ public class OCRFilePersonalePanel extends JPanel{
                         esportaFile.esportaFile();
                         JOptionPane.showMessageDialog(null, "File esportato! Lo trovi nella cartella dei tuoi Downloads", "Operazione avvenuta con successo", JOptionPane.INFORMATION_MESSAGE);
                     }else{
-                        JOptionPane.showMessageDialog(null, "Prima di esportare è necessario convertire il file", "Attenzione", JOptionPane.ERROR_MESSAGE); 
+                        JOptionPane.showMessageDialog(null, "Prima di esportare è necessario convertire il file", "Attenzione", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (FileNotFoundException ex) {
                     JOptionPane.showMessageDialog(null, "Errore durante l'esportazione del file", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);

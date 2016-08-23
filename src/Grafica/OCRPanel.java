@@ -17,11 +17,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.FileNotFoundException;
 import javax.swing.BorderFactory;
+import javax.swing.ButtonGroup;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -40,9 +42,12 @@ public class OCRPanel extends JPanel{
     private static JTextField titolo;
     private static JTextArea testo = new JTextArea();
     private JButton ocr, esporta;
+    private JRadioButton velocita;
+    private JRadioButton precisione;
+    private ButtonGroup bg = new ButtonGroup();
     
     //dichiarazione pannelli
-    private JPanel titoloPanel, testoPanel, bottoniPanel, pannelloPrincipale;
+    private JPanel titoloPanel, testoPanel, bottoniPanel, pannelloPrincipale, radioPanel, destraPanel;
     private TopPanel top;
     private JScrollPane scrollPanelTesto;
     
@@ -69,6 +74,8 @@ public class OCRPanel extends JPanel{
         titolo = new JTextField(18);
         ocr = new JButton(bottoneNormale);
         esporta = new JButton(bottoneNormale);
+        velocita = new JRadioButton("Velocità", true);
+        precisione = new JRadioButton("Precisione");
         
         //inizializzazione pannelli
         top = new TopPanel("OCR appunto");
@@ -79,11 +86,8 @@ public class OCRPanel extends JPanel{
         bottoniPanel.setSize(120, 300);
         gbc = new GridBagConstraints();
         scrollPanelTesto = new JScrollPane(testo, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
-        //inizializzazione actionListener
-        
-        doOcr = new doOCR(ocr, testo, "ita");
-        
+        radioPanel = new JPanel(new GridLayout(2, 1, 0, 0));
+        destraPanel = new JPanel(new GridLayout(2, 1, 15, 50));
         
         //creazione componenti - pannelli
         creaComponenti();
@@ -106,6 +110,17 @@ public class OCRPanel extends JPanel{
         testo.setForeground(Color.BLACK);
         
         bottoniPanel.setBackground(Color.white);
+        
+        velocita.setBackground(Color.white);
+        precisione.setBackground(Color.white);
+        
+        bg.add(velocita);
+        bg.add(precisione);
+        
+        destraPanel.setBackground(Color.white);
+        
+        radioPanel.setBackground(Color.white);
+        radioPanel.setBorder(BorderFactory.createTitledBorder("Priorità alla "));
         
         scrollPanelTesto.setBackground(Color.white);
         scrollPanelTesto.setBorder(new LineBorder(Color.white));
@@ -149,6 +164,10 @@ public class OCRPanel extends JPanel{
     public void creaPannelloCentrale(){
         
         testoPanel.add(scrollPanelTesto);
+        radioPanel.add(velocita);
+        radioPanel.add(precisione);
+        destraPanel.add(radioPanel);
+        destraPanel.add(bottoniPanel);
         
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -168,14 +187,28 @@ public class OCRPanel extends JPanel{
         bottoniPanel.add(ocr);
         bottoniPanel.add(esporta);
         
+        bottoniPanel.add(ocr);
+        bottoniPanel.add(esporta);
+        
         gbc.gridx = 1;
         gbc.gridy = 1;
         gbc.insets = new Insets(10, 10, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        pannelloPrincipale.add(bottoniPanel, gbc);
+        pannelloPrincipale.add(destraPanel, gbc);
         
         
-        ocr.addActionListener(doOcr);
+        ocr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String priorità;
+                if(velocita.isSelected()){
+                    priorità = "Velocità";
+                }else priorità = "Precisione";
+                doOCR doOCR = new doOCR(priorità, ocr, testo);
+                doOCR.actionPerformed(e);
+            }
+        });
+        
         esporta.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

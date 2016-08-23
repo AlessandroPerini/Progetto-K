@@ -6,8 +6,11 @@
 package Ascoltatori.Appunti;
 
 import Application.Applicazione;
-import Application.Converter;
+import Ocr.Converter;
 import Grafica.GifFrame;
+import Ocr.HPEImplementor;
+import Ocr.MotoreOCR;
+import Ocr.TesseractImplementor;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -30,21 +33,23 @@ public class doOCR implements ActionListener{
     private String percorsoFile;
     private String language = "ita";
     private JButton ocr;
+    private String priorità;
+    private MotoreOCR motoreOCR;
     
-    public doOCR(JButton ocr, JTextArea jTextArea, String language) {
+    public doOCR(String priorità, JButton ocr, JTextArea jTextArea) {
         this.jTextArea = jTextArea;
-        this.language = language;
         this.ocr = ocr;
+        this.priorità = priorità;
     }
     
-    public doOCR(Boolean filePersonale, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
+    public doOCR(String priorità, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
         this.filePersonale = true;
         this.percorsoFile = percorsoFile;
         this.jTextArea = jTextArea;
         this.language = language;
         this.ocr = ocr;
+        this.priorità = priorità;
     }
-    
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -52,6 +57,13 @@ public class doOCR implements ActionListener{
         ocr.removeActionListener(this);
         ocr.setEnabled(false);
         gif.apri();
+        
+        if(priorità.equals("Velocità")){
+            motoreOCR = new TesseractImplementor();
+        }else{
+            motoreOCR = new HPEImplementor();
+        }
+        
         new java.util.Timer().schedule(new java.util.TimerTask() {
             
             @Override
@@ -62,7 +74,7 @@ public class doOCR implements ActionListener{
                         DownloadFileAppunto download = new DownloadFileAppunto();
                         boolean DownloadSecret = download.DownloadSecret();
                         if(DownloadSecret){
-                            converter = new Converter();
+                            converter = new Converter(motoreOCR);
                             converter.setLanguage(language);
                             String convert = converter.convert();
                             gif.chiudi();
@@ -70,7 +82,7 @@ public class doOCR implements ActionListener{
                             jTextArea.setEditable(true);
                         }
                     }else{
-                        converter = new Converter(percorsoFile);
+                        converter = new Converter(motoreOCR, percorsoFile);
                         converter.setLanguage(language);
                         String convert = converter.convert();
                         gif.chiudi();

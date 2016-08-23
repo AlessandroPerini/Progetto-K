@@ -1,20 +1,22 @@
-package Application;
+package Ocr;
 
+import Application.Applicazione;
 import java.io.File;
-import javax.swing.JOptionPane;
-import Tesseract.tess4j.Tesseract;
 
 public class Converter {
     
     private Applicazione applicazione = Applicazione.getInstance();
     private String percorsoFile;
     private String language = "ita";
+    private MotoreOCR motoreOCR;
        
-    public Converter(){
+    public Converter(MotoreOCR motoreOCR){
         this.percorsoFile = null;
+        this.motoreOCR = motoreOCR;
     }
     
-    public Converter(String percorsoFile){
+    public Converter(MotoreOCR motoreOCR, String percorsoFile){
+        this.motoreOCR = motoreOCR;
         this.percorsoFile = percorsoFile;
     }
 
@@ -25,6 +27,7 @@ public class Converter {
     public String convert() {
 
         File imageFile;
+        motoreOCR.setLanguage(language);
         
         if(percorsoFile == null){
             imageFile = new File(applicazione.fileScaricato);
@@ -32,16 +35,7 @@ public class Converter {
             imageFile = new File(percorsoFile);
         }
         
-        Tesseract tesseract = Tesseract.getInstance();
-        tesseract.setLanguage(language);
-        String result = "";
-
-        try {
-            result = tesseract.doOCR(imageFile);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Errore. Il file potrebbe essere gia in un formato testuale. Controlla nella tua cartella dei Downloads", "Impossibile completare l'operazione", JOptionPane.ERROR_MESSAGE);
-        }
-        return result;
+        return motoreOCR.doOCR(imageFile);
     }
  
 }
