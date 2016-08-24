@@ -23,19 +23,19 @@ import java.util.Map;
  */
 public class HPEImplementor implements MotoreOCR, IHODClientCallback{
 
-    HODClient client = new HODClient("556fdd83-62ed-4851-95ef-f77d14f59775", this);
-    HODResponseParser parser = new HODResponseParser();
-    String hodApp = "";
-    String filePath;
-    String finalResult = "";
-    Map<String, Object> params;
-    String language = "en-US";
+    private HODClient client = new HODClient("556fdd83-62ed-4851-95ef-f77d14f59775", this);
+    private HODResponseParser parser = new HODResponseParser();
+    private String hodApp = "";
+    private String filePath;
+    private String finalResult = "";
+    private Map<String, Object> params;
+    private String language = "en-US";
     
     @Override
     public void setLanguage(String language) {
         
         if(language.equals("Italiano")){
-            language = "ita";
+            language = "it-IT";
         }else language = "en-US";
         
         this.language = language;
@@ -62,7 +62,7 @@ public class HPEImplementor implements MotoreOCR, IHODClientCallback{
     
     }
     
-    public String resultOCR(String response){
+    private String resultOCR(String response){
         requestCompletedWithContent(response);
         return finalResult;
     }

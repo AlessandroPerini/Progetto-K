@@ -23,7 +23,7 @@ import javax.swing.JTextArea;
  *
  * @author aless
  */
-public class doOCR implements ActionListener{
+public class OcrAscoltatore implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();
     private Converter converter;
@@ -31,18 +31,18 @@ public class doOCR implements ActionListener{
     private GifFrame gif = new GifFrame();
     private boolean filePersonale = false;
     private String percorsoFile;
-    private String language = "ita";
+    private String language = "Italiano";
     private JButton ocr;
     private String priorità;
     private MotoreOCR motoreOCR;
     
-    public doOCR(String priorità, JButton ocr, JTextArea jTextArea) {
+    public OcrAscoltatore(String priorità, JButton ocr, JTextArea jTextArea) {
         this.jTextArea = jTextArea;
         this.ocr = ocr;
         this.priorità = priorità;
     }
     
-    public doOCR(String priorità, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
+    public OcrAscoltatore(String priorità, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
         this.filePersonale = true;
         this.percorsoFile = percorsoFile;
         this.jTextArea = jTextArea;

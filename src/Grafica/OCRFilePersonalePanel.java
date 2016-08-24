@@ -1,7 +1,7 @@
 package Grafica;
 
 import Application.Applicazione;
-import Ascoltatori.Appunti.doOCR;
+import Ascoltatori.Appunti.OcrAscoltatore;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -62,7 +62,7 @@ public class OCRFilePersonalePanel extends JPanel{
     private Icon bottoneNormale, aggiungiHover, aggiungiPressed;
     
     //dichiarazione ascoltatori
-    private doOCR doOcr;
+    private OcrAscoltatore ocrAscoltatore;
     
     
     public OCRFilePersonalePanel() {
@@ -180,25 +180,32 @@ public class OCRFilePersonalePanel extends JPanel{
         destraPanel.add(bottoniPanel);
         
         percorsoFile.setEditable(false);
+        
         scegliFile.addActionListener((ActionEvent e) -> {
             fileChooser.showOpenDialog(null);
             fileAppunto = fileChooser.getSelectedFile();
-            
-            if(fileAppunto != null){
-                percorsoFile.setText(fileAppunto.getAbsolutePath());
-                ocr.setEnabled(true);
-                ocr.setText("OCR");
-                ocr.setFont(new Font("Century Gothic", Font.PLAIN, 14));
-                ocr.setHorizontalTextPosition(JButton.CENTER);
-                ocr.setVerticalTextPosition(JButton.CENTER);
-                String language = (String) lingua.getSelectedItem();
-                String priorità;
-                if(velocita.isSelected()){
-                    priorità = "Velocità";
-                }else priorità = "Precisione";
-                doOcr = new doOCR(priorità, percorsoFile.getText(), ocr, testo, language);
-                ocr.addActionListener(doOcr);
-            }
+            percorsoFile.setText(fileAppunto.getAbsolutePath());
+            ocr.setEnabled(true);           
+        });
+        
+        
+        ocr.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(fileAppunto != null){
+                    
+                    ocr.setText("OCR");
+                    ocr.setFont(new Font("Century Gothic", Font.PLAIN, 14));
+                    ocr.setHorizontalTextPosition(JButton.CENTER);
+                    ocr.setVerticalTextPosition(JButton.CENTER);
+                    String language = (String) lingua.getSelectedItem();
+                    String priorità;
+                    if(velocita.isSelected()){
+                        priorità = "Velocità";
+                    }else priorità = "Precisione";
+                    ocrAscoltatore = new OcrAscoltatore(priorità, percorsoFile.getText(), ocr, testo, language);
+                    ocrAscoltatore.actionPerformed(e);
+                }}
         });
         
         gbc.gridx = 0;

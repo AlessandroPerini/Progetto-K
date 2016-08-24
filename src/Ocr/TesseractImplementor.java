@@ -16,8 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class TesseractImplementor implements MotoreOCR{
 
-    Tesseract tesseract = Tesseract.getInstance();
-    String result = "";
+    private Tesseract tesseract = Tesseract.getInstance();
+    private String result = "";
     
     @Override
     public void setLanguage(String language) {
