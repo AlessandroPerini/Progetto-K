@@ -18,6 +18,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.sql.SQLException;
@@ -45,7 +46,7 @@ public class AppuntoPanel extends JPanel{
     private JLabel media, email;
     
     //dichiarazione pannelli
-    private JPanel top, pannelloPrincipale, preferitiPanel, recensioniPanel, descrizionePanel, empty;
+    private JPanel top, pannelloPrincipale, preferitiPanel, recensioniPanel, descrizionePanel, empty, bottoniPanel;
     private JScrollPane scrollPanelDescrizione, scrollPanelPrincipale;
     
     //dichiarazione variabili
@@ -97,6 +98,7 @@ public class AppuntoPanel extends JPanel{
         descrizionePanel = new JPanel();
         scrollPanelDescrizione = new JScrollPane(descrizione, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         scrollPanelPrincipale = new JScrollPane(pannelloPrincipale,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        bottoniPanel = new JPanel(new GridLayout(1, 2, 100, 1));
         
         //inizializzazione actionListener
         downloadAppunto = new DownloadFileAppunto(elimina, elimina);
@@ -120,7 +122,7 @@ public class AppuntoPanel extends JPanel{
     public void creaComponenti(){
         
         scrollPanelDescrizione.setVerticalScrollBar(new CustomScrollBar());
-        scrollPanelDescrizione.setPreferredSize(new Dimension(300, 150));
+        scrollPanelDescrizione.setPreferredSize(new Dimension(400, 150));
         
         recensioniPanel.setBackground(Color.white);
         recensioniPanel.setPreferredSize(new Dimension(680, 30));
@@ -276,17 +278,15 @@ public class AppuntoPanel extends JPanel{
         
         elimina.addActionListener(eliminaAppunto);
         
+        bottoniPanel.setBackground(Color.white);
+        bottoniPanel.add(scarica);
+        bottoniPanel.add(ocr);
+        
         gbc.gridx = 0;
         gbc.gridy = 2;
         gbc.insets = new Insets(20, 0, 0, 0);
         gbc.anchor = GridBagConstraints.CENTER;
-        pannelloPrincipale.add(scarica, gbc);
-        
-        gbc.gridx = 1;
-        gbc.gridy = 2;
-        gbc.insets = new Insets(20, 0, 0, 0);
-        gbc.anchor = GridBagConstraints.CENTER;
-        pannelloPrincipale.add(ocr, gbc);
+        pannelloPrincipale.add(bottoniPanel, gbc);
         
         if (applicazione.appuntoAttuale.getStudente().equals(applicazione.guest.getEmail())) {
             
