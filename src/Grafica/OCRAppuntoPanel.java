@@ -33,7 +33,7 @@ import javax.swing.border.LineBorder;
  *
  * @author aless
  */
-public class OCRPanel extends JPanel{
+public class OCRAppuntoPanel extends JPanel{
     
     private Applicazione applicazione = Applicazione.getInstance();
     
@@ -41,8 +41,8 @@ public class OCRPanel extends JPanel{
     
     private static JTextField titolo;
     private static JTextArea testo = new JTextArea();
-    private JButton ocr, esporta;
-    private JRadioButton velocita;
+    private JButton ocrButton, esporta;
+    private JRadioButton velocità;
     private JRadioButton precisione;
     private ButtonGroup bg = new ButtonGroup();
     
@@ -61,7 +61,7 @@ public class OCRPanel extends JPanel{
     private OcrAscoltatore ocrAscoltatore;
     
     
-    public OCRPanel() {
+    public OCRAppuntoPanel() {
         
         //inizializzazione icone
         bottoneNormale = new ImageIcon(this.getClass().getResource("/Grafica/immagini/buttonNormal.png"));
@@ -71,10 +71,10 @@ public class OCRPanel extends JPanel{
         //inizializzazione bottoni - label - textarea
         testo = new JTextArea("");
         testo.setEditable(false);
-        titolo = new JTextField(18);
-        ocr = new JButton(bottoneNormale);
+        titolo = new JTextField(26);
+        ocrButton = new JButton(bottoneNormale);
         esporta = new JButton(bottoneNormale);
-        velocita = new JRadioButton("Velocità", true);
+        velocità = new JRadioButton("Velocità", true);
         precisione = new JRadioButton("Precisione");
         
         //inizializzazione pannelli
@@ -111,10 +111,10 @@ public class OCRPanel extends JPanel{
         
         bottoniPanel.setBackground(Color.white);
         
-        velocita.setBackground(Color.white);
+        velocità.setBackground(Color.white);
         precisione.setBackground(Color.white);
         
-        bg.add(velocita);
+        bg.add(velocità);
         bg.add(precisione);
         
         destraPanel.setBackground(Color.white);
@@ -137,16 +137,16 @@ public class OCRPanel extends JPanel{
         testo.setWrapStyleWord(true);
         testo.setText("");
         
-        ocr.setBorder(BorderFactory.createEmptyBorder());
-        ocr.setContentAreaFilled(false);
-        ocr.setRolloverIcon(aggiungiHover);
-        ocr.setPressedIcon(aggiungiPressed);
-        ocr.setText("OCR");
-        ocr.setFont(new Font("Century Gothic", Font.PLAIN, 13));
-        ocr.setHorizontalTextPosition(JButton.CENTER);
-        ocr.setVerticalTextPosition(JButton.CENTER);
-        ocr.setPreferredSize(new Dimension(110, 40));
-        ocr.setEnabled(true);
+        ocrButton.setBorder(BorderFactory.createEmptyBorder());
+        ocrButton.setContentAreaFilled(false);
+        ocrButton.setRolloverIcon(aggiungiHover);
+        ocrButton.setPressedIcon(aggiungiPressed);
+        ocrButton.setText("OCR");
+        ocrButton.setFont(new Font("Century Gothic", Font.PLAIN, 13));
+        ocrButton.setHorizontalTextPosition(JButton.CENTER);
+        ocrButton.setVerticalTextPosition(JButton.CENTER);
+        ocrButton.setPreferredSize(new Dimension(110, 40));
+        ocrButton.setEnabled(true);
         
         esporta.setBorder(BorderFactory.createEmptyBorder());
         esporta.setContentAreaFilled(false);
@@ -164,7 +164,7 @@ public class OCRPanel extends JPanel{
     public void creaPannelloCentrale(){
         
         testoPanel.add(scrollPanelTesto);
-        radioPanel.add(velocita);
+        radioPanel.add(velocità);
         radioPanel.add(precisione);
         destraPanel.add(radioPanel);
         destraPanel.add(bottoniPanel);
@@ -184,10 +184,10 @@ public class OCRPanel extends JPanel{
         
         pannelloPrincipale.add(testoPanel, gbc);
         
-        bottoniPanel.add(ocr);
+        bottoniPanel.add(ocrButton);
         bottoniPanel.add(esporta);
         
-        bottoniPanel.add(ocr);
+        bottoniPanel.add(ocrButton);
         bottoniPanel.add(esporta);
         
         gbc.gridx = 1;
@@ -197,14 +197,14 @@ public class OCRPanel extends JPanel{
         pannelloPrincipale.add(destraPanel, gbc);
         
         
-        ocr.addActionListener(new ActionListener() {
+        ocrButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String priorità;
-                if(velocita.isSelected()){
+                if(velocità.isSelected()){
                     priorità = "Velocità";
                 }else priorità = "Precisione";
-                OcrAscoltatore doOCR = new OcrAscoltatore(priorità, ocr, testo);
+                OcrAscoltatore doOCR = new OcrAscoltatore(priorità, ocrButton, testo);
                 doOCR.actionPerformed(e);
             }
         });

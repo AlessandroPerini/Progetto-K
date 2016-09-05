@@ -7,7 +7,7 @@ package Ascoltatori.Appunti;
 
 import Application.Applicazione;
 import Grafica.Grafica;
-import Grafica.OCRPanel;
+import Grafica.OCRAppuntoPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -19,14 +19,14 @@ public class GoToOCRPanel implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();
     
-    private OCRPanel ocrPanel;
+    private OCRAppuntoPanel ocrPanel;
     
     @Override
     public void actionPerformed(ActionEvent e) {
         
         applicazione.back.add("ocr");
 
-        ocrPanel = new OCRPanel();
+        ocrPanel = new OCRAppuntoPanel();
         
         Grafica.container.add(ocrPanel, "ocr");
         Grafica.card.show(Grafica.container, "ocr");

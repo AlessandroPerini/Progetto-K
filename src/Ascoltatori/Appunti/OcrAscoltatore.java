@@ -8,9 +8,6 @@ package Ascoltatori.Appunti;
 import Application.Applicazione;
 import Ocr.Converter;
 import Grafica.GifFrame;
-import Ocr.HPEImplementor;
-import Ocr.MotoreOCR;
-import Ocr.TesseractImplementor;
 import com.dropbox.core.DbxException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -34,7 +31,6 @@ public class OcrAscoltatore implements ActionListener{
     private String language = "Italiano";
     private JButton ocr;
     private String priorità;
-    private MotoreOCR motoreOCR;
     
     public OcrAscoltatore(String priorità, JButton ocr, JTextArea jTextArea) {
         this.jTextArea = jTextArea;
@@ -58,12 +54,6 @@ public class OcrAscoltatore implements ActionListener{
         ocr.setEnabled(false);
         gif.apri();
         
-        if(priorità.equals("Velocità")){
-            motoreOCR = new TesseractImplementor();
-        }else{
-            motoreOCR = new HPEImplementor();
-        }
-        
         new java.util.Timer().schedule(new java.util.TimerTask() {
             
             @Override
@@ -74,7 +64,7 @@ public class OcrAscoltatore implements ActionListener{
                         DownloadFileAppunto download = new DownloadFileAppunto();
                         boolean DownloadSecret = download.DownloadSecret();
                         if(DownloadSecret){
-                            converter = new Converter(motoreOCR);
+                            converter = new Converter(priorità);
                             converter.setLanguage(language);
                             String convert = converter.convert();
                             gif.chiudi();
@@ -82,7 +72,7 @@ public class OcrAscoltatore implements ActionListener{
                             jTextArea.setEditable(true);
                         }
                     }else{
-                        converter = new Converter(motoreOCR, percorsoFile);
+                        converter = new Converter(priorità, percorsoFile);
                         converter.setLanguage(language);
                         String convert = converter.convert();
                         gif.chiudi();
