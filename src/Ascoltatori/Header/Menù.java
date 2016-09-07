@@ -56,7 +56,6 @@ public class Menù implements ActionListener{
             break;
             case "OCR file": ocr();
             break;
-            
             case "Logout": logout();
             break;
         }
@@ -121,6 +120,7 @@ public class Menù implements ActionListener{
     
     private void ocr() {
         
+        applicazione.back.add("ocr");
         ocr = new OCRFilePersonalePanel();
         Grafica.container.add(ocr, "ocr");
         Grafica.card.show(Grafica.container, "ocr");
