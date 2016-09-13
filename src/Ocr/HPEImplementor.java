@@ -21,7 +21,7 @@ import java.util.Map;
  *
  * @author aless
  */
-public class HPEImplementor implements MotoreOCR, IHODClientCallback{
+public class HPEImplementor implements OCREngine, IHODClientCallback{
 
     private HODClient client = new HODClient("556fdd83-62ed-4851-95ef-f77d14f59775", this);
     private HODResponseParser parser = new HODResponseParser();

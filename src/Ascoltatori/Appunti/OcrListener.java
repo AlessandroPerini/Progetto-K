@@ -20,7 +20,7 @@ import javax.swing.JTextArea;
  *
  * @author aless
  */
-public class OcrAscoltatore implements ActionListener{
+public class OcrListener implements ActionListener{
     
     private Applicazione applicazione = Applicazione.getInstance();
     private Converter converter;
@@ -32,13 +32,13 @@ public class OcrAscoltatore implements ActionListener{
     private JButton ocr;
     private String priorità;
     
-    public OcrAscoltatore(String priorità, JButton ocr, JTextArea jTextArea) {
+    public OcrListener(String priorità, JButton ocr, JTextArea jTextArea) {
         this.jTextArea = jTextArea;
         this.ocr = ocr;
         this.priorità = priorità;
     }
     
-    public OcrAscoltatore(String priorità, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
+    public OcrListener(String priorità, String percorsoFile, JButton ocr, JTextArea jTextArea, String language) {
         this.filePersonale = true;
         this.percorsoFile = percorsoFile;
         this.jTextArea = jTextArea;

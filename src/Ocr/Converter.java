@@ -2,36 +2,36 @@ package Ocr;
 
 import Application.Applicazione;
 import Ocr.HPEImplementor;
-import Ocr.MotoreOCR;
 import Ocr.TesseractImplementor;
 import java.io.File;
+import Ocr.OCREngine;
 
 public class Converter {
     
     private Applicazione applicazione = Applicazione.getInstance();
-    private String percorsoFile = null;
+    private String filePath = null;
     private String language = "ita";
-    private MotoreOCR motoreOCR;
-    private String priorità;
+    private OCREngine OcrEngine;
+    private String priority;
        
-    public Converter(String priorità){
-        this.percorsoFile = null;
-        this.priorità = priorità;
-        istanziaMotore();
+    public Converter(String priority){
+        this.filePath = null;
+        this.priority = priority;
+        createEngineInstance();
     }
     
-    public Converter(String priorità, String percorsoFile){
-        this.percorsoFile = percorsoFile;
-        this.priorità = priorità;
-        istanziaMotore();
+    public Converter(String priority, String filePath){
+        this.filePath = filePath;
+        this.priority = priority;
+        createEngineInstance();
     }
     
-    private void istanziaMotore(){
+    private void createEngineInstance(){
         
-        if(priorità.equals("Velocità")){
-            motoreOCR = new TesseractImplementor();
+        if(priority.equals("Velocità")){
+            OcrEngine = new TesseractImplementor();
         }else{
-            motoreOCR = new HPEImplementor();
+            OcrEngine = new HPEImplementor();
         }
     }
 
@@ -42,13 +42,13 @@ public class Converter {
     public String convert() {
 
         File imageFile;
-        motoreOCR.setLanguage(language);
-        if(percorsoFile == null){
+        OcrEngine.setLanguage(language);
+        if(filePath == null){
             imageFile = new File(applicazione.fileScaricato);
         }else{
-            imageFile = new File(percorsoFile);
+            imageFile = new File(filePath);
         }
-        return motoreOCR.doOCR(imageFile);
+        return OcrEngine.doOCR(imageFile);
     }
  
 }

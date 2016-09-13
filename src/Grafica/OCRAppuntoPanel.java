@@ -4,7 +4,7 @@
 package Grafica;
 
 import Application.Applicazione;
-import Ascoltatori.Appunti.OcrAscoltatore;
+import Ascoltatori.Appunti.OcrListener;
 import Utility.EsportaFile;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,7 +58,7 @@ public class OCRAppuntoPanel extends JPanel{
     private Icon bottoneNormale, aggiungiHover, aggiungiPressed;
     
     //dichiarazione ascoltatori
-    private OcrAscoltatore ocrAscoltatore;
+    private OcrListener ocrListener;
     
     
     public OCRAppuntoPanel() {
@@ -204,7 +204,7 @@ public class OCRAppuntoPanel extends JPanel{
                 if(velocità.isSelected()){
                     priorità = "Velocità";
                 }else priorità = "Precisione";
-                OcrAscoltatore doOCR = new OcrAscoltatore(priorità, ocrButton, testo);
+                OcrListener doOCR = new OcrListener(priorità, ocrButton, testo);
                 doOCR.actionPerformed(e);
             }
         });

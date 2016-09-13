@@ -1,7 +1,7 @@
 package Grafica;
 
 import Application.Applicazione;
-import Ascoltatori.Appunti.OcrAscoltatore;
+import Ascoltatori.Appunti.OcrListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -62,7 +62,7 @@ public class OCRFilePersonalePanel extends JPanel{
     private Icon bottoneNormale, aggiungiHover, aggiungiPressed;
     
     //dichiarazione ascoltatori
-    private OcrAscoltatore ocrAscoltatore;
+    private OcrListener ocrListener;
     
     
     public OCRFilePersonalePanel() {
@@ -85,7 +85,7 @@ public class OCRFilePersonalePanel extends JPanel{
         lingua = new JComboBox<>(new String[] {"Italiano", "Inglese"});
         
         //inizializzazione pannelli
-        top = new TopPanel("OCR appunto");
+        top = new TopPanel("OCR di un file personale");
         pannelloPrincipale = new JPanel(new GridBagLayout());
         linguaPanel = new JPanel();
         sceltaFilePanel = new JPanel();
@@ -122,7 +122,7 @@ public class OCRFilePersonalePanel extends JPanel{
         scrollPanelTesto.setBorder(new LineBorder(Color.white));
         scrollPanelTesto.setVerticalScrollBar(new CustomScrollBar());
         
-        sceltaFilePanel.setBorder(BorderFactory.createTitledBorder("Appunto da convertire:"));
+        sceltaFilePanel.setBorder(BorderFactory.createTitledBorder("Documento da convertire:"));
         testoPanel.setBorder(BorderFactory.createTitledBorder("Testo convertito:"));
         testoPanel.setSize(450 , 300);
         
@@ -203,8 +203,8 @@ public class OCRFilePersonalePanel extends JPanel{
                     if(velocità.isSelected()){
                         priorità = "Velocità";
                     }else priorità = "Precisione";
-                    ocrAscoltatore = new OcrAscoltatore(priorità, percorsoFile.getText(), ocrButton, testo, language);
-                    ocrAscoltatore.actionPerformed(e);
+                    ocrListener = new OcrListener(priorità, percorsoFile.getText(), ocrButton, testo, language);
+                    ocrListener.actionPerformed(e);
                 }}
         });
         

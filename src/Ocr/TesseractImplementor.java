@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author aless
  */
-public class TesseractImplementor implements MotoreOCR{
+public class TesseractImplementor implements OCREngine{
 
     private Tesseract tesseract = Tesseract.getInstance();
     private String result = "";

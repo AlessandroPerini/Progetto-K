@@ -11,7 +11,7 @@ import java.io.File;
  *
  * @author aless
  */
-public interface MotoreOCR {
+public interface OCREngine {
     
     void setLanguage(String language);
     String doOCR(File imageFile);
