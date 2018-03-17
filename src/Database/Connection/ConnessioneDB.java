@@ -50,10 +50,10 @@ public class ConnessioneDB {
         
         try {
             //effettua la connessione al server freemysqlhosting.net con i nostri dati di accesso
-            connessione = (Connection) DriverManager.getConnection("jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7114898","sql7114898","RC4ZIQMDHd");
+            connessione = (Connection) DriverManager.getConnection("jdbc:mysql://sql2.freemysqlhosting.net:3306/sql2227273","sql2227273","dB4%qG1!");
             System.out.println("Database Connected");
         } catch (SQLException ex) {
-            System.out.println("Impossible to connect jdbc:mysql://sql7.freemysqlhosting.net:3306/sql7114898");
+            System.out.println("Impossible to connect to the database");
             throw new Exception();
         }
             
